@@ -1,0 +1,46 @@
+Based on the provided document, I've extracted the specifications and expressed them using Metric Temporal Logic (MTL) formulas. Here are the results in the required JSON format:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(autorotation_mode -> (collective_angle <= threshold))",
+            "explanation": "The collective angle should always be less than or equal to a certain threshold during autorotation mode to prevent blade stall."
+        },
+        {
+            "formula": "G(autorotation_mode -> (airspeed >= minimum_airspeed))",
+            "explanation": "The airspeed should always be greater than or equal to a minimum airspeed during autorotation mode to maintain efficient flight."
+        },
+        {
+            "formula": "G(entry_phase -> (collective_angle = proportional_to_resultant_velocity_vector))",
+            "explanation": "During the entry phase, the collective angle should be proportional to the resultant velocity vector to minimize blade drag and prevent excessive loss of head speed."
+        },
+        {
+            "formula": "G(glide_phase -> (airspeed >= minimum_airspeed))",
+            "explanation": "During the glide phase, the airspeed should always be greater than or equal to a minimum airspeed to maintain efficient flight and increase the likelihood of finding a suitable landing area."
+        },
+        {
+            "formula": "G(flare_phase -> (vertical_descent_speed <= threshold))",
+            "explanation": "During the flare phase, the vertical descent speed should always be less than or equal to a certain threshold to achieve a good landing."
+        },
+        {
+            "formula": "G(flare_phase -> (lift_force >= threshold))",
+            "explanation": "During the flare phase, the lift force should always be greater than or equal to a certain threshold to convert airspeed into main rotor lift and reduce descent speed."
+        },
+        {
+            "formula": "G(touch_down_phase -> (head_speed >= minimum_head_speed))",
+            "explanation": "During the touch-down phase, the head speed should always be greater than or equal to a minimum head speed to maintain an induced flow and prevent blade stall."
+        },
+        {
+            "formula": "G(bail_out_phase -> (collective_angle <= threshold))",
+            "explanation": "During the bail-out phase, the collective angle should always be less than or equal to a certain threshold to prevent aggressive collective angles and blade stall."
+        },
+        {
+            "formula": "G(bail_out_phase -> (vertical_speed = requested_vertical_speed))",
+            "explanation": "During the bail-out phase, the vertical speed should always be equal to the requested vertical speed to ensure a smooth transition out of autorotation mode."
+        }
+    ]
+}
+```
+
+Note that some of the specifications are implicit in the document and have been inferred based on the context. Additionally, some of the thresholds and minimum values mentioned in the specifications are not explicitly defined in the document and would need to be determined through further analysis or experimentation.

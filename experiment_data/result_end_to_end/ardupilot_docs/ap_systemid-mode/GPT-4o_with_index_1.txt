@@ -1,0 +1,12 @@
+[
+  {
+    "index": 0,
+    "formula": "G(SID_AXIS ≠ 0 → F(ParametersVisible ∧ ModeEntryAllowed))",
+    "explanation": "Globally, if SID_AXIS is non-zero, it should eventually lead to the parameters becoming visible and mode entry being allowed."
+  },
+  {
+    "index": 1,
+    "formula": "G(SID_AXIS = 0 → F(ErrorLogged ∧ ErrorSent))",
+    "explanation": "Globally, if SID_AXIS is zero, it should eventually result in an error being logged and sent."
+  }
+]

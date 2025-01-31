@@ -1,0 +1,57 @@
+[
+  {
+    "sentence": "The vehicle can be armed in Loiter mode but only once the GPS has 3D lock and the HDOP has dropped below 1.4.",
+    "formula": "G((L ∧ H) → A)",
+    "explanation": "Here, L represents the GPS having a 3D lock, H indicates the HDOP dropping below 1.4, and A signifies the vehicle being armed. The formula ensures that arming can only occur when both conditions are met."
+  },
+  {
+    "sentence": "1.LOIT_SPEED: max horizontal speed in cm/s (i.e. 1250 = 12.5m/s)",
+    "formula": "G(S ≤ 1250)",
+    "explanation": "S represents the horizontal speed of the vehicle. The formula ensures that the speed does not exceed 1250 cm/s, or 12.5 m/s."
+  },
+  {
+    "sentence": "2.LOIT_ACC_MAX: max acceleration in cm/s/s.",
+    "formula": "G(A ≤ acc_max)",
+    "explanation": "A denotes the vehicle's acceleration. The formula ensures that acceleration remains below a specified maximum value, acc_max."
+  },
+  {
+    "sentence": "3.LOIT_ANG_MAX: max lean angle in degrees (i.e. 30deg).",
+    "formula": "G(θ ≤ 30)",
+    "explanation": "θ represents the lean angle of the vehicle. This formula ensures that the lean angle does not exceed 30 degrees."
+  },
+  {
+    "sentence": "4.LOIT_BRK_ACCEL: max acceleration in cm/s/s while braking (i.e. pilot has moved sticks to center).",
+    "formula": "G((B ∧ C) → (A ≤ brk_accel))",
+    "explanation": "B indicates braking, C means the pilot has centered the sticks, and A is acceleration. The formula ensures the acceleration during braking does not exceed a specified maximum, brk_accel."
+  },
+  {
+    "sentence": "5.LOIT_BRK_DELAY: the delay in seconds before braking starts once the pilot has centered the sticks",
+    "formula": "G(C → F[0, delay](B))",
+    "explanation": "C indicates the pilot centering the sticks, and B represents braking. The formula specifies that braking must occur within a set delay after the sticks are centered."
+  },
+  {
+    "sentence": "6.LOIT_BRK_JERK: max change in acceleration in cm/s/s/s while braking.",
+    "formula": "G(J ≤ brk_jerk)",
+    "explanation": "J represents the jerk, or change in acceleration. The formula ensures this change does not exceed a specified value, brk_jerk."
+  },
+  {
+    "sentence": "A good GPS lock, low magnetic interference on the compass and low vibrations are all important in achieving good loiter performance.",
+    "formula": "G((L ∧ M ∧ V) → P)",
+    "explanation": "L is a good GPS lock, M is low magnetic interference, V is low vibrations, and P is good loiter performance. The formula ensures all conditions are necessary for optimal performance."
+  },
+  {
+    "sentence": "When the pilot releases the sticks the copter will slow to a stop.",
+    "formula": "G(R → F(S))",
+    "explanation": "R indicates the pilot releasing the sticks, and S represents the copter slowing to a stop. The formula ensures that once the sticks are released, the copter will eventually stop."
+  },
+  {
+    "sentence": "7.PSC_POSXY_P: (shown as \"Position XY (Dist to Speed)\" at the top right of the screen shot above) converts the horizontal position error (i.e difference between the desired position and the actual position) to a desired speed towards the target position.",
+    "formula": "G(E → D)",
+    "explanation": "E represents the horizontal position error, and D is the desired speed. The formula ensures that any position error leads to an appropriate speed adjustment towards the target."
+  },
+  {
+    "sentence": "8.PSC_VELXY_P (shown as \"Velocity XY (Vel to Accel)\") converts the desired speed towards the target to a desired acceleration.",
+    "formula": "F(P → A)",
+    "explanation": "Here, P represents the predicate 'desired speed towards the target is set', and A represents 'desired acceleration is achieved'. The formula captures that eventually, whenever the desired speed is set, it leads to the desired acceleration."
+  }
+]

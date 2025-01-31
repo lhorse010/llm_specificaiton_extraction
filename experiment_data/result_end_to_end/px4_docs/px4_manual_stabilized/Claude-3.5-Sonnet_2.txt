@@ -1,0 +1,38 @@
+I'll extract the specifications from the document and express them using Metric Temporal Logic (MTL) formulas. Then, I'll format the results in JSON as requested.
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G((|roll_stick| < deadzone ∧ |pitch_stick| < deadzone) → F(roll_angle ≈ 0 ∧ pitch_angle ≈ 0))",
+            "explanation": "Globally, when roll and pitch sticks are within the deadzone, eventually the roll and pitch angles will be approximately zero, leveling the vehicle."
+        },
+        {
+            "formula": "G(|roll_stick| > deadzone → roll_angle ≈ k * roll_stick)",
+            "explanation": "Globally, when the roll stick is outside the deadzone, the roll angle is proportional to the stick input, where k is a scaling factor."
+        },
+        {
+            "formula": "G(|pitch_stick| > deadzone → pitch_angle ≈ k * pitch_stick)",
+            "explanation": "Globally, when the pitch stick is outside the deadzone, the pitch angle is proportional to the stick input, where k is a scaling factor."
+        },
+        {
+            "formula": "G(yaw_rate ≈ k * yaw_stick)",
+            "explanation": "Globally, the yaw rate is proportional to the yaw stick input, where k is a scaling factor."
+        },
+        {
+            "formula": "G(vertical_speed ≈ k * (throttle_stick - hover_throttle))",
+            "explanation": "Globally, the vertical speed is proportional to the difference between the throttle stick position and the hover throttle position, where k is a scaling factor."
+        },
+        {
+            "formula": "G(¬manual_control → X(mode ≠ stabilized))",
+            "explanation": "Globally, if there's no manual control input, in the next state the mode will not be stabilized."
+        },
+        {
+            "formula": "G((mode = manual) → (mode = stabilized))",
+            "explanation": "Globally, if the mode is set to manual, it implies that the mode is stabilized."
+        }
+    ]
+}
+```
+
+These MTL formulas capture the key specifications of the Stabilized Mode for multicopters as described in the document. They cover the behavior of the vehicle in response to stick inputs, the leveling behavior when sticks are centered, and the requirement for manual control input. The formulas use the temporal operators G (globally) and F (finally) to express the continuous nature of these rules and the eventual stabilization of the vehicle.

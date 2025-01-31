@@ -1,0 +1,77 @@
+[
+  {
+    "sentence": "While stabilize mode does not necessarily require GPS, switching to RTL in case of emergency does.",
+    "formula": "G((S ∧ ¬G) ∨ (R → G))",
+    "explanation": "S represents stabilize mode, R represents RTL mode, and G represents GPS availability. The formula states that globally, either stabilize mode is active without requiring GPS, or if RTL is activated, it implies GPS is available."
+  },
+  {
+    "sentence": "Make sure you do have a reliable position estimate prior to arming, most commonly provided by 3D GPS fix with sufficient HDOP.",
+    "formula": "G(A → X(P ∧ G))",
+    "explanation": "A represents arming, P represents reliable position estimate, and G represents 3D GPS fix with sufficient HDOP. The formula ensures that globally, arming implies that in the next state, there's a reliable position estimate (typically from GPS)."
+  },
+  {
+    "sentence": "1.Pilot's roll and pitch input control the lean angle of the copter.",
+    "formula": "G((R ∨ P) → L)",
+    "explanation": "R represents roll input, P represents pitch input, and L represents lean angle control. The formula states that globally, either roll or pitch input implies control over the lean angle."
+  },
+  {
+    "sentence": "3.Pilot's yaw input controls the rate of change of the heading.",
+    "formula": "G(Y → H)",
+    "explanation": "Y represents yaw input, and H represents rate of change of heading. The formula indicates that globally, yaw input implies control over the rate of change of heading."
+  },
+  {
+    "sentence": "When the pilot releases the yaw stick the vehicle will maintain its current heading.",
+    "formula": "G(¬Y → X(G(C)))",
+    "explanation": "Y represents yaw input, and C represents maintaining current heading. The formula states that globally, when there's no yaw input, in the next state, the current heading will be maintained indefinitely."
+  },
+  {
+    "sentence": "4.Pilot's throttle input controls the average motor speed meaning that constant adjustment of the throttle is required to maintain altitude.",
+    "formula": "G(T ↔ (M ∧ A))",
+    "explanation": "T represents throttle input, M represents average motor speed control, and A represents maintaining altitude. The formula indicates that globally, throttle input is equivalent to controlling motor speed and maintaining altitude."
+  },
+  {
+    "sentence": "If the pilot puts the throttle completely down the motors will go to their minimum rate (MOT_SPIN_ARMED) and if the vehicle is flying it will lose attitude control and tumble.",
+    "formula": "G((D ∧ F) → (M ∧ X(L)))",
+    "explanation": "D represents throttle down, F represents flying state, M represents minimum motor rate, and L represents loss of attitude control. The formula states that globally, if throttle is down while flying, it leads to minimum motor rate and subsequent loss of control."
+  },
+  {
+    "sentence": "5.The throttle sent to the motors is automatically adjusted based on the tilt angle of the vehicle (i.e. increased as the vehicle tilts over more) to reduce the compensation the pilot must do as the vehicle's attitude changes.",
+    "formula": "G(T → (A ∧ C))",
+    "explanation": "T represents tilt angle, A represents automatic throttle adjustment, and C represents reduced pilot compensation. The formula indicates that globally, vehicle tilt implies automatic throttle adjustment and reduced need for pilot compensation."
+  },
+  {
+    "sentence": "1.ANGLE_MAX controls the maximum lean angle which by default is 4500 (i.e. 45 degrees)",
+    "formula": "G(M → L)",
+    "explanation": "M represents ANGLE_MAX setting, and L represents maximum lean angle of 45 degrees. The formula states that globally, the ANGLE_MAX setting implies a maximum lean angle of 45 degrees."
+  },
+  {
+    "sentence": "2.ANGLE_RATE_MAX controls the maximum requested rotation rate in the roll and pitch axis which by default is 18000 (180deg/sec).",
+    "formula": "G(R → (P ∧ Q))",
+    "explanation": "R represents ANGLE_RATE_MAX setting, P represents maximum roll rotation rate, and Q represents maximum pitch rotation rate. The formula indicates that globally, the ANGLE_RATE_MAX setting implies maximum rotation rates for both roll and pitch axes."
+  },
+  {
+    "sentence": "ACRO_Y_RATE controls how quickly copter rotates based on a pilot's yaw input.",
+    "formula": "G(Y → R)",
+    "explanation": "This formula represents a constant relationship where Y (pilot's yaw input) implies R (copter's rotation rate). The G (globally) operator indicates that this relationship holds at all times, capturing the continuous nature of the control system."
+  },
+  {
+    "sentence": "The default of 4.5 commands a 200 deg/sec rate of rotation when the yaw stick is held fully left or right.",
+    "formula": "G((L ∨ R) → S)",
+    "explanation": "Here, L and R represent the yaw stick being fully left or right, respectively, and S represents the 200 deg/sec rotation rate. The formula states that globally, whenever the stick is fully left or right, the specified rotation rate is commanded."
+  },
+  {
+    "sentence": "When the pilot releases the roll and pitch sticks the vehicle automatically levels itself.",
+    "formula": "G((¬R ∧ ¬P) → F[0,t]L)",
+    "explanation": "R and P represent roll and pitch inputs, and L represents the vehicle being level. The formula states that globally, when there's no roll and pitch input, the vehicle will level itself within some finite time t. The F[0,t] operator captures the automatic leveling behavior."
+  },
+  {
+    "sentence": "Pilot will need to regularly input roll and pitch commands to keep the vehicle in place as it is pushed around by the wind.",
+    "formula": "G(W → F[0,t](R ∨ P))",
+    "explanation": "W represents wind disturbance, while R and P are roll and pitch inputs. This formula states that globally, whenever there's wind (W), within some time t, the pilot will need to input either roll or pitch commands. The F[0,t] operator captures the 'regular' nature of inputs."
+  },
+  {
+    "sentence": "Stabilize mode can be setup to provide full stabilization at idle throttle.",
+    "formula": "F(S ∧ G(I → F))",
+    "explanation": "S represents the setup of Stabilize mode, I is idle throttle, and F is full stabilization. The formula states that eventually (F), Stabilize mode is set up such that globally (G), idle throttle implies full stabilization. This captures the potential for this feature to be enabled."
+  }
+]

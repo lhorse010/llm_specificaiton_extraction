@@ -1,0 +1,107 @@
+[
+  {
+    "section-id": 1,
+    "sentence-id": 0,
+    "sentence": "This module is activated if the launch parameter launch_out_of_lane_module is set to true."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 0,
+    "sentence": "This module calculates if out of lane collisions occur and insert stop point before the collisions if necessary."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 1,
+    "sentence": "The algorithm assumes the input ego trajectory contains accurate time_from_start values in order to calculate accurate time to collisions with the predicted objects."
+  },
+  {
+    "section-id": 3,
+    "sentence-id": 1,
+    "sentence": "The length of the trajectory used for generating the footprints is limited by the max_arc_length parameter."
+  },
+  {
+    "section-id": 6,
+    "sentence-id": 1,
+    "sentence": "1.ignore objects with a speed bellow the minimum_velocity parameter;"
+  },
+  {
+    "section-id": 6,
+    "sentence-id": 2,
+    "sentence": "2.ignore objects coming from behind the ego vehicle if parameter ignore_behind_ego is set to true;"
+  },
+  {
+    "section-id": 6,
+    "sentence-id": 3,
+    "sentence": "3.ignore predicted paths whose confidence value is bellow the predicted_path_min_confidence parameter;"
+  },
+  {
+    "section-id": 6,
+    "sentence-id": 4,
+    "sentence": "4.cut the points of predicted paths going beyond the stop line of a red traffic light if parameter cut_predicted_paths_beyond_red_lights is set to true."
+  },
+  {
+    "section-id": 7,
+    "sentence-id": 1,
+    "sentence": "In the case where parameter mode is set to threshold and the calculated time is less than threshold.time_threshold parameter, then we decide to avoid the out of lane area."
+  },
+  {
+    "section-id": 7,
+    "sentence-id": 3,
+    "sentence": "If the time to collision is bellow the ttc.threshold parameter value, we decide to avoid the out of lane area."
+  },
+  {
+    "section-id": 8,
+    "sentence-id": 0,
+    "sentence": "First, the minimum stopping distance of the ego vehicle is calculated based on the jerk and deceleration constraints set by the velocity smoother parameters."
+  },
+  {
+    "section-id": 8,
+    "sentence-id": 1,
+    "sentence": "We then search for the furthest pose along the trajectory where the ego footprint stays inside of the ego lane (calculate in step 2) and constraint the search to be between the minimum stopping distance and the 1st trajectory point with a collision to avoid (as determined in the previous step)."
+  },
+  {
+    "section-id": 8,
+    "sentence-id": 8,
+    "sentence": "If this distance is bellow the actions.slowdown.threshold, a velocity of actions.slowdown.velocity will be used."
+  },
+  {
+    "section-id": 8,
+    "sentence-id": 9,
+    "sentence": "If the distance is bellow the actions.stop.threshold, a velocity of 0m/s will be used."
+  },
+  {
+    "section-id": 9,
+    "sentence-id": 1,
+    "sentence": "To make the decision more stable, a stop or slowdown pose is used for a minimum duration set by the action.min_duration parameter."
+  },
+  {
+    "section-id": 4,
+    "sentence-id": 0,
+    "sentence": "In the second step, we calculate the lanelets where collisions should be avoided."
+  },
+  {
+    "section-id": 7,
+    "sentence-id": 0,
+    "sentence": "For each out of lane area, we calculate the times when a dynamic object will overlap the area based on its filtered predicted paths."
+  },
+  {
+    "section-id": 7,
+    "sentence-id": 2,
+    "sentence": "In the case where parameter mode is set to ttc, we calculate the time to collision by comparing the predicted time of the object with the time_from_start field contained in the trajectory point."
+  },
+  {
+    "section-id": 0,
+    "sentence-id": 1,
+    "sentence": "The out_of_lane module adds deceleration and stop points to the ego trajectory in order to prevent collisions from occurring in these out of lane cases."
+  },
+  {
+    "section-id": 8,
+    "sentence-id": 7,
+    "sentence": "Whether it is decided to slow down or stop is determined by the distance between the ego vehicle and the trajectory point to avoid."
+  },
+  {
+    "section-id": 9,
+    "sentence-id": 3,
+    "sentence": "Otherwise, the stop or slowdown pose will only be discarded after no out of lane collision is detection for the set duration."
+  }
+]

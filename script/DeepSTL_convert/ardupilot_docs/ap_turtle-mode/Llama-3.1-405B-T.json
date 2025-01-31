@@ -1,0 +1,52 @@
+{
+    "temporal_logic_formulars": [
+        {
+            "section-id": 0,
+            "sentence-id": 2,
+            "sentence": "DShot capable ESCs are required for this mode to function, allowing the DShot reverse command to be sent to the ESCs.",
+            "tl": "always ( ShotcapableESCsre == functionalowingDShotreverseco == seco )"
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 3,
+            "sentence": "SERVO_DSHOT_ESC must be set to a non-zero value and MOT_PWM_TYPE to a DSHOT value also, to allow DShot commands to be sent to the ESC.",
+            "tl": "always ( SERVO_DSHOT_ESC == anononzero and MOT_YPE == aDSHOTloOT )"
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 8,
+            "sentence": "1.Turtle mode cannot be entered unless throttle is zero",
+            "tl": "always ( rise ( 1 . Turtlecannot == unlnlesthrotltezero ) and rise ( rotlezero == roero ) )"
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 9,
+            "sentence": "2.Upon entry to turtle mode the motors stay disarmed, but the notfiy LEDs flash",
+            "tl": "always ( Uponentry == turtle or motdsdarmedbut == tnotfiyLEDsflash )"
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 10,
+            "sentence": "3.Raising the throttle, the motors arm, and motors spin.",
+            "tl": "always ( Raisingthrotle == motorsarm and motorspin == mototorspin )"
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 11,
+            "sentence": "Lowering throttle to zero disarms the motors",
+            "tl": "always ( tLoweringthrottle == zerodisarmsmototorsmotorsrs ) -> otorsrs == rsmototorsrss )"
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 12,
+            "sentence": "4.Motors spin only when throttle is raised",
+            "tl": "always ( Motorspinonly == throtle )"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 0,
+            "sentence": "This flight mode is available for multirotors only.",
+            "tl": "always ( Thisflightt == available -> multirotrotrsonly )"
+        }
+    ]
+}

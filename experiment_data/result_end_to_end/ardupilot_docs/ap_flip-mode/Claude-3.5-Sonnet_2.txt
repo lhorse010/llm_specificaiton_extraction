@@ -1,0 +1,50 @@
+Step 1: I have thoroughly read the document.
+
+Step 4: Let's extract specifications and express them using metric temporal logic formulas.
+
+Step 5: Here's the formatted output in JSON:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(flip_triggered → (X[0,1] rise ∧ X[1,∞] rapid_flip))",
+            "explanation": "Globally, when a flip is triggered, the vehicle will rise for 1 second and then rapidly flip."
+        },
+        {
+            "formula": "G(flip_completed → (¬flip_possible U switch_low_then_high))",
+            "explanation": "Globally, after a flip is completed, another flip is not possible until the switch is brought low and then back to high."
+        },
+        {
+            "formula": "G(flip_mode_active → (stabilize ∨ acro ∨ althold))",
+            "explanation": "Globally, when flip mode is active, the vehicle must be in Stabilize, Acro, or AltHold flight mode."
+        },
+        {
+            "formula": "G(flip_triggered → F[0,2.5] flip_completed)",
+            "explanation": "Globally, when a flip is triggered, it should complete within 2.5 seconds."
+        },
+        {
+            "formula": "G(flip_completed → X return_to_original_mode)",
+            "explanation": "Globally, when a flip is completed, the vehicle will return to the original flight mode it was in before the flip was triggered."
+        },
+        {
+            "formula": "G((ch7_ch8_off ∨ roll_stick_gt_40deg) → flip_exit)",
+            "explanation": "Globally, if the ch7/ch8 switch is turned off or the roll stick is moved more than 40 degrees left or right, the flip will be manually exited."
+        },
+        {
+            "formula": "G(flip_start → (lean_lt_45deg ∧ roll_right_400deg_per_sec ∧ increase_throttle))",
+            "explanation": "Globally, during the Flip_Start state (while copter is leaning less than 45 degrees), the vehicle will roll right at 400 degrees per second and increase throttle."
+        },
+        {
+            "formula": "G(flip_roll → (lean_between_45deg_and_neg90deg ∧ roll_right_400deg_per_sec ∧ reduce_throttle))",
+            "explanation": "Globally, during the Flip_Roll state (while copter is between +45 and -90 degrees), the vehicle will roll right at 400 degrees per second and reduce throttle."
+        },
+        {
+            "formula": "G(flip_recover → (lean_between_neg90deg_and_target ∧ use_earth_frame_angle_controller))",
+            "explanation": "Globally, during the Flip_Recover state (while copter is between -90 degrees and the original target angle), the vehicle will use the earth frame angle controller to return to the original attitude."
+        }
+    ]
+}
+```
+
+These MTL formulas capture the key specifications from the document, including the flip behavior, state machine approach, and control conditions. The formulas use the provided logical and temporal modal operators to express the temporal relationships and conditions specified in the document.

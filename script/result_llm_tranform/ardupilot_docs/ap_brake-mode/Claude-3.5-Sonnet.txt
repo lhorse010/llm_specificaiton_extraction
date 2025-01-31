@@ -1,0 +1,32 @@
+[
+  {
+    "sentence": "Once invoked, this mode does not accept any input from the pilot.",
+    "formula": "G(M → G(¬I))",
+    "explanation": "M represents the mode being invoked, and I represents input from the pilot. This formula states that globally, whenever the mode is invoked, it globally does not accept pilot input thereafter. The nested G operators capture the permanent nature of this behavior once the mode is activated."
+  },
+  {
+    "sentence": "This mode requires GPS.",
+    "formula": "G(M → G)",
+    "explanation": "M represents the mode, and G represents GPS availability. This formula expresses that globally, whenever the mode is active, GPS must be available. The implication ensures that the mode cannot be active without GPS."
+  },
+  {
+    "sentence": "Brake mode is subject to acceleration and angle limits imposed by the position and attitude controllers.",
+    "formula": "G(B → (A ∧ L))",
+    "explanation": "B represents Brake mode, A represents acceleration limits, and L represents angle limits. This formula states that globally, whenever Brake mode is active, both acceleration and angle limits are enforced. The conjunction ensures both conditions are met simultaneously."
+  },
+  {
+    "sentence": "If the vehicle is landed in Brake mode it will immediately disarm.",
+    "formula": "G((B ∧ L) → XD)",
+    "explanation": "B represents Brake mode, L represents landed state, and D represents disarmed state. This formula expresses that globally, if the vehicle is in Brake mode and landed, in the next immediate state it will be disarmed. The X operator captures the immediacy of the disarming action."
+  },
+  {
+    "sentence": "The pilots controls are ignored in this mode.",
+    "formula": "G(M → ¬C)",
+    "explanation": "M represents the mode being active, and C represents pilot controls being accepted. This formula states that globally, when the mode is active, pilot controls are not accepted. The negation of C ensures that pilot inputs are ignored."
+  },
+  {
+    "sentence": "The vehicle must be switched out of this mode before the pilot can re-take control.",
+    "formula": "G(M → (¬C U ¬M))",
+    "explanation": "M represents the mode being active, and C represents pilot control. This formula expresses that globally, when the mode is active, pilot control remains unavailable until the mode is deactivated. The Until operator U captures the sequential nature of mode deactivation followed by pilot control re-enablement."
+  }
+]

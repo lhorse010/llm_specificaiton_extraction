@@ -1,0 +1,52 @@
+[
+  {
+    "index": 0,
+    "formula": "G(traffic_light_in_ego_lane → X(process_traffic_light))",
+    "explanation": "Globally, whenever there is a traffic light in the ego lane, in the next state, the system must process the traffic light information."
+  },
+  {
+    "index": 1,
+    "formula": "G((¬traffic_light_found ∨ traffic_light_timed_out) → signal_to_stop)",
+    "explanation": "Globally, if a corresponding traffic light signal is not found or has timed out, the system must signal to stop."
+  },
+  {
+    "index": 2,
+    "formula": "G((traffic_light_found ∧ ¬traffic_light_timed_out ∧ highest_reliability_color ≠ green) → generate_stop_point)",
+    "explanation": "Globally, if a traffic light is found, not timed out, and its highest reliability color is not green, generate a stop point."
+  },
+  {
+    "index": 3,
+    "formula": "G((stop_signal_received ∧ elapsed_time < stop_time_hysteresis) → signal_to_pass)",
+    "explanation": "Globally, if a stop signal is received but the elapsed time is less than the stop time hysteresis, treat it as a signal to pass to prevent chattering."
+  },
+  {
+    "index": 4,
+    "formula": "G((current_velocity > 2.0) → apply_pass_judge_formula)",
+    "explanation": "Globally, when the current velocity is greater than 2.0 m/s, apply the pass judge formula."
+  },
+  {
+    "index": 5,
+    "formula": "G((current_velocity ≤ 2.0) → stop)",
+    "explanation": "Globally, when the current velocity is less than or equal to 2.0 m/s, stop the vehicle."
+  },
+  {
+    "index": 6,
+    "formula": "G((in_yellow_lamp ∧ can_pass_through_stop_line) → pass)",
+    "explanation": "Globally, if the vehicle is in the yellow lamp phase and can pass through the stop line, it should pass."
+  },
+  {
+    "index": 7,
+    "formula": "G((in_yellow_lamp ∧ ¬can_pass_through_stop_line) → emergency_stop)",
+    "explanation": "Globally, if the vehicle is in the yellow lamp phase and cannot pass through the stop line, perform an emergency stop."
+  },
+  {
+    "index": 8,
+    "formula": "G((in_dilemma_zone ∧ ¬can_pass_through_yellow_lamp ∧ ¬can_stop_normally) → emergency_stop)",
+    "explanation": "Globally, if the vehicle is in the dilemma zone, cannot pass through during the yellow lamp, and cannot stop normally, perform an emergency stop."
+  },
+  {
+    "index": 9,
+    "formula": "G((in_optional_zone ∧ can_pass_through_yellow_lamp ∧ can_stop_normally) → stop)",
+    "explanation": "Globally, if the vehicle is in the optional zone, can pass through during the yellow lamp, and can stop normally, choose to stop for safety."
+  }
+]

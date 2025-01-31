@@ -1,0 +1,185 @@
+{
+  "title": "Position Mode (Multicopter)",
+  "sections": [
+    {
+      "section-id": 0,
+      "title": "Position Mode (Multicopter)",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "_Position_ is an easy-to-fly RC mode in which roll and pitch sticks control acceleration over ground in the vehicle's left-right and forward-back directions (similar to a car's accelerator pedal), and throttle controls speed of ascent-descent."
+        },
+        {
+          "sentence-id": 1,
+          "text": "When the sticks are released/centered the vehicle will actively brake, level, and be locked to a position in 3D space — compensating for wind and other forces."
+        },
+        {
+          "sentence-id": 2,
+          "text": "With full stick deflection the vehicle accelerates initially with MPC_ACC_HOR_MAX ramping down until it reaches the final velocity MPC_VEL_MANUAL."
+        }
+      ]
+    },
+    {
+      "section-id": 1,
+      "title": "Position Mode (Multicopter) : tip",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "Position mode is the safest manual mode for new fliers."
+        },
+        {
+          "sentence-id": 1,
+          "text": "Unlike Altitude and Stabilized modes the vehicle will stop when the sticks are centered rather than continuing until slowed by wind resistance."
+        }
+      ]
+    },
+    {
+      "section-id": 2,
+      "title": "Landing",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "Landing in this mode is easy:"
+        },
+        {
+          "sentence-id": 1,
+          "text": "1.Position the drone horizontally above the landing spot using the roll and pitch stick."
+        },
+        {
+          "sentence-id": 2,
+          "text": "2.Let go of the roll and pitch stick and give it enough time to come to a complete stop."
+        },
+        {
+          "sentence-id": 3,
+          "text": "3.Pull the throttle stick down gently until the vehicle touches the ground."
+        },
+        {
+          "sentence-id": 4,
+          "text": "4.Pull the throttle stick all the way down to facilitate and accelerate land detection."
+        },
+        {
+          "sentence-id": 5,
+          "text": "5.The vehicle will lower propeller thrust, detect the ground and automatically disarm (by default)."
+        }
+      ]
+    },
+    {
+      "section-id": 3,
+      "title": "Landing : warning",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "While very rare on a well calibrated vehicle, sometimes there may be problems with landing."
+        },
+        {
+          "sentence-id": 1,
+          "text": "1.If the vehicle does not stop moving horizontally:"
+        },
+        {
+          "sentence-id": 2,
+          "text": "You can still land under control in Altitude mode."
+        },
+        {
+          "sentence-id": 3,
+          "text": "The approach is the same as above, except that you must manually ensure that the vehicle stays above the landing spot using the roll and pitch stick."
+        },
+        {
+          "sentence-id": 4,
+          "text": "After landing check GPS and magnetometer orientation, calibration."
+        },
+        {
+          "sentence-id": 5,
+          "text": "2.If the vehicle does not detect the ground/landing and disarm:"
+        },
+        {
+          "sentence-id": 6,
+          "text": "After the vehicle is on the ground switch to Stabilized mode keeping the throttle stick low, and manually disarm using a gesture or other command."
+        },
+        {
+          "sentence-id": 7,
+          "text": "Alternatively you can also use the kill switch when the vehicle is already on the ground."
+        }
+      ]
+    },
+    {
+      "section-id": 4,
+      "title": "Technical Summary",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "RC mode where roll, pitch, throttle (RPT) sticks control movement in corresponding axes/directions."
+        },
+        {
+          "sentence-id": 1,
+          "text": "Centered sticks level vehicle and hold it to fixed altitude and position against wind."
+        },
+        {
+          "sentence-id": 2,
+          "text": "1.Centered roll, pitch, throttle sticks (within RC deadzone MPC_HOLD_DZ) hold x, y, z position steady against any disturbance like wind."
+        },
+        {
+          "sentence-id": 3,
+          "text": "2.Outside center:"
+        },
+        {
+          "sentence-id": 4,
+          "text": "Roll/Pitch sticks control horizontal acceleration over ground in the vehicle's left-right and forward-back directions (respectively)."
+        },
+        {
+          "sentence-id": 5,
+          "text": "Throttle stick controls speed of ascent-descent."
+        },
+        {
+          "sentence-id": 6,
+          "text": "Yaw stick controls rate of angular rotation above the horizontal plane."
+        },
+        {
+          "sentence-id": 7,
+          "text": "3.Takeoff:"
+        },
+        {
+          "sentence-id": 8,
+          "text": "When landed, the vehicle will take off if the throttle stick is raised above 62.5% percent (of the full range from bottom)."
+        },
+        {
+          "sentence-id": 9,
+          "text": "4.Global position estimate is required."
+        },
+        {
+          "sentence-id": 10,
+          "text": "5.Manual control input is required (such as RC control, joystick)."
+        },
+        {
+          "sentence-id": 11,
+          "text": "Roll, Pitch, Throttle: Assistance from autopilot to hold position against wind."
+        },
+        {
+          "sentence-id": 12,
+          "text": "Yaw: Assistance from autopilot to stabilize the attitude rate."
+        },
+        {
+          "sentence-id": 13,
+          "text": "Position of RC stick maps to the rate of rotation of vehicle in that orientation."
+        }
+      ]
+    },
+    {
+      "section-id": 5,
+      "title": "Additional Information : Position Loss/Safety",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "Position mode is dependent on having an acceptable position estimate."
+        },
+        {
+          "sentence-id": 1,
+          "text": "If the estimate falls below acceptable levels, for example due to GPS loss, this may trigger a Position (GPS) Loss Failsafe."
+        },
+        {
+          "sentence-id": 2,
+          "text": "Depending on configuration, whether you have a remote control, and whether there is an adequate altitude estimate, PX4 may switch to altitude mode, manual mode, land mode or terminate."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+```json
+{
+    "specifications": [
+        {
+            "formula": "G (altitude > 10m → descend_speed = WPNAV_SPEED_DN)",
+            "explanation": "If the copter is above 10 meters, it should descend using the regular Altitude Hold controller at the speed specified by WPNAV_SPEED_DN."
+        },
+        {
+            "formula": "G (altitude <= 10m → descend_speed = LAND_SPEED)",
+            "explanation": "Below 10 meters, the copter should descend at the rate specified in the LAND_SPEED parameter."
+        },
+        {
+            "formula": "G (ground_detected ∧ throttle = min → motors = off ∧ copter_disarmed)",
+            "explanation": "When the copter reaches the ground and the throttle is at minimum, the motors should shut down and the copter should disarm."
+        },
+        {
+            "formula": "G (¬GPS_lock → horizontal_control = stabilize_mode)",
+            "explanation": "If there is no GPS lock, the horizontal control should be as in stabilize mode, allowing the pilot to control roll and pitch."
+        },
+        {
+            "formula": "G (landed_detected ↔ (motor_command_low ∧ -20cm/s <= climb_rate <= 20cm/s ∧ ¬accelerating_for_1s))",
+            "explanation": "The copter is considered landed if motors are commanded low, the climb rate is between -20cm/s and +20cm/s, and it is not accelerating for one second."
+        },
+        {
+            "formula": "G (rangefinder_used → altitude <= 2m)",
+            "explanation": "If a rangefinder is used, the copter must be within 2 meters of the ground to shut off the motors."
+        }
+    ]
+}
+```

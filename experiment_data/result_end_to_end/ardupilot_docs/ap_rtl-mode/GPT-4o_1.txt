@@ -1,0 +1,30 @@
+```json
+{
+    "specifications": [
+        {
+            "formula": "G (RTL → (altitude ≥ max(RTL_CLIMB_MIN, RTL_ALT) ∧ altitude ≥ 2m))",
+            "explanation": "In RTL mode, the copter must ascend to at least the maximum of RTL_CLIMB_MIN or RTL_ALT, and never below 2 meters."
+        },
+        {
+            "formula": "G (RTL → (¬near_home → altitude ≤ distance_from_home * RTL_CONE_SLOPE))",
+            "explanation": "If RTL is entered and the copter is not near home, the altitude increase is limited by the distance from home multiplied by RTL_CONE_SLOPE."
+        },
+        {
+            "formula": "G (RTL → (position_estimate_reliable ↔ (GPS_lock ∧ compass_functional)))",
+            "explanation": "RTL requires a reliable position estimate, which is true if and only if there is a GPS lock and the compass is functional."
+        },
+        {
+            "formula": "G (RTL → (home_position = armed_position))",
+            "explanation": "The copter should return to the home position, which is the location where it was armed."
+        },
+        {
+            "formula": "G (RTL → X (altitude = RTL_ALT_FINAL → F land))",
+            "explanation": "Once the copter reaches RTL_ALT_FINAL, it should eventually land."
+        },
+        {
+            "formula": "G (RTL → F (hover_time = RTL_LOIT_TIME → X land))",
+            "explanation": "The copter should hover for RTL_LOIT_TIME milliseconds before landing."
+        }
+    ]
+}
+```

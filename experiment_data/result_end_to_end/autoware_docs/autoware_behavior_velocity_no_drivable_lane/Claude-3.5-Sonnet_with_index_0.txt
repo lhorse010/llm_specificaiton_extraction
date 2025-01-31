@@ -1,0 +1,32 @@
+[
+  {
+    "index": 0,
+    "formula": "G(no_drivable_lane → F(stopped ∧ takeover_request))",
+    "explanation": "Globally, if a no drivable lane is encountered, the vehicle must eventually stop and issue a takeover request."
+  },
+  {
+    "index": 1,
+    "formula": "G(approaching_no_drivable_lane → X(¬inside_no_drivable_lane U stopped))",
+    "explanation": "Globally, when approaching a no drivable lane, the vehicle must not enter the no drivable lane until it has stopped."
+  },
+  {
+    "index": 2,
+    "formula": "G(inside_no_drivable_lane → X(stopped))",
+    "explanation": "Globally, if the vehicle is inside a no drivable lane, it must stop in the next state."
+  },
+  {
+    "index": 3,
+    "formula": "G(distance_to_no_drivable_lane ≤ stop_margin → X(stopped))",
+    "explanation": "Globally, if the distance to the no drivable lane is less than or equal to the stop margin, the vehicle must stop in the next state."
+  },
+  {
+    "index": 4,
+    "formula": "G(autonomous_mode_start ∧ inside_no_drivable_lane → X(stopped))",
+    "explanation": "Globally, if autonomous mode is started while inside a no drivable lane, the vehicle must stop in the next state."
+  },
+  {
+    "index": 5,
+    "formula": "G(no_drivable_lane_attribute = yes → F(stopped ∨ ¬autonomous_mode))",
+    "explanation": "Globally, if a lane has the no_drivable_lane attribute set to 'yes', the vehicle must eventually either stop or switch out of autonomous mode."
+  }
+]

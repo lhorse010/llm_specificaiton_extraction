@@ -1,0 +1,22 @@
+```json
+{
+    "specifications": [
+        {
+            "formula": "G (centered_sticks → ¬rotating ∧ maintain_orientation)",
+            "explanation": "When the control sticks are centered, the vehicle should stop rotating but maintain its current orientation."
+        },
+        {
+            "formula": "G (¬centered_sticks → rotating ∧ change_orientation)",
+            "explanation": "When the control sticks are not centered, the vehicle should rotate and change its orientation according to stick input."
+        },
+        {
+            "formula": "G (manual_control_input → assistance_from_autopilot)",
+            "explanation": "Manual control input should be assisted by the autopilot to stabilize the attitude rate."
+        },
+        {
+            "formula": "G (RC_input_throttle → direct_control_allocation)",
+            "explanation": "Throttle input from the RC should be passed directly to control allocation."
+        }
+    ]
+}
+```

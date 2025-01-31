@@ -1,0 +1,38 @@
+After carefully reading the document, I have extracted the specifications that the vehicle needs to meet in Throw Mode. Here are the specifications expressed using Metric Temporal Logic (MTL) formulas:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(throw_mode → ¬pilot_input)",
+            "explanation": "In Throw Mode, the vehicle does not accept any input from the pilot."
+        },
+        {
+            "formula": "G(throw_mode → gps_available)",
+            "explanation": "Throw Mode requires GPS to be available."
+        },
+        {
+            "formula": "G(multirotor → throw_mode_available)",
+            "explanation": "Throw Mode is only available for multirotors."
+        },
+        {
+            "formula": "G(throw_mode → (X(motor_start) U (velocity > 5m/s ∧ vertical_velocity > 0.5m/s)))",
+            "explanation": "In Throw Mode, the motors will start when the vehicle reaches the apex of its trajectory and the velocity is above 5m/s and the vertical velocity is above 0.5m/s."
+        },
+        {
+            "formula": "G(throw_mode → (X(attitude_control) U (descending = 0 ∧ horizontal_velocity = 0)))",
+            "explanation": "In Throw Mode, the vehicle will first try to control its attitude, then stop descending and finally stop moving horizontally."
+        },
+        {
+            "formula": "G(throw_type = 0 → (X(motor_start) U (altitude > THROW_ALT_MIN ∧ altitude < THROW_ALT_MAX)))",
+            "explanation": "If throwing the vehicle up, the motors will start when the vehicle is above the minimum altitude and below the maximum altitude."
+        },
+        {
+            "formula": "G(throw_type = 1 → (X(motor_start) U (altitude > 10m)))",
+            "explanation": "If dropping the vehicle, the motors will start when the vehicle is above 10m altitude."
+        }
+    ]
+}
+```
+
+Note that I have excluded vague specifications and only included clear and specific requirements. I have also used the MTL operators to express the temporal relationships between the different events and states in the Throw Mode.

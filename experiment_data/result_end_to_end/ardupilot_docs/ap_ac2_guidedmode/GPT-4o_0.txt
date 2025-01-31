@@ -1,0 +1,30 @@
+```json
+{
+    "specifications": [
+        {
+            "formula": "G (¬GPS_lock → ¬Guided_NoGPS_mode)",
+            "explanation": "The vehicle cannot enter Guided_NoGPS mode without a GPS lock."
+        },
+        {
+            "formula": "G (Guided_mode → F (hover_at_target ∧ ¬switch_mode))",
+            "explanation": "In Guided mode, once the target location is reached, the vehicle should hover at the location until a new target is entered or the mode is switched."
+        },
+        {
+            "formula": "G (command_received U GUID_TIMEOUT)",
+            "explanation": "The vehicle should continue operation until no commands are received for the duration specified by GUID_TIMEOUT, after which it should slow to a stop or hover."
+        },
+        {
+            "formula": "G (¬RC_transmitter_change_heading ∧ GUID_OPTIONS[2])",
+            "explanation": "When the bit for disabling RC transmitter heading change is set, the pilot cannot change the vehicle's heading using the RC transmitter."
+        },
+        {
+            "formula": "G (speed ≤ 13m/s)",
+            "explanation": "The copter's maximum speed should not exceed 13 meters per second to maintain altitude and horizontal speed."
+        },
+        {
+            "formula": "G (¬S_curve_path_planning → quick_position_target_update)",
+            "explanation": "If S-Curve path planning is enabled, position targets cannot be updated quickly."
+        }
+    ]
+}
+```

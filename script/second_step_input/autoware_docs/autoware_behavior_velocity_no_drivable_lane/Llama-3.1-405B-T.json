@@ -1,0 +1,57 @@
+[
+  {
+    "section-id": 0,
+    "sentence-id": 9,
+    "sentence": "The target of this module is to stop the vehicle before entering the no drivable lane (with configurable stop margin) or keep the vehicle stationary if autonomous mode started inside a no drivable lane."
+  },
+  {
+    "section-id": 0,
+    "sentence-id": 10,
+    "sentence": "Then ask the human driver to take the responsibility of the driving task (Takeover Request / Request to Intervene)"
+  },
+  {
+    "section-id": 1,
+    "sentence-id": 0,
+    "sentence": "This function is activated when the lane id of the target path has an no drivable lane label (i.e. the no_drivable_lane attribute is yes)."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 3,
+    "sentence": "4.Assign the state to APPROACHING toward a no drivable lane if:"
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 4,
+    "sentence": "the distance from front of the ego vehicle till the first intersection point between the ego path and the no drivable lane polygon is more than the stop_margin"
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 5,
+    "sentence": "5.Assign the state to INSIDE_NO_DRIVABLE_LANE if:"
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 6,
+    "sentence": "the first point of the ego path is inside the no drivable lane polygon, or"
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 7,
+    "sentence": "the distance from front of the ego vehicle till the first intersection point between the ego path and the no drivable lane polygon is less than the stop_margin"
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 8,
+    "sentence": "6.Assign the state to STOPPED when the vehicle is completely stopped"
+  },
+  {
+    "section-id": 0,
+    "sentence-id": 1,
+    "sentence": "A no drivable lane is a lanelet or more that are out of operation design domain (ODD), i.e., the vehicle must not drive autonomously in this lanelet."
+  },
+  {
+    "section-id": 0,
+    "sentence-id": 8,
+    "sentence": "A lanelet becomes invalid by adding a new tag under the relevant lanelet in the map file <tag k=\"no_drivable_lane\" v=\"yes\"/>."
+  }
+]

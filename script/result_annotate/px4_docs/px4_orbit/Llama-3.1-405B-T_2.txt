@@ -1,0 +1,81 @@
+After carefully reading the document and following the steps outlined, I have annotated the sentences that convey information about state transition pre-requirements, constraints, expected post-actions, and expected state changes. Here is the output in JSON format:
+
+```json
+{
+    "specifications": [
+        {
+            "section-id": 1,
+            "sentence-id": 1
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 2
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 3
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 4
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 5
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 6
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 0
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 1
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 11
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 14
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 15
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 1
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 2
+        },
+        {
+            "section-id": 5,
+            "sentence-id": 1
+        }
+    ]
+}
+```
+
+The annotated sentences are:
+
+* Section 1, Sentence 1: "Mode requires at least a valid local position estimate (does not require a global position)." (constraint)
+* Section 1, Sentence 2: "Flying vehicles can't switch to this mode without valid local position." (constraint)
+* Section 1, Sentence 3: "Flying vehicles will failsafe if they lose the position estimate." (expected post-action)
+* Section 1, Sentence 4: "Mode prevents arming (vehicle must be armed when switching to this mode)." (constraint)
+* Section 1, Sentence 5: "Mode requires wind and flight time are within allowed limits (specified via parameters)." (constraint)
+* Section 1, Sentence 6: "This mode is currently only supported on multicopter (or VTOL in MC mode)." (constraint)
+* Section 2, Sentence 0: "_QGroundControl_ (or other compatible GCS or MAVLink API) is _required_ to enable the mode, and to set the center position, initial radius and altitude of the orbit." (state transition pre-requirement)
+* Section 2, Sentence 1: "Once enabled the vehicle will fly as fast as possible to the closest point on the commanded circle trajectory and do a slow (1m/s) clockwise orbit on the planned circle, facing the center." (expected post-action)
+* Section 2, Sentence 11: "Maximum velocity is 10m/s and further limited to keep the centripetal acceleration below 2m/s^2." (constraint)
+* Section 2, Sentence 14: "Minimum radius is 1m." (constraint)
+* Section 2, Sentence 15: "Maximum radius is 100m." (constraint)
+* Section 4, Sentence 1: "Initial/default rotation is 1 m/s in a clockwise direction." (expected state change)
+* Section 4, Sentence 2: "The maximum acceleration is limited to 2 m/s^2, with priority on keeping the commanded circle trajectory rather than commanded ground speed (i.e. the vehicle will slow down in order to achieve the correct circle if the acceleration exceeds 2m/s^2)." (constraint)
+* Section 5, Sentence 1: "MAV_CMD_DO_ORBIT - Start an orbit with specified center point, radius, direction, altitude, speed and yaw direction (vehicle defaults to faceing centre of orbit)." (expected state change)

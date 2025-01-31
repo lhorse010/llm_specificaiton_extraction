@@ -1,0 +1,247 @@
+[
+  {
+    "sentence": "The copter will first rise a minimum of RTL_CLIMB_MIN or to RTL_ALT, whichever is higher, before returning home.",
+    "formula": "F(RTL_CLIMB_MIN ≥ RTL_ALT → RTL_CLIMB_MIN) ∧ F(RTL_CLIMB_MIN < RTL_ALT → RTL_ALT)",
+    "explanation": "Here, we use the 'F' operator to denote the future. The formula states that if RTL_CLIMB_MIN is greater than or equal to RTL_ALT, then the copter will rise to RTL_CLIMB_MIN; otherwise, it will rise to RTL_ALT."
+  },
+  {
+    "sentence": "Under no circumstances will this altitude be below 2m.",
+    "formula": "G(ALT ≥ 2)",
+    "explanation": "The 'G' operator denotes 'globally', meaning that the condition must hold at all times. In this case, the altitude (ALT) must always be greater than or equal to 2 meters."
+  },
+  {
+    "sentence": "The altitude reference frame is set by either the rally point, if proceeding to one of those, or by RTL_ALT_TYPE to select relative to HOME, or Terrain.",
+    "formula": "(RALLY → ALT_REF = RALLY) ∧ (¬RALLY → (RTL_ALT_TYPE = HOME → ALT_REF = HOME) ∧ (RTL_ALT_TYPE = TERRAIN → ALT_REF = TERRAIN))",
+    "explanation": "This formula uses the '→' operator to denote implication. It states that if the copter is proceeding to a rally point, then the altitude reference frame (ALT_REF) is set to the rally point; otherwise, it is set based on the value of RTL_ALT_TYPE."
+  },
+  {
+    "sentence": "If WPNAV_RFND_USE = 1 and Terrain is selected, then rangefinder will be used.",
+    "formula": "(WPNAV_RFND_USE = 1 ∧ RTL_ALT_TYPE = TERRAIN) → RANGFINDER",
+    "explanation": "This formula uses the '∧' operator to denote conjunction. It states that if WPNAV_RFND_USE is equal to 1 and the altitude type is set to Terrain, then the rangefinder will be used."
+  },
+  {
+    "sentence": "If RTL is entered close to its return point, the altitude Copter climbs to may be limited to avoid unneeded climbs and descents.",
+    "formula": "F(DISTANCE ≤ RTL_CONE_SLOPE → ALT_LIMITED)",
+    "explanation": "This formula uses the 'F' operator to denote the future. It states that if the distance to the return point is less than or equal to the value determined by RTL_CONE_SLOPE, then the altitude will be limited."
+  },
+  {
+    "sentence": "The RTL_CONE_SLOPE parameter determines the slope of an inverted cone centered on the return point.",
+    "formula": "RTL_CONE_SLOPE = SLOPE",
+    "explanation": "This formula simply states that the RTL_CONE_SLOPE parameter is equal to the slope of the inverted cone."
+  },
+  {
+    "sentence": "This reduces the above return altitude according to: distance from return point * RTL_CONE_SLOPE.",
+    "formula": "ALT_LIMITED = DISTANCE * RTL_CONE_SLOPE",
+    "explanation": "This formula states that the limited altitude is equal to the distance to the return point multiplied by the RTL_CONE_SLOPE parameter."
+  },
+  {
+    "sentence": "So if the mode is entered 10m from the return point, using the default slope of \"3\", then the altitude rise would be limited to 30m before returning.",
+    "formula": "(DISTANCE = 10 ∧ RTL_CONE_SLOPE = 3) → ALT_LIMITED = 30",
+    "explanation": "This formula uses the '∧' operator to denote conjunction. It states that if the distance to the return point is 10 meters and the RTL_CONE_SLOPE parameter is 3, then the limited altitude will be 30 meters."
+  },
+  {
+    "sentence": "It may be less depending on the other parameters, but not higher.",
+    "formula": "ALT_LIMITED ≤ 30",
+    "explanation": "This formula states that the limited altitude will be less than or equal to 30 meters, but not higher."
+  },
+  {
+    "sentence": "If the slope were set to \"0.5\", then the initial climb would be no higher than 5m altitude before proceeding to the return point.",
+    "formula": "(RTL_CONE_SLOPE = 0.5 ∧ DISTANCE = 10) → ALT_LIMITED = 5",
+    "explanation": "This formula uses the '∧' operator to denote conjunction. It states that if the RTL_CONE_SLOPE parameter is 0.5 and the distance to the return point is 10 meters, then the limited altitude will be 5 meters."
+  },
+  {
+    "sentence": "A value of \"0\" disables this limit.",
+    "formula": "L → ¬E",
+    "explanation": "Here, L represents the value being 0, and E represents the limit being enabled. The formula states that if the value is 0, then the limit is not enabled."
+  },
+  {
+    "sentence": "\"0.5\" is the minimum slope.",
+    "formula": "G(S ≥ 0.5)",
+    "explanation": "Here, S represents the slope. The formula states that the slope is always greater than or equal to 0.5."
+  },
+  {
+    "sentence": "Again, 2m is the minimum return altitude.",
+    "formula": "G(A ≥ 2)",
+    "explanation": "Here, A represents the altitude. The formula states that the altitude is always greater than or equal to 2 meters."
+  },
+  {
+    "sentence": "RTL mode requires a reliable position estimate to work properly, most commonly provided by GPS and compass.",
+    "formula": "R → (G ∧ C)",
+    "explanation": "Here, R represents the RTL mode working properly, G represents a reliable GPS signal, and C represents a reliable compass signal. The formula states that if RTL mode is working properly, then both GPS and compass signals are reliable."
+  },
+  {
+    "sentence": "Default prearm checks will ensure a 3D GPS lock with sufficient HDOP is acquired and your mag is working as expected prior to arming.",
+    "formula": "F(G ∧ H ∧ M)",
+    "explanation": "Here, G represents a 3D GPS lock, H represents sufficient HDOP, and M represents the mag working as expected. The formula states that eventually, all these conditions will be met."
+  },
+  {
+    "sentence": "When using non-default arming checks, make sure you do have a sufficient GPS lock and / or a reliable position estimate for RTL to perform as expected.",
+    "formula": "N → (G ∨ R)",
+    "explanation": "Here, N represents non-default arming checks, G represents a sufficient GPS lock, and R represents a reliable position estimate. The formula states that if non-default arming checks are used, then either a sufficient GPS lock or a reliable position estimate is required."
+  },
+  {
+    "sentence": "RTL will command the copter to return to the home position, meaning that it will return to the location where it was armed.",
+    "formula": "R → F(H)",
+    "explanation": "Here, R represents the RTL mode, and H represents the home position. The formula states that if RTL mode is activated, then the copter will eventually return to the home position."
+  },
+  {
+    "sentence": "Therefore, the home position is always supposed to be your copter's actual GPS takeoff location, unobstructed and away from people.",
+    "formula": "G(H → (T ∧ U ∧ A))",
+    "explanation": "Here, H represents the home position, T represents the GPS takeoff location, U represents the location being unobstructed, and A represents the location being away from people. The formula states that the home position always satisfies these conditions."
+  },
+  {
+    "sentence": "For Copter if you get GPS lock and then ARM your copter, the home position is the location the copter was in when it was armed.",
+    "formula": "F(G ∧ A) → H",
+    "explanation": "Here, G represents the GPS lock, A represents the copter being armed, and H represents the home position. The formula states that if the copter gets a GPS lock and is then armed, then the home position is set to the current location."
+  },
+  {
+    "sentence": "This means if you execute an RTL in Copter, it will return to the location where it was armed.",
+    "formula": "R → F(H)",
+    "explanation": "Here, R represents the RTL mode, and H represents the home position. The formula states that if RTL mode is activated, then the copter will eventually return to the home position, which is the location where it was armed."
+  },
+  {
+    "sentence": "In RTL mode the autopilot uses a barometer which measures air pressure as the primary means for determining altitude (\"Pressure Altitude\") and if the air pressure is changing in your flight area, the copter will follow the air pressure change rather than actual altitude (unless you are within 20 feet of the ground and have SONAR installed and enabled).",
+    "formula": "G((RTL ∧ P) → (F ∧ ¬A)) ∨ (G ∧ S ∧ ¬F)",
+    "explanation": "Here, RTL represents the RTL mode, P represents the air pressure measurement, F represents the copter following the air pressure change, A represents the actual altitude, G represents being within 20 feet of the ground, and S represents having SONAR installed and enabled. The formula states that in RTL mode, if the air pressure is used for determining altitude, then the copter will follow the air pressure change unless it is within 20 feet of the ground and has SONAR installed and enabled."
+  },
+  {
+    "sentence": "1.RTL_ALT: The minimum altitude the copter will move to before returning to launch.",
+    "formula": "G(RTL → F(M))",
+    "explanation": "Here, RTL represents the RTL mode, and M represents the minimum altitude. The formula states that in RTL mode, the copter will eventually move to the minimum altitude before returning to launch."
+  },
+  {
+    "sentence": "Set to zero to return at the current altitude.",
+    "formula": "G(RTL ∧ (A = 0) → F(C))",
+    "explanation": "Here, RTL represents the RTL mode, A represents the altitude setting, and C represents the current altitude. The formula states that if the altitude setting is zero in RTL mode, the copter will return at the current altitude."
+  },
+  {
+    "sentence": "The return altitude can be set from 1 to 8000 centimeters.",
+    "formula": "G(RTL → (A ≥ 1 ∧ A ≤ 8000))",
+    "explanation": "Here, RTL represents the RTL mode, and A represents the return altitude. The formula states that in RTL mode, the return altitude can be set to any value between 1 and 8000 centimeters."
+  },
+  {
+    "sentence": "The default return altitude Default is 15 meters (1500)",
+    "formula": "G(RTL ∧ ¬A → F(1500))",
+    "explanation": "Here, RTL represents the RTL mode, A represents the altitude setting, and 1500 represents the default return altitude. The formula states that if no altitude is set in RTL mode, the copter will return to an altitude of 1500 centimeters by default."
+  },
+  {
+    "sentence": "2.RTL_ALT_FINAL: The altitude the copter will move to at the final stage of \"Returning to Launch\" or after completing a Mission.",
+    "formula": "G(RTL ∨ M → F(A))",
+    "explanation": "Here, RTL represents the RTL mode, M represents the completion of a mission, and A represents the final altitude. The formula states that the copter will eventually move to the final altitude either in RTL mode or after completing a mission."
+  },
+  {
+    "sentence": "Set to zero to automatically land the copter.",
+    "formula": "G(RTL ∧ (A = 0) → F(L))",
+    "explanation": "Here, RTL represents the RTL mode, A represents the altitude setting, and L represents the copter landing. The formula states that if the altitude setting is zero in RTL mode, the copter will automatically land."
+  },
+  {
+    "sentence": "The final return altitude may be adjusted from 0 to 1000 centimeters.",
+    "formula": "G(RTL → (A ≥ 0 ∧ A ≤ 1000))",
+    "explanation": "Here, RTL represents the RTL mode, and A represents the final return altitude. The formula states that in RTL mode, the final return altitude can be adjusted to any value between 0 and 1000 centimeters."
+  },
+  {
+    "sentence": "3.RTL_LOIT_TIME: Time in milliseconds to hover/pause above the \"Home\" position before beginning final descent.",
+    "formula": "G(RTL → F(H ∧ T))",
+    "explanation": "Here, RTL represents the RTL mode, H represents the copter hovering above the home position, and T represents the time in milliseconds. The formula states that in RTL mode, the copter will eventually hover above the home position for a certain time before beginning final descent."
+  },
+  {
+    "sentence": "The \"Loiter\" time may be adjusted from 0 to 60,000 milliseconds.",
+    "formula": "G(RTL → (T ≥ 0 ∧ T ≤ 60000))",
+    "explanation": "Here, RTL represents the RTL mode, and T represents the loiter time. The formula states that in RTL mode, the loiter time can be adjusted to any value between 0 and 60,000 milliseconds."
+  },
+  {
+    "sentence": "4.WP_YAW_BEHAVIOR: Sets how the autopilot controls the \"Yaw\" during Missions and RTL.",
+    "formula": "G(WPYB → (M ∧ RTL))",
+    "explanation": "WPYB represents the autopilot controlling the Yaw, M represents Missions, and RTL represents Return To Launch. The formula states that globally, if WPYB is true, then both M and RTL are true."
+  },
+  {
+    "sentence": "0 = Never change Yaw.",
+    "formula": "G(¬∃t(Y))",
+    "explanation": "Y represents the Yaw changing. The formula states that globally, there does not exist a time t at which Y is true, meaning the Yaw never changes."
+  },
+  {
+    "sentence": "1 = Face Next Waypoint including facing home during RTL.",
+    "formula": "G(FNW ∧ (RTL → FHD))",
+    "explanation": "FNW represents facing the next waypoint, FHD represents facing home during RTL, and RTL represents Return To Launch. The formula states that globally, the vehicle faces the next waypoint and if it is in RTL, then it faces home."
+  },
+  {
+    "sentence": "2 = Face Next Waypoint except for RTL (i.e. during RTL vehicle will remain pointed at its last heading)",
+    "formula": "G(FNW ∧ (RTL → LHD))",
+    "explanation": "FNW represents facing the next waypoint, LHD represents the last heading, and RTL represents Return To Launch. The formula states that globally, the vehicle faces the next waypoint and if it is in RTL, then it remains pointed at its last heading."
+  },
+  {
+    "sentence": "5.LAND_SPEED: The descent speed for the final stage of landing in centimeters per second.",
+    "formula": "G(LS → (FSL ∧ DS))",
+    "explanation": "LS represents the LAND_SPEED, FSL represents the final stage of landing, and DS represents the descent speed. The formula states that globally, if LS is true, then both FSL and DS are true."
+  },
+  {
+    "sentence": "The landing speed is adjustable from 20 to 200 centimeters per second.",
+    "formula": "G(LS → (20 ≤ LS ≤ 200))",
+    "explanation": "LS represents the landing speed. The formula states that globally, the landing speed is between 20 and 200 centimeters per second."
+  },
+  {
+    "sentence": "6.RTL_CLIMB_MIN: The vehicle will climb at least this many meters at the first stage of the RTL.",
+    "formula": "G(RCM → (FRTL ∧ CL ≥ RCM))",
+    "explanation": "RCM represents the RTL_CLIMB_MIN, FRTL represents the first stage of the RTL, and CL represents the climb. The formula states that globally, if RCM is true, then the vehicle is in the first stage of the RTL and the climb is at least RCM meters."
+  },
+  {
+    "sentence": "By default this value is zero.",
+    "formula": "G(¬RCM → (RCM = 0))",
+    "explanation": "RCM represents the RTL_CLIMB_MIN. The formula states that globally, if RCM is not true, then its value is 0."
+  },
+  {
+    "sentence": "7.RTL_SPEED: The horizontal speed (in cm/s) at which the vehicle will return to home.",
+    "formula": "G(RS → (HS ∧ RH))",
+    "explanation": "RS represents the RTL_SPEED, HS represents the horizontal speed, and RH represents returning home. The formula states that globally, if RS is true, then both HS and RH are true."
+  },
+  {
+    "sentence": "By default this value is zero meaning it will use WPNAV_SPEED.",
+    "formula": "G(¬RS → (RS = 0 ∧ WPS))",
+    "explanation": "RS represents the RTL_SPEED, and WPS represents the WPNAV_SPEED. The formula states that globally, if RS is not true, then its value is 0 and the vehicle uses WPS."
+  },
+  {
+    "sentence": "8.RTL_CONE_SLOPE: Defines the slope of an inverted cone above home which is used to limit the amount the vehicle climbs when RTL-ing from close to home.",
+    "formula": "G(RTL → (C ∧ ¬F(C ∧ H)))",
+    "explanation": "Here, RTL represents the RTL mode, C represents the vehicle's climb, and H represents the vehicle's proximity to home. The formula states that whenever RTL mode is activated, the vehicle's climb is limited (¬F(C ∧ H)) within the cone (C)."
+  },
+  {
+    "sentence": "Low values lead to a wide cone meaning the vehicle will climb less, High values will lead to the vehicle climbing more.",
+    "formula": "G(L → (W ∧ ¬F(C ∧ H))) ∧ G(H → (N ∧ F(C ∧ H)))",
+    "explanation": "Here, L represents low values, W represents a wide cone, H represents high values, N represents a narrow cone, C represents the vehicle's climb, and H represents the vehicle's proximity to home. The formula states that low values lead to a wide cone and limited climb (¬F(C ∧ H)), while high values lead to a narrow cone and increased climb (F(C ∧ H))."
+  },
+  {
+    "sentence": "1.Other navigation settings also have an influence over RTL mode: WPNAV_ACCEL, WPNAV_SPEED_DN, WPNAV_SPEED_UP",
+    "formula": "G(RTL → (A ∨ D ∨ U))",
+    "explanation": "Here, RTL represents the RTL mode, A represents WPNAV_ACCEL, D represents WPNAV_SPEED_DN, and U represents WPNAV_SPEED_UP. The formula states that whenever RTL mode is activated, at least one of the navigation settings (A, D, or U) is influential."
+  },
+  {
+    "sentence": "2.To use RTL, GPS lock needs to be achieved (Blue GPS LED and Blue APM LED on solid not blinking) before arming and takeoff to establish the home or launch position.",
+    "formula": "G(RTL → (G ∧ A ∧ T))",
+    "explanation": "Here, RTL represents the RTL mode, G represents GPS lock, A represents arming, and T represents takeoff. The formula states that whenever RTL mode is activated, GPS lock must be achieved before arming and takeoff."
+  },
+  {
+    "sentence": "3.Landing and re-arming the copter will reset home, which is a great feature for flying at airfields.",
+    "formula": "G(L ∧ R → H)",
+    "explanation": "Here, L represents landing, R represents re-arming, and H represents resetting home. The formula states that whenever the copter lands and is re-armed, home is reset."
+  },
+  {
+    "sentence": "4.If you get lock for the first time while flying, your home will be set at the location of lock.",
+    "formula": "G(F ∧ L → H)",
+    "explanation": "Here, F represents flying, L represents lock, and H represents setting home. The formula states that whenever lock is achieved for the first time while flying, home is set at the location of lock."
+  },
+  {
+    "sentence": "5.If you set the RTL_ALT to a number at other than 0 it will go to and maintain that altitude while returning.",
+    "formula": "G(RTL ∧ A → G(A))",
+    "explanation": "Here, RTL represents the RTL mode, A represents the RTL_ALT setting, and G(A) represents maintaining the altitude. The formula states that whenever RTL mode is activated and RTL_ALT is set to a non-zero value, the copter will maintain that altitude while returning."
+  },
+  {
+    "sentence": "6.RTL uses WPNAV_SPEED to determine how fast it travels.",
+    "formula": "G(RTL → S)",
+    "explanation": "Here, RTL represents the RTL mode, and S represents WPNAV_SPEED. The formula states that whenever RTL mode is activated, WPNAV_SPEED determines the copter's speed."
+  },
+  {
+    "sentence": "7.Once the copter arrives at the home location the copter will pause for RTL_LOIT_TIME milliseconds, timeout (AUTO_LAND), then land.",
+    "formula": "G(H → (P ∧ T ∧ L))",
+    "explanation": "Here, H represents arriving at home, P represents pausing, T represents timing out, and L represents landing. The formula states that whenever the copter arrives at home, it will pause for RTL_LOIT_TIME milliseconds, time out, and then land."
+  }
+]

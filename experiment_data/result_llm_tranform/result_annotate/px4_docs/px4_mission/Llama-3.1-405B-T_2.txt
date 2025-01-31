@@ -1,0 +1,183 @@
+Based on the provided document, I have annotated the sentences as specifications if they convey the following information:
+1. Requirements the system must meet for state transition.
+2. Constraints the system must adhere to.
+3. Expected post-actions the system will execute when entering a particular state.
+4. Expected state changes the system will carry out in response to specific commands or settings.
+
+Here is the output in JSON format:
+
+
+```json
+{
+    "specifications": [
+        {
+            "section-id": 1,
+            "sentence-id": 0
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 1
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 2
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 4
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 5
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 6
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 7
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 8
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 9
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 10
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 11
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 12
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 13
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 14
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 15
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 16
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 17
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 18
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 19
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 20
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 21
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 0
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 1
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 2
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 3
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 4
+        },
+        {
+            "section-id": 5,
+            "sentence-id": 0
+        },
+        {
+            "section-id": 5,
+            "sentence-id": 1
+        },
+        {
+            "section-id": 6,
+            "sentence-id": 0
+        },
+        {
+            "section-id": 6,
+            "sentence-id": 1
+        },
+        {
+            "section-id": 6,
+            "sentence-id": 3
+        },
+        {
+            "section-id": 6,
+            "sentence-id": 4
+        },
+        {
+            "section-id": 9,
+            "sentence-id": 2
+        },
+        {
+            "section-id": 10,
+            "sentence-id": 0
+        },
+        {
+            "section-id": 10,
+            "sentence-id": 1
+        },
+        {
+            "section-id": 10,
+            "sentence-id": 2
+        },
+        {
+            "section-id": 10,
+            "sentence-id": 3
+        },
+        {
+            "section-id": 10,
+            "sentence-id": 4
+        },
+        {
+            "section-id": 11,
+            "sentence-id": 0
+        },
+        {
+            "section-id": 11,
+            "sentence-id": 1
+        },
+        {
+            "section-id": 11,
+            "sentence-id": 2
+        },
+        {
+            "section-id": 11,
+            "sentence-id": 3
+        }
+    ]
+}
+```

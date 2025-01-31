@@ -1,0 +1,77 @@
+{
+  "title": "FlowHold mode",
+  "sections": [
+    {
+      "section-id": 0,
+      "title": "FlowHold mode",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "FlowHold mode uses an optical flow sensor to hold position without the need for a GPS nor a downward facing Lidar."
+        },
+        {
+          "sentence-id": 1,
+          "text": "Better performance can be achieved by attaching a rangefinder and using regular Loiter mode instead"
+        },
+        {
+          "sentence-id": 2,
+          "text": "FlowHold mode is similar to PosHold mode in that the pilot directly controls the vehicle's lean angles with the roll and pitch sticks."
+        },
+        {
+          "sentence-id": 3,
+          "text": "When the user releases the sticks, the optical flow sensor is used by the autopilot to bring the vehicle to a stop."
+        },
+        {
+          "sentence-id": 4,
+          "text": "Because no Lidar is used in this mode, the optical flow sensor is used both to estimate the vehicle's height above the surface and the vehicle's speed."
+        },
+        {
+          "sentence-id": 5,
+          "text": "Soon after takeoff or after there have been large changes in the height above the surface the vehicle may wobble as it learns the new height and velocity."
+        },
+        {
+          "sentence-id": 6,
+          "text": "The following parameters can be used to tune FlowHold's performance"
+        },
+        {
+          "sentence-id": 7,
+          "text": "1.FHLD_BRAKE_RATE controls the desired deceleration rate when the pilot releases the sticks"
+        },
+        {
+          "sentence-id": 8,
+          "text": "2.FHLD_FILT_HZ is the filter applied to the optical flow sensor data"
+        },
+        {
+          "sentence-id": 9,
+          "text": "3.FHLD_FLOW_MAX is the optical flow sensor's maximum rate (in m/s) used when stopping"
+        },
+        {
+          "sentence-id": 10,
+          "text": "4.FHLD_QUAL_MIN is the minimum flow quality used."
+        },
+        {
+          "sentence-id": 11,
+          "text": "If the flow sensor quality falls below this value, FlowHold will act just like AltHold"
+        },
+        {
+          "sentence-id": 12,
+          "text": "5.FHLD_XY_P , FHLD_XY_I , FHLD_XY_IMAX and FHLD_XY_FILT_HZ gains to tune the stopping response"
+        }
+      ]
+    },
+    {
+      "section-id": 1,
+      "title": "FlowHold mode : Warning",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "With many vehicles this mode results in wobbling and unstable position hold."
+        },
+        {
+          "sentence-id": 1,
+          "text": "If possible we recommend attaching a rangefinder and using regular Loiter instead"
+        }
+      ]
+    }
+  ]
+}

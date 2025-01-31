@@ -1,0 +1,37 @@
+[
+  {
+    "sentence": "This function is activated when the lane id of the target path has an intersection label (i.e. the turn_direction attribute is left or right).",
+    "formula": "(L ∨ R) → F",
+    "explanation": "Here, L and R represent the turn_direction attribute being left or right, respectively. F represents the function being activated. The formula states that if the turn_direction attribute is either left or right, then the function will be activated."
+  },
+  {
+    "sentence": "Sets a stop line, a pass judge line, a detection area and conflict area based on a map information and a self position.",
+    "formula": "M ∧ S → (SL ∧ PJL ∧ DA ∧ CA)",
+    "explanation": "Here, M represents the map information, S represents the self position, SL represents the stop line, PJL represents the pass judge line, DA represents the detection area, and CA represents the conflict area. The formula states that if the map information and self position are available, then the stop line, pass judge line, detection area, and conflict area will be set."
+  },
+  {
+    "sentence": "Stop/Go state: When both conditions are met for any of each object, this module state is transited to the \"stop\" state and insert zero velocity to stop the vehicle.",
+    "formula": "(C1 ∧ C2) → (S ∧ Z)",
+    "explanation": "Here, C1 and C2 represent the two conditions, S represents the stop state, and Z represents the zero velocity. The formula states that if both conditions are met, then the module state will transition to the stop state and zero velocity will be inserted to stop the vehicle."
+  },
+  {
+    "sentence": "1.Object is on the detection area",
+    "formula": "O ∧ DA",
+    "explanation": "Here, O represents the object, and DA represents the detection area. The formula states that the object is on the detection area."
+  },
+  {
+    "sentence": "2.Object’s predicted path is on the conflict area",
+    "formula": "O ∧ PP ∧ CA",
+    "explanation": "Here, O represents the object, PP represents the predicted path, and CA represents the conflict area. The formula states that the object's predicted path is on the conflict area."
+  },
+  {
+    "sentence": "In order to avoid a rapid stop, the “stop” judgement is not executed after the judgment line is passed.",
+    "formula": "JL → ¬S",
+    "explanation": "Here, JL represents the judgment line, and S represents the stop judgment. The formula states that after the judgment line is passed, the stop judgment will not be executed."
+  },
+  {
+    "sentence": "Once a “stop” is judged, it will not transit to the “go” state until the “go” judgment continues for a certain period in order to prevent chattering of the state (e.g. 2 seconds).",
+    "formula": "S → ¬G U[2, 2](G ∧ F[2, 2](G))",
+    "explanation": "Here, S represents the stop state, G represents the go state, and F[2, 2](G) represents the go judgment continuing for 2 seconds. The formula states that once a stop is judged, it will not transition to the go state until the go judgment continues for 2 seconds."
+  }
+]

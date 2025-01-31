@@ -1,0 +1,30 @@
+```json
+{
+    "specifications": [
+        {
+            "formula": "G (right_stick_center → F[0,2] copter_stops)",
+            "explanation": "If the right stick is centered, the copter should slow to a stop within two seconds."
+        },
+        {
+            "formula": "G (¬GPS_signal → (copter_lands ∨ copter_altitude_hold))",
+            "explanation": "If the GPS signal is lost, the copter will either land or enter altitude hold, depending on settings."
+        },
+        {
+            "formula": "G (throttle_down → F tumble)",
+            "explanation": "If the throttle is completely down, the copter will lose attitude control and tumble."
+        },
+        {
+            "formula": "G (right_stick_forward ∨ right_stick_back → X (copter_pitch ∧ copter_accelerate))",
+            "explanation": "If the right stick is pushed forward or back, the copter should pitch and accelerate in that direction in the next state."
+        },
+        {
+            "formula": "G (right_stick_sideways → X (copter_turn ∧ copter_bank))",
+            "explanation": "If the right stick is pushed sideways, the copter should turn and bank in that direction in the next state."
+        },
+        {
+            "formula": "G (¬manual_yaw_control → autopilot_roll_control)",
+            "explanation": "There is no manual control over roll, as it is controlled by the autopilot when yaw is manually controlled."
+        }
+    ]
+}
+```

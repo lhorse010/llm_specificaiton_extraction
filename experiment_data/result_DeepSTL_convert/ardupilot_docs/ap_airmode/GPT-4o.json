@@ -1,0 +1,34 @@
+{
+    "temporal_logic_formulars": [
+        {
+            "section-id": 1,
+            "sentence-id": 2,
+            "sentence": "If a transmitter switch is used with  RCx_OPTION ARM/DISARM with Airmode (option 154) and used to arm, then stabilization at idle throttle is still fully active, which is often referred to as AIRMODE.",
+            "tl": "always ( ( atransmiterswite == ichusedwitedthR ) until ( ithRCx_OPTI == RMwiARMithi ) -> ( eodeopitda == trarilatoiletlesteilefl ) and ( te == ticesiloflefleceflerRcicevOrDrefl == icIRcIrie ) )"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 4,
+            "sentence": "Setting an RC channel to RCx_OPTION = 84, allows enabling or disabling AIRMODE in ACRO and STABILIZE modes directly.",
+            "tl": "always ( SetinganRCchane == RCx_OPTION84alowsen ) or dinlo == gdiAlingAIRMODEACOaACedSTBIZoded == dreZLSsicectly )"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 5,
+            "sentence": "In addition, setting bit 0 of ACRO_OPTIONS will activate AIRMODE in ACRO mode (only) all the time, except if overridden by the above switch, if used.",
+            "tl": "always ( aditionseti == tingbit0ACRO_OPTIOSacti == aA ) until ( cteARIRODE > 4 and CdateACd < 9 ) -> excepto == exceptoveridenbysed == switchichusededed )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 0,
+            "sentence": "to avoid enabling AIRMODE but still use an ARM/DISARM switch, use Auxiliary function option \"153\" for the switch.",
+            "tl": "always ( avoidenablingAIRMODE == lstiluseaARMsw ) until ( MDISARMs == luxichusiliw ) -> ( iaryfunctio == ionopinoptin153 ) )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 2,
+            "sentence": "It isn't sufficient to just enable arming on an RCx_OPTION switch, you also have to actually use it for arming.",
+            "tl": "always ( not ( tsufficient == justeablearminganC ) and Rx_OPTIO == Oswtchyoualso )"
+        }
+    ]
+}

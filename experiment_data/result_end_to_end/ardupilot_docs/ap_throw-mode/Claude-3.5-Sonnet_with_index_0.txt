@@ -1,0 +1,42 @@
+[
+  {
+    "index": 0,
+    "formula": "G(armed ∧ throw_mode → ¬motor_spinning)",
+    "explanation": "Globally, when the vehicle is armed and in throw mode, the motors should not be spinning by default."
+  },
+  {
+    "index": 1,
+    "formula": "G(throw_mode ∧ (vertical_velocity > 0.5) ∧ (total_velocity > 5.0) → F(motor_start))",
+    "explanation": "Globally, when in throw mode, if the vertical velocity exceeds 0.5 m/s and the total velocity exceeds 5.0 m/s, the motors will eventually start."
+  },
+  {
+    "index": 2,
+    "formula": "G(throw_mode ∧ motor_start → X(stabilize_attitude ∧ F(stop_descending) ∧ F(stop_horizontal_movement)))",
+    "explanation": "Globally, when in throw mode and motors start, in the next state the vehicle will stabilize its attitude, and eventually stop descending and stop horizontal movement."
+  },
+  {
+    "index": 3,
+    "formula": "G(throw_mode → gps_available)",
+    "explanation": "Globally, throw mode requires GPS to be available."
+  },
+  {
+    "index": 4,
+    "formula": "G(throw_mode ∧ (altitude < THROW_ALT_MIN ∨ altitude > THROW_ALT_MAX) → ¬armed)",
+    "explanation": "Globally, when in throw mode, if the altitude is below THROW_ALT_MIN or above THROW_ALT_MAX, the vehicle cannot be armed."
+  },
+  {
+    "index": 5,
+    "formula": "G(throw_mode ∧ THROW_MOT_START = 0 → ¬motor_spinning)",
+    "explanation": "Globally, when in throw mode and THROW_MOT_START is set to 0, the motors should not spin at all while waiting for the throw."
+  },
+  {
+    "index": 6,
+    "formula": "G(throw_mode ∧ THROW_MOT_START = 1 → motor_spinning_slowly)",
+    "explanation": "Globally, when in throw mode and THROW_MOT_START is set to 1, the motors should spin slowly while waiting for the throw."
+  },
+  {
+    "index": 7,
+    "formula": "G(throw_mode ∧ motor_start ∧ (THROW_NEXTMODE ≠ throw) → F(flight_mode = THROW_NEXTMODE))",
+    "explanation": "Globally, when in throw mode, after motors start and if THROW_NEXTMODE is not set to 'Throw', the vehicle will eventually switch to the flight mode specified by THROW_NEXTMODE."
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "sentence": "The limits can only be reduced below those for normal _Position_ mode.",
+    "formula": "G(L → P)",
+    "explanation": "Here, L represents the limits being reduced, and P represents the normal Position mode. The formula states that globally (G), if the limits are reduced (L), then it must be in Position mode (P)."
+  },
+  {
+    "sentence": "Note that the parameters are used only if limits are not provided by from RC or MAVLink.",
+    "formula": "G(¬(R ∨ M) → P)",
+    "explanation": "Here, R represents the limits being provided by RC, M represents the limits being provided by MAVLink, and P represents the parameters being used. The formula states that globally (G), if the limits are not provided by RC or MAVLink (¬(R ∨ M)), then the parameters are used (P)."
+  },
+  {
+    "sentence": "If an RC control input is mapped for an axis it has priority over all other inputs.",
+    "formula": "G(R → ¬O)",
+    "explanation": "Here, R represents the RC control input being mapped for an axis, and O represents the other inputs being used. The formula states that globally (G), if the RC control input is mapped (R), then the other inputs are not used (¬O)."
+  },
+  {
+    "sentence": "3.Map that auxiliary input using the appropriate MC_SLOW_MAP_ parameter for the axis you want it to control (see table above).",
+    "formula": "None",
+    "explanation": "This sentence is an instruction and does not contain any temporal or logical information that can be represented in MTL."
+  },
+  {
+    "sentence": "For example, if you want to map RC channel 8 to limit the horizontal velocity you could set RC_MAP_AUX1 to the value 8 and [MC_SLOW_MAP_HVEL][mc_slow_map_hvel] to the value 1.",
+    "formula": "None",
+    "explanation": "This sentence is an example and does not contain any temporal or logical information that can be represented in MTL."
+  },
+  {
+    "sentence": "The RC input from channel 8 then sets a horizontal velocity limit between [MC_SLOW_MIN_HVEL][mc_slow_min_hvel] and [MPC_VEL_MANUAL][mpc_vel_manual].",
+    "formula": "G(R → (V ≥ M ∧ V ≤ N))",
+    "explanation": "Here, R represents the RC input from channel 8, V represents the horizontal velocity limit, M represents the minimum velocity limit (MC_SLOW_MIN_HVEL), and N represents the maximum velocity limit (MPC_VEL_MANUAL). The formula states that globally (G), if the RC input is received (R), then the velocity limit is set between the minimum and maximum values (V ≥ M ∧ V ≤ N)."
+  },
+  {
+    "sentence": "This overrides limit values set in parameters, but is ignored if the axis is mapped to an RC knob.",
+    "formula": "G(R → (¬P ∧ ¬K))",
+    "explanation": "Here, R represents the RC input, P represents the limit values set in parameters, and K represents the axis being mapped to an RC knob. The formula states that globally (G), if the RC input is received (R), then the limit values set in parameters are overridden (¬P), but only if the axis is not mapped to an RC knob (¬K)."
+  },
+  {
+    "sentence": "The value can be updated from a message at any time, and is latched until either the next message or a mode switch.",
+    "formula": "G(M → (U ∨ X(¬M)))",
+    "explanation": "Here, M represents the message being received, U represents the value being updated, and X represents the next message or mode switch. The formula states that globally (G), if a message is received (M), then the value is updated (U) and remains so until either the next message or a mode switch (X(¬M))."
+  }
+]

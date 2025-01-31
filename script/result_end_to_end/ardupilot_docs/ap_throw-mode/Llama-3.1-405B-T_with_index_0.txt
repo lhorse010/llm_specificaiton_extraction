@@ -1,0 +1,37 @@
+[
+  {
+    "index": 0,
+    "formula": "G(throw_mode → ¬pilot_input)",
+    "explanation": "In Throw Mode, the vehicle does not accept any input from the pilot."
+  },
+  {
+    "index": 1,
+    "formula": "G(throw_mode → gps_available)",
+    "explanation": "Throw Mode requires GPS to be available."
+  },
+  {
+    "index": 2,
+    "formula": "G(multirotor → throw_mode_available)",
+    "explanation": "Throw Mode is only available for multirotors."
+  },
+  {
+    "index": 3,
+    "formula": "G(throw_mode → (X(velocity > 5m/s) ∧ X(vertical_velocity > 0.5m/s)))",
+    "explanation": "In Throw Mode, the vehicle must climb by 50cm/s and reach a total speed of 5m/s."
+  },
+  {
+    "index": 4,
+    "formula": "G(throw_mode → (F(motors_start) ∧ F(attitude_control) ∧ F(stop_descending) ∧ F(stop_moving_horizontally)))",
+    "explanation": "After the motors start in Throw Mode, the vehicle will first try to control its attitude, then stop descending, and finally stop moving horizontally."
+  },
+  {
+    "index": 5,
+    "formula": "G(throw_mode ∧ THROW_TYPE=0 → (X(altitude > THROW_ALT_MIN) ∧ X(altitude < THROW_ALT_MAX)))",
+    "explanation": "When throwing the vehicle up, the altitude must be above the minimum and below the maximum altitude limits."
+  },
+  {
+    "index": 6,
+    "formula": "G(throw_mode ∧ THROW_TYPE=1 → (X(altitude > 10m)))",
+    "explanation": "When dropping the vehicle, the altitude must be at least 10m."
+  }
+]

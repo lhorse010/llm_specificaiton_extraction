@@ -1,0 +1,54 @@
+I'll extract the specifications from the document and express them using Metric Temporal Logic (MTL) formulas. Then, I'll format the converted sentences in JSON as requested.
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(¬powered_flight → F(autorotation_mode))",
+            "explanation": "Globally, if the helicopter loses power (not in powered flight), it should eventually enter autorotation mode."
+        },
+        {
+            "formula": "G(autorotation_mode → (entry_phase U glide_phase))",
+            "explanation": "Globally, when in autorotation mode, the entry phase should continue until the glide phase begins."
+        },
+        {
+            "formula": "G(glide_phase → F(flare_phase))",
+            "explanation": "Globally, the glide phase should eventually lead to the flare phase."
+        },
+        {
+            "formula": "G(flare_phase → F(touchdown_phase))",
+            "explanation": "Globally, the flare phase should eventually lead to the touchdown phase."
+        },
+        {
+            "formula": "G(entry_phase → (reduce_collective ∧ maintain_or_increase_airspeed))",
+            "explanation": "Globally, during the entry phase, the collective should be reduced and airspeed should be maintained or increased."
+        },
+        {
+            "formula": "G(glide_phase → (manage_head_speed ∧ manage_airspeed))",
+            "explanation": "Globally, during the glide phase, both head speed and airspeed should be managed."
+        },
+        {
+            "formula": "G(flare_phase → (reduce_vertical_speed ∧ convert_airspeed_to_lift ∧ close_to_ground))",
+            "explanation": "Globally, during the flare phase, vertical speed should be reduced, airspeed should be converted to lift, and the maneuver should be performed close to the ground."
+        },
+        {
+            "formula": "G(touchdown_phase → (gentle_landing ∧ manage_collective ∧ maintain_landing_attitude))",
+            "explanation": "Globally, during the touchdown phase, the landing should be gentle, collective should be managed, and landing attitude should be maintained."
+        },
+        {
+            "formula": "G(autorotation_mode ∧ power_restored → F(bailout_phase))",
+            "explanation": "Globally, if power is restored during autorotation mode, the bailout phase should eventually be initiated."
+        },
+        {
+            "formula": "G(bailout_phase → F(¬autorotation_mode))",
+            "explanation": "Globally, the bailout phase should eventually lead to exiting the autorotation mode."
+        },
+        {
+            "formula": "G(interlock_disengaged ∧ ¬manual_collective_mode → X(autorotation_mode))",
+            "explanation": "Globally, if the interlock is disengaged while not in manual collective mode, the next state should be autorotation mode."
+        }
+    ]
+}
+```
+
+These MTL formulas capture the key specifications and behaviors described in the document for the autonomous autorotation flight mode. They cover the transition between phases, the actions required in each phase, and the conditions for entering and exiting the autorotation mode.

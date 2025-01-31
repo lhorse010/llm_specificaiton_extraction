@@ -1,0 +1,38 @@
+```json
+{
+    "specifications": [
+        {
+            "formula": "G (launch_out_of_lane_module → F out_of_lane_collision_prevention)",
+            "explanation": "If the out of lane module is activated, it should eventually prevent collisions."
+        },
+        {
+            "formula": "G (out_of_lane_collision_occur → F insert_stop_point)",
+            "explanation": "Whenever an out of lane collision is detected, a stop point should be inserted before the collision."
+        },
+        {
+            "formula": "G (¬(object_speed < minimum_velocity) ∧ ¬ignore_behind_ego → F filter_predicted_path)",
+            "explanation": "Objects not ignored should have their predicted paths filtered based on speed and position."
+        },
+        {
+            "formula": "G (red_traffic_light ∧ cut_predicted_paths_beyond_red_lights → F stop_at_red_light)",
+            "explanation": "Predicted paths should be cut at the stop line of a red traffic light if the parameter is set."
+        },
+        {
+            "formula": "G (mode = threshold ∧ time_to_collision < threshold.time_threshold → avoid_out_of_lane_area)",
+            "explanation": "Avoid out of lane areas if the time to collision is less than the threshold in 'threshold' mode."
+        },
+        {
+            "formula": "G (mode = ttc ∧ time_to_collision < ttc.threshold → avoid_out_of_lane_area)",
+            "explanation": "Avoid out of lane areas if the time to collision is below the threshold in 'ttc' mode."
+        },
+        {
+            "formula": "G (distance_to_avoid_point < actions.stop.threshold → velocity = 0)",
+            "explanation": "If the distance to the trajectory point to avoid is below the stop threshold, the vehicle should stop."
+        },
+        {
+            "formula": "G (distance_to_avoid_point < actions.slowdown.threshold → velocity = actions.slowdown.velocity)",
+            "explanation": "If the distance to the trajectory point to avoid is below the slowdown threshold, reduce speed."
+        }
+    ]
+}
+```

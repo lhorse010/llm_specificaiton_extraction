@@ -1,0 +1,32 @@
+[
+  {
+    "index": 0,
+    "formula": "G(GuidedMode → F(ReachTarget))",
+    "explanation": "Globally, if the copter is in Guided Mode, it will eventually reach the target location."
+  },
+  {
+    "index": 1,
+    "formula": "G(ReachTarget → X(Hover U NewTarget))",
+    "explanation": "Globally, when the copter reaches the target, in the next state it will hover until a new target is given."
+  },
+  {
+    "index": 2,
+    "formula": "G(TakeOff → F(SafeAltitude))",
+    "explanation": "Globally, after takeoff, the copter will eventually reach a safe altitude."
+  },
+  {
+    "index": 3,
+    "formula": "G(GuidedMode ∧ NoCommand[0,GUID_TIMEOUT] → X(SlowToStop ∨ HoldLevelHover))",
+    "explanation": "Globally, if in Guided Mode and no commands are received for GUID_TIMEOUT seconds, in the next state the copter will either slow to a stop or hold a level hover."
+  },
+  {
+    "index": 4,
+    "formula": "G(GuidedNoGPS → ¬AcceptPositionTargets ∧ ¬AcceptVelocityTargets)",
+    "explanation": "Globally, when in Guided_NoGPS mode, the copter does not accept position targets and does not accept velocity targets."
+  },
+  {
+    "index": 5,
+    "formula": "G(SpeedControl → (Speed ≤ WPNAV_SPEED ∧ VerticalSpeedUp ≤ WPNAV_SPEED_UP ∧ VerticalSpeedDown ≤ WPNAV_SPEED_DN))",
+    "explanation": "Globally, when speed control is active, the horizontal speed is less than or equal to WPNAV_SPEED, vertical speed up is less than or equal to WPNAV_SPEED_UP, and vertical speed down is less than or equal to WPNAV_SPEED_DN."
+  }
+]

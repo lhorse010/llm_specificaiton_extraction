@@ -1,0 +1,42 @@
+I'll extract the specifications from the document and express them using Metric Temporal Logic (MTL) formulas. Then, I'll format the converted sentences in JSON as requested.
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(RTL_mode → F[0,∞] (altitude ≥ max(RTL_CLIMB_MIN, RTL_ALT, 2)))",
+            "explanation": "Globally, when RTL mode is activated, eventually the copter will rise to an altitude that is at least the maximum of RTL_CLIMB_MIN, RTL_ALT, and 2 meters."
+        },
+        {
+            "formula": "G(RTL_mode ∧ (distance_to_home * RTL_CONE_SLOPE < max(RTL_CLIMB_MIN, RTL_ALT)) → F[0,∞] (altitude ≤ (distance_to_home * RTL_CONE_SLOPE)))",
+            "explanation": "Globally, when RTL mode is activated and the distance-based altitude limit is less than the default climb altitude, eventually the copter's altitude will be limited by the cone slope calculation."
+        },
+        {
+            "formula": "G(RTL_mode → F[0,∞] (position = home_position))",
+            "explanation": "Globally, when RTL mode is activated, eventually the copter will return to the home position."
+        },
+        {
+            "formula": "G(RTL_mode ∧ (altitude = home_altitude) → X(hover_time = RTL_LOIT_TIME))",
+            "explanation": "Globally, when RTL mode is active and the copter reaches home altitude, in the next state it will hover for RTL_LOIT_TIME milliseconds."
+        },
+        {
+            "formula": "G(RTL_mode ∧ (hover_time_elapsed = RTL_LOIT_TIME) → X(altitude = RTL_ALT_FINAL))",
+            "explanation": "Globally, when RTL mode is active and the hover time has elapsed, in the next state the copter will move to the RTL_ALT_FINAL altitude."
+        },
+        {
+            "formula": "G(RTL_mode ∧ (WP_YAW_BEHAVIOR = 1) → F[0,∞] (yaw = facing_home))",
+            "explanation": "Globally, when RTL mode is active and WP_YAW_BEHAVIOR is set to 1, eventually the copter will face the home position."
+        },
+        {
+            "formula": "G(RTL_mode ∧ landing → (descent_speed = LAND_SPEED))",
+            "explanation": "Globally, when RTL mode is active and the copter is landing, the descent speed will be equal to LAND_SPEED."
+        },
+        {
+            "formula": "G(RTL_mode → (horizontal_speed = (RTL_SPEED > 0 ? RTL_SPEED : WPNAV_SPEED)))",
+            "explanation": "Globally, when RTL mode is active, the horizontal speed will be RTL_SPEED if it's greater than zero, otherwise it will be WPNAV_SPEED."
+        }
+    ]
+}
+```
+
+These MTL formulas capture the key specifications of the RTL (Return To Launch) mode as described in the document. They cover aspects such as altitude requirements, return behavior, hover time, yaw control, and speed settings. The formulas use the temporal operators G (globally) and F (finally) to express the temporal properties of the system's behavior in RTL mode.

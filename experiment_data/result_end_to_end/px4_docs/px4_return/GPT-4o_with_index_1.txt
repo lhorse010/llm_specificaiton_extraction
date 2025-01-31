@@ -1,0 +1,42 @@
+[
+  {
+    "index": 0,
+    "formula": "G (mode = automatic → ¬ user_intervention)",
+    "explanation": "The return mode must be automatic, requiring no user intervention to control the vehicle."
+  },
+  {
+    "index": 1,
+    "formula": "G (¬ position_estimate → failsafe)",
+    "explanation": "The vehicle must enter failsafe if it loses its global 3D position estimate."
+  },
+  {
+    "index": 2,
+    "formula": "G (mode = return → home_position_set)",
+    "explanation": "The home position must be set for the return mode to be activated."
+  },
+  {
+    "index": 3,
+    "formula": "G (¬ armed → ¬ return_mode)",
+    "explanation": "The vehicle must be armed before switching to return mode."
+  },
+  {
+    "index": 4,
+    "formula": "G (RC_stick_movement ∧ ¬ critical_battery_failsafe → mode = position)",
+    "explanation": "RC stick movement changes the vehicle to Position mode unless there is a critical battery failsafe."
+  },
+  {
+    "index": 5,
+    "formula": "G (altitude < RTL_RETURN_ALT → X (altitude = RTL_RETURN_ALT))",
+    "explanation": "If the vehicle altitude is below the minimum return altitude, it must ascend to at least RTL_RETURN_ALT."
+  },
+  {
+    "index": 6,
+    "formula": "G (arrived_at_destination → F (altitude = RTL_DESCEND_ALT))",
+    "explanation": "Upon arrival at the destination, the vehicle must descend to the descent altitude."
+  },
+  {
+    "index": 7,
+    "formula": "G (arrival_wait → F (landing_gear_deployed ∧ land))",
+    "explanation": "After waiting at the descent altitude, the vehicle may deploy landing gear and then land."
+  }
+]

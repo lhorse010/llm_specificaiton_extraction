@@ -1,0 +1,57 @@
+[
+  {
+    "sentence": "A lanelet becomes invalid by adding a new tag under the relevant lanelet in the map file <tag k=\"no_drivable_lane\" v=\"yes\"/>.",
+    "formula": "G(T → X(I))",
+    "explanation": "This formula states that globally (G), if a tag T is added, then in the next state (X), the lanelet becomes invalid (I). This captures the immediate effect of adding the tag on the lanelet's validity."
+  },
+  {
+    "sentence": "The target of this module is to stop the vehicle before entering the no drivable lane (with configurable stop margin) or keep the vehicle stationary if autonomous mode started inside a no drivable lane.",
+    "formula": "G((¬N ∧ F(N)) → F(S)) ∨ G((N ∧ A) → G(S))",
+    "explanation": "Here, N represents being in a no drivable lane, S is the vehicle being stationary, and A is autonomous mode. The formula states that globally, if we're not in a no drivable lane but will be in the future, we'll eventually stop, OR if we're in a no drivable lane and in autonomous mode, we'll remain stationary indefinitely."
+  },
+  {
+    "sentence": "Then ask the human driver to take the responsibility of the driving task (Takeover Request / Request to Intervene)",
+    "formula": "G(S → X(R))",
+    "explanation": "This formula indicates that globally, if the vehicle is stationary (S), then in the next state, a takeover request (R) is issued. This captures the sequence of stopping and then requesting human intervention."
+  },
+  {
+    "sentence": "This function is activated when the lane id of the target path has an no drivable lane label (i.e. the no_drivable_lane attribute is yes).",
+    "formula": "G(L → A)",
+    "explanation": "Here, L represents the lane having a no drivable lane label, and A is the activation of the function. The formula states that globally, if a lane has this label, the function is activated."
+  },
+  {
+    "sentence": "3.Get the intersection points between path and no drivable lane polygon",
+    "formula": "G(P → X(I))",
+    "explanation": "This formula represents that globally, if there's a path (P), then in the next state, intersection points (I) are determined. This captures the sequence of having a path and then finding intersections."
+  },
+  {
+    "sentence": "4.Assign the state to APPROACHING toward a no drivable lane if:",
+    "formula": "G(C → A)",
+    "explanation": "Here, C represents the conditions being met, and A is assigning the APPROACHING state. The formula indicates that globally, if the conditions are met, the state is assigned to APPROACHING."
+  },
+  {
+    "sentence": "the distance from front of the ego vehicle till the first intersection point between the ego path and the no drivable lane polygon is more than the stop_margin",
+    "formula": "G((D ∧ M) → A)",
+    "explanation": "D represents the distance to the intersection, M is the stop margin, and A is the APPROACHING state. The formula states that globally, if the distance is greater than the margin, the state is APPROACHING."
+  },
+  {
+    "sentence": "5.Assign the state to INSIDE_NO_DRIVABLE_LANE if:",
+    "formula": "G(C → I)",
+    "explanation": "Similar to the APPROACHING state, C represents conditions being met, and I is assigning the INSIDE_NO_DRIVABLE_LANE state. The formula shows that globally, if conditions are met, this state is assigned."
+  },
+  {
+    "sentence": "the first point of the ego path is inside the no drivable lane polygon, or",
+    "formula": "G(F → I)",
+    "explanation": "F represents the first point being inside the polygon, and I is the INSIDE_NO_DRIVABLE_LANE state. The formula indicates that globally, if the first point is inside, this state is assigned."
+  },
+  {
+    "sentence": "the distance from front of the ego vehicle till the first intersection point between the ego path and the no drivable lane polygon is less than the stop_margin",
+    "formula": "G((D ∧ ¬M) → I)",
+    "explanation": "D is the distance to intersection, M is the stop margin, and I is the INSIDE_NO_DRIVABLE_LANE state. The formula states that globally, if the distance is less than the margin, this state is assigned."
+  },
+  {
+    "sentence": "Assign the state to STOPPED when the vehicle is completely stopped",
+    "formula": "G(C → X(S))",
+    "explanation": "This formula captures the requirement that whenever the vehicle is completely stopped (represented by predicate C), in the next time step, the state should be assigned to STOPPED (represented by predicate S). The global operator G ensures this condition holds at all times. The next operator X is used to indicate that the STOPPED state is assigned immediately after the vehicle stops completely. This formulation assumes discrete time steps and instantaneous state changes, which is often a reasonable approximation in many control systems."
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "index": 0,
+    "formula": "G (ThrowMode → GPSAvailable)",
+    "explanation": "Throw Mode requires GPS to be available at all times."
+  },
+  {
+    "index": 1,
+    "formula": "G (ThrowMode → (VehicleType = Multirotor))",
+    "explanation": "Throw Mode is only available for multirotors."
+  },
+  {
+    "index": 2,
+    "formula": "G (ThrowMode → ¬PilotInput)",
+    "explanation": "Once in Throw Mode, no input is accepted from the pilot."
+  },
+  {
+    "index": 3,
+    "formula": "F (ThrowInitiated → (VerticalSpeed ≥ 0.5 ∧ TotalSpeed ≥ 5))",
+    "explanation": "After throw is initiated, the vehicle must achieve a vertical speed of at least 0.5 m/s and a total speed of 5 m/s."
+  },
+  {
+    "index": 4,
+    "formula": "G (ThrowType = Drop → (Height ≥ 10))",
+    "explanation": "If the vehicle is dropped, it must be from a height of at least 10 meters."
+  },
+  {
+    "index": 5,
+    "formula": "G ((THROW_ALT_MIN ≤ Altitude ≤ THROW_ALT_MAX) → ThrowInitiated)",
+    "explanation": "Throw must occur between specified altitude limits above home."
+  }
+]

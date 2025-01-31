@@ -1,0 +1,32 @@
+[
+  {
+    "index": 0,
+    "formula": "G(LandMode → ¬Arming)",
+    "explanation": "Globally, when in Land Mode, arming is not allowed. This corresponds to the specification that 'Mode prevents arming'."
+  },
+  {
+    "index": 1,
+    "formula": "G(LandMode ∧ ¬ValidLocalPosition → X(¬LandMode))",
+    "explanation": "Globally, if the vehicle is in Land Mode and does not have a valid local position, in the next state it will not be in Land Mode. This captures the requirement that 'Flying vehicles can't switch to this mode without valid local position'."
+  },
+  {
+    "index": 2,
+    "formula": "G(LandMode ∧ LosePositionEstimate → X(Failsafe))",
+    "explanation": "Globally, if the vehicle is in Land Mode and loses the position estimate, in the next state it will enter Failsafe mode. This formalizes 'Flying vehicles will failsafe if they lose the position estimate'."
+  },
+  {
+    "index": 3,
+    "formula": "G(LandMode ∧ RCStickMovement → X(PositionMode))",
+    "explanation": "Globally, if the vehicle is in Land Mode and there is RC stick movement, in the next state it will switch to Position Mode. This corresponds to 'RC stick movement in a multicopter will by default change the vehicle to Position mode'."
+  },
+  {
+    "index": 4,
+    "formula": "G(LandMode → F(OnGround ∧ F(Disarmed)))",
+    "explanation": "Globally, if the vehicle is in Land Mode, eventually it will be on the ground, and then eventually it will be disarmed. This captures the behavior that 'The vehicle descends... and will disarm after landing'."
+  },
+  {
+    "index": 5,
+    "formula": "G((MAV_CMD_NAV_LAND ∨ SwitchToLandMode) → X(LandMode))",
+    "explanation": "Globally, if the MAV_CMD_NAV_LAND command is received or there's a switch to Land Mode, in the next state the vehicle will be in Land Mode. This formalizes 'The mode can be triggered using the MAV_CMD_NAV_LAND MAVLink command, or by explicitly switching to Land mode'."
+  }
+]

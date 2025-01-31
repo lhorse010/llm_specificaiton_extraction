@@ -1,0 +1,66 @@
+Based on the provided document, I have extracted the specifications and expressed them using Metric Temporal Logic (MTL) formulas. Here are the results in the required JSON format:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(RTL_mode -> F(altitude >= RTL_CLIMB_MIN))",
+            "explanation": "When RTL mode is selected, the copter will eventually climb to at least RTL_CLIMB_MIN meters."
+        },
+        {
+            "formula": "G(RTL_mode -> F(altitude >= RTL_ALT))",
+            "explanation": "When RTL mode is selected, the copter will eventually climb to at least RTL_ALT meters."
+        },
+        {
+            "formula": "G(RTL_mode -> altitude >= 2)",
+            "explanation": "When RTL mode is selected, the copter's altitude will always be at least 2 meters."
+        },
+        {
+            "formula": "G(RTL_mode -> F(distance_to_home <= 0))",
+            "explanation": "When RTL mode is selected, the copter will eventually return to the home location."
+        },
+        {
+            "formula": "G(RTL_mode -> (distance_to_home * RTL_CONE_SLOPE >= altitude))",
+            "explanation": "When RTL mode is selected, the copter's altitude is limited by the inverted cone centered on the return point."
+        },
+        {
+            "formula": "G(RTL_mode -> (RTL_CONE_SLOPE >= 0.5))",
+            "explanation": "The RTL_CONE_SLOPE parameter must be at least 0.5."
+        },
+        {
+            "formula": "G(RTL_mode -> (RTL_LOIT_TIME >= 0))",
+            "explanation": "The RTL_LOIT_TIME parameter must be at least 0 milliseconds."
+        },
+        {
+            "formula": "G(RTL_mode -> (RTL_SPEED >= 0))",
+            "explanation": "The RTL_SPEED parameter must be at least 0 cm/s."
+        },
+        {
+            "formula": "G(RTL_mode -> (LAND_SPEED >= 20))",
+            "explanation": "The LAND_SPEED parameter must be at least 20 cm/s."
+        },
+        {
+            "formula": "G(RTL_mode -> (RTL_ALT_FINAL >= 0))",
+            "explanation": "The RTL_ALT_FINAL parameter must be at least 0 cm."
+        },
+        {
+            "formula": "G(RTL_mode -> (WP_YAW_BEHAVIOR >= 0))",
+            "explanation": "The WP_YAW_BEHAVIOR parameter must be at least 0."
+        },
+        {
+            "formula": "G(RTL_mode -> (RTL_CLIMB_MIN >= 0))",
+            "explanation": "The RTL_CLIMB_MIN parameter must be at least 0 meters."
+        },
+        {
+            "formula": "G(RTL_mode -> (RTL_ALT >= 1))",
+            "explanation": "The RTL_ALT parameter must be at least 1 cm."
+        },
+        {
+            "formula": "G(RTL_mode -> (RTL_ALT <= 8000))",
+            "explanation": "The RTL_ALT parameter must be at most 8000 cm."
+        }
+    ]
+}
+```
+
+Note that I have only included specifications that are clear and specific, and excluded vague or ambiguous specifications. Additionally, I have used the MTL operators to express the specifications in a formal and concise manner.

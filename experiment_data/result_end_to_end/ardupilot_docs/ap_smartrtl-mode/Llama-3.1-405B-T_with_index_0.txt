@@ -1,0 +1,47 @@
+[
+  {
+    "index": 0,
+    "formula": "G( SmartRTL → (retrace_safe_path ∧ simplify_path ∧ prune_path) )",
+    "explanation": "When SmartRTL mode is activated, the vehicle will retrace a safe path home, simplify the path by turning curved paths into straight lines, and prune the path by removing loops."
+  },
+  {
+    "index": 1,
+    "formula": "G( buffer_full → ¬SmartRTL )",
+    "explanation": "If the buffer is full, SmartRTL mode will be deactivated."
+  },
+  {
+    "index": 2,
+    "formula": "G( SmartRTL → (save_points_at_most_3_per_second ∧ save_points_only_if_moved_at_least_SRTL_ACCURACY) )",
+    "explanation": "When SmartRTL mode is activated, the vehicle will save points at a maximum of 3 per second, but only if the vehicle has moved at least SRTL_ACCURACY meters from the previous point."
+  },
+  {
+    "index": 3,
+    "formula": "G( 50_points_saved → simplify_points_into_lines )",
+    "explanation": "After 50 points are saved, the vehicle will simplify them into lines again using the SRTL_ACCURACY parameter."
+  },
+  {
+    "index": 4,
+    "formula": "G( good_position_estimate → SmartRTL )",
+    "explanation": "The vehicle must have a good position estimate (LEDs should be green) when the vehicle is armed, otherwise SmartRTL will be disabled."
+  },
+  {
+    "index": 5,
+    "formula": "G( RTL_SPEED = 0 → use_WPNAV_SPEED )",
+    "explanation": "If the RTL_SPEED parameter is set to 0, the vehicle will use the WPNAV_SPEED parameter value instead."
+  },
+  {
+    "index": 6,
+    "formula": "G( RTL_ALT_FINAL = 0 → land_at_home )",
+    "explanation": "If the RTL_ALT_FINAL parameter is set to 0, the vehicle will land at home, otherwise it will stop and hover above home at the specified altitude."
+  },
+  {
+    "index": 7,
+    "formula": "G( SRTL_POINTS = 0 → ¬SmartRTL )",
+    "explanation": "If the SRTL_POINTS parameter is set to 0, SmartRTL mode will be deactivated."
+  },
+  {
+    "index": 8,
+    "formula": "G( SRTL_OPTIONS = 4 → ignore_pilot_yaw_commands )",
+    "explanation": "If the SRTL_OPTIONS parameter is set to 4, the vehicle will ignore pilot yaw commands while in SmartRTL mode."
+  }
+]

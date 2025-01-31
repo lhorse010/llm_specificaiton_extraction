@@ -1,0 +1,42 @@
+[
+  {
+    "sentence": "If you lose your GPS signal in flight while in Drift Mode, your copter will either land or enter altitude hold based on your failsafe_gps_enabled setting.",
+    "formula": "G((¬GPS ∧ D) → (L ∨ A))",
+    "explanation": "If the GPS signal is lost (¬GPS) while in Drift Mode (D), then the system must ensure that either the copter lands (L) or enters altitude hold (A). This depends on the failsafe setting."
+  },
+  {
+    "sentence": "If the pilot puts the throttle completely down the motors will go to their minimum rate (MOT_SPIN_ARMED) and if the vehicle is flying it will lose attitude control and tumble.",
+    "formula": "G((T_down ∧ F) → (M ∧ (F → T)))",
+    "explanation": "When the throttle is down (T_down) while flying (F), the motors reach min rate (M), and the vehicle loses control, leading to tumbling (T)."
+  },
+  {
+    "sentence": "Drift Mode relies on your GPS for control.",
+    "formula": "G(D → GPS)",
+    "explanation": "While in Drift Mode (D), the system requires GPS (GPS) for control at all times."
+  },
+  {
+    "sentence": "The user has direct control of Yaw and Pitch, but Roll is controlled by the autopilot.",
+    "formula": "G((C_Y ∧ C_P) ∧ ¬C_R)",
+    "explanation": "The user controls Yaw (C_Y) and Pitch (C_P), while Roll (¬C_R) is managed by the autopilot."
+  },
+  {
+    "sentence": "When turning with the right stick yaw is automatically applied and sufficient roll is added to cancel the copters velocity in the roll axis.",
+    "formula": "G(RS_turn → (Y ∧ R))",
+    "explanation": "Turning with the right stick (RS_turn) automatically applies yaw (Y) and roll (R) to manage velocity."
+  },
+  {
+    "sentence": "Letting go of the sticks effectively turns on a speed brake in the Pitch axis that slows the copter to a stop over a two second period.",
+    "formula": "G(SR_release → F[0,2](P_stop))",
+    "explanation": "Releasing the sticks (SR_release) results in a speed brake effect, slowing the copter on the Pitch axis (P_stop) within two seconds."
+  },
+  {
+    "sentence": "A copter in Drift Mode with the right stick in the center will loosely hold horizontal position (It will slowly drift in the wind.)",
+    "formula": "G((D ∧ RS_center) → H)",
+    "explanation": "In Drift Mode with the right stick centered (RS_center), the copter maintains a loose horizontal position (H), allowing for slow drift."
+  },
+  {
+    "sentence": "Pilot’s throttle input controls the average motor speed meaning that constant adjustment of the throttle is required to maintain altitude.",
+    "formula": "G(T_input → M_control)",
+    "explanation": "The pilot's throttle input (T_input) directly affects motor speed control (M_control), necessitating continuous adjustments to maintain altitude."
+  }
+]

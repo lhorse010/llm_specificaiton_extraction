@@ -1,0 +1,30 @@
+```json
+{
+    "specifications": [
+        {
+            "formula": "G (altitude > 10m → X (landingSpeed = WPNAV_SPEED_DN))",
+            "explanation": "While the copter is above 10 meters, it should descend at the speed specified by WPNAV_SPEED_DN."
+        },
+        {
+            "formula": "G (altitude <= 10m → X (landingSpeed = LAND_SPEED))",
+            "explanation": "When the copter is at or below 10 meters, it should descend at the rate specified by LAND_SPEED."
+        },
+        {
+            "formula": "G (altitude <= 0m ∧ throttle = min → F (motorsOff ∧ disarmed))",
+            "explanation": "Upon reaching the ground with minimum throttle, the copter should eventually turn the motors off and disarm."
+        },
+        {
+            "formula": "G ((altitude <= 10m ∧ -20cm/s <= climbRate <= 20cm/s ∧ acceleration = 0) U (motorsOff ∧ disarmed))",
+            "explanation": "The copter should recognize it has landed when the climb rate is stable between -20cm/s and 20cm/s with no acceleration, and eventually turn off the motors and disarm."
+        },
+        {
+            "formula": "G (gpsLock → X (horizontalControl = pilotAdjustable))",
+            "explanation": "If GPS lock is available, the pilot should be able to adjust the horizontal position."
+        },
+        {
+            "formula": "G (¬gpsLock → X (horizontalControl = stabilizeMode))",
+            "explanation": "If GPS lock is not available, the copter should be in stabilize mode allowing the pilot to control roll and pitch."
+        }
+    ]
+}
+```

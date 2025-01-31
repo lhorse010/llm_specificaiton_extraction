@@ -1,0 +1,27 @@
+[
+  {
+    "index": 0,
+    "formula": "G(armed → (GPS_3D_lock ∧ HDOP < 1.4))",
+    "explanation": "The vehicle can only be armed in Loiter mode if the GPS has a 3D lock and the HDOP is below 1.4."
+  },
+  {
+    "index": 1,
+    "formula": "G(sticks_released → F(position_hold ∧ speed = 0))",
+    "explanation": "When the control sticks are released, the vehicle should eventually come to a stop and hold its position."
+  },
+  {
+    "index": 2,
+    "formula": "G(control_horizontal → speed ≤ 5)",
+    "explanation": "The maximum horizontal speed is 5 m/s unless adjusted in the tuning settings."
+  },
+  {
+    "index": 3,
+    "formula": "G(control_brake → F(acceleration = 0))",
+    "explanation": "When the pilot centers the sticks, the vehicle should eventually stop accelerating."
+  },
+  {
+    "index": 4,
+    "formula": "G(control_brake → F(brake_delay_elapsed → braking_started))",
+    "explanation": "Braking should start after the specified delay once the pilot centers the sticks."
+  }
+]

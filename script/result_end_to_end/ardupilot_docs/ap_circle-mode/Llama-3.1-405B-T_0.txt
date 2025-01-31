@@ -1,0 +1,62 @@
+After carefully reading the document, I have extracted the specifications that the vehicle needs to meet and expressed them using Metric Temporal Logic (MTL) formulas. Here are the results in the required JSON format:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(CIRCLE_RADIUS >= 0)",
+            "explanation": "The circle radius must always be greater than or equal to 0."
+        },
+        {
+            "formula": "G(CIRCLE_RATE > 0 -> rotate_clockwise)",
+            "explanation": "If the circle rate is positive, the vehicle must rotate clockwise."
+        },
+        {
+            "formula": "G(CIRCLE_RATE < 0 -> rotate_counter_clockwise)",
+            "explanation": "If the circle rate is negative, the vehicle must rotate counter-clockwise."
+        },
+        {
+            "formula": "G(acceleration <= WPNAV_ACCEL)",
+            "explanation": "The acceleration towards the center of the circle must never exceed the maximum acceleration held in the WPNAV_ACCEL parameter."
+        },
+        {
+            "formula": "G((CIRCLE_CONTROL = 1) -> (stick_adjustment_enabled))",
+            "explanation": "If the CIRCLE_CONTROL parameter is enabled, the pilot must be able to adjust the circle's radius and angular velocity using the control sticks."
+        },
+        {
+            "formula": "G((CIRCLE_OPTIONS bit 0 = 1) -> (pilot_can_adjust_radius_and_velocity))",
+            "explanation": "If bit 0 of the CIRCLE_OPTIONS parameter is set, the pilot must be able to adjust the circle's radius and angular velocity using the control sticks."
+        },
+        {
+            "formula": "G((CIRCLE_OPTIONS bit 1 = 1) -> (copter_faces_direction_of_travel))",
+            "explanation": "If bit 1 of the CIRCLE_OPTIONS parameter is set, the copter must face the direction of travel as it circles."
+        },
+        {
+            "formula": "G((CIRCLE_OPTIONS bit 2 = 1) -> (circle_center_position_set_upon_mode_entry))",
+            "explanation": "If bit 2 of the CIRCLE_OPTIONS parameter is set, the circle's center position must be set upon mode entry at the current location."
+        },
+        {
+            "formula": "G((CIRCLE_OPTIONS bit 3 = 1) -> (mount_faces_circle_center))",
+            "explanation": "If bit 3 of the CIRCLE_OPTIONS parameter is set, the mount's ROI must be set on the circle center, causing the mount to face the circle's center all the time."
+        },
+        {
+            "formula": "G(pilot_has_control_over_altitude)",
+            "explanation": "The pilot must always have control over the altitude using the throttle stick."
+        },
+        {
+            "formula": "G(pilot_has_control_over_yaw)",
+            "explanation": "The pilot must always have control over the yaw of the copter."
+        }
+    ]
+}
+```
+
+Note that I have used the following abbreviations in the MTL formulas:
+
+* `rotate_clockwise` and `rotate_counter_clockwise` represent the actions of rotating the vehicle clockwise and counter-clockwise, respectively.
+* `stick_adjustment_enabled` represents the state where the pilot can adjust the circle's radius and angular velocity using the control sticks.
+* `pilot_can_adjust_radius_and_velocity` represents the state where the pilot can adjust the circle's radius and angular velocity using the control sticks.
+* `copter_faces_direction_of_travel` represents the state where the copter faces the direction of travel as it circles.
+* `circle_center_position_set_upon_mode_entry` represents the state where the circle's center position is set upon mode entry at the current location.
+* `mount_faces_circle_center` represents the state where the mount's ROI is set on the circle center, causing the mount to face the circle's center all the time.
+* `pilot_has_control_over_altitude` and `pilot_has_control_over_yaw` represent the states where the pilot has control over the altitude and yaw of the copter, respectively.

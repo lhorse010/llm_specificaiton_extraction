@@ -1,0 +1,72 @@
+[
+  {
+    "sentence": "Due to the property of rule-based planning, the algorithm is greatly depends on object detection and perception accuracy considering traffic light.",
+    "formula": "G(D → (A ∧ P))",
+    "explanation": "Here, D represents the dependency on object detection, A represents the accuracy of perception, and P represents the consideration of traffic light. The formula states that globally, if the algorithm depends on object detection, then it must also consider perception accuracy and traffic light."
+  },
+  {
+    "sentence": "This module is activated when there is traffic light in ego lane.",
+    "formula": "G(L → M)",
+    "explanation": "Here, L represents the presence of traffic light in ego lane, and M represents the activation of the module. The formula states that globally, if there is traffic light in ego lane, then the module is activated."
+  },
+  {
+    "sentence": "If a corresponding traffic light signal have never been found, it treats as a signal to pass.",
+    "formula": "G(¬F(S) → P)",
+    "explanation": "Here, S represents the presence of a corresponding traffic light signal, and P represents the signal to pass. The formula states that globally, if a corresponding traffic light signal has never been found, then it is treated as a signal to pass."
+  },
+  {
+    "sentence": "If a corresponding traffic light signal is found but timed out, it treats as a signal to stop.",
+    "formula": "G(S ∧ T → ¬P)",
+    "explanation": "Here, S represents the presence of a corresponding traffic light signal, T represents the timeout, and P represents the signal to pass. The formula states that globally, if a corresponding traffic light signal is found but timed out, then it is treated as a signal to stop (not pass)."
+  },
+  {
+    "sentence": "If an elapsed time to receive stop signal is less than stop_time_hysteresis, it treats as a signal to pass.",
+    "formula": "G(E < H → P)",
+    "explanation": "Here, E represents the elapsed time to receive stop signal, H represents the stop_time_hysteresis, and P represents the signal to pass. The formula states that globally, if the elapsed time to receive stop signal is less than stop_time_hysteresis, then it is treated as a signal to pass."
+  },
+  {
+    "sentence": "higher than 2.0m/s ⇒ pass judge(using next slide formula)",
+    "formula": "G(V > 2.0 → P)",
+    "explanation": "Here, V represents the velocity, and P represents the pass judge. The formula states that globally, if the velocity is higher than 2.0m/s, then it is a pass judge."
+  },
+  {
+    "sentence": "lower than 2.0m/s ⇒ stop",
+    "formula": "G(V < 2.0 → ¬P)",
+    "explanation": "Here, V represents the velocity, and P represents the pass judge. The formula states that globally, if the velocity is lower than 2.0m/s, then it is not a pass judge (i.e., stop)."
+  },
+  {
+    "sentence": "\"can pass through\" stop line during yellow lamp => pass",
+    "formula": "G(Y ∧ C → P)",
+    "explanation": "Here, Y represents the yellow lamp, C represents the ability to pass through the stop line, and P represents the pass judge. The formula states that globally, if it is possible to pass through the stop line during yellow lamp, then it is a pass judge."
+  },
+  {
+    "sentence": "\"can’t pass through\" stop line during yellow lamp => emergency stop",
+    "formula": "G(Y ∧ ¬C → ¬P ∧ E)",
+    "explanation": "Here, Y represents the yellow lamp, C represents the ability to pass through the stop line, P represents the pass judge, and E represents the emergency stop. The formula states that globally, if it is not possible to pass through the stop line during yellow lamp, then it is not a pass judge and an emergency stop is required."
+  },
+  {
+    "sentence": "vehicle can’t pass through stop line during yellow lamp.(right side of the yellow lamp line)",
+    "formula": "G(Y → ¬C)",
+    "explanation": "Here, Y represents the yellow lamp, and C represents the ability to pass through the stop line. The formula states that globally, during yellow lamp, the vehicle cannot pass through the stop line."
+  },
+  {
+    "sentence": "vehicle can’t stop under deceleration and jerk limit.(left side of the pass judge curve)⇒emergency stop(relax deceleration and jerk limitation in order to observe the traffic regulation)",
+    "formula": "¬(S ∧ D ∧ J) → E",
+    "explanation": "Here, S represents the vehicle stopping, D represents the deceleration limit, J represents the jerk limit, and E represents the emergency stop. The formula states that if the vehicle cannot stop under the given limits, an emergency stop will be initiated."
+  },
+  {
+    "sentence": "vehicle can pass through stop line during yellow lamp.(left side of the yellow lamp line)",
+    "formula": "Y → P",
+    "explanation": "Here, Y represents the yellow lamp, and P represents the vehicle passing through the stop line. The formula states that if the yellow lamp is on, the vehicle can pass through the stop line."
+  },
+  {
+    "sentence": "vehicle can stop under deceleration and jerk limit.(right side of the pass judge curve) ⇒ stop(autoware selects the safety choice)",
+    "formula": "(S ∧ D ∧ J) → A",
+    "explanation": "Here, S represents the vehicle stopping, D represents the deceleration limit, J represents the jerk limit, and A represents the autoware selecting the safety choice (i.e., stopping). The formula states that if the vehicle can stop under the given limits, the autoware will select the safety choice."
+  },
+  {
+    "sentence": "2.Uses the highest reliability one of the traffic light recognition result and if the color of that was not green or corresponding arrow signal, generates a stop point.",
+    "formula": "(¬G ∧ ¬A) → S",
+    "explanation": "Here, G represents the green light, A represents the corresponding arrow signal, and S represents the stop point. The formula states that if the traffic light recognition result is not green or the corresponding arrow signal, a stop point will be generated."
+  }
+]

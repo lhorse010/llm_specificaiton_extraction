@@ -1,0 +1,37 @@
+[
+  {
+    "index": 0,
+    "formula": "G (armed → (altitude > THROW_ALT_MIN ∧ altitude < THROW_ALT_MAX))",
+    "explanation": "The vehicle must be armed only if the altitude is between THROW_ALT_MIN and THROW_ALT_MAX."
+  },
+  {
+    "index": 1,
+    "formula": "G (mode = Throw → gps = active)",
+    "explanation": "Throw mode requires active GPS at all times."
+  },
+  {
+    "index": 2,
+    "formula": "G (mode = Throw → ¬pilot_input)",
+    "explanation": "Once in Throw mode, the vehicle does not accept any input from the pilot."
+  },
+  {
+    "index": 3,
+    "formula": "F (velocity_vertical >= 0.5 ∧ velocity_total >= 5)",
+    "explanation": "The vehicle must achieve a vertical velocity of at least 0.5 m/s and a total velocity of at least 5 m/s during the throw."
+  },
+  {
+    "index": 4,
+    "formula": "G (THROW_TYPE = 1 → height_drop >= 10)",
+    "explanation": "If THROW_TYPE is set to 1 (dropping), the vehicle must be dropped from a height of at least 10 meters."
+  },
+  {
+    "index": 5,
+    "formula": "G (throw_completed → (next_mode = Auto ∨ next_mode = Guided ∨ next_mode = RTL ∨ next_mode = Land ∨ next_mode = Brake ∨ next_mode = Throw))",
+    "explanation": "After the throw is completed, the vehicle can switch to one of the specified modes."
+  },
+  {
+    "index": 6,
+    "formula": "G (motors_start → apex_reached)",
+    "explanation": "The motors should start when the vehicle reaches the apex of its trajectory."
+  }
+]

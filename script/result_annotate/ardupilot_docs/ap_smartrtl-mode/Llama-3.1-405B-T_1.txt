@@ -1,0 +1,81 @@
+After carefully reading the document and following the steps outlined, I have annotated the sentences that convey information about state transition pre-requirements, constraints, expected post-actions, and expected state changes. Here is the output in JSON format:
+
+```json
+{
+    "specifications": [
+        {
+            "section-id": 0,
+            "sentence-id": 0
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 5
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 7
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 9
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 14
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 15
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 0
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 1
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 0
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 2
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 3
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 6
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 8
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 0
+        }
+    ]
+}
+```
+
+The annotated sentences are:
+
+* Section 0, Sentence 0: "When switched into Smart RTL, like regular RTL, the vehicle will attempt to return home." (Expected state change)
+* Section 0, Sentence 5: "The buffer is of a limited size (see below) and once it is full, \"SmartRTL deactivated: buffer full\" will appear on the ground stations's HUD and the user will no longer be able to switch into this mode." (Constraint)
+* Section 0, Sentence 7: "SmartRTL saves points at a maximum of 3 per second, but only if the vehicle has moved at least SRTL_ACCURACY meters from the previous point." (Constraint)
+* Section 0, Sentence 9: "After 50 points are saved it goes back and simplifies them into lines again using that SRTL_ACCURACY." (Expected post-action)
+* Section 0, Sentence 14: "The FS_GCS_ENABLE and FS_THR_ENABLE parameters set to 4 or 5 the vehicle will switch to SmartRTL->RTL or SmartRTL->Land based on whether the correct conditions allows the mode." (Expected state change)
+* Section 0, Sentence 15: "The setting indicates that it will try SmartRTL first, then downgrade to RTL (4) or Land (5)" (Expected state change)
+* Section 1, Sentence 0: "The vehicle must have a good position estimate (LEDs should be green) when the vehicle is armed or SmartRTL will be disabled." (State transition pre-requirement)
+* Section 1, Sentence 1: "If the vehicle is armed without a good position estimate, \"SmartRTL deactivated: bad position\" will be sent to the ground station." (Constraint)
+* Section 2, Sentence 0: "1.RTL_SPEED can be used to set the speed (in meters/second) at which the vehicle will return to home." (Expected post-action)
+* Section 2, Sentence 2: "2.RTL_ALT_FINAL if set to 0, will land at home, otherwise will stop and hover above home at this altitude upon completion of the return." (Expected post-action)
+* Section 2, Sentence 3: "3.SRTL_ACCURACY controls the accuracy (in meters) of the simplification and pruning performed." (Constraint)
+* Section 2, Sentence 6: "4.SRTL_POINTS controls the maximum number of points that can be stored." (Constraint)
+* Section 2, Sentence 8: "If the maximum number of points is exhausted, \"SmartRTL deactivated: buffer full\" will be sent to the ground station and the user will not be able to switch into SmartRTL." (Constraint)
+* Section 3, Sentence 0: "SmartRTL can be deactivated as a mode by simply setting SRTL_POINTS to \"0\"." (Expected state change)

@@ -1,0 +1,46 @@
+I've carefully read the document and extracted the relevant specifications. I'll now express them using Metric Temporal Logic (MTL) formulas and provide explanations for each.
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(out_of_lane → F[0,t] (decelerate ∨ stop))",
+            "explanation": "This formula states that globally, if the vehicle is out of lane, then within time t, it should either decelerate or stop. This corresponds to the module's main purpose of adding deceleration and stop points to prevent collisions in out of lane cases."
+        },
+        {
+            "formula": "G(speed < min_velocity → ¬consider_object)",
+            "explanation": "This formula represents the filtering condition where objects with speed below the minimum velocity are ignored. It states that globally, if an object's speed is less than the minimum velocity, it should not be considered."
+        },
+        {
+            "formula": "G(object_behind_ego ∧ ignore_behind_ego → ¬consider_object)",
+            "explanation": "This formula represents the filtering condition where objects coming from behind the ego vehicle are ignored if the ignore_behind_ego parameter is true. It states that globally, if an object is behind the ego and the ignore_behind_ego flag is set, the object should not be considered."
+        },
+        {
+            "formula": "G(predicted_path_confidence < predicted_path_min_confidence → ¬consider_path)",
+            "explanation": "This formula represents the filtering condition where predicted paths with confidence below the threshold are ignored. It states that globally, if a predicted path's confidence is less than the minimum confidence threshold, that path should not be considered."
+        },
+        {
+            "formula": "G((mode = threshold ∧ collision_time < time_threshold) → avoid_area)",
+            "explanation": "This formula represents the collision avoidance decision in threshold mode. It states that globally, if the mode is set to threshold and the collision time is less than the time threshold, the out of lane area should be avoided."
+        },
+        {
+            "formula": "G((mode = ttc ∧ ttc < ttc_threshold) → avoid_area)",
+            "explanation": "This formula represents the collision avoidance decision in time-to-collision (ttc) mode. It states that globally, if the mode is set to ttc and the time to collision is less than the ttc threshold, the out of lane area should be avoided."
+        },
+        {
+            "formula": "G(avoid_area ∧ distance < actions.slowdown.threshold → F[0,t] (velocity = actions.slowdown.velocity))",
+            "explanation": "This formula represents the decision to slow down. It states that globally, if an area should be avoided and the distance is less than the slowdown threshold, then within time t, the velocity should be set to the slowdown velocity."
+        },
+        {
+            "formula": "G(avoid_area ∧ distance < actions.stop.threshold → F[0,t] (velocity = 0))",
+            "explanation": "This formula represents the decision to stop. It states that globally, if an area should be avoided and the distance is less than the stop threshold, then within time t, the velocity should be set to 0."
+        },
+        {
+            "formula": "G(new_stop_pose → X[action.min_duration] (¬new_stop_pose U no_collision))",
+            "explanation": "This formula represents the stability requirement for stop/slowdown poses. It states that globally, when a new stop pose is generated, for the next 'action.min_duration' time units, no new stop pose should be generated until no collision is detected."
+        }
+    ]
+}
+```
+
+These MTL formulas capture the key specifications and behaviors described in the document, focusing on the out-of-lane collision avoidance, object filtering, collision detection, and decision-making processes of the module.

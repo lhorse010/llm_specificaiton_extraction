@@ -1,0 +1,51 @@
+Based on the provided document, I will extract the specifications and express them using Metric Temporal Logic (MTL) formulas.
+
+Here are the extracted specifications:
+
+1. The vehicle stops as soon as possible when Brake mode is invoked.
+2. The vehicle does not accept any input from the pilot when Brake mode is invoked.
+3. Brake mode requires GPS.
+4. The vehicle is subject to acceleration and angle limits imposed by the position and attitude controllers.
+5. The vehicle disarms immediately if it is landed in Brake mode.
+
+Here are the MTL formulas for the extracted specifications:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(BrakeMode → F(Stopped))",
+            "explanation": "Globally, if Brake mode is invoked, then the vehicle will eventually stop."
+        },
+        {
+            "formula": "G(BrakeMode → ¬PilotInput)",
+            "explanation": "Globally, if Brake mode is invoked, then the vehicle does not accept any input from the pilot."
+        },
+        {
+            "formula": "G(BrakeMode → GPS)",
+            "explanation": "Globally, if Brake mode is invoked, then GPS is required."
+        },
+        {
+            "formula": "G(BrakeMode → (AccelerationLimit ∧ AngleLimit))",
+            "explanation": "Globally, if Brake mode is invoked, then the vehicle is subject to acceleration and angle limits imposed by the position and attitude controllers."
+        },
+        {
+            "formula": "G(Landed ∧ BrakeMode → X(Disarmed))",
+            "explanation": "Globally, if the vehicle is landed and Brake mode is invoked, then the vehicle will disarm immediately in the next state."
+        }
+    ]
+}
+```
+
+Note that I have used the following abbreviations in the MTL formulas:
+
+* BrakeMode: Brake mode is invoked
+* Stopped: The vehicle is stopped
+* PilotInput: The pilot is providing input
+* GPS: GPS is available
+* AccelerationLimit: The vehicle is within acceleration limits
+* AngleLimit: The vehicle is within angle limits
+* Landed: The vehicle is landed
+* Disarmed: The vehicle is disarmed
+
+Also, I have used the `G` operator to express the global behavior of the system, and the `F` operator to express the eventual behavior of the system. The `X` operator is used to express the immediate behavior of the system in the next state.

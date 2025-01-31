@@ -1,0 +1,42 @@
+[
+  {
+    "index": 0,
+    "formula": "G(¬GPS → ¬ARM)",
+    "explanation": "Globally, if there is no GPS (reliable position estimate), then the vehicle should not be armed. This addresses the warning about needing a reliable position estimate before arming."
+  },
+  {
+    "index": 1,
+    "formula": "G((ROLL_INPUT = 0 ∧ PITCH_INPUT = 0) → F(LEVEL = TRUE))",
+    "explanation": "Globally, when roll and pitch inputs are zero, the vehicle will eventually level itself. This captures the self-leveling behavior of Stabilize mode."
+  },
+  {
+    "index": 2,
+    "formula": "G(YAW_INPUT = 0 → X(HEADING = CURRENT_HEADING))",
+    "explanation": "Globally, when yaw input is zero, in the next state the heading will be maintained at the current heading. This represents the yaw behavior in Stabilize mode."
+  },
+  {
+    "index": 3,
+    "formula": "G(THROTTLE = 0 → MOTOR_SPEED = MOT_SPIN_ARMED)",
+    "explanation": "Globally, when throttle is zero, motor speed will be set to MOT_SPIN_ARMED (minimum rate). This captures the throttle behavior at minimum input."
+  },
+  {
+    "index": 4,
+    "formula": "G(TILT_ANGLE > 0 → THROTTLE_ADJUSTMENT > 0)",
+    "explanation": "Globally, if the tilt angle is greater than zero, there will be a positive throttle adjustment. This represents the automatic throttle adjustment based on tilt angle."
+  },
+  {
+    "index": 5,
+    "formula": "G(LEAN_ANGLE ≤ ANGLE_MAX)",
+    "explanation": "Globally, the lean angle should always be less than or equal to ANGLE_MAX. This enforces the maximum lean angle parameter."
+  },
+  {
+    "index": 6,
+    "formula": "G(ROTATION_RATE ≤ ANGLE_RATE_MAX)",
+    "explanation": "Globally, the rotation rate should always be less than or equal to ANGLE_RATE_MAX. This enforces the maximum rotation rate parameter."
+  },
+  {
+    "index": 7,
+    "formula": "G(|YAW_RATE| ≤ ACRO_Y_RATE)",
+    "explanation": "Globally, the absolute value of the yaw rate should be less than or equal to ACRO_Y_RATE. This enforces the maximum yaw rate based on the ACRO_Y_RATE parameter."
+  }
+]

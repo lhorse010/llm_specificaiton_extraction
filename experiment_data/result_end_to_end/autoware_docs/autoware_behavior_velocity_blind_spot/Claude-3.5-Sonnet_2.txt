@@ -1,0 +1,39 @@
+Let's go through the steps to extract specifications and express them using Metric Temporal Logic (MTL) formulas.
+
+Step 1: Read the document thoroughly.
+I have read the document about the Blind Spot module.
+
+Step 4: Extract specifications and express them using metric temporal logic formula.
+
+Step 5: Format all the converted sentences in JSON.
+
+Here's the output following the required format:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(intersection_label → blind_spot_active)",
+            "explanation": "Globally, if the lane has an intersection label (left or right turn), then the blind spot module is active."
+        },
+        {
+            "formula": "G((object_in_detection_area ∧ object_predicted_path_in_conflict_area ∧ ¬passed_judge_line) → X(stop_state))",
+            "explanation": "Globally, if an object is in the detection area AND its predicted path is in the conflict area AND the vehicle hasn't passed the judge line, then in the next state, the vehicle enters stop state."
+        },
+        {
+            "formula": "G(stop_state → (go_state_duration ≥ 2) U go_state)",
+            "explanation": "Globally, once in stop state, the system remains in stop state until the go state has been continuously true for at least 2 seconds."
+        },
+        {
+            "formula": "G(passed_judge_line → ¬X(stop_state))",
+            "explanation": "Globally, if the vehicle has passed the judge line, then in the next state, it will not enter stop state (to avoid rapid stops)."
+        },
+        {
+            "formula": "G(blind_spot_active → (stop_line ∧ pass_judge_line ∧ detection_area ∧ conflict_area))",
+            "explanation": "Globally, when the blind spot module is active, it sets a stop line, pass judge line, detection area, and conflict area."
+        }
+    ]
+}
+```
+
+These MTL formulas capture the key specifications of the Blind Spot module as described in the document. They cover the activation conditions, the stop/go state transitions, and the setup of various areas and lines used by the module.

@@ -1,0 +1,26 @@
+```json
+{
+    "specifications": [
+        {
+            "formula": "G (velocity <= max_slow_velocity)",
+            "explanation": "Globally, the vehicle's velocity must not exceed the maximum slow mode velocity."
+        },
+        {
+            "formula": "G (RC_control ∧ ¬MAVLink_control → RC_velocity_limit)",
+            "explanation": "If RC control is used and MAVLink control is not active, the RC velocity limit must be applied."
+        },
+        {
+            "formula": "G (MAVLink_control ∧ ¬RC_control → MAVLink_velocity_limit)",
+            "explanation": "If MAVLink control is used and RC control is not active, the MAVLink velocity limit must be applied."
+        },
+        {
+            "formula": "G (¬RC_control ∧ ¬MAVLink_control → parameter_velocity_limit)",
+            "explanation": "If neither RC nor MAVLink control is active, the parameter-defined velocity limit must be applied."
+        },
+        {
+            "formula": "G (RC_control → RC_priority)",
+            "explanation": "If RC control is used, it takes priority over other velocity limit settings."
+        }
+    ]
+}
+```

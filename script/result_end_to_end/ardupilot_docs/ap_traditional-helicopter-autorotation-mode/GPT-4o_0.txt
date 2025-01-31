@@ -1,0 +1,38 @@
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(¬(real_life_use))",
+            "explanation": "The autonomous autorotation flight mode should never be used in real life, as it is only enabled for use with SITL (Software in the Loop)."
+        },
+        {
+            "formula": "G(¬(mode_switch_entry))",
+            "explanation": "The autonomous autorotation flight mode cannot be entered via a mode switch. It must be entered using the motor interlock switch while in a non-manual collective mode."
+        },
+        {
+            "formula": "G((interlock_disengaged ∧ non_manual_mode) → F(autorotation_mode))",
+            "explanation": "The flight mode can only be entered if the interlock is disengaged while flying in a non-manual collective mode."
+        },
+        {
+            "formula": "G((autorotation_mode ∧ auto_mission_entry) → X(altitude_hold))",
+            "explanation": "If the aircraft enters autorotation from an auto mission, it should exit into Altitude Hold mode to prevent resuming the mission unexpectedly."
+        },
+        {
+            "formula": "G(¬(blade_stall ∧ collective_management))",
+            "explanation": "During autorotation, careful collective management is required to prevent blade stall."
+        },
+        {
+            "formula": "G((flare_phase) → F((reduce_descent_speed ∧ convert_airspeed_to_lift)))",
+            "explanation": "In the flare phase, the objectives are to reduce vertical descent speed and convert forward airspeed into main rotor lift."
+        },
+        {
+            "formula": "G((bail_out_phase) → F((climb_rate = stick_input)))",
+            "explanation": "In the bail-out phase, the aircraft should decelerate to match the requested vertical speed with the magnitude requested on the stick."
+        },
+        {
+            "formula": "G((bail_out_phase ∧ motor_ramp_time_ignored) → X(hard_coded_ramp_time))",
+            "explanation": "During the bail-out phase, the motor ramp time defined by H_RSC_RAMP_TIME is ignored, and a hard-coded ramp time of one second is used."
+        }
+    ]
+}
+```

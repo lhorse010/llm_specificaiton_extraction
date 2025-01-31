@@ -1,0 +1,62 @@
+[
+  {
+    "index": 0,
+    "formula": "G(armed → F(mission_started))",
+    "explanation": "The vehicle must be armed before the mission can be started."
+  },
+  {
+    "index": 1,
+    "formula": "G(mission_started → G(global_3d_position_estimate))",
+    "explanation": "A global 3D position estimate is required for the mission to start and continue."
+  },
+  {
+    "index": 2,
+    "formula": "G(no_mission → (flying → G(hold)))",
+    "explanation": "If no mission is stored and the vehicle is flying, it will hold."
+  },
+  {
+    "index": 3,
+    "formula": "G(no_mission → (landed → G(wait)))",
+    "explanation": "If no mission is stored and the vehicle is landed, it will wait."
+  },
+  {
+    "index": 4,
+    "formula": "G(mission → (flying → F(execute_mission)))",
+    "explanation": "If a mission is stored and the vehicle is flying, it will execute the mission."
+  },
+  {
+    "index": 5,
+    "formula": "G(mission → (landed → F(execute_mission)))",
+    "explanation": "If a mission is stored and the vehicle is landed, it will execute the mission."
+  },
+  {
+    "index": 6,
+    "formula": "G(mission_paused → (switch_to_other_mode → G(pause_mission)))",
+    "explanation": "If the mission is paused and the vehicle switches to another mode, the mission will remain paused."
+  },
+  {
+    "index": 7,
+    "formula": "G(mission_paused → (resume_mission → G(resume_from_previous_waypoint)))",
+    "explanation": "If the mission is paused and then resumed, the vehicle will resume from the previous waypoint."
+  },
+  {
+    "index": 8,
+    "formula": "G(takeoff_item → F(ascend_to_min_altitude))",
+    "explanation": "If a TAKEOFF mission item is encountered, the vehicle will ascend to the minimum takeoff altitude."
+  },
+  {
+    "index": 9,
+    "formula": "G(no_takeoff_item → F(ascend_to_min_altitude))",
+    "explanation": "If no TAKEOFF mission item is encountered, the vehicle will ascend to the minimum takeoff altitude."
+  },
+  {
+    "index": 10,
+    "formula": "G(mission_feasibility_checks → G(checks_pass → F(start_mission)))",
+    "explanation": "If the mission feasibility checks pass, the mission can be started."
+  },
+  {
+    "index": 11,
+    "formula": "G(mission_feasibility_checks → G(checks_fail → G(prevent_start_mission)))",
+    "explanation": "If the mission feasibility checks fail, the mission cannot be started."
+  }
+]

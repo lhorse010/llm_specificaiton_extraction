@@ -1,0 +1,32 @@
+[
+  {
+    "index": 0,
+    "formula": "G (¬(real_life_use))",
+    "explanation": "The autonomous autorotation mode must not be used in real life as it is only for SITL (Software In The Loop) testing."
+  },
+  {
+    "index": 1,
+    "formula": "G (mode = 'autorotation' → helicopter_type = 'single_rotor')",
+    "explanation": "The autonomous autorotation mode is only available for single rotor helicopters."
+  },
+  {
+    "index": 2,
+    "formula": "G (enter_autorotation → interlock_disengaged ∧ mode = 'non_manual_collective')",
+    "explanation": "The mode can only be entered if the interlock is disengaged while in a non-manual collective mode."
+  },
+  {
+    "index": 3,
+    "formula": "G (enter_autorotation ∧ auto_mission → exit_mode = 'altitude_hold')",
+    "explanation": "If entering autorotation mode during an auto mission, it should exit into altitude hold mode."
+  },
+  {
+    "index": 4,
+    "formula": "G (flare_phase → reliable_height_estimate ∧ lidar_recommendation)",
+    "explanation": "During the flare phase, a reliable height estimate is required, and using downward facing LiDAR is recommended."
+  },
+  {
+    "index": 5,
+    "formula": "G (bail_out_phase → G (ramp_time = 1s))",
+    "explanation": "During the bail-out phase, a hard-coded ramp time of one second is used, ignoring the motor ramp time."
+  }
+]

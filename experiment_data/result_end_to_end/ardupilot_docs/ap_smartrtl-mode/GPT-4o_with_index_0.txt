@@ -1,0 +1,32 @@
+[
+  {
+    "index": 0,
+    "formula": "G (SmartRTL_Activated → (Good_Position_Estimate ∧ ¬Buffer_Full))",
+    "explanation": "SmartRTL can only be activated if there is a good position estimate and the buffer is not full."
+  },
+  {
+    "index": 1,
+    "formula": "G (SmartRTL_Active → (Points_Saved ≤ SRTL_POINTS))",
+    "explanation": "While SmartRTL is active, the number of points saved must not exceed the maximum set by SRTL_POINTS."
+  },
+  {
+    "index": 2,
+    "formula": "G (Vehicle_Speed > 0 → F (Points_Saved = 3 / SRTL_ACCURACY))",
+    "explanation": "If the vehicle is moving, points should be saved at an interval determined by SRTL_ACCURACY."
+  },
+  {
+    "index": 3,
+    "formula": "G (SmartRTL_Active → (Path_Simplified ∧ Path_Pruned))",
+    "explanation": "When SmartRTL is active, the path should be simplified and pruned based on SRTL_ACCURACY."
+  },
+  {
+    "index": 4,
+    "formula": "G (SmartRTL_Activated → (FS_GCS_Enable ∨ FS_THR_Enable ∨ BATT_FS_CRT_ACT ∨ BATT_FS_LOW_ACT ∨ BATT2_FS_LOW_ACT ∨ BATT2_FS_CRT_ACT))",
+    "explanation": "SmartRTL can be activated through user selection or various failsafe conditions."
+  },
+  {
+    "index": 5,
+    "formula": "G (Buffer_Full → ¬SmartRTL_Activatable)",
+    "explanation": "If the buffer is full, SmartRTL cannot be activated."
+  }
+]

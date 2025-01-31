@@ -1,0 +1,91 @@
+After carefully reading the document and following the steps outlined, I have annotated the sentences that convey information about state transition pre-requirements, constraints, expected post-actions, and expected state changes. Here is the output in the required JSON format:
+
+```json
+{
+    "specifications": [
+        {
+            "section-id": 0,
+            "sentence-id": 1
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 2
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 2
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 3
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 4
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 5
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 3
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 6
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 0
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 1
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 2
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 8
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 9
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 10
+        },
+        {
+            "section-id": 5,
+            "sentence-id": 1
+        },
+        {
+            "section-id": 5,
+            "sentence-id": 2
+        }
+    ]
+}
+```
+
+The annotated sentences are:
+
+* Section 0, Sentence 1: "When the sticks are released/centered the vehicle will actively brake, level, and be locked to a position in 3D space — compensating for wind and other forces." (Expected post-action)
+* Section 0, Sentence 2: "With full stick deflection the vehicle accelerates initially with MPC_ACC_HOR_MAX ramping down until it reaches the final velocity MPC_VEL_MANUAL." (Expected state change)
+* Section 2, Sentence 2: "Let go of the roll and pitch stick and give it enough time to come to a complete stop." (Expected post-action)
+* Section 2, Sentence 3: "Pull the throttle stick down gently until the vehicle touches the ground." (Expected post-action)
+* Section 2, Sentence 4: "Pull the throttle stick all the way down to facilitate and accelerate land detection." (Expected post-action)
+* Section 2, Sentence 5: "The vehicle will lower propeller thrust, detect the ground and automatically disarm (by default)." (Expected state change)
+* Section 3, Sentence 3: "The approach is the same as above, except that you must manually ensure that the vehicle stays above the landing spot using the roll and pitch stick." (Constraint)
+* Section 3, Sentence 6: "After the vehicle is on the ground switch to Stabilized mode keeping the throttle stick low, and manually disarm using a gesture or other command." (Expected post-action)
+* Section 4, Sentence 0: "RC mode where roll, pitch, throttle (RPT) sticks control movement in corresponding axes/directions." (State transition pre-requirement)
+* Section 4, Sentence 1: "Centered sticks level vehicle and hold it to fixed altitude and position against wind." (Expected post-action)
+* Section 4, Sentence 2: "1.Centered roll, pitch, throttle sticks (within RC deadzone MPC_HOLD_DZ) hold x, y, z position steady against any disturbance like wind." (Expected post-action)
+* Section 4, Sentence 8: "When landed, the vehicle will take off if the throttle stick is raised above 62.5% percent (of the full range from bottom)." (Expected state change)
+* Section 4, Sentence 9: "4.Global position estimate is required." (State transition pre-requirement)
+* Section 4, Sentence 10: "5.Manual control input is required (such as RC control, joystick)." (State transition pre-requirement)
+* Section 5, Sentence 1: "If the estimate falls below acceptable levels, for example due to GPS loss, this may trigger a Position (GPS) Loss Failsafe." (Expected state change)
+* Section 5, Sentence 2: "Depending on configuration, whether you have a remote control, and whether there is an adequate altitude estimate, PX4 may switch to altitude mode, manual mode, land mode or terminate." (Expected state change)

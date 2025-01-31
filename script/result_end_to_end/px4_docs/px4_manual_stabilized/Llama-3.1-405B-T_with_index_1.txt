@@ -1,0 +1,32 @@
+[
+  {
+    "index": 0,
+    "formula": "G((centered_sticks) → (vehicle_leveled ∧ attitude_stabilized))",
+    "explanation": "When the RC control sticks are centered, the multicopter will always level out and stabilize its attitude."
+  },
+  {
+    "index": 1,
+    "formula": "G((outside_center_sticks) → (roll_pitch_control_angle ∧ yaw_controls_rate ∧ throttle_controls_altitude))",
+    "explanation": "When the sticks are outside the center, the roll and pitch sticks will always control the angle of the vehicle, the yaw stick will control the rate of rotation, and the throttle will control the altitude/speed."
+  },
+  {
+    "index": 2,
+    "formula": "G((sticks_released) → F(centered_sticks ∧ vehicle_leveled))",
+    "explanation": "When the control sticks are released, they will always return to the center deadzone, and the multicopter will level out and stop."
+  },
+  {
+    "index": 3,
+    "formula": "G((vehicle_balanced ∧ proper_throttle ∧ no_external_forces) → (hover_in_place ∧ maintain_altitude))",
+    "explanation": "If the vehicle is properly balanced, the throttle is set appropriately, and no external forces are applied, the multicopter will always hover in place and maintain its altitude."
+  },
+  {
+    "index": 4,
+    "formula": "G((wind_present) → (drift_in_wind_direction ∧ manual_throttle_control_required))",
+    "explanation": "If wind is present, the multicopter will always drift in the direction of the wind, and manual throttle control will be required to hold altitude."
+  },
+  {
+    "index": 5,
+    "formula": "G((autopilot_enabled) → (attitude_controlled ∧ no_drift_compensation))",
+    "explanation": "When the autopilot is enabled, it will always control the attitude of the multicopter, but it will not compensate for drift due to wind or other sources."
+  }
+]

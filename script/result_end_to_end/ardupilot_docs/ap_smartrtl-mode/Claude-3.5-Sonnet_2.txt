@@ -1,0 +1,54 @@
+I'll extract the specifications from the document and express them using Metric Temporal Logic (MTL) formulas. Then, I'll format the converted sentences in JSON as requested.
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(smartRTL_activated → F(home_position_reached))",
+            "explanation": "Globally, if Smart RTL is activated, then eventually the home position will be reached."
+        },
+        {
+            "formula": "G(smartRTL_activated → X(¬direct_path ∧ safe_path))",
+            "explanation": "Globally, if Smart RTL is activated, then in the next state, the vehicle will not take a direct path but will follow a safe path."
+        },
+        {
+            "formula": "G(buffer_full → ¬smartRTL_activated)",
+            "explanation": "Globally, if the buffer is full, then Smart RTL cannot be activated."
+        },
+        {
+            "formula": "G(point_saved → distance_from_previous_point ≥ SRTL_ACCURACY)",
+            "explanation": "Globally, a point is saved only if the distance from the previous point is greater than or equal to SRTL_ACCURACY."
+        },
+        {
+            "formula": "G(points_saved = 50 → X(simplify_path))",
+            "explanation": "Globally, when 50 points are saved, in the next state the path will be simplified."
+        },
+        {
+            "formula": "G(¬good_position_estimate → ¬smartRTL_activated)",
+            "explanation": "Globally, if there is not a good position estimate, then Smart RTL cannot be activated."
+        },
+        {
+            "formula": "G(RTL_SPEED = 0 → use_WPNAV_SPEED)",
+            "explanation": "Globally, if RTL_SPEED is set to 0, then use the WPNAV_SPEED parameter value."
+        },
+        {
+            "formula": "G(RTL_ALT_FINAL = 0 → F(land_at_home))",
+            "explanation": "Globally, if RTL_ALT_FINAL is set to 0, then eventually the vehicle will land at home."
+        },
+        {
+            "formula": "G(RTL_ALT_FINAL > 0 → F(hover_at_RTL_ALT_FINAL))",
+            "explanation": "Globally, if RTL_ALT_FINAL is greater than 0, then eventually the vehicle will hover at that altitude above home."
+        },
+        {
+            "formula": "G(SRTL_POINTS = 0 → ¬smartRTL_mode_available)",
+            "explanation": "Globally, if SRTL_POINTS is set to 0, then Smart RTL mode is not available."
+        },
+        {
+            "formula": "G(SRTL_OPTIONS = 4 → G(smartRTL_activated → ignore_pilot_yaw))",
+            "explanation": "Globally, if SRTL_OPTIONS is set to 4, then globally when Smart RTL is activated, pilot yaw commands will be ignored."
+        }
+    ]
+}
+```
+
+These MTL formulas capture the key specifications of the Smart RTL mode as described in the document. They cover the activation conditions, behavior, and parameter settings that affect the mode's operation.

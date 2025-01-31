@@ -1,0 +1,88 @@
+{
+    "temporal_logic_formulars": [
+        {
+            "section-id": 1,
+            "sentence-id": 0,
+            "sentence": "This module is activated if the launch parameter launch_out_of_lane_module is set to true.",
+            "tl": "always ( Thismoduleacited == launcharameterlr )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 1,
+            "sentence": "The algorithm assumes the input ego trajectory contains accurate time_from_start values in order to calculate accurate time to collisions with the predicted objects.",
+            "tl": "always ( algorithmsumes == inpegotracontacsacur ) until ( algore == eteticoicointacsa ) -> rtm_etrtalrdue == calrlaculateculatecuratecuatecuratecula == culolacSecuisicicisitdedtsodedctedcted )"
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 1,
+            "sentence": "The length of the trajectory used for generating the footprints is limited by the max_arc_length parameter.",
+            "tl": "always ( lengthtrajectoryused == generatingfotprint = itslimSted ) since ( l == eritednotednmax_ar ) -> ax_arc_lengte == hpararar_letecgtepr )"
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 1,
+            "sentence": "We consider all lanelets around the ego vehicle that are not crossed by the trajectory linestring (sequence of trajectory points) or their preceding lanelets.",
+            "tl": "always ( not ( eWconsiderlanel == etsarondegovehicle ) or ( bytrajectr == setrgetrnetequcetretr ) -> ( trnetretrecto == etrectrycoinetredepoinlets ) or ( theico == einleinlahepeinlalgelanelaeletsts ) )"
+        },
+        {
+            "section-id": 6,
+            "sentence-id": 1,
+            "sentence": "1.ignore objects with a speed bellow the minimum_velocity parameter;",
+            "tl": "always ( i1gnoreobjectswit == hasededlowminmiuminm_velocite == pam_vrameteter )"
+        },
+        {
+            "section-id": 6,
+            "sentence-id": 2,
+            "sentence": "2.ignore objects coming from behind the ego vehicle if parameter ignore_behind_ego is set to true;",
+            "tl": "always ( e2ignoreobjects == begovehicleparameterignore_ == ere_bhind_egore )"
+        },
+        {
+            "section-id": 6,
+            "sentence-id": 3,
+            "sentence": "3.ignore predicted paths whose confidence value is bellow the predicted_path_min_confidence parameter;",
+            "tl": "always ( eignoreprdedicted == dpathswhoseconidecence )"
+        },
+        {
+            "section-id": 6,
+            "sentence-id": 4,
+            "sentence": "4.cut the points of predicted paths going beyond the stop line of a red traffic light if parameter cut_predicted_paths_beyond_red_lights is set to true.",
+            "tl": "always ( cutpoints == edctspedictgoined ) until [ 0 : 4 . uthgoing == dednhStonde ) -> eraficl == traetercut_ded_ped_pt_ == d_hah_ed_ed_ep )"
+        },
+        {
+            "section-id": 7,
+            "sentence-id": 1,
+            "sentence": "In the case where parameter mode is set to threshold and the calculated time is less than threshold.time_threshold parameter, then we decide to avoid the out of lane area.",
+            "tl": "always ( whereparameter == calc and calulhresholdpae == reteterameter -> fall ( wededecide == avoidearealarea ) )"
+        },
+        {
+            "section-id": 7,
+            "sentence-id": 3,
+            "sentence": "If the time to collision is bellow the ttc.threshold parameter value, we decide to avoid the out of lane area.",
+            "tl": "always ( colisionbelow == clarameter )"
+        },
+        {
+            "section-id": 8,
+            "sentence-id": 0,
+            "sentence": "First, the minimum stopping distance of the ego vehicle is calculated based on the jerk and deceleration constraints set by the velocity smoother parameters.",
+            "tl": "always ( mrstminimumst == tpinicegdieoceclecaledcl == edaledcaser ) and edcer == tratinstratselocinsotsrater )"
+        },
+        {
+            "section-id": 8,
+            "sentence-id": 8,
+            "sentence": "If this distance is bellow the actions.slowdown.threshold, a velocity of actions.slowdown.velocity will be used.",
+            "tl": "always ( distanceblow == slowdowdon . avelocityacit == S ) until ( delociocityav == cionslonslocitwdn ) -> ( slowdowdow == dowdownvelocnvelocit == lociylelociysl ) )"
+        },
+        {
+            "section-id": 8,
+            "sentence-id": 9,
+            "sentence": "If the distance is bellow the actions.stop.threshold, a velocity of 0m/s will be used.",
+            "tl": "always ( distanceblow == actions . stop . avelocity0msed )"
+        },
+        {
+            "section-id": 9,
+            "sentence-id": 1,
+            "sentence": "To make the decision more stable, a stop or slowdown pose is used for a minimum duration set by the action.min_duration parameter.",
+            "tl": "always ( Tomakedecisions == stableasto or slowdwdownpseused == aminuratiurationu )"
+        }
+    ]
+}

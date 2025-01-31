@@ -1,0 +1,87 @@
+[
+  {
+    "sentence": "Simple and Super Simple modes can be used in combination with nearly all flight modes except the Acro and Drift (in these flight modes the setting is ignored).",
+    "formula": "G((S ∨ SS) ∧ ¬(A ∨ D))",
+    "explanation": "Here, S represents Simple mode, SS represents Super Simple mode, A represents Acro mode, and D represents Drift mode. The formula states that globally, either Simple or Super Simple mode can be used, but not in combination with Acro or Drift modes."
+  },
+  {
+    "sentence": "Simple Mode allows you to control the copter relative to the copters heading at take off and relies only on a good compass heading.",
+    "formula": "G(S → (C ∧ H))",
+    "explanation": "Here, S represents Simple mode, C represents good compass heading, and H represents copter's heading at take off. The formula states that globally, if Simple mode is enabled, then the copter can be controlled relative to its heading at take off, relying only on a good compass heading."
+  },
+  {
+    "sentence": "Super Simple Mode allows you to control the copter relative to it's direction from home (i.e. where it was armed) but requires a good GPS position.",
+    "formula": "G(SS → (G ∧ D))",
+    "explanation": "Here, SS represents Super Simple mode, G represents good GPS position, and D represents direction from home. The formula states that globally, if Super Simple mode is enabled, then the copter can be controlled relative to its direction from home, requiring a good GPS position."
+  },
+  {
+    "sentence": "Either mode can be assigned to a particular flight mode switch position or can be enabled/disabled from the Ch7/Ch8 switches.",
+    "formula": "G((S ∨ SS) → (F ∨ C))",
+    "explanation": "Here, S represents Simple mode, SS represents Super Simple mode, F represents flight mode switch position, and C represents Ch7/Ch8 switches. The formula states that globally, either Simple or Super Simple mode can be assigned to a flight mode switch position or enabled/disabled from the Ch7/Ch8 switches."
+  },
+  {
+    "sentence": "Similar to the care free mode on other systems, this mode allows you to fly your copter as though it were pointed in the direction it was pointed when it was armed regardless of its current heading orientation.",
+    "formula": "G(M → (D ∧ ¬H))",
+    "explanation": "Here, M represents the mode, D represents direction at arming, and H represents current heading orientation. The formula states that globally, if the mode is enabled, then the copter can be flown as though it were pointed in the direction it was pointed when it was armed, regardless of its current heading orientation."
+  },
+  {
+    "sentence": "So if you hold the pitch stick forward the copter will fly away from you, pull the pitch stick back and it will come back towards home.",
+    "formula": "G((P ∧ F) → A) ∧ G((P ∧ B) → H)",
+    "explanation": "Here, P represents pitch stick, F represents forward, B represents back, A represents away from you, and H represents home. The formula states that globally, if the pitch stick is held forward, the copter will fly away from you, and if the pitch stick is pulled back, it will come back towards home."
+  },
+  {
+    "sentence": "You can even apply yaw to spin the copter in any direction but the movement of the copter's position relative to the stick inputs will behave exactly as it did at take off.",
+    "formula": "G(Y → (S ∧ D))",
+    "explanation": "Here, Y represents yaw, S represents spin, and D represents direction at take off. The formula states that globally, if yaw is applied, then the copter's position relative to the stick inputs will behave exactly as it did at take off, while spinning in any direction."
+  },
+  {
+    "sentence": "Generally when arming you should stand behind the vehicle with it's nose pointing directly away from you.",
+    "formula": "G(A → (B ∧ N))",
+    "explanation": "Here, A represents arming, B represents behind the vehicle, and N represents nose pointing away from you. The formula states that globally, when arming, you should stand behind the vehicle with its nose pointing directly away from you."
+  },
+  {
+    "sentence": "Super Simple mode is the same as simple mode except that it uses the vehicle's position relative to home instead of the vehicle's initial heading when it was armed.",
+    "formula": "G(SS → (P ∧ ¬H))",
+    "explanation": "Here, SS represents Super Simple mode, P represents position relative to home, and H represents initial heading at arming. The formula states that globally, Super Simple mode uses the vehicle's position relative to home instead of its initial heading when it was armed."
+  },
+  {
+    "sentence": "This means that no matter where the vehicle is, pulling the pitch back will cause it to return towards home regardless of the vehicle's actual heading.",
+    "formula": "G((P ∧ B) → H)",
+    "explanation": "Here, P represents pitch stick, B represents back, and H represents home. The formula states that globally, pulling the pitch stick back will cause the vehicle to return towards home, regardless of its actual heading."
+  },
+  {
+    "sentence": "The advantage over simple mode is that the controls are applied from the pilot's point of view even when the copter flies behind the pilot/home location.",
+    "formula": "G(P → C)",
+    "explanation": "Here, P represents the pilot's point of view, and C represents the controls being applied. The formula states that globally (G), if the pilot's point of view is considered (P), then the controls are applied (C)."
+  },
+  {
+    "sentence": "The disadvantage is that mode require a GPS lock because so you should ensure you have GPS lock before take-off.",
+    "formula": "G(M → G)",
+    "explanation": "Here, M represents the mode, and G represents the GPS lock. The formula states that globally (G), if the mode is enabled (M), then a GPS lock is required (G)."
+  },
+  {
+    "sentence": "The orientation is not updated when the vehicle is within 10m of home meaning close fly-bys of the home location should be avoided.",
+    "formula": "G(V ∧ ¬O)",
+    "explanation": "Here, V represents the vehicle being within 10m of home, and O represents the orientation being updated. The formula states that globally (G), if the vehicle is within 10m of home (V), then the orientation is not updated (¬O)."
+  },
+  {
+    "sentence": "The transmitter’s auxiliary channels can be set-up to enable selection of Simple mode, Super Simple mode or both.",
+    "formula": "F(S ∨ SS ∨ B)",
+    "explanation": "Here, S represents Simple mode, SS represents Super Simple mode, and B represents both modes. The formula states that finally (F), one of the modes (S, SS, or B) can be selected."
+  },
+  {
+    "sentence": "Only one auxiliary channel should be set for these modes, and this channel will override the simple/super-simple options selected on the Flight Modes screen.",
+    "formula": "G(O → ¬S ∧ ¬SS)",
+    "explanation": "Here, O represents the override, S represents Simple mode, and SS represents Super Simple mode. The formula states that globally (G), if the override is enabled (O), then neither Simple mode (S) nor Super Simple mode (SS) is selected."
+  },
+  {
+    "sentence": "To support selection of just one of the modes from the transmitter, assign the mode to a channel that is mapped to a 2-position switch (high = enables the selected mode, low disables it).",
+    "formula": "F(H → S ∧ L → ¬S)",
+    "explanation": "Here, H represents the high position, L represents the low position, and S represents the selected mode. The formula states that finally (F), if the high position is selected (H), then the mode is enabled (S), and if the low position is selected (L), then the mode is disabled (¬S)."
+  },
+  {
+    "sentence": "To enable both modes from the same switch, select Super Simple mode for a channel that is mapped to a 3-position switch (high position = Super Simple mode, middle position = Simple mode, low position = disabled).",
+    "formula": "F(H → SS ∧ M → S ∧ L → ¬S ∧ ¬SS)",
+    "explanation": "Here, H represents the high position, M represents the middle position, L represents the low position, S represents Simple mode, and SS represents Super Simple mode. The formula states that finally (F), if the high position is selected (H), then Super Simple mode is enabled (SS), if the middle position is selected (M), then Simple mode is enabled (S), and if the low position is selected (L), then both modes are disabled (¬S ∧ ¬SS)."
+  }
+]

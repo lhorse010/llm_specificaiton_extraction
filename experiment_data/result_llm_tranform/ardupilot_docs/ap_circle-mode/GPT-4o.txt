@@ -1,0 +1,97 @@
+[
+  {
+    "sentence": "Setting the CIRCLE_RADIUS to zero will cause the copter to simply stay in place and slowly rotate (useful for panorama shots).",
+    "formula": "G(CIRCLE_RADIUS = 0 → (STAY_IN_PLACE ∧ SLOW_ROTATE))",
+    "explanation": "If CIRCLE_RADIUS is zero, the copter remains stationary and rotates slowly, useful for panoramas. This is expressed using the implication operator and globally (G) to ensure it holds as long as the condition is true."
+  },
+  {
+    "sentence": "The vehicle may not achieve the desired rate if this requires the acceleration towards the center of the circle to surpass the maximum acceleration held in the WPNAV_ACCEL parameter (units are cm/s/s).",
+    "formula": "G((ACCEL_TO_CENTER > WPNAV_ACCEL) → ¬DESIRED_RATE)",
+    "explanation": "If the acceleration needed exceeds WPNAV_ACCEL, the vehicle cannot reach the desired rate. This condition is expressed using an implication, with a negation to indicate failure to achieve the rate."
+  },
+  {
+    "sentence": "The first is the use of RC Channel 6 if the TUNE option is set to 39, allowing decreasing the rate 50% or increasing it by 100%, at the channel min and max.",
+    "formula": "G((TUNE = 39) → (RC6_MIN → RATE_50) ∧ (RC6_MAX → RATE_100))",
+    "explanation": "When TUNE is 39, RC Channel 6 allows rate adjustments. At minimum, it decreases by 50%; at maximum, it increases by 100%. This is modeled using implications for each condition."
+  },
+  {
+    "sentence": "The other is by enabling the CIRCLE_CONTROL parameter to allow stick adjustment of radius and speed.",
+    "formula": "G(CIRCLE_CONTROL_ENABLED → (STICK_ADJUST_RADIUS ∧ STICK_ADJUST_SPEED))",
+    "explanation": "Enabling CIRCLE_CONTROL allows adjustments via sticks. This is captured by an implication that specifies the adjustments possible when the parameter is enabled."
+  },
+  {
+    "sentence": "When enabled, the CIRCLE_CONTROL parameter allows the adjustment of the circle's radius and angular velocity, in firmware versions prior to 4.1.",
+    "formula": "G((CIRCLE_CONTROL_ENABLED ∧ FIRMWARE_VERSION < 4.1) → (ADJUST_RADIUS ∧ ADJUST_VELOCITY))",
+    "explanation": "If CIRCLE_CONTROL is enabled and the firmware version is before 4.1, adjustments to radius and velocity are possible. This uses an implication with a conjunction for the adjustments."
+  },
+  {
+    "sentence": "In 4.1 and later, the CIRCLE_OPTIONS bitmask parameter controls what actions the pilot can adjust with his sticks and circle mode operation.",
+    "formula": "G((FIRMWARE_VERSION ≥ 4.1) → CONTROLLED_BY_CIRCLE_OPTIONS)",
+    "explanation": "In firmware 4.1 and later, CIRCLE_OPTIONS determines stick actions. This is conveyed by an implication where the version check leads to control by CIRCLE_OPTIONS."
+  },
+  {
+    "sentence": "When bit 0 is set of the CIRCLE_OPTIONS parameter the pilot can adjust circle's radius and angular velocity with the control sticks:",
+    "formula": "G((CIRCLE_OPTIONS_BIT0_SET) → (ADJUST_RADIUS ∧ ADJUST_VELOCITY))",
+    "explanation": "Setting bit 0 allows radius and velocity adjustments via sticks, represented by an implication with conjunctions for the adjustments."
+  },
+  {
+    "sentence": "1.Pitch stick up (reducing RC pwm) reduces the radius until it reaches zero.",
+    "formula": "G(PITCH_STICK_UP → F(RADIUS = 0))",
+    "explanation": "Pitching the stick up decreases the radius to zero eventually. This is captured using an implication and a finally operator to indicate eventuality."
+  },
+  {
+    "sentence": "2.Pitch stick down (increasing RC pwm) increases the radius.",
+    "formula": "G(PITCH_STICK_DOWN → INCREASE_RADIUS)",
+    "explanation": "Pitching the stick down results in an increase in radius, modeled with an implication reflecting the causal relationship."
+  },
+  {
+    "sentence": "3.Roll stick right (think clockwise) will increase the speed while moving clockwise, or decrease the speed while moving counterclockwise until reaching zero, at which point it will stop.",
+    "formula": "G((ROLL_STICK_RIGHT ∧ MOVING_CLOCKWISE) → INCREASE_SPEED) ∧ G((ROLL_STICK_RIGHT ∧ MOVING_COUNTERCLOCKWISE) → F(SPEED = 0))",
+    "explanation": "Rolling the stick right affects speed: it increases clockwise or decreases counterclockwise until zero. This is split into two implications depending on direction, with a finally operator for stopping."
+  },
+  {
+    "sentence": "Roll stick left (think counterclockwise) will increase the speed while moving counterclockwise, or decrease the speed while moving clockwise until reaching zero, at which point it will stop.",
+    "formula": "G((CCW ∧ X(CCW ∨ CW ∧ ¬S)) ∨ (CW ∧ X(CW U S)))",
+    "explanation": "CCW represents moving counterclockwise, CW for clockwise, and S for stopping. The formula captures that moving counterclockwise increases speed until stopping, while moving clockwise decreases speed until it stops."
+  },
+  {
+    "sentence": "Roll stick rate changes are inhibited when CH6 tuning knob is set for circle rate.",
+    "formula": "G(CH6 → ¬R)",
+    "explanation": "CH6 indicates the tuning knob is set for circle rate, and R represents rate changes. The formula expresses that if CH6 is set, rate changes are inhibited."
+  },
+  {
+    "sentence": "All stick changes are inhibited in radio failsafe.(ie if loiter turns was part of a mission that continues when in failsafe)",
+    "formula": "G(FS → ¬SC)",
+    "explanation": "FS stands for radio failsafe, and SC for stick changes. The formula states that if the system is in failsafe, no stick changes are allowed."
+  },
+  {
+    "sentence": "When bit 1 is set of the CIRCLE_OPTIONS parameter the Copter will face the direction of travel as it circles, otherwise, the Copter will point its nose at the center of the circle as it orbits.",
+    "formula": "G((B1 → FD) ∧ (¬B1 → NC))",
+    "explanation": "B1 is bit 1 of CIRCLE_OPTIONS, FD means facing direction of travel, and NC means nose at the center. The Copter's direction depends on bit 1's state."
+  },
+  {
+    "sentence": "When bit 2 is set of the CIRCLE_OPTIONS parameter the circle's center position will set upon mode entry at the current location, rather than on the perimeter with the center in front of the Copter at the start.",
+    "formula": "G(B2 → CC)",
+    "explanation": "B2 represents bit 2, and CC the center position set upon mode entry. This formula captures that setting bit 2 changes the circle's center position behavior."
+  },
+  {
+    "sentence": "When bit 3 is set of the CIRCLE_OPTIONS parameter the mount's (if used) ROI aka region of interest will be set on the circle center causing mount to face the circle's center all the times.",
+    "formula": "G(B3 → FROI)",
+    "explanation": "B3 is bit 3, and FROI indicates the region of interest is on the circle center. The formula states that if bit 3 is set, the mount will always face the circle's center."
+  },
+  {
+    "sentence": "Once stopped (rate 0), releasing the roll stick and pushing it again in either direction will begin moving again in the desired direction.",
+    "formula": "G(S → X(R ∧ M))",
+    "explanation": "S denotes stopping, R is releasing the stick, and M indicates movement in the desired direction. The formula describes the behavior after stopping and restarting the roll stick."
+  },
+  {
+    "sentence": "Upon rebooting, any stick changes to rate and radius are gone and it will use the parameter values.",
+    "formula": "G(Reboot → (¬SC ∧ PV))",
+    "explanation": "Reboot implies a system restart, SC means stick changes, and PV indicates parameter values are used. The formula shows that rebooting resets stick changes."
+  },
+  {
+    "sentence": "The mission command LOITER_TURNS invokes Circle mode during a mission.",
+    "formula": "G(LT → CM)",
+    "explanation": "LT stands for the LOITER_TURNS command, and CM for Circle mode. The formula specifies that executing LOITER_TURNS activates Circle mode."
+  }
+]

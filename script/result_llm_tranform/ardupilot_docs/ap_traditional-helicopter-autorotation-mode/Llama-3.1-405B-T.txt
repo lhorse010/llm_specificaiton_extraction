@@ -1,0 +1,107 @@
+[
+  {
+    "sentence": "This flight mode is available for traditional helicopters only.",
+    "formula": "G(H → T)",
+    "explanation": "Here, H represents the flight mode being available, and T represents traditional helicopters. The formula states that globally (G), if the flight mode is available (H), then it is only for traditional helicopters (T)."
+  },
+  {
+    "sentence": "It is currently limited to single rotor helicopters.",
+    "formula": "G(L → S)",
+    "explanation": "Here, L represents the current limitation, and S represents single rotor helicopters. The formula states that globally (G), if there is a limitation (L), then it is limited to single rotor helicopters (S)."
+  },
+  {
+    "sentence": "This is an ongoing development project.",
+    "formula": "G(D)",
+    "explanation": "Here, D represents the development project. The formula states that globally (G), the project is ongoing (D)."
+  },
+  {
+    "sentence": "This is only enabled for use with SITL.",
+    "formula": "G(E → S)",
+    "explanation": "Here, E represents the enabling of the feature, and S represents SITL. The formula states that globally (G), if the feature is enabled (E), then it is only for use with SITL (S)."
+  },
+  {
+    "sentence": "Do not attempt to use this flight mode in real life.",
+    "formula": "G(¬R)",
+    "explanation": "Here, R represents the use of the flight mode in real life. The formula states that globally (G), do not attempt to use this flight mode in real life (¬R)."
+  },
+  {
+    "sentence": "It is this reversal of the vertical velocity that necessitates careful collective management when entering the autorotation.",
+    "formula": "G(V → (C ∧ A))",
+    "explanation": "Here, V represents the reversal of the vertical velocity, C represents careful collective management, and A represents entering the autorotation. The formula states that globally (G), if there is a reversal of the vertical velocity (V), then careful collective management (C) is necessary when entering the autorotation (A)."
+  },
+  {
+    "sentence": "It is key that the collective is moved proportionally to the direction of the resultant velocity vector to minimize the blade drag generated, preventing excessive loss of head speed.",
+    "formula": "G(C → (M ∧ ¬D))",
+    "explanation": "Here, C represents the collective, M represents moving proportionally to the direction of the resultant velocity vector, and D represents excessive loss of head speed. The formula states that globally (G), if the collective is moved (C), then it should be moved proportionally (M) to prevent excessive loss of head speed (¬D)."
+  },
+  {
+    "sentence": "It is important to maintain aircraft energy as efficiently as possible in the glide phase so that the maximum amount of energy is available for the flare and touch-down phase.",
+    "formula": "G(GP → (E ∧ F))",
+    "explanation": "Here, GP represents the glide phase, E represents maintaining aircraft energy efficiently, and F represents the flare and touch-down phase. The formula states that globally (G), if the aircraft is in the glide phase (GP), then it is important to maintain energy efficiently (E) for the flare and touch-down phase (F)."
+  },
+  {
+    "sentence": "As this manoeuvre is flown close to the ground it requires a reliable height estimate that can account for the local terrain.",
+    "formula": "G(M → (R ∧ T))",
+    "explanation": "Here, M represents the manoeuvre, R represents a reliable height estimate, and T represents accounting for the local terrain. The formula states that globally (G), if the manoeuvre is flown (M), then a reliable height estimate (R) is required that can account for the local terrain (T)."
+  },
+  {
+    "sentence": "It is therefore necessary to gently reintroduce the z position controller to prevent aggressive collective angles being applied, resulting in blade stall or even rotor stop.",
+    "formula": "G(Z → (¬A ∧ ¬S))",
+    "explanation": "Here, Z represents the z position controller, A represents aggressive collective angles, and S represents blade stall or rotor stop. The formula states that globally (G), if the z position controller is reintroduced (Z), then it should be done gently to prevent aggressive collective angles (¬A) and blade stall or rotor stop (¬S)."
+  },
+  {
+    "sentence": "When initiated, the bail-out phase will read the requested climb or descent rate from the operators throttle stick position.",
+    "formula": "G(I → X(B ∧ R))",
+    "explanation": "Here, I represents the initiation of the bail-out phase, B represents the bail-out phase, and R represents the reading of the requested climb or descent rate. The formula states that whenever the bail-out phase is initiated, it will read the requested rate at the next time step."
+  },
+  {
+    "sentence": "The ramp time defined by H_RSC_RAMP_TIME is now only observed when the aircraft is on ground and the \"landed flag\" is set true.",
+    "formula": "G((O ∧ L) → T)",
+    "explanation": "Here, O represents the aircraft being on ground, L represents the landed flag being set true, and T represents the observation of the ramp time. The formula states that the ramp time is only observed when the aircraft is on ground and the landed flag is set true."
+  },
+  {
+    "sentence": "It often takes ArduCopter a second to register that the aircraft has landed once on the ground.",
+    "formula": "G(O → F[1,1](L))",
+    "explanation": "Here, O represents the aircraft being on ground, and L represents the registration of the aircraft having landed. The formula states that whenever the aircraft is on ground, it will take at most 1 second to register that it has landed."
+  },
+  {
+    "sentence": "Therefore, if the interlock is re-engaged immediately after the aircraft touches down the one second ramp time of the bail-out phase can be initiated on the ground.",
+    "formula": "G((O ∧ I) → F[1,1](B))",
+    "explanation": "Here, O represents the aircraft being on ground, I represents the interlock being re-engaged, and B represents the initiation of the bail-out phase. The formula states that if the interlock is re-engaged immediately after the aircraft touches down, the bail-out phase can be initiated on the ground within 1 second."
+  },
+  {
+    "sentence": "Caution is therefore required when running autorotations in quick succession to prevent rapid rotor spool up on ground.",
+    "formula": "G((A ∧ O) → ¬F(R))",
+    "explanation": "Here, A represents the running of autorotations, O represents the aircraft being on ground, and R represents the rapid rotor spool up. The formula states that when running autorotations in quick succession on ground, rapid rotor spool up should be prevented."
+  },
+  {
+    "sentence": "The autonomous flight mode can only be entered if the interlock is disengaged whilst flying in a non-manual collective mode.",
+    "formula": "G((¬I ∧ N) → F(A))",
+    "explanation": "Here, I represents the interlock being engaged, N represents the non-manual collective mode, and A represents the autonomous flight mode. The formula states that the autonomous flight mode can only be entered if the interlock is disengaged whilst flying in a non-manual collective mode."
+  },
+  {
+    "sentence": "When exiting the autorotation the flight mode is returned to the mode from which it came (e.g. Altitude Hold -> Autonomous Autorotation -> Altitude Hold).",
+    "formula": "G(E → X(M))",
+    "explanation": "Here, E represents the exiting of the autorotation, and M represents the mode from which it came. The formula states that when exiting the autorotation, the flight mode is returned to the mode from which it came."
+  },
+  {
+    "sentence": "The only exception to this is when the aircraft enters the autorotation from an auto mission.",
+    "formula": "G((E ∧ A) → ¬X(M))",
+    "explanation": "Here, E represents the exiting of the autorotation, A represents the auto mission, and M represents the mode from which it came. The formula states that when the aircraft enters the autorotation from an auto mission, the flight mode is not returned to the mode from which it came."
+  },
+  {
+    "sentence": "In which case, the mode is exited into Altitude Hold.",
+    "formula": "G((E ∧ A) → X(H))",
+    "explanation": "Here, E represents the exiting of the autorotation, A represents the auto mission, and H represents the Altitude Hold mode. The formula states that when the aircraft enters the autorotation from an auto mission, the mode is exited into Altitude Hold."
+  },
+  {
+    "sentence": "The aircraft will then be decelerated over a set period of time (see parameter AROT_BAIL_TIME).",
+    "formula": "G(B → F[D](S))",
+    "explanation": "Here, B represents the bail-out phase, D represents the set period of time, and S represents the deceleration of the aircraft. The formula states that after the bail-out phase, the aircraft will be decelerated over a set period of time."
+  },
+  {
+    "sentence": "This is done to prevent the aircraft from potentially resuming its auto mission and flying further away from home, whereby in the scenario it has autonomously recovered from a power failure and is therefore high risk for another power failure.",
+    "formula": "¬(P ∧ F(M ∧ ¬H))",
+    "explanation": "Here, P represents the power failure recovery, M represents the resumption of the auto mission, and H represents the proximity to home. The formula states that it is not the case that the aircraft has recovered from a power failure (P) and will eventually resume its auto mission (M) while not being close to home (¬H). This captures the intention of preventing the aircraft from resuming its mission and flying further away from home after an autonomous recovery from a power failure."
+  }
+]

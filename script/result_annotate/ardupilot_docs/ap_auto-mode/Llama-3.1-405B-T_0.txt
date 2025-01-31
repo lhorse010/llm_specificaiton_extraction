@@ -1,0 +1,147 @@
+Based on the provided document, I have annotated the sentences as specifications if they convey the following information:
+1. Requirements the system must meet for state transition.
+2. Constraints the system must adhere to.
+3. Expected post-actions the system will execute when entering a particular state.
+4. Expected state changes the system will carry out in response to specific commands or settings.
+
+Here is the output in JSON format:
+
+```json
+{
+    "specifications": [
+        {
+            "section-id": 1,
+            "sentence-id": 1
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 2
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 3
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 4
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 0
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 1
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 2
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 0
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 1
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 3
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 4
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 6
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 7
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 8
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 9
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 11
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 0
+        },
+        {
+            "section-id": 5,
+            "sentence-id": 0
+        },
+        {
+            "section-id": 5,
+            "sentence-id": 1
+        },
+        {
+            "section-id": 5,
+            "sentence-id": 2
+        },
+        {
+            "section-id": 5,
+            "sentence-id": 3
+        },
+        {
+            "section-id": 6,
+            "sentence-id": 1
+        },
+        {
+            "section-id": 6,
+            "sentence-id": 4
+        },
+        {
+            "section-id": 6,
+            "sentence-id": 5
+        },
+        {
+            "section-id": 6,
+            "sentence-id": 6
+        },
+        {
+            "section-id": 6,
+            "sentence-id": 7
+        }
+    ]
+}
+```
+
+The annotated sentences are:
+
+* Section 1, Sentence 1: "It controls the path as it approaches a waypoint to be within the WPNAV_RADIUS of each waypoint." (Constraint)
+* Section 1, Sentence 2: "The speed is lowered below WPNAV_SPEED, as necessary, to keep the path within the set corner lateral acceleration limit parameter (WPNAV_ACCEL_C)." (Constraint)
+* Section 1, Sentence 3: "AUTO mode incorporates the altitude control from AltHold mode and position control from Loiter mode and should not be attempted before these modes are flying well." (Requirement for state transition)
+* Section 1, Sentence 4: "All the same requirements apply including ensuring that vibration levels and compass interference levels are acceptable and that the GPS is functioning well including returning an HDOP of under 2.0." (Requirement for state transition)
+* Section 2, Sentence 0: "this smooth curving path as it changes direction to the next waypoint will not occur if the next naviation mission item after the waypoint is anything other than a normal waypoint, ie LAND, LOITER_TURNS, etc., etc." (Expected state change)
+* Section 2, Sentence 1: "In these cases the copter will approach the waypoint, stop, and then proceed to the next navigation waypoint instead of smoothly curving in front of it and proceeding to that next navigation waypoint." (Expected state change)
+* Section 2, Sentence 2: "Also, small WPNAV_RADIUS values will require that the curve be very small, effectively appearing like the non-S-Curve behavior explained above." (Constraint)
+* Section 3, Sentence 0: "AUTO should be set-up as one of the Flight Modes on the flight mode switch." (Requirement for state transition)
+* Section 3, Sentence 1: "You must arm your copter before you can engage AUTO mode." (Requirement for state transition)
+* Section 3, Sentence 3: "If starting the mission while the copter is on the ground the pilot should ensure the throttle is down, then switch to the Auto flight mode, then raise the throttle." (Expected post-action)
+* Section 3, Sentence 4: "The moment that the throttle is raised above zero, the copter will begin the mission." (Expected state change)
+* Section 3, Sentence 6: "If the first command in the mission is a take-off command but the vehicle is already above the take-off command's altitude the take-off command will be considered completed and the vehicle will move onto the next waypoint." (Expected state change)
+* Section 3, Sentence 7: "At any time the pilot can retake control from the autopilot by returning the flight mode switch to another flight mode such as Stabilize or Loiter." (Expected post-action)
+* Section 3, Sentence 8: "If the pilot then switches to AUTO again, the mission will resume from the last command." (Expected state change)
+* Section 3, Sentence 9: "During the mission the pilot's roll, pitch and throttle inputs are ignored but the yaw can be overridden with the yaw stick." (Expected post-action)
+* Section 3, Sentence 11: "The autopilot will attempt to retake yaw control as the vehicle passes the next waypoint." (Expected post-action)
+* Section 4, Sentence 0: "The AUTO_OPTIONS parameter can be used to alter this behaviour, allowing arming while in AUTO mode, and/or, allowing a mission takeoff command to start upon AUTO mode entry, even if the throttle has not been raised." (Constraint)
+* Section 5, Sentence 0: "Missions should normally have an RTL as their final command to ensure the copter will return after the mission completes." (Expected state change)
+* Section 5, Sentence 1: "Alternatively the final command could be a LAND with a different location." (Expected state change)
+* Section 5, Sentence 2: "Without a final RTL or LAND command the copter will simply stop at the final waypoint and the pilot will need to retake control with the transmitter." (Expected state change)
+* Section 5, Sentence 3: "Remember that when using RTL, the copter will return to the \"home\" position which is the location where the copter was armed." (Expected state change)
+* Section 6, Sentence 1: "The maximum horizontal speed of the copter can be adjusted with the Speed (WPNAV_SPEED) parameter from the Mission Planner's Config/Tuning >> Copter Pids screen (see blue box above)." (Constraint)
+* Section 6, Sentence 4: "The vertical speeds up and down can similar be adjusted with the Speed Up (WPNAV_SPEED_UP) and Speed Dn (WPNAV_SPEED_DN) parameters." (Constraint)
+* Section 6, Sentence 5: "WPNAV_ACCEL_Z determines how fast the speed can change." (Constraint)
+* Section 6, Sentence 6: "Other speed control related parameters that can be adjusted to manage how fast speed changes occur are: WPNAV_ACCEL, and WPNAV_JERK." (Constraint)
+* Section 6, Sentence 7: "The Radius (WPNAV_RADIUS allows you to control how close the copter must come to the exact waypoint position before the waypoint is considered \"complete\" and the copter moves onto the next waypoint." (Constraint)

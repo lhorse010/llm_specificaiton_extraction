@@ -1,0 +1,82 @@
+[
+  {
+    "sentence": "When the sticks are released/centered the vehicle will actively brake, level, and be locked to a position in 3D space — compensating for wind and other forces.",
+    "formula": "G((R ∧ C) → X(B ∧ L ∧ K))",
+    "explanation": "Here, R represents the sticks being released, C represents the sticks being centered, B represents the vehicle actively braking, L represents the vehicle leveling, and K represents the vehicle being locked to a position in 3D space. The formula states that globally, whenever the sticks are released and centered, the vehicle will immediately start braking, leveling, and locking to a position in the next time step."
+  },
+  {
+    "sentence": "With full stick deflection the vehicle accelerates initially with MPC_ACC_HOR_MAX ramping down until it reaches the final velocity MPC_VEL_MANUAL.",
+    "formula": "(D → (A ∧ F(V)))",
+    "explanation": "Here, D represents full stick deflection, A represents the vehicle accelerating initially, and V represents the vehicle reaching the final velocity MPC_VEL_MANUAL. The formula states that if the stick is fully deflected, the vehicle will accelerate initially and eventually reach the final velocity."
+  },
+  {
+    "sentence": "2.Let go of the roll and pitch stick and give it enough time to come to a complete stop.",
+    "formula": "F(R ∧ P ∧ S)",
+    "explanation": "Here, R represents releasing the roll stick, P represents releasing the pitch stick, and S represents the vehicle coming to a complete stop. The formula states that eventually, the roll and pitch sticks will be released and the vehicle will come to a complete stop."
+  },
+  {
+    "sentence": "3.Pull the throttle stick down gently until the vehicle touches the ground.",
+    "formula": "G(T ∧ ¬G) U G",
+    "explanation": "Here, T represents pulling the throttle stick down gently, and G represents the vehicle touching the ground. The formula states that globally, the throttle stick will be pulled down gently until the vehicle touches the ground."
+  },
+  {
+    "sentence": "4.Pull the throttle stick all the way down to facilitate and accelerate land detection.",
+    "formula": "T → F(L)",
+    "explanation": "Here, T represents pulling the throttle stick all the way down, and L represents land detection. The formula states that if the throttle stick is pulled all the way down, land detection will be facilitated and accelerated eventually."
+  },
+  {
+    "sentence": "5.The vehicle will lower propeller thrust, detect the ground and automatically disarm (by default).",
+    "formula": "F(L ∧ D)",
+    "explanation": "Here, L represents lowering propeller thrust, and D represents detecting the ground and disarming. The formula states that eventually, the vehicle will lower propeller thrust and detect the ground, leading to automatic disarming."
+  },
+  {
+    "sentence": "The approach is the same as above, except that you must manually ensure that the vehicle stays above the landing spot using the roll and pitch stick.",
+    "formula": "G(R ∧ P → A)",
+    "explanation": "Here, R represents using the roll stick, P represents using the pitch stick, and A represents the vehicle staying above the landing spot. The formula states that globally, if the roll and pitch sticks are used, the vehicle will stay above the landing spot."
+  },
+  {
+    "sentence": "After the vehicle is on the ground switch to Stabilized mode keeping the throttle stick low, and manually disarm using a gesture or other command.",
+    "formula": "G(V → (S ∧ T ∧ D))",
+    "explanation": "Here, V represents the vehicle being on the ground, S represents switching to Stabilized mode, T represents keeping the throttle stick low, and D represents manually disarming. The formula states that globally, if the vehicle is on the ground, it will switch to Stabilized mode, keep the throttle stick low, and disarm manually."
+  },
+  {
+    "sentence": "RC mode where roll, pitch, throttle (RPT) sticks control movement in corresponding axes/directions.",
+    "formula": "G(R ∧ P ∧ T → M)",
+    "explanation": "Here, R represents the roll stick, P represents the pitch stick, T represents the throttle stick, and M represents movement in corresponding axes/directions. The formula states that globally, if the roll, pitch, and throttle sticks are used, they will control movement in the corresponding axes/directions."
+  },
+  {
+    "sentence": "Centered sticks level vehicle and hold it to fixed altitude and position against wind.",
+    "formula": "G(C → (L ∧ H ∧ P))",
+    "explanation": "Here, C represents centered sticks, L represents leveling the vehicle, H represents holding the vehicle to a fixed altitude, and P represents holding the vehicle to a fixed position against wind. The formula states that globally, if the sticks are centered, the vehicle will level and hold its altitude and position against wind."
+  },
+  {
+    "sentence": "Centered roll, pitch, throttle sticks (within RC deadzone MPC_HOLD_DZ) hold x, y, z position steady against any disturbance like wind.",
+    "formula": "G((R ∧ P ∧ T) → (X ∧ Y ∧ Z))",
+    "explanation": "Here, R, P, and T represent the roll, pitch, and throttle sticks being centered, respectively. X, Y, and Z represent the x, y, and z positions being held steady. The formula states that globally, if the sticks are centered, then the positions are steady."
+  },
+  {
+    "sentence": "When landed, the vehicle will take off if the throttle stick is raised above 62.5% percent (of the full range from bottom).",
+    "formula": "G(L → (T > 0.625 → F(TO)))",
+    "explanation": "Here, L represents the vehicle being landed, T represents the throttle stick position, and TO represents the vehicle taking off. The formula states that globally, if the vehicle is landed and the throttle stick is raised above 62.5%, then the vehicle will eventually take off."
+  },
+  {
+    "sentence": "Global position estimate is required.",
+    "formula": "G(PE)",
+    "explanation": "Here, PE represents the global position estimate being available. The formula simply states that globally, the position estimate is required."
+  },
+  {
+    "sentence": "Manual control input is required (such as RC control, joystick).",
+    "formula": "G(MCI)",
+    "explanation": "Here, MCI represents the manual control input being available. The formula simply states that globally, manual control input is required."
+  },
+  {
+    "sentence": "If the estimate falls below acceptable levels, for example due to GPS loss, this may trigger a Position (GPS) Loss Failsafe.",
+    "formula": "G(E < A → F(PLF))",
+    "explanation": "Here, E represents the estimate, A represents the acceptable level, and PLF represents the Position (GPS) Loss Failsafe being triggered. The formula states that globally, if the estimate falls below the acceptable level, then the failsafe may eventually be triggered."
+  },
+  {
+    "sentence": "Depending on configuration, whether you have a remote control, and whether there is an adequate altitude estimate, PX4 may switch to altitude mode, manual mode, land mode or terminate.",
+    "formula": "G((C ∧ (RC ∨ AE)) → (F(AM) ∨ F(MM) ∨ F(LM) ∨ F(T)))",
+    "explanation": "Here, C represents the configuration, RC represents the remote control being available, AE represents the adequate altitude estimate being available, AM represents the altitude mode, MM represents the manual mode, LM represents the land mode, and T represents the termination. The formula states that globally, depending on the configuration and the availability of remote control and altitude estimate, PX4 may eventually switch to one of the modes or terminate."
+  }
+]

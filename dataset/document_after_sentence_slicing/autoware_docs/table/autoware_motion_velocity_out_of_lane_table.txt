@@ -1,0 +1,49 @@
+| `cut_predicted_paths_beyond_red_lights = false` | `cut_predicted_paths_beyond_red_lights = true` |
+| :---------------------------------------------: | :--------------------------------------------: |
+|        ![](./docs/path_green_light.png)         |         ![](./docs/path_red_light.png)         |
+
+
+| Parameter                     | Type   | Description                                                                       |
+| ----------------------------- | ------ | --------------------------------------------------------------------------------- |
+| `mode`                        | string | [-] mode used to consider a dynamic object. Candidates: threshold, intervals, ttc |
+| `skip_if_already_overlapping` | bool   | [-] if true, do not run this module when ego already overlaps another lane        |
+| `max_arc_length`              | double | [m] maximum trajectory arc length that is checked for out_of_lane collisions      |
+
+
+| Parameter /threshold | Type   | Description                                                      |
+| -------------------- | ------ | ---------------------------------------------------------------- |
+| `time_threshold`     | double | [s] consider objects that will reach an overlap within this time |
+
+
+| Parameter /ttc | Type   | Description                                                                                            |
+| -------------- | ------ | ------------------------------------------------------------------------------------------------------ |
+| `threshold`    | double | [s] consider objects with an estimated time to collision bellow this value while ego is on the overlap |
+
+
+| Parameter /objects                      | Type   | Description                                                                     |
+| --------------------------------------- | ------ | ------------------------------------------------------------------------------- |
+| `minimum_velocity`                      | double | [m/s] ignore objects with a velocity lower than this value                      |
+| `predicted_path_min_confidence`         | double | [-] minimum confidence required for a predicted path to be considered           |
+| `cut_predicted_paths_beyond_red_lights` | bool   | [-] if true, predicted paths are cut beyond the stop line of red traffic lights |
+| `ignore_behind_ego`                     | bool   | [-] if true, objects behind the ego vehicle are ignored                         |
+
+
+| Parameter /action              | Type   | Description                                                           |
+| ------------------------------ | ------ | --------------------------------------------------------------------- |
+| `precision`                    | double | [m] precision when inserting a stop pose in the trajectory            |
+| `longitudinal_distance_buffer` | double | [m] safety distance buffer to keep in front of the ego vehicle        |
+| `lateral_distance_buffer`      | double | [m] safety distance buffer to keep on the side of the ego vehicle     |
+| `min_duration`                 | double | [s] minimum duration needed before a decision can be canceled         |
+| `slowdown.distance_threshold`  | double | [m] insert a slow down when closer than this distance from an overlap |
+| `slowdown.velocity`            | double | [m] slow down velocity                                                |
+| `stop.distance_threshold`      | double | [m] insert a stop when closer than this distance from an overlap      |
+
+
+| Parameter /ego       | Type   | Description                                          |
+| -------------------- | ------ | ---------------------------------------------------- |
+| `extra_front_offset` | double | [m] extra front distance to add to the ego footprint |
+| `extra_rear_offset`  | double | [m] extra rear distance to add to the ego footprint  |
+| `extra_left_offset`  | double | [m] extra left distance to add to the ego footprint  |
+| `extra_right_offset` | double | [m] extra right distance to add to the ego footprint |
+
+

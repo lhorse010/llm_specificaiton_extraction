@@ -1,0 +1,22 @@
+[
+  {
+    "index": 0,
+    "formula": "G(armed ∧ throttle = idle → stabilizationActive)",
+    "explanation": "If the vehicle is armed and the throttle is at idle, stabilization must remain active."
+  },
+  {
+    "index": 1,
+    "formula": "G((RCx_OPTION = 154 ∨ RCx_OPTION = 84) → F(airmodeEnabled))",
+    "explanation": "If the RC options for arming (154) or enabling Airmode (84) are set, Airmode should eventually be enabled."
+  },
+  {
+    "index": 2,
+    "formula": "G(ACRO_OPTIONS[0] = 1 → (mode = ACRO → F(airmodeEnabled)))",
+    "explanation": "If bit 0 of ACRO_OPTIONS is set, Airmode should eventually be enabled whenever in ACRO mode."
+  },
+  {
+    "index": 3,
+    "formula": "G((mode = TraditionalHelicopter) → ¬airmodeEnabled)",
+    "explanation": "Airmode must not be enabled when the vehicle is in Traditional Helicopter mode."
+  }
+]

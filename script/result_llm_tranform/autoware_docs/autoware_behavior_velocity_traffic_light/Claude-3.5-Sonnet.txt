@@ -1,0 +1,72 @@
+[
+  {
+    "sentence": "This module is activated when there is traffic light in ego lane.",
+    "formula": "G(T → A)",
+    "explanation": "G represents 'globally', T represents 'traffic light in ego lane', and A represents 'module activation'. This formula states that at all times, if there's a traffic light in the ego lane, the module is activated."
+  },
+  {
+    "sentence": "If a corresponding traffic light signal have never been found, it treats as a signal to pass.",
+    "formula": "G(¬F(S) → P)",
+    "explanation": "S represents 'signal found', P represents 'treat as pass'. This formula states that globally, if it's never the case that a signal is found in the future, then it's treated as a pass signal."
+  },
+  {
+    "sentence": "If a corresponding traffic light signal is found but timed out, it treats as a signal to stop.",
+    "formula": "G((F(S) ∧ T) → X)",
+    "explanation": "S represents 'signal found', T represents 'timed out', and X represents 'treat as stop'. This formula states that globally, if a signal is found in the future and it's timed out, then it's treated as a stop signal."
+  },
+  {
+    "sentence": "2.Uses the highest reliability one of the traffic light recognition result and if the color of that was not green or corresponding arrow signal, generates a stop point.",
+    "formula": "G((H ∧ ¬(G ∨ A)) → S)",
+    "explanation": "H represents 'highest reliability recognition', G represents 'green light', A represents 'arrow signal', and S represents 'generate stop point'. This formula states that globally, if the highest reliability recognition is not green or an arrow signal, a stop point is generated."
+  },
+  {
+    "sentence": "If an elapsed time to receive stop signal is less than stop_time_hysteresis, it treats as a signal to pass.",
+    "formula": "G((R ∧ (T < H)) → P)",
+    "explanation": "R represents 'receive stop signal', T represents 'elapsed time', H represents 'stop_time_hysteresis', and P represents 'treat as pass'. This formula states that globally, if a stop signal is received and the elapsed time is less than the hysteresis, it's treated as a pass signal."
+  },
+  {
+    "sentence": "higher than 2.0m/s ⇒ pass judge(using next slide formula)",
+    "formula": "G((V > 2.0) → P)",
+    "explanation": "V represents 'velocity', P represents 'pass judgment'. This formula states that globally, if the velocity is higher than 2.0 m/s, then a pass judgment is made."
+  },
+  {
+    "sentence": "lower than 2.0m/s ⇒ stop",
+    "formula": "G((V < 2.0) → S)",
+    "explanation": "V represents 'velocity', S represents 'stop'. This formula states that globally, if the velocity is lower than 2.0 m/s, then a stop is required."
+  },
+  {
+    "sentence": "\"can pass through\" stop line during yellow lamp => pass",
+    "formula": "G((C ∧ Y) → P)",
+    "explanation": "C represents 'can pass through stop line', Y represents 'yellow lamp', and P represents 'pass'. This formula states that globally, if the vehicle can pass through the stop line during a yellow lamp, then it's allowed to pass."
+  },
+  {
+    "sentence": "\"can't pass through\" stop line during yellow lamp => emergency stop",
+    "formula": "G((¬C ∧ Y) → E)",
+    "explanation": "C represents 'can pass through stop line', Y represents 'yellow lamp', and E represents 'emergency stop'. This formula states that globally, if the vehicle can't pass through the stop line during a yellow lamp, then an emergency stop is required."
+  },
+  {
+    "sentence": "vehicle can't pass through stop line during yellow lamp.(right side of the yellow lamp line)",
+    "formula": "G((Y ∧ R) → ¬C)",
+    "explanation": "Y represents 'yellow lamp', R represents 'right side of yellow lamp line', and C represents 'can pass through stop line'. This formula states that globally, when on the right side of the yellow lamp line during a yellow lamp, the vehicle cannot pass through the stop line."
+  },
+  {
+    "sentence": "vehicle can't stop under deceleration and jerk limit.(left side of the pass judge curve)⇒emergency stop(relax deceleration and jerk limitation in order to observe the traffic regulation)",
+    "formula": "G((¬S ∧ L) → F[0,ε](E))",
+    "explanation": "This formula states that globally (G), if the vehicle can't stop (¬S) and is on the left side of the pass judge curve (L), then in the immediate future (within an arbitrarily small time ε), an emergency stop (E) will occur. The use of F[0,ε] captures the immediate response required for an emergency stop."
+  },
+  {
+    "sentence": "vehicle can pass through stop line during yellow lamp.(left side of the yellow lamp line)",
+    "formula": "G((Y ∧ L) → F[0,d](P))",
+    "explanation": "Here, Y represents the yellow lamp state, L indicates the vehicle being on the left side of the yellow lamp line, and P denotes passing through the stop line. The formula states that globally, when the lamp is yellow and the vehicle is on the left side, it's permissible to pass through within some duration d. The exact value of d would depend on specific traffic regulations."
+  },
+  {
+    "sentence": "vehicle can stop under deceleration and jerk limit.(right side of the pass judge curve) ⇒ stop(autoware selects the safety choice)",
+    "formula": "G((S ∧ R) → F[0,t](T))",
+    "explanation": "In this formula, S represents the ability to stop within limits, R denotes being on the right side of the pass judge curve, and T represents the vehicle coming to a stop. The formula expresses that globally, if the vehicle can stop safely and is on the right side, then it will come to a stop within time t, prioritizing safety."
+  },
+  {
+    "sentence": "1.Obtains a traffic light mapped to the route and a stop line correspond to the traffic light from a map information.",
+    "formula": "F[0,δ](M ∧ X(L ∧ S))",
+    "explanation": "This formula captures the process of obtaining map information. M represents obtaining the map, L represents identifying the traffic light, and S represents identifying the stop line. The formula states that within some short time δ, the map will be obtained, and in the next state, both the traffic light and stop line will be identified. The use of X ensures the sequential nature of this process."
+  }
+]

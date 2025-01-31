@@ -1,0 +1,32 @@
+[
+  {
+    "index": 0,
+    "formula": "G(sticks_centered → X(angular_rotation_rate = 0))",
+    "explanation": "Globally, when the control sticks are centered, in the next state, the angular rotation rate around all axes should be zero."
+  },
+  {
+    "index": 1,
+    "formula": "G(¬sticks_centered → (angular_rotation_rate ≠ 0))",
+    "explanation": "Globally, when the control sticks are not centered, the angular rotation rate should not be zero, allowing for rotation around the respective axes."
+  },
+  {
+    "index": 2,
+    "formula": "G(throttle_input = control_allocation_output)",
+    "explanation": "Globally, the throttle input should be directly passed to the control allocation output without modification."
+  },
+  {
+    "index": 3,
+    "formula": "G(roll_stick_input ∨ pitch_stick_input ∨ yaw_stick_input → F(attitude_rate_stabilized))",
+    "explanation": "Globally, if there's input on the roll, pitch, or yaw sticks, eventually the attitude rate should be stabilized by the autopilot."
+  },
+  {
+    "index": 4,
+    "formula": "G(stick_input = max → F(high_turn_rate))",
+    "explanation": "Globally, when stick input is at maximum, eventually a high turn rate should be achieved for performing acrobatic maneuvers."
+  },
+  {
+    "index": 5,
+    "formula": "G(stick_input ≈ 0 → F(low_sensitivity))",
+    "explanation": "Globally, when stick input is close to zero, eventually low sensitivity should be applied for small corrections."
+  }
+]

@@ -1,0 +1,39 @@
+Based on the provided document, I've extracted the specifications and expressed them using Metric Temporal Logic (MTL) formulas. Here are the results in the required output format:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G((lane_id = intersection) → X activation)",
+            "explanation": "The blind spot module is activated when the lane ID of the target path has an intersection label."
+        },
+        {
+            "formula": "G((object ∈ detection_area ∧ object_path ∈ conflict_area) → X stop)",
+            "explanation": "The module transitions to the 'stop' state when an object is in the detection area and its predicted path is in the conflict area."
+        },
+        {
+            "formula": "G(pass_judge_line → ¬stop)",
+            "explanation": "The 'stop' judgment is not executed after the judgment line is passed to avoid rapid stops."
+        },
+        {
+            "formula": "G(stop → G¬go U (go ∧ G(go ∧ X go ∧ ... ∧ X^(2s) go)))",
+            "explanation": "Once a 'stop' is judged, the module will not transition to the 'go' state until the 'go' judgment continues for a certain period (e.g., 2 seconds) to prevent chattering of the state."
+        },
+        {
+            "formula": "G((stop ∧ go) → X go)",
+            "explanation": "When the module is in the 'stop' state and the 'go' condition is met, it will transition to the 'go' state."
+        }
+    ]
+}
+```
+
+Note that I've used the following abbreviations in the MTL formulas:
+
+* `lane_id = intersection` represents the condition that the lane ID of the target path has an intersection label.
+* `object ∈ detection_area` represents the condition that an object is in the detection area.
+* `object_path ∈ conflict_area` represents the condition that an object's predicted path is in the conflict area.
+* `pass_judge_line` represents the condition that the judgment line has been passed.
+* `stop` and `go` represent the states of the module.
+* `X^(2s)` represents the temporal operator "next" applied 2 seconds into the future.
+
+Please let me know if you'd like me to clarify or modify any of these specifications.

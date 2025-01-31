@@ -1,0 +1,77 @@
+[
+  {
+    "section-id": 2,
+    "sentence-id": 0,
+    "sentence": "While stabilize mode does not necessarily require GPS, switching to RTL in case of emergency does."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 1,
+    "sentence": "Make sure you do have a reliable position estimate prior to arming, most commonly provided by 3D GPS fix with sufficient HDOP."
+  },
+  {
+    "section-id": 3,
+    "sentence-id": 0,
+    "sentence": "1.Pilot's roll and pitch input control the lean angle of the copter."
+  },
+  {
+    "section-id": 3,
+    "sentence-id": 3,
+    "sentence": "3.Pilot's yaw input controls the rate of change of the heading."
+  },
+  {
+    "section-id": 3,
+    "sentence-id": 4,
+    "sentence": "When the pilot releases the yaw stick the vehicle will maintain its current heading."
+  },
+  {
+    "section-id": 3,
+    "sentence-id": 5,
+    "sentence": "4.Pilot's throttle input controls the average motor speed meaning that constant adjustment of the throttle is required to maintain altitude."
+  },
+  {
+    "section-id": 3,
+    "sentence-id": 6,
+    "sentence": "If the pilot puts the throttle completely down the motors will go to their minimum rate (MOT_SPIN_ARMED) and if the vehicle is flying it will lose attitude control and tumble."
+  },
+  {
+    "section-id": 3,
+    "sentence-id": 8,
+    "sentence": "5.The throttle sent to the motors is automatically adjusted based on the tilt angle of the vehicle (i.e. increased as the vehicle tilts over more) to reduce the compensation the pilot must do as the vehicle's attitude changes."
+  },
+  {
+    "section-id": 7,
+    "sentence-id": 0,
+    "sentence": "1.ANGLE_MAX controls the maximum lean angle which by default is 4500 (i.e. 45 degrees)"
+  },
+  {
+    "section-id": 7,
+    "sentence-id": 1,
+    "sentence": "2.ANGLE_RATE_MAX controls the maximum requested rotation rate in the roll and pitch axis which by default is 18000 (180deg/sec)."
+  },
+  {
+    "section-id": 7,
+    "sentence-id": 2,
+    "sentence": "3.ACRO_Y_RATE controls how quickly copter rotates based on a pilot's yaw input."
+  },
+  {
+    "section-id": 7,
+    "sentence-id": 3,
+    "sentence": "The default of 4.5 commands a 200 deg/sec rate of rotation when the yaw stick is held fully left or right."
+  },
+  {
+    "section-id": 3,
+    "sentence-id": 1,
+    "sentence": "When the pilot releases the roll and pitch sticks the vehicle automatically levels itself."
+  },
+  {
+    "section-id": 3,
+    "sentence-id": 2,
+    "sentence": "2.Pilot will need to regularly input roll and pitch commands to keep the vehicle in place as it is pushed around by the wind."
+  },
+  {
+    "section-id": 5,
+    "sentence-id": 0,
+    "sentence": "Stabilize mode can be setup to provide full stabilization at idle throttle."
+  }
+]

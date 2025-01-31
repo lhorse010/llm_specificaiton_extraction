@@ -1,0 +1,27 @@
+[
+  {
+    "index": 0,
+    "formula": "G((arming_setup_via_rudder_stick ∧ throttle_idle) → ¬stabilization_active)",
+    "explanation": "If arming is setup via the rudder stick and throttle is lowered to idle in ACRO mode, the stabilization is removed."
+  },
+  {
+    "index": 1,
+    "formula": "G((transmitter_switch_used ∧ RCx_OPTION_ARM_DISARM_with_Airmode ∧ arming_via_switch) → stabilization_active)",
+    "explanation": "If a transmitter switch is used with RCx_OPTION ARM/DISARM with Airmode (option 154) and used to arm, then stabilization at idle throttle is still fully active."
+  },
+  {
+    "index": 2,
+    "formula": "G(RCx_OPTION = 84 → (AIRMODE_enabled ∨ AIRMODE_disabled))",
+    "explanation": "Setting an RC channel to RCx_OPTION = 84 allows enabling or disabling AIRMODE in ACRO and STABILIZE modes directly."
+  },
+  {
+    "index": 3,
+    "formula": "G((ACRO_OPTIONS_bit_0_set ∧ ¬overridden_by_switch) → AIRMODE_enabled)",
+    "explanation": "Setting bit 0 of ACRO_OPTIONS will activate AIRMODE in ACRO mode (only) all the time, except if overridden by the above switch, if used."
+  },
+  {
+    "index": 4,
+    "formula": "G(in_Traditional_Helicopter_mode → ¬AIRMODE_enabled)",
+    "explanation": "AIRMODE has no effect in Traditional Helicopter mode."
+  }
+]

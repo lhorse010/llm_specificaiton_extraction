@@ -1,0 +1,32 @@
+[
+  {
+    "index": 0,
+    "formula": "G(activate_hold_mode → X(hover_at_current_position ∧ hover_at_current_altitude))",
+    "explanation": "When the Hold mode is activated, the vehicle will hover at its current GPS position and altitude in the next time step."
+  },
+  {
+    "index": 1,
+    "formula": "G(activate_hold_mode ∧ current_altitude < NAV_MIN_LTR_ALT → X(ascend_to_NAV_MIN_LTR_ALT))",
+    "explanation": "If the Hold mode is activated below the minimum altitude (NAV_MIN_LTR_ALT), the vehicle will ascend to this altitude in the next time step."
+  },
+  {
+    "index": 2,
+    "formula": "G(in_hold_mode ∧ RC_stick_movement → X(switch_to_position_mode))",
+    "explanation": "If the vehicle is in Hold mode and there is RC stick movement, it will switch to Position mode in the next time step."
+  },
+  {
+    "index": 3,
+    "formula": "G(in_hold_mode ∧ loss_of_position_estimate → F(failsafe))",
+    "explanation": "If the vehicle is in Hold mode and loses its position estimate, it will eventually enter a failsafe state."
+  },
+  {
+    "index": 4,
+    "formula": "G(in_hold_mode ∧ (wind_exceeds_limits ∨ flight_time_exceeds_limits) → F(failsafe))",
+    "explanation": "If the vehicle is in Hold mode and the wind or flight time exceeds the allowed limits, it will eventually enter a failsafe state."
+  },
+  {
+    "index": 5,
+    "formula": "G(disarmed_vehicle ∧ invalid_position_estimate → ¬can_arm)",
+    "explanation": "If the vehicle is disarmed and has an invalid position estimate, it cannot be armed."
+  }
+]

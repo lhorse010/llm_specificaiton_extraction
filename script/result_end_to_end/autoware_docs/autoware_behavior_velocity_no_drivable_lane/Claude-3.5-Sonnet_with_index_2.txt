@@ -1,0 +1,37 @@
+[
+  {
+    "index": 0,
+    "formula": "G(no_drivable_lane → F(vehicle_stopped))",
+    "explanation": "Globally, if a no drivable lane is detected, the vehicle must eventually come to a stop."
+  },
+  {
+    "index": 1,
+    "formula": "G(inside_no_drivable_lane → X(¬autonomous_driving))",
+    "explanation": "Globally, if the vehicle is inside a no drivable lane, in the next state, autonomous driving must be disabled."
+  },
+  {
+    "index": 2,
+    "formula": "G(approaching_no_drivable_lane ∧ (distance_to_no_drivable_lane > stop_margin) → F(vehicle_stopped))",
+    "explanation": "Globally, if the vehicle is approaching a no drivable lane and the distance to it is greater than the stop margin, the vehicle must eventually come to a stop."
+  },
+  {
+    "index": 3,
+    "formula": "G(vehicle_stopped ∧ no_drivable_lane → F(request_to_intervene))",
+    "explanation": "Globally, if the vehicle is stopped due to a no drivable lane, it must eventually request driver intervention."
+  },
+  {
+    "index": 4,
+    "formula": "G(¬(autonomous_driving ∧ inside_no_drivable_lane))",
+    "explanation": "Globally, it should never be the case that the vehicle is in autonomous driving mode while inside a no drivable lane."
+  },
+  {
+    "index": 5,
+    "formula": "G(state = INIT U (state = APPROACHING ∨ state = INSIDE_NO_DRIVABLE_LANE))",
+    "explanation": "Globally, the state remains INIT until it becomes either APPROACHING or INSIDE_NO_DRIVABLE_LANE."
+  },
+  {
+    "index": 6,
+    "formula": "G((state = APPROACHING ∨ state = INSIDE_NO_DRIVABLE_LANE) U state = STOPPED)",
+    "explanation": "Globally, once the state is APPROACHING or INSIDE_NO_DRIVABLE_LANE, it remains so until the state becomes STOPPED."
+  }
+]

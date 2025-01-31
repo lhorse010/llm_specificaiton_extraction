@@ -1,0 +1,22 @@
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(centered_sticks → (roll_angle = 0 ∧ pitch_angle = 0))",
+            "explanation": "When the RC control sticks are centered, the roll and pitch angles should be zero, stabilizing and leveling the multicopter."
+        },
+        {
+            "formula": "G(¬centered_sticks → (roll_angle_control ∧ pitch_angle_control ∧ yaw_rate_control ∧ throttle_control))",
+            "explanation": "When the sticks are not centered, the roll and pitch sticks control the angle, the yaw stick controls the rotation rate, and the throttle controls altitude/speed."
+        },
+        {
+            "formula": "G(centered_sticks → hover)",
+            "explanation": "When the sticks are centered, the vehicle should hover in place, maintaining altitude if balanced and no external forces are present."
+        },
+        {
+            "formula": "G(manual_control → autopilot_assistance)",
+            "explanation": "Manual control inputs require autopilot assistance for stabilizing roll and pitch attitudes."
+        }
+    ]
+}
+```

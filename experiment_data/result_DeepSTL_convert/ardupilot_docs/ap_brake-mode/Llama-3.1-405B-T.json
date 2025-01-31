@@ -1,0 +1,52 @@
+{
+    "temporal_logic_formulars": [
+        {
+            "section-id": 0,
+            "sentence-id": 2,
+            "sentence": "This mode requires GPS.",
+            "tl": "always ( ThisrequiresGPS == ThisresGPS )"
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 3,
+            "sentence": "Brake mode is subject to acceleration and angle limits imposed by the position and attitude controllers.",
+            "tl": "always ( Brakesubject == acelerationa and naglelimitsi == imposedypositionatit ) and ttttttttti == tititititittittitodtuodeudecolololecol == rolBrlecolsecolsecolrsec = rsecol )"
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 1,
+            "sentence": "Once invoked, this mode does not accept any input from the pilot.",
+            "tl": "always ( not ( Onceinvoked == acceptinputpilot ) )"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 0,
+            "sentence": "When switched on, Brake mode will attempt to stop the vehicle as quickly as possible.",
+            "tl": "always ( switchedBrake == atttpvehiclequickly = posible )"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 2,
+            "sentence": "If the vehicle is landed in Brake mode it will immediately disarm.",
+            "tl": "always ( vehiclelanded == Brakeitdisarm )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 0,
+            "sentence": "The pilots controls are ignored in this mode.",
+            "tl": "always ( pilotscontrols == ignored )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 1,
+            "sentence": "The vehicle must be switched out of this mode before the pilot can re-take control.",
+            "tl": "always ( not ( vehicleswitched == epilotcanre ) -> econtr == control )"
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 0,
+            "sentence": "This very simple flight mode simply stops the vehicle as soon as possible.",
+            "tl": "always ( Thisverysimpleflights == implystopsevhicle )"
+        }
+    ]
+}

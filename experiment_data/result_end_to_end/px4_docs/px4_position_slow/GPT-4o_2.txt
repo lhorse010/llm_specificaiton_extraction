@@ -1,0 +1,26 @@
+```json
+{
+    "specifications": [
+        {
+            "formula": "G (V_horizontal <= 3 m/s)",
+            "explanation": "Globally, the horizontal velocity must not exceed 3 m/s in Position Slow mode."
+        },
+        {
+            "formula": "G (V_vertical <= 3 m/s)",
+            "explanation": "Globally, the vertical velocity must not exceed 3 m/s in Position Slow mode."
+        },
+        {
+            "formula": "G (yaw_rate <= max_yaw_rate)",
+            "explanation": "Globally, the yaw rate must not exceed the maximum yaw rate set for Position Slow mode."
+        },
+        {
+            "formula": "G (RC_control → (V_axis <= MC_SLOW_MIN_))",
+            "explanation": "Globally, if an RC control input is used, the velocity for the axis must not exceed the minimum slow mode value set by the corresponding parameter."
+        },
+        {
+            "formula": "G (MAVLink_limit → (V_axis <= MAVLink_value))",
+            "explanation": "Globally, if a MAVLink message sets a velocity limit, the velocity for that axis must not exceed the value provided by MAVLink, unless overridden by RC input."
+        }
+    ]
+}
+```

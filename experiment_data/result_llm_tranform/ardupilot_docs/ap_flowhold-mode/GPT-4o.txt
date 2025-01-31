@@ -1,0 +1,17 @@
+[
+  {
+    "sentence": "When the user releases the sticks, the optical flow sensor is used by the autopilot to bring the vehicle to a stop.",
+    "formula": "G((R → F(S)))",
+    "explanation": "Here, R represents 'the user releases the sticks', and S represents 'the vehicle is brought to a stop'. The formula expresses that whenever R occurs, eventually S will happen, ensuring that the autopilot uses the optical flow sensor to stop the vehicle."
+  },
+  {
+    "sentence": "Because no Lidar is used in this mode, the optical flow sensor is used both to estimate the vehicle's height above the surface and the vehicle's speed.",
+    "formula": "G(¬L → (H ∧ V))",
+    "explanation": "Here, ¬L denotes 'no Lidar is used', H represents 'estimating the vehicle's height', and V represents 'estimating the vehicle's speed'. The formula ensures that whenever there is no Lidar, both H and V must occur, capturing the dual role of the optical flow sensor."
+  },
+  {
+    "sentence": "If the flow sensor quality falls below this value, FlowHold will act just like AltHold.",
+    "formula": "G(Q → A)",
+    "explanation": "Here, Q represents 'the flow sensor quality falls below a certain value', and A represents 'FlowHold acts like AltHold'. The formula ensures that whenever Q is true, A follows, indicating the change in behavior due to sensor quality."
+  }
+]

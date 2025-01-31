@@ -1,0 +1,58 @@
+{
+    "temporal_logic_formulars": [
+        {
+            "section-id": 1,
+            "sentence-id": 2,
+            "sentence": "1.\"Simple\" and \"Super Simple\" modes can be used in combination with nearly all flight modes except the Acro and Drift (in these flight modes the setting is ignored).",
+            "tl": "always ( SuperSimle == mSimle and Sdescanused == comSinatione ) until ( conlit == Smwihnealhne ) -> ( rlyflightexeceptAroDrifte == thesteighestinsetigetinodgoreseino = teiginredgi ) and ( etret == tesetigiginore"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 3,
+            "sentence": "2.Simple Mode allows you to control the copter relative to the copters heading at take off and relies only on a good compass heading.",
+            "tl": "always ( SimpleModealowsyo == contrlcoelrelative = co ) and copterseding == freliesodeofrlesonle )"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 4,
+            "sentence": "3.Super Simple Mode allows you to control the copter relative to it's direction from home (i.e.",
+            "tl": "always ( SuperSimpleoMode == eodeolntrolcopterelreir == itsdirediretretre ) -> not ( diretretretreliretitd == diretiretiretiret ) )"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 5,
+            "sentence": "where it was armed) but requires a good GPS position.",
+            "tl": "always ( whereitarmed == butrequiesagodGPSposition )"
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 4,
+            "sentence": "The disadvantage is that mode require a GPS lock because so you should ensure you have GPS lock before take-off.",
+            "tl": "always ( disadvantage == requireaGPlocbecausesoyueso == sensoureyureyureyou )"
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 5,
+            "sentence": "The orientation is not updated when the vehicle is within 10m of home meaning close fly-bys of the home location should be avoided.",
+            "tl": "always ( not ( orientation == updateded ) and mhemem == manineloeflseflybyshomelo == homelomelocavocinel )"
+        },
+        {
+            "section-id": 5,
+            "sentence-id": 1,
+            "sentence": "Only one auxiliary channel should be set for these modes, and this channel will override the simple/super-simple options selected on the Flight Modes screen.",
+            "tl": "always ( Onlyoneauxiliaryc == hanese ) until ( chesenelmode == lrier ) -> simplesupei == lopesleptionsectedledlepte )"
+        },
+        {
+            "section-id": 5,
+            "sentence-id": 2,
+            "sentence": "To support selection of just one of the modes from the transmitter, assign the mode to a channel that is mapped to a 2-position switch (high = enables the selected mode, low disables it).",
+            "tl": "always ( Tsuportselection == justonestmSestra ) until ( transiete == achansigelnedte ) -> ( achapnedapedt > 1 apnsionswt <= hihphiasedethihenlseledlectledl = ectedsedlodsedlise )"
+        },
+        {
+            "section-id": 5,
+            "sentence-id": 3,
+            "sentence": "To enable both modes from the same switch, select Super Simple mode for a channel that is mapped to a 3-position switch (high position = Super Simple mode, middle position = Simple mode, low position = disabled).",
+            "tl": "always ( Tenablebothmodes == swicheSterSimple ) and ahacnelped == a3positSpe and ( capepedahp ) -> ( a3posihp == ihpgihposinSeSmlimdlepepoidli == itosiSmideplositindepoidiepoisidi ) until ( icloicl == inloicil"
+        }
+    ]
+}

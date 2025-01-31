@@ -1,0 +1,38 @@
+```json
+{
+    "specifications": [
+        {
+            "formula": "G (¬ (valid_local_position) → ¬ (Orbit_mode))",
+            "explanation": "The vehicle cannot switch to orbit mode without a valid local position estimate."
+        },
+        {
+            "formula": "G (¬ (armed) → ¬ (Orbit_mode))",
+            "explanation": "The vehicle must be armed before switching to orbit mode."
+        },
+        {
+            "formula": "G ((wind_within_limits ∧ flight_time_within_limits) → Orbit_mode)",
+            "explanation": "The orbit mode requires wind and flight time to be within specified limits."
+        },
+        {
+            "formula": "G (RC_control_present → (F (orbit_altitude_change ∨ orbit_radius_change ∨ orbit_speed_change ∨ orbit_direction_change)))",
+            "explanation": "If RC control is present, it can be used to change orbit altitude, radius, speed, and direction."
+        },
+        {
+            "formula": "G (¬RC_control → (orbit_proceeds_as_planned))",
+            "explanation": "If no RC control is present, the orbit will proceed as initially planned."
+        },
+        {
+            "formula": "G (switch_flight_mode → ¬ (Orbit_mode))",
+            "explanation": "Switching to any other flight mode will stop the orbit mode."
+        },
+        {
+            "formula": "G (orbit_speed ≤ 10m/s ∧ centripetal_acceleration ≤ 2m/s^2)",
+            "explanation": "The orbit speed is limited to 10m/s and the centripetal acceleration to 2m/s^2."
+        },
+        {
+            "formula": "G (1m ≤ orbit_radius ≤ 100m)",
+            "explanation": "The orbit radius must be between 1m and 100m."
+        }
+    ]
+}
+```

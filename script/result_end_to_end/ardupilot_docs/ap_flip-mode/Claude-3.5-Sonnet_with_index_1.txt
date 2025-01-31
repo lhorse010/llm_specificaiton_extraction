@@ -1,0 +1,47 @@
+[
+  {
+    "index": 0,
+    "formula": "G(flip_triggered → (X[0,1] rise ∧ X[1,∞] rapid_flip))",
+    "explanation": "Globally, when a flip is triggered, the vehicle will rise for 1 second and then rapidly flip."
+  },
+  {
+    "index": 1,
+    "formula": "G(flip_completed → (¬flip_possible U switch_low_then_high))",
+    "explanation": "Globally, after a flip is completed, another flip is not possible until the switch is brought low and then back to high."
+  },
+  {
+    "index": 2,
+    "formula": "G(flip_mode_active → (stabilize ∨ acro ∨ althold))",
+    "explanation": "Globally, when flip mode is active, the vehicle must be in Stabilize, Acro, or AltHold flight mode."
+  },
+  {
+    "index": 3,
+    "formula": "G(flip_triggered → F[0,2.5] flip_completed)",
+    "explanation": "Globally, when a flip is triggered, it should complete within 2.5 seconds."
+  },
+  {
+    "index": 4,
+    "formula": "G(flip_completed → X return_to_original_mode)",
+    "explanation": "Globally, when a flip is completed, the vehicle will return to the original flight mode it was in before the flip was triggered."
+  },
+  {
+    "index": 5,
+    "formula": "G((ch7_ch8_switch_off ∨ roll_stick_over_40deg) → flip_exit)",
+    "explanation": "Globally, if the ch7/ch8 switch is turned off or the roll stick is moved to over 40 degrees left or right, the flip will be manually exited."
+  },
+  {
+    "index": 6,
+    "formula": "G(flip_start → (lean_angle < 45 ∧ roll_right_400deg_sec ∧ increase_throttle))",
+    "explanation": "Globally, during the Flip_Start state (while copter is leaning <45deg), the vehicle will roll right at 400deg/sec and increase throttle."
+  },
+  {
+    "index": 7,
+    "formula": "G(flip_roll → (45 ≤ lean_angle ≤ 90 ∧ roll_right_400deg_sec ∧ reduce_throttle))",
+    "explanation": "Globally, during the Flip_Roll state (while copter is between +45deg ~ -90deg), the vehicle will roll right at 400deg/sec and reduce throttle."
+  },
+  {
+    "index": 8,
+    "formula": "G(flip_recover → (-90 < lean_angle < original_target_angle ∧ use_earth_frame_angle_controller))",
+    "explanation": "Globally, during the Flip_Recover state (while copter is between -90deg and original target angle), the vehicle will use earth frame angle controller to return to the original attitude."
+  }
+]

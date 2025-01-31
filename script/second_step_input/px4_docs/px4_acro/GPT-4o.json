@@ -1,0 +1,37 @@
+[
+  {
+    "section-id": 1,
+    "sentence-id": 3,
+    "sentence": "When sticks are centered the vehicle will stop rotating, but remain in its current orientation (not necessarily level) and moving according to its current momentum."
+  },
+  {
+    "section-id": 1,
+    "sentence-id": 6,
+    "sentence": "Position of RC stick maps to the rate of rotation of vehicle in that orientation."
+  },
+  {
+    "section-id": 0,
+    "sentence-id": 1,
+    "sentence": "The roll, pitch and yaw sticks control the rate of angular rotation around the respective axes and throttle is passed directly to control allocation."
+  },
+  {
+    "section-id": 0,
+    "sentence-id": 2,
+    "sentence": "When sticks are centered the vehicle will stop rotating, but remain in its current orientation (on its side, inverted, or whatever) and moving according to its current momentum."
+  },
+  {
+    "section-id": 1,
+    "sentence-id": 1,
+    "sentence": "RC Roll/Pitch/Yaw (RPY) stick inputs control the rate of angular rotation around the respective axes."
+  },
+  {
+    "section-id": 1,
+    "sentence-id": 2,
+    "sentence": "Throttle is passed directly to control allocation."
+  },
+  {
+    "section-id": 1,
+    "sentence-id": 8,
+    "sentence": "RC input is sent directly to control allocation."
+  }
+]

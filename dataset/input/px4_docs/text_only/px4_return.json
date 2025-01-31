@@ -1,0 +1,149 @@
+{
+  "title": "Return Mode (Multicopter)",
+  "sections": [
+    {
+      "section-id": 0,
+      "title": "Return Mode (Multicopter)",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "The _Return_ flight mode is used to _fly a vehicle to safety_ on an unobstructed path to a safe destination, where it can land."
+        },
+        {
+          "sentence-id": 1,
+          "text": "Multicopters use a home/rally point return type by default."
+        },
+        {
+          "sentence-id": 2,
+          "text": "In this return type vehicles ascend to a safe altitude above obstructions if needed, fly directly to the closest safe landing point (a rally point or the home position), descend to the \"descent altitude\", wait briefly, and then land."
+        },
+        {
+          "sentence-id": 3,
+          "text": "The return altitude, descent altitude, and landing delay are normally set to conservative \"safe\" values, but can be changed if needed."
+        },
+        {
+          "sentence-id": 4,
+          "text": "Multicopter supports the other PX4 return types, including mission landing, mission path and closest safe destination."
+        },
+        {
+          "sentence-id": 5,
+          "text": "The default type is recommended."
+        }
+      ]
+    },
+    {
+      "section-id": 1,
+      "title": "Return Mode (Multicopter) : info",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "1.Mode is automatic - no user intervention is _required_ to control the vehicle."
+        },
+        {
+          "sentence-id": 1,
+          "text": "2.Mode requires a global 3d position estimate (from GPS or inferred from a local position)."
+        },
+        {
+          "sentence-id": 2,
+          "text": "Flying vehicles can't switch to this mode without global position."
+        },
+        {
+          "sentence-id": 3,
+          "text": "Flying vehicles will failsafe if they lose the position estimate."
+        },
+        {
+          "sentence-id": 4,
+          "text": "3.Mode requires home position is set."
+        },
+        {
+          "sentence-id": 5,
+          "text": "4.Mode prevents arming (vehicle must be armed when switching to this mode)."
+        },
+        {
+          "sentence-id": 6,
+          "text": "5.RC control switches can be used to change flight modes on any vehicle."
+        },
+        {
+          "sentence-id": 7,
+          "text": "5.RC stick movement will by default change the vehicle to Position mode unless handling a critical battery failsafe."
+        }
+      ]
+    },
+    {
+      "section-id": 2,
+      "title": "Technical Summary",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "Multicopters use the home/rally point return type by default."
+        },
+        {
+          "sentence-id": 1,
+          "text": "For this return type the copter:"
+        },
+        {
+          "sentence-id": 2,
+          "text": "1.Ascends to the minimum return altitude (safely above any expected obstacles)."
+        },
+        {
+          "sentence-id": 3,
+          "text": "The vehicle maintains its initial altitude if that is higher than the minimum return altitude."
+        },
+        {
+          "sentence-id": 4,
+          "text": "2.Flies via a direct constant-altitude path to the safe landing point, which will be the nearest of any rally points and the home position."
+        },
+        {
+          "sentence-id": 5,
+          "text": "3.On arrival at its destination, it rapidly descends to the \"descent altitude\" (RTL_DESCEND_ALT)."
+        },
+        {
+          "sentence-id": 6,
+          "text": "4.It waits for a configurable time (RTL_LAND_DELAY), which may be used for deploying landing gear."
+        },
+        {
+          "sentence-id": 7,
+          "text": "5.Then lands."
+        }
+      ]
+    },
+    {
+      "section-id": 3,
+      "title": "Minimum Return Altitude",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "By default the _minimum return altitude_ is set using RTL_RETURN_ALT, and the vehicle will just return at the higher of RTL_RETURN_ALT or the initial vehicle altitude."
+        },
+        {
+          "sentence-id": 1,
+          "text": "The minimum return altitude can be further configured using RTL_CONE_ANG, which together with RTL_RETURN_ALT defines a half cone centered around the destination landing point."
+        },
+        {
+          "sentence-id": 2,
+          "text": "The cone angle allows a lower minimum return altitude when the return mode is executed close to the destination."
+        },
+        {
+          "sentence-id": 3,
+          "text": "This is useful when there are few obstacles near the destination, because it may reduce the minimum height that the vehicle needs to ascend before landing, and hence power consumption and time to land."
+        },
+        {
+          "sentence-id": 4,
+          "text": "The cone affects the minimum return altitude if return mode is triggered within the cylinder defined by the maximum cone radius and RTL_RETURN_ALT: outside this cyclinder RTL_RETURN_ALT is used."
+        },
+        {
+          "sentence-id": 5,
+          "text": "Inside the code the minimum return altitude is the intersection of the vehicle position with the cone, or RTL_DESCEND_ALT (whichever is higher)."
+        },
+        {
+          "sentence-id": 6,
+          "text": "In other words, the vehicle must always ascend to at least RTL_DESCEND_ALT if below that value."
+        },
+        {
+          "sentence-id": 7,
+          "text": "For more information on this return type see Home/Rally Point Return Type (RTL_TYPE=0)"
+        }
+      ]
+    }
+  ]
+}

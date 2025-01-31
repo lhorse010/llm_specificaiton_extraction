@@ -1,0 +1,17 @@
+[
+  {
+    "sentence": "It places the vehicle into a STABILIZE like mode, and generates bursts of signals (\"chirps\") injected into the control loops at various points and logs the results for math analysis and model generation later.",
+    "formula": "P ∧ F(Q ∧ G(R))",
+    "explanation": "Here, P represents the vehicle being placed into a STABILIZE like mode, Q represents the generation of bursts of signals (\"chirps\") injected into the control loops, and R represents the logging of results for math analysis and model generation. The formula indicates that once the vehicle is in the STABILIZE like mode, it will eventually generate the chirps and log the results indefinitely."
+  },
+  {
+    "sentence": "If the SID_AXIS is non-zero, then this modes associated parameters will become visible on the next parameter refresh and entry into the mode will be allowed.",
+    "formula": "A → X(B ∧ C)",
+    "explanation": "Here, A represents the SID_AXIS being non-zero, B represents the modes associated parameters becoming visible, and C represents the entry into the mode being allowed. The formula indicates that if the SID_AXIS is non-zero, then on the next parameter refresh (represented by the X operator), the parameters will become visible and entry into the mode will be allowed."
+  },
+  {
+    "sentence": "Otherwise, an error message will be logged and sent to the ground control station indicating that mode entry has been prohibited.",
+    "formula": "¬A → (E ∧ F)",
+    "explanation": "Here, A represents the SID_AXIS being non-zero, E represents the logging of an error message, and F represents the sending of the error message to the ground control station. The formula indicates that if the SID_AXIS is zero (i.e., ¬A), then an error message will be logged and sent to the ground control station."
+  }
+]

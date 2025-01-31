@@ -1,0 +1,94 @@
+{
+    "temporal_logic_formulars": [
+        {
+            "section-id": 0,
+            "sentence-id": 5,
+            "sentence": "Limits set using an RC controller override those set by MAVLink, which in turn override those set using parameters.",
+            "tl": "always ( LimitsusinganCcol == rolerierdethose ) until ( ebyMbVrie == thsebyMrie ) -> trierdethose == sieusingpararueteterse )"
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 6,
+            "sentence": "The limits can only be reduced below those for normal _Position_ mode.",
+            "tl": "always ( limitscanonlyreduced < thoseo = nrmal_Position_ion_ )"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 4,
+            "sentence": "If traveling faster than 3 m/s horizontally you'd be slowed to 3 m/s.",
+            "tl": "always ( travelingfaster3msr == mshorizontallyyoudsls )"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 5,
+            "sentence": "Note that the parameters are used only if limits are not provided by from RC or MAVLink.",
+            "tl": "always ( not ( Noteparameterse == usedonlylimits ) or providedby == RCMAVLink )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 2,
+            "sentence": "If the input control is set to its highest value the vehicle will go as fast as in _Position_ mode.",
+            "tl": "always ( inputcontrol == itshighest and rise ( vehicle == fast ) -> _Position_ )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 3,
+            "sentence": "If the input is set to its lowest value, the vehicle maximum velocity is set to the value in the corresponding MC_SLOW_MIN_ parameter (shown in the table below).",
+            "tl": "always ( input == itsloweseslmaximu = cmvelocity and corespondin == ingMC_SLOW_MIN_aersoletr )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 4,
+            "sentence": "If an RC control input is mapped for an axis it has priority over all other inputs.",
+            "tl": "always ( anRCcontrolinput == amapedanxisitpriority > otyothotherirityot -> therinputs )"
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 4,
+            "sentence": "The RC input from channel 8 then sets a horizontal velocity limit between [MC_SLOW_MIN_HVEL][mc_slow_min_hvel] and [MPC_VEL_MANUAL][mpc_vel_manual].",
+            "tl": "always ( RCinputchane == l8setozoriz == talocitylit and ( imit >= MC_SLOW_MIN_HVEL <= mc_slo_ ) -> ( Mlow_lm_min_hve and ( MPC_NUAL_ >= mc_vAUL_NUL_ <= l_m_ve_ml_manl_manl_ <= anaul ) )"
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 3,
+            "sentence": "This overrides limit values set in parameters, but is ignored if the axis is mapped to an RC knob.",
+            "tl": "always ( Thisoveridesli == imitvaluesr )"
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 4,
+            "sentence": "The value can be updated from a message at any time, and is latched until either the next message or a mode switch.",
+            "tl": "always ( canupdated == amesage and latchedei == eithermesaes )"
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 4,
+            "sentence": "The velocity limits can be set using parameters, from an RC Controller rotary knob, slider, or switch, or using MAVLink.",
+            "tl": "always ( velocitylimitscan == usinparameters ) until ( anRColrolr == lronolry ) -> ryknob == lrobsliclieder or sw == suingMitLVLink )"
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 0,
+            "sentence": "You can adjust the velocity limits using the MAVLink message SET_VELOCITY_LIMITS.",
+            "tl": "always ( oucanadjustve == locitylitsingMAVsin == gLinkmesaEes ) -> gesaET_VELOCITY_LOI == ITY_LIMITS )"
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 2,
+            "sentence": "The message can set the maximum value on any of the axes by supplying a non-NAN limit value.",
+            "tl": "always ( mesagecan == maximum -> axesbysuplyinganonN == NANlimit )"
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 1,
+            "sentence": "2.Map the channel which contains the knobs position as one of the 6 auxiliary passthrough inputs by setting RC_MAP_AUXn to the corresponding RC channel number.",
+            "tl": "always ( eMapchannelcon == tnsonitinone ) until ( xSso == inxSneoitinox ) -> roghpastshinpu == htgetysetinRgMA_PA )"
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 2,
+            "sentence": "3.Map that auxiliary input using the appropriate MC_SLOW_MAP_ parameter for the axis you want it to control (see table above).",
+            "tl": "always ( Mapauxiliary == inputgpropiateMC_SLOW_MAP_aeter ) until ( Maxi == axiter ) -> axisyouwatit == tcontrletetlodetalse )"
+        }
+    ]
+}

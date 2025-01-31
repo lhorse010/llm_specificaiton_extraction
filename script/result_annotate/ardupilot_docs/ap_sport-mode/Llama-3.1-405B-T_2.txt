@@ -1,0 +1,45 @@
+After carefully reading the document and following the steps outlined, I have annotated the sentences that convey information about state transition pre-requirements, constraints, expected post-actions, and expected state changes.
+
+Here are the annotated sentences in JSON format:
+
+```json
+{
+    "specifications": [
+        {
+            "section-id": 1,
+            "sentence-id": 0
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 1
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 2
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 3
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 4
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 5
+        }
+    ]
+}
+```
+
+The annotated sentences are:
+
+* Section 1, Sentence 0: "this mode is not included by default in the firmware built and available on the Firmware Server ." (constraint)
+* Section 1, Sentence 1: "Either the user must build his own firmware with this mode enabled or use the Custom Firmware Server" (constraint)
+* Section 2, Sentence 2: "3.The vehicle will not lean more than 45 degrees (this angle is adjustable with the ACRO_BAL_ROLL and ACRO_BAL_PITCH parameters)" (constraint)
+* Section 2, Sentence 3: "4.The altitude is maintained with the altitude hold controller so the vehicle will attempt to hold its current altitude when the sticks are placed with 10% of mid-throttle." (expected post-action)
+* Section 2, Sentence 4: "It will climb or descend at up to 2.5m/s (this speed is adjustable with the PILOT_SPEED_UP and PILOT_SPEED_DN parameters)." (expected post-action)
+* Section 2, Sentence 5: "The acceleration used to establish these speeds is set by PILOT_ACCEL_Z." (expected post-action)
+
+Note that Sentence 0 in Section 0 is not annotated as it does not convey any information about state transition pre-requirements, constraints, expected post-actions, or expected state changes. Similarly, Sentences 0 and 1 in Section 2 are not annotated as they provide general information about the Sport Mode but do not specify any requirements or constraints.

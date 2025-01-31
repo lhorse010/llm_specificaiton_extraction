@@ -1,0 +1,42 @@
+[
+  {
+    "section-id": 0,
+    "sentence-id": 4,
+    "sentence": "The multicopter will level out and stop once the roll and pitch sticks are centered."
+  },
+  {
+    "section-id": 0,
+    "sentence-id": 5,
+    "sentence": "The vehicle will then hover in place/maintain altitude - provided it is properly balanced, throttle is set appropriately (see below), and no external forces are applied (e.g. wind)."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 3,
+    "sentence": "The autopilot controls the attitude, meaning it regulates the roll and pitch angles to zero when the RC sticks are centered inside the controller deadzone (consequently leveling-out the attitude)."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 6,
+    "sentence": "Roll/Pitch sticks level vehicle."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 8,
+    "sentence": "Roll/Pitch sticks control tilt angle in those orientations, resulting in corresponding left-right and forward-back movement."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 9,
+    "sentence": "Throttle stick controls up/down speed (and movement speed in other axes)."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 10,
+    "sentence": "Yaw stick controls rate of angular rotation above the horizontal plane."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 4,
+    "sentence": "The autopilot does not compensate for drift due to wind (or other sources)."
+  }
+]

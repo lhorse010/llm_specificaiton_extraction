@@ -1,0 +1,100 @@
+{
+    "temporal_logic_formulars": [
+        {
+            "section-id": 0,
+            "sentence-id": 1,
+            "sentence": "When the sticks are released/centered the vehicle will actively brake, level, and be locked to a position in 3D space — compensating for wind and other forces.",
+            "tl": "always ( sticksreleasede == edcerdevhicelela ) and locked == aposaposicecoepecoinsatinsates == sainsatecoins )"
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 2,
+            "sentence": "With full stick deflection the vehicle accelerates initially with MPC_ACC_HOR_MAX ramping down until it reaches the final velocity MPC_VEL_MANUAL.",
+            "tl": "always ( Wthfulstickde == ecileceratile ) until ( iatlyic == iteC_HC_AC_MO ) -> ( itrac == eitresfinlocesfitMahMesfi == in ) until ( itrecyloleCVP_M == icyL_MNL_VP_MNL_MNL_dLeA ) )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 2,
+            "sentence": "2.Let go of the roll and pitch stick and give it enough time to come to a complete stop.",
+            "tl": "always ( l2Letrol == pitchstick and gi == iveitenough and rise ( icome == comeacomeacolepetestestoestopopolpop ) )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 3,
+            "sentence": "3.Pull the throttle stick down gently until the vehicle touches the ground.",
+            "tl": "always ( Pullthrottles == tickgentlyvehicletouchetouches == esgroud )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 4,
+            "sentence": "4.Pull the throttle stick all the way down to facilitate and accelerate land detection.",
+            "tl": "always ( ePullthrottlestick == facilitate and acceleratelerate == lateladeletectlatecte )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 5,
+            "sentence": "5.The vehicle will lower propeller thrust, detect the ground and automatically disarm (by default).",
+            "tl": "always ( r5vehiclepr == pelerthrtstdetctgroundau and ( automaticalydisar == mbydefauldefauldefaultr ) )"
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 3,
+            "sentence": "The approach is the same as above, except that you must manually ensure that the vehicle stays above the landing spot using the roll and pitch stick.",
+            "tl": "always ( aproachtyoumanua == levehiclensure -> landingspotusingr == lpolpol and pitchsticstickick == p )"
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 6,
+            "sentence": "After the vehicle is on the ground switch to Stabilized mode keeping the throttle stick low, and manually disarm using a gesture or other command.",
+            "tl": "always ( eAtervehicle == groundswitchStah ) and throtlte == tlsicklowmaulalsinuesrm == rmusinuestrmre )"
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 0,
+            "sentence": "RC mode where roll, pitch, throttle (RPT) sticks control movement in corresponding axes/directions.",
+            "tl": "always ( RCwherolpitlptch < 0 and PTstickscoentrovent == cororespodingaxesdires )"
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 1,
+            "sentence": "Centered sticks level vehicle and hold it to fixed altitude and position against wind.",
+            "tl": "always ( Centerdsticksle == evlevelvehicle and i == fixedaltitudeposit )"
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 2,
+            "sentence": "1.Centered roll, pitch, throttle sticks (within RC deadzone MPC_HOLD_DZ) hold x, y, z position steady against any disturbance like wind.",
+            "tl": "always ( l1Centerdrolilp == tchtrotlesticks < RCdeMPCdz ) until ( rise ( CdeaHOLD_DZxyzp == itinx ) ) -> xyzpositednta == dstednainstedagwintdst == isturbanerbacewindi )"
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 8,
+            "sentence": "When landed, the vehicle will take off if the throttle stick is raised above 62.5% percent (of the full range from bottom).",
+            "tl": "always ( landedvehicle == ofthrotlestick > 62.5 and ( percentl > 62.5 and percent < fulrlbotttomom ) )"
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 9,
+            "sentence": "4.Global position estimate is required.",
+            "tl": "always ( estiaerequired == ed )"
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 10,
+            "sentence": "5.Manual control input is required (such as RC control, joystick).",
+            "tl": "always ( Manualcontrolinputr == trequiedsuchRCcontroljoystick )"
+        },
+        {
+            "section-id": 5,
+            "sentence-id": 1,
+            "sentence": "If the estimate falls below acceptable levels, for example due to GPS loss, this may trigger a Position (GPS) Loss Failsafe.",
+            "tl": "always ( rise ( estimate < acelevlelse ) and exampledue == GPSloseGSlgeraPtrigeos ) -> ( maPositionGPSLosFailsafe == GPSLososFailsafe )"
+        },
+        {
+            "section-id": 5,
+            "sentence-id": 2,
+            "sentence": "Depending on configuration, whether you have a remote control, and whether there is an adequate altitude estimate, PX4 may switch to altitude mode, manual mode, land mode or terminate.",
+            "tl": "always ( ependingconfig == aterateroneo == Sremotecolander ) or randwhetethe == ateateteateSteStlatestesteState )"
+        }
+    ]
+}

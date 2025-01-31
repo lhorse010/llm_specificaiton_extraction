@@ -1,0 +1,58 @@
+After carefully reading the document and following the steps outlined, I have annotated the sentences that convey information about state transition pre-requirements, constraints, expected post-actions, and expected state changes. Here is the output in JSON format:
+
+```json
+{
+    "specifications": [
+        {
+            "section-id": 0,
+            "sentence-id": 2
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 5
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 0
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 1
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 3
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 5
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 7
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 10
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 12
+        }
+    ]
+}
+```
+
+The annotated sentences are:
+
+* Section 0, Sentence 2: "A good GPS lock, low magnetic interference on the compass and low vibrations are all important in achieving good loiter performance." (constraint)
+* Section 1, Sentence 5: "The vehicle can be armed in Loiter mode but only once the GPS has 3D lock and the HDOP has dropped below 1.4." (state transition pre-requirement)
+* Section 3, Sentence 0: "1.LOIT_SPEED: max horizontal speed in cm/s (i.e. 1250 = 12.5m/s)" (expected post-action)
+* Section 3, Sentence 1: "2.LOIT_ACC_MAX: max acceleration in cm/s/s." (expected post-action)
+* Section 3, Sentence 3: "3.LOIT_ANG_MAX: max lean angle in degrees (i.e. 30deg)." (expected post-action)
+* Section 3, Sentence 5: "4.LOIT_BRK_ACCEL: max acceleration in cm/s/s while braking (i.e. pilot has moved sticks to center)." (expected post-action)
+* Section 3, Sentence 7: "5.LOIT_BRK_DELAY: the delay in seconds before braking starts once the pilot has centered the sticks" (expected post-action)
+* Section 3, Sentence 10: "7.PSC_POSXY_P: (shown as \"Position XY (Dist to Speed)\" at the top right of the screen shot above) converts the horizontal position error (i.e difference between the desired position and the actual position) to a desired speed towards the target position." (expected post-action)
+* Section 3, Sentence 12: "8.PSC_VELXY_P (shown as \"Velocity XY (Vel to Accel)\") converts the desired speed towards the target to a desired acceleration." (expected post-action)
+
+These sentences convey specific information about the requirements and constraints for the system to transition into and maintain Loiter mode, as well as the expected post-actions and state changes that will occur in response to specific commands or settings.

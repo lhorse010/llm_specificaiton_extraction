@@ -1,0 +1,86 @@
+Based on the provided document, I've extracted the specifications and expressed them using Metric Temporal Logic (MTL) formulas. Here are the results in the required JSON format:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(¬valid_local_position → ¬orbit_mode)",
+            "explanation": "The vehicle cannot switch to orbit mode without a valid local position estimate."
+        },
+        {
+            "formula": "G(orbit_mode → valid_local_position)",
+            "explanation": "The vehicle requires a valid local position estimate to be in orbit mode."
+        },
+        {
+            "formula": "G(¬armed → ¬orbit_mode)",
+            "explanation": "The vehicle must be armed to switch to orbit mode."
+        },
+        {
+            "formula": "G(orbit_mode → (wind_within_limits ∧ flight_time_within_limits))",
+            "explanation": "The vehicle requires wind and flight time to be within allowed limits to be in orbit mode."
+        },
+        {
+            "formula": "G(multicopter_mode → supported_orbit_mode)",
+            "explanation": "Orbit mode is only supported on multicopter (or VTOL in MC mode)."
+        },
+        {
+            "formula": "G(orbit_mode → (ascent_descent_control ∧ orbit_speed_control ∧ orbit_direction_control))",
+            "explanation": "RC stick movement can control ascent/descent, orbit speed, and direction in orbit mode."
+        },
+        {
+            "formula": "G(orbit_mode → (X(orbit_altitude = commanded_altitude) ∧ F(orbit_radius = commanded_radius)))",
+            "explanation": "Once enabled, the vehicle will fly to the closest point on the commanded circle trajectory and do a slow orbit on the planned circle."
+        },
+        {
+            "formula": "G(left_stick_up → (ascent_speed > 0))",
+            "explanation": "Left stick up controls the speed of ascent."
+        },
+        {
+            "formula": "G(left_stick_down → (descent_speed > 0))",
+            "explanation": "Left stick down controls the speed of descent."
+        },
+        {
+            "formula": "G(right_stick_left → (orbit_acceleration < 0))",
+            "explanation": "Right stick left controls the acceleration of orbit in the counter-clockwise direction."
+        },
+        {
+            "formula": "G(right_stick_right → (orbit_acceleration > 0))",
+            "explanation": "Right stick right controls the acceleration of orbit in the clockwise direction."
+        },
+        {
+            "formula": "G(right_stick_up → (orbit_radius > current_radius))",
+            "explanation": "Right stick up controls the orbit radius to increase."
+        },
+        {
+            "formula": "G(right_stick_down → (orbit_radius < current_radius))",
+            "explanation": "Right stick down controls the orbit radius to decrease."
+        },
+        {
+            "formula": "G(orbit_mode → (orbit_speed ≤ 10 ∧ centripetal_acceleration ≤ 2))",
+            "explanation": "The maximum velocity is 10m/s and further limited to keep the centripetal acceleration below 2m/s^2."
+        }
+    ]
+}
+```
+
+Note that I've used the following abbreviations in the MTL formulas:
+
+* `valid_local_position`: The vehicle has a valid local position estimate.
+* `orbit_mode`: The vehicle is in orbit mode.
+* `armed`: The vehicle is armed.
+* `wind_within_limits`: The wind is within allowed limits.
+* `flight_time_within_limits`: The flight time is within allowed limits.
+* `multicopter_mode`: The vehicle is in multicopter mode.
+* `supported_orbit_mode`: Orbit mode is supported on the vehicle.
+* `ascent_descent_control`: The vehicle has control over ascent and descent.
+* `orbit_speed_control`: The vehicle has control over orbit speed.
+* `orbit_direction_control`: The vehicle has control over orbit direction.
+* `commanded_altitude`: The commanded altitude of the orbit.
+* `commanded_radius`: The commanded radius of the orbit.
+* `orbit_altitude`: The current altitude of the orbit.
+* `orbit_radius`: The current radius of the orbit.
+* `ascent_speed`: The speed of ascent.
+* `descent_speed`: The speed of descent.
+* `orbit_acceleration`: The acceleration of the orbit.
+* `centripetal_acceleration`: The centripetal acceleration of the orbit.
+* `current_radius`: The current radius of the orbit.

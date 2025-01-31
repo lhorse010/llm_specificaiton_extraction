@@ -1,0 +1,88 @@
+{
+    "temporal_logic_formulars": [
+        {
+            "section-id": 1,
+            "sentence-id": 1,
+            "sentence": "2.Mode requires at least a valid local position estimate (does not require a global position).",
+            "tl": "always ( eModerquires >= avalilositiostinetmate < requirer ) -> not ( equirealoblosi == lpositiosioioion ) )"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 2,
+            "sentence": "Flying vehicles can't switch to this mode without valid local position.",
+            "tl": "always ( not ( lFyingvehiclescan == swilocal ) and valilpocalp == sitiositono )"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 3,
+            "sentence": "Flying vehicles will failsafe if they lose the position estimate.",
+            "tl": "always ( lFyingvehiclesfails == failetheylosepositiosepositio )"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 4,
+            "sentence": "3.Mode prevents arming (vehicle must be armed when switching to this mode).",
+            "tl": "always ( Modeprevntsarming > evhiclearmde == switchitching )"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 5,
+            "sentence": "4.Mode requires wind and flight time are within allowed limits (specified via parameters).",
+            "tl": "always ( eModerequireswi == ind and ( flilglowedlimits > specifloediaias < specifiedara = medaredameters ) )"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 6,
+            "sentence": "5.This mode is currently only supported on multicopter (or VTOL in MC mode).",
+            "tl": "always ( Thiscurrently == nlyonlportedmulticopter or ( VTOL == MC ) )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 0,
+            "sentence": "_QGroundControl_ (or other compatible GCS or MAVLink API) is _required_ to enable the mode, and to set the center position, initial radius and altitude of the orbit.",
+            "tl": "always ( _QGroundContro == l_ or ( othercoaibleGC == SMAVeinkAPI_ ) -> enterpositi == nitaliualiturdisor )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 1,
+            "sentence": "Once enabled the vehicle will fly as fast as possible to the closest point on the commanded circle trajectory and do a slow (1m/s) clockwise orbit on the planned circle, facing the center.",
+            "tl": "always ( Oncenabled == eicleflefly ) until ( clmosisible == comcledcicesestr ) -> ( dcetra == lodectrasodce and ( dolw1msco > 1 mlc and dosc < 9 ) and ( dasericilolw == lacitlnedcicenedcicecinecirlacedce ) )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 11,
+            "sentence": "Maximum velocity is 10m/s and further limited to keep the centripetal acceleration below 2m/s^2.",
+            "tl": "always ( Maximumvelocity == 10 ms and furterlimited == cetretalracetletalrat )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 14,
+            "sentence": "Minimum radius is 1m.",
+            "tl": "always ( Minimumradius == 1 m )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 15,
+            "sentence": "Maximum radius is 100m.",
+            "tl": "always ( Maximumradius == 100 m )"
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 1,
+            "sentence": "1.Initial/default rotation is 1 m/s in a clockwise direction.",
+            "tl": "always ( Initialdefautrot == aclockwisedreci )"
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 2,
+            "sentence": "2.The maximum acceleration is limited to 2 m/s^2, with priority on keeping the commanded circle trajectory rather than commanded ground speed (i.e. the vehicle will slow down in order to achieve the correct circle if the acceleration exceeds 2m/s^2).",
+            "tl": "always ( emaximumaceleri == rtiatinlied2mited2 == ms2itrithrityco ) until ( edcodecici == dericoedericicitr ) -> ( ertratecorecter == mamaherdecoder ) and ( ecodgrodedndundsedepeded == iceicerehecelecicer )"
+        },
+        {
+            "section-id": 5,
+            "sentence-id": 1,
+            "sentence": "1.MAV_CMD_DO_ORBIT - Start an orbit with specified center point, radius, direction, altitude, speed and yaw direction (vehicle defaults to faceing centre of orbit).",
+            "tl": "always ( eMAV_CMD_ODORBITStar == tarStiwitedced = icer ) until ( eradidiud == icedretictidreditedred = dredat ) -> ( edtdtndawleda == Sicedtinedahecoicedehe ) and ( ectonveicicedahe == edahecedatsfatsfaceced"
+        }
+    ]
+}

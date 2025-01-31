@@ -1,0 +1,111 @@
+After carefully reading the document, I have annotated the sentences that convey information about state transition pre-requirements, constraints, expected post-actions, and expected state changes. Here is the output in JSON format:
+
+```json
+{
+  "specifications": [
+    {
+      "section-id": 1,
+      "sentence-id": 0
+    },
+    {
+      "section-id": 1,
+      "sentence-id": 1
+    },
+    {
+      "section-id": 2,
+      "sentence-id": 0
+    },
+    {
+      "section-id": 2,
+      "sentence-id": 1
+    },
+    {
+      "section-id": 2,
+      "sentence-id": 2
+    },
+    {
+      "section-id": 4,
+      "sentence-id": 6
+    },
+    {
+      "section-id": 4,
+      "sentence-id": 8
+    },
+    {
+      "section-id": 5,
+      "sentence-id": 2
+    },
+    {
+      "section-id": 6,
+      "sentence-id": 12
+    },
+    {
+      "section-id": 8,
+      "sentence-id": 3
+    },
+    {
+      "section-id": 8,
+      "sentence-id": 4
+    },
+    {
+      "section-id": 10,
+      "sentence-id": 0
+    },
+    {
+      "section-id": 10,
+      "sentence-id": 1
+    },
+    {
+      "section-id": 10,
+      "sentence-id": 2
+    },
+    {
+      "section-id": 10,
+      "sentence-id": 3
+    },
+    {
+      "section-id": 12,
+      "sentence-id": 2
+    },
+    {
+      "section-id": 12,
+      "sentence-id": 3
+    },
+    {
+      "section-id": 12,
+      "sentence-id": 4
+    },
+    {
+      "section-id": 12,
+      "sentence-id": 5
+    },
+    {
+      "section-id": 12,
+      "sentence-id": 6
+    }
+  ]
+}
+```
+
+The annotated sentences are:
+
+* Section 1, Sentence 0: "This flight mode is available for traditional helicopters only." (Constraint)
+* Section 1, Sentence 1: "It is currently limited to single rotor helicopters." (Constraint)
+* Section 2, Sentence 0: "This is an ongoing development project." (Constraint)
+* Section 2, Sentence 1: "This is only enabled for use with SITL." (Constraint)
+* Section 2, Sentence 2: "Do not attempt to use this flight mode in real life." (Constraint)
+* Section 4, Sentence 6: "It is this reversal of the vertical velocity that necessitates careful collective management when entering the autorotation." (Expected post-action)
+* Section 4, Sentence 8: "It is key that the collective is moved proportionally to the direction of the resultant velocity vector to minimize the blade drag generated, preventing excessive loss of head speed." (Expected post-action)
+* Section 5, Sentence 2: "It is important to maintain aircraft energy as efficiently as possible in the glide phase so that the maximum amount of energy is available for the flare and touch-down phase." (Expected post-action)
+* Section 6, Sentence 12: "As this manoeuvre is flown close to the ground it requires a reliable height estimate that can account for the local terrain." (Constraint)
+* Section 8, Sentence 3: "The aircraft must therefore be landed before the head speed slows too much, resulting in blade stall." (Expected post-action)
+* Section 8, Sentence 4: "This phase of the autorotation is highly dependent on the amount of energy that can be stored in the main rotor head." (Expected post-action)
+* Section 10, Sentence 0: "The motor ramp time defined by H_RSC_RAMP_TIME is ignored during bail-out, and a hard-coded ramp time of one second is used." (Constraint)
+* Section 10, Sentence 1: "It often takes ArduCopter a second to register that the aircraft has landed once on the ground." (Constraint)
+* Section 10, Sentence 2: "Therefore, if the interlock is re-engaged immediately after the aircraft touches down the one second ramp time of the bail-out phase can be initiated on the ground." (Constraint)
+* Section 10, Sentence 3: "Caution is therefore required when running autorotations in quick succession to prevent rapid rotor spool up on ground." (Constraint)
+* Section 12, Sentence 2: "The autonomous flight mode can only be entered if the interlock is disengaged whilst flying in a non-manual collective mode." (State transition pre-requirement)
+* Section 12, Sentence 3: "When exiting the autorotation the flight mode is returned to the mode from which it came (e.g. Altitude Hold -> Autonomous Autorotation -> Altitude Hold)." (Expected state change)
+* Section 12, Sentence 4: "The only exception to this is when the aircraft enters the autorotation from an auto mission." (Expected state change)
+* Section 12, Sentence 5: "In which case, the mode is exited into Altitude Hold." (Expected state change)
+* Section 12, Sentence 6: "This is done to prevent the aircraft from potentially resuming its auto mission and flying further away from home, whereby in the scenario it has autonomously recovered from a power failure and is therefore high risk for another power failure." (Expected state change)

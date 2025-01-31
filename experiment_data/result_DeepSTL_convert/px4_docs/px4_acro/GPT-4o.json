@@ -1,0 +1,46 @@
+{
+    "temporal_logic_formulars": [
+        {
+            "section-id": 1,
+            "sentence-id": 3,
+            "sentence": "When sticks are centered the vehicle will stop rotating, but remain in its current orientation (not necessarily level) and moving according to its current momentum.",
+            "tl": "always ( estickscentered == edvehictrotingrt ) or not ( itscurentintation > 1 neces == nesaresaresarslilyeve ) and mocodn == mtvetitgitsicsacsicsacorgre )"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 6,
+            "sentence": "Position of RC stick maps to the rate of rotation of vehicle in that orientation.",
+            "tl": "always ( PositionRCstickmaps == raterotationvehicle = ore -> oreicle == orienvtntatilonlion )"
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 1,
+            "sentence": "The roll, pitch and yaw sticks control the rate of angular rotation around the respective axes and throttle is passed directly to control allocation.",
+            "tl": "always ( rollpitc == hawsticksontrar == tangrolarotareatSr ) and rsepep == tivepVseptivepaxedepsedrtlosep == lhctlocSsedrtlocep ) -> trtrtredepasedilectyctlo == coconltolrlatedlrlocalsedlialecato"
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 2,
+            "sentence": "When sticks are centered the vehicle will stop rotating, but remain in its current orientation (on its side, inverted, or whatever) and moving according to its current momentum.",
+            "tl": "always ( estickscentered == edvehictrotatingbut = itscurentinret -> ( tatintion > itSei == tsatsieinvereinvrte ) and ( whatevrdn == gitsatscocredngitmreretmngitmng < gitmstretmre ) )"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 1,
+            "sentence": "RC Roll/Pitch/Yaw (RPY) stick inputs control the rate of angular rotation around the respective axes.",
+            "tl": "always ( RCRollPitchYawRPYstic == stcontrolrateangulrota == anrotionr )"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 2,
+            "sentence": "Throttle is passed directly to control allocation.",
+            "tl": "always ( Throtlepsedidredirectly == controlallllocation )"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 8,
+            "sentence": "RC input is sent directly to control allocation.",
+            "tl": "always ( RCinputsentdirectly == controlallllocation )"
+        }
+    ]
+}

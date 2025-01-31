@@ -1,0 +1,38 @@
+I'll extract the specifications from the document and express them using Metric Temporal Logic (MTL) formulas. Then, I'll format the converted specifications in JSON as requested.
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(turtle_mode_active → (throttle = 0))",
+            "explanation": "Globally, if Turtle Mode is active, then the throttle must be zero. This corresponds to the specification: 'Turtle mode cannot be entered unless throttle is zero'."
+        },
+        {
+            "formula": "G(turtle_mode_active ∧ ¬motors_armed → notify_leds_flashing)",
+            "explanation": "Globally, when Turtle Mode is active and motors are not armed, the notify LEDs should be flashing. This represents: 'Upon entry to turtle mode the motors stay disarmed, but the notify LEDs flash'."
+        },
+        {
+            "formula": "G(turtle_mode_active ∧ (throttle > 0) → motors_armed)",
+            "explanation": "Globally, when Turtle Mode is active and throttle is raised above zero, the motors should be armed. This corresponds to: 'Raising the throttle, the motors arm'."
+        },
+        {
+            "formula": "G(turtle_mode_active ∧ motors_armed ∧ (throttle > 0) → motors_spinning)",
+            "explanation": "Globally, when Turtle Mode is active, motors are armed, and throttle is above zero, the motors should be spinning. This represents: 'Motors spin only when throttle is raised'."
+        },
+        {
+            "formula": "G(turtle_mode_active ∧ (throttle = 0) → ¬motors_armed)",
+            "explanation": "Globally, when Turtle Mode is active and throttle is lowered to zero, the motors should disarm. This corresponds to: 'Lowering throttle to zero disarms the motors'."
+        },
+        {
+            "formula": "G(turtle_mode_active ∧ (|roll| > 0 ∨ |pitch| > 0) → F(adjacent_motors_reversed))",
+            "explanation": "Globally, when Turtle Mode is active and either roll or pitch is non-zero, eventually adjacent motors should be reversed. This represents: 'Moving the roll and/or pitch stick of the transmitter away from center will reverse and spin up the designated pair of motors'."
+        },
+        {
+            "formula": "G(dshot_capable_escs ∧ (SERVO_DSHOT_ESC > 0) ∧ (MOT_PWM_TYPE = DSHOT))",
+            "explanation": "Globally, DShot capable ESCs are required, SERVO_DSHOT_ESC must be set to a non-zero value, and MOT_PWM_TYPE must be set to a DSHOT value. This corresponds to the requirements for Turtle Mode to function."
+        }
+    ]
+}
+```
+
+These MTL formulas capture the key specifications of the Turtle Mode as described in the document. They formalize the conditions for entering Turtle Mode, the behavior of motors and LEDs in this mode, and the requirements for the mode to function properly.

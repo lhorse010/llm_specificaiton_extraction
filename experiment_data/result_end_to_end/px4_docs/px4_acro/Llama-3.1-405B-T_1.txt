@@ -1,0 +1,38 @@
+After carefully reading the document, I extracted the specifications that the vehicle needs to meet in Acro Mode (Multicopter). Here are the specifications expressed using Metric Temporal Logic (MTL) formulas:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(sticks_centered → X(¬vehicle_rotating))",
+            "explanation": "When the sticks are centered, the vehicle will stop rotating in the next time step."
+        },
+        {
+            "formula": "G(sticks_centered → vehicle_maintains_orientation)",
+            "explanation": "When the sticks are centered, the vehicle will maintain its current orientation."
+        },
+        {
+            "formula": "G(sticks_centered → vehicle_moves_by_momentum)",
+            "explanation": "When the sticks are centered, the vehicle will move according to its current momentum."
+        },
+        {
+            "formula": "G(RC_RPY_input → X(vehicle_rotates_at_rate))",
+            "explanation": "When the RC RPY stick inputs are given, the vehicle will rotate at the corresponding rate in the next time step."
+        },
+        {
+            "formula": "G(throttle_input → X(throttle_passed_to_control_allocation))",
+            "explanation": "When the throttle input is given, the throttle will be passed directly to control allocation in the next time step."
+        },
+        {
+            "formula": "G(manual_control_input → X(vehicle_responds_to_input))",
+            "explanation": "When manual control input is given, the vehicle will respond to the input in the next time step."
+        },
+        {
+            "formula": "G(RC_stick_input → X(vehicle_rotates_at_mapped_rate))",
+            "explanation": "When the RC stick input is given, the vehicle will rotate at the rate mapped to the stick input in the next time step."
+        }
+    ]
+}
+```
+
+Note that I excluded vague specifications and focused on clear and specific requirements. I also used the MTL operators to express the temporal relationships between the inputs and the vehicle's behavior.

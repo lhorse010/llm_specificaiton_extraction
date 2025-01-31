@@ -1,0 +1,72 @@
+[
+  {
+    "sentence": "While stabilize mode does not necessarily require GPS, switching to RTL in case of emergency does.",
+    "formula": "G(¬S → ¬G) ∧ G(E → R)",
+    "explanation": "Here, S represents the stabilize mode, G represents GPS, E represents an emergency, and R represents switching to RTL. The formula states that stabilize mode does not require GPS, but in case of an emergency, switching to RTL is necessary."
+  },
+  {
+    "sentence": "Make sure you do have a reliable position estimate prior to arming, most commonly provided by 3D GPS fix with sufficient HDOP.",
+    "formula": "G(A → (P ∧ H))",
+    "explanation": "Here, A represents arming, P represents a reliable position estimate, and H represents sufficient HDOP. The formula states that before arming, a reliable position estimate with sufficient HDOP is required."
+  },
+  {
+    "sentence": "1.Pilot's roll and pitch input control the lean angle of the copter.",
+    "formula": "G((R ∧ P) → L)",
+    "explanation": "Here, R represents the pilot's roll input, P represents the pilot's pitch input, and L represents the lean angle of the copter. The formula states that the pilot's roll and pitch input control the lean angle of the copter."
+  },
+  {
+    "sentence": "When the pilot releases the roll and pitch sticks the vehicle automatically levels itself.",
+    "formula": "G((¬R ∧ ¬P) → F(L))",
+    "explanation": "Here, R represents the pilot's roll input, P represents the pilot's pitch input, and L represents the vehicle leveling itself. The formula states that when the pilot releases the roll and pitch sticks, the vehicle will eventually level itself."
+  },
+  {
+    "sentence": "2.Pilot will need to regularly input roll and pitch commands to keep the vehicle in place as it is pushed around by the wind.",
+    "formula": "G(W → (R ∨ P))",
+    "explanation": "Here, W represents the wind pushing the vehicle, R represents the pilot's roll input, and P represents the pilot's pitch input. The formula states that when the wind pushes the vehicle, the pilot needs to input roll or pitch commands to keep the vehicle in place."
+  },
+  {
+    "sentence": "3.Pilot's yaw input controls the rate of change of the heading.",
+    "formula": "G(Y → H')",
+    "explanation": "Here, Y represents the pilot's yaw input, and H' represents the rate of change of the heading. The formula states that the pilot's yaw input controls the rate of change of the heading."
+  },
+  {
+    "sentence": "When the pilot releases the yaw stick the vehicle will maintain its current heading.",
+    "formula": "G(¬Y → G(H))",
+    "explanation": "Here, Y represents the pilot's yaw input, and H represents the vehicle's current heading. The formula states that when the pilot releases the yaw stick, the vehicle will maintain its current heading."
+  },
+  {
+    "sentence": "4.Pilot's throttle input controls the average motor speed meaning that constant adjustment of the throttle is required to maintain altitude.",
+    "formula": "G(T → S')",
+    "explanation": "Here, T represents the pilot's throttle input, and S' represents the average motor speed. The formula states that the pilot's throttle input controls the average motor speed, requiring constant adjustment to maintain altitude."
+  },
+  {
+    "sentence": "If the pilot puts the throttle completely down the motors will go to their minimum rate (MOT_SPIN_ARMED) and if the vehicle is flying it will lose attitude control and tumble.",
+    "formula": "G((T = 0) → (M ∧ (F → (¬A ∧ T'))) )",
+    "explanation": "Here, T represents the pilot's throttle input, M represents the motors' minimum rate, F represents the vehicle flying, A represents attitude control, and T' represents the vehicle tumbling. The formula states that if the pilot puts the throttle completely down, the motors will go to their minimum rate, and if the vehicle is flying, it will lose attitude control and tumble."
+  },
+  {
+    "sentence": "5.The throttle sent to the motors is automatically adjusted based on the tilt angle of the vehicle (i.e. increased as the vehicle tilts over more) to reduce the compensation the pilot must do as the vehicle's attitude changes.",
+    "formula": "G(V → (T' = f(θ)))",
+    "explanation": "Here, V represents the vehicle's tilt angle, T' represents the adjusted throttle, and f(θ) represents the function adjusting the throttle based on the tilt angle. The formula states that the throttle sent to the motors is automatically adjusted based on the tilt angle of the vehicle to reduce the compensation the pilot must do as the vehicle's attitude changes."
+  },
+  {
+    "sentence": "ANGLE_MAX controls the maximum lean angle which by default is 4500 (i.e. 45 degrees)",
+    "formula": "G(ANGLE_MAX = 4500 → LEAN_ANGLE ≤ 4500)",
+    "explanation": "Here, ANGLE_MAX represents the maximum lean angle, and LEAN_ANGLE represents the current lean angle. The formula states that globally, if ANGLE_MAX is 4500, then the lean angle is less than or equal to 4500."
+  },
+  {
+    "sentence": "ANGLE_RATE_MAX controls the maximum requested rotation rate in the roll and pitch axis which by default is 18000 (180deg/sec).",
+    "formula": "G(ANGLE_RATE_MAX = 18000 → ROTATION_RATE ≤ 18000)",
+    "explanation": "Here, ANGLE_RATE_MAX represents the maximum requested rotation rate, and ROTATION_RATE represents the current rotation rate. The formula states that globally, if ANGLE_RATE_MAX is 18000, then the rotation rate is less than or equal to 18000."
+  },
+  {
+    "sentence": "ACRO_Y_RATE controls how quickly copter rotates based on a pilot's yaw input.",
+    "formula": "G(ACRO_Y_RATE > 0 → ∃t (YAW_INPUT → F[0, t](ROTATION_RATE > 0)))",
+    "explanation": "Here, ACRO_Y_RATE represents the rate at which the copter rotates based on the pilot's yaw input, YAW_INPUT represents the pilot's yaw input, and ROTATION_RATE represents the current rotation rate. The formula states that globally, if ACRO_Y_RATE is greater than 0, then there exists a time t such that if the pilot provides a yaw input, the copter will eventually rotate at a rate greater than 0 within time t."
+  },
+  {
+    "sentence": "The default of 4.5 commands a 200 deg/sec rate of rotation when the yaw stick is held fully left or right.",
+    "formula": "G(ACRO_Y_RATE = 4.5 → (YAW_STICK_LEFT ∨ YAW_STICK_RIGHT) → ROTATION_RATE = 200)",
+    "explanation": "Here, ACRO_Y_RATE represents the rate at which the copter rotates based on the pilot's yaw input, YAW_STICK_LEFT and YAW_STICK_RIGHT represent the yaw stick being held fully left or right, and ROTATION_RATE represents the current rotation rate. The formula states that globally, if ACRO_Y_RATE is 4.5, then if the yaw stick is held fully left or right, the rotation rate is 200 deg/sec."
+  }
+]

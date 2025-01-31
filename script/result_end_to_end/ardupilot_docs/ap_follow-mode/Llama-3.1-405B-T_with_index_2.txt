@@ -1,0 +1,62 @@
+[
+  {
+    "index": 0,
+    "formula": "G(FOLL_ENABLE = 1 → X(Follow Mode Activated))",
+    "explanation": "If FOLL_ENABLE is set to 1, the vehicle will activate Follow Mode in the next time step."
+  },
+  {
+    "index": 1,
+    "formula": "G(Follow Mode Activated → G(Altitude Hold Controller Activated))",
+    "explanation": "When Follow Mode is activated, the altitude hold controller will be activated globally."
+  },
+  {
+    "index": 2,
+    "formula": "G(Altitude Hold Controller Activated → G(|Altitude Error| < 10% of mid-throttle))",
+    "explanation": "When the altitude hold controller is activated, the vehicle will maintain its current altitude within 10% of mid-throttle globally."
+  },
+  {
+    "index": 3,
+    "formula": "G(Follow Mode Activated → G(|Vertical Speed| ≤ 2.5m/s))",
+    "explanation": "When Follow Mode is activated, the vehicle's vertical speed will be limited to 2.5m/s globally."
+  },
+  {
+    "index": 4,
+    "formula": "G(Follow Mode Activated → G(Acceleration = PILOT_ACCEL_Z))",
+    "explanation": "When Follow Mode is activated, the vehicle's acceleration will be set to PILOT_ACCEL_Z globally."
+  },
+  {
+    "index": 5,
+    "formula": "G(FOLL_SYSID ≠ 0 → G(Follow Lead Vehicle with MAVLink system id FOLL_SYSID))",
+    "explanation": "If FOLL_SYSID is not equal to 0, the vehicle will follow the lead vehicle with the specified MAVLink system id globally."
+  },
+  {
+    "index": 6,
+    "formula": "G(FOLL_SYSID = 0 → G(Follow First Vehicle Seen))",
+    "explanation": "If FOLL_SYSID is equal to 0, the vehicle will follow the first vehicle seen globally."
+  },
+  {
+    "index": 7,
+    "formula": "G(Follow Mode Activated → G(Distance to Lead Vehicle ≤ FOLL_DIST_MAX))",
+    "explanation": "When Follow Mode is activated, the vehicle will maintain a distance to the lead vehicle within FOLL_DIST_MAX globally."
+  },
+  {
+    "index": 8,
+    "formula": "G(Follow Mode Activated → G(Offset from Lead Vehicle = (FOLL_OFS_X, FOLL_OFS_Y, FOLL_OFS_Z)))",
+    "explanation": "When Follow Mode is activated, the vehicle will maintain an offset from the lead vehicle equal to (FOLL_OFS_X, FOLL_OFS_Y, FOLL_OFS_Z) globally."
+  },
+  {
+    "index": 9,
+    "formula": "G(FOLL_YAW_BEHAVE = 0 → G(Follow Lead Vehicle's Heading))",
+    "explanation": "If FOLL_YAW_BEHAVE is equal to 0, the vehicle will follow the lead vehicle's heading globally."
+  },
+  {
+    "index": 10,
+    "formula": "G(FOLL_YAW_BEHAVE = 1 → G(Follow Lead Vehicle's Position))",
+    "explanation": "If FOLL_YAW_BEHAVE is equal to 1, the vehicle will follow the lead vehicle's position globally."
+  },
+  {
+    "index": 11,
+    "formula": "G(FOLL_OPTIONS bit 0 = 1 → G(Gimbal / Mount Controls follow Target Vehicle))",
+    "explanation": "If FOLL_OPTIONS bit 0 is equal to 1, the Gimbal / Mount Controls will follow the target vehicle globally."
+  }
+]

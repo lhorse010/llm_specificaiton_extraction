@@ -1,0 +1,52 @@
+[
+  {
+    "sentence": "A good GPS lock, low magnetic interference on the compass and low vibrations are all important in achieving good loiter performance.",
+    "formula": "G(GPS ∧ ¬M ∧ ¬V → P)",
+    "explanation": "Here, GPS represents a good GPS lock, M represents magnetic interference on the compass, V represents vibrations, and P represents good loiter performance. The formula states that globally, if a good GPS lock is maintained and there is no magnetic interference and no vibrations, then good loiter performance is achieved."
+  },
+  {
+    "sentence": "When the pilot releases the sticks the copter will slow to a stop.",
+    "formula": "G(R → F(S))",
+    "explanation": "Here, R represents the pilot releasing the sticks, and S represents the copter slowing to a stop. The formula states that globally, if the pilot releases the sticks, then eventually the copter will slow to a stop."
+  },
+  {
+    "sentence": "The vehicle can be armed in Loiter mode but only once the GPS has 3D lock and the HDOP has dropped below 1.4.",
+    "formula": "G(GPS ∧ H → A)",
+    "explanation": "Here, GPS represents the GPS having 3D lock, H represents the HDOP dropping below 1.4, and A represents the vehicle being armed in Loiter mode. The formula states that globally, if the GPS has 3D lock and the HDOP has dropped below 1.4, then the vehicle can be armed in Loiter mode."
+  },
+  {
+    "sentence": "1.LOIT_SPEED: max horizontal speed in cm/s (i.e. 1250 = 12.5m/s)",
+    "formula": "G(S ≤ 1250)",
+    "explanation": "Here, S represents the horizontal speed. The formula states that globally, the horizontal speed is less than or equal to 1250 cm/s."
+  },
+  {
+    "sentence": "2.LOIT_ACC_MAX: max acceleration in cm/s/s.",
+    "formula": "G(A ≤ M)",
+    "explanation": "Here, A represents the acceleration, and M represents the maximum acceleration. The formula states that globally, the acceleration is less than or equal to the maximum acceleration."
+  },
+  {
+    "sentence": "3.LOIT_ANG_MAX: max lean angle in degrees (i.e. 30deg).",
+    "formula": "G(L ≤ 30)",
+    "explanation": "Here, L represents the lean angle. The formula states that globally, the lean angle is less than or equal to 30 degrees."
+  },
+  {
+    "sentence": "4.LOIT_BRK_ACCEL: max acceleration in cm/s/s while braking (i.e. pilot has moved sticks to center).",
+    "formula": "G(B → A ≤ M)",
+    "explanation": "Here, B represents the pilot moving the sticks to center (braking), A represents the acceleration, and M represents the maximum acceleration. The formula states that globally, if the pilot is braking, then the acceleration is less than or equal to the maximum acceleration."
+  },
+  {
+    "sentence": "5.LOIT_BRK_DELAY: the delay in seconds before braking starts once the pilot has centered the sticks",
+    "formula": "G(B → F[D, D](S))",
+    "explanation": "Here, B represents the pilot moving the sticks to center (braking), D represents the delay, and S represents the braking starting. The formula states that globally, if the pilot is braking, then after a delay of D seconds, the braking will start."
+  },
+  {
+    "sentence": "7.PSC_POSXY_P: (shown as \"Position XY (Dist to Speed)\" at the top right of the screen shot above) converts the horizontal position error (i.e difference between the desired position and the actual position) to a desired speed towards the target position.",
+    "formula": "G(E → S)",
+    "explanation": "Here, E represents the horizontal position error, and S represents the desired speed. The formula states that globally, if there is a horizontal position error, then a desired speed towards the target position is generated."
+  },
+  {
+    "sentence": "8.PSC_VELXY_P (shown as \"Velocity XY (Vel to Accel)\") converts the desired speed towards the target to a desired acceleration.",
+    "formula": "G(S → A)",
+    "explanation": "Here, S represents the desired speed, and A represents the desired acceleration. The formula states that globally, if a desired speed towards the target is generated, then a desired acceleration is generated."
+  }
+]

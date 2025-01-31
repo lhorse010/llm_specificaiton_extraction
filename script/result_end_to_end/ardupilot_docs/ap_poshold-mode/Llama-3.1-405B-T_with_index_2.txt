@@ -1,0 +1,37 @@
+[
+  {
+    "index": 0,
+    "formula": "G(good_GPS_position ∧ low_magnetic_interference ∧ low_vibrations → maintain_current_location ∧ maintain_current_heading ∧ maintain_current_altitude)",
+    "explanation": "The vehicle should always maintain its current location, heading, and altitude when GPS position is good, magnetic interference is low, and vibrations are low."
+  },
+  {
+    "index": 1,
+    "formula": "G(pilot_stick_input → (lean_angle ≤ 45 ∨ lean_angle = ANGLE_MAX))",
+    "explanation": "The vehicle's lean angle should never exceed 45 degrees or the value set by the ANGLE_MAX parameter when the pilot is controlling the vehicle."
+  },
+  {
+    "index": 2,
+    "formula": "G(pilot_releases_stick → F(lean_angle = 0))",
+    "explanation": "When the pilot releases the stick, the vehicle should eventually return to a lean angle of 0 degrees."
+  },
+  {
+    "index": 3,
+    "formula": "G(altitude_control_stick_input → change_altitude)",
+    "explanation": "The vehicle's altitude should change when the pilot uses the altitude control stick."
+  },
+  {
+    "index": 4,
+    "formula": "G(yaw_control_stick_input → change_heading)",
+    "explanation": "The vehicle's heading should change when the pilot uses the yaw control stick."
+  },
+  {
+    "index": 5,
+    "formula": "¬(armed ∧ ¬(GPS_3D_lock ∧ HDOP ≤ 2.0))",
+    "explanation": "The vehicle should not be armed unless GPS has a 3D lock and HDOP is 2.0 or lower."
+  },
+  {
+    "index": 6,
+    "formula": "G((PHLD_BRAKE_ANGLE > 0 ∧ PHLD_BRAKE_RATE > 0) → (lean_angle ≤ PHLD_BRAKE_ANGLE ∨ rotate_back_to_max_angle))",
+    "explanation": "The vehicle's lean angle should not exceed the value set by the PHLD_BRAKE_ANGLE parameter, and the vehicle should rotate back to the maximum angle at a rate set by the PHLD_BRAKE_RATE parameter."
+  }
+]

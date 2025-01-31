@@ -1,0 +1,42 @@
+I'll extract the specifications from the document and express them using Metric Temporal Logic (MTL) formulas. Then, I'll format the results in JSON as requested.
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(stick_centered → (X(vehicle_braking) ∧ X(vehicle_leveling) ∧ X(position_locked)))",
+            "explanation": "Globally, when the control sticks are centered, in the next state the vehicle will brake, level, and be locked to a position in 3D space."
+        },
+        {
+            "formula": "G(full_stick_deflection → F(velocity = MPC_VEL_MANUAL))",
+            "explanation": "Globally, when there's full stick deflection, eventually the vehicle will reach the final velocity MPC_VEL_MANUAL."
+        },
+        {
+            "formula": "G(landed ∧ (throttle > 62.5%) → X(takeoff))",
+            "explanation": "Globally, when the vehicle is landed and the throttle stick is raised above 62.5%, in the next state the vehicle will take off."
+        },
+        {
+            "formula": "G(on_ground ∧ throttle_low → F(disarm))",
+            "explanation": "Globally, when the vehicle is on the ground and throttle is low, eventually it will disarm."
+        },
+        {
+            "formula": "G(position_estimate_low → X(failsafe_triggered))",
+            "explanation": "Globally, when the position estimate falls below acceptable levels, in the next state a failsafe will be triggered."
+        },
+        {
+            "formula": "G((roll_pitch_in_deadzone ∧ throttle_in_deadzone) → X(position_hold))",
+            "explanation": "Globally, when roll, pitch, and throttle sticks are within the deadzone (MPC_HOLD_DZ), in the next state the vehicle will hold its position."
+        },
+        {
+            "formula": "G(¬centered_sticks → (roll_pitch_control_acceleration ∧ throttle_controls_ascent_descent ∧ yaw_controls_rotation))",
+            "explanation": "Globally, when sticks are not centered, roll/pitch control acceleration, throttle controls ascent/descent, and yaw controls rotation."
+        },
+        {
+            "formula": "G(manual_control_input ∧ global_position_estimate)",
+            "explanation": "Globally, manual control input and global position estimate are required for Position Mode operation."
+        }
+    ]
+}
+```
+
+These MTL formulas capture the key specifications for the Position Mode (Multicopter) as described in the document. They cover aspects such as vehicle behavior when sticks are centered or deflected, takeoff conditions, landing and disarming procedures, failsafe triggers, and general operational requirements.

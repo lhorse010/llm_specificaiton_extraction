@@ -1,0 +1,52 @@
+[
+  {
+    "index": 0,
+    "formula": "G(stick_centered → (level ∧ X(altitude = altitude)))",
+    "explanation": "Globally, when the sticks are centered, the vehicle will level and maintain the current altitude in the next state."
+  },
+  {
+    "index": 1,
+    "formula": "G((roll_stick ≠ 0 ∨ pitch_stick ≠ 0) → X(horizontal_movement))",
+    "explanation": "Globally, when roll or pitch sticks are not centered, the vehicle will move horizontally in the next state."
+  },
+  {
+    "index": 2,
+    "formula": "G(yaw_stick ≠ 0 → X(rotation_rate ≠ 0))",
+    "explanation": "Globally, when the yaw stick is not centered, the vehicle's rotation rate will be non-zero in the next state."
+  },
+  {
+    "index": 3,
+    "formula": "G(throttle_stick > 0.5 → X(altitude > altitude))",
+    "explanation": "Globally, when the throttle stick is above the center position, the altitude will increase in the next state."
+  },
+  {
+    "index": 4,
+    "formula": "G(throttle_stick < 0.5 → X(altitude < altitude))",
+    "explanation": "Globally, when the throttle stick is below the center position, the altitude will decrease in the next state."
+  },
+  {
+    "index": 5,
+    "formula": "G(landed ∧ throttle_stick > 0.625 → X(takeoff))",
+    "explanation": "Globally, when the vehicle is landed and the throttle stick is raised above 62.5%, the vehicle will take off in the next state."
+  },
+  {
+    "index": 6,
+    "formula": "G(¬manual_control → ¬(roll ∨ pitch ∨ yaw ∨ throttle))",
+    "explanation": "Globally, if there is no manual control input, there should be no roll, pitch, yaw, or throttle movement."
+  },
+  {
+    "index": 7,
+    "formula": "G((roll_stick ≠ 0 ∨ pitch_stick ≠ 0) → X(tilt_angle ≠ 0))",
+    "explanation": "Globally, when roll or pitch sticks are not centered, the vehicle's tilt angle will be non-zero in the next state."
+  },
+  {
+    "index": 8,
+    "formula": "G(F(wind ≠ 0) → F(drift))",
+    "explanation": "Globally, if there is wind at any point in the future, the vehicle will eventually drift."
+  },
+  {
+    "index": 9,
+    "formula": "G(lidar_sensor → F(accurate_altitude_control))",
+    "explanation": "Globally, if a LIDAR sensor is present, eventually there will be accurate altitude control."
+  }
+]

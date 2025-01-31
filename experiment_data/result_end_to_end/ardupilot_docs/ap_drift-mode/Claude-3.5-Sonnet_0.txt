@@ -1,0 +1,34 @@
+I'll extract the specifications from the document and express them using Metric Temporal Logic (MTL) formulas. Then, I'll format the converted sentences in JSON as requested.
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(manual_throttle → (motor_speed ≥ MOT_SPIN_ARMED))",
+            "explanation": "Globally, when the pilot has manual throttle control, the motor speed should always be greater than or equal to MOT_SPIN_ARMED (minimum rate)."
+        },
+        {
+            "formula": "G(drift_mode ∧ gps_signal_lost → (F(land) ∨ F(altitude_hold)))",
+            "explanation": "Globally, when in Drift Mode and GPS signal is lost, the copter will eventually either land or enter altitude hold mode, depending on the failsafe_gps_enabled setting."
+        },
+        {
+            "formula": "G(drift_mode → (F[0,2](velocity = 0) ∨ stick_input))",
+            "explanation": "Globally, when in Drift Mode, if there's no stick input, the copter's velocity will become zero within 2 seconds (acting as a speed brake)."
+        },
+        {
+            "formula": "G(drift_mode ∧ right_stick_center → F(position_hold))",
+            "explanation": "Globally, when in Drift Mode and the right stick is in the center position, the copter will eventually hold its horizontal position (with some drift allowed)."
+        },
+        {
+            "formula": "G(drift_mode → (manual_pitch_control ∧ manual_yaw_control ∧ autopilot_roll_control))",
+            "explanation": "Globally, when in Drift Mode, the pilot has manual control over pitch and yaw, while roll is controlled by the autopilot."
+        },
+        {
+            "formula": "G(drift_mode ∧ turn_input → F(coordinated_turn))",
+            "explanation": "Globally, when in Drift Mode and turn input is given, the copter will eventually perform a coordinated turn with appropriate yaw and roll."
+        }
+    ]
+}
+```
+
+These MTL formulas capture the key specifications of the Drift Mode as described in the document. They focus on the behavior of the copter in various situations, including manual throttle control, GPS signal loss, speed braking, position holding, control distribution, and turn coordination.

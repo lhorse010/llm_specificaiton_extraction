@@ -1,0 +1,91 @@
+{
+  "title": "Land Mode",
+  "sections": [
+    {
+      "section-id": 0,
+      "title": "Land Mode",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "LAND Mode attempts to bring the copter straight down and has these features:"
+        },
+        {
+          "sentence-id": 1,
+          "text": "1.descends to 10m (or until the sonar senses something below the copter) using the regular Altitude Hold controller which will descend at the speed held in the WPNAV_SPEED_DN Copter Pids screen."
+        },
+        {
+          "sentence-id": 2,
+          "text": "2.below 10m the copter should descend at the rate specified in the LAND_SPEED parameter which defaults to 50cm/s."
+        },
+        {
+          "sentence-id": 3,
+          "text": "3.Upon reaching the ground the copter will automatically shut-down the motors and disarm the copter if the pilot's throttle is at minimum."
+        },
+        {
+          "sentence-id": 4,
+          "text": "1.If the copter appears to bounce or balloon back up a couple of times before settling down and turning the props off, try lowering the LAND_SPEED parameter a bit."
+        },
+        {
+          "sentence-id": 5,
+          "text": "2.If the vehicle has GPS lock the landing controller will attempt to control its horizontal position but the pilot can adjust the target horizontal position just as in Loiter mode."
+        },
+        {
+          "sentence-id": 6,
+          "text": "3.If the vehicle does not have GPS lock the horizontal control will be as in stabilize mode so the pilot can control the roll and pitch lean angle of the copter."
+        },
+        {
+          "sentence-id": 7,
+          "text": "1.This is easily verified by looking at the Altimeter reading in your logs and seeing if it spikes or oscillates when near the ground."
+        },
+        {
+          "sentence-id": 8,
+          "text": "2.If this is a problem, move the autopilot out of prop wash effect or shield it with an appropriately ventilated enclosure."
+        },
+        {
+          "sentence-id": 9,
+          "text": "3.Success can be verified by flight test and by log results."
+        }
+      ]
+    },
+    {
+      "section-id": 1,
+      "title": "Land Mode : Note",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "Copter will recognise that it has landed if the motors are being commanded to be at low level by the vertical position controller, its climb rate remains between -20cm/s and +20cm/s, and is not accelerating for one second."
+        },
+        {
+          "sentence-id": 1,
+          "text": "It does not use the altitude to decide whether to shut off the motors except that the copter must also be below 10m above the home altitude, unless a rangefinder is being used, in which case it must be within 2m of the ground."
+        },
+        {
+          "sentence-id": 2,
+          "text": "For Traditional Heli, the low motor check in the above landing detection algorithm is replaced with a check that Collective output is below mid-position (controlled by the vertical position controller, ie in descent)."
+        },
+        {
+          "sentence-id": 3,
+          "text": "The rotor still may be at governor speed up until Motor Interlock is removed and disarming occurs."
+        },
+        {
+          "sentence-id": 4,
+          "text": "Using a Weight on Wheels (WoW) switch will increase the descent rate and accelerometer ranges that are acceptable for landing detection."
+        },
+        {
+          "sentence-id": 5,
+          "text": "This feature is enabled anytime the LGR_WOW_PIN is not disabled."
+        }
+      ]
+    },
+    {
+      "section-id": 2,
+      "title": "Land Mode : Warning",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "In any Alt Hold based mode including: Alt Hold, Loiter, Auto, AutoLand or RTL if your copters operation becomes erratic when you are close to the ground or landing (and also if any auto landing procedure results in bouncing or failure to turn off motors properly after landing) you probably have the autopilot situated such that its barometer (altimeter) is being affected by the pressure created by the copters prop-wash against the ground."
+        }
+      ]
+    }
+  ]
+}

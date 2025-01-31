@@ -1,0 +1,27 @@
+[
+  {
+    "index": 0,
+    "formula": "G(centered_sticks → (roll_angle = 0 ∧ pitch_angle = 0))",
+    "explanation": "When the control sticks are centered, the multicopter should maintain a level attitude by setting the roll and pitch angles to zero."
+  },
+  {
+    "index": 1,
+    "formula": "G(outside_center → (control_roll_pitch_angle ∧ control_yaw_rate ∧ control_throttle))",
+    "explanation": "When the control sticks are outside the center, they should control the roll and pitch angles, yaw rate, and throttle for movement and altitude."
+  },
+  {
+    "index": 2,
+    "formula": "G(centered_sticks → F(hover_in_place))",
+    "explanation": "When the control sticks return to the center, the multicopter should eventually hover in place, maintaining altitude if no external forces are applied."
+  },
+  {
+    "index": 3,
+    "formula": "G(manual_input → autopilot_assist)",
+    "explanation": "Manual control input requires autopilot assistance to stabilize the attitude and rotation rate of the multicopter."
+  },
+  {
+    "index": 4,
+    "formula": "G(¬wind_compensation)",
+    "explanation": "The autopilot does not compensate for drift due to wind, so this behavior must be acknowledged."
+  }
+]

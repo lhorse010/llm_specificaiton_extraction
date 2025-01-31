@@ -1,0 +1,81 @@
+Based on the provided document, I have extracted the specifications and expressed them using Metric Temporal Logic (MTL) formulas. Here are the results in the required JSON format:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(armed → F(mission_started))",
+            "explanation": "The vehicle must be armed before the mission can be started."
+        },
+        {
+            "formula": "G(mission_started → G(global_3d_position_estimate))",
+            "explanation": "A global 3D position estimate is required for the mission to start and continue."
+        },
+        {
+            "formula": "G(no_mission → (flying → G(hold)))",
+            "explanation": "If no mission is stored and the vehicle is flying, it will hold."
+        },
+        {
+            "formula": "G(no_mission → (landed → G(wait)))",
+            "explanation": "If no mission is stored and the vehicle is landed, it will wait."
+        },
+        {
+            "formula": "G(mission_stored → (flying → F(execute_mission)))",
+            "explanation": "If a mission is stored and the vehicle is flying, it will execute the mission."
+        },
+        {
+            "formula": "G(mission_stored → (landed → F(execute_mission)))",
+            "explanation": "If a mission is stored and the vehicle is landed, it will execute the mission."
+        },
+        {
+            "formula": "G(mission_paused → (switch_to_other_mode → G(pause_mission)))",
+            "explanation": "If the mission is paused and the vehicle switches to another mode, the mission will remain paused."
+        },
+        {
+            "formula": "G(mission_paused → (resume_mission → G(resume_from_last_waypoint)))",
+            "explanation": "If the mission is paused and then resumed, the vehicle will resume from the last waypoint."
+        },
+        {
+            "formula": "G(takeoff_item → F(ascend_to_min_altitude))",
+            "explanation": "If a TAKEOFF mission item is encountered, the vehicle will ascend to the minimum takeoff altitude."
+        },
+        {
+            "formula": "G(no_takeoff_item → F(ascend_to_min_altitude))",
+            "explanation": "If no TAKEOFF mission item is encountered, the vehicle will ascend to the minimum takeoff altitude."
+        },
+        {
+            "formula": "G(mission_feasibility_checks → G(checks_pass → F(start_mission)))",
+            "explanation": "If the mission feasibility checks pass, the mission can be started."
+        },
+        {
+            "formula": "G(mission_feasibility_checks → G(checks_fail → F(prevent_start_mission)))",
+            "explanation": "If the mission feasibility checks fail, the mission cannot be started."
+        }
+    ]
+}
+```
+
+Note that I have used the following abbreviations in the MTL formulas:
+
+* `armed`: The vehicle is armed.
+* `mission_started`: The mission has started.
+* `global_3d_position_estimate`: A global 3D position estimate is available.
+* `no_mission`: No mission is stored.
+* `flying`: The vehicle is flying.
+* `landed`: The vehicle is landed.
+* `hold`: The vehicle is holding.
+* `wait`: The vehicle is waiting.
+* `mission_stored`: A mission is stored.
+* `execute_mission`: The vehicle is executing the mission.
+* `mission_paused`: The mission is paused.
+* `pause_mission`: The mission is paused.
+* `resume_mission`: The mission is resumed.
+* `resume_from_last_waypoint`: The vehicle resumes from the last waypoint.
+* `takeoff_item`: A TAKEOFF mission item is encountered.
+* `ascend_to_min_altitude`: The vehicle ascends to the minimum takeoff altitude.
+* `no_takeoff_item`: No TAKEOFF mission item is encountered.
+* `mission_feasibility_checks`: The mission feasibility checks are performed.
+* `checks_pass`: The mission feasibility checks pass.
+* `checks_fail`: The mission feasibility checks fail.
+* `start_mission`: The mission can be started.
+* `prevent_start_mission`: The mission cannot be started.

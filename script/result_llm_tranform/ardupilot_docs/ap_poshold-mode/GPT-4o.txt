@@ -1,0 +1,27 @@
+[
+  {
+    "sentence": "When switched on, PosHold mode will automatically attempts to maintain the current location, heading and altitude.",
+    "formula": "G(SWITCH_ON → (G(LOC) ∧ G(HEAD) ∧ G(ALT)))",
+    "explanation": "Here, 'SWITCH_ON' represents the system being switched on. The formula states that globally, if the system is switched on, then it must globally maintain location (LOC), heading (HEAD), and altitude (ALT)."
+  },
+  {
+    "sentence": "Good GPS position, low magnetic interference on the compass and low vibrations are all important in achieving good loiter performance.",
+    "formula": "G((GPS ∧ ¬MAG_INT ∧ ¬VIB) → LOITER)",
+    "explanation": "This formula uses 'GPS' for good GPS position, 'MAG_INT' for magnetic interference, and 'VIB' for vibrations. It states that globally, having a good GPS position, low magnetic interference, and low vibrations together imply good loiter performance (LOITER)."
+  },
+  {
+    "sentence": "You may arm in PosHold mode but only once the GPS has 3D lock and the HDOP has dropped to 2.0 or lower.",
+    "formula": "G((GPS_LOCK ∧ HDOP_LOW) → ARM)",
+    "explanation": "Here, 'GPS_LOCK' represents the GPS having a 3D lock, and 'HDOP_LOW' indicates the HDOP being 2.0 or lower. The formula means that globally, you can only arm (ARM) if the GPS has a 3D lock and the HDOP is sufficiently low."
+  },
+  {
+    "sentence": "The maximum brake-angle can be set with the PHLD_BRAKE_ANGLE parameter (i.e. 3000 = the vehicle will lean back up to 30 degrees).",
+    "formula": "G(PHLD_BRAKE_ANGLE → BRAKE_ANGLE_MAX)",
+    "explanation": "This formula indicates that globally, the parameter 'PHLD_BRAKE_ANGLE' determines the 'BRAKE_ANGLE_MAX', which is the maximum angle the vehicle can lean back."
+  },
+  {
+    "sentence": "The speed the vehicle rotates back to the maximum angle can be set with the PHLD_BRAKE_RATE parameter (i.e. 8 = rotates back at 8 degrees per second).",
+    "formula": "G(PHLD_BRAKE_RATE → ROTATE_SPEED_MAX)",
+    "explanation": "Here, 'PHLD_BRAKE_RATE' sets the 'ROTATE_SPEED_MAX', meaning globally, the parameter determines the maximum speed at which the vehicle rotates back to the specified angle."
+  }
+]

@@ -1,0 +1,22 @@
+```json
+{
+    "specifications": [
+        {
+            "formula": "G((turn_direction = left ∨ turn_direction = right) → (activation = true))",
+            "explanation": "The blind spot module activates when the vehicle's turn direction is either left or right."
+        },
+        {
+            "formula": "G((object_in_detection_area ∧ object_predicted_path_in_conflict_area) → X(stop_state))",
+            "explanation": "The vehicle transitions to the stop state if an object is detected in both the detection and conflict areas."
+        },
+        {
+            "formula": "G((pass_judge_line ∧ ¬object_in_detection_area ∧ ¬object_predicted_path_in_conflict_area) → ¬X(stop_state))",
+            "explanation": "The stop judgment is not executed if the pass judge line is crossed and no object is in the detection or conflict area."
+        },
+        {
+            "formula": "G(stop_state → F(go_state ∧ duration ≥ 2s))",
+            "explanation": "Once in the stop state, the system remains there until the go condition is met continuously for at least 2 seconds to prevent chattering."
+        }
+    ]
+}
+```

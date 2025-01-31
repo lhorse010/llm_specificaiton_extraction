@@ -1,0 +1,42 @@
+[
+  {
+    "index": 0,
+    "formula": "G(throttle_centered → X(altitude_constant))",
+    "explanation": "Globally, if the throttle is centered, then in the next state, the altitude remains constant. This captures the requirement that when sticks are released/centered, the vehicle maintains the current altitude."
+  },
+  {
+    "index": 1,
+    "formula": "G(stick_released → X(vehicle_level))",
+    "explanation": "Globally, if the sticks are released, then in the next state, the vehicle levels. This represents the specification that when sticks are released/centered, the vehicle will level."
+  },
+  {
+    "index": 2,
+    "formula": "G(throttle > 62.5% ∧ vehicle_landed → X(vehicle_takeoff))",
+    "explanation": "Globally, if the throttle is above 62.5% and the vehicle is landed, then in the next state, the vehicle takes off. This captures the takeoff condition specified in the document."
+  },
+  {
+    "index": 3,
+    "formula": "G(¬stick_centered → (roll_pitch_control ∧ yaw_rate_control ∧ throttle_speed_control))",
+    "explanation": "Globally, if the sticks are not centered, then roll/pitch controls tilt angle, yaw controls rotation rate, and throttle controls up/down speed. This formula encapsulates the control behavior when sticks are outside the center position."
+  },
+  {
+    "index": 4,
+    "formula": "G(manual_control_input)",
+    "explanation": "Globally, manual control input is required. This represents the specification that manual control input (such as RC control or joystick) is always necessary."
+  },
+  {
+    "index": 5,
+    "formula": "G(roll_pitch_input → X(autopilot_stabilize_attitude))",
+    "explanation": "Globally, if there's roll or pitch input, then in the next state, the autopilot assists in stabilizing the attitude. This captures the assistance provided by the autopilot for roll and pitch control."
+  },
+  {
+    "index": 6,
+    "formula": "G(yaw_input → X(autopilot_stabilize_attitude_rate))",
+    "explanation": "Globally, if there's yaw input, then in the next state, the autopilot assists in stabilizing the attitude rate. This represents the autopilot's assistance in yaw control."
+  },
+  {
+    "index": 7,
+    "formula": "G(F(wind_present) → F(vehicle_drift))",
+    "explanation": "Globally, if at some point wind is present, then at some point the vehicle will drift. This captures the behavior of the vehicle drifting in the direction of the wind."
+  }
+]

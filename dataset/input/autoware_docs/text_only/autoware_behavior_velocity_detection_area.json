@@ -1,0 +1,69 @@
+{
+  "title": "Detection Area",
+  "sections": [
+    {
+      "section-id": 0,
+      "title": "Role",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "If pointcloud is detected in a detection area defined on a map, the stop planning will be executed at the predetermined point."
+        }
+      ]
+    },
+    {
+      "section-id": 1,
+      "title": "Activation Timing",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "This module is activated when there is a detection area on the target lane."
+        }
+      ]
+    },
+    {
+      "section-id": 2,
+      "title": "Inner-workings / Algorithm",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "1.Gets a detection area and stop line from map information and confirms if there is pointcloud in the detection area"
+        },
+        {
+          "sentence-id": 1,
+          "text": "2.Inserts stop point l[m] in front of the stop line"
+        },
+        {
+          "sentence-id": 2,
+          "text": "3.Inserts a pass judge point to a point where the vehicle can stop with a max deceleration"
+        },
+        {
+          "sentence-id": 3,
+          "text": "4.Sets velocity as zero behind the stop line when the ego-vehicle is in front of the pass judge point"
+        },
+        {
+          "sentence-id": 4,
+          "text": "5.If the ego vehicle has passed the pass judge point already, it doesn’t stop and pass through."
+        }
+      ]
+    },
+    {
+      "section-id": 3,
+      "title": "Restart prevention",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "If it needs X meters (e.g. 0.5 meters) to stop once the vehicle starts moving due to the poor vehicle control performance, the vehicle goes over the stopping position that should be strictly observed when the vehicle starts to moving in order to approach the near stop point (e.g. 0.3 meters away)."
+        },
+        {
+          "sentence-id": 1,
+          "text": "This module has parameter hold_stop_margin_distance in order to prevent from these redundant restart."
+        },
+        {
+          "sentence-id": 2,
+          "text": "If the vehicle is stopped within hold_stop_margin_distance meters from stop point of the module (\\_front_to_stop_line < hold_stop_margin_distance), the module judges that the vehicle has already stopped for the module's stop point and plans to keep stopping current position even if the vehicle is stopped due to other factors."
+        }
+      ]
+    }
+  ]
+}

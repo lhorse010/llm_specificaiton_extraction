@@ -1,0 +1,107 @@
+Based on the provided document, I will annotate the sentences as specifications if they convey the following information:
+1. Requirements the system must meet for state transition.
+2. Constraints the system must adhere to.
+3. Expected post-actions the system will execute when entering a particular state.
+4. Expected state changes the system will carry out in response to specific commands or settings.
+
+Here are the annotated sentences in JSON format:
+
+```json
+{
+    "specifications": [
+        {
+            "section-id": 0,
+            "sentence-id": 1
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 2
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 3
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 0
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 1
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 3
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 4
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 6
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 7
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 8
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 10
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 11
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 13
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 14
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 15
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 16
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 17
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 18
+        }
+    ]
+}
+```
+
+The annotated sentences are:
+
+* Section 0, Sentence 1: "When the sticks are released/centered the vehicle will level and maintain the current _altitude_." (Expected post-action)
+* Section 0, Sentence 2: "If moving in the horizontal plane the vehicle will continue until any momentum is dissipated by wind resistance." (Expected state change)
+* Section 0, Sentence 3: "If the wind blows the aircraft will drift in the direction of the wind." (Expected state change)
+* Section 2, Sentence 0: "RC/manual mode like Stabilized mode but with _altitude stabilization_ (centred sticks level vehicle and hold it to fixed altitude)." (Expected post-action)
+* Section 2, Sentence 1: "The horizontal position of the vehicle can move due to wind (or pre-existing momentum)." (Expected state change)
+* Section 2, Sentence 3: "RPY sticks levels vehicle." (Expected post-action)
+* Section 2, Sentence 4: "Throttle (~50%) holds current altitude steady against wind." (Expected post-action)
+* Section 2, Sentence 6: "Roll/Pitch sticks control tilt angle in respective orientations, resulting in corresponding left-right and forward-back movement." (Expected state change)
+* Section 2, Sentence 7: "Throttle stick controls up/down speed with a predetermined maximum rate (and movement speed in other axes)." (Expected state change)
+* Section 2, Sentence 8: "Yaw stick controls rate of angular rotation above the horizontal plane." (Expected state change)
+* Section 2, Sentence 10: "When landed, the vehicle will take off if the throttle stick is raised above 62.5% percent (of the full range from bottom)." (Expected state change)
+* Section 2, Sentence 11: "4.Altitude is normally measured using a barometer, which may become inaccurate in extreme weather conditions." (Constraint)
+* Section 2, Sentence 13: "5.Manual control input is required (such as RC control, joystick)." (Constraint)
+* Section 2, Sentence 14: "Roll, Pitch: Assistance from autopilot to stabilize the attitude." (Expected post-action)
+* Section 2, Sentence 15: "Position of RC stick maps to the orientation of vehicle." (Expected state change)
+* Section 2, Sentence 16: "Throttle: Assistance from autopilot to hold position against wind." (Expected post-action)
+* Section 2, Sentence 17: "Yaw: Assistance from autopilot to stabilize the attitude rate." (Expected post-action)
+* Section 2, Sentence 18: "Position of RC stick maps to the rate of rotation of vehicle in that orientation." (Expected state change)

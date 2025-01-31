@@ -1,0 +1,34 @@
+I'll extract the specifications from the document and express them using Metric Temporal Logic (MTL) formulas as requested. Then, I'll format the results in JSON.
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(stick_centered → X(angular_rotation_rate = 0))",
+            "explanation": "Globally, if the control sticks are centered, then in the next state, the angular rotation rate around all axes should be zero."
+        },
+        {
+            "formula": "G(¬stick_centered → angular_rotation_rate ≠ 0)",
+            "explanation": "Globally, if the control sticks are not centered, then the angular rotation rate should not be zero, indicating that the vehicle is rotating."
+        },
+        {
+            "formula": "G(throttle_input = control_allocation_output)",
+            "explanation": "Globally, the throttle input should be directly passed to the control allocation output without modification."
+        },
+        {
+            "formula": "G((roll_input ∨ pitch_input ∨ yaw_input) → F(orientation_change))",
+            "explanation": "Globally, if there's an input on roll, pitch, or yaw, then eventually there will be a change in orientation."
+        },
+        {
+            "formula": "G(manual_control_input → (attitude_rate_stabilization ∧ direct_throttle_control))",
+            "explanation": "Globally, when manual control input is provided, the system should provide attitude rate stabilization and allow direct throttle control."
+        },
+        {
+            "formula": "G(stick_input → F(rotation_rate_change))",
+            "explanation": "Globally, stick input should eventually lead to a change in rotation rate, with the magnitude of change corresponding to the stick position."
+        }
+    ]
+}
+```
+
+These MTL formulas capture the key specifications of the Acro Mode for multicopters as described in the document. They formalize the behavior of the vehicle in response to stick inputs, the direct pass-through of throttle control, and the overall characteristics of the mode.

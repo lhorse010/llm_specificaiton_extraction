@@ -1,0 +1,37 @@
+[
+  {
+    "index": 0,
+    "formula": "G((Position_Slow_Mode → (velocity ≤ MC_SLOW_MAX_HVEL)) ∧ (velocity ≥ -MC_SLOW_MAX_HVEL))",
+    "explanation": "In Position Slow Mode, the vehicle's horizontal velocity is always within the limits set by MC_SLOW_MAX_HVEL."
+  },
+  {
+    "index": 1,
+    "formula": "G((Position_Slow_Mode → (vertical_velocity ≤ MC_SLOW_MAX_VVEL)) ∧ (vertical_velocity ≥ -MC_SLOW_MAX_VVEL))",
+    "explanation": "In Position Slow Mode, the vehicle's vertical velocity is always within the limits set by MC_SLOW_MAX_VVEL."
+  },
+  {
+    "index": 2,
+    "formula": "G((Position_Slow_Mode → (yaw_rate ≤ MC_SLOW_MAX_YRATE)) ∧ (yaw_rate ≥ -MC_SLOW_MAX_YRATE))",
+    "explanation": "In Position Slow Mode, the vehicle's yaw rate is always within the limits set by MC_SLOW_MAX_YRATE."
+  },
+  {
+    "index": 3,
+    "formula": "G((RC_Control_Input → (velocity ≤ max_velocity)) ∧ (velocity ≥ min_velocity))",
+    "explanation": "When using RC Control Input, the vehicle's velocity is always within the limits set by the input control."
+  },
+  {
+    "index": 4,
+    "formula": "G((MAVLink_Message → (velocity ≤ max_velocity)) ∧ (velocity ≥ min_velocity))",
+    "explanation": "When using MAVLink Message, the vehicle's velocity is always within the limits set by the message."
+  },
+  {
+    "index": 5,
+    "formula": "G(Position_Slow_Mode → (velocity ≤ MC_SLOW_MIN_HVEL) U (velocity ≤ MC_SLOW_MAX_HVEL))",
+    "explanation": "In Position Slow Mode, the vehicle's velocity is reduced to MC_SLOW_MIN_HVEL if it exceeds MC_SLOW_MAX_HVEL."
+  },
+  {
+    "index": 6,
+    "formula": "G((Position_Slow_Mode ∧ (velocity > MC_SLOW_MAX_HVEL)) → F(velocity ≤ MC_SLOW_MAX_HVEL))",
+    "explanation": "In Position Slow Mode, if the vehicle's velocity exceeds MC_SLOW_MAX_HVEL, it will eventually be reduced to MC_SLOW_MAX_HVEL."
+  }
+]

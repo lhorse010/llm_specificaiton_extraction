@@ -1,0 +1,92 @@
+[
+  {
+    "sentence": "The velocity limits can be set using parameters, from an RC Controller rotary knob, slider, or switch, or using MAVLink.",
+    "formula": "G(P ∨ R ∨ M)",
+    "explanation": "P represents setting limits via parameters, R via RC Controller, and M via MAVLink. The formula states that at all times (G), limits can be set using one of these methods."
+  },
+  {
+    "sentence": "Limits set using an RC controller override those set by MAVLink, which in turn override those set using parameters.",
+    "formula": "G((R → ¬(M ∨ P)) ∧ (¬R ∧ M → ¬P))",
+    "explanation": "This formula captures the hierarchy of limit-setting methods. At all times (G), if RC (R) is used, neither MAVLink (M) nor parameters (P) are effective. If not RC but MAVLink is used, parameters are not effective."
+  },
+  {
+    "sentence": "The limits can only be reduced below those for normal _Position_ mode.",
+    "formula": "G(L → (L ∧ (L → N)))",
+    "explanation": "L represents the current limits, and N represents normal Position mode limits. The formula states that at all times (G), if limits are set (L), they must be less than or equal to normal limits (N)."
+  },
+  {
+    "sentence": "The maximum values for slow mode horizontal velocity, vertical velocity, and yaw rate can be set using parameters.",
+    "formula": "G(P → (H ∧ V ∧ Y))",
+    "explanation": "P represents setting parameters, H is horizontal velocity, V is vertical velocity, and Y is yaw rate. The formula states that at all times (G), if parameters are set (P), it affects all three aspects (H, V, Y)."
+  },
+  {
+    "sentence": "Note that the parameters are used only if limits are not provided by from RC or MAVLink.",
+    "formula": "G(¬(R ∨ M) → P)",
+    "explanation": "This formula captures the fallback nature of parameters. At all times (G), if neither RC (R) nor MAVLink (M) limits are set, then parameters (P) are used."
+  },
+  {
+    "sentence": "If the input control is set to its highest value the vehicle will go as fast as in _Position_ mode.",
+    "formula": "G(H → F(S))",
+    "explanation": "H represents the highest input control value, and S represents speed equivalent to Position mode. The formula states that at all times (G), if the input is highest (H), then eventually (F) the speed will be as in Position mode (S)."
+  },
+  {
+    "sentence": "If the input is set to its lowest value, the vehicle maximum velocity is set to the value in the corresponding MC_SLOW_MIN_ parameter (shown in the table below).",
+    "formula": "G(L → X(M))",
+    "explanation": "L represents the lowest input value, and M represents the MC_SLOW_MIN_ parameter value. The formula states that at all times (G), if the input is lowest (L), then in the next state (X), the max velocity will be set to MC_SLOW_MIN_ (M)."
+  },
+  {
+    "sentence": "If an RC control input is mapped for an axis it has priority over all other inputs.",
+    "formula": "G(R → ¬(M ∨ P))",
+    "explanation": "R represents RC control input mapping, M represents MAVLink input, and P represents parameter input. The formula states that at all times (G), if RC is mapped (R), then neither MAVLink (M) nor parameter (P) inputs are effective."
+  },
+  {
+    "sentence": "2.Map the channel which contains the knobs position as one of the 6 auxiliary passthrough inputs by setting RC_MAP_AUXn to the corresponding RC channel number.",
+    "formula": "F(M → C)",
+    "explanation": "M represents mapping the channel, and C represents setting the RC_MAP_AUXn. The formula states that eventually (F), if mapping occurs (M), then the channel is set (C)."
+  },
+  {
+    "sentence": "3.Map that auxiliary input using the appropriate MC_SLOW_MAP_ parameter for the axis you want it to control (see table above).",
+    "formula": "F(A → P)",
+    "explanation": "A represents the auxiliary input, and P represents setting the MC_SLOW_MAP_ parameter. The formula states that eventually (F), if the auxiliary input is used (A), then the appropriate parameter is set (P)."
+  },
+  {
+    "sentence": "For example, if you want to map RC channel 8 to limit the horizontal velocity you could set RC_MAP_AUX1 to the value 8 and [MC_SLOW_MAP_HVEL][mc_slow_map_hvel] to the value 1.",
+    "formula": "G(R ∧ M → L)",
+    "explanation": "R represents setting RC_MAP_AUX1 to 8, M represents setting MC_SLOW_MAP_HVEL to 1, and L represents the mapping of RC channel 8 to limit horizontal velocity. The formula states that at all times, if R and M are true, then L must also be true."
+  },
+  {
+    "sentence": "The RC input from channel 8 then sets a horizontal velocity limit between [MC_SLOW_MIN_HVEL][mc_slow_min_hvel] and [MPC_VEL_MANUAL][mpc_vel_manual].",
+    "formula": "G(I → S)",
+    "explanation": "I represents the RC input from channel 8, and S represents setting the horizontal velocity limit within the specified range. The formula indicates that globally, whenever there's an input from channel 8, it results in setting the velocity limit."
+  },
+  {
+    "sentence": "The message can set the maximum value on any of the axes by supplying a non-NAN limit value.",
+    "formula": "G(M ∧ V → X(S))",
+    "explanation": "M represents receiving a message, V represents a non-NAN limit value, and S represents setting the maximum value on an axis. The formula states that globally, when a message is received with a non-NAN value, in the next state, the maximum value is set."
+  },
+  {
+    "sentence": "This overrides limit values set in parameters, but is ignored if the axis is mapped to an RC knob.",
+    "formula": "G((O ∧ ¬R) ∨ (¬O ∧ R))",
+    "explanation": "O represents overriding parameter values, and R represents the axis being mapped to an RC knob. The formula uses exclusive OR to capture that either the override happens (when not mapped to RC) or the RC mapping is in effect (ignoring the override)."
+  },
+  {
+    "sentence": "The value can be updated from a message at any time, and is latched until either the next message or a mode switch.",
+    "formula": "G(U → (L U (M ∨ S)))",
+    "explanation": "U represents updating the value, L represents the value being latched, M represents receiving the next message, and S represents a mode switch. The formula states that globally, when an update occurs, the value remains latched until either a new message arrives or a mode switch occurs."
+  },
+  {
+    "sentence": "You can map a rotary knob, slider, or switch, on a RC Controller to set the maximum velocity of an axis (horizontal/vertical/yaw).",
+    "formula": "G(M → F(S))",
+    "explanation": "M represents mapping a control on the RC Controller, and S represents setting the maximum velocity of an axis. The formula indicates that globally, when a mapping is done, it will eventually lead to the ability to set the maximum velocity."
+  },
+  {
+    "sentence": "You can adjust the velocity limits using the MAVLink message SET_VELOCITY_LIMITS.",
+    "formula": "G(M → X(A))",
+    "explanation": "M represents receiving a SET_VELOCITY_LIMITS MAVLink message, and A represents adjusting the velocity limits. The formula states that globally, when such a message is received, in the next immediate state, the velocity limits are adjusted."
+  },
+  {
+    "sentence": "1.Make sure you have a remote with an extra input and an extra RC channel to transmit it's position.",
+    "formula": "G(R → (E ∧ C))",
+    "explanation": "R represents having a remote, E represents having an extra input, and C represents having an extra RC channel. The formula states that globally, if you have a remote, it must have both an extra input and an extra RC channel to transmit its position."
+  }
+]

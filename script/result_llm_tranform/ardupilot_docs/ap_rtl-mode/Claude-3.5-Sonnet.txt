@@ -1,0 +1,152 @@
+[
+  {
+    "sentence": "The copter will first rise a minimum of RTL_CLIMB_MIN or to RTL_ALT, whichever is higher, before returning home.",
+    "formula": "F(R ∧ (A ∨ C) ∧ X(H))",
+    "explanation": "R represents the copter rising, A represents reaching RTL_ALT, C represents reaching RTL_CLIMB_MIN, and H represents returning home. The formula ensures that the copter rises to the higher of the two altitudes before returning home."
+  },
+  {
+    "sentence": "Under no circumstances will this altitude be below 2m.",
+    "formula": "G(¬B)",
+    "explanation": "B represents the altitude being below 2m. The formula globally ensures that this condition is never true, effectively maintaining the altitude at or above 2m at all times."
+  },
+  {
+    "sentence": "The altitude reference frame is set by either the rally point, if proceeding to one of those, or by RTL_ALT_TYPE to select relative to HOME, or Terrain.",
+    "formula": "G((P → R) ∨ (¬P → (H ∨ T)))",
+    "explanation": "P represents proceeding to a rally point, R represents using rally point as reference, H represents using HOME as reference, and T represents using Terrain as reference. The formula ensures the correct reference frame is always used based on the conditions."
+  },
+  {
+    "sentence": "If WPNAV_RFND_USE = 1 and Terrain is selected, then rangefinder will be used.",
+    "formula": "G((W ∧ T) → U)",
+    "explanation": "W represents WPNAV_RFND_USE = 1, T represents Terrain being selected, and U represents rangefinder being used. The formula ensures that whenever both conditions are met, the rangefinder is used."
+  },
+  {
+    "sentence": "If RTL is entered close to its return point, the altitude Copter climbs to may be limited to avoid unneeded climbs and descents.",
+    "formula": "G((C ∧ N) → L)",
+    "explanation": "C represents RTL being entered, N represents being close to the return point, and L represents limiting the altitude climb. The formula captures the conditional limitation on altitude based on proximity to the return point."
+  },
+  {
+    "sentence": "RTL mode requires a reliable position estimate to work properly, most commonly provided by GPS and compass.",
+    "formula": "G(R → (G ∧ M))",
+    "explanation": "R represents RTL mode being active, G represents GPS being available, and M represents compass (magnetometer) being available. The formula ensures that whenever RTL mode is active, both GPS and compass are required for proper operation."
+  },
+  {
+    "sentence": "1.RTL_ALT: The minimum altitude the copter will move to before returning to launch.",
+    "formula": "G(R → F(A ∧ X(L)))",
+    "explanation": "R represents RTL mode activation, A represents reaching RTL_ALT, and L represents returning to launch. The formula ensures that after RTL activation, the copter will eventually reach RTL_ALT before returning to launch."
+  },
+  {
+    "sentence": "Set to zero to return at the current altitude.",
+    "formula": "G((Z ∧ R) → C)",
+    "explanation": "Z represents RTL_ALT being set to zero, R represents RTL mode activation, and C represents maintaining current altitude. The formula captures the condition where setting RTL_ALT to zero results in maintaining the current altitude during return."
+  },
+  {
+    "sentence": "The return altitude can be set from 1 to 8000 centimeters.",
+    "formula": "G(S → (¬B ∧ ¬A))",
+    "explanation": "S represents setting the return altitude, B represents being below 1cm, and A represents being above 8000cm. The formula ensures that whenever the altitude is set, it's always within the specified range."
+  },
+  {
+    "sentence": "2.RTL_ALT_FINAL: The altitude the copter will move to at the final stage of \"Returning to Launch\" or after completing a Mission.",
+    "formula": "G((R ∨ M) → F(F))",
+    "explanation": "R represents 'Returning to Launch', M represents completing a Mission, and F represents reaching RTL_ALT_FINAL. The formula ensures that after either returning to launch or completing a mission, the copter will eventually reach the final altitude specified by RTL_ALT_FINAL."
+  },
+  {
+    "sentence": "Set to zero to automatically land the copter.",
+    "formula": "G(Z → F(L))",
+    "explanation": "This formula states that globally (G), if the setting is zero (Z), then eventually in the future (F), the copter will land (L). This captures the causal relationship between setting to zero and the eventual landing."
+  },
+  {
+    "sentence": "The final return altitude may be adjusted from 0 to 1000 centimeters.",
+    "formula": "G(A → (H ∧ ¬L))",
+    "explanation": "Here, A represents the altitude being within the valid range, H represents a high altitude (1000cm), and L represents a low altitude (0cm). The formula states that globally, if the altitude is adjusted (A), it implies it's between high and not low."
+  },
+  {
+    "sentence": "3.RTL_LOIT_TIME: Time in milliseconds to hover/pause above the \"Home\" position before beginning final descent.",
+    "formula": "G(R → (H U[0,60000] D))",
+    "explanation": "R represents RTL mode activation, H is hovering, and D is descent. This formula specifies that globally, when RTL is activated, the copter will hover until (U) descent begins, with a time bound of 0 to 60000 milliseconds."
+  },
+  {
+    "sentence": "The \"Loiter\" time may be adjusted from 0 to 60,000 milliseconds.",
+    "formula": "G(L → F[0,60000] ¬L)",
+    "explanation": "L represents the loiter state. This formula states that globally, if the copter enters a loiter state, it will eventually exit that state within 0 to 60,000 milliseconds."
+  },
+  {
+    "sentence": "4.WP_YAW_BEHAVIOR: Sets how the autopilot controls the \"Yaw\" during Missions and RTL.",
+    "formula": "G((M ∨ R) → (Y0 ∨ Y1 ∨ Y2))",
+    "explanation": "M represents Mission mode, R is RTL mode, and Y0, Y1, Y2 are the three yaw behaviors. This formula specifies that globally, during missions or RTL, one of the three yaw behaviors will be active."
+  },
+  {
+    "sentence": "0 = Never change Yaw.",
+    "formula": "G(Y0 → G(¬C))",
+    "explanation": "Y0 represents yaw behavior 0, and C represents yaw change. This formula states that globally, if yaw behavior 0 is active, then globally the yaw will not change."
+  },
+  {
+    "sentence": "1 = Face Next Waypoint including facing home during RTL.",
+    "formula": "G(Y1 → ((M → F) ∧ (R → H)))",
+    "explanation": "Y1 is yaw behavior 1, M is Mission mode, R is RTL mode, F is facing next waypoint, and H is facing home. This formula captures that when Y1 is active, the copter faces the next waypoint in Mission mode and faces home in RTL mode."
+  },
+  {
+    "sentence": "2 = Face Next Waypoint except for RTL (i.e. during RTL vehicle will remain pointed at its last heading)",
+    "formula": "G(Y2 → ((M → F) ∧ (R → L)))",
+    "explanation": "Y2 is yaw behavior 2, M is Mission mode, R is RTL mode, F is facing next waypoint, and L is last heading. This formula specifies that when Y2 is active, the copter faces the next waypoint in Mission mode but maintains its last heading in RTL mode."
+  },
+  {
+    "sentence": "5.LAND_SPEED: The descent speed for the final stage of landing in centimeters per second.",
+    "formula": "G(L → (S ∧ (S U G)))",
+    "explanation": "L represents the final landing stage, S is the set descent speed, and G is ground contact. This formula states that globally, during the final landing stage, a specific descent speed is maintained until ground contact is made."
+  },
+  {
+    "sentence": "The landing speed is adjustable from 20 to 200 centimeters per second.",
+    "formula": "G(A → (H ∧ ¬L))",
+    "explanation": "A represents speed adjustment, H is high speed (200 cm/s), and L is low speed (20 cm/s). This formula specifies that globally, when the landing speed is adjusted, it's between the high and low limits."
+  },
+  {
+    "sentence": "6.RTL_CLIMB_MIN: The vehicle will climb at least this many meters at the first stage of the RTL.",
+    "formula": "G(R → F(C))",
+    "explanation": "R represents the initiation of RTL mode, and C represents the vehicle climbing the minimum specified meters. The formula states that globally, whenever RTL is initiated, it will eventually lead to the minimum climb being achieved."
+  },
+  {
+    "sentence": "7.RTL_SPEED: The horizontal speed (in cm/s) at which the vehicle will return to home.",
+    "formula": "G(R → X(S))",
+    "explanation": "R represents the initiation of RTL mode, and S represents the vehicle moving at the specified RTL_SPEED. This formula indicates that globally, whenever RTL is initiated, in the next state, the vehicle will move at the specified speed."
+  },
+  {
+    "sentence": "8.RTL_CONE_SLOPE: Defines the slope of an inverted cone above home which is used to limit the amount the vehicle climbs when RTL-ing from close to home.",
+    "formula": "G(R ∧ C → L)",
+    "explanation": "R represents RTL mode, C represents close proximity to home, and L represents limited climbing. This formula states that globally, when in RTL mode and close to home, the climbing is limited according to the cone slope."
+  },
+  {
+    "sentence": "2.To use RTL, GPS lock needs to be achieved (Blue GPS LED and Blue APM LED on solid not blinking) before arming and takeoff to establish the home or launch position.",
+    "formula": "G(¬G → ¬(A ∨ T))",
+    "explanation": "G represents GPS lock, A represents arming, and T represents takeoff. This formula states that globally, if there's no GPS lock, then neither arming nor takeoff should occur, ensuring the home position is established before flight."
+  },
+  {
+    "sentence": "5.If you set the RTL_ALT to a number at other than 0 it will go to and maintain that altitude while returning.",
+    "formula": "G((R ∧ A) → F(M U H))",
+    "explanation": "R represents RTL mode, A represents non-zero RTL_ALT, M represents maintaining the specified altitude, and H represents reaching home. This formula indicates that globally, when RTL is activated with a non-zero altitude, the vehicle will eventually maintain that altitude until it reaches home."
+  },
+  {
+    "sentence": "6.RTL uses WPNAV_SPEED to determine how fast it travels.",
+    "formula": "G(R → S)",
+    "explanation": "R represents RTL mode and S represents traveling at WPNAV_SPEED. This formula states that globally, whenever RTL is active, the vehicle travels at the specified WPNAV_SPEED."
+  },
+  {
+    "sentence": "7.Once the copter arrives at the home location the copter will pause for RTL_LOIT_TIME milliseconds, timeout (AUTO_LAND), then land.",
+    "formula": "G(H → (P U (T ∧ F(L))))",
+    "explanation": "H represents arriving at home, P represents pausing, T represents timeout, and L represents landing. This formula indicates that globally, when the copter arrives home, it will pause until a timeout occurs, after which it will eventually land."
+  },
+  {
+    "sentence": "Again, 2m is the minimum return altitude.",
+    "formula": "G(R → F(A))",
+    "explanation": "R represents RTL mode and A represents altitude of at least 2m. This formula states that globally, when RTL is activated, the vehicle will eventually reach an altitude of at least 2m."
+  },
+  {
+    "sentence": "RTL will command the copter to return to the home position, meaning that it will return to the location where it was armed.",
+    "formula": "G(R → F(H))",
+    "explanation": "R represents RTL mode and H represents reaching the home position (where it was armed). This formula indicates that globally, when RTL is activated, the copter will eventually return to its home position."
+  },
+  {
+    "sentence": "When RTL mode is selected, the copter will return to the home location, or if rally points have been setup, the closet rally point.",
+    "formula": "G(R → F(H ∨ (S ∧ C)))",
+    "explanation": "This formula captures the behavior of the RTL (Return to Launch) mode. Here, R represents 'RTL mode is selected', H represents 'return to home location', S represents 'rally points have been setup', and C represents 'return to closest rally point'. The formula states that globally (G), whenever RTL mode is selected (R), it will eventually (F) lead to either returning home (H) or, if rally points are set up, returning to the closest rally point (S ∧ C). The formula uses the 'eventually' operator (F) without time bounds, as the sentence doesn't specify a time frame for the return action."
+  }
+]

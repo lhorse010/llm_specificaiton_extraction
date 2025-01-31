@@ -1,0 +1,57 @@
+Based on the provided document, I will annotate the sentences as specifications if they convey the following information:
+
+1. Requirements the system must meet for state transition.
+2. Constraints the system must adhere to.
+3. Expected post-actions the system will execute when entering a particular state.
+4. Expected state changes the system will carry out in response to specific commands or settings.
+
+Here are the annotated sentences in JSON format:
+
+```json
+{
+    "specifications": [
+        {
+            "section-id": 0,
+            "sentence-id": 2
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 3
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 8
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 9
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 10
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 11
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 12
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 0
+        }
+    ]
+}
+```
+
+Explanation:
+
+* Sentence 2 in Section 0 is annotated as a specification because it states a requirement for the system to function in Turtle Mode (DShot capable ESCs are required).
+* Sentence 3 in Section 0 is annotated as a specification because it states a requirement for the system to function in Turtle Mode (SERVO_DSHOT_ESC must be set to a non-zero value and MOT_PWM_TYPE to a DSHOT value).
+* Sentence 8 in Section 0 is annotated as a specification because it states a constraint for entering Turtle Mode (throttle must be zero).
+* Sentences 9-12 in Section 0 are annotated as specifications because they describe expected post-actions and state changes when entering and exiting Turtle Mode.
+* Sentence 0 in Section 1 is annotated as a specification because it states a constraint for the system (Turtle Mode is available for multirotors only).
+
+Note that Sentence 1 in Section 1 is not annotated as a specification because it is a warning about potential overheating issues, but it does not convey any specific requirement or constraint for the system.

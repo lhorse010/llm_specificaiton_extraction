@@ -1,0 +1,52 @@
+[
+  {
+    "section-id": 0,
+    "sentence-id": 1,
+    "sentence": "When the sticks are released/centered the vehicle will actively brake, level, and be locked to a position in 3D space — compensating for wind and other forces."
+  },
+  {
+    "section-id": 0,
+    "sentence-id": 2,
+    "sentence": "With full stick deflection the vehicle accelerates initially with MPC_ACC_HOR_MAX ramping down until it reaches the final velocity MPC_VEL_MANUAL."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 5,
+    "sentence": "5.The vehicle will lower propeller thrust, detect the ground and automatically disarm (by default)."
+  },
+  {
+    "section-id": 4,
+    "sentence-id": 1,
+    "sentence": "Centered sticks level vehicle and hold it to fixed altitude and position against wind."
+  },
+  {
+    "section-id": 4,
+    "sentence-id": 2,
+    "sentence": "1.Centered roll, pitch, throttle sticks (within RC deadzone MPC_HOLD_DZ) hold x, y, z position steady against any disturbance like wind."
+  },
+  {
+    "section-id": 4,
+    "sentence-id": 8,
+    "sentence": "When landed, the vehicle will take off if the throttle stick is raised above 62.5% percent (of the full range from bottom)."
+  },
+  {
+    "section-id": 4,
+    "sentence-id": 9,
+    "sentence": "4.Global position estimate is required."
+  },
+  {
+    "section-id": 5,
+    "sentence-id": 1,
+    "sentence": "If the estimate falls below acceptable levels, for example due to GPS loss, this may trigger a Position (GPS) Loss Failsafe."
+  },
+  {
+    "section-id": 5,
+    "sentence-id": 2,
+    "sentence": "Depending on configuration, whether you have a remote control, and whether there is an adequate altitude estimate, PX4 may switch to altitude mode, manual mode, land mode or terminate."
+  },
+  {
+    "section-id": 3,
+    "sentence-id": 6,
+    "sentence": "After the vehicle is on the ground switch to Stabilized mode keeping the throttle stick low, and manually disarm using a gesture or other command."
+  }
+]

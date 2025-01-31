@@ -1,0 +1,75 @@
+{
+  "title": "Land Mode (Multicopter)",
+  "sections": [
+    {
+      "section-id": 0,
+      "title": "Land Mode (Multicopter)",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "The _Land_ flight mode causes the vehicle to land at the position where the mode was engaged."
+        },
+        {
+          "sentence-id": 1,
+          "text": "The vehicle will disarm shortly after landing (by default)."
+        }
+      ]
+    },
+    {
+      "section-id": 1,
+      "title": "Land Mode (Multicopter) : info",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "1.Mode is automatic - no user intervention is _required_ to control the vehicle."
+        },
+        {
+          "sentence-id": 1,
+          "text": "2.Mode requires at least a valid local position estimate (does not require a global position)."
+        },
+        {
+          "sentence-id": 2,
+          "text": "Flying vehicles can't switch to this mode without valid local position."
+        },
+        {
+          "sentence-id": 3,
+          "text": "Flying vehicles will failsafe if they lose the position estimate."
+        },
+        {
+          "sentence-id": 4,
+          "text": "3.Mode prevents arming (vehicle must be armed when switching to this mode)."
+        },
+        {
+          "sentence-id": 5,
+          "text": "4.RC control switches can be used to change flight modes on any vehicle."
+        },
+        {
+          "sentence-id": 6,
+          "text": "5.RC stick movement in a multicopter (or VTOL in multicopter mode) will by default change the vehicle to Position mode unless handling a critical battery failsafe."
+        },
+        {
+          "sentence-id": 7,
+          "text": "6.The mode can be triggered using the MAV_CMD_NAV_LAND MAVLink command, or by explicitly switching to Land mode."
+        }
+      ]
+    },
+    {
+      "section-id": 2,
+      "title": "Technical Summary",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "The vehicle will land at the location at which the mode was engaged."
+        },
+        {
+          "sentence-id": 1,
+          "text": "The vehicle descends at the rate specified in MPC_LAND_SPEED and will disarm after landing (by default)."
+        },
+        {
+          "sentence-id": 2,
+          "text": "RC stick movement will change the vehicle to Position mode (by default)."
+        }
+      ]
+    }
+  ]
+}

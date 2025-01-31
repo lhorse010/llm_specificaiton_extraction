@@ -1,0 +1,42 @@
+[
+  {
+    "index": 0,
+    "formula": "G (hold_mode_active → (hover_at_current_position ∧ hover_at_current_altitude))",
+    "explanation": "If Hold mode is active, the vehicle must hover at its current GPS position and altitude."
+  },
+  {
+    "index": 1,
+    "formula": "G ((¬has_global_position) → ¬can_switch_to_hold_mode)",
+    "explanation": "The vehicle cannot switch to Hold mode without a global 3D position estimate."
+  },
+  {
+    "index": 2,
+    "formula": "G ((¬valid_position_estimate ∧ ¬armed) → can_switch_to_hold_mode)",
+    "explanation": "Disarmed vehicles can switch to Hold mode without a valid position estimate, but cannot arm."
+  },
+  {
+    "index": 3,
+    "formula": "G (hold_mode_active → (wind_within_limits ∧ flight_time_within_limits))",
+    "explanation": "Hold mode requires wind and flight time to be within allowed limits."
+  },
+  {
+    "index": 4,
+    "formula": "G (rc_stick_movement → X position_mode)",
+    "explanation": "RC stick movement will change the vehicle to Position mode by default."
+  },
+  {
+    "index": 5,
+    "formula": "G (mode_engaged_below_NAV_MIN_LTR_ALT → F ascend_to_NAV_MIN_LTR_ALT)",
+    "explanation": "The vehicle will ascend to NAV_MIN_LTR_ALT if Hold mode is engaged below this altitude."
+  },
+  {
+    "index": 6,
+    "formula": "G (rc_control_switches → can_change_flight_modes)",
+    "explanation": "RC control switches can be used to change flight modes on any vehicle."
+  },
+  {
+    "index": 7,
+    "formula": "G (critical_battery_failsafe → rc_stick_movement_does_not_change_mode)",
+    "explanation": "RC stick movement does not change the mode during a critical battery failsafe."
+  }
+]

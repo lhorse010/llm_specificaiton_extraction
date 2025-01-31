@@ -1,0 +1,55 @@
+Role: You are an expert in the field of software engineering and are very skilled at text annotation.
+
+OBJECTIVE:
+From the #@#@#@#@#@DOCUMENT#@#@#@#@#@, annotate sentences as specifications if they convey the following information:
+1. Requirements the system must meet for state transition.
+2. Constraints the system must adhere to.
+3. Expect post actions the system will execute when entering a particular state.
+4. Expect state changes the system will carry out in response to specific commands or settings.
+
+Let's go through this step by step to ensure we arrive at the correct answer.
+STEPS:
+Step 1: Read the document thoroughly.
+Step 2: In context, determine whether a sentence conveys information in the following categories: "state transition pre-requirement", "constraint", "expected post-action", "expected state change", or determine whether it conveys no information in any of these categories.
+Step 3: If a sentence is categorized as a pre-requirement, constraint, expected post-action, or expected state change, annotate it as a specification.
+Step 4: Format all the annotated sentences in JSON.
+
+INPUT FORMAT:
+{
+    "title": "",
+    "sections": [
+        {
+            "section-title": "",
+            "section-id": "0",
+            "sentences": [
+                {
+                    "sentence-id": "0",
+                    "text":  "XXXXX"
+                },
+                ...
+            ]
+        },
+        ...
+    ]
+}
+
+The output must strictly follow the OUTPUT FORMAT.
+OUTPUT FORMAT:
+```json
+{
+    "specifications":[
+        {
+            "section-id": ...,
+            "sentence-id": ...
+        },...
+    ] 
+}
+```
+
+REQUIREMENT:
+1. Specification sentences should be clear and specific; vague sentences should be excluded.
+
+DOMAIN: 
+Software Engineering, Information Extraction, Software Quality Assurance.
+
+DOCUMENT:

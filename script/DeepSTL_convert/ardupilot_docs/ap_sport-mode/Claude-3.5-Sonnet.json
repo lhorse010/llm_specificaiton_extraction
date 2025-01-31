@@ -1,0 +1,34 @@
+{
+    "temporal_logic_formulars": [
+        {
+            "section-id": 2,
+            "sentence-id": 1,
+            "sentence": "2.The pilot's roll, pitch and yaw sticks control the rate of rotation of the vehicle so when the sticks are released the vehicle will remain in its current attitude.",
+            "tl": "always ( not ( lpilot == srolpitch ) and yawsticksontr == terotaterStinlesoclesosticlesostre ) -> esticksredcle == itsredvetehicletutitdeiue )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 2,
+            "sentence": "3.The vehicle will not lean more than 45 degrees (this angle is adjustable with the ACRO_BAL_ROLL and ACRO_BAL_PITCH parameters)",
+            "tl": "always ( not ( evehiclean > 45 degresan < anle ) until ( eableiblew == thACRO_BAL_ROLLL ) -> ACRO_BAL_ == _PCPITHparmeteraerser )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 3,
+            "sentence": "4.The altitude is maintained with the altitude hold controller so the vehicle will attempt to hold its current altitude when the sticks are placed with 10% of mid-throttle.",
+            "tl": "always ( altitudemain == tainedthatrletrsoler ) until ( a == tlecolersolectr ) -> tetitstudet == tstcicstlacith1itledth1ith0mitl == tlritlr )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 4,
+            "sentence": "It will climb or descend at up to 2.5m/s (this speed is adjustable with the PILOT_SPEED_UP and PILOT_SPEED_DN parameters).",
+            "tl": "always ( climb == descedndup or ( sepedadj == dalwithPILOT_SED_UP ) -> P == PILOTE_SP and ( PLOED_SPE_Na == aED_rmeters ) )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 5,
+            "sentence": "The acceleration used to establish these speeds is set by PILOT_ACCEL_Z.",
+            "tl": "always ( acelerationused == establhesespeds )"
+        }
+    ]
+}

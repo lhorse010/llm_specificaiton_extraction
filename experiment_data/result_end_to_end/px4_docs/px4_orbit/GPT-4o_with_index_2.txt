@@ -1,0 +1,37 @@
+[
+  {
+    "index": 0,
+    "formula": "G (mode = Orbit → (valid_local_position_estimate ∧ ¬lost_position_estimate))",
+    "explanation": "The vehicle can only switch to the Orbit mode if a valid local position estimate is available and must failsafe if the position estimate is lost."
+  },
+  {
+    "index": 1,
+    "formula": "G (mode = Orbit → ¬arming)",
+    "explanation": "The vehicle must be armed before switching to the Orbit mode."
+  },
+  {
+    "index": 2,
+    "formula": "G (mode = Orbit → (wind_within_limits ∧ flight_time_within_limits))",
+    "explanation": "The Orbit mode requires wind and flight time to be within specified limits."
+  },
+  {
+    "index": 3,
+    "formula": "G (mode = Orbit → (radius ≥ 1 ∧ radius ≤ 100))",
+    "explanation": "The orbit radius must be between 1m and 100m."
+  },
+  {
+    "index": 4,
+    "formula": "G (mode = Orbit → (velocity ≤ 10 ∧ centripetal_acceleration ≤ 2))",
+    "explanation": "The maximum orbit velocity is 10m/s and centripetal acceleration must not exceed 2m/s²."
+  },
+  {
+    "index": 5,
+    "formula": "G (F MAV_CMD_DO_ORBIT)",
+    "explanation": "The Orbit mode can be triggered using the MAV_CMD_DO_ORBIT MAVLink command."
+  },
+  {
+    "index": 6,
+    "formula": "G (mode = Orbit → (initial_rotation = 1 ∧ direction = clockwise))",
+    "explanation": "The initial/default rotation speed is 1 m/s in a clockwise direction."
+  }
+]

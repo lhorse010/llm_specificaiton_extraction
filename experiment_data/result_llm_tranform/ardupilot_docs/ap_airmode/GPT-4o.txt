@@ -1,0 +1,27 @@
+[
+  {
+    "sentence": "If a transmitter switch is used with RCx_OPTION ARM/DISARM with Airmode (option 154) and used to arm, then stabilization at idle throttle is still fully active, which is often referred to as AIRMODE.",
+    "formula": "((P ∧ Q) → R)",
+    "explanation": "Here, P represents the use of the transmitter switch with option 154, Q indicates that it is used to arm, and R signifies that stabilization at idle throttle (AIRMODE) is active. The formula captures the conditional relationship between these conditions."
+  },
+  {
+    "sentence": "Setting an RC channel to RCx_OPTION = 84, allows enabling or disabling AIRMODE in ACRO and STABILIZE modes directly.",
+    "formula": "(P → (Q ∨ R))",
+    "explanation": "P represents setting RCx_OPTION to 84, Q represents enabling AIRMODE in ACRO mode, and R represents enabling AIRMODE in STABILIZE mode. The formula indicates that setting this option allows direct control over AIRMODE in both modes."
+  },
+  {
+    "sentence": "In addition, setting bit 0 of ACRO_OPTIONS will activate AIRMODE in ACRO mode (only) all the time, except if overridden by the above switch, if used.",
+    "formula": "(P ∧ ¬Q → R)",
+    "explanation": "P represents setting bit 0 of ACRO_OPTIONS, Q indicates the use of the override switch, and R signifies AIRMODE activation in ACRO mode. The formula captures that AIRMODE is active unless the override switch is used."
+  },
+  {
+    "sentence": "To avoid enabling AIRMODE but still use an ARM/DISARM switch, use Auxiliary function option \"153\" for the switch.",
+    "formula": "(P ∧ ¬Q → R)",
+    "explanation": "P represents using the ARM/DISARM switch, Q represents enabling AIRMODE, and R signifies using option 153. The formula expresses that using option 153 prevents AIRMODE while still allowing the switch's use."
+  },
+  {
+    "sentence": "It isn't sufficient to just enable arming on an RCx_OPTION switch, you also have to actually use it for arming.",
+    "formula": "(P ∧ Q → R)",
+    "explanation": "P represents enabling arming on the RCx_OPTION switch, Q indicates actually using the switch for arming, and R signifies that the system is armed. The formula highlights the necessity of both enabling and using the switch for successful arming."
+  }
+]

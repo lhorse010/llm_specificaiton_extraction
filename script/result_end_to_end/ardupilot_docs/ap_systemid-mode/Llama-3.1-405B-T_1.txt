@@ -1,0 +1,47 @@
+Based on the provided document, I will extract the specifications and express them using Metric Temporal Logic (MTL) formulas.
+
+Here are the extracted specifications:
+
+1. The System Identification Mode is enabled only when SID_AXIS is non-zero.
+2. When the System Identification Mode is enabled, its associated parameters become visible on the next parameter refresh.
+3. When the System Identification Mode is enabled, entry into the mode is allowed.
+4. If SID_AXIS is zero, an error message is logged and sent to the ground control station indicating that mode entry has been prohibited.
+
+Here are the MTL formulas for the extracted specifications:
+
+1. G(SID_AXIS ≠ 0 → X(System Identification Mode enabled))
+   Explanation: Globally, if SID_AXIS is non-zero, then the System Identification Mode is enabled at the next time step.
+
+2. G(System Identification Mode enabled → X(associated parameters visible))
+   Explanation: Globally, if the System Identification Mode is enabled, then its associated parameters become visible at the next time step.
+
+3. G(System Identification Mode enabled → F(entry into mode allowed))
+   Explanation: Globally, if the System Identification Mode is enabled, then entry into the mode is allowed at some future time step.
+
+4. G(SID_AXIS = 0 → F(error message logged and sent))
+   Explanation: Globally, if SID_AXIS is zero, then an error message is logged and sent to the ground control station at some future time step.
+
+Here are the MTL formulas in JSON format:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(SID_AXIS ≠ 0 → X(System Identification Mode enabled))",
+            "explanation": "Globally, if SID_AXIS is non-zero, then the System Identification Mode is enabled at the next time step."
+        },
+        {
+            "formula": "G(System Identification Mode enabled → X(associated parameters visible))",
+            "explanation": "Globally, if the System Identification Mode is enabled, then its associated parameters become visible at the next time step."
+        },
+        {
+            "formula": "G(System Identification Mode enabled → F(entry into mode allowed))",
+            "explanation": "Globally, if the System Identification Mode is enabled, then entry into the mode is allowed at some future time step."
+        },
+        {
+            "formula": "G(SID_AXIS = 0 → F(error message logged and sent))",
+            "explanation": "Globally, if SID_AXIS is zero, then an error message is logged and sent to the ground control station at some future time step."
+        }
+    ]
+}
+```

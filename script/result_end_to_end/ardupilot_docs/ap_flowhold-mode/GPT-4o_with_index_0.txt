@@ -1,0 +1,17 @@
+[
+  {
+    "index": 0,
+    "formula": "G (¬(flow_quality < FHLD_QUAL_MIN) → (¬wobble ∧ stable_position_hold))",
+    "explanation": "If the optical flow sensor quality is above the minimum threshold, the vehicle should not wobble and must maintain a stable position hold."
+  },
+  {
+    "index": 1,
+    "formula": "G (user_releases_sticks → F (vehicle_stops))",
+    "explanation": "When the user releases the sticks, the vehicle should eventually come to a stop."
+  },
+  {
+    "index": 2,
+    "formula": "G (takeoff ∨ height_change → F (¬wobble))",
+    "explanation": "After takeoff or a significant change in height, the vehicle should eventually stop wobbling as it stabilizes."
+  }
+]

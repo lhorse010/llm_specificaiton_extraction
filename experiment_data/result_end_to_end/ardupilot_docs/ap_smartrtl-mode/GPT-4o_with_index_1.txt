@@ -1,0 +1,52 @@
+[
+  {
+    "index": 0,
+    "formula": "G (armed → good_position_estimate)",
+    "explanation": "The vehicle must have a good position estimate when armed; otherwise, SmartRTL will be disabled."
+  },
+  {
+    "index": 1,
+    "formula": "G (buffer_full → ¬SmartRTL)",
+    "explanation": "If the buffer is full, SmartRTL will be deactivated."
+  },
+  {
+    "index": 2,
+    "formula": "G (bad_position → ¬SmartRTL)",
+    "explanation": "If there is a bad position estimate, SmartRTL will be deactivated."
+  },
+  {
+    "index": 3,
+    "formula": "G (save_rate ≤ 3)",
+    "explanation": "SmartRTL saves points at a maximum rate of 3 per second."
+  },
+  {
+    "index": 4,
+    "formula": "G (moved_distance ≥ SRTL_ACCURACY → save_point)",
+    "explanation": "Points are only saved if the vehicle has moved at least SRTL_ACCURACY meters."
+  },
+  {
+    "index": 5,
+    "formula": "G (points_saved = 50 → simplify_points)",
+    "explanation": "After saving 50 points, they are simplified using SRTL_ACCURACY."
+  },
+  {
+    "index": 6,
+    "formula": "G (FS_GCS_ENABLE ∨ FS_THR_ENABLE = 4 → SmartRTL → RTL)",
+    "explanation": "If FS_GCS_ENABLE or FS_THR_ENABLE is set to 4, the vehicle will switch from SmartRTL to RTL if conditions allow."
+  },
+  {
+    "index": 7,
+    "formula": "G (FS_GCS_ENABLE ∨ FS_THR_ENABLE = 5 → SmartRTL → Land)",
+    "explanation": "If FS_GCS_ENABLE or FS_THR_ENABLE is set to 5, the vehicle will switch from SmartRTL to Land if conditions allow."
+  },
+  {
+    "index": 8,
+    "formula": "G (SRTL_POINTS = 0 → ¬SmartRTL)",
+    "explanation": "Setting SRTL_POINTS to 0 deactivates SmartRTL."
+  },
+  {
+    "index": 9,
+    "formula": "G (SRTL_OPTIONS.bit2 = 4 → ignore_yaw_commands)",
+    "explanation": "If SRTL_OPTIONS bit 2 is set, yaw commands are ignored in SmartRTL."
+  }
+]

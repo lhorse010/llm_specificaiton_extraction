@@ -1,0 +1,47 @@
+[
+  {
+    "sentence": "2.Mode requires at least a valid local position estimate (does not require a global position).",
+    "formula": "G(M → L)",
+    "explanation": "This formula states that globally (at all times), if the mode (M) is active, then a valid local position estimate (L) must be present. The absence of a global position requirement is implicit in the formula's simplicity."
+  },
+  {
+    "sentence": "Flying vehicles can't switch to this mode without valid local position.",
+    "formula": "G(F ∧ ¬L → ¬X(M))",
+    "explanation": "This formula expresses that globally, if a vehicle is flying (F) and does not have a valid local position (¬L), then in the next state, it cannot be in the specified mode (¬X(M)). This captures the constraint on mode switching for flying vehicles."
+  },
+  {
+    "sentence": "Flying vehicles will failsafe if they lose the position estimate.",
+    "formula": "G(F ∧ X(¬L) → X(S))",
+    "explanation": "This formula states that globally, if a vehicle is flying (F) and in the next state loses its position estimate (X(¬L)), then in the next state it will enter a failsafe mode (X(S)). This captures the immediate response to losing position estimate while flying."
+  },
+  {
+    "sentence": "Disarmed vehicles can switch to mode without valid position estimate but can't arm.",
+    "formula": "G((D ∧ ¬L ∧ X(M)) → X(¬A))",
+    "explanation": "This complex formula expresses that globally, if a vehicle is disarmed (D), doesn't have a valid position estimate (¬L), and switches to the mode in the next state (X(M)), then it cannot be armed in the next state (X(¬A)). This captures the condition for disarmed vehicles and their arming restrictions."
+  },
+  {
+    "sentence": "4.RC stick movement will by default change the vehicle to Position mode unless handling a critical battery failsafe.",
+    "formula": "G((R ∧ ¬B) → X(P))",
+    "explanation": "This formula states that globally, if there's RC stick movement (R) and the vehicle is not handling a critical battery failsafe (¬B), then in the next state, the vehicle will be in Position mode (X(P)). This captures the default behavior with the exception for critical battery situations."
+  },
+  {
+    "sentence": "A multi rotor ascends vertically to the altitude defined in MIS_TAKEOFF_ALT and holds position.",
+    "formula": "F(A ∧ G(H))",
+    "explanation": "This formula expresses that eventually (F), the multi-rotor will reach the defined altitude (A), and from that point onwards, it will globally (G) hold its position (H). This captures both the ascent and the subsequent position holding."
+  },
+  {
+    "sentence": "RC stick movement will change the vehicle to Position mode (by default).",
+    "formula": "G(R → X(P))",
+    "explanation": "This formula states that globally, if there's RC stick movement (R), then in the next state, the vehicle will be in Position mode (X(P)). This captures the immediate response to RC input, changing the vehicle's mode."
+  },
+  {
+    "sentence": "3.RC control switches can be used to change flight modes.",
+    "formula": "G(C → F(X(M1) ∨ X(M2) ∨ ... ∨ X(Mn)))",
+    "explanation": "This formula expresses that globally, if an RC control switch is activated (C), then eventually in the future, the vehicle will switch to one of the possible flight modes (M1, M2, ..., Mn) in the next state. This captures the potential for mode changes via RC switches."
+  },
+  {
+    "sentence": "5.The Failure Detector will automatically stop the engines if there is a problem on takeoff.",
+    "formula": "G((T ∧ F) → X(E))",
+    "explanation": "This formula states that globally, if the vehicle is in takeoff (T) and a failure is detected (F), then in the next state, the engines will be stopped (X(E)). This captures the immediate response of the Failure Detector during the critical takeoff phase."
+  }
+]

@@ -1,0 +1,38 @@
+I'll go through the steps to extract specifications from the document and express them using Metric Temporal Logic (MTL) formulas.
+
+Step 1: Read the document thoroughly.
+I have read the document about the Blind Spot module.
+
+Step 4: Extract specifications and express them using metric temporal logic formula.
+Step 5: Format all the converted sentences in JSON.
+
+Here's the output in the required JSON format:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(turn_direction ∈ {left, right} → blind_spot_active)",
+            "explanation": "Globally, if the turn_direction is left or right (indicating an intersection), then the blind spot module should be active."
+        },
+        {
+            "formula": "G(self_position_before_pass_judge_line ∧ (object_in_detection_area ∧ object_predicted_path_in_conflict_area) → X(vehicle_state = stop))",
+            "explanation": "Globally, if the vehicle is before the pass judge line AND an object is detected in the detection area AND the object's predicted path is in the conflict area, then in the next state, the vehicle should stop."
+        },
+        {
+            "formula": "G(self_position_after_pass_judge_line → ¬(vehicle_state = stop))",
+            "explanation": "Globally, if the vehicle has passed the pass judge line, then it should not transition to a stop state to avoid rapid braking."
+        },
+        {
+            "formula": "G(vehicle_state = stop → (vehicle_state = stop) U (go_judgment_duration ≥ 2))",
+            "explanation": "Globally, if the vehicle state is stop, it remains in the stop state until the go judgment has been continuous for at least 2 seconds."
+        },
+        {
+            "formula": "G(blind_spot_active → F(stop_line_set ∧ pass_judge_line_set ∧ detection_area_set ∧ conflict_area_set))",
+            "explanation": "Globally, when the blind spot module is active, it should eventually set the stop line, pass judge line, detection area, and conflict area."
+        }
+    ]
+}
+```
+
+These MTL formulas capture the key specifications of the Blind Spot module as described in the document. They cover the activation conditions, stop/go state transitions, and the setup of various areas and lines used by the module.

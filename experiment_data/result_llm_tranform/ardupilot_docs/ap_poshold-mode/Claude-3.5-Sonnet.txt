@@ -1,0 +1,47 @@
+[
+  {
+    "sentence": "When switched on, PosHold mode will automatically attempts to maintain the current location, heading and altitude.",
+    "formula": "G(S → X(L ∧ H ∧ A))",
+    "explanation": "This formula states that globally (G), whenever the PosHold mode is switched on (S), in the next state (X), the system will maintain the current location (L), heading (H), and altitude (A). The use of X captures the immediate response of the system when switched on."
+  },
+  {
+    "sentence": "Good GPS position, low magnetic interference on the compass and low vibrations are all important in achieving good loiter performance.",
+    "formula": "G((G ∧ M ∧ V) → L)",
+    "explanation": "This formula expresses that globally (G), if there's a good GPS position (G), low magnetic interference (M), and low vibrations (V), then good loiter performance (L) is achieved. The outer G operator indicates that this condition holds at all times."
+  },
+  {
+    "sentence": "1.Horizontal location can be adjusted with the Roll and Pitch control sticks with the default maximum lean angle being 45 degrees (angle can be adjusted with the ANGLE_MAX parameter).",
+    "formula": "G((R ∨ P) → F(H ∧ A))",
+    "explanation": "This formula states that globally (G), if either Roll (R) or Pitch (P) control is applied, then eventually (F) the horizontal location (H) will be adjusted while maintaining the angle constraint (A). The F operator captures the eventual effect of the control input."
+  },
+  {
+    "sentence": "When the pilot releases the sticks the copter will lean back to bring the vehicle to a stop.",
+    "formula": "G(¬(R ∨ P) → F(S))",
+    "explanation": "This formula expresses that globally (G), when neither Roll nor Pitch control is applied (¬(R ∨ P)), eventually (F) the vehicle will come to a stop (S). The F operator represents the time it takes for the vehicle to stop after releasing the controls."
+  },
+  {
+    "sentence": "2.Altitude can be controlled with the Throttle control stick just as in AltHold mode",
+    "formula": "G(T → F(A))",
+    "explanation": "This formula states that globally (G), if Throttle control (T) is applied, then eventually (F) the altitude (A) will change. The F operator captures the gradual response to throttle input."
+  },
+  {
+    "sentence": "3.The heading can be set with the Yaw control stick",
+    "formula": "G(Y → F(H))",
+    "explanation": "This formula expresses that globally (G), if Yaw control (Y) is applied, then eventually (F) the heading (H) will be set. The F operator represents the time it takes for the heading to adjust to the yaw input."
+  },
+  {
+    "sentence": "4.You may arm in PosHold mode but only once the GPS has 3D lock and the HDOP has dropped to 2.0 or lower.",
+    "formula": "G((G ∧ H) → F(A))",
+    "explanation": "This formula states that globally (G), if GPS has 3D lock (G) and HDOP is 2.0 or lower (H), then eventually (F) arming (A) in PosHold mode is possible. The F operator allows for potential delay between conditions being met and arming."
+  },
+  {
+    "sentence": "1.The maximum brake-angle can be set with the PHLD_BRAKE_ANGLE parameter (i.e. 3000 = the vehicle will lean back up to 30degrees)",
+    "formula": "G(P → X(B))",
+    "explanation": "This formula expresses that globally (G), if the PHLD_BRAKE_ANGLE parameter is set (P), then in the next state (X), the maximum brake-angle (B) will be updated. The X operator captures the immediate effect of parameter change."
+  },
+  {
+    "sentence": "2.The speed the vehicle rotates back to the maximum angle can be set with the PHLD_BRAKE_RATE parameter (i.e. 8 = rotates back at 8 degrees per second))",
+    "formula": "G(R → X(S))",
+    "explanation": "This formula states that globally (G), if the PHLD_BRAKE_RATE parameter is set (R), then in the next state (X), the rotation speed (S) will be updated. The X operator represents the immediate effect of the parameter change on the system's behavior."
+  }
+]

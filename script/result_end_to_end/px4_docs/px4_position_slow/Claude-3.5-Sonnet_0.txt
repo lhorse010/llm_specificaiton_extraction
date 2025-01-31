@@ -1,0 +1,36 @@
+I'll extract the specifications from the document and express them using Metric Temporal Logic (MTL) formulas as requested.
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(position_slow_mode → (velocity ≤ position_mode_velocity))",
+            "explanation": "This formula specifies that globally (at all times), when in position slow mode, the velocity must always be less than or equal to the velocity in normal position mode."
+        },
+        {
+            "formula": "G(position_slow_mode → (horizontal_velocity ≤ MC_SLOW_HOR_VEL))",
+            "explanation": "This formula specifies that globally, when in position slow mode, the horizontal velocity must always be less than or equal to the parameter MC_SLOW_HOR_VEL."
+        },
+        {
+            "formula": "G(position_slow_mode → (vertical_velocity ≤ MC_SLOW_UP_VEL))",
+            "explanation": "This formula specifies that globally, when in position slow mode, the upward vertical velocity must always be less than or equal to the parameter MC_SLOW_UP_VEL."
+        },
+        {
+            "formula": "G(position_slow_mode → (yaw_rate ≤ MC_SLOW_YAW))",
+            "explanation": "This formula specifies that globally, when in position slow mode, the yaw rate must always be less than or equal to the parameter MC_SLOW_YAW."
+        },
+        {
+            "formula": "G(rc_control_active → (velocity_limit ≥ MC_SLOW_MIN_HVEL ∧ velocity_limit ≤ MPC_VEL_MANUAL))",
+            "explanation": "This formula specifies that globally, when RC control is active, the velocity limit must be greater than or equal to MC_SLOW_MIN_HVEL and less than or equal to MPC_VEL_MANUAL."
+        },
+        {
+            "formula": "G(mavlink_limit_set ∧ ¬rc_control_active → X(velocity_limit = mavlink_limit))",
+            "explanation": "This formula specifies that globally, when a MAVLink velocity limit is set and RC control is not active, in the next state the velocity limit will be equal to the MAVLink-specified limit."
+        },
+        {
+            "formula": "G(mode_switch → X(velocity_limit = parameter_limit))",
+            "explanation": "This formula specifies that globally, when a mode switch occurs, in the next state the velocity limit will be reset to the parameter-defined limit."
+        }
+    ]
+}
+```

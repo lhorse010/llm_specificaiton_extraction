@@ -1,0 +1,77 @@
+[
+  {
+    "sentence": "Limits set using an RC controller override those set by MAVLink, which in turn override those set using parameters.",
+    "formula": "G((RC → ¬MAVLink) ∧ (MAVLink → ¬Params))",
+    "explanation": "This formula states that globally, if limits are set using an RC controller, then MAVLink limits are overridden. Similarly, MAVLink limits override those set using parameters."
+  },
+  {
+    "sentence": "The limits can only be reduced below those for normal _Position_ mode.",
+    "formula": "G(Limits → Limits < Position)",
+    "explanation": "Globally, any limit set must be reduced to be below the limits of the normal _Position_ mode."
+  },
+  {
+    "sentence": "If traveling faster than 3 m/s horizontally you'd be slowed to 3 m/s.",
+    "formula": "G((Speed > 3) → X(Speed = 3))",
+    "explanation": "This states that globally, if the horizontal speed exceeds 3 m/s, then in the next state, the speed is adjusted to 3 m/s."
+  },
+  {
+    "sentence": "Note that the parameters are used only if limits are not provided by from RC or MAVLink.",
+    "formula": "G((¬RC ∧ ¬MAVLink) → Params)",
+    "explanation": "Globally, parameters are used only when limits are not provided by either RC or MAVLink."
+  },
+  {
+    "sentence": "If the input control is set to its highest value the vehicle will go as fast as in _Position_ mode.",
+    "formula": "G((Input = Max) → Speed = Position)",
+    "explanation": "This states that globally, if the input control reaches its maximum value, the vehicle speed matches the _Position_ mode speed."
+  },
+  {
+    "sentence": "If the input is set to its lowest value, the vehicle maximum velocity is set to the value in the corresponding MC_SLOW_MIN_ parameter (shown in the table below).",
+    "formula": "G((Input = Min) → Speed = MC_SLOW_MIN)",
+    "explanation": "Globally, if the input control is at its lowest value, the vehicle's maximum velocity is determined by the MC_SLOW_MIN_ parameter."
+  },
+  {
+    "sentence": "If an RC control input is mapped for an axis it has priority over all other inputs.",
+    "formula": "G((RC_Mapped → ¬Other_Inputs))",
+    "explanation": "This indicates that globally, if an RC control input is mapped to an axis, it takes precedence over any other inputs."
+  },
+  {
+    "sentence": "The RC input from channel 8 then sets a horizontal velocity limit between [MC_SLOW_MIN_HVEL][mc_slow_min_hvel] and [MPC_VEL_MANUAL][mpc_vel_manual].",
+    "formula": "G((RC_Ch8 → (MC_SLOW_MIN_HVEL ≤ HVEL ≤ MPC_VEL_MANUAL)))",
+    "explanation": "Globally, if RC input from channel 8 is active, the horizontal velocity is constrained between the MC_SLOW_MIN_HVEL and MPC_VEL_MANUAL limits."
+  },
+  {
+    "sentence": "This overrides limit values set in parameters, but is ignored if the axis is mapped to an RC knob.",
+    "formula": "G(((¬RC_Knob ∧ Override) → ¬Params))",
+    "explanation": "This states that globally, the override occurs unless an axis is mapped to an RC knob, in which case parameter limits are not overridden."
+  },
+  {
+    "sentence": "The value can be updated from a message at any time, and is latched until either the next message or a mode switch.",
+    "formula": "G((Message → Latch) ∧ (Next_Message ∨ Mode_Switch → ¬Latch))",
+    "explanation": "Globally, the value can be updated anytime by a message and remains latched until either the next message or a mode switch occurs."
+  },
+  {
+    "sentence": "The velocity limits can be set using parameters, from an RC Controller rotary knob, slider, or switch, or using MAVLink.",
+    "formula": "F(VP ∨ (RK ∨ RS ∨ SW) ∨ ML)",
+    "explanation": "Here, VP represents setting limits via parameters, RK for rotary knob, RS for slider, SW for switch, and ML for MAVLink. The formula indicates that eventually one of these methods can be used to set the velocity limits."
+  },
+  {
+    "sentence": "You can adjust the velocity limits using the MAVLink message SET_VELOCITY_LIMITS.",
+    "formula": "F(ML ∧ SVL)",
+    "explanation": "ML represents using MAVLink, and SVL represents sending the SET_VELOCITY_LIMITS message. The formula indicates that eventually, this message can be used to adjust the velocity limits."
+  },
+  {
+    "sentence": "The message can set the maximum value on any of the axes by supplying a non-NAN limit value.",
+    "formula": "F(M ∧ ¬NAN)",
+    "explanation": "M represents sending the message, and ¬NAN ensures that the value supplied is not NaN. The formula expresses that eventually, a non-NaN value can be used to set the maximum on any axis."
+  },
+  {
+    "sentence": "2.Map the channel which contains the knobs position as one of the 6 auxiliary passthrough inputs by setting RC_MAP_AUXn to the corresponding RC channel number.",
+    "formula": "F(KP ∧ MP)",
+    "explanation": "KP represents the knob's position, and MP stands for mapping it as an auxiliary passthrough input. The formula denotes that eventually, the knob's position can be mapped correctly."
+  },
+  {
+    "sentence": "3.Map that auxiliary input using the appropriate MC_SLOW_MAP_ parameter for the axis you want it to control (see table above).",
+    "formula": "F(AI ∧ AM)",
+    "explanation": "AI represents the auxiliary input, and AM stands for mapping using the appropriate MC_SLOW_MAP_ parameter. The formula suggests that eventually, the auxiliary input can be mapped to control the desired axis."
+  }
+]

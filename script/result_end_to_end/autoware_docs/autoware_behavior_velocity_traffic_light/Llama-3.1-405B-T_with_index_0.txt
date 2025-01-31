@@ -1,0 +1,42 @@
+[
+  {
+    "index": 0,
+    "formula": "G(traffic_light_signal -> (X stop_point_generation) U (traffic_light_signal = green))",
+    "explanation": "If a traffic light signal is detected, a stop point should be generated until the traffic light signal turns green."
+  },
+  {
+    "index": 1,
+    "formula": "G(elapsed_time < stop_time_hysteresis -> pass_judge)",
+    "explanation": "If the elapsed time to receive a stop signal is less than the stop time hysteresis, the vehicle should pass."
+  },
+  {
+    "index": 2,
+    "formula": "G(vehicle_velocity > 2.0 -> pass_judge)",
+    "explanation": "If the vehicle's current velocity is higher than 2.0 m/s, the vehicle should pass."
+  },
+  {
+    "index": 3,
+    "formula": "G(vehicle_velocity <= 2.0 -> stop)",
+    "explanation": "If the vehicle's current velocity is lower than or equal to 2.0 m/s, the vehicle should stop."
+  },
+  {
+    "index": 4,
+    "formula": "G(can_pass_through_yellow_lamp -> pass)",
+    "explanation": "If the vehicle can pass through the stop line during the yellow lamp, the vehicle should pass."
+  },
+  {
+    "index": 5,
+    "formula": "G(!can_pass_through_yellow_lamp -> emergency_stop)",
+    "explanation": "If the vehicle cannot pass through the stop line during the yellow lamp, the vehicle should perform an emergency stop."
+  },
+  {
+    "index": 6,
+    "formula": "G(in_dilemma_zone -> emergency_stop)",
+    "explanation": "If the vehicle is in the dilemma zone, the vehicle should perform an emergency stop."
+  },
+  {
+    "index": 7,
+    "formula": "G(in_optional_zone -> stop)",
+    "explanation": "If the vehicle is in the optional zone, the vehicle should stop."
+  }
+]

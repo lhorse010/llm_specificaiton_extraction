@@ -1,0 +1,27 @@
+[
+  {
+    "index": 0,
+    "formula": "G(intersection_label → blind_spot_active)",
+    "explanation": "Globally, if the lane has an intersection label (left or right turn), then the blind spot module is active."
+  },
+  {
+    "index": 1,
+    "formula": "G((object_in_detection_area ∧ object_predicted_path_in_conflict_area ∧ ¬passed_judge_line) → X(stop_state))",
+    "explanation": "Globally, if an object is in the detection area AND its predicted path is in the conflict area AND the vehicle hasn't passed the judge line, then in the next state, the vehicle enters stop state."
+  },
+  {
+    "index": 2,
+    "formula": "G(stop_state → (go_state_duration ≥ 2) U go_state)",
+    "explanation": "Globally, once in stop state, the system remains in stop state until the go state has been continuously true for at least 2 seconds."
+  },
+  {
+    "index": 3,
+    "formula": "G(passed_judge_line → ¬X(stop_state))",
+    "explanation": "Globally, if the vehicle has passed the judge line, then in the next state, it will not enter stop state (to avoid rapid stops)."
+  },
+  {
+    "index": 4,
+    "formula": "G(blind_spot_active → (stop_line ∧ pass_judge_line ∧ detection_area ∧ conflict_area))",
+    "explanation": "Globally, when the blind spot module is active, it sets a stop line, pass judge line, detection area, and conflict area."
+  }
+]

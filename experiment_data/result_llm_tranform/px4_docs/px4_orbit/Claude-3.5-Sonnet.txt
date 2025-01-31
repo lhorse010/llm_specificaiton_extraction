@@ -1,0 +1,82 @@
+[
+  {
+    "sentence": "2.Mode requires at least a valid local position estimate (does not require a global position).",
+    "formula": "G(M → L)",
+    "explanation": "This formula states that globally (at all times), if the mode (M) is active, then a valid local position estimate (L) must be present. The absence of a global position requirement is implicitly captured by not including it in the formula."
+  },
+  {
+    "sentence": "Flying vehicles can't switch to this mode without valid local position.",
+    "formula": "G(¬L → ¬X(M))",
+    "explanation": "This formula expresses that globally, if there's no valid local position (¬L), then in the next state, the mode (M) cannot be active. This effectively prevents switching to the mode without a valid local position."
+  },
+  {
+    "sentence": "Flying vehicles will failsafe if they lose the position estimate.",
+    "formula": "G((M ∧ X(¬L)) → X(F))",
+    "explanation": "This formula states that globally, if the mode is active (M) and in the next state the local position estimate is lost (X(¬L)), then in the next state the failsafe (F) will be activated."
+  },
+  {
+    "sentence": "3.Mode prevents arming (vehicle must be armed when switching to this mode).",
+    "formula": "G((¬A ∧ X(M)) → X(¬M))",
+    "explanation": "This formula expresses that globally, if the vehicle is not armed (¬A) and in the next state the mode would be active (X(M)), then in the next state the mode actually won't be active (X(¬M)). This effectively prevents switching to the mode when not armed."
+  },
+  {
+    "sentence": "4.Mode requires wind and flight time are within allowed limits (specified via parameters).",
+    "formula": "G(M → (W ∧ T))",
+    "explanation": "This formula states that globally, if the mode (M) is active, then both wind conditions (W) and flight time (T) must be within their allowed limits. The specific parameters are abstracted into these predicates."
+  },
+  {
+    "sentence": "_QGroundControl_ (or other compatible GCS or MAVLink API) is _required_ to enable the mode, and to set the center position, initial radius and altitude of the orbit.",
+    "formula": "G(X(M) → (Q ∧ C ∧ R ∧ H))",
+    "explanation": "This formula expresses that globally, if in the next state the mode (M) will be enabled, then QGroundControl or equivalent (Q) must have set the center position (C), initial radius (R), and altitude (H) of the orbit."
+  },
+  {
+    "sentence": "Once enabled the vehicle will fly as fast as possible to the closest point on the commanded circle trajectory and do a slow (1m/s) clockwise orbit on the planned circle, facing the center.",
+    "formula": "G(M → F(T ∧ G(O ∧ F)))",
+    "explanation": "This formula states that globally, when the mode (M) is enabled, eventually the vehicle will reach the trajectory (T), and from that point on, it will orbit (O) while facing the center (F) indefinitely."
+  },
+  {
+    "sentence": "Maximum velocity is 10m/s and further limited to keep the centripetal acceleration below 2m/s^2.",
+    "formula": "G(M → (V ∧ A))",
+    "explanation": "This formula expresses that globally, when the mode (M) is active, the velocity (V) is limited to 10m/s and the centripetal acceleration (A) is kept below 2m/s^2. The specific values are abstracted into these predicates."
+  },
+  {
+    "sentence": "Minimum radius is 1m.",
+    "formula": "G(M → R)",
+    "explanation": "This formula states that globally, when the mode (M) is active, the radius (R) is at least 1m. The specific value is abstracted into the predicate R."
+  },
+  {
+    "sentence": "Maximum radius is 100m.",
+    "formula": "G(M → S)",
+    "explanation": "This formula expresses that globally, when the mode (M) is active, the radius (S) is at most 100m. The specific value is abstracted into the predicate S."
+  },
+  {
+    "sentence": "1.Initial/default rotation is 1 m/s in a clockwise direction.",
+    "formula": "G(R → S)",
+    "explanation": "R represents the initial/default state, and S represents a clockwise rotation of 1 m/s. The formula states that globally, whenever the system is in its initial state, it implies a clockwise rotation of 1 m/s. This captures the persistent nature of the default setting."
+  },
+  {
+    "sentence": "2.The maximum acceleration is limited to 2 m/s^2, with priority on keeping the commanded circle trajectory rather than commanded ground speed (i.e. the vehicle will slow down in order to achieve the correct circle if the acceleration exceeds 2m/s^2).",
+    "formula": "G((A ∧ C) → (T ∧ (A → S)))",
+    "explanation": "A represents acceleration exceeding 2 m/s^2, C represents the commanded circle trajectory, T represents maintaining the trajectory, and S represents slowing down. The formula states that globally, when acceleration exceeds 2 m/s^2 and there's a commanded circle trajectory, the system maintains the trajectory and slows down if necessary. This captures the priority of trajectory over speed."
+  },
+  {
+    "sentence": "1.Mode is automatic - no user intervention is _required_ to control the vehicle.",
+    "formula": "G(M → ¬U)",
+    "explanation": "M represents the automatic mode, and U represents user intervention. The formula states that globally, when the system is in automatic mode, it implies that user intervention is not required. This captures the essence of autonomous operation."
+  },
+  {
+    "sentence": "The mode can be stopped by switching to any other flight mode (using RC or QGC).",
+    "formula": "G(S → F(¬M))",
+    "explanation": "S represents switching to another flight mode, and M represents the current mode. The formula states that globally, if a switch to another mode occurs, it eventually leads to the termination of the current mode. This captures the ability to stop the mode through mode switching."
+  },
+  {
+    "sentence": "RC control cannot be used to start the mode (if you switch to the mode via RC it will sit idle).",
+    "formula": "G((R ∧ X(M)) → I)",
+    "explanation": "R represents RC control activation, M represents the mode in question, and I represents idle state. The formula states that globally, if RC control is activated and in the next state the mode is entered, it implies an idle state. This captures the inability to start the mode via RC and the resulting idle behavior."
+  },
+  {
+    "sentence": "5.This mode is currently only supported on multicopter (or VTOL in MC mode).",
+    "formula": "G(M → (C ∨ V))",
+    "explanation": "M represents the mode being active, C represents multicopter configuration, and V represents VTOL in MC mode. The formula states that globally, when the mode is active, it implies either a multicopter configuration or VTOL in MC mode. This captures the limited support for specific vehicle types."
+  }
+]

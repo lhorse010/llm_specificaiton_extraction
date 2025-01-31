@@ -1,0 +1,47 @@
+[
+  {
+    "index": 0,
+    "formula": "G(LandMode → ¬RequireUserIntervention)",
+    "explanation": "Globally, when in Land Mode, user intervention is not required to control the vehicle."
+  },
+  {
+    "index": 1,
+    "formula": "G(LandMode → ValidLocalPosition)",
+    "explanation": "Globally, Land Mode requires at least a valid local position estimate."
+  },
+  {
+    "index": 2,
+    "formula": "G((Flying ∧ ¬ValidLocalPosition) → ¬LandMode)",
+    "explanation": "Globally, if the vehicle is flying and does not have a valid local position, it cannot switch to Land Mode."
+  },
+  {
+    "index": 3,
+    "formula": "G((Flying ∧ LandMode ∧ X(¬ValidLocalPosition)) → X(Failsafe))",
+    "explanation": "Globally, if the vehicle is flying in Land Mode and loses the position estimate in the next state, it will enter failsafe in the next state."
+  },
+  {
+    "index": 4,
+    "formula": "G(LandMode → Armed)",
+    "explanation": "Globally, Land Mode requires the vehicle to be armed when switching to this mode."
+  },
+  {
+    "index": 5,
+    "formula": "G(RCStickMovement ∧ LandMode ∧ ¬CriticalBatteryFailsafe → X(PositionMode))",
+    "explanation": "Globally, RC stick movement in Land Mode, without a critical battery failsafe, will change the vehicle to Position Mode in the next state."
+  },
+  {
+    "index": 6,
+    "formula": "G(LandMode → F(Disarm))",
+    "explanation": "Globally, when in Land Mode, the vehicle will eventually disarm after landing."
+  },
+  {
+    "index": 7,
+    "formula": "G(LandMode → DescentRate = MPC_LAND_SPEED)",
+    "explanation": "Globally, in Land Mode, the vehicle descends at the rate specified by MPC_LAND_SPEED."
+  },
+  {
+    "index": 8,
+    "formula": "G((MAV_CMD_NAV_LAND ∨ ExplicitLandModeSwitch) → X(LandMode))",
+    "explanation": "Globally, receiving a MAV_CMD_NAV_LAND command or explicitly switching to Land Mode will cause the vehicle to enter Land Mode in the next state."
+  }
+]

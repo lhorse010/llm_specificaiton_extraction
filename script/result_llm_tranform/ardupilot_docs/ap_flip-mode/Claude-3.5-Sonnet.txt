@@ -1,0 +1,57 @@
+[
+  {
+    "sentence": "Vehicle will flip on its roll or pitch axis depending upon the pilot's roll and pitch stick position.",
+    "formula": "G((R ∨ P) → F(F))",
+    "explanation": "R represents roll stick position, P represents pitch stick position, and F represents flipping. This formula states that globally, if there's a roll or pitch input, it will eventually lead to a flip."
+  },
+  {
+    "sentence": "Vehicle will rise for 1 second and then rapidly flip.",
+    "formula": "F[0,1](R ∧ X[1,1]F)",
+    "explanation": "R represents rising, and F represents flipping. This formula captures the sequence of rising for exactly 1 second, followed immediately by a flip."
+  },
+  {
+    "sentence": "The vehicle will not flip again until the switch is brought low and back to high.",
+    "formula": "G(F → X(¬F U (L ∧ X(H ∧ XF))))",
+    "explanation": "F represents flipping, L represents switch low, and H represents switch high. This formula ensures that after a flip, another flip won't occur until the switch goes low and then high."
+  },
+  {
+    "sentence": "1.An RCx_OPTION parameter must be set to \"Flip\" which is \"2\"",
+    "formula": "G(O)",
+    "explanation": "O represents the RCx_OPTION parameter set to \"Flip\" (2). The formula states this condition must hold globally."
+  },
+  {
+    "sentence": "2.Pilot switches to Stabilize, Acro or AltHold flight mode and puts ch7/ch8 switch to ON position",
+    "formula": "F((S ∨ A ∨ H) ∧ C)",
+    "explanation": "S, A, H represent Stabilize, Acro, and AltHold modes respectively. C represents the ch7/ch8 switch in ON position. The formula states that eventually, one of these modes is active along with the switch being ON."
+  },
+  {
+    "sentence": "3.Vehicle will Roll right by default but if roll or pitch stick is held slightly left, forward or back it will flip in that direction",
+    "formula": "G((¬(L ∨ F ∨ B) → R) ∧ ((L ∨ F ∨ B) → FL))",
+    "explanation": "R represents rolling right, L, F, B represent left, forward, back stick positions, and FL represents flipping in the corresponding direction. This formula captures the default behavior and the exception based on stick position."
+  },
+  {
+    "sentence": "4.Vehicle should complete the roll within 2.5sec and will then return to the original flight mode it was in before flip was triggered",
+    "formula": "G(F → F[0,2.5](C ∧ X(O)))",
+    "explanation": "F represents flip initiation, C represents roll completion, and O represents returning to the original mode. This formula ensures the roll completes within 2.5 seconds and then returns to the original mode."
+  },
+  {
+    "sentence": "5.Pilot may manually exit flip by switching off ch7/ch8 or by moving roll stick to >40deg left or right",
+    "formula": "G(F → (S ∨ (L ∨ R) → X(¬F)))",
+    "explanation": "F represents flip, S represents switch off, L and R represent left and right roll stick >40deg. This formula allows for manual exit from flip state when these conditions are met."
+  },
+  {
+    "sentence": "1.Flip_Start (while copter is leaning <45deg) : roll right at 400deg/sec, increase throttle",
+    "formula": "G((L ∧ R ∧ T) → X(F))",
+    "explanation": "L represents leaning <45deg, R represents rolling right at 400deg/sec, T represents increasing throttle, and F represents flip start. This formula captures the conditions for starting a flip."
+  },
+  {
+    "sentence": "2.Flip_Roll (while copter is between +45deg ~ -90) : roll right at 400deg/sec, reduce throttle",
+    "formula": "G((A ∧ R ∧ D) → X(FR))",
+    "explanation": "A represents angle between +45deg and -90deg, R represents rolling right at 400deg/sec, D represents decreasing throttle, and FR represents flip roll phase. This formula describes the conditions during the main part of the flip."
+  },
+  {
+    "sentence": "3.Flip_Recover (while copter is between -90deg and original target angle) : use earth frame angle controller to return vehicle to original attitude",
+    "formula": "G((A ∧ B) → C)",
+    "explanation": "This formula captures the continuous nature of the recovery process. Here, A represents the copter being at an angle greater than -90 degrees, B represents the copter being at an angle less than the original target angle, and C represents the use of the earth frame angle controller. The formula states that globally (at all times), if the copter is between -90 degrees and the original target angle (A ∧ B), then the earth frame angle controller is used (C). This ensures that the recovery process is active whenever the copter is in the specified angle range, allowing for a smooth return to the original attitude."
+  }
+]

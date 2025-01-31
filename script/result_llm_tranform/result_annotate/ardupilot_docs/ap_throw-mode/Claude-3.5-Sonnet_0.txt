@@ -1,0 +1,100 @@
+Let's go through the document step-by-step to identify and annotate the sentences that meet our criteria for specifications.
+
+Step 1: Read the document thoroughly.
+I have read the entire document about the "Throw Mode" feature.
+
+Step 2 & 3: Determine which sentences convey relevant information and annotate them as specifications.
+
+Section 0:
+- Sentence 1: Not a specification (general description)
+- Sentence 2: Constraint - "Once in the air, this mode does not accept any input from the pilot."
+- Sentence 3: Pre-requirement - "This mode requires GPS."
+
+Section 1:
+- Sentence 0: Constraint - "This flight mode is available for multirotors only."
+
+Section 2: No specifications (warnings and recommendations)
+
+Section 3:
+- Sentence 2: Pre-requirement - "Check GPS light is green"
+- Sentence 4: Expected state - "The motors will not spin by default."
+- Sentence 5: Pre-requirement - "it must climb by 50cm/s and reach a total speed of 5m/s"
+- Sentence 7: Expected state change - "The motors should start when the vehicle reaches the apex of it's trajectory."
+- Sentence 8: Expected post-action - "After the motors start this flight mode will first try to control it's attitude (return to level and stop rotating), then stop descending and finally it will attempt to stop moving horizontally."
+
+Section 4:
+- Sentence 0: Expected state change - "THROW_TYPE: set to 0 if throwing the vehicle up, 1 if dropping the vehicle."
+- Sentence 1: Constraint - "If dropping, drop from a height of at least 10m."
+- Sentence 2: Expected state change - "THROW_MOT_START: controls whether the motors will spin slowly or not at all while waiting for the throw (0 = stopped, 1 = spinning slowly)."
+- Sentence 4: Expected state change - "THROW_NEXTMODE: the vehicle will switch into this flight mode after stopping (Auto, Guided, RTL, Land and Brake are support)."
+- Sentence 6: Constraint - "THROW_ALT_MIN and THROW_ALT_MAX: set the altitude limits for THROW mode launch."
+- Sentence 7: Constraint - "Throw must happen above the minimum and below the maximum altitude above home after arming."
+
+Section 5: No specifications (log analysis information)
+
+Step 4: Format the annotated sentences in JSON.
+
+```json
+{
+    "specifications": [
+        {
+            "section-id": 0,
+            "sentence-id": 2
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 3
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 0
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 2
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 4
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 5
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 7
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 8
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 0
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 1
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 2
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 4
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 6
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 7
+        }
+    ]
+}
+```
+
+This JSON output contains all the sentences that meet our criteria for specifications, including requirements for state transition, constraints, expected post-actions, and expected state changes.

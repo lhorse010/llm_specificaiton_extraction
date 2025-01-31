@@ -1,0 +1,87 @@
+Based on the provided document, I have annotated the sentences as specifications if they convey the following information:
+1. Requirements the system must meet for state transition.
+2. Constraints the system must adhere to.
+3. Expected post-actions the system will execute when entering a particular state.
+4. Expected state changes the system will carry out in response to specific commands or settings.
+
+Here is the output in the required JSON format:
+
+```json
+{
+    "specifications": [
+        {
+            "section-id": 1,
+            "sentence-id": 0
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 1
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 1
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 1
+        },
+        {
+            "section-id": 6,
+            "sentence-id": 1
+        },
+        {
+            "section-id": 6,
+            "sentence-id": 2
+        },
+        {
+            "section-id": 6,
+            "sentence-id": 3
+        },
+        {
+            "section-id": 6,
+            "sentence-id": 4
+        },
+        {
+            "section-id": 7,
+            "sentence-id": 1
+        },
+        {
+            "section-id": 7,
+            "sentence-id": 3
+        },
+        {
+            "section-id": 8,
+            "sentence-id": 0
+        },
+        {
+            "section-id": 8,
+            "sentence-id": 8
+        },
+        {
+            "section-id": 8,
+            "sentence-id": 9
+        },
+        {
+            "section-id": 9,
+            "sentence-id": 1
+        }
+    ]
+}
+```
+
+The annotated sentences are:
+
+* Section 1, Sentence 0: "This module is activated if the launch parameter launch_out_of_lane_module is set to true." (Constraint)
+* Section 2, Sentence 1: "The algorithm assumes the input ego trajectory contains accurate time_from_start values in order to calculate accurate time to collisions with the predicted objects." (Constraint)
+* Section 3, Sentence 1: "The length of the trajectory used for generating the footprints is limited by the max_arc_length parameter." (Constraint)
+* Section 4, Sentence 1: "We consider all lanelets around the ego vehicle that are not crossed by the trajectory linestring (sequence of trajectory points) or their preceding lanelets." (Constraint)
+* Section 6, Sentence 1: "1.ignore objects with a speed bellow the minimum_velocity parameter;" (Constraint)
+* Section 6, Sentence 2: "2.ignore objects coming from behind the ego vehicle if parameter ignore_behind_ego is set to true;" (Constraint)
+* Section 6, Sentence 3: "3.ignore predicted paths whose confidence value is bellow the predicted_path_min_confidence parameter;" (Constraint)
+* Section 6, Sentence 4: "4.cut the points of predicted paths going beyond the stop line of a red traffic light if parameter cut_predicted_paths_beyond_red_lights is set to true." (Constraint)
+* Section 7, Sentence 1: "In the case where parameter mode is set to threshold and the calculated time is less than threshold.time_threshold parameter, then we decide to avoid the out of lane area." (Expected state change)
+* Section 7, Sentence 3: "If the time to collision is bellow the ttc.threshold parameter value, we decide to avoid the out of lane area." (Expected state change)
+* Section 8, Sentence 0: "First, the minimum stopping distance of the ego vehicle is calculated based on the jerk and deceleration constraints set by the velocity smoother parameters." (Constraint)
+* Section 8, Sentence 8: "If this distance is bellow the actions.slowdown.threshold, a velocity of actions.slowdown.velocity will be used." (Expected post-action)
+* Section 8, Sentence 9: "If the distance is bellow the actions.stop.threshold, a velocity of 0m/s will be used." (Expected post-action)
+* Section 9, Sentence 1: "To make the decision more stable, a stop or slowdown pose is used for a minimum duration set by the action.min_duration parameter." (Constraint)

@@ -1,0 +1,38 @@
+Let's extract the specifications from the document and express them using Metric Temporal Logic (MTL) formulas.
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(guided_mode_active → F(reach_target_location))",
+            "explanation": "This formula specifies that whenever guided mode is active, the copter will eventually reach the target location. The 'G' operator ensures this holds globally throughout the flight."
+        },
+        {
+            "formula": "G(reach_target_location → X(hover_until_new_command))",
+            "explanation": "Once the target location is reached, in the next state, the copter will hover until a new command is given. This captures the behavior of waiting for the next target after reaching the current one."
+        },
+        {
+            "formula": "G(¬gps_lock → ¬guided_mode_active)",
+            "explanation": "This formula states that at all times, if there is no GPS lock, guided mode cannot be active. This reflects the requirement for a GPS lock to use guided mode."
+        },
+        {
+            "formula": "G(speed ≤ WPNAV_SPEED)",
+            "explanation": "The copter's speed should always be less than or equal to the WPNAV_SPEED parameter. This enforces the speed control specification."
+        },
+        {
+            "formula": "G(vertical_speed_up ≤ WPNAV_SPEED_UP ∧ vertical_speed_down ≤ WPNAV_SPEED_DN)",
+            "explanation": "This formula ensures that the vertical speeds (both up and down) are always within the limits set by WPNAV_SPEED_UP and WPNAV_SPEED_DN parameters."
+        },
+        {
+            "formula": "G(guided_mode_active ∧ no_command_received → F[0,GUID_TIMEOUT](stop_or_hover))",
+            "explanation": "If guided mode is active and no commands are received, within GUID_TIMEOUT seconds, the copter will either stop or hover. This captures the timeout behavior in guided mode."
+        },
+        {
+            "formula": "G(guided_nogps_active → ¬F(accept_position_targets) ∧ ¬F(accept_velocity_targets))",
+            "explanation": "When in Guided_NoGPS mode, the system should never accept position or velocity targets. This formula ensures that only attitude targets are accepted in this mode."
+        }
+    ]
+}
+```
+
+These MTL formulas capture the key specifications from the document, focusing on the behavior of the copter in Guided mode, speed controls, and the Guided_NoGPS variation. The formulas use the temporal operators to express the timing and sequencing of events and states in the system.

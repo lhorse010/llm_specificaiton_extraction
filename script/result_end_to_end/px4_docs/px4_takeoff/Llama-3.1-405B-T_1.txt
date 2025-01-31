@@ -1,0 +1,67 @@
+Based on the provided document, I've extracted the specifications and expressed them using Metric Temporal Logic (MTL) formulas. Here are the results in the required output format:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(mode = Takeoff → ¬user_intervention)",
+            "explanation": "In Takeoff mode, no user intervention is required to control the vehicle."
+        },
+        {
+            "formula": "G(mode = Takeoff → valid_local_position_estimate)",
+            "explanation": "Takeoff mode requires at least a valid local position estimate."
+        },
+        {
+            "formula": "G(flying_vehicle ∧ ¬valid_local_position_estimate → failsafe)",
+            "explanation": "Flying vehicles will failsafe if they lose the position estimate."
+        },
+        {
+            "formula": "G(disarmed_vehicle → can_switch_to_Takeoff_mode)",
+            "explanation": "Disarmed vehicles can switch to Takeoff mode without a valid position estimate."
+        },
+        {
+            "formula": "G(disarmed_vehicle ∧ ¬valid_local_position_estimate → ¬can_arm)",
+            "explanation": "Disarmed vehicles can't arm without a valid position estimate."
+        },
+        {
+            "formula": "G(RC_control_switches → can_change_flight_modes)",
+            "explanation": "RC control switches can be used to change flight modes."
+        },
+        {
+            "formula": "G(RC_stick_movement → X(mode = Position))",
+            "explanation": "RC stick movement will change the vehicle to Position mode by default."
+        },
+        {
+            "formula": "G(critical_battery_failsafe → X(mode = Position))",
+            "explanation": "RC stick movement will change the vehicle to Position mode unless handling a critical battery failsafe."
+        },
+        {
+            "formula": "G(problem_on_takeoff → F(engine_stop))",
+            "explanation": "The Failure Detector will automatically stop the engines if there is a problem on takeoff."
+        },
+        {
+            "formula": "G(mode = Takeoff → F(altitude = MIS_TAKEOFF_ALT))",
+            "explanation": "The vehicle will ascend vertically to the altitude defined in MIS_TAKEOFF_ALT and hold position."
+        }
+    ]
+}
+```
+
+Note that I've used the following abbreviations in the MTL formulas:
+
+* `mode`: the current flight mode
+* `user_intervention`: user intervention is required to control the vehicle
+* `valid_local_position_estimate`: a valid local position estimate is available
+* `flying_vehicle`: the vehicle is flying
+* `disarmed_vehicle`: the vehicle is disarmed
+* `can_switch_to_Takeoff_mode`: the vehicle can switch to Takeoff mode
+* `can_arm`: the vehicle can arm
+* `RC_control_switches`: RC control switches are used to change flight modes
+* `RC_stick_movement`: RC stick movement is detected
+* `critical_battery_failsafe`: a critical battery failsafe is detected
+* `problem_on_takeoff`: a problem is detected on takeoff
+* `engine_stop`: the engines are stopped
+* `altitude`: the current altitude
+* `MIS_TAKEOFF_ALT`: the altitude defined in MIS_TAKEOFF_ALT
+
+These abbreviations are used to make the MTL formulas more readable and concise.

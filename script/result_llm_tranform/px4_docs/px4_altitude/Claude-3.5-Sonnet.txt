@@ -1,0 +1,72 @@
+[
+  {
+    "sentence": "When the sticks are released/centered the vehicle will level and maintain the current _altitude_.",
+    "formula": "G(C → X(L ∧ G(A)))",
+    "explanation": "C represents the sticks being centered, L represents the vehicle leveling, and A represents maintaining altitude. This formula states that whenever the sticks are centered, in the next state, the vehicle will level and from that point on, it will always maintain its current altitude."
+  },
+  {
+    "sentence": "RPY sticks levels vehicle.",
+    "formula": "G(R → X(L))",
+    "explanation": "R represents the RPY (Roll, Pitch, Yaw) sticks being in a neutral position, and L represents the vehicle being level. This formula states that globally, whenever the RPY sticks are in a neutral position, in the next state, the vehicle will be level."
+  },
+  {
+    "sentence": "Throttle (~50%) holds current altitude steady against wind.",
+    "formula": "G(T → G(A))",
+    "explanation": "T represents the throttle being at approximately 50%, and A represents maintaining altitude. This formula states that globally, when the throttle is at ~50%, the altitude will be maintained indefinitely, implying resistance against wind disturbances."
+  },
+  {
+    "sentence": "Roll/Pitch sticks control tilt angle in respective orientations, resulting in corresponding left-right and forward-back movement.",
+    "formula": "G((R ∨ P) → X(T ∧ M))",
+    "explanation": "R represents Roll stick input, P represents Pitch stick input, T represents tilt, and M represents movement. This formula states that globally, when there's Roll or Pitch input, in the next state, there will be both tilt and corresponding movement."
+  },
+  {
+    "sentence": "Throttle stick controls up/down speed with a predetermined maximum rate (and movement speed in other axes).",
+    "formula": "G(T → X(V ∧ (V → S)))",
+    "explanation": "T represents Throttle stick input, V represents vertical speed, and S represents the speed being within the maximum rate. This formula states that globally, when there's Throttle input, in the next state, there will be vertical speed, and this speed will always be within the predetermined maximum rate."
+  },
+  {
+    "sentence": "Yaw stick controls rate of angular rotation above the horizontal plane.",
+    "formula": "G(Y → X(R))",
+    "explanation": "Y represents Yaw stick input, and R represents angular rotation. This formula states that globally, when there's Yaw stick input, in the next state, there will be angular rotation above the horizontal plane."
+  },
+  {
+    "sentence": "When landed, the vehicle will take off if the throttle stick is raised above 62.5% percent (of the full range from bottom).",
+    "formula": "G(L ∧ T → X(O))",
+    "explanation": "L represents the vehicle being landed, T represents the throttle being above 62.5%, and O represents take-off. This formula states that globally, when the vehicle is landed and the throttle is raised above 62.5%, in the next state, the vehicle will take off."
+  },
+  {
+    "sentence": "5.Manual control input is required (such as RC control, joystick).",
+    "formula": "G(M)",
+    "explanation": "M represents manual control input being available. This formula states that globally (at all times), manual control input is required and available."
+  },
+  {
+    "sentence": "Roll, Pitch: Assistance from autopilot to stabilize the attitude.",
+    "formula": "G((R ∨ P) → A)",
+    "explanation": "R represents Roll input, P represents Pitch input, and A represents autopilot assistance. This formula states that globally, whenever there's Roll or Pitch input, the autopilot provides assistance to stabilize the attitude."
+  },
+  {
+    "sentence": "Position of RC stick maps to the orientation of vehicle.",
+    "formula": "G(S ↔ O)",
+    "explanation": "S represents the position of the RC stick, and O represents the orientation of the vehicle. This formula states that globally, the position of the RC stick is equivalent to (maps directly to) the orientation of the vehicle, implying a continuous, real-time mapping."
+  },
+  {
+    "sentence": "Throttle: Assistance from autopilot to hold position against wind.",
+    "formula": "G(W → F[0,τ](T))",
+    "explanation": "This formula states that globally (G), whenever wind (W) is detected, there will finally (F) be throttle assistance (T) within some time bound τ. The exact value of τ depends on the system's response time, which isn't specified in the sentence. This captures the continuous nature of the autopilot's assistance against wind."
+  },
+  {
+    "sentence": "Yaw: Assistance from autopilot to stabilize the attitude rate.",
+    "formula": "G(¬S → F[0,δ](Y ∧ F[0,ε](S)))",
+    "explanation": "Here, S represents a stable attitude rate, and Y represents yaw assistance. The formula states that globally (G), when the attitude rate is not stable (¬S), yaw assistance (Y) will be activated within time δ, and this will lead to stability (S) within time ε. This captures both the triggering of assistance and its effect."
+  },
+  {
+    "sentence": "Position of RC stick maps to the rate of rotation of vehicle in that orientation.",
+    "formula": "G(P → X(R))",
+    "explanation": "In this formula, P represents a change in RC stick position, and R represents a corresponding change in rotation rate. The formula states that globally (G), whenever there's a stick position change (P), in the next state (X), there will be a corresponding rotation rate change (R). This captures the immediate mapping between input and vehicle response."
+  },
+  {
+    "sentence": "4.Altitude is normally measured using a barometer, which may become inaccurate in extreme weather conditions.",
+    "formula": "G(B ∧ (E → F[0,∞](¬A)))",
+    "explanation": "Here, B represents barometer usage for altitude measurement, E represents extreme weather conditions, and A represents accurate altitude measurement. The formula states that globally (G), the barometer is used (B), and when extreme weather occurs (E), it's possible that at some point in the future (F[0,∞]), the altitude measurement becomes inaccurate (¬A). The unbounded future operator [0,∞] is used because the sentence doesn't specify when inaccuracy might occur."
+  }
+]

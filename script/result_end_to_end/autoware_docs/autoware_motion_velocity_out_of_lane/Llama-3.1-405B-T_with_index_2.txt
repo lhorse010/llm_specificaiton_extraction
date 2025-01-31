@@ -1,0 +1,42 @@
+[
+  {
+    "index": 0,
+    "formula": "G(launch_out_of_lane_module → (out_of_lane_collision → F(stop_point_inserted)))",
+    "explanation": "If the out_of_lane module is activated and an out of lane collision is detected, then a stop point will be inserted in the future."
+  },
+  {
+    "index": 1,
+    "formula": "G(ego_trajectory_footprint → F(accurate_time_to_collision_calculated))",
+    "explanation": "If the ego trajectory footprint is projected, then the accurate time to collision will be calculated in the future."
+  },
+  {
+    "index": 2,
+    "formula": "G(predicted_object → (filtered_object ∨ ignored_object))",
+    "explanation": "If a predicted object is detected, then it will be either filtered or ignored."
+  },
+  {
+    "index": 3,
+    "formula": "G(out_of_lane_area → F(time_to_collision_calculated))",
+    "explanation": "If an out of lane area is detected, then the time to collision will be calculated in the future."
+  },
+  {
+    "index": 4,
+    "formula": "G(time_to_collision < threshold.time_threshold → F(avoid_out_of_lane_area))",
+    "explanation": "If the time to collision is less than the threshold, then the out of lane area will be avoided in the future."
+  },
+  {
+    "index": 5,
+    "formula": "G(out_of_lane_collision → F(stop_or_slowdown_point_calculated))",
+    "explanation": "If an out of lane collision is detected, then a stop or slowdown point will be calculated in the future."
+  },
+  {
+    "index": 6,
+    "formula": "G(stop_or_slowdown_point → F(velocity_adjusted))",
+    "explanation": "If a stop or slowdown point is calculated, then the velocity will be adjusted in the future."
+  },
+  {
+    "index": 7,
+    "formula": "G(stop_or_slowdown_pose → F(stable_for_min_duration))",
+    "explanation": "If a stop or slowdown pose is used, then it will be stable for a minimum duration in the future."
+  }
+]

@@ -1,0 +1,54 @@
+I'll extract the specifications from the document and express them using Metric Temporal Logic (MTL) formulas. Then I'll format them in JSON as requested.
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(launch_out_of_lane_module → (ego_footprint_out_of_lane → F(decelerate ∨ stop)))",
+            "explanation": "Globally, if the out_of_lane module is launched and the ego vehicle footprint goes out of the driving lane, then eventually the vehicle must either decelerate or stop."
+        },
+        {
+            "formula": "G(object_speed < minimum_velocity → ¬consider_object)",
+            "explanation": "Globally, if an object's speed is below the minimum velocity, then the object is not considered for collision detection."
+        },
+        {
+            "formula": "G(ignore_behind_ego ∧ object_behind_ego → ¬consider_object)",
+            "explanation": "Globally, if the ignore_behind_ego parameter is true and an object is behind the ego vehicle, then the object is not considered for collision detection."
+        },
+        {
+            "formula": "G(predicted_path_confidence < predicted_path_min_confidence → ¬consider_path)",
+            "explanation": "Globally, if a predicted path's confidence is below the minimum confidence threshold, then that path is not considered for collision detection."
+        },
+        {
+            "formula": "G(cut_predicted_paths_beyond_red_lights ∧ path_beyond_red_light → truncate_path)",
+            "explanation": "Globally, if the cut_predicted_paths_beyond_red_lights parameter is true and a predicted path goes beyond a red traffic light, then that path is truncated at the stop line."
+        },
+        {
+            "formula": "G((mode = threshold ∧ collision_time < threshold.time_threshold) → avoid_out_of_lane_area)",
+            "explanation": "Globally, if the mode is set to 'threshold' and the calculated collision time is less than the time threshold, then the out of lane area should be avoided."
+        },
+        {
+            "formula": "G((mode = ttc ∧ time_to_collision < ttc.threshold) → avoid_out_of_lane_area)",
+            "explanation": "Globally, if the mode is set to 'ttc' and the time to collision is below the TTC threshold, then the out of lane area should be avoided."
+        },
+        {
+            "formula": "G(avoid_out_of_lane_area → F(stop_point ∨ slowdown_point))",
+            "explanation": "Globally, if an out of lane area needs to be avoided, then eventually a stop point or slowdown point will be calculated."
+        },
+        {
+            "formula": "G(distance_to_avoid < actions.slowdown.threshold → set_velocity(actions.slowdown.velocity))",
+            "explanation": "Globally, if the distance to the point to avoid is below the slowdown threshold, then set the velocity to the slowdown velocity."
+        },
+        {
+            "formula": "G(distance_to_avoid < actions.stop.threshold → set_velocity(0))",
+            "explanation": "Globally, if the distance to the point to avoid is below the stop threshold, then set the velocity to 0 m/s."
+        },
+        {
+            "formula": "G(stop_or_slowdown_pose → X(U(maintain_pose, ¬out_of_lane_collision ∧ time_elapsed > action.min_duration)))",
+            "explanation": "Globally, when a stop or slowdown pose is set, in the next state it will be maintained until there is no out of lane collision and the minimum duration has elapsed."
+        }
+    ]
+}
+```
+
+These MTL formulas capture the key specifications and behaviors described in the document. They cover the activation of the out_of_lane module, object filtering, collision detection, and the decision-making process for stopping or slowing down the vehicle. The formulas use the provided logical and temporal operators to express the temporal relationships and conditions specified in the document.

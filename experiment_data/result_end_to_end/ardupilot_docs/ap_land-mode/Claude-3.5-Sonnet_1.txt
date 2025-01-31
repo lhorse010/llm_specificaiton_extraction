@@ -1,0 +1,48 @@
+Let's go through the steps to extract and express the specifications using Metric Temporal Logic (MTL) formulas.
+
+Step 1: I have read the document thoroughly.
+
+Step 4: Extracting specifications and expressing them using metric temporal logic formulas.
+
+Step 5: Formatting the converted sentences in JSON.
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(altitude > 10 → X(descent_speed = WPNAV_SPEED_DN))",
+            "explanation": "Globally, if the altitude is greater than 10m, in the next state the descent speed should be equal to WPNAV_SPEED_DN."
+        },
+        {
+            "formula": "G(altitude ≤ 10 → X(descent_speed = LAND_SPEED))",
+            "explanation": "Globally, if the altitude is less than or equal to 10m, in the next state the descent speed should be equal to LAND_SPEED (which defaults to 50cm/s)."
+        },
+        {
+            "formula": "G((on_ground ∧ pilot_throttle_min) → X(motors_off ∧ disarmed))",
+            "explanation": "Globally, if the copter is on the ground and the pilot's throttle is at minimum, in the next state the motors should be off and the copter should be disarmed."
+        },
+        {
+            "formula": "G(has_GPS_lock → F(horizontal_position_controlled))",
+            "explanation": "Globally, if the vehicle has GPS lock, then eventually the horizontal position will be controlled."
+        },
+        {
+            "formula": "G(¬has_GPS_lock → X(horizontal_control = stabilize_mode))",
+            "explanation": "Globally, if the vehicle does not have GPS lock, in the next state the horizontal control will be in stabilize mode."
+        },
+        {
+            "formula": "G((motors_low_level ∧ -20 ≤ climb_rate ≤ 20 ∧ ¬accelerating) U landed)",
+            "explanation": "Globally, the copter is considered landed when motors are commanded to be at low level, climb rate is between -20cm/s and +20cm/s, and it's not accelerating, until the landed state is reached."
+        },
+        {
+            "formula": "G(landed → (altitude < 10 ∨ (using_rangefinder ∧ altitude < 2)))",
+            "explanation": "Globally, for the copter to be considered landed, it must be below 10m above home altitude, or within 2m of the ground if using a rangefinder."
+        },
+        {
+            "formula": "G(traditional_heli → (landed ↔ (collective_output < mid_position ∧ altitude < 10)))",
+            "explanation": "Globally, for traditional helicopters, the copter is considered landed if and only if the collective output is below mid-position and altitude is below 10m."
+        }
+    ]
+}
+```
+
+These MTL formulas capture the key specifications from the given document. They express the behavior of the Land Mode, including descent speeds, landing conditions, and special cases for different types of vehicles and sensor configurations.

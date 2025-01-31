@@ -1,0 +1,27 @@
+[
+  {
+    "index": 0,
+    "formula": "G((Position_Slow_Mode → (Horizontal_Velocity ≤ MC_SLOW_MAX_HVEL)) ∧ (Position_Slow_Mode → (Vertical_Velocity ≤ MC_SLOW_MAX_VVEL)) ∧ (Position_Slow_Mode → (Yaw_Rate ≤ MC_SLOW_MAX_YRATE)))",
+    "explanation": "In Position Slow Mode, the vehicle's horizontal velocity, vertical velocity, and yaw rate must not exceed the maximum values set by the MC_SLOW_MAX_HVEL, MC_SLOW_MAX_VVEL, and MC_SLOW_MAX_YRATE parameters, respectively."
+  },
+  {
+    "index": 1,
+    "formula": "G((Position_Slow_Mode ∧ (RC_Control_Input = Highest_Value)) → (Horizontal_Velocity = MPC_VEL_MANUAL))",
+    "explanation": "In Position Slow Mode, if the RC control input is set to its highest value, the vehicle's horizontal velocity must be equal to the value set by the MPC_VEL_MANUAL parameter."
+  },
+  {
+    "index": 2,
+    "formula": "G((Position_Slow_Mode ∧ (RC_Control_Input = Lowest_Value)) → (Horizontal_Velocity = MC_SLOW_MIN_HVEL))",
+    "explanation": "In Position Slow Mode, if the RC control input is set to its lowest value, the vehicle's horizontal velocity must be equal to the value set by the MC_SLOW_MIN_HVEL parameter."
+  },
+  {
+    "index": 3,
+    "formula": "G((MAVLink_Message_Received ∧ (SET_VELOCITY_LIMITS ≠ NAN)) → (Velocity_Limit_Updated))",
+    "explanation": "When a MAVLink message is received with a non-NAN SET_VELOCITY_LIMITS value, the vehicle's velocity limit must be updated."
+  },
+  {
+    "index": 4,
+    "formula": "G((Position_Slow_Mode ∧ (Velocity > MC_SLOW_MAX_HVEL)) → F(Velocity ≤ MC_SLOW_MAX_HVEL))",
+    "explanation": "In Position Slow Mode, if the vehicle's velocity exceeds the maximum value set by the MC_SLOW_MAX_HVEL parameter, the vehicle must slow down to a velocity less than or equal to the maximum value."
+  }
+]

@@ -1,0 +1,37 @@
+[
+  {
+    "sentence": "When sticks are centered the vehicle will stop rotating, but remain in its current orientation (not necessarily level) and moving according to its current momentum.",
+    "formula": "C → (G(¬R) ∧ G(O ∧ M))",
+    "explanation": "C represents the condition of sticks being centered. ¬R indicates the vehicle stops rotating. O ensures it remains in its current orientation, and M represents moving according to its current momentum."
+  },
+  {
+    "sentence": "Position of RC stick maps to the rate of rotation of vehicle in that orientation.",
+    "formula": "P → R",
+    "explanation": "P represents the position of the RC stick, and R is the rate of rotation in the corresponding orientation, implying a direct mapping."
+  },
+  {
+    "sentence": "The roll, pitch and yaw sticks control the rate of angular rotation around the respective axes and throttle is passed directly to control allocation.",
+    "formula": "(R ∧ P ∧ Y) → (Rx ∧ Py ∧ Yz ∧ T)",
+    "explanation": "R, P, Y represent roll, pitch, and yaw sticks. Rx, Py, Yz are the rates of angular rotation around respective axes, and T represents throttle directly affecting control allocation."
+  },
+  {
+    "sentence": "When sticks are centered the vehicle will stop rotating, but remain in its current orientation (on its side, inverted, or whatever) and moving according to its current momentum.",
+    "formula": "C → (G(¬R) ∧ G(O ∧ M))",
+    "explanation": "Same as the first sentence, C triggers no rotation (¬R), with O maintaining orientation and M maintaining momentum."
+  },
+  {
+    "sentence": "RC Roll/Pitch/Yaw (RPY) stick inputs control the rate of angular rotation around the respective axes.",
+    "formula": "(RPY) → (Rx ∧ Py ∧ Yz)",
+    "explanation": "RPY inputs directly control the rates Rx, Py, Yz for roll, pitch, and yaw axes, respectively."
+  },
+  {
+    "sentence": "Throttle is passed directly to control allocation.",
+    "formula": "T → C_A",
+    "explanation": "T represents throttle input and C_A is control allocation, indicating a direct passage."
+  },
+  {
+    "sentence": "RC input is sent directly to control allocation.",
+    "formula": "RC → C_A",
+    "explanation": "RC inputs are directly mapped to control allocation, represented by C_A."
+  }
+]

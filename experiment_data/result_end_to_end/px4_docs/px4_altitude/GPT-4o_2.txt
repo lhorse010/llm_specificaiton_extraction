@@ -1,0 +1,30 @@
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(centered_sticks → altitude_stable)",
+            "explanation": "If the control sticks are centered, the multicopter should maintain a stable altitude."
+        },
+        {
+            "formula": "G((throttle > 0.5) → F(takeoff))",
+            "explanation": "If the throttle is raised above 50%, the vehicle should eventually take off."
+        },
+        {
+            "formula": "G(throttle = 0.5 → altitude_steady)",
+            "explanation": "If the throttle is at 50%, the altitude should remain steady against the wind."
+        },
+        {
+            "formula": "G(yaw_stick → control_rotation_rate)",
+            "explanation": "The yaw stick controls the rate of angular rotation over the horizontal plane."
+        },
+        {
+            "formula": "G(¬gps_mode → altitude_mode)",
+            "explanation": "If GPS mode is not engaged, the vehicle should be in altitude mode."
+        },
+        {
+            "formula": "G(barometer_failure → lidar_control)",
+            "explanation": "If the barometer becomes inaccurate, the vehicle should switch to LIDAR for altitude control."
+        }
+    ]
+}
+```

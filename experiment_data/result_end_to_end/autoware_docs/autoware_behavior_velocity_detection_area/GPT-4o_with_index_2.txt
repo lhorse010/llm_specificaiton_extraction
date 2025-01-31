@@ -1,0 +1,27 @@
+[
+  {
+    "index": 0,
+    "formula": "G(detection_area → F(pointcloud_detected))",
+    "explanation": "Globally, if there is a detection area, the system should eventually detect a pointcloud within it."
+  },
+  {
+    "index": 1,
+    "formula": "G(pointcloud_detected → F(stop_planning_executed))",
+    "explanation": "Globally, if a pointcloud is detected, the system should eventually execute the stop planning."
+  },
+  {
+    "index": 2,
+    "formula": "G(ego_vehicle_in_front_of_pass_judge_point → F(velocity_zero_behind_stop_line))",
+    "explanation": "Globally, if the ego-vehicle is in front of the pass judge point, it should eventually have zero velocity behind the stop line."
+  },
+  {
+    "index": 3,
+    "formula": "G(¬(ego_vehicle_passed_pass_judge_point) U stop_point_reached)",
+    "explanation": "Globally, the vehicle should not pass the pass judge point until the stop point is reached."
+  },
+  {
+    "index": 4,
+    "formula": "G((stopped_within_hold_stop_margin_distance ∧ ¬other_factors) → G(stop_position_held))",
+    "explanation": "Globally, if the vehicle is stopped within the hold stop margin distance and not due to other factors, it should continue to hold its stop position."
+  }
+]

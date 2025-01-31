@@ -1,0 +1,58 @@
+Based on the provided document, I have annotated the sentences as specifications if they convey the following information:
+
+1. Requirements the system must meet for state transition.
+2. Constraints the system must adhere to.
+3. Expected post-actions the system will execute when entering a particular state.
+4. Expected state changes the system will carry out in response to specific commands or settings.
+
+Here is the output in the required JSON format:
+
+```json
+{
+    "specifications": [
+        {
+            "section-id": 0,
+            "sentence-id": 6
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 5
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 4
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 2
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 3
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 4
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 3
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 4
+        }
+    ]
+}
+```
+
+The annotated sentences are:
+
+* Section 0, Sentence 6: "The limits can only be reduced below those for normal _Position_ mode." (Constraint)
+* Section 1, Sentence 5: "Note that the parameters are used only if limits are not provided by from RC or MAVLink." (Constraint)
+* Section 2, Sentence 4: "If an RC control input is mapped for an axis it has priority over all other inputs." (Constraint)
+* Section 3, Sentence 2: "Map that auxiliary input using the appropriate MC_SLOW_MAP_ parameter for the axis you want it to control (see table above)." (Expected post-action)
+* Section 3, Sentence 3: "For example, if you want to map RC channel 8 to limit the horizontal velocity you could set RC_MAP_AUX1 to the value 8 and [MC_SLOW_MAP_HVEL][mc_slow_map_hvel] to the value 1." (Expected post-action)
+* Section 3, Sentence 4: "The RC input from channel 8 then sets a horizontal velocity limit between [MC_SLOW_MIN_HVEL][mc_slow_min_hvel] and [MPC_VEL_MANUAL][mpc_vel_manual]." (Expected state change)
+* Section 4, Sentence 3: "This overrides limit values set in parameters, but is ignored if the axis is mapped to an RC knob." (Constraint)
+* Section 4, Sentence 4: "The value can be updated from a message at any time, and is latched until either the next message or a mode switch." (Expected state change)

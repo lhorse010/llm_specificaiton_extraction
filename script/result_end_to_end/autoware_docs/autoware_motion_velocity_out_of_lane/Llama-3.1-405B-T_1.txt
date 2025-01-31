@@ -1,0 +1,54 @@
+Based on the provided document, I've extracted the specifications and expressed them using Metric Temporal Logic (MTL) formulas. Here are the results in the required JSON format:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(launch_out_of_lane_module → (out_of_lane_collision → F(stop_point_inserted)))",
+            "explanation": "If the out_of_lane module is activated and an out of lane collision is detected, then a stop point will be inserted in the future."
+        },
+        {
+            "formula": "G(ego_trajectory_footprint → F(accurate_time_to_collision_calculated))",
+            "explanation": "If the ego trajectory footprint is projected, then the accurate time to collision will be calculated in the future."
+        },
+        {
+            "formula": "G(predicted_object → (filtered_object → F(out_of_lane_area_calculated)))",
+            "explanation": "If a predicted object is filtered, then the out of lane area will be calculated in the future."
+        },
+        {
+            "formula": "G(out_of_lane_area → (time_to_collision_calculated → F(collision_avoided)))",
+            "explanation": "If the out of lane area is calculated and the time to collision is calculated, then the collision will be avoided in the future."
+        },
+        {
+            "formula": "G(collision_avoided → (stop_or_slowdown_point_calculated → F(ego_vehicle_stopped_or_slowed_down)))",
+            "explanation": "If a collision is avoided and a stop or slowdown point is calculated, then the ego vehicle will stop or slow down in the future."
+        },
+        {
+            "formula": "G(ego_vehicle_stopped_or_slowed_down → F(min_duration_elapsed))",
+            "explanation": "If the ego vehicle stops or slows down, then the minimum duration will elapse in the future."
+        },
+        {
+            "formula": "G(min_duration_elapsed → (no_out_of_lane_collision → F(stop_or_slowdown_pose_discarded)))",
+            "explanation": "If the minimum duration elapses and no out of lane collision is detected, then the stop or slowdown pose will be discarded in the future."
+        }
+    ]
+}
+```
+
+Note that I've used the following abbreviations in the MTL formulas:
+
+* `launch_out_of_lane_module`: The out_of_lane module is activated.
+* `out_of_lane_collision`: An out of lane collision is detected.
+* `stop_point_inserted`: A stop point is inserted in the ego trajectory.
+* `ego_trajectory_footprint`: The ego trajectory footprint is projected.
+* `accurate_time_to_collision_calculated`: The accurate time to collision is calculated.
+* `predicted_object`: A predicted object is detected.
+* `filtered_object`: A predicted object is filtered.
+* `out_of_lane_area`: The out of lane area is calculated.
+* `time_to_collision_calculated`: The time to collision is calculated.
+* `collision_avoided`: A collision is avoided.
+* `stop_or_slowdown_point_calculated`: A stop or slowdown point is calculated.
+* `ego_vehicle_stopped_or_slowed_down`: The ego vehicle stops or slows down.
+* `min_duration_elapsed`: The minimum duration elapses.
+* `no_out_of_lane_collision`: No out of lane collision is detected.
+* `stop_or_slowdown_pose_discarded`: The stop or slowdown pose is discarded.

@@ -1,0 +1,42 @@
+[
+  {
+    "index": 0,
+    "formula": "G(GuidedMode → F(ReachTarget ∧ Hover))",
+    "explanation": "Globally, when in Guided Mode, the copter will eventually reach the target location and hover there."
+  },
+  {
+    "index": 1,
+    "formula": "G(TakeOff → (Loiter U GuidedMode))",
+    "explanation": "Globally, after takeoff, the copter should remain in Loiter mode until Guided Mode is activated."
+  },
+  {
+    "index": 2,
+    "formula": "G(GuidedMode ∧ NewTargetSet → F(ReachNewTarget))",
+    "explanation": "Globally, when in Guided Mode and a new target is set, the copter will eventually reach the new target."
+  },
+  {
+    "index": 3,
+    "formula": "G(Speed ≤ WPNAV_SPEED)",
+    "explanation": "Globally, the copter's horizontal speed should not exceed the WPNAV_SPEED parameter."
+  },
+  {
+    "index": 4,
+    "formula": "G(VerticalSpeedUp ≤ WPNAV_SPEED_UP)",
+    "explanation": "Globally, the copter's upward vertical speed should not exceed the WPNAV_SPEED_UP parameter."
+  },
+  {
+    "index": 5,
+    "formula": "G(VerticalSpeedDown ≤ WPNAV_SPEED_DN)",
+    "explanation": "Globally, the copter's downward vertical speed should not exceed the WPNAV_SPEED_DN parameter."
+  },
+  {
+    "index": 6,
+    "formula": "G(GuidedMode ∧ NoCommandReceived → F[0,GUID_TIMEOUT](SlowToStop ∨ HoldLevelHover))",
+    "explanation": "Globally, when in Guided Mode and no commands are received, within GUID_TIMEOUT seconds, the copter will either slow to a stop or hold a level hover."
+  },
+  {
+    "index": 7,
+    "formula": "G(Guided_NoGPS → ¬RequireGPS)",
+    "explanation": "Globally, when in Guided_NoGPS mode, GPS is not required for operation."
+  }
+]

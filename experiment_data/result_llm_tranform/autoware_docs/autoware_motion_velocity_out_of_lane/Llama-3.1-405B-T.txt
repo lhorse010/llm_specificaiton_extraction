@@ -1,0 +1,72 @@
+[
+  {
+    "sentence": "This module is activated if the launch parameter launch_out_of_lane_module is set to true.",
+    "formula": "P → M",
+    "explanation": "Here, P represents the launch parameter launch_out_of_lane_module being set to true, and M represents the activation of the module. The formula indicates that if P is true, then M is also true."
+  },
+  {
+    "sentence": "The algorithm assumes the input ego trajectory contains accurate time_from_start values in order to calculate accurate time to collisions with the predicted objects.",
+    "formula": "G(A → T)",
+    "explanation": "Here, A represents the accuracy of the time_from_start values, and T represents the accuracy of the calculated time to collisions. The formula indicates that it is always the case that if A is true, then T is also true."
+  },
+  {
+    "sentence": "The length of the trajectory used for generating the footprints is limited by the max_arc_length parameter.",
+    "formula": "G(L ≤ M)",
+    "explanation": "Here, L represents the length of the trajectory, and M represents the max_arc_length parameter. The formula indicates that it is always the case that L is less than or equal to M."
+  },
+  {
+    "sentence": "We consider all lanelets around the ego vehicle that are not crossed by the trajectory linestring (sequence of trajectory points) or their preceding lanelets.",
+    "formula": "G(¬C ∧ ¬P → L)",
+    "explanation": "Here, C represents the lanelets being crossed by the trajectory linestring, P represents the lanelets being preceded by other lanelets, and L represents the consideration of lanelets. The formula indicates that it is always the case that if a lanelet is not crossed and not preceded, then it is considered."
+  },
+  {
+    "sentence": "1.ignore objects with a speed below the minimum_velocity parameter;",
+    "formula": "G(S < M → ¬O)",
+    "explanation": "Here, S represents the speed of an object, M represents the minimum_velocity parameter, and O represents the consideration of an object. The formula indicates that it is always the case that if an object's speed is below the minimum velocity, then it is ignored."
+  },
+  {
+    "sentence": "2.ignore objects coming from behind the ego vehicle if parameter ignore_behind_ego is set to true;",
+    "formula": "P → G(B → ¬O)",
+    "explanation": "Here, P represents the parameter ignore_behind_ego being set to true, B represents an object coming from behind the ego vehicle, and O represents the consideration of an object. The formula indicates that if P is true, then it is always the case that objects coming from behind are ignored."
+  },
+  {
+    "sentence": "3.ignore predicted paths whose confidence value is below the predicted_path_min_confidence parameter;",
+    "formula": "G(C < M → ¬P)",
+    "explanation": "Here, C represents the confidence value of a predicted path, M represents the predicted_path_min_confidence parameter, and P represents the consideration of a predicted path. The formula indicates that it is always the case that if a predicted path's confidence value is below the minimum confidence, then it is ignored."
+  },
+  {
+    "sentence": "4.cut the points of predicted paths going beyond the stop line of a red traffic light if parameter cut_predicted_paths_beyond_red_lights is set to true.",
+    "formula": "P → G(R ∧ B → ¬P)",
+    "explanation": "Here, P represents the parameter cut_predicted_paths_beyond_red_lights being set to true, R represents a red traffic light, B represents a predicted path going beyond the stop line, and P represents the consideration of a predicted path. The formula indicates that if P is true, then it is always the case that predicted paths going beyond the stop line of a red traffic light are cut."
+  },
+  {
+    "sentence": "In the case where parameter mode is set to threshold and the calculated time is less than threshold.time_threshold parameter, then we decide to avoid the out of lane area.",
+    "formula": "P ∧ T < M → A",
+    "explanation": "Here, P represents the parameter mode being set to threshold, T represents the calculated time, M represents the threshold.time_threshold parameter, and A represents the decision to avoid the out of lane area. The formula indicates that if P is true and T is less than M, then A is also true."
+  },
+  {
+    "sentence": "If the time to collision is below the ttc.threshold parameter value, we decide to avoid the out of lane area.",
+    "formula": "T < M → A",
+    "explanation": "Here, T represents the time to collision, M represents the ttc.threshold parameter value, and A represents the decision to avoid the out of lane area. The formula indicates that if T is below M, then A is also true."
+  },
+  {
+    "sentence": "First, the minimum stopping distance of the ego vehicle is calculated based on the jerk and deceleration constraints set by the velocity smoother parameters.",
+    "formula": "C",
+    "explanation": "Here, C represents the calculation of the minimum stopping distance. This sentence doesn't contain any temporal information, so the formula is simply the predicate C."
+  },
+  {
+    "sentence": "If this distance is below the actions.slowdown.threshold, a velocity of actions.slowdown.velocity will be used.",
+    "formula": "D → V",
+    "explanation": "Here, D represents the distance being below the actions.slowdown.threshold, and V represents the velocity being set to actions.slowdown.velocity. The formula D → V indicates that if the distance is below the threshold, then the velocity will be set accordingly."
+  },
+  {
+    "sentence": "If the distance is below the actions.stop.threshold, a velocity of 0m/s will be used.",
+    "formula": "D' → V'",
+    "explanation": "Here, D' represents the distance being below the actions.stop.threshold, and V' represents the velocity being set to 0m/s. The formula D' → V' indicates that if the distance is below the threshold, then the velocity will be set to 0m/s."
+  },
+  {
+    "sentence": "To make the decision more stable, a stop or slowdown pose is used for a minimum duration set by the action.min_duration parameter.",
+    "formula": "G[min_duration](S ∨ V)",
+    "explanation": "Here, S represents the stop pose, V represents the slowdown pose, and min_duration represents the minimum duration set by the action.min_duration parameter. The formula G[min_duration](S ∨ V) indicates that for at least the minimum duration, either the stop or slowdown pose will be used."
+  }
+]

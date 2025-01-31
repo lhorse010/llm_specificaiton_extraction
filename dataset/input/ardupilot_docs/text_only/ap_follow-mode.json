@@ -1,0 +1,71 @@
+{
+  "title": "Follow Mode",
+  "sections": [
+    {
+      "section-id": 0,
+      "title": "Follow Mode",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "When switched into Follow, the vehicle will attempt to follow another vehicle (or anything publishing its position) at a specified offset."
+        },
+        {
+          "sentence-id": 1,
+          "text": "The vehicle lead vehicle's position must be published to the vehicle in Follow mode using a telemetry system."
+        },
+        {
+          "sentence-id": 2,
+          "text": "The altitude is maintained with the altitude hold controller so the vehicle will attempt to hold its current altitude when the sticks are placed with 10% of mid-throttle."
+        },
+        {
+          "sentence-id": 3,
+          "text": "It will climb or descend at up to 2.5m/s (this speed is adjustable with the PILOT_SPEED_UP and PILOT_SPEED_DN parameters)."
+        },
+        {
+          "sentence-id": 4,
+          "text": "The acceleration used to establish these speeds is set by PILOT_ACCEL_Z."
+        },
+        {
+          "sentence-id": 5,
+          "text": "The following parameters can be used to tune Follow Mode's performance:"
+        },
+        {
+          "sentence-id": 6,
+          "text": "1.FOLL_ENABLE : set to 1 to enable follow mode and refresh parameters"
+        },
+        {
+          "sentence-id": 7,
+          "text": "2.FOLL_SYSID : MAVLink system id of lead vehicle (\"0\" means follow the first vehicle \"seen\")"
+        },
+        {
+          "sentence-id": 8,
+          "text": "3.FOLL_DIST_MAX : if lead vehicle is more than this many meters away, give up on following and hold position"
+        },
+        {
+          "sentence-id": 9,
+          "text": "4.FOLL_OFS_X , FOLL_OFS_Y , FOLL_OFS_Z : 3D offset (in meters) from the lead vehicle"
+        },
+        {
+          "sentence-id": 10,
+          "text": "5.FOLL_OFS_TYPE : set to 0 if offsets are North-East-Down, 1 if offsets are relative to lead vehicle's heading"
+        },
+        {
+          "sentence-id": 11,
+          "text": "6.FOLL_YAW_BEHAVE : controls whether follow points in the same direction as lead vehicle or always towards it"
+        },
+        {
+          "sentence-id": 12,
+          "text": "7.FOLL_POS_P : gain which controls how aggressively this vehicle moves towards lead vehicle (limited by WPNAV_SPEED )"
+        },
+        {
+          "sentence-id": 13,
+          "text": "8.FOLL_ALT_TYPE : allows selecting whether to use lead vehicle's relative-to-home or relative-to-sea-level altitude"
+        },
+        {
+          "sentence-id": 14,
+          "text": "9.FOLL_OPTIONS: set bit 0 to \"1\" to enable the Gimbal / Mount Controls to follow the target vehicle."
+        }
+      ]
+    }
+  ]
+}

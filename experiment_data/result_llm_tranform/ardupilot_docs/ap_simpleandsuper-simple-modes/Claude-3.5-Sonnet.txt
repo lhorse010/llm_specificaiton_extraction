@@ -1,0 +1,57 @@
+[
+  {
+    "sentence": "\"Simple\" and \"Super Simple\" modes can be used in combination with nearly all flight modes except the Acro and Drift (in these flight modes the setting is ignored).",
+    "formula": "G((S ∨ SS) → (¬A ∧ ¬D))",
+    "explanation": "This formula states that globally (G), if Simple (S) or Super Simple (SS) modes are active, then neither Acro (A) nor Drift (D) modes are active. The implication captures the exception mentioned in the sentence."
+  },
+  {
+    "sentence": "Simple Mode allows you to control the copter relative to the copters heading at take off and relies only on a good compass heading.",
+    "formula": "G(S → (C ∧ H))",
+    "explanation": "This formula expresses that globally (G), when Simple Mode (S) is active, it implies both relative control (C) and good compass heading (H). The global operator ensures this condition holds throughout the flight."
+  },
+  {
+    "sentence": "Either mode can be assigned to a particular flight mode switch position or can be enabled/disabled from the Ch7/Ch8 switches.",
+    "formula": "G((S ∨ SS) → (F ∨ (C7 ∨ C8)))",
+    "explanation": "This formula states that globally (G), if Simple (S) or Super Simple (SS) modes are active, it implies either a flight mode switch position (F) or Channel 7 (C7) or Channel 8 (C8) activation. The 'finally' operator is not used here as the assignment or enabling can happen at any time."
+  },
+  {
+    "sentence": "The disadvantage is that mode require a GPS lock because so you should ensure you have GPS lock before take-off.",
+    "formula": "G(T → X(G))",
+    "explanation": "This formula expresses that globally (G), if there's a take-off (T), it implies that in the next state (X), there must be a GPS lock (G). This captures the requirement of ensuring GPS lock before take-off."
+  },
+  {
+    "sentence": "The orientation is not updated when the vehicle is within 10m of home meaning close fly-bys of the home location should be avoided.",
+    "formula": "G(C → ¬U)",
+    "explanation": "This formula states that globally (G), if the copter is close to home (C), it implies no orientation update (U). The specific distance (10m) is not directly expressible in MTL without additional temporal operators, but the logical relationship is captured."
+  },
+  {
+    "sentence": "The transmitter's auxiliary channels can be set-up to enable selection of Simple mode, Super Simple mode or both.",
+    "formula": "F(A → (S ∨ SS ∨ (S ∧ SS)))",
+    "explanation": "This formula expresses that eventually (F), if auxiliary channels are set up (A), it implies the possibility of Simple mode (S), Super Simple mode (SS), or both. The 'finally' operator is used as the setup can happen at any future time."
+  },
+  {
+    "sentence": "Only one auxiliary channel should be set for these modes, and this channel will override the simple/super-simple options selected on the Flight Modes screen.",
+    "formula": "G((A ∧ (S ∨ SS)) → ¬F)",
+    "explanation": "This formula states that globally (G), if an auxiliary channel (A) is set for Simple (S) or Super Simple (SS) modes, it implies that the Flight Modes screen options (F) are not active. This captures the override behavior mentioned."
+  },
+  {
+    "sentence": "To support selection of just one of the modes from the transmitter, assign the mode to a channel that is mapped to a 2-position switch (high = enables the selected mode, low disables it).",
+    "formula": "G((H → (S ∨ SS)) ∧ (L → ¬(S ∨ SS)))",
+    "explanation": "This formula expresses that globally (G), a high switch position (H) implies either Simple (S) or Super Simple (SS) mode, while a low position (L) implies neither mode is active. This captures the behavior of the 2-position switch."
+  },
+  {
+    "sentence": "To enable both modes from the same switch, select Super Simple mode for a channel that is mapped to a 3-position switch (high position = Super Simple mode, middle position = Simple mode, low position = disabled).",
+    "formula": "G((H → SS) ∧ (M → S) ∧ (L → ¬(S ∨ SS)))",
+    "explanation": "This formula states that globally (G), a high switch position (H) implies Super Simple mode (SS), a middle position (M) implies Simple mode (S), and a low position (L) implies neither mode is active. This captures the behavior of the 3-position switch for both modes."
+  },
+  {
+    "sentence": "3.Super Simple Mode allows you to control the copter relative to it's direction from home (i.e.",
+    "formula": "G(S → R)",
+    "explanation": "This formula represents a continuous state where Super Simple Mode (S) implies Relative control (R). The 'G' operator ensures this condition holds globally. Note that the sentence is incomplete, so we're interpreting based on available information."
+  },
+  {
+    "sentence": "To ensure the controls are correct right at take-off, as with simple mode, you should arm with the pilot standing behind the vehicle and with both pilot and vehicle pointing in the same direction.",
+    "formula": "G(A → (B ∧ D) → X(C))",
+    "explanation": "Here, A represents arming the vehicle, B represents the pilot standing behind the vehicle, D represents pilot and vehicle pointing in the same direction, and C represents correct controls at take-off. The formula states that globally, if the vehicle is armed (A) and the conditions (B and D) are met, then in the next state (X), the controls will be correct (C)."
+  }
+]

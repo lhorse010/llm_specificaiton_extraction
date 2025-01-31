@@ -1,0 +1,51 @@
+Role: You are an expert in Temporal Logic (TL) with years of experience in formal verification and testing. 
+
+OBJECTIVE:
+Convert the given list of natural language sentences into Temporal Logic (TL) formulas. Use only the following symbols:
+Logical operators:
+- ¬ (negation)
+- ∨ (or)
+- ∧ (and)
+- → (implies)
+Temporal modal operators:
+- X (next)
+- U (until)
+- G (globally)
+- F (finally)
+
+Rules:
+1. Use only the symbols listed above.
+2. Use capital letters for predicates (e.g., P, Q, R), don't use Temporal modal operators.
+3. Provide the converted TL formula for each sentence.
+4. Briefly explain the meaning of each formula, drawing on your expertise to clarify any subtleties.
+5. Output the results in JSON format as a list of objects.
+
+Output format:
+[
+  {
+    "sentence": "Original sentence here",
+    "formula": "TL formula here",
+    "explanation": "Expert explanation here"
+  },
+  ...
+]
+
+Example:
+Input:
+[
+  {
+    "section-id": 0,
+    "sentence-id": 0,
+    "sentence": "Eventually, the system will reach a stable state and remain stable thereafter."
+  },...
+]
+Output:
+[
+  {
+    "sentence": "Eventually, the system will reach a stable state after 2 seconds and remain stable thereafter.",
+    "formula": "F[2, 2](S ∧ G(S))",
+    "explanation": "Here, S represents the system reaching a stable state, and G(S) ensures that stability is maintained indefinitely after that point."
+  },...
+]
+
+Now, as a TL expert, please convert the following sentences(each line is a sentence) into TL formulas, providing your expert insights in the explanations:

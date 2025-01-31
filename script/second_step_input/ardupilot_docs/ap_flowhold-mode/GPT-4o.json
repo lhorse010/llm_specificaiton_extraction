@@ -1,0 +1,17 @@
+[
+  {
+    "section-id": 0,
+    "sentence-id": 3,
+    "sentence": "When the user releases the sticks, the optical flow sensor is used by the autopilot to bring the vehicle to a stop."
+  },
+  {
+    "section-id": 0,
+    "sentence-id": 4,
+    "sentence": "Because no Lidar is used in this mode, the optical flow sensor is used both to estimate the vehicle's height above the surface and the vehicle's speed."
+  },
+  {
+    "section-id": 0,
+    "sentence-id": 11,
+    "sentence": "If the flow sensor quality falls below this value, FlowHold will act just like AltHold"
+  }
+]

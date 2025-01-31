@@ -1,0 +1,47 @@
+[
+  {
+    "sentence": "Simple and Super Simple modes can be used in combination with nearly all flight modes except the Acro and Drift (in these flight modes the setting is ignored).",
+    "formula": "G((F ∧ ¬(A ∨ D)) → (S ∨ SS))",
+    "explanation": "This formula states that globally, if a flight mode F is active and it is not Acro (A) or Drift (D), then Simple (S) or Super Simple (SS) modes can be used."
+  },
+  {
+    "sentence": "Simple Mode allows you to control the copter relative to the copters heading at take off and relies only on a good compass heading.",
+    "formula": "G(S → C)",
+    "explanation": "This states that globally, if Simple Mode (S) is active, it requires a good compass heading (C) to control the copter relative to its initial heading."
+  },
+  {
+    "sentence": "Super Simple Mode allows you to control the copter relative to its direction from home (i.e.",
+    "formula": "G(SS → H)",
+    "explanation": "Globally, if Super Simple Mode (SS) is active, it allows control relative to the direction from home (H)."
+  },
+  {
+    "sentence": "where it was armed) but requires a good GPS position.",
+    "formula": "G(SS → G)",
+    "explanation": "This adds that if Super Simple Mode (SS) is active, it also requires a good GPS position (G)."
+  },
+  {
+    "sentence": "The disadvantage is that mode requires a GPS lock because so you should ensure you have GPS lock before take-off.",
+    "formula": "G((SS ∧ ¬L) → ¬T)",
+    "explanation": "Globally, if Super Simple Mode (SS) is active and there is no GPS lock (L), then take-off (T) should not occur."
+  },
+  {
+    "sentence": "The orientation is not updated when the vehicle is within 10m of home meaning close fly-bys of the home location should be avoided.",
+    "formula": "G(D[0,10] → ¬U)",
+    "explanation": "Globally, if the distance (D) to home is within 10 meters, then orientation update (U) does not occur, so close fly-bys should be avoided."
+  },
+  {
+    "sentence": "Only one auxiliary channel should be set for these modes, and this channel will override the simple/super-simple options selected on the Flight Modes screen.",
+    "formula": "G((O ∧ ¬M) → C)",
+    "explanation": "Globally, if an override (O) is set and multiple channels (M) are not in use, it implies the use of a single auxiliary channel (C)."
+  },
+  {
+    "sentence": "To support selection of just one of the modes from the transmitter, assign the mode to a channel that is mapped to a 2-position switch (high = enables the selected mode, low disables it).",
+    "formula": "G((H → E) ∧ (L → ¬E))",
+    "explanation": "Globally, if the switch is high (H), the mode is enabled (E); if low (L), it is disabled."
+  },
+  {
+    "sentence": "To enable both modes from the same switch, select Super Simple mode for a channel that is mapped to a 3-position switch (high position = Super Simple mode, middle position = Simple mode, low position = disabled).",
+    "formula": "G((H → SS) ∧ (M → S) ∧ (L → ¬(S ∨ SS)))",
+    "explanation": "Globally, if the switch is in high position (H), Super Simple Mode (SS) is enabled; if in middle (M), Simple Mode (S) is enabled; if low (L), both are disabled."
+  }
+]

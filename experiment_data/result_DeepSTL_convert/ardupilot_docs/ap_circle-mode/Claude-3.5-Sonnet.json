@@ -1,0 +1,148 @@
+{
+    "temporal_logic_formulars": [
+        {
+            "section-id": 0,
+            "sentence-id": 0,
+            "sentence": "Circle will orbit a point located CIRCLE_RADIUS centimeters in front of the vehicle with the nose of the vehicle pointed at the center.",
+            "tl": "always ( Circleorbita == locedCLEDL_RIUScete )"
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 1,
+            "sentence": "Setting the CIRCLE_RADIUS to zero will cause the copter to simply stay in place and slowly rotate (useful for panorama shots).",
+            "tl": "always ( SetingCIRCLE_RADIUS == zerocausecopter and ( slowlyrotateuse > 9 and seusefusefulol < 9 ) )"
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 2,
+            "sentence": "The speed of the vehicle (in deg/second) can be modified by changing the CIRCLE_RATE parameter.",
+            "tl": "always ( speedvehicle > 0 and spedvehicle < degcondcanmodfibyc == dedycahgCIRCLE_RATE = arameter )"
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 3,
+            "sentence": "A positive value means rotate clockwise, a negative means counter clockwise.",
+            "tl": "always ( eApositive == meatateclocsea = ecinea )"
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 4,
+            "sentence": "The vehicle may not achieve the desired rate if this requires the acceleration towards the center of the circle to surpass the maximum acceleration held in the WPNAV_ACCEL parameter (units are cm/s/s).",
+            "tl": "always ( not ( vehiclemaed == edredredr ) and reSracesace == rtinterdtecSrscer ) -> ( erdcirsmlesmaxracesm == maxiumacereceracesmacerate ) until [ 0 : s == WPNAV_CECLamecmsamecs )"
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 7,
+            "sentence": "The other is by enabling the CIRCLE_CONTROL parameter to allow stick adjustment of radius and speed.",
+            "tl": "always ( otherbyenablingCIRCLCE == OROLNOarameter )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 0,
+            "sentence": "When enabled, the CIRCLE_CONTROL parameter allows the adjustment of the circle's radius and angular velocity, in firmware versions prior to 4.1.",
+            "tl": "always ( enabledCIRCLCO == L_arameterlowsadustmen == sradiclus and sranglaurvelociucity == firmrverversolervesitity )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 1,
+            "sentence": "In 4.1 and later, the CIRCLE_OPTIONS bitmask parameter controls what actions the pilot can adjust with his sticks and circle mode operation.",
+            "tl": "always ( laterCIRC == CL_OPaiNSmtas == armar ) and etrcolswtatr == tioctStaspilocalsptcathilotcadut == stwicSthisthistcasthicstr ) -> ( c == scirltwtithisthisticsti == soeratcsicsoperaicsicsir ) and lcir"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 2,
+            "sentence": "When bit 0 is set of the CIRCLE_OPTIONS parameter the pilot can adjust circle's radius and angular velocity with the control sticks:",
+            "tl": "always ( bit0RCLE_OPTIO == araetrilocadjustcirl and sangularveloc == lrvlocitrvelocithcols )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 3,
+            "sentence": "1.Pitch stick up (reducing RC pwm) reduces the radius until it reaches zero.",
+            "tl": "always ( r1Pitchstickup > 1 . uredtciupeducingRCpreduceducesradiusradiusr == iusicheaduseracheseszero )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 5,
+            "sentence": "2.Pitch stick down (increasing RC pwm) increases the radius.",
+            "tl": "always ( rise ( 2 . Pitchstick > increasingRCpwm == rasingRCpwm ) )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 7,
+            "sentence": "3.Roll stick right (think clockwise) will increase the speed while moving clockwise, or decrease the speed while moving counterclockwise until reaching zero, at which point it will stop.",
+            "tl": "always ( ( Rolstick > 4 and Rolstick < inkclocise ) or rise ( speded == mlocmvingcovingcouneco == erlcoicserco ) -> ( serlcoicserc == erahineroicserahitsroitoicsoit == ito ) until ( rise ( erecsreroicitsoicszeroit == = itoi"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 8,
+            "sentence": "4.Roll stick left (think counterclockwise) will increase the speed while moving counterclockwise, or decrease the speed while moving clockwise until reaching zero, at which point it will stop.",
+            "tl": "always ( fall ( RolstickSckt > 4.1 and RolstickScounerl < lcocedkwise ) or rise ( spednco == cloednckwisesepepe ) -> ( socepedmovincovgc == sererahingcoiserociseroicsero ) until ( fall ( erac == = itserahitserocitsocisoisoc"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 9,
+            "sentence": "Once stopped (rate 0), releasing the roll stick and pushing it again in either direction will begin moving again in the desired direction.",
+            "tl": "always ( ( rOncestopderated > 0 and recestopinlasingl == rolsitick ) and pushingitagin == eitrdtreireiredreitinmonmon == deiovreinmo )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 11,
+            "sentence": "5.Roll stick rate changes are inhibited when CH6 tuning knob is set for circle rate.",
+            "tl": "always ( rise ( e5 . Rolstickrate == inhibitedCH6tuningknob ) and c == cirlerate )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 12,
+            "sentence": "6.All stick changes are inhibited in radio failsafe.(ie if loiter turns was part of a mission that continues when in failsafe)",
+            "tl": "always ( rise ( . 6 Alstickini == inhibitedradiofailsae ) and iloiterturns == amisprtamissison )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 16,
+            "sentence": "When bit 1 is set of the CIRCLE_OPTIONS parameter the Copter will face the direction of travel as it circles, otherwise, the Copter will point its nose at the center of the circle as it orbits.",
+            "tl": "always ( bit1RCLE_OPTIO == SarameterCper ) until ( facetired == ectretir ) -> ( etrlicle == othtersotericerseteritec = itseritr )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 17,
+            "sentence": "When bit 2 is set of the CIRCLE_OPTIONS parameter the circle's center position will set upon mode entry at the current location, rather than on the perimeter with the center in front of the Copter at the start.",
+            "tl": "always ( not ( bit2CIRCLE_OPTIO == Sarametercirl ) and not ( scentionpo == netrtnetryctr ) -> ( tenrtStocaher == rperionrater ) until ( eperietetSr == rateriter ) )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 18,
+            "sentence": "When bit 3 is set of the CIRCLE_OPTIONS parameter the mount's (if used) ROI aka region of interest will be set on the circle center causing mount to face the circle's center all the times.",
+            "tl": "always ( not ( bit3RCICLE_OPTIOS == arametermoun ) and not ( susedatereda == stecintecrecstentrce ) -> always ( causecauicenmout == caececsetricesetecertescente ) )"
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 0,
+            "sentence": "The pilot does not have any control over the roll and pitch but can change the altitude with the throttle stick as in altholdmode or loiter-mode.",
+            "tl": "always ( not rise ( pilotntrol > rol ) and pitchbutcan == altiththtiththtlestickal = altlt ) -> pltStestick == altltholtdmolde or poldmoieo == loieloieloiter )"
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 1,
+            "sentence": "The pilot can control the yaw of the copter, but the autopilot will not retake control of the yaw until circle mode is re-engaged.",
+            "tl": "always ( not ( pilotcancontr == lyawcoperbtopilot ) -> ( not ( retakecontrol == retawcirole ) ) until ( yawcircler == reeengagagaged ) )"
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 2,
+            "sentence": "The mission command LOITER_TURNS invokes Circle mode during a mission.",
+            "tl": "always ( misioncommandLO == LOITERNSinvokesCircle )"
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 6,
+            "sentence": "The first is the use of RC Channel 6 if the TUNE option is set to 39, allowing decreasing the rate 50% or increasing it by 100%, at the channel min and max.",
+            "tl": "always ( useRCChanel6 == TUNEoptiongdecrease ) or ingrate50 == increascreasingin )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 10,
+            "sentence": "So yes, this allows you to completely change the direction on the fly.",
+            "tl": "always ( rise ( Soyesalowsyou == completely ) and rise ( directio == infly ) )"
+        }
+    ]
+}

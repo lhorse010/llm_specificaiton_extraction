@@ -1,0 +1,38 @@
+I've thoroughly read the document and extracted the relevant specifications. I'll now express them using Metric Temporal Logic (MTL) formulas and provide explanations for each.
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(SimpleMode → (ControlInput ↔ RelativeToTakeoffHeading))",
+            "explanation": "This formula states that globally (G), when Simple Mode is active, control inputs should always correspond to the copter's movement relative to its heading at takeoff. This captures the essence of Simple Mode's behavior."
+        },
+        {
+            "formula": "G(SuperSimpleMode → (ControlInput ↔ RelativeToHome))",
+            "explanation": "This formula expresses that globally (G), when Super Simple Mode is active, control inputs should always correspond to the copter's movement relative to its home position. This encapsulates the core behavior of Super Simple Mode."
+        },
+        {
+            "formula": "G(SuperSimpleMode → GPSLock)",
+            "explanation": "This formula states that globally (G), Super Simple Mode requires a GPS lock. It captures the requirement that GPS lock must be ensured before takeoff when using Super Simple Mode."
+        },
+        {
+            "formula": "G((SimpleMode ∨ SuperSimpleMode) → ¬(AcroMode ∨ DriftMode))",
+            "explanation": "This formula expresses that globally (G), when either Simple Mode or Super Simple Mode is active, the copter cannot be in Acro Mode or Drift Mode. This reflects the incompatibility of these modes."
+        },
+        {
+            "formula": "G(SuperSimpleMode ∧ (DistanceFromHome < 10) → X(OrientationUnchanged))",
+            "explanation": "This formula states that globally (G), when in Super Simple Mode and the distance from home is less than 10 meters, in the next state (X) the orientation remains unchanged. This captures the behavior near the home location in Super Simple Mode."
+        },
+        {
+            "formula": "G(AuxChannelHigh → SimpleMode)",
+            "explanation": "This formula expresses that globally (G), when the auxiliary channel is in the high position, Simple Mode is activated. This reflects how Simple Mode can be selected using a transmitter switch."
+        },
+        {
+            "formula": "G(AuxChannelMid → SuperSimpleMode)",
+            "explanation": "This formula states that globally (G), when the auxiliary channel is in the middle position, Super Simple Mode is activated. This captures how Super Simple Mode can be selected using a 3-position transmitter switch."
+        }
+    ]
+}
+```
+
+These MTL formulas capture the key specifications and behaviors of the Simple and Super Simple modes as described in the document. They focus on the core functionalities, mode selections, and constraints of these modes.

@@ -1,0 +1,30 @@
+```json
+{
+    "specifications": [
+        {
+            "formula": "G (¬(flowQuality < FHLD_QUAL_MIN) → (mode ≠ FlowHold → mode = AltHold))",
+            "explanation": "If the flow sensor quality drops below the minimum threshold, the system should switch from FlowHold mode to AltHold mode."
+        },
+        {
+            "formula": "G ((pilotSticksReleased) → F (vehicleSpeed = 0))",
+            "explanation": "When the pilot releases the sticks, the vehicle should eventually come to a stop."
+        },
+        {
+            "formula": "G ((mode = FlowHold) → (opticalFlowSensorUsed ∧ ¬lidarUsed))",
+            "explanation": "In FlowHold mode, the optical flow sensor must be used for estimating both height and speed, with no Lidar involved."
+        },
+        {
+            "formula": "G ((heightChange ∨ takeoff) → F (¬wobble))",
+            "explanation": "After takeoff or significant height changes, any wobbling should eventually cease as the system stabilizes."
+        },
+        {
+            "formula": "G (mode = FlowHold → FHLD_BRAKE_RATE ∧ FHLD_FILT_HZ ∧ FHLD_FLOW_MAX ∧ FHLD_XY_P ∧ FHLD_XY_I ∧ FHLD_XY_IMAX ∧ FHLD_XY_FILT_HZ are set)",
+            "explanation": "While in FlowHold mode, appropriate parameters should be set to ensure correct operation."
+        },
+        {
+            "formula": "G (mode = FlowHold → X (¬stable → wobble))",
+            "explanation": "In FlowHold mode, if the system becomes unstable, it may cause wobbling."
+        }
+    ]
+}
+```

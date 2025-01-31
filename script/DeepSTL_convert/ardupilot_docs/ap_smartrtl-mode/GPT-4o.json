@@ -1,0 +1,76 @@
+{
+    "temporal_logic_formulars": [
+        {
+            "section-id": 0,
+            "sentence-id": 5,
+            "sentence": "The buffer is of a limited size (see below) and once it is full, \"SmartRTL deactivated: buffer full\" will appear on the ground stations's HUD and the user will no longer be able to switch into this mode.",
+            "tl": "always ( ( buferimitedsie < ese ) and ie < 6 eSmartRd == ctiatedateda = c ) -> ( not ( ruferudasta == sHUDuserlonerlonesai = s ) ) until ( not rise ( sHUDuserl == serlonlgerlonlerlonerlgwglerl == sit ) ) )"
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 7,
+            "sentence": "SmartRTL saves points at a maximum of 3 per second, but only if the vehicle has moved at least SRTL_ACCURACY meters from the previous point.",
+            "tl": "always ( SmartRTLsavespoints == amamx3persecondutonl ) until ( Sedu == ehiclyvehiclemoved ) -> SRTL_CURACYmeters == rspevious )"
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 14,
+            "sentence": "The FS_GCS_ENABLE and FS_THR_ENABLE parameters set to 4 or 5 the vehicle will switch to SmartRTL->RTL or SmartRTL->Land based on whether the correct conditions allows the mode.",
+            "tl": "always ( S_GCS_ENABLE == FS_THR_ENLaparameters == 45 or vehicleswitch == SmartRTLSmartRTL ) -> SmartRTL == aSmasedwhetedwhercorcolec == talrecololectalrecolows )"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 0,
+            "sentence": "The vehicle must have a good position estimate (LEDs should be green) when the vehicle is armed or SmartRTL will be disabled.",
+            "tl": "always ( ( vehicleod == agodosiosioitinestimae ) or greL == grehiclearmed )"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 1,
+            "sentence": "If the vehicle is armed without a good position estimate, \"SmartRTL deactivated: bad position\" will be sent to the ground station.",
+            "tl": "always ( vehiclearmed == agoiodpositinetimateSma == Smartedatedated ) -> badpositinto == grosedntinstodnstatioion )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 0,
+            "sentence": "1.RTL_SPEED can be used to set the speed (in meters/second) at which the vehicle will return to home.",
+            "tl": "always ( R1TL_SPEEDcanused == metersecond < e )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 2,
+            "sentence": "2.RTL_ALT_FINAL if set to 0, will land at home, otherwise will stop and hover above home at this altitude upon completion of the return.",
+            "tl": "always ( RTL_ALT_FINAL == 0 . landhomeothese == tophop and hoverhomeS == altitetomet )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 8,
+            "sentence": "If the maximum number of points is exhausted, \"SmartRTL deactivated: buffer full\" will be sent to the ground station and the user will not be able to switch into SmartRTL.",
+            "tl": "always ( rise ( maximumnumber == pointsexahausedteda == SmartedLedat ) -> duferflerfulsent == tinuser ) and not ( userable == sewswitchSmrtRTL ) )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 9,
+            "sentence": "5.SRTL_OPTIONS has one bit, currently, bit 2, that if set (value of \"4\") will ignore pilot yaw commands while in SmartRTL.",
+            "tl": "always ( SRTL_OPTIONSo == nebitcurentlybit2 > 4 and ignoretlybit2 < 4 ) and ignorepilotyawcomands == SmartmrtRTmandL )"
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 9,
+            "sentence": "After 50 points are saved it goes back and simplifies them into lines again using that SRTL_ACCURACY.",
+            "tl": "always ( rise ( Ater50pointsas == aveditback ) and simlifiesthemlines == emlinesaingaingsa == SRTL_ACL_ACURCURACYC )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 4,
+            "sentence": "The simplify algorithm will turn curved paths into straight lines but the line should never be more than this distance from the original path.",
+            "tl": "always ( rise ( simplifyalgorith == mtrncurvedpathstlinestline ) until ( rise ( s == draighstlightlines ) ) -> ( not ( distlt == distanutlinesbutline ) ) )"
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 16,
+            "sentence": "Additional Failsafes that may be set to switch to SmartRTL are: BATT_FS_CRT_ACT, BATT_FS_LOW_ACT, BATT2_FS_LOW_ACT, and BATT2_FS_CRT_ACT.",
+            "tl": "always ( dditionalFailsafes == switch ) -> BAT_CT_AT_FS_LOW_CTAT == _ATBT2_FS_C_C_S_CL_ACT )"
+        }
+    ]
+}

@@ -1,0 +1,42 @@
+I'll extract the specifications from the document and express them using Metric Temporal Logic (MTL) formulas. Then, I'll format the results in JSON as requested.
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(armed → (GPS_3D_lock ∧ (HDOP < 1.4)))",
+            "explanation": "The vehicle can only be armed in Loiter mode when the GPS has 3D lock and the HDOP has dropped below 1.4. This is expressed as a global condition that must always hold."
+        },
+        {
+            "formula": "G(loiter_mode → F(maintain_position ∧ maintain_heading ∧ maintain_altitude))",
+            "explanation": "When in Loiter mode, the vehicle will eventually maintain its current position, heading, and altitude. This is expressed as a global condition that whenever Loiter mode is active, it will finally reach a state where it maintains position, heading, and altitude."
+        },
+        {
+            "formula": "G(loiter_mode ∧ (|horizontal_speed| > 0) → F(|horizontal_speed| = 0))",
+            "explanation": "In Loiter mode, when the sticks are released, the vehicle will eventually come to a stop. This is expressed as a global condition that whenever the horizontal speed is non-zero in Loiter mode, it will finally become zero."
+        },
+        {
+            "formula": "G(loiter_mode → (|horizontal_speed| ≤ LOIT_SPEED))",
+            "explanation": "The maximum horizontal speed in Loiter mode is limited by the LOIT_SPEED parameter. This is expressed as a global condition that the absolute value of horizontal speed is always less than or equal to LOIT_SPEED when in Loiter mode."
+        },
+        {
+            "formula": "G(loiter_mode → (|acceleration| ≤ LOIT_ACC_MAX))",
+            "explanation": "The maximum acceleration in Loiter mode is limited by the LOIT_ACC_MAX parameter. This is expressed as a global condition that the absolute value of acceleration is always less than or equal to LOIT_ACC_MAX when in Loiter mode."
+        },
+        {
+            "formula": "G(loiter_mode → (|lean_angle| ≤ (LOIT_ANG_MAX ∨ PSC_ANGLE_MAX ∨ ANGLE_MAX)))",
+            "explanation": "The maximum lean angle in Loiter mode is limited by either LOIT_ANG_MAX (if non-zero) or PSC_ANGLE_MAX or ANGLE_MAX. This is expressed as a global condition that the absolute value of the lean angle is always less than or equal to the specified maximum when in Loiter mode."
+        },
+        {
+            "formula": "G(loiter_mode ∧ braking → (|braking_acceleration| ≤ LOIT_BRK_ACCEL))",
+            "explanation": "The maximum braking acceleration in Loiter mode is limited by the LOIT_BRK_ACCEL parameter. This is expressed as a global condition that when braking in Loiter mode, the absolute value of braking acceleration is always less than or equal to LOIT_BRK_ACCEL."
+        },
+        {
+            "formula": "G(loiter_mode ∧ sticks_centered → X^(LOIT_BRK_DELAY) braking)",
+            "explanation": "There is a delay of LOIT_BRK_DELAY seconds before braking starts once the pilot has centered the sticks in Loiter mode. This is expressed using the 'next' operator to indicate that braking starts after the specified delay."
+        }
+    ]
+}
+```
+
+These MTL formulas capture the key specifications of the Loiter mode as described in the document. They focus on the conditions for arming, maintaining position and altitude, speed and acceleration limits, and braking behavior. Some aspects of the system, such as the specific tuning parameters and their effects, are not directly expressible as MTL formulas and have been omitted.

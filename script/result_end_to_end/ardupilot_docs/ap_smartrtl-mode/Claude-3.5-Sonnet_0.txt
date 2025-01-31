@@ -1,0 +1,42 @@
+I'll extract the specifications from the document and express them using Metric Temporal Logic (MTL) formulas as requested. Here's the result in the specified JSON format:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(mode = SmartRTL → F(position = home))",
+            "explanation": "Globally, when the mode is switched to SmartRTL, the vehicle will eventually reach the home position."
+        },
+        {
+            "formula": "G(mode = SmartRTL → X(path = safe_path))",
+            "explanation": "Globally, when the mode is switched to SmartRTL, in the next state, the vehicle will follow a safe path home."
+        },
+        {
+            "formula": "G(buffer_full → ¬(mode = SmartRTL))",
+            "explanation": "Globally, if the buffer is full, the vehicle cannot switch to SmartRTL mode."
+        },
+        {
+            "formula": "G(armed ∧ ¬good_position_estimate → ¬(mode = SmartRTL))",
+            "explanation": "Globally, if the vehicle is armed and does not have a good position estimate, SmartRTL mode is disabled."
+        },
+        {
+            "formula": "G(mode = SmartRTL ∧ RTL_ALT_FINAL = 0 → F(state = landed))",
+            "explanation": "Globally, in SmartRTL mode, if RTL_ALT_FINAL is set to 0, the vehicle will eventually land at home."
+        },
+        {
+            "formula": "G(mode = SmartRTL ∧ RTL_ALT_FINAL > 0 → F(altitude = RTL_ALT_FINAL ∧ position = home))",
+            "explanation": "Globally, in SmartRTL mode, if RTL_ALT_FINAL is greater than 0, the vehicle will eventually hover at that altitude above home."
+        },
+        {
+            "formula": "G(SRTL_POINTS = 0 → ¬(mode = SmartRTL))",
+            "explanation": "Globally, if SRTL_POINTS is set to 0, SmartRTL mode is deactivated."
+        },
+        {
+            "formula": "G(mode = SmartRTL ∧ SRTL_OPTIONS = 4 → G(¬respond_to_yaw_commands))",
+            "explanation": "Globally, in SmartRTL mode, if SRTL_OPTIONS is set to 4, the vehicle will always ignore pilot yaw commands."
+        }
+    ]
+}
+```
+
+These MTL formulas capture the key specifications for the Smart RTL mode as described in the document. They cover the mode's behavior, conditions for activation and deactivation, and the effects of various parameter settings.

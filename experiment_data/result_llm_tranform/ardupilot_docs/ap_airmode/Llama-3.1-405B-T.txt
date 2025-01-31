@@ -1,0 +1,37 @@
+[
+  {
+    "sentence": "If a transmitter switch is used with  RCx_OPTION ARM/DISARM with Airmode (option 154) and used to arm, then stabilization at idle throttle is still fully active, which is often referred to as AIRMODE.",
+    "formula": "(T ∧ A) → G(S)",
+    "explanation": "Here, T represents the transmitter switch being used with RCx_OPTION ARM/DISARM with Airmode, A represents the switch being used to arm, and S represents stabilization at idle throttle being fully active (AIRMODE). The formula states that if the switch is used with the specified option and is used to arm, then AIRMODE will always be active."
+  },
+  {
+    "sentence": "Setting an RC channel to RCx_OPTION = 84, allows enabling or disabling AIRMODE in ACRO and STABILIZE modes directly.",
+    "formula": "R → (E ∨ D)",
+    "explanation": "Here, R represents the RC channel being set to RCx_OPTION = 84, E represents enabling AIRMODE, and D represents disabling AIRMODE. The formula states that setting the RC channel to the specified option allows for either enabling or disabling AIRMODE in the specified modes."
+  },
+  {
+    "sentence": "In addition, setting bit 0 of ACRO_OPTIONS will activate AIRMODE in ACRO mode (only) all the time, except if overridden by the above switch, if used.",
+    "formula": "(B ∧ ¬O) → G(A)",
+    "explanation": "Here, B represents bit 0 of ACRO_OPTIONS being set, O represents the override switch being used, and A represents AIRMODE being active in ACRO mode. The formula states that if the bit is set and the override switch is not used, then AIRMODE will always be active in ACRO mode."
+  },
+  {
+    "sentence": "to avoid enabling AIRMODE but still use an ARM/DISARM switch, use Auxiliary function option \"153\" for the switch.",
+    "formula": "U → ¬E",
+    "explanation": "Here, U represents using Auxiliary function option \"153\" for the switch, and E represents enabling AIRMODE. The formula states that using the specified option for the switch will prevent AIRMODE from being enabled."
+  },
+  {
+    "sentence": "AIRMODE has no effect in Traditional Helicopter",
+    "formula": "T → ¬A",
+    "explanation": "Here, T represents Traditional Helicopter mode, and A represents AIRMODE having an effect. The formula states that in Traditional Helicopter mode, AIRMODE has no effect."
+  },
+  {
+    "sentence": "It isn't sufficient to just enable arming on an RCx_OPTION switch, you also have to actually use it for arming.",
+    "formula": "E → ¬A ∧ U",
+    "explanation": "Here, E represents enabling arming on the RCx_OPTION switch, A represents AIRMODE being active, and U represents actually using the switch for arming. The formula states that enabling arming on the switch is not enough to activate AIRMODE; the switch must also be used for arming."
+  },
+  {
+    "sentence": "So if you have it on a switch but then use rudder-arming then you won't get \"airmode\".",
+    "formula": "(S ∧ R) → ¬A",
+    "explanation": "Here, S represents having the switch set to enable arming, R represents using rudder-arming, and A represents AIRMODE being active. The formula states that if the switch is set to enable arming but rudder-arming is used instead, then AIRMODE will not be active."
+  }
+]

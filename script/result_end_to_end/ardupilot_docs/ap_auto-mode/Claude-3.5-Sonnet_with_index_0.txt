@@ -1,0 +1,42 @@
+[
+  {
+    "index": 0,
+    "formula": "G(auto_mode → (¬ground ∨ (throttle_zero ∧ X(throttle_raised → mission_start))))",
+    "explanation": "Globally, when in auto mode, if the copter is not on the ground, or if it is on the ground with throttle at zero, then in the next state, raising the throttle will start the mission."
+  },
+  {
+    "index": 1,
+    "formula": "G(auto_mode → F(waypoint_reached → (distance_to_waypoint ≤ WPNAV_RADIUS)))",
+    "explanation": "Globally, when in auto mode, it's always the case that eventually when a waypoint is reached, the distance to the waypoint is less than or equal to WPNAV_RADIUS."
+  },
+  {
+    "index": 2,
+    "formula": "G(auto_mode → (speed ≤ WPNAV_SPEED))",
+    "explanation": "Globally, when in auto mode, the speed is always less than or equal to WPNAV_SPEED."
+  },
+  {
+    "index": 3,
+    "formula": "G(auto_mode → (lateral_acceleration ≤ WPNAV_ACCEL_C))",
+    "explanation": "Globally, when in auto mode, the lateral acceleration is always less than or equal to WPNAV_ACCEL_C."
+  },
+  {
+    "index": 4,
+    "formula": "G(auto_mode ∧ pilot_yaw_input → X(waypoint_reached → autopilot_yaw_control))",
+    "explanation": "Globally, when in auto mode and the pilot provides yaw input, in the next state, when a waypoint is reached, the autopilot will attempt to retake yaw control."
+  },
+  {
+    "index": 5,
+    "formula": "G(mission_complete → F(RTL ∨ LAND))",
+    "explanation": "Globally, when the mission is complete, eventually either Return to Launch (RTL) or LAND command will be executed."
+  },
+  {
+    "index": 6,
+    "formula": "G(auto_mode ∧ vertical_speed_up → (vertical_speed ≤ WPNAV_SPEED_UP))",
+    "explanation": "Globally, when in auto mode and moving upward, the vertical speed is always less than or equal to WPNAV_SPEED_UP."
+  },
+  {
+    "index": 7,
+    "formula": "G(auto_mode ∧ vertical_speed_down → (vertical_speed ≤ WPNAV_SPEED_DN))",
+    "explanation": "Globally, when in auto mode and moving downward, the vertical speed is always less than or equal to WPNAV_SPEED_DN."
+  }
+]

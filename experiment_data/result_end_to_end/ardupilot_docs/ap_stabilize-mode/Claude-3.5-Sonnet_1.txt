@@ -1,0 +1,58 @@
+I'll go through the document and extract the relevant specifications, expressing them using Metric Temporal Logic (MTL) formulas. Then, I'll format the results in JSON as requested.
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(¬manual_control → (roll_level ∧ pitch_level))",
+            "explanation": "Globally, when not under manual control, the roll and pitch axes should always be level."
+        },
+        {
+            "formula": "G(pilot_input_roll → F[0,t] (lean_angle_changed))",
+            "explanation": "Globally, when the pilot inputs a roll command, the lean angle of the copter should change within time t."
+        },
+        {
+            "formula": "G(pilot_input_pitch → F[0,t] (lean_angle_changed))",
+            "explanation": "Globally, when the pilot inputs a pitch command, the lean angle of the copter should change within time t."
+        },
+        {
+            "formula": "G((¬pilot_input_roll ∧ ¬pilot_input_pitch) → F[0,t] (vehicle_level))",
+            "explanation": "Globally, when the pilot releases both roll and pitch sticks, the vehicle should level itself within time t."
+        },
+        {
+            "formula": "G(pilot_input_yaw → F[0,t] (heading_rate_changed))",
+            "explanation": "Globally, when the pilot inputs a yaw command, the rate of change of the heading should change within time t."
+        },
+        {
+            "formula": "G((¬pilot_input_yaw) → X(maintain_current_heading))",
+            "explanation": "Globally, when the pilot releases the yaw stick, the vehicle should maintain its current heading in the next state."
+        },
+        {
+            "formula": "G(pilot_input_throttle → F[0,t] (motor_speed_changed))",
+            "explanation": "Globally, when the pilot inputs a throttle command, the average motor speed should change within time t."
+        },
+        {
+            "formula": "G((throttle = 0) → (motor_speed = MOT_SPIN_ARMED))",
+            "explanation": "Globally, when the throttle is completely down, the motors should go to their minimum rate (MOT_SPIN_ARMED)."
+        },
+        {
+            "formula": "G(tilt_angle_increased → F[0,t] (throttle_increased))",
+            "explanation": "Globally, when the tilt angle of the vehicle increases, the throttle sent to the motors should be automatically increased within time t."
+        },
+        {
+            "formula": "G(lean_angle ≤ ANGLE_MAX)",
+            "explanation": "Globally, the maximum lean angle should always be less than or equal to ANGLE_MAX (default 45 degrees)."
+        },
+        {
+            "formula": "G(rotation_rate ≤ ANGLE_RATE_MAX)",
+            "explanation": "Globally, the maximum requested rotation rate in the roll and pitch axis should always be less than or equal to ANGLE_RATE_MAX (default 180 deg/sec)."
+        },
+        {
+            "formula": "G(yaw_input_max → (yaw_rate = ACRO_Y_RATE))",
+            "explanation": "Globally, when maximum yaw input is given, the yaw rate should be equal to ACRO_Y_RATE (default 200 deg/sec)."
+        }
+    ]
+}
+```
+
+This JSON output contains the extracted specifications from the document, expressed using Metric Temporal Logic (MTL) formulas. Each specification includes the formula and an explanation of what it represents in the context of the stabilize mode for the vehicle.

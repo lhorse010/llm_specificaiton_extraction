@@ -1,0 +1,32 @@
+{
+  "specifications": [
+    {
+      "section-id": 0,
+      "sentence-id": 3
+    },
+    {
+      "section-id": 0,
+      "sentence-id": 7
+    },
+    {
+      "section-id": 0,
+      "sentence-id": 8
+    },
+    {
+      "section-id": 0,
+      "sentence-id": 9
+    },
+    {
+      "section-id": 0,
+      "sentence-id": 10
+    },
+    {
+      "section-id": 0,
+      "sentence-id": 11
+    },
+    {
+      "section-id": 0,
+      "sentence-id": 12
+    }
+  ]
+}

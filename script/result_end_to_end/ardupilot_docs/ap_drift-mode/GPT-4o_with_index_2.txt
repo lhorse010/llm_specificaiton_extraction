@@ -1,0 +1,27 @@
+[
+  {
+    "index": 0,
+    "formula": "G (right_stick_centered → F[0,2] speed_brake_active)",
+    "explanation": "If the right stick is centered, a speed brake is activated, slowing the copter to a stop within two seconds."
+  },
+  {
+    "index": 1,
+    "formula": "G (right_stick_forward ∨ right_stick_back → pitch_and_accelerate)",
+    "explanation": "Pushing the right stick forward or back causes the copter to pitch and accelerate in the appropriate direction."
+  },
+  {
+    "index": 2,
+    "formula": "G (right_stick_side → (yaw_auto_applied ∧ roll_cancel_velocity))",
+    "explanation": "When the right stick is pushed to the side, yaw is automatically applied and roll is adjusted to cancel velocity in the roll axis, ensuring a coordinated turn."
+  },
+  {
+    "index": 3,
+    "formula": "G (¬GPS_signal → (F[0,∞] (land ∨ altitude_hold)))",
+    "explanation": "If the GPS signal is lost, the copter will eventually land or enter altitude hold, depending on the failsafe settings."
+  },
+  {
+    "index": 4,
+    "formula": "G (throttle_down → (motors_min_rate ∧ lose_attitude_control))",
+    "explanation": "If the throttle is completely down, the motors go to their minimum rate, causing the copter to lose attitude control and tumble."
+  }
+]

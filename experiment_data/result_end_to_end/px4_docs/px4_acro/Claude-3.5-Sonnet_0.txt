@@ -1,0 +1,42 @@
+I'll extract the specifications from the document and express them using Metric Temporal Logic (MTL) formulas as requested. Then, I'll format the converted sentences in JSON.
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(stick_centered → X(angular_rotation_rate = 0))",
+            "explanation": "Globally, if the control sticks are centered, then in the next state, the angular rotation rate around all axes should be zero."
+        },
+        {
+            "formula": "G(¬stick_centered → (angular_rotation_rate ≠ 0))",
+            "explanation": "Globally, if the control sticks are not centered, then the angular rotation rate around the respective axis should be non-zero."
+        },
+        {
+            "formula": "G(throttle_input = control_allocation_output)",
+            "explanation": "Globally, the throttle input should be directly passed to the control allocation output."
+        },
+        {
+            "formula": "G((roll_stick ∨ pitch_stick ∨ yaw_stick) → F(orientation_change))",
+            "explanation": "Globally, if there's input on the roll, pitch, or yaw stick, then eventually there should be a change in the vehicle's orientation."
+        },
+        {
+            "formula": "G(manual_control_input → acro_mode_active)",
+            "explanation": "Globally, if there's manual control input (RC control or joystick), then Acro mode should be active."
+        },
+        {
+            "formula": "G(acro_mode_active → (autopilot_stabilize_attitude_rate ∧ manual_throttle_control))",
+            "explanation": "Globally, when Acro mode is active, the autopilot should assist in stabilizing the attitude rate, and throttle should be under manual control."
+        },
+        {
+            "formula": "G(max_stick_input → high_turn_rate)",
+            "explanation": "Globally, maximum stick input should result in a high turn rate for performing acrobatic maneuvers."
+        },
+        {
+            "formula": "G(near_center_stick_input → low_sensitivity)",
+            "explanation": "Globally, stick input near the center should result in a zone of lower sensitivity for small corrections."
+        }
+    ]
+}
+```
+
+These MTL formulas capture the key specifications of the Acro Mode for multicopters as described in the document. They cover the behavior of the vehicle in response to stick inputs, the direct pass-through of throttle control, and the general characteristics of the control system in Acro Mode.

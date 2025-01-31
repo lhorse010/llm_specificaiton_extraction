@@ -1,0 +1,26 @@
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(engage_land_mode → F(landed ∧ disarmed))",
+            "explanation": "Once the Land mode is engaged, the vehicle will eventually land and disarm."
+        },
+        {
+            "formula": "G(¬armed → ¬switch_to_land_mode)",
+            "explanation": "The vehicle cannot switch to Land mode unless it is armed."
+        },
+        {
+            "formula": "G(valid_local_position_estimate ∨ ¬flying → ¬switch_to_land_mode)",
+            "explanation": "The vehicle cannot switch to Land mode without a valid local position estimate while flying."
+        },
+        {
+            "formula": "G(lost_position_estimate → F(failsafe))",
+            "explanation": "If the vehicle loses its position estimate, it will eventually enter failsafe mode."
+        },
+        {
+            "formula": "G(rc_stick_movement ∧ ¬critical_battery_failsafe → X(position_mode))",
+            "explanation": "RC stick movement will change the vehicle to Position mode unless handling a critical battery failsafe."
+        }
+    ]
+}
+```

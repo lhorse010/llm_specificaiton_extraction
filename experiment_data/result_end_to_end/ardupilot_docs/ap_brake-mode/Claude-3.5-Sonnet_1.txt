@@ -1,0 +1,30 @@
+Based on the provided document, I will extract the specifications for the Brake Mode and express them using Metric Temporal Logic (MTL) formulas. Then, I'll format the output in JSON as requested.
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(BrakeModeActivated → (¬PilotInputAccepted ∧ GPSRequired))",
+            "explanation": "Globally, when Brake Mode is activated, pilot input is not accepted and GPS is required. This captures the specifications that Brake Mode does not accept any input from the pilot and requires GPS."
+        },
+        {
+            "formula": "G(BrakeModeActivated → F(VehicleStopped))",
+            "explanation": "Globally, when Brake Mode is activated, the vehicle will eventually stop. This represents the primary function of Brake Mode to stop the vehicle as soon as possible."
+        },
+        {
+            "formula": "G(BrakeModeActivated → (AccelerationLimitEnforced ∧ AngleLimitEnforced))",
+            "explanation": "Globally, when Brake Mode is activated, acceleration limits and angle limits are enforced. This captures the specification that Brake mode is subject to acceleration and angle limits imposed by the position and attitude controllers."
+        },
+        {
+            "formula": "G(BrakeModeActivated ∧ VehicleLanded → X(VehicleDisarmed))",
+            "explanation": "Globally, when Brake Mode is activated and the vehicle is landed, in the next state the vehicle will be disarmed. This represents the specification that if the vehicle is landed in Brake mode, it will immediately disarm."
+        },
+        {
+            "formula": "G(BrakeModeActivated → (¬PilotControlResumed U BrakeModeDeactivated))",
+            "explanation": "Globally, when Brake Mode is activated, pilot control is not resumed until Brake Mode is deactivated. This captures the specification that the vehicle must be switched out of this mode before the pilot can re-take control."
+        }
+    ]
+}
+```
+
+These MTL formulas capture the key specifications of the Brake Mode as described in the document. They formalize the behavior of the mode, including its activation conditions, effects on vehicle control, and conditions for pilot input and vehicle disarming.

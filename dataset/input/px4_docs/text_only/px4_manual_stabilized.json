@@ -1,0 +1,137 @@
+{
+  "title": "Stabilized Mode (Multicopter)",
+  "sections": [
+    {
+      "section-id": 0,
+      "title": "Stabilized Mode (Multicopter)",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "The _Stabilized_ manual mode stabilizes and levels the multicopter when the RC control sticks are centred."
+        },
+        {
+          "sentence-id": 1,
+          "text": "To move/fly the vehicle you move the sticks outside of the centre."
+        },
+        {
+          "sentence-id": 2,
+          "text": "When sticks are outside the centre, the roll and pitch sticks control the _angle_ of the vehicle (attitude) around the respective axes, the yaw stick controls the rate of rotation above the horizontal plane, and the throttle controls altitude/speed."
+        },
+        {
+          "sentence-id": 3,
+          "text": "As soon as you release the control sticks they will return to the center deadzone."
+        },
+        {
+          "sentence-id": 4,
+          "text": "The multicopter will level out and stop once the roll and pitch sticks are centered."
+        },
+        {
+          "sentence-id": 5,
+          "text": "The vehicle will then hover in place/maintain altitude - provided it is properly balanced, throttle is set appropriately (see below), and no external forces are applied (e.g. wind)."
+        },
+        {
+          "sentence-id": 6,
+          "text": "The craft will drift in the direction of any wind and you have to control the throttle to hold altitude."
+        }
+      ]
+    },
+    {
+      "section-id": 1,
+      "title": "Stabilized Mode (Multicopter) : info",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "This mode is also enabled if you set the flight mode to _Manual_."
+        }
+      ]
+    },
+    {
+      "section-id": 2,
+      "title": "Technical Description",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "RC mode where centered sticks level vehicle."
+        },
+        {
+          "sentence-id": 1,
+          "text": "The pilot's inputs are passed as roll and pitch angle commands and a yaw rate command."
+        },
+        {
+          "sentence-id": 2,
+          "text": "Throttle is rescaled (see below) and passed directly to control allocation."
+        },
+        {
+          "sentence-id": 3,
+          "text": "The autopilot controls the attitude, meaning it regulates the roll and pitch angles to zero when the RC sticks are centered inside the controller deadzone (consequently leveling-out the attitude)."
+        },
+        {
+          "sentence-id": 4,
+          "text": "The autopilot does not compensate for drift due to wind (or other sources)."
+        },
+        {
+          "sentence-id": 5,
+          "text": "1.Centered sticks (inside deadband):"
+        },
+        {
+          "sentence-id": 6,
+          "text": "Roll/Pitch sticks level vehicle."
+        },
+        {
+          "sentence-id": 7,
+          "text": "2.Outside center:"
+        },
+        {
+          "sentence-id": 8,
+          "text": "Roll/Pitch sticks control tilt angle in those orientations, resulting in corresponding left-right and forward-back movement."
+        },
+        {
+          "sentence-id": 9,
+          "text": "Throttle stick controls up/down speed (and movement speed in other axes)."
+        },
+        {
+          "sentence-id": 10,
+          "text": "Yaw stick controls rate of angular rotation above the horizontal plane."
+        },
+        {
+          "sentence-id": 11,
+          "text": "3.Manual control input is required (such as RC control, joystick)."
+        },
+        {
+          "sentence-id": 12,
+          "text": "Roll, Pitch: Assistance from autopilot to stabilize the attitude."
+        },
+        {
+          "sentence-id": 13,
+          "text": "Position of RC stick maps to the orientation of vehicle."
+        },
+        {
+          "sentence-id": 14,
+          "text": "Throttle: Manual control via RC sticks."
+        },
+        {
+          "sentence-id": 15,
+          "text": "RC input is sent directly to control allocation."
+        },
+        {
+          "sentence-id": 16,
+          "text": "Yaw: Assistance from autopilot to stabilize the attitude rate."
+        },
+        {
+          "sentence-id": 17,
+          "text": "Position of RC stick maps to the rate of rotation of vehicle in that orientation."
+        }
+      ]
+    },
+    {
+      "section-id": 3,
+      "title": "Technical Description : info",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "Altitude mode additionally stabilizes the vehicle altitude when sticks are centred, and Position mode stabilizes both altitude and position over ground."
+        }
+      ]
+    }
+  ]
+}

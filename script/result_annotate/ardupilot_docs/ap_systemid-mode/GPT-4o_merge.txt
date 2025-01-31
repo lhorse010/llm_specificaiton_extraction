@@ -1,0 +1,12 @@
+{
+  "specifications": [
+    {
+      "section-id": 1,
+      "sentence-id": 0
+    },
+    {
+      "section-id": 1,
+      "sentence-id": 1
+    }
+  ]
+}

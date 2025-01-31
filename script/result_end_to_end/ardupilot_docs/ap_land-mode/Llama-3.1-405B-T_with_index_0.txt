@@ -1,0 +1,37 @@
+[
+  {
+    "index": 0,
+    "formula": "G(altitude > 10m → X(altitude <= 10m U (sonar_senses_something_below_copter ∨ altitude <= 10m)))",
+    "explanation": "The copter will descend to 10m or until the sonar senses something below the copter."
+  },
+  {
+    "index": 1,
+    "formula": "G(altitude <= 10m → X(descend_rate = LAND_SPEED))",
+    "explanation": "Below 10m, the copter will descend at the rate specified in the LAND_SPEED parameter."
+  },
+  {
+    "index": 2,
+    "formula": "G(on_ground ∧ throttle_at_minimum → X(motors_shutdown ∧ copter_disarmed))",
+    "explanation": "Upon reaching the ground, the copter will automatically shut down the motors and disarm the copter if the pilot's throttle is at minimum."
+  },
+  {
+    "index": 3,
+    "formula": "G(GPS_lock → X(horizontal_position_controlled))",
+    "explanation": "If the vehicle has GPS lock, the landing controller will attempt to control its horizontal position."
+  },
+  {
+    "index": 4,
+    "formula": "G(¬GPS_lock → X(horizontal_control_as_in_stabilize_mode))",
+    "explanation": "If the vehicle does not have GPS lock, the horizontal control will be as in stabilize mode."
+  },
+  {
+    "index": 5,
+    "formula": "G(on_ground → X(¬motors_shutdown U (vertical_position_controller_commands_low_level ∧ climb_rate_between_-20cm/s_and_+20cm/s ∧ ¬accelerating_for_one_second)))",
+    "explanation": "The copter will recognize that it has landed if the motors are being commanded to be at low level by the vertical position controller, its climb rate remains between -20cm/s and +20cm/s, and is not accelerating for one second."
+  },
+  {
+    "index": 6,
+    "formula": "G(on_ground ∧ WoW_switch_enabled → X(increased_descent_rate_and_accelerometer_ranges))",
+    "explanation": "Using a Weight on Wheels (WoW) switch will increase the descent rate and accelerometer ranges that are acceptable for landing detection."
+  }
+]

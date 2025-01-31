@@ -1,0 +1,130 @@
+{
+    "temporal_logic_formulars": [
+        {
+            "section-id": 1,
+            "sentence-id": 0,
+            "sentence": "When RTL mode is selected, the copter will return to the home location, or if rally points have been setup, the closet rally point.",
+            "tl": "always ( RTLselected == coptererturn or rn == holylpointsetupet )"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 1,
+            "sentence": "The copter will first rise a minimum of RTL_CLIMB_MIN or to RTL_ALT, whichever is higher, before returning home.",
+            "tl": "always ( copterinimumRTL_CLIMB_MIN == RTL_ALTwhichever or retur == returninghome )"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 3,
+            "sentence": "Under no circumstances will this altitude be below 2m.",
+            "tl": "always ( Undercirucmstances == alatitude < 2 m )"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 4,
+            "sentence": "The altitude reference frame is set by either the rally point, if proceeding to one of those, or by RTL_ALT_TYPE to select relative to HOME, or Terrain.",
+            "tl": "always ( altituderefere == eceframebyeithralr ) or procedin == onethose ) -> byRTL_TL_TYPE == selelectreHOME or eHraire == eHOTraierain )"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 5,
+            "sentence": "If WPNAV_RFND_USE = 1 and Terrain is selected, then rangefinder will be used.",
+            "tl": "always ( WPNAV_RFND_USE1 and Terrainsele == lected -> rangefinder == derused )"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 6,
+            "sentence": "If RTL is entered close to its return point, the altitude Copter climbs to may be limited to avoid unneeded climbs and descents.",
+            "tl": "always ( rise ( RTLclose == itsreturetiCp ) and aylieclimbs == maylilimtedavoidu )"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 15,
+            "sentence": "RTL mode requires a reliable position estimate to work properly, most commonly provided by GPS and compass.",
+            "tl": "always ( eRTreqiresare == liablitionestimate )"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 16,
+            "sentence": "Default prearm checks will ensure a 3D GPS lock with sufficient HDOP is acquired and your mag is working as expected prior to arming.",
+            "tl": "always ( efaultprearmche == ceksensraDSDGPSlocih ) until ( cih == sHDOPficqietr ) -> edyoui == edyourmawourmagworinexpedr == raricedpr )"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 18,
+            "sentence": "RTL will command the copter to return to the home position, meaning that it will return to the location where it was armed.",
+            "tl": "always ( RTLcommandcotrer == reomepositionmeaneitn == locaitrneiturn and locatitrn == locatioioioneionwheitunwheit )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 0,
+            "sentence": "In RTL mode the autopilot uses a barometer which measures air pressure as the primary means for determining altitude (\"Pressure Altitude\") and if the air pressure is changing in your flight area, the copter will follow the air pressure change rather than actual altitude (unless you are within 20 feet of the ground and have SONAR installed and enabled).",
+            "tl": "always ( rRTLautopilesa == esaresaresaresuresares ) until ( es == esrepresaresuresaresVmresareses ) -> ( eterine == sresuesuesresuesresuesuesresuesre ) and ( aesuesuesrAltitude == esuredtitue ) )"
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 0,
+            "sentence": "1.RTL_ALT: The minimum altitude the copter will move to before returning to launch.",
+            "tl": "always ( RTL_ALT == minimualtitiu == ecoptecoptermove -> erturnin == returIrnglaunch )"
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 4,
+            "sentence": "2.RTL_ALT_FINAL: The altitude the copter will move to at the final stage of \"Returning to Launch\" or after completing a Mission.",
+            "tl": "always ( RTL_ALT_FINAL == altituecopermove == finalstageturne or gLaurning == Laurncomletun )"
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 6,
+            "sentence": "The final return altitude may be adjusted from 0 to 1000 centimeters.",
+            "tl": "always ( finalreturnalti == tudemayadjusted0 = 1000 centim )"
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 7,
+            "sentence": "3.RTL_LOIT_TIME: Time in milliseconds to hover/pause above the \"Home\" position before beginning final descent.",
+            "tl": "always ( RTL_LOIT_TIME == mililiseconds = hoverpause -> Homeposition == finfialdescenscent )"
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 9,
+            "sentence": "4.WP_YAW_BEHAVIOR: Sets how the autopilot controls the \"Yaw\" during Missions and RTL.",
+            "tl": "always ( eWP_YAW_BEHAVIOR == Setshowautopilotco == trolntrolsYaws and aw == Misisosions )"
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 15,
+            "sentence": "6.RTL_CLIMB_MIN: The vehicle will climb at least this many meters at the first stage of the RTL.",
+            "tl": "always ( R6RTL_CLIMB_MIN == vehicleclimb >= manymeters )"
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 17,
+            "sentence": "7.RTL_SPEED: The horizontal speed (in cm/s) at which the vehicle will return to home.",
+            "tl": "always ( hoL_SPEED == horizontalsped > cmsed < cmse )"
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 19,
+            "sentence": "8.RTL_CONE_SLOPE: Defines the slope of an inverted cone above home which is used to limit the amount the vehicle climbs when RTL-ing from close to home.",
+            "tl": "always ( RTL_CONE_SLOPE == Definesloeanednertedned == homedcoed -> limetamoused == imtamountvehicleclmbsRTLin )"
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 1,
+            "sentence": "2.To use RTL, GPS lock needs to be achieved (Blue GPS LED and Blue APM LED on solid not blinking) before arming and takeoff to establish the home or launch position.",
+            "tl": "always ( TouseRTLGPSlock == achieved and not ( BlueAPMLEDsolid == blingarm ) and tkeof == estalglahlgishofshoesof )"
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 5,
+            "sentence": "6.RTL uses WPNAV_SPEED to determine how fast it travels.",
+            "tl": "always [ 0 : 6 . RTLusesWPNAV_SED == determinehowfastittravels )"
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 6,
+            "sentence": "7.Once the copter arrives at the home location the copter will pause for RTL_LOIT_TIME milliseconds, timeout (AUTO_LAND), then land.",
+            "tl": "always ( ( Oncecopterarives == homeocaterpause ) until ( ORTL_LOIT_TIME == lisecolicol ) -> ( codsecotAUOi_L == tAUO_LND ) )"
+        }
+    ]
+}

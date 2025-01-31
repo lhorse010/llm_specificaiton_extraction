@@ -1,0 +1,18 @@
+```json
+{
+    "specifications": [
+        {
+            "formula": "G ((centered_sticks) → (¬rotating))",
+            "explanation": "Globally, if the control sticks are centered, the vehicle should stop rotating."
+        },
+        {
+            "formula": "G ((RC_input) → (attitude_stabilization))",
+            "explanation": "Globally, if there is RC input for roll, pitch, or yaw, the autopilot assists in stabilizing the attitude rate."
+        },
+        {
+            "formula": "G ((throttle_input) → (direct_control_allocation))",
+            "explanation": "Globally, any throttle input is directly passed to control allocation."
+        }
+    ]
+}
+```

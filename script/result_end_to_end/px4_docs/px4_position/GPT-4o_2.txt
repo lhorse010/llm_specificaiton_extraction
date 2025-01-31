@@ -1,0 +1,26 @@
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(sticks_centered → F(vehicle_stops ∧ vehicle_levels ∧ vehicle_locks_position))",
+            "explanation": "When the sticks are centered, the vehicle should eventually stop, level, and lock to a position."
+        },
+        {
+            "formula": "G(full_stick_deflection → X(vehicle_accelerates_initially ∧ F(vehicle_reaches_MPC_VEL_MANUAL)))",
+            "explanation": "With full stick deflection, the vehicle should initially accelerate and eventually reach the manual velocity MPC_VEL_MANUAL."
+        },
+        {
+            "formula": "G(throttle_stick_down → F(vehicle_touches_ground ∧ vehicle_disarms))",
+            "explanation": "When the throttle stick is pulled down, the vehicle should eventually touch the ground and disarm."
+        },
+        {
+            "formula": "G(position_estimate_unacceptable → (mode_switch_to_altitude ∨ mode_switch_to_manual ∨ mode_switch_to_land ∨ mode_terminate))",
+            "explanation": "If the position estimate is unacceptable, the system should switch modes appropriately as a failsafe."
+        },
+        {
+            "formula": "G(throttle_above_62_5_percent → X(vehicle_takes_off))",
+            "explanation": "When the throttle is raised above 62.5%, the vehicle should take off."
+        }
+    ]
+}
+```

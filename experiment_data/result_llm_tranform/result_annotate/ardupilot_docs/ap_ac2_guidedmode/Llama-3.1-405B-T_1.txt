@@ -1,0 +1,146 @@
+After carefully reading the document and following the steps outlined, I have annotated the sentences that convey information about state transition pre-requirements, constraints, expected post-actions, and expected state changes. Here is the output in JSON format:
+
+```json
+{
+    "specifications": [
+        {
+            "section-id": 2,
+            "sentence-id": 3
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 0
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 2
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 3
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 7
+        },
+        {
+            "section-id": 6,
+            "sentence-id": 0
+        },
+        {
+            "section-id": 6,
+            "sentence-id": 3
+        },
+        {
+            "section-id": 6,
+            "sentence-id": 4
+        },
+        {
+            "section-id": 6,
+            "sentence-id": 5
+        },
+        {
+            "section-id": 7,
+            "sentence-id": 0
+        },
+        {
+            "section-id": 7,
+            "sentence-id": 1
+        },
+        {
+            "section-id": 7,
+            "sentence-id": 2
+        },
+        {
+            "section-id": 7,
+            "sentence-id": 3
+        },
+        {
+            "section-id": 7,
+            "sentence-id": 5
+        },
+        {
+            "section-id": 7,
+            "sentence-id": 6
+        },
+        {
+            "section-id": 7,
+            "sentence-id": 7
+        },
+        {
+            "section-id": 7,
+            "sentence-id": 8
+        },
+        {
+            "section-id": 7,
+            "sentence-id": 9
+        },
+        {
+            "section-id": 7,
+            "sentence-id": 10
+        },
+        {
+            "section-id": 7,
+            "sentence-id": 11
+        },
+        {
+            "section-id": 7,
+            "sentence-id": 12
+        },
+        {
+            "section-id": 7,
+            "sentence-id": 13
+        },
+        {
+            "section-id": 7,
+            "sentence-id": 14
+        },
+        {
+            "section-id": 8,
+            "sentence-id": 0
+        },
+        {
+            "section-id": 8,
+            "sentence-id": 1
+        },
+        {
+            "section-id": 8,
+            "sentence-id": 2
+        },
+        {
+            "section-id": 9,
+            "sentence-id": 0
+        }
+    ]
+}
+```
+
+The annotated sentences are:
+
+* Section 2, Sentence 3: "Once the location is reached, the copter will hover at that location, waiting for the next target." (Expected post-action)
+* Section 4, Sentence 0: "To use guided mode, you'll need a telemetry radio allowing your computer and autopilot to communicate during flight, a ground station computer or tablet, and a ground station application such as Mission Planner." (State transition pre-requirement)
+* Section 4, Sentence 2: "On your laptop, using the software that came with the telemetry module, make sure that it's working and that you have a GPS lock." (State transition pre-requirement)
+* Section 4, Sentence 3: "Take off in Loiter Mode and climb to a safe altitude" (State transition pre-requirement)
+* Section 4, Sentence 7: "The vehicle should fly to the target location and wait there until you enter another location or switch to another mode." (Expected post-action)
+* Section 6, Sentence 0: "The maximum horizontal speed of the copter can be adjusted with the Speed (WPNAV_SPEED) parameter from the Mission Planner's Config/Tuning >> Copter Pids screen (see blue box above)." (Constraint)
+* Section 6, Sentence 3: "The vertical speeds up and down can similar be adjusted with the Speed Up (WPNAV_SPEED_UP) and Speed Dn (WPNAV_SPEED_DN) parameters." (Constraint)
+* Section 6, Sentence 4: "WPNAV_ACCEL_Z determines how fast the speed can change." (Constraint)
+* Section 6, Sentence 5: "Speed can also be controlled while in GUIDED mode with MAVLink commands like DO_CHANGE_SPEED." (Expected post-action)
+* Section 7, Sentence 0: "The GUID_OPTIONS parameter allows several guided mode behavior changes:" (Constraint)
+* Section 7, Sentence 1: "Bit 0 (e.g. \"1\") allowing arming in Guided mode from the RC transmitter" (Constraint)
+* Section 7, Sentence 2: "Bit 2 (e.g. \"4\") disables the pilot's ability to change the vehicle's heading using the RC transmitter" (Constraint)
+* Section 7, Sentence 3: "Bit 3 (e.g. \"8\") changes the interpretation of the SET_ATTITUDE_TARGET MAVLink command's thrust field to be pure thrust expressed as a value between 0 and 1, instead of a climb rate." (Constraint)
+* Section 7, Sentence 5: "Bit 4 (e.g. \"16\") disables the position controller's XY axis position error correction." (Constraint)
+* Section 7, Sentence 6: "This may be useful if an external controller is providing high speed targets which already include position error correction" (Constraint)
+* Section 7, Sentence 7: "Bit 5 (e.g. \"32\") is the same as above but affects the position controller's velocity error correction" (Constraint)
+* Section 7, Sentence 8: "Bit 6 (e.g. \"64\") enables S-Curve path planning (the same as is used in Auto mode) to reach the position target." (Constraint)
+* Section 7, Sentence 9: "This may result a smoother acceleration and deceleration but the position target cannot be updated quickly." (Constraint)
+* Section 7, Sentence 10: "This also allows object avoidance path planning (e.g. Bendy Ruler and Dijkstras) to be used in Guided mode" (Constraint)
+* Section 7, Sentence 11: "Bit 7 (e.g. \"128\") enables weathervaning" (Constraint)
+* Section 7, Sentence 12: "The GUID_TIMEOUT parameter holds the timeout (in seconds) when the vehicle is being controlled using attitude, velocity and/or acceleration commands." (Constraint)
+* Section 7, Sentence 13: "If no commands are received from the companion computer for this many seconds, the vehicle will slow to a stop (if velocity and/or acceleration commands were being provided) or hold a level hover (if attitude commands were provided)." (Expected post-action)
+* Section 7, Sentence 14: "The default setting is 3 seconds." (Constraint)
+* Section 8, Sentence 0: "This variation of Guided mode does not require a GPS but it only accepts attitude targets." (State transition pre-requirement)
+* Section 8, Sentence 1: "Because it does not accept position or velocity targets like regular Guided mode it is generally not useful for regular users." (Constraint)
+* Section 8, Sentence 2: "This mode was created for use by companion computers that may want to fly the vehicle as if it was in AltHold mode." (Expected post-action)
+* Section 9, Sentence 0: "Guided_NoGPS does not allow a vehicle to hold position without a GPS (i.e. non-GPS navigation)." (Constraint)

@@ -1,0 +1,22 @@
+```json
+{
+    "specifications": [
+        {
+            "formula": "G((¬3D_lock ∨ HDOP > 2.0) → ¬arm)",
+            "explanation": "The vehicle cannot be armed unless the GPS has 3D lock and the HDOP is 2.0 or lower."
+        },
+        {
+            "formula": "G(release_sticks → F(stop))",
+            "explanation": "When the pilot releases the control sticks, the vehicle should eventually come to a stop."
+        },
+        {
+            "formula": "G(lean_angle ≤ ANGLE_MAX)",
+            "explanation": "The vehicle's lean angle should always be within the maximum limit set by the ANGLE_MAX parameter."
+        },
+        {
+            "formula": "G(rotate_back_rate ≤ PHLD_BRAKE_RATE)",
+            "explanation": "The rate at which the vehicle rotates back to the maximum angle should not exceed the rate set by the PHLD_BRAKE_RATE parameter."
+        }
+    ]
+}
+```

@@ -1,0 +1,27 @@
+[
+  {
+    "index": 0,
+    "formula": "G((lane_id = intersection) → X activation)",
+    "explanation": "The blind spot module is activated when the lane ID of the target path has an intersection label."
+  },
+  {
+    "index": 1,
+    "formula": "G((object ∈ detection_area ∧ object_path ∈ conflict_area) → X stop)",
+    "explanation": "The module transitions to the 'stop' state when an object is in the detection area and its predicted path is in the conflict area."
+  },
+  {
+    "index": 2,
+    "formula": "G(pass_judge_line → ¬stop)",
+    "explanation": "The 'stop' judgment is not executed after the judgment line is passed to avoid rapid stops."
+  },
+  {
+    "index": 3,
+    "formula": "G(stop → G¬go U (go ∧ G(go ∧ X go ∧ ... ∧ X^(2s) go)))",
+    "explanation": "Once a 'stop' is judged, the module will not transition to the 'go' state until the 'go' judgment continues for a certain period (e.g., 2 seconds) to prevent chattering of the state."
+  },
+  {
+    "index": 4,
+    "formula": "G((stop ∧ go) → X go)",
+    "explanation": "When the module is in the 'stop' state and the 'go' condition is met, it will transition to the 'go' state."
+  }
+]

@@ -1,0 +1,52 @@
+[
+  {
+    "index": 0,
+    "formula": "G(RTL_mode -> F(altitude >= RTL_CLIMB_MIN))",
+    "explanation": "When RTL mode is selected, the copter will eventually climb to at least RTL_CLIMB_MIN meters."
+  },
+  {
+    "index": 1,
+    "formula": "G(RTL_mode -> F(altitude >= RTL_ALT))",
+    "explanation": "When RTL mode is selected, the copter will eventually climb to at least RTL_ALT meters."
+  },
+  {
+    "index": 2,
+    "formula": "G(RTL_mode -> altitude >= 2)",
+    "explanation": "When RTL mode is selected, the copter's altitude will always be at least 2 meters."
+  },
+  {
+    "index": 3,
+    "formula": "G(RTL_mode -> F(distance_to_home <= RTL_CONE_SLOPE * altitude))",
+    "explanation": "When RTL mode is selected, the copter will eventually be within a distance of RTL_CONE_SLOPE * altitude from the home location."
+  },
+  {
+    "index": 4,
+    "formula": "G(RTL_mode -> F(altitude <= RTL_ALT_FINAL))",
+    "explanation": "When RTL mode is selected, the copter will eventually descend to at most RTL_ALT_FINAL meters."
+  },
+  {
+    "index": 5,
+    "formula": "G(RTL_mode -> F(loiter_time >= RTL_LOIT_TIME))",
+    "explanation": "When RTL mode is selected, the copter will eventually loiter for at least RTL_LOIT_TIME milliseconds."
+  },
+  {
+    "index": 6,
+    "formula": "G(RTL_mode -> F(landing_speed <= LAND_SPEED))",
+    "explanation": "When RTL mode is selected, the copter's landing speed will eventually be at most LAND_SPEED centimeters per second."
+  },
+  {
+    "index": 7,
+    "formula": "G(RTL_mode -> F(horizontal_speed <= RTL_SPEED))",
+    "explanation": "When RTL mode is selected, the copter's horizontal speed will eventually be at most RTL_SPEED centimeters per second."
+  },
+  {
+    "index": 8,
+    "formula": "G(RTL_mode -> F(yaw_behavior == WP_YAW_BEHAVIOR))",
+    "explanation": "When RTL mode is selected, the copter's yaw behavior will eventually be WP_YAW_BEHAVIOR."
+  },
+  {
+    "index": 9,
+    "formula": "G(RTL_mode -> F(home_location == GPS_takeoff_location))",
+    "explanation": "When RTL mode is selected, the copter's home location will eventually be the GPS takeoff location."
+  }
+]

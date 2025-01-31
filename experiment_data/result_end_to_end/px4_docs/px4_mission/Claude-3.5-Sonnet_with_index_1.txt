@@ -1,0 +1,52 @@
+[
+  {
+    "index": 0,
+    "formula": "G(¬global_3d_position_estimate → ¬mission_mode)",
+    "explanation": "Globally, if there is no global 3D position estimate, then mission mode cannot be engaged."
+  },
+  {
+    "index": 1,
+    "formula": "G(¬armed → ¬mission_mode)",
+    "explanation": "Globally, if the vehicle is not armed, then mission mode cannot be engaged."
+  },
+  {
+    "index": 2,
+    "formula": "G(mission_mode ∧ ¬mission_stored → hold_or_wait)",
+    "explanation": "Globally, when in mission mode and no mission is stored, the vehicle will hold if flying or wait if landed."
+  },
+  {
+    "index": 3,
+    "formula": "G(mission_mode ∧ mission_stored ∧ flying → execute_mission)",
+    "explanation": "Globally, when in mission mode with a stored mission and the vehicle is flying, it will execute the mission from the current step."
+  },
+  {
+    "index": 4,
+    "formula": "G(mission_mode ∧ mission_stored ∧ landed → (execute_mission ∨ (¬takeoff_item → fly_to_min_altitude)))",
+    "explanation": "Globally, when in mission mode with a stored mission and the vehicle is landed, it will execute the mission or fly to minimum altitude if there's no takeoff item."
+  },
+  {
+    "index": 5,
+    "formula": "G(rc_stick_movement → X(position_mode))",
+    "explanation": "Globally, RC stick movement will change the vehicle to Position mode in the next state, unless handling a critical battery failsafe."
+  },
+  {
+    "index": 6,
+    "formula": "G(mission_paused ∧ ¬image_capture → F(resume_to_current_waypoint))",
+    "explanation": "Globally, if the mission is paused and not capturing images, eventually it will resume towards the current waypoint when restarted."
+  },
+  {
+    "index": 7,
+    "formula": "G(mission_paused ∧ image_capture → F(resume_to_last_waypoint))",
+    "explanation": "Globally, if the mission is paused while capturing images, eventually it will resume towards the last waypoint when restarted."
+  },
+  {
+    "index": 8,
+    "formula": "G(mission_upload → X(active_mission_item = 1))",
+    "explanation": "Globally, when a mission is uploaded, in the next state the current active mission item is set to 1."
+  },
+  {
+    "index": 9,
+    "formula": "G(mission_start ∧ ¬takeoff_item → F(ascend_to_min_takeoff_altitude))",
+    "explanation": "Globally, when a mission starts without a takeoff item, eventually the vehicle will ascend to the minimum takeoff altitude."
+  }
+]

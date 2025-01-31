@@ -1,0 +1,59 @@
+{
+  "title": "Sport Mode",
+  "sections": [
+    {
+      "section-id": 0,
+      "title": "Sport Mode",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "Sport Mode is also known as \"rate controlled stabilize\" plus Altitude Hold."
+        }
+      ]
+    },
+    {
+      "section-id": 1,
+      "title": "Sport Mode : Note",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "this mode is not included by default in the firmware built and available on the Firmware Server ."
+        },
+        {
+          "sentence-id": 1,
+          "text": "Either the user must build his own firmware with this mode enabled or use the Custom Firmware Server"
+        }
+      ]
+    },
+    {
+      "section-id": 2,
+      "title": "Overview",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "1.It was designed to be useful for flying FPV and filming dolly shots or fly bys because you can set the vehicle at a particular angle and it will maintain that angle."
+        },
+        {
+          "sentence-id": 1,
+          "text": "2.The pilot's roll, pitch and yaw sticks control the rate of rotation of the vehicle so when the sticks are released the vehicle will remain in its current attitude."
+        },
+        {
+          "sentence-id": 2,
+          "text": "3.The vehicle will not lean more than 45 degrees (this angle is adjustable with the ACRO_BAL_ROLL and ACRO_BAL_PITCH parameters)"
+        },
+        {
+          "sentence-id": 3,
+          "text": "4.The altitude is maintained with the altitude hold controller so the vehicle will attempt to hold its current altitude when the sticks are placed with 10% of mid-throttle."
+        },
+        {
+          "sentence-id": 4,
+          "text": "It will climb or descend at up to 2.5m/s (this speed is adjustable with the PILOT_SPEED_UP and PILOT_SPEED_DN parameters)."
+        },
+        {
+          "sentence-id": 5,
+          "text": "The acceleration used to establish these speeds is set by PILOT_ACCEL_Z."
+        }
+      ]
+    }
+  ]
+}

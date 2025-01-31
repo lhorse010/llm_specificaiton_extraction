@@ -1,0 +1,42 @@
+[
+  {
+    "index": 0,
+    "formula": "G(simple_mode → (pilot_input ↔ copter_movement_relative_to_takeoff))",
+    "explanation": "In Simple mode, at all times, pilot input corresponds to copter movement relative to its orientation at takeoff."
+  },
+  {
+    "index": 1,
+    "formula": "G(super_simple_mode ∧ distance_from_home > 10 → (pilot_input ↔ copter_movement_relative_to_home))",
+    "explanation": "In Super Simple mode, when the copter is more than 10m from home, pilot input corresponds to copter movement relative to the home position."
+  },
+  {
+    "index": 2,
+    "formula": "G(¬(acro_mode ∨ drift_mode) → (simple_mode ∨ super_simple_mode))",
+    "explanation": "Simple and Super Simple modes can be used in combination with all flight modes except Acro and Drift."
+  },
+  {
+    "index": 3,
+    "formula": "G(simple_mode → good_compass_heading)",
+    "explanation": "Simple mode requires a good compass heading at all times."
+  },
+  {
+    "index": 4,
+    "formula": "G(super_simple_mode → good_gps_position)",
+    "explanation": "Super Simple mode requires a good GPS position at all times."
+  },
+  {
+    "index": 5,
+    "formula": "G(arm_event → X(simple_mode → (pilot_behind_vehicle ∧ vehicle_nose_away)))",
+    "explanation": "When arming in Simple mode, the pilot should be behind the vehicle with its nose pointing directly away."
+  },
+  {
+    "index": 6,
+    "formula": "G(arm_event → X(super_simple_mode → (pilot_behind_vehicle ∧ vehicle_nose_away)))",
+    "explanation": "When arming in Super Simple mode, the pilot should be behind the vehicle with its nose pointing directly away."
+  },
+  {
+    "index": 7,
+    "formula": "G(super_simple_mode ∧ distance_from_home ≤ 10 → ¬update_orientation)",
+    "explanation": "In Super Simple mode, the orientation is not updated when the vehicle is within 10m of home."
+  }
+]

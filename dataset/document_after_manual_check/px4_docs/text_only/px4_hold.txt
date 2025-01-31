@@ -1,0 +1,23 @@
+Hold Mode (Multicopter)
+
+Hold Mode (Multicopter)
+The _Hold_ flight mode causes the vehicle to stop and hover at its current GPS position and altitude.
+
+Hold Mode (Multicopter) : tip
+_Hold mode_ can be used to pause a mission or to help you regain control of a vehicle in an emergency.
+It is usually activated with a pre-programmed switch.
+
+Hold Mode (Multicopter) : info
+1.Mode is automatic - no user intervention is _required_ to control the vehicle.
+2.Mode requires a global 3d position estimate (from GPS or inferred from a local position).
+Flying vehicles can't switch to this mode without global position.
+Flying vehicles will failsafe if they lose the position estimate.
+Disarmed vehicles can switch to mode without valid position estimate but can't arm.
+3.Mode requires wind and flight time are within allowed limits (specified via parameters).
+4.RC control switches can be used to change flight modes on any vehicle.
+5.RC stick movement will by default change the vehicle to Position mode unless handling a critical battery failsafe.
+
+Technical Summary
+The vehicle hovers at the current position and altitude.
+The vehicle will first ascend to NAV_MIN_LTR_ALT if the mode is engaged below this altitude.
+RC stick movement will change the vehicle to Position mode (by default).

@@ -1,0 +1,106 @@
+{
+    "temporal_logic_formulars": [
+        {
+            "section-id": 1,
+            "sentence-id": 0,
+            "sentence": "This flight mode is available for traditional helicopters only.",
+            "tl": "always ( Thisflight == availabletrait )"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 1,
+            "sentence": "It is currently limited to single rotor helicopters.",
+            "tl": "always ( curentlylimited == singlerotrohlelicopters )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 1,
+            "sentence": "This is only enabled for use with SITL.",
+            "tl": "always ( Thisonlyenabled == usewithSITL )"
+        },
+        {
+            "section-id": 6,
+            "sentence-id": 12,
+            "sentence": "As this manoeuvre is flown close to the ground it requires a reliable height estimate that can account for the local terrain.",
+            "tl": "always ( manoeuvreflownclose == grouiredtesareialeiarehei == leiatehestmate ) until ( malKl == locareicaleicareileheicas ) -> always ( l == catecanalolcalcatltecanolr ) )"
+        },
+        {
+            "section-id": 6,
+            "sentence-id": 13,
+            "sentence": "Downward facing LiDaR is therefore highly recommended.",
+            "tl": "always ( DownwardfacingLiDaRthereforeh == ighlyrecomemendeded )"
+        },
+        {
+            "section-id": 8,
+            "sentence-id": 1,
+            "sentence": "When exiting the autonomous autorotation flight mode the aircraft will be returned to a \"non-manual collective mode\".",
+            "tl": "always ( exitingautono == mousatortationflight -> aircraftured == anononmalcolecanul )"
+        },
+        {
+            "section-id": 8,
+            "sentence-id": 3,
+            "sentence": "When initiated, the bail-out phase will read the requested climb or descent rate from the operators throttle stick position.",
+            "tl": "always ( not ( initiatedail == phaseredequedclimb ) or descentrater == operateraterteratoporstotrstortertototrstotrtotrtotrstot == tltltotltrstot )"
+        },
+        {
+            "section-id": 8,
+            "sentence-id": 4,
+            "sentence": "The aircraft will then be decelerated over a set period of time (see parameter AROT_BAIL_TIME).",
+            "tl": "always ( aircraft == decerated -> daperameparae == epameterARO_BATIL_TIME )"
+        },
+        {
+            "section-id": 9,
+            "sentence-id": 0,
+            "sentence": "The motor ramp time defined by H_RSC_RAMP_TIME is ignored during bail-out, and a hard-coded ramp time of one second is used.",
+            "tl": "always ( not ( motorrampdefined == edbyH_RSC_RAMP_TIME ) and not ( ahardcoded == eramponedrampo ) )"
+        },
+        {
+            "section-id": 12,
+            "sentence-id": 0,
+            "sentence": "The autonomous autorotation flight mode cannot be entered via a mode switch, as is done with other flight modes.",
+            "tl": "always ( rise ( autonomousauto == rtatioinlightcannot ) and viaswitch == donewithtdoth )"
+        },
+        {
+            "section-id": 12,
+            "sentence-id": 1,
+            "sentence": "In an attempt to mimic the autorotation procedure followed when flying a manual autorotation, the mode is entered and exited using the motor interlock switch.",
+            "tl": "always ( rise ( anattempt == mimicautorotiator ) and ednrefol == edflonedflauanualo ) -> alua == atotrotStiedusingotedngo == inmotrtotrierlocl )"
+        },
+        {
+            "section-id": 12,
+            "sentence-id": 2,
+            "sentence": "The autonomous flight mode can only be entered if the interlock is disengaged whilst flying in a non-manual collective mode.",
+            "tl": "always ( rise ( autonomousfligh == tcanonlrlock ) and isengagedwhilstflying == gangangedwhilstlstflyingngangangangan == anol )"
+        },
+        {
+            "section-id": 12,
+            "sentence-id": 3,
+            "sentence": "When exiting the autorotation the flight mode is returned to the mode from which it came (e.g. Altitude Hold -> Autonomous Autorotation -> Altitude Hold).",
+            "tl": "always ( exitingautoro == tationflightreturned -> itudeH == eHoltodeHouAuto or ( tonlo == tinAltoiudeHolotolinAutolio ) )"
+        },
+        {
+            "section-id": 12,
+            "sentence-id": 5,
+            "sentence": "In which case, the mode is exited into Altitude Hold.",
+            "tl": "always ( rise ( exitedAlt == itudeHold ) )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 2,
+            "sentence": "Do not attempt to use this flight mode in real life.",
+            "tl": "always ( always ( not ( Doattempt == useflightrealifl ) ) -> always [ 0 : Do == realllife )"
+        },
+        {
+            "section-id": 7,
+            "sentence-id": 2,
+            "sentence": "As energy in the main rotor is used it will slow, meaning more and more positive collective is applied to maintain the thrust force being generated.",
+            "tl": "always ( energy == mainrotrsedtslowmeaning and posilivectivec == eaplectiveapliledmapl )"
+        },
+        {
+            "section-id": 12,
+            "sentence-id": 4,
+            "sentence": "The only exception to this is when the aircraft enters the autorotation from an auto mission.",
+            "tl": "always ( rise ( onlyexception == aiutorotationa ) until [ 0 : 9 t == autortonationanauto == anautoto )"
+        }
+    ]
+}

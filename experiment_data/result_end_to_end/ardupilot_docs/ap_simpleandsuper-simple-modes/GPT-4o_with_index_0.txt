@@ -1,0 +1,27 @@
+[
+  {
+    "index": 0,
+    "formula": "G((mode = Acro ∨ mode = Drift) → ¬(Simple ∨ SuperSimple))",
+    "explanation": "Simple and Super Simple modes cannot be used in Acro or Drift modes."
+  },
+  {
+    "index": 1,
+    "formula": "G(Simple → (compass = good))",
+    "explanation": "Simple mode requires a good compass heading."
+  },
+  {
+    "index": 2,
+    "formula": "G(SuperSimple → (GPS = good))",
+    "explanation": "Super Simple mode requires a good GPS position."
+  },
+  {
+    "index": 3,
+    "formula": "G(¬(distance_to_home < 10m) → SuperSimple)",
+    "explanation": "Super Simple mode orientation is not updated within 10m of home."
+  },
+  {
+    "index": 4,
+    "formula": "G((Ch7_high ∨ Ch8_high) → (Simple ∨ SuperSimple))",
+    "explanation": "Simple or Super Simple modes can be enabled via Ch7/Ch8 switches."
+  }
+]

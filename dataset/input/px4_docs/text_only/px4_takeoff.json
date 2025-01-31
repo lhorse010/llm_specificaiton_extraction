@@ -1,0 +1,67 @@
+{
+  "title": "Takeoff Mode (Multicopter)",
+  "sections": [
+    {
+      "section-id": 0,
+      "title": "Takeoff Mode (Multicopter)",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "The _Takeoff_ flight mode causes the vehicle to take off to a specified height and wait for further input."
+        }
+      ]
+    },
+    {
+      "section-id": 1,
+      "title": "Takeoff Mode (Multicopter) : info",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "1.Mode is automatic - no user intervention is _required_ to control the vehicle."
+        },
+        {
+          "sentence-id": 1,
+          "text": "2.Mode requires at least a valid local position estimate (does not require a global position)."
+        },
+        {
+          "sentence-id": 2,
+          "text": "Flying vehicles can't switch to this mode without valid local position."
+        },
+        {
+          "sentence-id": 3,
+          "text": "Flying vehicles will failsafe if they lose the position estimate."
+        },
+        {
+          "sentence-id": 4,
+          "text": "Disarmed vehicles can switch to mode without valid position estimate but can't arm."
+        },
+        {
+          "sentence-id": 5,
+          "text": "3.RC control switches can be used to change flight modes."
+        },
+        {
+          "sentence-id": 6,
+          "text": "4.RC stick movement will by default change the vehicle to Position mode unless handling a critical battery failsafe."
+        },
+        {
+          "sentence-id": 7,
+          "text": "5.The Failure Detector will automatically stop the engines if there is a problem on takeoff."
+        }
+      ]
+    },
+    {
+      "section-id": 2,
+      "title": "Technical Summary",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "A multi rotor ascends vertically to the altitude defined in MIS_TAKEOFF_ALT and holds position."
+        },
+        {
+          "sentence-id": 1,
+          "text": "RC stick movement will change the vehicle to Position mode (by default)."
+        }
+      ]
+    }
+  ]
+}

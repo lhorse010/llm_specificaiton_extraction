@@ -1,0 +1,87 @@
+[
+  {
+    "sentence": "In this return type vehicles ascend to a safe altitude above obstructions if needed, fly directly to the closest safe landing point (a rally point or the home position), descend to the \"descent altitude\", wait briefly, and then land.",
+    "formula": "(¬O → (F(S ∧ (F(D ∧ (F(W ∧ F(L)))))))",
+    "explanation": "Here, O represents the presence of obstructions, S represents reaching a safe altitude, D represents descending to the descent altitude, W represents waiting briefly, and L represents landing. The formula captures the conditional behavior of ascending to a safe altitude only if needed."
+  },
+  {
+    "sentence": "1.Mode is automatic - no user intervention is _required_ to control the vehicle.",
+    "formula": "G(¬U)",
+    "explanation": "Here, U represents user intervention. The formula ensures that user intervention is never required to control the vehicle, i.e., the mode is always automatic."
+  },
+  {
+    "sentence": "2.Mode requires a global 3d position estimate (from GPS or inferred from a local position).",
+    "formula": "G(P)",
+    "explanation": "Here, P represents the availability of a global 3D position estimate. The formula ensures that a global position estimate is always required for this mode."
+  },
+  {
+    "sentence": "Flying vehicles can't switch to this mode without global position.",
+    "formula": "¬P → ¬M",
+    "explanation": "Here, P represents the availability of a global position estimate, and M represents switching to this mode. The formula captures the conditional behavior of not switching to this mode without a global position estimate."
+  },
+  {
+    "sentence": "Flying vehicles will failsafe if they lose the position estimate.",
+    "formula": "¬P → F",
+    "explanation": "Here, P represents the availability of a global position estimate, and F represents failsafing. The formula captures the conditional behavior of failsafing when the position estimate is lost."
+  },
+  {
+    "sentence": "3.Mode requires home position is set.",
+    "formula": "G(H)",
+    "explanation": "Here, H represents the home position being set. The formula ensures that the home position is always required to be set for this mode."
+  },
+  {
+    "sentence": "4.Mode prevents arming (vehicle must be armed when switching to this mode).",
+    "formula": "¬A → ¬M",
+    "explanation": "Here, A represents arming, and M represents switching to this mode. The formula captures the conditional behavior of not switching to this mode without arming."
+  },
+  {
+    "sentence": "1.Ascends to the minimum return altitude (safely above any expected obstacles).",
+    "formula": "F(R)",
+    "explanation": "Here, R represents reaching the minimum return altitude. The formula ensures that the vehicle eventually reaches the minimum return altitude."
+  },
+  {
+    "sentence": "The vehicle maintains its initial altitude if that is higher than the minimum return altitude.",
+    "formula": "I ∧ (I > R) → G(I)",
+    "explanation": "Here, I represents the initial altitude, and R represents the minimum return altitude. The formula captures the conditional behavior of maintaining the initial altitude if it is higher than the minimum return altitude."
+  },
+  {
+    "sentence": "2.Flies via a direct constant-altitude path to the safe landing point, which will be the nearest of any rally points and the home position.",
+    "formula": "F(S ∧ (F(D ∧ (F(L))))",
+    "explanation": "Here, S represents flying via a direct constant-altitude path, D represents reaching the safe landing point, and L represents landing. The formula captures the behavior of flying to the safe landing point and then landing."
+  },
+  {
+    "sentence": "On arrival at its destination, it rapidly descends to the \"descent altitude\" (RTL_DESCEND_ALT).",
+    "formula": "F(D ∧ X(RTL_DESCEND_ALT))",
+    "explanation": "Here, D represents the arrival at the destination, and RTL_DESCEND_ALT represents the descent altitude. The formula states that eventually, the system will arrive at its destination and then immediately descend to the descent altitude."
+  },
+  {
+    "sentence": "It waits for a configurable time (RTL_LAND_DELAY), which may be used for deploying landing gear.",
+    "formula": "G(RTL_LAND_DELAY → F(L))",
+    "explanation": "Here, RTL_LAND_DELAY represents the waiting time, and L represents the deployment of landing gear. The formula states that globally, if the system waits for the configurable time, then eventually, it will deploy the landing gear."
+  },
+  {
+    "sentence": "Then lands.",
+    "formula": "F(L)",
+    "explanation": "Here, L represents the landing. The formula states that eventually, the system will land."
+  },
+  {
+    "sentence": "By default the _minimum return altitude_ is set using RTL_RETURN_ALT, and the vehicle will just return at the higher of RTL_RETURN_ALT or the initial vehicle altitude.",
+    "formula": "G(RTL_RETURN_ALT ∨ I → F(R))",
+    "explanation": "Here, RTL_RETURN_ALT represents the minimum return altitude, I represents the initial vehicle altitude, and R represents the return. The formula states that globally, if the minimum return altitude is set or the initial vehicle altitude is higher, then eventually, the vehicle will return."
+  },
+  {
+    "sentence": "The minimum return altitude can be further configured using RTL_CONE_ANG, which together with RTL_RETURN_ALT defines a half cone centered around the destination landing point.",
+    "formula": "G(RTL_CONE_ANG ∧ RTL_RETURN_ALT → F(H))",
+    "explanation": "Here, RTL_CONE_ANG represents the configuration, RTL_RETURN_ALT represents the minimum return altitude, and H represents the half cone. The formula states that globally, if the configuration is set and the minimum return altitude is defined, then eventually, the half cone will be defined."
+  },
+  {
+    "sentence": "Inside the code the minimum return altitude is the intersection of the vehicle position with the cone, or RTL_DESCEND_ALT (whichever is higher).",
+    "formula": "G(V ∧ C → F(RTL_DESCEND_ALT ∨ I))",
+    "explanation": "Here, V represents the vehicle position, C represents the cone, RTL_DESCEND_ALT represents the descent altitude, and I represents the intersection. The formula states that globally, if the vehicle position intersects with the cone, then eventually, the minimum return altitude will be the higher of the descent altitude or the intersection."
+  },
+  {
+    "sentence": "In other words, the vehicle must always ascend to at least RTL_DESCEND_ALT if below that value.",
+    "formula": "G(V < RTL_DESCEND_ALT → F(A ∧ RTL_DESCEND_ALT))",
+    "explanation": "Here, V represents the vehicle altitude, RTL_DESCEND_ALT represents the descent altitude, and A represents the ascent. The formula states that globally, if the vehicle altitude is below the descent altitude, then eventually, the vehicle will ascend to at least the descent altitude."
+  }
+]

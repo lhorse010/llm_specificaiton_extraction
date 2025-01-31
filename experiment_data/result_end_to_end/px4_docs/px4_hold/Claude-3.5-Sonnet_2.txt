@@ -1,0 +1,36 @@
+I'll extract the specifications from the document and express them using Metric Temporal Logic (MTL) formulas. Then, I'll format the converted sentences in JSON as requested.
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(hold_mode_active → (hover_at_current_position ∧ hover_at_current_altitude))",
+            "explanation": "Globally, when Hold mode is active, the vehicle must hover at its current position and altitude."
+        },
+        {
+            "formula": "G(hold_mode_active → F(global_position_estimate))",
+            "explanation": "Globally, when Hold mode is active, there must eventually be a global 3D position estimate available."
+        },
+        {
+            "formula": "G(¬global_position_estimate → ¬can_arm)",
+            "explanation": "Globally, if there is no global position estimate, the vehicle cannot be armed."
+        },
+        {
+            "formula": "G(hold_mode_active ∧ flying ∧ ¬global_position_estimate → X(failsafe))",
+            "explanation": "Globally, if Hold mode is active, the vehicle is flying, and loses the global position estimate, it must enter failsafe in the next state."
+        },
+        {
+            "formula": "G(hold_mode_active → (wind_within_limits ∧ flight_time_within_limits))",
+            "explanation": "Globally, when Hold mode is active, wind and flight time must be within the allowed limits."
+        },
+        {
+            "formula": "G(hold_mode_active ∧ (altitude < NAV_MIN_LTR_ALT) → F(altitude ≥ NAV_MIN_LTR_ALT))",
+            "explanation": "Globally, if Hold mode is engaged below NAV_MIN_LTR_ALT, the vehicle will eventually ascend to at least NAV_MIN_LTR_ALT."
+        },
+        {
+            "formula": "G(hold_mode_active ∧ rc_stick_movement ∧ ¬critical_battery_failsafe → X(position_mode))",
+            "explanation": "Globally, when Hold mode is active and there's RC stick movement, the vehicle will switch to Position mode in the next state, unless handling a critical battery failsafe."
+        }
+    ]
+}
+```

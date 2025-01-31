@@ -1,0 +1,50 @@
+I'll extract the specifications from the document and express them using Metric Temporal Logic (MTL) formulas as requested. Then, I'll format the converted sentences in JSON.
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(¬armed → ¬orbit_mode)",
+            "explanation": "Globally, if the vehicle is not armed, it cannot be in orbit mode. This corresponds to the requirement that the mode prevents arming."
+        },
+        {
+            "formula": "G(orbit_mode → valid_local_position)",
+            "explanation": "Globally, if the vehicle is in orbit mode, it must have a valid local position. This reflects the requirement for a valid local position estimate."
+        },
+        {
+            "formula": "G(orbit_mode ∧ ¬valid_local_position → X(failsafe))",
+            "explanation": "Globally, if the vehicle is in orbit mode and loses valid local position, in the next state it will enter failsafe mode."
+        },
+        {
+            "formula": "G(orbit_mode → (wind_within_limits ∧ flight_time_within_limits))",
+            "explanation": "Globally, if the vehicle is in orbit mode, both wind and flight time must be within allowed limits."
+        },
+        {
+            "formula": "G(orbit_mode → (vehicle_type = multicopter ∨ (vehicle_type = VTOL ∧ VTOL_mode = MC)))",
+            "explanation": "Globally, if the vehicle is in orbit mode, it must be either a multicopter or a VTOL in multicopter mode."
+        },
+        {
+            "formula": "G(orbit_mode → F(on_circle_trajectory))",
+            "explanation": "Globally, if the vehicle enters orbit mode, it will eventually reach the commanded circle trajectory."
+        },
+        {
+            "formula": "G(orbit_mode ∧ on_circle_trajectory → orbit_speed ≤ 10)",
+            "explanation": "Globally, when in orbit mode and on the circle trajectory, the orbit speed must not exceed 10 m/s."
+        },
+        {
+            "formula": "G(orbit_mode ∧ on_circle_trajectory → centripetal_acceleration ≤ 2)",
+            "explanation": "Globally, when in orbit mode and on the circle trajectory, the centripetal acceleration must not exceed 2 m/s^2."
+        },
+        {
+            "formula": "G(orbit_mode → (orbit_radius ≥ 1 ∧ orbit_radius ≤ 100))",
+            "explanation": "Globally, when in orbit mode, the orbit radius must be between 1m and 100m."
+        },
+        {
+            "formula": "G(orbit_mode ∧ ¬RC_input → (orbit_speed = 1 ∧ orbit_direction = clockwise))",
+            "explanation": "Globally, when in orbit mode without RC input, the orbit speed should be 1 m/s in a clockwise direction."
+        }
+    ]
+}
+```
+
+These MTL formulas capture the key specifications for the Orbit (Multicopter) flight mode as described in the document. They cover requirements related to arming, position estimation, vehicle type, speed and acceleration limits, and default behavior without RC input.

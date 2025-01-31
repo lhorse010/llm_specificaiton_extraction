@@ -1,0 +1,108 @@
+I'll analyze the document and annotate sentences that meet the specified criteria. Here's the step-by-step process:
+
+Step 1: I've read the document thoroughly.
+
+Step 2-3: I'll go through each section and sentence, determining if they meet the criteria for specification annotation.
+
+Step 4: I'll format the annotated sentences in JSON as requested.
+
+Here's the result of the analysis:
+
+```json
+{
+    "specifications": [
+        {
+            "section-id": 2,
+            "sentence-id": 3
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 7
+        },
+        {
+            "section-id": 6,
+            "sentence-id": 0
+        },
+        {
+            "section-id": 6,
+            "sentence-id": 3
+        },
+        {
+            "section-id": 6,
+            "sentence-id": 4
+        },
+        {
+            "section-id": 6,
+            "sentence-id": 5
+        },
+        {
+            "section-id": 7,
+            "sentence-id": 1
+        },
+        {
+            "section-id": 7,
+            "sentence-id": 2
+        },
+        {
+            "section-id": 7,
+            "sentence-id": 3
+        },
+        {
+            "section-id": 7,
+            "sentence-id": 5
+        },
+        {
+            "section-id": 7,
+            "sentence-id": 6
+        },
+        {
+            "section-id": 7,
+            "sentence-id": 7
+        },
+        {
+            "section-id": 7,
+            "sentence-id": 8
+        },
+        {
+            "section-id": 7,
+            "sentence-id": 9
+        },
+        {
+            "section-id": 7,
+            "sentence-id": 10
+        },
+        {
+            "section-id": 7,
+            "sentence-id": 11
+        },
+        {
+            "section-id": 7,
+            "sentence-id": 12
+        },
+        {
+            "section-id": 7,
+            "sentence-id": 13
+        },
+        {
+            "section-id": 7,
+            "sentence-id": 14
+        },
+        {
+            "section-id": 8,
+            "sentence-id": 0
+        },
+        {
+            "section-id": 8,
+            "sentence-id": 2
+        }
+    ]
+}
+```
+
+These sentences were selected because they meet one or more of the criteria for specifications:
+1. Requirements the system must meet for state transition
+2. Constraints the system must adhere to
+3. Expected post-actions the system will execute when entering a particular state
+4. Expected state changes the system will carry out in response to specific commands or settings
+
+The selected sentences provide clear and specific information about the system's behavior, constraints, and expected actions in various scenarios related to the Guided Mode functionality.

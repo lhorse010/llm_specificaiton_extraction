@@ -1,0 +1,32 @@
+[
+  {
+    "index": 0,
+    "formula": "G(|roll| ≤ 45 ∧ |pitch| ≤ 45)",
+    "explanation": "The vehicle will not lean more than 45 degrees in roll and pitch."
+  },
+  {
+    "index": 1,
+    "formula": "G(sticks_released → X(vehicle_attitude = current_attitude))",
+    "explanation": "When the sticks are released, the vehicle will remain in its current attitude."
+  },
+  {
+    "index": 2,
+    "formula": "G((throttle ∈ [0.4, 0.6]) → X(altitude = current_altitude))",
+    "explanation": "The vehicle will attempt to hold its current altitude when the sticks are placed within 10% of mid-throttle."
+  },
+  {
+    "index": 3,
+    "formula": "G(climbing → G(altitude_change_rate ≤ 2.5))",
+    "explanation": "The vehicle will climb at a speed of up to 2.5m/s."
+  },
+  {
+    "index": 4,
+    "formula": "G(descending → G(altitude_change_rate ≥ -2.5))",
+    "explanation": "The vehicle will descend at a speed of up to 2.5m/s."
+  },
+  {
+    "index": 5,
+    "formula": "G(acceleration = PILOT_ACCEL_Z)",
+    "explanation": "The acceleration used to establish the climb and descent speeds is set by PILOT_ACCEL_Z."
+  }
+]

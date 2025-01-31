@@ -1,0 +1,38 @@
+After carefully reading the document, I have extracted the specifications that the vehicle needs to meet and expressed them using Metric Temporal Logic (MTL) formulas. Here are the results in the required output format:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(land_mode → F(landed ∧ disarm))",
+            "explanation": "Globally, if the vehicle is in land mode, it will eventually land and disarm."
+        },
+        {
+            "formula": "G(land_mode → ¬arming)",
+            "explanation": "Globally, if the vehicle is in land mode, it cannot arm."
+        },
+        {
+            "formula": "G(local_position_estimate → (X land_mode ∨ X failsafe))",
+            "explanation": "Globally, if the vehicle has a valid local position estimate, it will either switch to land mode or failsafe in the next step."
+        },
+        {
+            "formula": "G(land_mode → G(descend_speed = MPC_LAND_SPEED))",
+            "explanation": "Globally, if the vehicle is in land mode, it will descend at the rate specified in MPC_LAND_SPEED."
+        },
+        {
+            "formula": "G(RC_stick_movement → X position_mode)",
+            "explanation": "Globally, if there is RC stick movement, the vehicle will switch to position mode in the next step."
+        },
+        {
+            "formula": "G(critical_battery_failsafe → ¬(RC_stick_movement → X position_mode))",
+            "explanation": "Globally, if there is a critical battery failsafe, RC stick movement will not switch the vehicle to position mode."
+        },
+        {
+            "formula": "G(MAV_CMD_NAV_LAND → X land_mode)",
+            "explanation": "Globally, if the MAV_CMD_NAV_LAND command is received, the vehicle will switch to land mode in the next step."
+        }
+    ]
+}
+```
+
+Note that I have excluded vague specifications and only included clear and specific requirements. I have also used the MTL operators to express the temporal relationships between the different events and states.

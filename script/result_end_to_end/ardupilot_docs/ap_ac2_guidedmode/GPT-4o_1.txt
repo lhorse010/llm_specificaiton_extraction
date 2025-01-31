@@ -1,0 +1,30 @@
+```json
+{
+    "specifications": [
+        {
+            "formula": "G (connected_to_MAVLink → (GPS_lock ∧ altitude > safe_altitude))",
+            "explanation": "The copter must maintain a MAVLink connection, a GPS lock, and stay above a safe altitude during flight."
+        },
+        {
+            "formula": "G (¬mode_switch ∧ guided_mode_enabled → eventually target_location_reached)",
+            "explanation": "If guided mode is enabled and no mode switch occurs, the copter should eventually reach the target location."
+        },
+        {
+            "formula": "G (¬commands_received U[0,3] (stop ∨ hover))",
+            "explanation": "If no commands are received for 3 seconds, the vehicle should either stop or hold a level hover."
+        },
+        {
+            "formula": "G (max_speed ≤ 13 ∧ max_speed ≥ 10)",
+            "explanation": "The maximum horizontal speed should be between 10 m/s and 13 m/s."
+        },
+        {
+            "formula": "G (GUID_OPTIONS_bit4 → ¬XY_position_error_correction)",
+            "explanation": "If GUID_OPTIONS bit 4 is set, the XY position error correction should be disabled."
+        },
+        {
+            "formula": "G (GUID_OPTIONS_bit6 → S_curve_path_planning)",
+            "explanation": "If GUID_OPTIONS bit 6 is enabled, S-Curve path planning should be used."
+        }
+    ]
+}
+```

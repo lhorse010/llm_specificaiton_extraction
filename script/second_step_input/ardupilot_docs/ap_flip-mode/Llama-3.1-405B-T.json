@@ -1,0 +1,42 @@
+[
+  {
+    "section-id": 0,
+    "sentence-id": 2,
+    "sentence": "The vehicle will not flip again until the switch is brought low and back to high."
+  },
+  {
+    "section-id": 1,
+    "sentence-id": 1,
+    "sentence": "1.An RCx_OPTION parameter must be set to \"Flip\" which is \"2\""
+  },
+  {
+    "section-id": 1,
+    "sentence-id": 2,
+    "sentence": "2.Pilot switches to Stabilize, Acro or AltHold flight mode and puts ch7/ch8 switch to ON position"
+  },
+  {
+    "section-id": 1,
+    "sentence-id": 4,
+    "sentence": "4.Vehicle should complete the roll within 2.5sec and will then return to the original flight mode it was in before flip was triggered"
+  },
+  {
+    "section-id": 1,
+    "sentence-id": 5,
+    "sentence": "5.Pilot may manually exit flip by switching off ch7/ch8 or by moving roll stick to >40deg left or right"
+  },
+  {
+    "section-id": 1,
+    "sentence-id": 7,
+    "sentence": "1.Flip_Start (while copter is leaning <45deg) : roll right at 400deg/sec, increase throttle"
+  },
+  {
+    "section-id": 1,
+    "sentence-id": 8,
+    "sentence": "2.Flip_Roll (while copter is between +45deg ~ -90) : roll right at 400deg/sec, reduce throttle"
+  },
+  {
+    "section-id": 1,
+    "sentence-id": 9,
+    "sentence": "3.Flip_Recover (while copter is between -90deg and original target angle) : use earth frame angle controller to return vehicle to original attitude"
+  }
+]

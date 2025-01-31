@@ -1,0 +1,58 @@
+I'll extract the specifications from the document and express them using Metric Temporal Logic (MTL) formulas. Then, I'll format the results in JSON as requested.
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(circle_mode → (distance_to_center = CIRCLE_RADIUS))",
+            "explanation": "Globally, when in circle mode, the distance to the center point should always be equal to CIRCLE_RADIUS."
+        },
+        {
+            "formula": "G(CIRCLE_RADIUS = 0 → X(rotating ∧ ¬moving))",
+            "explanation": "Globally, if CIRCLE_RADIUS is set to zero, then in the next state, the vehicle should be rotating but not moving."
+        },
+        {
+            "formula": "G(circle_mode → (angular_velocity = CIRCLE_RATE))",
+            "explanation": "Globally, when in circle mode, the angular velocity should be equal to the CIRCLE_RATE parameter."
+        },
+        {
+            "formula": "G(CIRCLE_RATE > 0 → rotating_clockwise) ∧ G(CIRCLE_RATE < 0 → rotating_counterclockwise)",
+            "explanation": "Globally, a positive CIRCLE_RATE means rotating clockwise, and a negative CIRCLE_RATE means rotating counterclockwise."
+        },
+        {
+            "formula": "G(acceleration_towards_center ≤ WPNAV_ACCEL)",
+            "explanation": "Globally, the acceleration towards the center of the circle should not exceed the WPNAV_ACCEL parameter."
+        },
+        {
+            "formula": "G(CIRCLE_CONTROL = 1 → F(radius_adjustable ∧ velocity_adjustable))",
+            "explanation": "Globally, if CIRCLE_CONTROL is enabled, then eventually the radius and velocity become adjustable by stick input."
+        },
+        {
+            "formula": "G(CIRCLE_OPTIONS[0] = 1 → F(radius_adjustable ∧ velocity_adjustable))",
+            "explanation": "Globally, if bit 0 of CIRCLE_OPTIONS is set, then eventually the radius and velocity become adjustable by stick input."
+        },
+        {
+            "formula": "G(CIRCLE_OPTIONS[1] = 1 → facing_travel_direction) ∧ G(CIRCLE_OPTIONS[1] = 0 → facing_center)",
+            "explanation": "Globally, if bit 1 of CIRCLE_OPTIONS is set, the copter faces the direction of travel; otherwise, it faces the center of the circle."
+        },
+        {
+            "formula": "G(CIRCLE_OPTIONS[2] = 1 → X(center_at_current_location))",
+            "explanation": "Globally, if bit 2 of CIRCLE_OPTIONS is set, then in the next state (upon mode entry), the circle's center is set at the current location."
+        },
+        {
+            "formula": "G(CIRCLE_OPTIONS[3] = 1 ∧ mount_present → mount_roi_set_to_center)",
+            "explanation": "Globally, if bit 3 of CIRCLE_OPTIONS is set and a mount is present, the mount's region of interest is set to the circle's center."
+        },
+        {
+            "formula": "G(circle_mode → F(altitude_controllable))",
+            "explanation": "Globally, when in circle mode, the altitude should eventually be controllable by the throttle stick."
+        },
+        {
+            "formula": "G(circle_mode → yaw_controllable U circle_mode_reengaged)",
+            "explanation": "Globally, when in circle mode, the yaw is controllable by the pilot until circle mode is re-engaged."
+        }
+    ]
+}
+```
+
+These MTL formulas capture the key specifications from the provided document about Circle Mode in the context of vehicle control. They express the behavior of the vehicle, the effects of various parameters, and the conditions under which certain actions can be performed.

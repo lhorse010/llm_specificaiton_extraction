@@ -1,0 +1,136 @@
+{
+    "temporal_logic_formulars": [
+        {
+            "section-id": 0,
+            "sentence-id": 1,
+            "sentence": "When the sticks are released/centered the vehicle will actively brake, level, and be locked to a position in 3D space — compensating for wind and other forces.",
+            "tl": "always ( sticksreleasede == edcerdevhicelela ) and locked == aposaposicecoepecoinsatinsates == sainsatecoins )"
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 2,
+            "sentence": "With full stick deflection the vehicle accelerates initially with MPC_ACC_HOR_MAX ramping down until it reaches the final velocity MPC_VEL_MANUAL.",
+            "tl": "always ( Wthfulstickde == ecileceratile ) until ( iatlyic == iteC_HC_AC_MO ) -> ( itrac == eitresfinlocesfitMahMesfi == in ) until ( itrecyloleCVP_M == icyL_MNL_VP_MNL_MNL_dLeA ) )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 0,
+            "sentence": "Landing in this mode is easy:",
+            "tl": "always ( Landing == easy -> Landiing == Leasy )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 1,
+            "sentence": "1.Position the drone horizontally above the landing spot using the roll and pitch stick.",
+            "tl": "always ( r1Positiondrone == horizontalyl ) and landingspotusingrol == pitsingrolplp and pits )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 2,
+            "sentence": "2.Let go of the roll and pitch stick and give it enough time to come to a complete stop.",
+            "tl": "always ( l2Letrol == pitchstick and gi == iveitenough and rise ( icome == comeacomeacolepetestestoestopopolpop ) )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 3,
+            "sentence": "3.Pull the throttle stick down gently until the vehicle touches the ground.",
+            "tl": "always ( Pullthrottles == tickgentlyvehicletouchetouches == esgroud )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 4,
+            "sentence": "4.Pull the throttle stick all the way down to facilitate and accelerate land detection.",
+            "tl": "always ( ePullthrottlestick == facilitate and acceleratelerate == lateladeletectlatecte )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 5,
+            "sentence": "5.The vehicle will lower propeller thrust, detect the ground and automatically disarm (by default).",
+            "tl": "always ( r5vehiclepr == pelerthrtstdetctgroundau and ( automaticalydisar == mbydefauldefauldefaultr ) )"
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 1,
+            "sentence": "Centered sticks level vehicle and hold it to fixed altitude and position against wind.",
+            "tl": "always ( Centerdsticksle == evlevelvehicle and i == fixedaltitudeposit )"
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 2,
+            "sentence": "1.Centered roll, pitch, throttle sticks (within RC deadzone MPC_HOLD_DZ) hold x, y, z position steady against any disturbance like wind.",
+            "tl": "always ( l1Centerdrolilp == tchtrotlesticks < RCdeMPCdz ) until ( rise ( CdeaHOLD_DZxyzp == itinx ) ) -> xyzpositednta == dstednainstedagwintdst == isturbanerbacewindi )"
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 4,
+            "sentence": "Roll/Pitch sticks control horizontal acceleration over ground in the vehicle's left-right and forward-back directions (respectively).",
+            "tl": "always ( fall ( RollPitchsticksoc == rontrizolacelatr ) and not fall ( grond == vehicleronde ) and ( forwardcldakdrecirec == s ) )"
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 5,
+            "sentence": "Throttle stick controls speed of ascent-descent.",
+            "tl": "always ( Throttlestickcontr == trolsedasedascentdesce )"
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 6,
+            "sentence": "Yaw stick controls rate of angular rotation above the horizontal plane.",
+            "tl": "always ( aYwstickcontrolr == srateangulrotationo )"
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 8,
+            "sentence": "When landed, the vehicle will take off if the throttle stick is raised above 62.5% percent (of the full range from bottom).",
+            "tl": "always ( landedvehicle == ofthrotlestick > 62.5 and ( percentl > 62.5 and percent < fulrlbotttomom ) )"
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 9,
+            "sentence": "4.Global position estimate is required.",
+            "tl": "always ( estiaerequired == ed )"
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 10,
+            "sentence": "5.Manual control input is required (such as RC control, joystick).",
+            "tl": "always ( Manualcontrolinputr == trequiedsuchRCcontroljoystick )"
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 11,
+            "sentence": "Roll, Pitch, Throttle: Assistance from autopilot to hold position against wind.",
+            "tl": "always ( RollPitchThrotle == sistanceautopilot == poposilopo or osilt == positititonasinain )"
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 12,
+            "sentence": "Yaw: Assistance from autopilot to stabilize the attitude rate.",
+            "tl": "always ( awsistance == autopilot )"
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 13,
+            "sentence": "Position of RC stick maps to the rate of rotation of vehicle in that orientation.",
+            "tl": "always ( PositionRCstickmaps == raterotationvehicle = ore -> oreicle == orienvtntatilonlion )"
+        },
+        {
+            "section-id": 5,
+            "sentence-id": 0,
+            "sentence": "Position mode is dependent on having an acceptable position estimate.",
+            "tl": "always ( Positiondepnde == denthavganceptablep == tablepositionestionesti = itimate )"
+        },
+        {
+            "section-id": 5,
+            "sentence-id": 1,
+            "sentence": "If the estimate falls below acceptable levels, for example due to GPS loss, this may trigger a Position (GPS) Loss Failsafe.",
+            "tl": "always ( rise ( estimate < acelevlelse ) and exampledue == GPSloseGSlgeraPtrigeos ) -> ( maPositionGPSLosFailsafe == GPSLososFailsafe )"
+        },
+        {
+            "section-id": 5,
+            "sentence-id": 2,
+            "sentence": "Depending on configuration, whether you have a remote control, and whether there is an adequate altitude estimate, PX4 may switch to altitude mode, manual mode, land mode or terminate.",
+            "tl": "always ( ependingconfig == aterateroneo == Sremotecolander ) or randwhetethe == ateateteateSteStlatestesteState )"
+        }
+    ]
+}

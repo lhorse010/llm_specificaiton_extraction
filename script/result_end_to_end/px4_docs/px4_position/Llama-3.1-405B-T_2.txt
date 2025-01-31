@@ -1,0 +1,41 @@
+Based on the provided document, I've extracted the specifications and expressed them using Metric Temporal Logic (MTL) formulas. Here are the results in the required JSON format:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G((roll_stick = 0 ∧ pitch_stick = 0 ∧ throttle_stick = 0) → X( vehicle_braking ∧ vehicle_leveling ∧ vehicle_locked_to_position))",
+            "explanation": "When the sticks are released/centered, the vehicle will actively brake, level, and be locked to a position in 3D space."
+        },
+        {
+            "formula": "G((roll_stick ≠ 0 ∨ pitch_stick ≠ 0) → X(vehicle_accelerating ∧ vehicle_ramping_down_until_final_velocity))",
+            "explanation": "With full stick deflection, the vehicle accelerates initially with MPC_ACC_HOR_MAX ramping down until it reaches the final velocity MPC_VEL_MANUAL."
+        },
+        {
+            "formula": "G((throttle_stick > 0.625) → X(vehicle_taking_off))",
+            "explanation": "When landed, the vehicle will take off if the throttle stick is raised above 62.5% percent of the full range from bottom."
+        },
+        {
+            "formula": "G((vehicle_landed ∧ roll_stick = 0 ∧ pitch_stick = 0 ∧ throttle_stick < 0) → F(vehicle_touching_ground ∧ vehicle_disarmed))",
+            "explanation": "Landing in this mode is easy: position the drone horizontally above the landing spot, let go of the roll and pitch stick, and pull the throttle stick down gently until the vehicle touches the ground and disarms."
+        },
+        {
+            "formula": "G((vehicle_landed ∧ vehicle_not_disarmed) → X(vehicle_switching_to_stabilized_mode ∨ vehicle_manual_disarm))",
+            "explanation": "If the vehicle does not detect the ground/landing and disarm, switch to Stabilized mode keeping the throttle stick low, and manually disarm using a gesture or other command."
+        },
+        {
+            "formula": "G((global_position_estimate_unavailable) → X(position_loss_failsafe_triggered))",
+            "explanation": "Position mode is dependent on having an acceptable position estimate. If the estimate falls below acceptable levels, this may trigger a Position (GPS) Loss Failsafe."
+        }
+    ]
+}
+```
+
+Note that I've used the following abbreviations in the MTL formulas:
+
+* `roll_stick`, `pitch_stick`, `throttle_stick`, and `yaw_stick` represent the corresponding stick inputs.
+* `vehicle_braking`, `vehicle_leveling`, `vehicle_locked_to_position`, `vehicle_accelerating`, `vehicle_ramping_down_until_final_velocity`, `vehicle_taking_off`, `vehicle_landed`, `vehicle_touching_ground`, and `vehicle_disarmed` represent the corresponding vehicle states.
+* `global_position_estimate_unavailable` represents the loss of global position estimate.
+* `position_loss_failsafe_triggered` represents the triggering of the Position (GPS) Loss Failsafe.
+
+These abbreviations are used to make the formulas more readable and concise.

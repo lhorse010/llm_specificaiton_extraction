@@ -1,0 +1,22 @@
+Based on the provided document, I will extract the specifications and express them using Metric Temporal Logic (MTL) formulas. Then, I'll format the results in JSON as requested.
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(SID_AXIS ≠ 0 → F(ParametersVisible ∧ ModeEntryAllowed))",
+            "explanation": "This formula states that globally (G), if SID_AXIS is non-zero, then eventually (F) the associated parameters will become visible and mode entry will be allowed. This captures the condition for enabling the System Identification Mode."
+        },
+        {
+            "formula": "G(SID_AXIS = 0 → X(ErrorMessageLogged ∧ ErrorMessageSent))",
+            "explanation": "This formula expresses that globally (G), if SID_AXIS is zero, then in the next state (X) an error message will be logged and sent to the ground control station. This represents the system's behavior when mode entry is prohibited."
+        },
+        {
+            "formula": "G(SystemIdentificationModeActive → (StabilizeLikeMode ∧ F(SignalChirpsGenerated)))",
+            "explanation": "This formula states that globally (G), when the System Identification Mode is active, the vehicle is in a STABILIZE-like mode and eventually (F) signal chirps are generated. This captures the behavior of the System Identification Mode once it's activated."
+        }
+    ]
+}
+```
+
+These MTL formulas capture the key specifications from the provided document, focusing on the conditions for enabling the System Identification Mode, the behavior when the mode is prohibited, and the characteristics of the mode when it's active.

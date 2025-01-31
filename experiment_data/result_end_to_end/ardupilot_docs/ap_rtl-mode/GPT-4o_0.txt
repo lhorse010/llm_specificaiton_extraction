@@ -1,0 +1,34 @@
+```json
+{
+    "specifications": [
+        {
+            "formula": "G (RTL_MODE → F (ALT >= max(RTL_CLIMB_MIN, RTL_ALT)))",
+            "explanation": "In RTL mode, the copter must eventually reach an altitude that is the maximum of RTL_CLIMB_MIN or RTL_ALT."
+        },
+        {
+            "formula": "G (RTL_MODE → ALT >= 2)",
+            "explanation": "The altitude during RTL mode must never be below 2 meters."
+        },
+        {
+            "formula": "G (¬(GPS_LOCK) → ¬(ARMED ∧ RTL_MODE))",
+            "explanation": "RTL mode cannot be entered unless there is a GPS lock."
+        },
+        {
+            "formula": "G (RTL_MODE → X (ALT >= RTL_ALT_FINAL))",
+            "explanation": "In the final stage of RTL mode, the copter must move to the altitude specified by RTL_ALT_FINAL."
+        },
+        {
+            "formula": "G (RTL_MODE → F (LOITER_TIME = RTL_LOIT_TIME))",
+            "explanation": "The copter must hover above the home position for RTL_LOIT_TIME milliseconds before landing."
+        },
+        {
+            "formula": "G (RTL_MODE → ALT <= (DISTANCE_FROM_HOME * RTL_CONE_SLOPE + RTL_CLIMB_MIN))",
+            "explanation": "The altitude during RTL mode is limited by the RTL_CONE_SLOPE and distance from the home point."
+        },
+        {
+            "formula": "G (RTL_MODE → (ALT <= 10 ∧ SONAR_ENABLED) → (ALT = PRESSURE_ALT))",
+            "explanation": "If the copter is within 10 meters of the ground and SONAR is enabled, altitude should match the pressure altitude."
+        }
+    ]
+}
+```

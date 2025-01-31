@@ -1,0 +1,34 @@
+```json
+{
+    "specifications": [
+        {
+            "formula": "G (mode = Hold → (vehicle_hovers ∧ altitude ≥ NAV_MIN_LTR_ALT))",
+            "explanation": "When the vehicle is in Hold mode, it should hover at its current position and maintain an altitude at or above NAV_MIN_LTR_ALT."
+        },
+        {
+            "formula": "G (¬global_position_estimate → ¬can_switch_to_Hold)",
+            "explanation": "The vehicle cannot switch to Hold mode without a global 3D position estimate."
+        },
+        {
+            "formula": "G (¬global_position_estimate ∧ ¬armed → can_switch_to_Hold)",
+            "explanation": "If the vehicle is not armed and lacks a global position estimate, it can switch to Hold mode but cannot be armed."
+        },
+        {
+            "formula": "G (position_update_failure → F (failsafe_triggered))",
+            "explanation": "If the vehicle loses the position estimate, it will eventually trigger a failsafe."
+        },
+        {
+            "formula": "G ((wind_within_limits ∧ flight_time_within_limits) → mode = Hold)",
+            "explanation": "Hold mode requires the wind and flight time to be within predefined limits."
+        },
+        {
+            "formula": "G (RC_stick_movement → X (mode = Position))",
+            "explanation": "Any RC stick movement will change the vehicle to Position mode by default."
+        },
+        {
+            "formula": "G (critical_battery_failsafe → (¬RC_stick_movement ∨ X (mode = Position)))",
+            "explanation": "During a critical battery failsafe, RC stick movement will not change the mode to Position unless overridden."
+        }
+    ]
+}
+```

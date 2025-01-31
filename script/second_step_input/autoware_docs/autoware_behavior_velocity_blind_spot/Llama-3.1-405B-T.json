@@ -1,0 +1,37 @@
+[
+  {
+    "section-id": 1,
+    "sentence-id": 0,
+    "sentence": "This function is activated when the lane id of the target path has an intersection label (i.e. the turn_direction attribute is left or right)."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 0,
+    "sentence": "Sets a stop line, a pass judge line, a detection area and conflict area based on a map information and a self position."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 5,
+    "sentence": "Stop/Go state: When both conditions are met for any of each object, this module state is transited to the \"stop\" state and insert zero velocity to stop the vehicle."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 6,
+    "sentence": "1.Object is on the detection area"
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 7,
+    "sentence": "2.Object’s predicted path is on the conflict area"
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 8,
+    "sentence": "In order to avoid a rapid stop, the “stop” judgement is not executed after the judgment line is passed."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 9,
+    "sentence": "Once a \"stop\" is judged, it will not transit to the \"go\" state until the \"go\" judgment continues for a certain period in order to prevent chattering of the state (e.g. 2 seconds)."
+  }
+]

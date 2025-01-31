@@ -1,0 +1,22 @@
+```json
+{
+    "specifications":[
+        {
+            "formula": "G (¬(flow_sensor_quality < FHLD_QUAL_MIN) → (mode = FlowHold → X mode ≠ AltHold))",
+            "explanation": "If the flow sensor quality is above the minimum threshold, the vehicle should remain in FlowHold mode and not switch to AltHold in the next state."
+        },
+        {
+            "formula": "G (mode = FlowHold → F (wobble → (mode ≠ FlowHold)))",
+            "explanation": "In FlowHold mode, if the vehicle wobbles, it should eventually switch out of FlowHold mode."
+        },
+        {
+            "formula": "G (mode = FlowHold → X (¬(height_change → wobble)))",
+            "explanation": "In FlowHold mode, when there is a change in height, the vehicle should not wobble in the next state."
+        },
+        {
+            "formula": "G (mode = FlowHold → (release_sticks → F (speed = 0 ∧ height_estimate_correct)))",
+            "explanation": "In FlowHold mode, when the pilot releases the sticks, the vehicle should eventually stop and have a correct height estimate."
+        }
+    ] 
+}
+```

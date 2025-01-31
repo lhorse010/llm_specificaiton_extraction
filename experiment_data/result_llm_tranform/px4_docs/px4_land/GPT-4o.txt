@@ -1,0 +1,37 @@
+[
+  {
+    "sentence": "2.Mode requires at least a valid local position estimate (does not require a global position).",
+    "formula": "G(L → ¬G)",
+    "explanation": "L represents a valid local position estimate, and ¬G indicates that a global position is not required. The formula ensures that whenever the mode is active, a valid local position is necessary."
+  },
+  {
+    "sentence": "Flying vehicles can't switch to this mode without valid local position.",
+    "formula": "G(¬L → ¬M)",
+    "explanation": "L denotes a valid local position estimate, and M indicates the mode switch. This formula states that the mode switch cannot occur unless there is a valid local position."
+  },
+  {
+    "sentence": "Flying vehicles will failsafe if they lose the position estimate.",
+    "formula": "G(¬P → F(FS))",
+    "explanation": "P is the presence of a valid position estimate, and FS represents entering a failsafe state. This formula specifies that losing the position estimate will eventually trigger a failsafe."
+  },
+  {
+    "sentence": "3.Mode prevents arming (vehicle must be armed when switching to this mode).",
+    "formula": "G(M → A)",
+    "explanation": "M indicates switching to the mode, and A denotes the vehicle being armed. The formula ensures that the mode can only be activated if the vehicle is already armed."
+  },
+  {
+    "sentence": "5.RC stick movement in a multicopter (or VTOL in multicopter mode) will by default change the vehicle to Position mode unless handling a critical battery failsafe.",
+    "formula": "G((RC ∧ ¬CB) → P)",
+    "explanation": "RC represents RC stick movement, CB denotes a critical battery failsafe, and P indicates switching to Position mode. This formula states that RC stick movement leads to Position mode unless a critical battery failsafe is active."
+  },
+  {
+    "sentence": "6.The mode can be triggered using the MAV_CMD_NAV_LAND MAVLink command, or by explicitly switching to Land mode.",
+    "formula": "G(C ∨ L → M)",
+    "explanation": "C represents the MAV_CMD_NAV_LAND command, L indicates explicitly switching to Land mode, and M denotes the mode activation. The formula ensures that either action will result in the mode being triggered."
+  },
+  {
+    "sentence": "The vehicle descends at the rate specified in MPC_LAND_SPEED and will disarm after landing (by default).",
+    "formula": "G(LD → (D ∧ F(A)))",
+    "explanation": "LD indicates landing initiation, D represents descent at MPC_LAND_SPEED, and A denotes disarming. The formula describes that upon landing, the vehicle descends at a specified rate and eventually disarms."
+  }
+]

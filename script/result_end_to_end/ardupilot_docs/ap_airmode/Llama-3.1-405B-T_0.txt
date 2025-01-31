@@ -1,0 +1,60 @@
+Based on the provided document, I will extract the specifications and express them using Metric Temporal Logic (MTL) formulas.
+
+Here are the extracted specifications:
+
+1. If arming is setup via the rudder stick and throttle is lowered to idle in ACRO mode, the stabilization is removed.
+2. If a transmitter switch is used with RCx_OPTION ARM/DISARM with Airmode (option 154) and used to arm, then stabilization at idle throttle is still fully active.
+3. AIRMODE can be set to be active without using the RCx_OPTION switch to arm by setting an RC channel to RCx_OPTION = 84.
+4. Setting bit 0 of ACRO_OPTIONS will activate AIRMODE in ACRO mode (only) all the time, except if overridden by the above switch, if used.
+5. AIRMODE has no effect in Traditional Helicopter.
+6. It isn't sufficient to just enable arming on an RCx_OPTION switch, you also have to actually use it for arming.
+
+Here are the MTL formulas for the extracted specifications:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G((arming_setup_via_rudder_stick ∧ throttle_idle_in_acro_mode) → X ¬stabilization_active)",
+            "explanation": "If arming is setup via the rudder stick and throttle is lowered to idle in ACRO mode, the stabilization is removed."
+        },
+        {
+            "formula": "G((rcx_option_arm_disarm_with_airmode ∧ arm_via_rcx_option_switch) → G stabilization_active_at_idle_throttle)",
+            "explanation": "If a transmitter switch is used with RCx_OPTION ARM/DISARM with Airmode (option 154) and used to arm, then stabilization at idle throttle is still fully active."
+        },
+        {
+            "formula": "G(rcx_option_84 → G airmode_active)",
+            "explanation": "AIRMODE can be set to be active without using the RCx_OPTION switch to arm by setting an RC channel to RCx_OPTION = 84."
+        },
+        {
+            "formula": "G((acrob_options_bit_0 ∧ ¬overridden_by_rcx_option_switch) → G airmode_active_in_acro_mode)",
+            "explanation": "Setting bit 0 of ACRO_OPTIONS will activate AIRMODE in ACRO mode (only) all the time, except if overridden by the above switch, if used."
+        },
+        {
+            "formula": "G(traditional_helicopter → G ¬airmode_active)",
+            "explanation": "AIRMODE has no effect in Traditional Helicopter."
+        },
+        {
+            "formula": "G((rcx_option_switch_enabled ∧ ¬arm_via_rcx_option_switch) → G ¬airmode_active)",
+            "explanation": "It isn't sufficient to just enable arming on an RCx_OPTION switch, you also have to actually use it for arming."
+        }
+    ]
+}
+```
+
+Note that I used the following predicates:
+
+* `arming_setup_via_rudder_stick`: Arming is setup via the rudder stick.
+* `throttle_idle_in_acro_mode`: Throttle is lowered to idle in ACRO mode.
+* `stabilization_active`: Stabilization is active.
+* `rcx_option_arm_disarm_with_airmode`: RCx_OPTION ARM/DISARM with Airmode (option 154) is used.
+* `arm_via_rcx_option_switch`: Arming is done via the RCx_OPTION switch.
+* `stabilization_active_at_idle_throttle`: Stabilization is active at idle throttle.
+* `rcx_option_84`: RC channel is set to RCx_OPTION = 84.
+* `airmode_active`: AIRMODE is active.
+* `acrob_options_bit_0`: Bit 0 of ACRO_OPTIONS is set.
+* `overridden_by_rcx_option_switch`: Overridden by the RCx_OPTION switch.
+* `airmode_active_in_acro_mode`: AIRMODE is active in ACRO mode.
+* `traditional_helicopter`: Traditional Helicopter is used.
+* `rcx_option_switch_enabled`: RCx_OPTION switch is enabled.
+* `arm_via_rcx_option_switch`: Arming is done via the RCx_OPTION switch.

@@ -1,0 +1,37 @@
+[
+  {
+    "index": 0,
+    "formula": "G(altitude > 10m → X(descend_speed = WPNAV_SPEED_DN))",
+    "explanation": "The copter descends at the speed held in the WPNAV_SPEED_DN parameter when above 10m."
+  },
+  {
+    "index": 1,
+    "formula": "G(altitude ≤ 10m → X(descend_speed = LAND_SPEED))",
+    "explanation": "The copter descends at the rate specified in the LAND_SPEED parameter when below 10m."
+  },
+  {
+    "index": 2,
+    "formula": "G(on_ground ∧ throttle_min → X(motors_off ∧ disarm))",
+    "explanation": "Upon reaching the ground, the copter will automatically shut-down the motors and disarm if the pilot's throttle is at minimum."
+  },
+  {
+    "index": 3,
+    "formula": "G(GPS_lock → X(horizontal_control = Loiter_mode))",
+    "explanation": "If the vehicle has GPS lock, the landing controller will attempt to control its horizontal position as in Loiter mode."
+  },
+  {
+    "index": 4,
+    "formula": "G(¬GPS_lock → X(horizontal_control = Stabilize_mode))",
+    "explanation": "If the vehicle does not have GPS lock, the horizontal control will be as in Stabilize mode."
+  },
+  {
+    "index": 5,
+    "formula": "G(on_ground → X(¬motors_on ∨ (vertical_position_controller = low ∧ climb_rate ∈ [-20cm/s, 20cm/s] ∧ ¬accelerating)))",
+    "explanation": "The copter will recognize that it has landed if the motors are being commanded to be at low level, its climb rate remains between -20cm/s and +20cm/s, and is not accelerating for one second."
+  },
+  {
+    "index": 6,
+    "formula": "G(on_ground ∧ WoW_switch → X(descent_rate ∈ [increased_range] ∧ accelerometer_ranges ∈ [increased_range]))",
+    "explanation": "Using a Weight on Wheels (WoW) switch will increase the descent rate and accelerometer ranges that are acceptable for landing detection."
+  }
+]

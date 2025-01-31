@@ -1,0 +1,32 @@
+[
+  {
+    "index": 0,
+    "formula": "G (mode = takeoff → (valid_local_position ∧ ¬armed → X ¬takeoff))",
+    "explanation": "The vehicle can switch to takeoff mode only if it has a valid local position estimate, and if it is disarmed, it cannot take off."
+  },
+  {
+    "index": 1,
+    "formula": "G (mode = takeoff → F (altitude = MIS_TAKEOFF_ALT))",
+    "explanation": "In takeoff mode, the vehicle must eventually reach the altitude defined in MIS_TAKEOFF_ALT."
+  },
+  {
+    "index": 2,
+    "formula": "G (mode = takeoff ∧ ¬valid_local_position → failsafe)",
+    "explanation": "If the vehicle is in takeoff mode and loses the valid local position estimate, it must trigger a failsafe."
+  },
+  {
+    "index": 3,
+    "formula": "G (mode = takeoff → X (RC_stick_movement → mode = position ∨ critical_battery_failsafe))",
+    "explanation": "In takeoff mode, any RC stick movement will change the mode to Position mode, unless handling a critical battery failsafe."
+  },
+  {
+    "index": 4,
+    "formula": "G (takeoff → F (engine_problem → stop_engines))",
+    "explanation": "During takeoff, if a problem is detected with the engines, they must be stopped."
+  },
+  {
+    "index": 5,
+    "formula": "G (mode = takeoff ∧ automatic_mode → ¬user_control_required)",
+    "explanation": "Takeoff mode is automatic, meaning no user intervention is required."
+  }
+]

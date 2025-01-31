@@ -1,0 +1,16 @@
+{
+  "specifications": [
+    {
+      "section-id": 0,
+      "sentence-id": 3
+    },
+    {
+      "section-id": 0,
+      "sentence-id": 4
+    },
+    {
+      "section-id": 0,
+      "sentence-id": 11
+    }
+  ]
+}

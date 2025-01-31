@@ -1,0 +1,27 @@
+[
+  {
+    "index": 0,
+    "formula": "G (mode_engaged → F (landed ∧ disarmed))",
+    "explanation": "Once the Land mode is engaged, the vehicle must eventually land and disarm."
+  },
+  {
+    "index": 1,
+    "formula": "G (¬valid_local_position_estimate → ¬mode_engaged)",
+    "explanation": "The Land mode cannot be engaged without a valid local position estimate."
+  },
+  {
+    "index": 2,
+    "formula": "G (¬armed → ¬mode_engaged)",
+    "explanation": "The vehicle must be armed before switching to Land mode."
+  },
+  {
+    "index": 3,
+    "formula": "G (RC_stick_movement ∧ ¬critical_battery_failsafe → mode_engaged = position_mode)",
+    "explanation": "RC stick movement changes the vehicle to Position mode unless handling a critical battery failsafe."
+  },
+  {
+    "index": 4,
+    "formula": "G (MAV_CMD_NAV_LAND_command → mode_engaged = land_mode)",
+    "explanation": "The MAV_CMD_NAV_LAND command must trigger the Land mode."
+  }
+]

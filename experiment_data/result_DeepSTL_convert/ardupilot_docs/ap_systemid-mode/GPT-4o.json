@@ -1,0 +1,16 @@
+{
+    "temporal_logic_formulars": [
+        {
+            "section-id": 1,
+            "sentence-id": 0,
+            "sentence": "If the SID_AXIS is non-zero, then this modes associated parameters will become visible on the next parameter refresh and entry into the mode will be allowed.",
+            "tl": "always ( SID_AXISnon == zero -> rise ( modesasociaeters == parvisise ) and armeterer == refreshe )"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 1,
+            "sentence": "Otherwise, an error message will be logged and sent to the ground control station indicating that mode entry has been prohibited.",
+            "tl": "always ( Otherwiseanrero == mesaesgerogedandasent )"
+        }
+    ]
+}

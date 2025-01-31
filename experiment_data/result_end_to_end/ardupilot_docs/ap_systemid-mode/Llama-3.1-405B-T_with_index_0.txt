@@ -1,0 +1,27 @@
+[
+  {
+    "index": 0,
+    "formula": "G(SID_AXIS ≠ 0 → X(System_Identification_Mode = enabled))",
+    "explanation": "Globally, if SID_AXIS is non-zero, then the System Identification Mode will be enabled at the next time step."
+  },
+  {
+    "index": 1,
+    "formula": "G(SID_AXIS = 0 → X(Error_Message = logged))",
+    "explanation": "Globally, if SID_AXIS is zero, then an error message will be logged at the next time step."
+  },
+  {
+    "index": 2,
+    "formula": "G(System_Identification_Mode = enabled → X(Vehicle_Mode = STABILIZE))",
+    "explanation": "Globally, when the System Identification Mode is enabled, the vehicle will enter a STABILIZE like mode at the next time step."
+  },
+  {
+    "index": 3,
+    "formula": "G(System_Identification_Mode = enabled → F(Signal_Injection = started))",
+    "explanation": "Globally, when the System Identification Mode is enabled, bursts of signals will eventually be injected into the control loops."
+  },
+  {
+    "index": 4,
+    "formula": "G(Signal_Injection = started → F(Logging = started))",
+    "explanation": "Globally, when the signal injection starts, the logging of results will eventually start."
+  }
+]

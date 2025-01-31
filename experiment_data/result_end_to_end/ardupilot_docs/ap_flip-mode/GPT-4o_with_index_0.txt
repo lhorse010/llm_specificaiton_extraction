@@ -1,0 +1,42 @@
+[
+  {
+    "index": 0,
+    "formula": "G((pilot_switch_high) → F[0,1](vehicle_rises))",
+    "explanation": "If the pilot switch is turned high, the vehicle should rise within the next 1 second."
+  },
+  {
+    "index": 1,
+    "formula": "G((pilot_switch_high) → F[1,2.5](vehicle_flips))",
+    "explanation": "If the pilot switch is turned high, the vehicle should complete a flip between 1 and 2.5 seconds."
+  },
+  {
+    "index": 2,
+    "formula": "G((flip_complete) → (original_mode ∧ ¬flip_active))",
+    "explanation": "Once the flip is complete, the vehicle should return to the original flight mode and not be in flip mode."
+  },
+  {
+    "index": 3,
+    "formula": "G((switch_low_and_high) → X(¬flip_active))",
+    "explanation": "The vehicle will not flip again until the switch is toggled low and then high."
+  },
+  {
+    "index": 4,
+    "formula": "G((manual_exit) → (¬flip_active ∧ original_mode))",
+    "explanation": "If the pilot manually exits the flip, the vehicle should immediately return to the original mode and not be in flip mode."
+  },
+  {
+    "index": 5,
+    "formula": "G((copter_angle < 45) → (roll_rate = 400 ∧ throttle_increase))",
+    "explanation": "While the copter is leaning less than 45 degrees, it should roll at 400 degrees per second and increase throttle."
+  },
+  {
+    "index": 6,
+    "formula": "G((45 <= copter_angle <= 90) → (roll_rate = 400 ∧ throttle_reduce))",
+    "explanation": "While the copter is between 45 and 90 degrees, it should roll at 400 degrees per second and reduce throttle."
+  },
+  {
+    "index": 7,
+    "formula": "G((90 < copter_angle) → (recover_to_target_angle))",
+    "explanation": "Once the copter is past 90 degrees, it should recover to the original target angle using the earth frame angle controller."
+  }
+]

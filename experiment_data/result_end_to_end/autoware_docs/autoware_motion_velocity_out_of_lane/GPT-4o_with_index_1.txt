@@ -1,0 +1,42 @@
+[
+  {
+    "index": 0,
+    "formula": "G(launch_out_of_lane_module → F(deceleration ∧ stop_point))",
+    "explanation": "If the out_of_lane module is activated, the ego vehicle must eventually decelerate and establish a stop point to prevent collisions."
+  },
+  {
+    "index": 1,
+    "formula": "G(ignore_behind_ego → ¬(consider_objects_behind))",
+    "explanation": "If the parameter to ignore objects behind the ego vehicle is set, then objects coming from behind should not be considered for collision prediction."
+  },
+  {
+    "index": 2,
+    "formula": "G(cut_predicted_paths_beyond_red_lights → ¬(predicted_path ∧ beyond_red_light))",
+    "explanation": "If the parameter to cut predicted paths beyond red lights is set, then predicted paths should not extend beyond the stop line of a red traffic light."
+  },
+  {
+    "index": 3,
+    "formula": "G((mode = threshold) → (time_to_collision < threshold.time_threshold → avoid_out_of_lane_area))",
+    "explanation": "If the mode is set to threshold, then the vehicle must avoid out of lane areas if the time to collision is below the specified threshold."
+  },
+  {
+    "index": 4,
+    "formula": "G((mode = ttc) → (time_to_collision < ttc.threshold → avoid_out_of_lane_area))",
+    "explanation": "If the mode is set to time-to-collision (ttc), then the vehicle must avoid out of lane areas if the time to collision is below the ttc threshold."
+  },
+  {
+    "index": 5,
+    "formula": "G((distance_to_trajectory_point < actions.stop.threshold) → (velocity = 0))",
+    "explanation": "If the distance to the trajectory point is below the stop threshold, the vehicle must come to a complete stop."
+  },
+  {
+    "index": 6,
+    "formula": "G((distance_to_trajectory_point < actions.slowdown.threshold) → (velocity = actions.slowdown.velocity))",
+    "explanation": "If the distance to the trajectory point is below the slowdown threshold, the vehicle must reduce speed to the specified slowdown velocity."
+  },
+  {
+    "index": 7,
+    "formula": "G(stability_check → (stop_slowdown_pose_held_for_min_duration))",
+    "explanation": "The stop or slowdown pose must be held for a minimum duration to ensure stability, unless a closer pose is detected."
+  }
+]

@@ -1,0 +1,12 @@
+[
+  {
+    "sentence": "If the SID_AXIS is non-zero, then this mode's associated parameters will become visible on the next parameter refresh and entry into the mode will be allowed.",
+    "formula": "G(SID_AXIS ≠ 0 → X(PARAM_VISIBLE ∧ ENTRY_ALLOWED))",
+    "explanation": "This formula uses G to express that whenever SID_AXIS is non-zero, in the next state (X), the parameters become visible (PARAM_VISIBLE) and entry into the mode is allowed (ENTRY_ALLOWED)."
+  },
+  {
+    "sentence": "Otherwise, an error message will be logged and sent to the ground control station indicating that mode entry has been prohibited.",
+    "formula": "G(SID_AXIS = 0 → X(ERROR_LOGGED ∧ ERROR_SENT))",
+    "explanation": "This formula uses G to indicate that if SID_AXIS is zero, in the next state (X), an error is logged (ERROR_LOGGED) and sent to the ground station (ERROR_SENT), indicating mode entry prohibition."
+  }
+]

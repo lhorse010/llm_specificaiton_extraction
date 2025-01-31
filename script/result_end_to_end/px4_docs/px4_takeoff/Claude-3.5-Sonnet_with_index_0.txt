@@ -1,0 +1,32 @@
+[
+  {
+    "index": 0,
+    "formula": "G(TakeoffMode → F(Altitude = MIS_TAKEOFF_ALT))",
+    "explanation": "Globally, when in Takeoff Mode, the vehicle will eventually reach the altitude defined in MIS_TAKEOFF_ALT."
+  },
+  {
+    "index": 1,
+    "formula": "G(TakeoffMode ∧ ¬ValidLocalPosition → ¬Armed)",
+    "explanation": "Globally, when in Takeoff Mode and there is no valid local position estimate, the vehicle cannot be armed."
+  },
+  {
+    "index": 2,
+    "formula": "G(TakeoffMode ∧ Flying ∧ X(¬ValidLocalPosition) → X(Failsafe))",
+    "explanation": "Globally, when in Takeoff Mode and flying, if in the next state there is no valid local position estimate, then in the next state the vehicle will enter failsafe mode."
+  },
+  {
+    "index": 3,
+    "formula": "G(TakeoffMode ∧ RCStickMovement ∧ ¬CriticalBatteryFailsafe → X(PositionMode))",
+    "explanation": "Globally, when in Takeoff Mode, if there is RC stick movement and no critical battery failsafe, then in the next state the vehicle will switch to Position Mode."
+  },
+  {
+    "index": 4,
+    "formula": "G(TakeoffMode ∧ FailureDetected → X(EnginesStopped))",
+    "explanation": "Globally, when in Takeoff Mode, if a failure is detected, then in the next state the engines will be stopped."
+  },
+  {
+    "index": 5,
+    "formula": "G(TakeoffMode → ¬UserIntervention U (Altitude = MIS_TAKEOFF_ALT))",
+    "explanation": "Globally, when in Takeoff Mode, no user intervention is required until the vehicle reaches the specified takeoff altitude."
+  }
+]

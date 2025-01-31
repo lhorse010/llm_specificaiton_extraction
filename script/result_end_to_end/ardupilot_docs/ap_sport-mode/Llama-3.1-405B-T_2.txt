@@ -1,0 +1,43 @@
+After carefully reading the document, I have extracted the specifications that the vehicle needs to meet in Sport Mode. Here are the specifications expressed using Metric Temporal Logic (MTL) formulas:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(|roll| ≤ 45 ∧ |pitch| ≤ 45)",
+            "explanation": "The vehicle will not lean more than 45 degrees in roll and pitch."
+        },
+        {
+            "formula": "G(sticks_released → X(vehicle_attitude = current_attitude))",
+            "explanation": "When the sticks are released, the vehicle will remain in its current attitude."
+        },
+        {
+            "formula": "G(throttle ∈ [0.4, 0.6] → altitude = current_altitude)",
+            "explanation": "The vehicle will attempt to hold its current altitude when the sticks are placed within 10% of mid-throttle."
+        },
+        {
+            "formula": "G(climb_command → F(altitude ≥ current_altitude + 2.5m/s × t))",
+            "explanation": "The vehicle will climb at up to 2.5m/s when commanded to do so."
+        },
+        {
+            "formula": "G(descend_command → F(altitude ≤ current_altitude - 2.5m/s × t))",
+            "explanation": "The vehicle will descend at up to 2.5m/s when commanded to do so."
+        },
+        {
+            "formula": "G(acceleration ≤ PILOT_ACCEL_Z)",
+            "explanation": "The acceleration used to establish climb and descent speeds is limited by PILOT_ACCEL_Z."
+        }
+    ]
+}
+```
+
+Note that I have used the following abbreviations:
+
+* `roll` and `pitch` represent the roll and pitch angles of the vehicle, respectively.
+* `sticks_released` represents the condition where the pilot's roll, pitch, and yaw sticks are released.
+* `vehicle_attitude` represents the current attitude of the vehicle.
+* `throttle` represents the throttle input from the pilot.
+* `altitude` represents the current altitude of the vehicle.
+* `climb_command` and `descend_command` represent the commands to climb and descend, respectively.
+* `t` represents time.
+* `PILOT_ACCEL_Z` represents the acceleration limit set by the `PILOT_ACCEL_Z` parameter.

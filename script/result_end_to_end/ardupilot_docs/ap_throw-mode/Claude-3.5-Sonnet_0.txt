@@ -1,0 +1,42 @@
+I'll extract the specifications from the document and express them using Metric Temporal Logic (MTL) formulas. Then I'll format the results in JSON as requested.
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(armed ∧ throw_mode → ¬motor_spinning)",
+            "explanation": "Globally, when the vehicle is armed and in throw mode, the motors should not be spinning by default."
+        },
+        {
+            "formula": "G(throw_mode ∧ (vertical_velocity > 0.5) ∧ (total_velocity > 5.0) → F(motor_start))",
+            "explanation": "Globally, when in throw mode, if the vertical velocity exceeds 0.5 m/s and the total velocity exceeds 5.0 m/s, the motors will eventually start."
+        },
+        {
+            "formula": "G(throw_mode ∧ motor_start → X(stabilize_attitude ∧ F(stop_descending) ∧ F(stop_horizontal_movement)))",
+            "explanation": "Globally, when in throw mode and motors start, in the next state the vehicle will stabilize its attitude, and eventually stop descending and stop horizontal movement."
+        },
+        {
+            "formula": "G(throw_mode → gps_available)",
+            "explanation": "Globally, throw mode requires GPS to be available."
+        },
+        {
+            "formula": "G(throw_mode ∧ (altitude < THROW_ALT_MIN ∨ altitude > THROW_ALT_MAX) → ¬armed)",
+            "explanation": "Globally, when in throw mode, if the altitude is below THROW_ALT_MIN or above THROW_ALT_MAX, the vehicle cannot be armed."
+        },
+        {
+            "formula": "G(throw_mode ∧ THROW_MOT_START = 0 → ¬motor_spinning)",
+            "explanation": "Globally, when in throw mode and THROW_MOT_START is set to 0, the motors should not spin at all while waiting for the throw."
+        },
+        {
+            "formula": "G(throw_mode ∧ THROW_MOT_START = 1 → motor_spinning_slowly)",
+            "explanation": "Globally, when in throw mode and THROW_MOT_START is set to 1, the motors should spin slowly while waiting for the throw."
+        },
+        {
+            "formula": "G(throw_mode ∧ motor_start ∧ (THROW_NEXTMODE ≠ throw) → F(flight_mode = THROW_NEXTMODE))",
+            "explanation": "Globally, when in throw mode, after motors start and if THROW_NEXTMODE is not set to 'Throw', the vehicle will eventually switch to the flight mode specified by THROW_NEXTMODE."
+        }
+    ]
+}
+```
+
+These MTL formulas capture the key specifications of the Throw Mode as described in the document. They cover aspects such as motor behavior, velocity thresholds for motor start, GPS requirement, altitude limits, and mode transitions. The formulas use the temporal operators G (globally) and F (finally) to express the timing and sequencing of events and states in the system.

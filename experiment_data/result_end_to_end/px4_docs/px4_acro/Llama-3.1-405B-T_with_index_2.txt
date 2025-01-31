@@ -1,0 +1,42 @@
+[
+  {
+    "index": 0,
+    "formula": "G(sticks_centered → X(¬vehicle_rotating))",
+    "explanation": "When the sticks are centered, the vehicle will stop rotating in the next time step."
+  },
+  {
+    "index": 1,
+    "formula": "G(sticks_centered → vehicle_maintains_orientation)",
+    "explanation": "When the sticks are centered, the vehicle will maintain its current orientation."
+  },
+  {
+    "index": 2,
+    "formula": "G(sticks_centered → vehicle_moves_by_momentum)",
+    "explanation": "When the sticks are centered, the vehicle will move according to its current momentum."
+  },
+  {
+    "index": 3,
+    "formula": "G(RC_RPY_input → X(vehicle_rotates_at_rate))",
+    "explanation": "When the RC RPY stick inputs are given, the vehicle will rotate at the corresponding rate in the next time step."
+  },
+  {
+    "index": 4,
+    "formula": "G(throttle_input → X(throttle_passed_to_control_allocation))",
+    "explanation": "When the throttle input is given, the throttle will be passed directly to control allocation in the next time step."
+  },
+  {
+    "index": 5,
+    "formula": "G(manual_control_input → X(vehicle_responds_to_input))",
+    "explanation": "When manual control input is given, the vehicle will respond to the input in the next time step."
+  },
+  {
+    "index": 6,
+    "formula": "G(roll_pitch_yaw_input → X(vehicle_rotates_at_rate))",
+    "explanation": "When the roll, pitch, and yaw inputs are given, the vehicle will rotate at the corresponding rate in the next time step."
+  },
+  {
+    "index": 7,
+    "formula": "G(stick_input_mapping → X(vehicle_responds_to_input))",
+    "explanation": "When the stick input mapping is applied, the vehicle will respond to the input in the next time step according to the mapping."
+  }
+]

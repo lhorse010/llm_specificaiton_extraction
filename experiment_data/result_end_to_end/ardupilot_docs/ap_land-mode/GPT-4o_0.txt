@@ -1,0 +1,22 @@
+```json
+{
+    "specifications": [
+        {
+            "formula": "G (altitude <= 10 -> descend_rate = WPNAV_SPEED_DN)",
+            "explanation": "The copter should descend using the regular Altitude Hold controller until it reaches 10 meters or senses something below."
+        },
+        {
+            "formula": "G (altitude < 10 -> descend_rate = LAND_SPEED)",
+            "explanation": "Below 10 meters, the descend rate should be as specified by the LAND_SPEED parameter."
+        },
+        {
+            "formula": "G ((motors_low ∧ -20 <= climb_rate <= 20 ∧ ¬ accelerating) -> F[1s] disarm)",
+            "explanation": "The copter should disarm the motors if they are at low power, the climb rate is stable, and there is no acceleration for one second."
+        },
+        {
+            "formula": "G (altitude <= 10 ∨ (rangefinder ∧ altitude <= 2))",
+            "explanation": "The copter should not use altitude to shut off motors unless it's below 10m or within 2m if a rangefinder is used."
+        }
+    ]
+}
+```

@@ -1,0 +1,18 @@
+```json
+{
+    "specifications": [
+        {
+            "formula": "G (no_drivable_lane → (distance_to_intersection > stop_margin → X APPROACHING))",
+            "explanation": "If the vehicle is on a path with a no drivable lane, and the distance to the intersection is greater than the stop margin, the state should transition to APPROACHING in the next step."
+        },
+        {
+            "formula": "G (no_drivable_lane → (distance_to_intersection <= stop_margin ∨ inside_no_drivable_lane → X INSIDE_NO_DRIVABLE_LANE))",
+            "explanation": "If the vehicle is on a path with a no drivable lane and is either within the stop margin or already inside, the state should transition to INSIDE_NO_DRIVABLE_LANE in the next step."
+        },
+        {
+            "formula": "G (speed = 0 → X STOPPED)",
+            "explanation": "If the vehicle's speed reaches zero, the state should transition to STOPPED in the next step."
+        }
+    ]
+}
+```

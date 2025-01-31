@@ -1,0 +1,67 @@
+[
+  {
+    "index": 0,
+    "formula": "G(pilot_roll_input → X(lean_angle_control))",
+    "explanation": "The pilot's roll input always controls the lean angle of the copter."
+  },
+  {
+    "index": 1,
+    "formula": "G(pilot_pitch_input → X(lean_angle_control))",
+    "explanation": "The pilot's pitch input always controls the lean angle of the copter."
+  },
+  {
+    "index": 2,
+    "formula": "G(release_roll_stick → X(automatic_leveling))",
+    "explanation": "When the pilot releases the roll stick, the vehicle automatically levels itself."
+  },
+  {
+    "index": 3,
+    "formula": "G(release_pitch_stick → X(automatic_leveling))",
+    "explanation": "When the pilot releases the pitch stick, the vehicle automatically levels itself."
+  },
+  {
+    "index": 4,
+    "formula": "G(pilot_yaw_input → X(rate_of_change_heading))",
+    "explanation": "The pilot's yaw input always controls the rate of change of the heading."
+  },
+  {
+    "index": 5,
+    "formula": "G(release_yaw_stick → X(maintain_current_heading))",
+    "explanation": "When the pilot releases the yaw stick, the vehicle maintains its current heading."
+  },
+  {
+    "index": 6,
+    "formula": "G(throttle_input → X(average_motor_speed))",
+    "explanation": "The pilot's throttle input always controls the average motor speed."
+  },
+  {
+    "index": 7,
+    "formula": "G(throttle_down → X(motors_minimum_rate))",
+    "explanation": "When the pilot puts the throttle completely down, the motors go to their minimum rate."
+  },
+  {
+    "index": 8,
+    "formula": "G(airmode_enabled → X(full_stabilization_idle_throttle))",
+    "explanation": "When airmode is enabled, the vehicle provides full stabilization at idle throttle."
+  },
+  {
+    "index": 9,
+    "formula": "G(autopilot_failure → X(switch_to_manual_mode))",
+    "explanation": "If the autopilot fails to control the vehicle, the pilot must switch to a manual mode."
+  },
+  {
+    "index": 10,
+    "formula": "G(ANGLE_MAX → X(max_lean_angle))",
+    "explanation": "The maximum lean angle is limited to 45 degrees by default."
+  },
+  {
+    "index": 11,
+    "formula": "G(ANGLE_RATE_MAX → X(max_rotation_rate))",
+    "explanation": "The maximum requested rotation rate in the roll and pitch axis is limited to 180 degrees per second by default."
+  },
+  {
+    "index": 12,
+    "formula": "G(ACRO_Y_RATE → X(rotation_rate_yaw_input))",
+    "explanation": "The rate of rotation based on the pilot's yaw input is 200 degrees per second by default."
+  }
+]

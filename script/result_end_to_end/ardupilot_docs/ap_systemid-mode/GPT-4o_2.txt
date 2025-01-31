@@ -1,0 +1,14 @@
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(SID_AXIS ≠ 0 → F mode_parameters_visible)",
+            "explanation": "Globally, if SID_AXIS is non-zero, then eventually the mode's associated parameters must become visible."
+        },
+        {
+            "formula": "G(SID_AXIS = 0 → F error_logged ∧ F error_sent)",
+            "explanation": "Globally, if SID_AXIS is zero, then eventually an error message must be logged and sent to the ground control station."
+        }
+    ]
+}
+```

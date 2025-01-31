@@ -1,0 +1,47 @@
+[
+  {
+    "sentence": "DShot capable ESCs are required for this mode to function, allowing the DShot reverse command to be sent to the ESCs.",
+    "formula": "G(DSHOT_ESC → F(REVERSE_COMMAND))",
+    "explanation": "This formula states that globally, if a DShot capable ESC is present, eventually the DShot reverse command can be sent."
+  },
+  {
+    "sentence": "SERVO_DSHOT_ESC must be set to a non-zero value and MOT_PWM_TYPE to a DSHOT value also, to allow DShot commands to be sent to the ESC.",
+    "formula": "G((SERVO_DSHOT_ESC ≠ 0 ∧ MOT_PWM_TYPE = DSHOT) → F(DSHOT_COMMAND))",
+    "explanation": "Globally, if SERVO_DSHOT_ESC is non-zero and MOT_PWM_TYPE is DSHOT, then eventually DShot commands can be sent."
+  },
+  {
+    "sentence": "1.Turtle mode cannot be entered unless throttle is zero",
+    "formula": "G(¬THROTTLE_ZERO → ¬ENTER_TURTLE_MODE)",
+    "explanation": "Globally, if the throttle is not zero, then turtle mode cannot be entered."
+  },
+  {
+    "sentence": "2.Upon entry to turtle mode the motors stay disarmed, but the notify LEDs flash",
+    "formula": "G(ENTER_TURTLE_MODE → (MOTORS_DISARMED ∧ F(LED_FLASH)))",
+    "explanation": "Upon entering turtle mode, motors remain disarmed, and eventually, the notify LEDs will flash."
+  },
+  {
+    "sentence": "3.Raising the throttle, the motors arm, and motors spin.",
+    "formula": "G(RAISE_THROTTLE → (MOTORS_ARM ∧ F(MOTORS_SPIN)))",
+    "explanation": "Globally, if the throttle is raised, the motors will arm and eventually spin."
+  },
+  {
+    "sentence": "4.Motors spin only when throttle is raised",
+    "formula": "G(MOTORS_SPIN → RAISE_THROTTLE)",
+    "explanation": "Globally, motors only spin if the throttle has been raised."
+  },
+  {
+    "sentence": "Once in this mode, moving the roll and/or pitch stick of the transmitter away from center will reverse and spin up the designated pair of motors, increasing thrust to maximum at full stick throw.",
+    "formula": "G(MODE_ACTIVE → (ROLL_PITCH_MOVED → F(REVERSE_SPIN_MAX_THRUST)))",
+    "explanation": "In this mode, moving the roll/pitch stick away from center will eventually reverse and spin up motors to maximum thrust."
+  },
+  {
+    "sentence": "Lowering throttle to zero disarms the motors",
+    "formula": "G(THROTTLE_ZERO → F(DISARM_MOTORS))",
+    "explanation": "Globally, if the throttle is lowered to zero, the motors will eventually disarm."
+  },
+  {
+    "sentence": "continuous operation of motors in the reversed mode may cause either ESC or motor overheating in some cases.",
+    "formula": "G(REVERSE_OPERATION → F(ESC_OVERHEAT ∨ MOTOR_OVERHEAT))",
+    "explanation": "Continuous operation in reverse mode could eventually lead to either ESC or motor overheating."
+  }
+]

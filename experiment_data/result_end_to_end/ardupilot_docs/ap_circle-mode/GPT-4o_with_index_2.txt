@@ -1,0 +1,52 @@
+[
+  {
+    "index": 0,
+    "formula": "G(CIRCLE_RADIUS = 0 → F(Copter stays in place ∧ slowly rotates))",
+    "explanation": "If the circle radius is set to zero, the copter should remain in place and slowly rotate for panorama shots."
+  },
+  {
+    "index": 1,
+    "formula": "G(CIRCLE_RATE > 0 → Copter rotates clockwise)",
+    "explanation": "A positive circle rate should make the copter rotate clockwise."
+  },
+  {
+    "index": 2,
+    "formula": "G(CIRCLE_RATE < 0 → Copter rotates counterclockwise)",
+    "explanation": "A negative circle rate should make the copter rotate counterclockwise."
+  },
+  {
+    "index": 3,
+    "formula": "G(¬(acceleration > WPNAV_ACCEL))",
+    "explanation": "The acceleration towards the circle's center should never exceed the maximum allowed acceleration (WPNAV_ACCEL)."
+  },
+  {
+    "index": 4,
+    "formula": "G(F(RC Channel 6 = min → CIRCLE_RATE decreases by 50%))",
+    "explanation": "When RC Channel 6 is set to minimum, the circle rate should decrease by 50%."
+  },
+  {
+    "index": 5,
+    "formula": "G(F(RC Channel 6 = max → CIRCLE_RATE increases by 100%))",
+    "explanation": "When RC Channel 6 is set to maximum, the circle rate should increase by 100%."
+  },
+  {
+    "index": 6,
+    "formula": "G((bit 0 of CIRCLE_OPTIONS = 1) → (F(Pitch stick up → radius decreases) ∧ F(Pitch stick down → radius increases)))",
+    "explanation": "When bit 0 of CIRCLE_OPTIONS is set, the pitch stick can adjust the circle's radius."
+  },
+  {
+    "index": 7,
+    "formula": "G((bit 0 of CIRCLE_OPTIONS = 1) → (F(Roll stick right → speed increases clockwise) ∧ F(Roll stick left → speed increases counterclockwise)))",
+    "explanation": "When bit 0 of CIRCLE_OPTIONS is set, the roll stick can adjust the speed and direction of rotation."
+  },
+  {
+    "index": 8,
+    "formula": "G(Radio failsafe → ¬(stick changes))",
+    "explanation": "All stick changes are inhibited during a radio failsafe."
+  },
+  {
+    "index": 9,
+    "formula": "G((bit 1 of CIRCLE_OPTIONS = 1) → G(Copter faces direction of travel))",
+    "explanation": "When bit 1 of CIRCLE_OPTIONS is set, the copter should face the direction of travel."
+  }
+]

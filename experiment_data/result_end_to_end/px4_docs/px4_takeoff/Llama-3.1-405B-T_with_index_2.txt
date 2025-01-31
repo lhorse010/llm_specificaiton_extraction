@@ -1,0 +1,52 @@
+[
+  {
+    "index": 0,
+    "formula": "G(mode = Takeoff → ¬user_intervention)",
+    "explanation": "In Takeoff mode, no user intervention is required to control the vehicle."
+  },
+  {
+    "index": 1,
+    "formula": "G(mode = Takeoff → valid_local_position_estimate)",
+    "explanation": "Takeoff mode requires at least a valid local position estimate."
+  },
+  {
+    "index": 2,
+    "formula": "G(flying_vehicle ∧ ¬valid_local_position_estimate → failsafe)",
+    "explanation": "Flying vehicles will failsafe if they lose the position estimate."
+  },
+  {
+    "index": 3,
+    "formula": "G(disarmed_vehicle → can_switch_to_Takeoff_mode)",
+    "explanation": "Disarmed vehicles can switch to Takeoff mode without a valid position estimate."
+  },
+  {
+    "index": 4,
+    "formula": "G(disarmed_vehicle ∧ ¬valid_local_position_estimate → ¬can_arm)",
+    "explanation": "Disarmed vehicles can't arm without a valid position estimate."
+  },
+  {
+    "index": 5,
+    "formula": "G(RC_control_switches → can_change_flight_modes)",
+    "explanation": "RC control switches can be used to change flight modes."
+  },
+  {
+    "index": 6,
+    "formula": "G(RC_stick_movement → X(mode = Position))",
+    "explanation": "RC stick movement will change the vehicle to Position mode by default."
+  },
+  {
+    "index": 7,
+    "formula": "G(critical_battery_failsafe → X(mode = Position))",
+    "explanation": "RC stick movement will change the vehicle to Position mode unless handling a critical battery failsafe."
+  },
+  {
+    "index": 8,
+    "formula": "G(problem_on_takeoff → F(engine_stop))",
+    "explanation": "The Failure Detector will automatically stop the engines if there is a problem on takeoff."
+  },
+  {
+    "index": 9,
+    "formula": "G(mode = Takeoff → F(altitude = MIS_TAKEOFF_ALT))",
+    "explanation": "A multi-rotor ascends vertically to the altitude defined in MIS_TAKEOFF_ALT and holds position."
+  }
+]

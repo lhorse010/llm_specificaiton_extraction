@@ -1,0 +1,69 @@
+Based on the provided document, I've extracted the specifications and expressed them using Metric Temporal Logic (MTL) formulas. Here are the results in the required JSON format:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(¬user_intervention → X(automatic_mode))",
+            "explanation": "The return mode is automatic, and no user intervention is required to control the vehicle."
+        },
+        {
+            "formula": "G(global_position_estimate → X(automatic_mode))",
+            "explanation": "The return mode requires a global 3D position estimate (from GPS or inferred from a local position)."
+        },
+        {
+            "formula": "G(home_position_set → X(automatic_mode))",
+            "explanation": "The return mode requires the home position to be set."
+        },
+        {
+            "formula": "G(automatic_mode → ¬arming)",
+            "explanation": "The return mode prevents arming (the vehicle must be armed when switching to this mode)."
+        },
+        {
+            "formula": "G(RC_control_switch → X(mode_change))",
+            "explanation": "RC control switches can be used to change flight modes on any vehicle."
+        },
+        {
+            "formula": "G(RC_stick_movement → X(position_mode))",
+            "explanation": "RC stick movement will by default change the vehicle to Position mode unless handling a critical battery failsafe."
+        },
+        {
+            "formula": "G(return_mode → F(ascend_to_min_return_altitude))",
+            "explanation": "The vehicle ascends to the minimum return altitude (safely above any expected obstacles)."
+        },
+        {
+            "formula": "G(ascend_to_min_return_altitude → F(fly_to_safe_landing_point))",
+            "explanation": "The vehicle flies via a direct constant-altitude path to the safe landing point."
+        },
+        {
+            "formula": "G(arrival_at_destination → F(descend_to_descent_altitude))",
+            "explanation": "On arrival at its destination, the vehicle rapidly descends to the 'descent altitude' (RTL_DESCEND_ALT)."
+        },
+        {
+            "formula": "G(descend_to_descent_altitude → F(wait_for_configurable_time))",
+            "explanation": "The vehicle waits for a configurable time (RTL_LAND_DELAY) before landing."
+        },
+        {
+            "formula": "G(wait_for_configurable_time → F(land))",
+            "explanation": "The vehicle lands after waiting for the configurable time."
+        }
+    ]
+}
+```
+
+Note that I've used the following abbreviations in the MTL formulas:
+
+* `automatic_mode`: The return mode is automatic.
+* `global_position_estimate`: A global 3D position estimate is available.
+* `home_position_set`: The home position is set.
+* `arming`: The vehicle is armed.
+* `RC_control_switch`: An RC control switch is used to change flight modes.
+* `RC_stick_movement`: The RC stick is moved.
+* `position_mode`: The vehicle is in Position mode.
+* `return_mode`: The vehicle is in Return mode.
+* `ascend_to_min_return_altitude`: The vehicle ascends to the minimum return altitude.
+* `fly_to_safe_landing_point`: The vehicle flies to the safe landing point.
+* `arrival_at_destination`: The vehicle arrives at its destination.
+* `descend_to_descent_altitude`: The vehicle descends to the descent altitude.
+* `wait_for_configurable_time`: The vehicle waits for a configurable time before landing.
+* `land`: The vehicle lands.

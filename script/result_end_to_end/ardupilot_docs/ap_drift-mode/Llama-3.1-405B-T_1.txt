@@ -1,0 +1,46 @@
+After carefully reading the document, I extracted the specifications that the vehicle needs to meet in Drift Mode. Here are the specifications expressed using Metric Temporal Logic (MTL) formulas:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G((user_input_yaw ∧ user_input_pitch) → X(copter_turns ∧ copter_banks))",
+            "explanation": "Whenever the user inputs yaw and pitch, the copter will turn and bank in the next time step."
+        },
+        {
+            "formula": "G((user_input_yaw ∧ ¬user_input_pitch) → X(copter_turns ∧ ¬copter_banks))",
+            "explanation": "Whenever the user inputs yaw but not pitch, the copter will turn but not bank in the next time step."
+        },
+        {
+            "formula": "G((¬user_input_yaw ∧ user_input_pitch) → X(¬copter_turns ∧ copter_banks))",
+            "explanation": "Whenever the user inputs pitch but not yaw, the copter will not turn but bank in the next time step."
+        },
+        {
+            "formula": "G((¬user_input_yaw ∧ ¬user_input_pitch) → X(¬copter_turns ∧ ¬copter_banks))",
+            "explanation": "Whenever the user does not input yaw or pitch, the copter will not turn or bank in the next time step."
+        },
+        {
+            "formula": "G(user_input_throttle → X(motor_speed = average_motor_speed))",
+            "explanation": "Whenever the user inputs throttle, the motor speed will be set to the average motor speed in the next time step."
+        },
+        {
+            "formula": "G(¬user_input_throttle → X(motor_speed = MOT_SPIN_ARMED))",
+            "explanation": "Whenever the user does not input throttle, the motor speed will be set to the minimum rate (MOT_SPIN_ARMED) in the next time step."
+        },
+        {
+            "formula": "G(GPS_signal → X(altitude_control ∧ horizontal_position_hold))",
+            "explanation": "Whenever the GPS signal is available, the copter will maintain altitude control and loosely hold horizontal position in the next time step."
+        },
+        {
+            "formula": "G(¬GPS_signal → X(land ∨ altitude_hold))",
+            "explanation": "Whenever the GPS signal is lost, the copter will either land or enter altitude hold in the next time step."
+        },
+        {
+            "formula": "G(stick_release → X(speed_brake ∧ copter_slow_down))",
+            "explanation": "Whenever the sticks are released, the copter will engage the speed brake and slow down over a two-second period in the next time step."
+        }
+    ]
+}
+```
+
+Note that I excluded vague specifications and focused on clear and specific requirements. I also used the MTL operators to express the temporal relationships between the inputs and outputs.

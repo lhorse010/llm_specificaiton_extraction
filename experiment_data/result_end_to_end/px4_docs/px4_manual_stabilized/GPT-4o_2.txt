@@ -1,0 +1,22 @@
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(centered_sticks → (roll_angle = 0 ∧ pitch_angle = 0))",
+            "explanation": "Globally, if the control sticks are centered, the roll and pitch angles should be zero to level the vehicle."
+        },
+        {
+            "formula": "G(¬external_forces → (hovering → maintain_altitude))",
+            "explanation": "Globally, if no external forces like wind are present, and the vehicle is hovering, it should maintain its altitude."
+        },
+        {
+            "formula": "G(sticks_outside_center → (control_roll_pitch ∧ control_yaw ∧ control_throttle))",
+            "explanation": "Globally, if the control sticks are outside the center, the roll and pitch sticks should control the tilt angle, the yaw stick should control the rotation rate, and the throttle should control altitude/speed."
+        },
+        {
+            "formula": "G(autopilot_active → (sticks_centered → (attitude_roll_pitch = 0)))",
+            "explanation": "Globally, if the autopilot is active, centered sticks should result in zero roll and pitch angles, leveling the attitude."
+        }
+    ]
+}
+```

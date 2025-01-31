@@ -1,0 +1,32 @@
+[
+  {
+    "index": 0,
+    "formula": "G((ch7/ch8_switch = ON) ∧ (roll/pitch_stick_position ≠ 0) → X(roll/pitch_flip))",
+    "explanation": "Whenever the ch7/ch8 switch is ON and the roll/pitch stick position is not zero, the vehicle will flip on its roll or pitch axis in the next time step."
+  },
+  {
+    "index": 1,
+    "formula": "G(flip_start → X(rise_for_1_second ∧ F(rapid_flip)))",
+    "explanation": "Whenever the flip mode is started, the vehicle will rise for 1 second and then rapidly flip in the next time step."
+  },
+  {
+    "index": 2,
+    "formula": "G(flip → X(G(¬flip) U (ch7/ch8_switch = OFF ∧ ch7/ch8_switch = ON)))",
+    "explanation": "After flipping, the vehicle will not flip again until the ch7/ch8 switch is brought low and back to high."
+  },
+  {
+    "index": 3,
+    "formula": "G((roll/pitch_stick_position > 40deg) → X(exit_flip))",
+    "explanation": "If the roll/pitch stick position is greater than 40 degrees, the vehicle will exit the flip mode in the next time step."
+  },
+  {
+    "index": 4,
+    "formula": "G(flip_start → F(complete_roll_within_2.5sec))",
+    "explanation": "The vehicle will complete the roll within 2.5 seconds after starting the flip mode."
+  },
+  {
+    "index": 5,
+    "formula": "G(flip_recover → F(return_to_original_attitude))",
+    "explanation": "The vehicle will return to its original attitude after recovering from the flip."
+  }
+]

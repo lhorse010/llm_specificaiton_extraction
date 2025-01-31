@@ -1,0 +1,37 @@
+[
+  {
+    "index": 0,
+    "formula": "G(land_mode → F(landed ∧ disarm))",
+    "explanation": "Globally, if the vehicle is in land mode, it will eventually land and disarm."
+  },
+  {
+    "index": 1,
+    "formula": "G(land_mode → ¬arming)",
+    "explanation": "Globally, if the vehicle is in land mode, it cannot arm."
+  },
+  {
+    "index": 2,
+    "formula": "G(local_position_estimate → (X land_mode ∨ X failsafe))",
+    "explanation": "Globally, if the vehicle has a valid local position estimate, it will either switch to land mode or failsafe in the next step."
+  },
+  {
+    "index": 3,
+    "formula": "G(land_mode → G(descend_speed = MPC_LAND_SPEED))",
+    "explanation": "Globally, if the vehicle is in land mode, it will descend at the rate specified in MPC_LAND_SPEED."
+  },
+  {
+    "index": 4,
+    "formula": "G(RC_stick_movement → X position_mode)",
+    "explanation": "Globally, if there is RC stick movement, the vehicle will switch to position mode in the next step."
+  },
+  {
+    "index": 5,
+    "formula": "G(critical_battery_failsafe → ¬(RC_stick_movement → X position_mode))",
+    "explanation": "Globally, if there is a critical battery failsafe, RC stick movement will not switch the vehicle to position mode."
+  },
+  {
+    "index": 6,
+    "formula": "G(MAV_CMD_NAV_LAND → X land_mode)",
+    "explanation": "Globally, if the MAV_CMD_NAV_LAND command is received, the vehicle will switch to land mode in the next step."
+  }
+]

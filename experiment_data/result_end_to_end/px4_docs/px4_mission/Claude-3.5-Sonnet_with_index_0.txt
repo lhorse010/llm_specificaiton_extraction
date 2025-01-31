@@ -1,0 +1,52 @@
+[
+  {
+    "index": 0,
+    "formula": "G(¬global_3d_position_estimate → ¬mission_mode)",
+    "explanation": "Globally, if there is no global 3D position estimate, then the mission mode cannot be engaged."
+  },
+  {
+    "index": 1,
+    "formula": "G(¬armed → ¬mission_mode)",
+    "explanation": "Globally, if the vehicle is not armed, then the mission mode cannot be engaged."
+  },
+  {
+    "index": 2,
+    "formula": "G((mission_mode ∧ ¬mission_stored) → F(hold ∨ wait))",
+    "explanation": "Globally, if in mission mode and no mission is stored, eventually the vehicle will hold (if flying) or wait (if landed)."
+  },
+  {
+    "index": 3,
+    "formula": "G((mission_mode ∧ mission_stored ∧ flying) → X(execute_mission))",
+    "explanation": "Globally, if in mission mode with a stored mission and the vehicle is flying, in the next state it will execute the mission from the current step."
+  },
+  {
+    "index": 4,
+    "formula": "G((mission_mode ∧ mission_stored ∧ landed ∧ ¬takeoff_item) → F(fly_to_min_altitude U execute_mission))",
+    "explanation": "Globally, if in mission mode with a stored mission, the vehicle is landed, and there's no takeoff item, eventually it will fly to minimum altitude until it executes the remainder of the mission."
+  },
+  {
+    "index": 5,
+    "formula": "G(mission_paused → (¬mission_mode U mission_mode))",
+    "explanation": "Globally, if the mission is paused, it remains not in mission mode until it is switched back to mission mode."
+  },
+  {
+    "index": 6,
+    "formula": "G((mission_resumed ∧ ¬was_capturing_images) → F(head_to_original_waypoint))",
+    "explanation": "Globally, if the mission is resumed and it was not capturing images, eventually it will head towards the original waypoint it was heading to before pausing."
+  },
+  {
+    "index": 7,
+    "formula": "G((mission_resumed ∧ was_capturing_images) → F(head_to_last_waypoint U retrace_path))",
+    "explanation": "Globally, if the mission is resumed and it was capturing images, eventually it will head to the last waypoint it passed through, until it retraces its path."
+  },
+  {
+    "index": 8,
+    "formula": "G(mission_uploaded → X(active_mission_item = 1))",
+    "explanation": "Globally, if a mission is uploaded, in the next state the current active mission item is set to 1."
+  },
+  {
+    "index": 9,
+    "formula": "G((mission_feasibility_check_fail) → ¬mission_start)",
+    "explanation": "Globally, if any mission feasibility check fails, the mission cannot be started."
+  }
+]

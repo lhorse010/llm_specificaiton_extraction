@@ -1,0 +1,42 @@
+I'll go through the steps to extract specifications from the document and express them using Metric Temporal Logic (MTL) formulas.
+
+Step 1: Read the document thoroughly.
+I have read the document about FlowHold mode thoroughly.
+
+Step 4: Extract specifications and express them using metric temporal logic formula.
+Step 5: Format all the converted sentences in JSON.
+
+Here's the output in the required JSON format:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(¬GPS ∧ ¬Lidar → FlowHold)",
+            "explanation": "This formula specifies that globally, if there's no GPS and no Lidar, FlowHold mode can be used. It captures the core functionality of FlowHold mode."
+        },
+        {
+            "formula": "G(FlowHold → F(OpticalFlow_Used))",
+            "explanation": "This formula states that globally, if FlowHold mode is active, then eventually the optical flow sensor will be used. This represents the key feature of FlowHold mode."
+        },
+        {
+            "formula": "G(StickRelease → F(Vehicle_Stop))",
+            "explanation": "This formula expresses that globally, if the user releases the sticks, then eventually the vehicle will come to a stop. This is a key behavior of FlowHold mode."
+        },
+        {
+            "formula": "G(TakeOff ∨ HeightChange → F(Wobble))",
+            "explanation": "This formula captures the behavior that globally, after takeoff or large changes in height, the vehicle may eventually wobble as it learns the new height and velocity."
+        },
+        {
+            "formula": "G(FlowQuality < FHLD_QUAL_MIN → X(AltHold))",
+            "explanation": "This formula specifies that globally, if the flow quality falls below FHLD_QUAL_MIN, then in the next state, the mode will behave like AltHold. This represents a fallback behavior of FlowHold mode."
+        },
+        {
+            "formula": "G(FlowHold → F(HeightEstimation ∧ SpeedEstimation))",
+            "explanation": "This formula states that globally, if FlowHold is active, then eventually both height and speed will be estimated using the optical flow sensor."
+        }
+    ]
+}
+```
+
+These MTL formulas capture the key specifications and behaviors of the FlowHold mode as described in the document. They focus on the core functionalities, conditions for use, and specific behaviors of the mode, while avoiding vague or general statements.

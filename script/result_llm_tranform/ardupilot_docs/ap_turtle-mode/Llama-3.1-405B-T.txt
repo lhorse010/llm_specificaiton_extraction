@@ -1,0 +1,42 @@
+[
+  {
+    "sentence": "DShot capable ESCs are required for this mode to function, allowing the DShot reverse command to be sent to the ESCs.",
+    "formula": "G(D ∧ E)",
+    "explanation": "Here, D represents DShot capable ESCs being required, and E represents the allowance of the DShot reverse command to be sent to the ESCs. The globally operator G ensures that both conditions hold indefinitely."
+  },
+  {
+    "sentence": "SERVO_DSHOT_ESC must be set to a non-zero value and MOT_PWM_TYPE to a DSHOT value also, to allow DShot commands to be sent to the ESC.",
+    "formula": "G(S ∧ M ∧ D)",
+    "explanation": "Here, S represents SERVO_DSHOT_ESC being set to a non-zero value, M represents MOT_PWM_TYPE being set to a DSHOT value, and D represents the allowance of DShot commands to be sent to the ESC. The globally operator G ensures that all conditions hold indefinitely."
+  },
+  {
+    "sentence": "Turtle mode cannot be entered unless throttle is zero",
+    "formula": "G(¬T ∨ Z)",
+    "explanation": "Here, T represents turtle mode being entered, and Z represents throttle being zero. The globally operator G ensures that either turtle mode is not entered or throttle is zero indefinitely."
+  },
+  {
+    "sentence": "Upon entry to turtle mode the motors stay disarmed, but the notify LEDs flash",
+    "formula": "G(T → (M ∧ L))",
+    "explanation": "Here, T represents turtle mode being entered, M represents motors staying disarmed, and L represents notify LEDs flashing. The globally operator G and the implication operator → ensure that whenever turtle mode is entered, both conditions hold."
+  },
+  {
+    "sentence": "Raising the throttle, the motors arm, and motors spin.",
+    "formula": "G(R → (A ∧ S))",
+    "explanation": "Here, R represents throttle being raised, A represents motors being armed, and S represents motors spinning. The globally operator G and the implication operator → ensure that whenever throttle is raised, both conditions hold."
+  },
+  {
+    "sentence": "Lowering throttle to zero disarms the motors",
+    "formula": "G(L → D)",
+    "explanation": "Here, L represents throttle being lowered to zero, and D represents motors being disarmed. The globally operator G and the implication operator → ensure that whenever throttle is lowered to zero, motors are disarmed."
+  },
+  {
+    "sentence": "Motors spin only when throttle is raised",
+    "formula": "G(S → R)",
+    "explanation": "Here, S represents motors spinning, and R represents throttle being raised. The globally operator G and the implication operator → ensure that whenever motors spin, throttle is raised."
+  },
+  {
+    "sentence": "This flight mode is available for multirotors only.",
+    "formula": "G(F → M)",
+    "explanation": "Here, F represents this flight mode being available, and M represents the vehicle being a multirotor. The globally operator G and the implication operator → ensure that whenever this flight mode is available, the vehicle is a multirotor."
+  }
+]

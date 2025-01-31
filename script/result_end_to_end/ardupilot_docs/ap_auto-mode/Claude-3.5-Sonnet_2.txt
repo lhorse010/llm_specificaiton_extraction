@@ -1,0 +1,46 @@
+I'll extract the specifications from the document and express them using Metric Temporal Logic (MTL) formulas. Then, I'll format the results in JSON as requested.
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(AUTO_mode → (¬armed → X(throttle_raised → mission_start)))",
+            "explanation": "Globally, when in AUTO mode, if the copter is not armed, then in the next state, raising the throttle will start the mission."
+        },
+        {
+            "formula": "G(AUTO_mode ∧ in_air → mission_start)",
+            "explanation": "Globally, when in AUTO mode and the copter is already in the air, the mission starts immediately."
+        },
+        {
+            "formula": "G(AUTO_mode ∧ (waypoint_distance ≤ WPNAV_RADIUS) → waypoint_complete)",
+            "explanation": "Globally, when in AUTO mode, if the distance to the waypoint is less than or equal to WPNAV_RADIUS, the waypoint is considered complete."
+        },
+        {
+            "formula": "G(AUTO_mode → (pilot_yaw_input → override_autopilot_yaw))",
+            "explanation": "Globally, when in AUTO mode, if the pilot provides yaw input, it overrides the autopilot's yaw control."
+        },
+        {
+            "formula": "G(AUTO_mode ∧ mission_complete → F(RTL ∨ LAND))",
+            "explanation": "Globally, when in AUTO mode and the mission is complete, eventually the copter will either Return to Launch (RTL) or LAND."
+        },
+        {
+            "formula": "G(AUTO_mode → (speed ≤ WPNAV_SPEED))",
+            "explanation": "Globally, when in AUTO mode, the copter's speed is always less than or equal to WPNAV_SPEED."
+        },
+        {
+            "formula": "G(AUTO_mode ∧ ascending → (vertical_speed ≤ WPNAV_SPEED_UP))",
+            "explanation": "Globally, when in AUTO mode and ascending, the vertical speed is less than or equal to WPNAV_SPEED_UP."
+        },
+        {
+            "formula": "G(AUTO_mode ∧ descending → (vertical_speed ≤ WPNAV_SPEED_DN))",
+            "explanation": "Globally, when in AUTO mode and descending, the vertical speed is less than or equal to WPNAV_SPEED_DN."
+        },
+        {
+            "formula": "G(AUTO_mode ∧ waypoint_with_delay → ((waypoint_distance ≤ WPNAV_RADIUS) U waypoint_complete))",
+            "explanation": "Globally, when in AUTO mode and approaching a waypoint with a delay, the copter will stay within WPNAV_RADIUS of the waypoint until it's considered complete."
+        }
+    ]
+}
+```
+
+These MTL formulas capture the key specifications for the AUTO mode behavior of the copter as described in the document. They cover aspects such as mission start conditions, waypoint completion criteria, speed limits, and mission end behavior. Note that some of the more complex behaviors, like S-curve navigation, are difficult to express concisely in MTL and have been omitted for clarity.

@@ -1,0 +1,64 @@
+{
+    "temporal_logic_formulars": [
+        {
+            "section-id": 0,
+            "sentence-id": 9,
+            "sentence": "The target of this module is to stop the vehicle before entering the no drivable lane (with configurable stop margin) or keep the vehicle stationary if autonomous mode started inside a no drivable lane.",
+            "tl": "always ( ( targetmodule == stopeicenteringl ) until ( rise ( drileaheHnle >= driconleawigl ) ) -> ( vwit == hcoglablestpaestopmargo == tatonotaueoinauosatryryatgo = atraiaueosoda ) or sa == argodryratreoliaudalau"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 0,
+            "sentence": "This function is activated when the lane id of the target path has an no drivable lane label (i.e. the no_drivable_lane attribute is yes).",
+            "tl": "always ( Thisfunction == acivatedtatrgedtah )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 3,
+            "sentence": "4.Assign the state to APPROACHING toward a no drivable lane if:",
+            "tl": "always ( Assign == APPROACHINGtowarda = drdadrivablelane )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 4,
+            "sentence": "the distance from front of the ego vehicle till the first intersection point between the ego path and the no drivable lane polygon is more than the stop_margin",
+            "tl": "always ( distancefront == egovehicle and driversection == egopath )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 5,
+            "sentence": "5.Assign the state to INSIDE_NO_DRIVABLE_LANE if:",
+            "tl": "always ( Assign == INSIDE_NO_DRIVABLE_LANE )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 6,
+            "sentence": "the first point of the ego path is inside the no drivable lane polygon, or",
+            "tl": "always ( egopath >= drivablelanep == lolygon or rise ( epo == gon ) )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 7,
+            "sentence": "the distance from front of the ego vehicle till the first intersection point between the ego path and the no drivable lane polygon is less than the stop_margin",
+            "tl": "always ( distancefront == egovehicle and drivable == legopaneplolygon < st )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 8,
+            "sentence": "6.Assign the state to STOPPED when the vehicle is completely stopped",
+            "tl": "always ( Assign == STOPEDvehiclecomletel )"
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 1,
+            "sentence": "A no drivable lane is a lanelet or more that are out of operation design domain (ODD), i.e., the vehicle must not drive autonomously in this lanelet.",
+            "tl": "always ( Adrivablelane == alanelet or not ( operaindesindomainDi == e ) -> ( not ( vehicled == driveautonmousle ) ) until ( not ( vedricledr == driveautonmonmouslele ) ) )"
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 8,
+            "sentence": "A lanelet becomes invalid by adding a new tag under the relevant lanelet in the map file <tag k=\"no_drivable_lane\" v=\"yes\"/>.",
+            "tl": "always ( rise ( Alaneleti == invalibyadgadne ) and gwtagnderelevanlele == manleletanletatleta = maBanleleta ) -> ma == mapfpfiletagkno_dr = go_drivle_lvae_l )"
+        }
+    ]
+}

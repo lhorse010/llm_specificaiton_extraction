@@ -1,0 +1,37 @@
+[
+  {
+    "sentence": "Mode requires a global 3d position estimate (from GPS or inferred from a local position).",
+    "formula": "G(M → P)",
+    "explanation": "Here, M represents the mode being active, and P represents the availability of a global 3D position estimate. The formula states that globally (at all times), if the mode is active, then a position estimate must be available."
+  },
+  {
+    "sentence": "Flying vehicles can't switch to this mode without global position.",
+    "formula": "G(¬P → ¬X(M))",
+    "explanation": "In this formula, P represents the availability of a global position, and M represents the mode being active. The formula states that globally, if a global position is not available, then the vehicle cannot switch to this mode at the next time step."
+  },
+  {
+    "sentence": "Flying vehicles will failsafe if they lose the position estimate.",
+    "formula": "G(P ∧ X(¬P) → X(F))",
+    "explanation": "Here, P represents the availability of a position estimate, and F represents the failsafe mode. The formula states that globally, if the vehicle has a position estimate at the current time step but loses it at the next time step, then it will enter failsafe mode at the next time step."
+  },
+  {
+    "sentence": "Disarmed vehicles can switch to mode without valid position estimate but can't arm.",
+    "formula": "G(¬A → (X(M) ∧ ¬X(A)))",
+    "explanation": "In this formula, A represents the vehicle being armed, and M represents the mode being active. The formula states that globally, if the vehicle is disarmed, then it can switch to the mode at the next time step, but it cannot become armed at the next time step."
+  },
+  {
+    "sentence": "Mode requires wind and flight time are within allowed limits (specified via parameters).",
+    "formula": "G(M → (W ∧ T))",
+    "explanation": "Here, M represents the mode being active, W represents the wind being within allowed limits, and T represents the flight time being within allowed limits. The formula states that globally, if the mode is active, then both wind and flight time must be within allowed limits."
+  },
+  {
+    "sentence": "The vehicle will first ascend to NAV_MIN_LTR_ALT if the mode is engaged below this altitude.",
+    "formula": "G(M ∧ ¬A → X(U(A)))",
+    "explanation": "In this formula, M represents the mode being active, A represents the vehicle being above the NAV_MIN_LTR_ALT altitude, and U(A) represents the vehicle ascending to the NAV_MIN_LTR_ALT altitude. The formula states that globally, if the mode is active and the vehicle is below the NAV_MIN_LTR_ALT altitude, then it will ascend to the NAV_MIN_LTR_ALT altitude at the next time step."
+  },
+  {
+    "sentence": "RC stick movement will change the vehicle to Position mode (by default).",
+    "formula": "G(R → X(P))",
+    "explanation": "Here, R represents the RC stick movement, and P represents the Position mode. The formula states that globally, if the RC stick is moved, then the vehicle will change to Position mode at the next time step."
+  }
+]

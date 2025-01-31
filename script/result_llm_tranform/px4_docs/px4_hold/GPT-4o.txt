@@ -1,0 +1,37 @@
+[
+  {
+    "sentence": "2.Mode requires a global 3d position estimate (from GPS or inferred from a local position).",
+    "formula": "G(P)",
+    "explanation": "P represents having a global 3D position estimate. The formula indicates that this requirement must be satisfied at all times for mode 2."
+  },
+  {
+    "sentence": "Flying vehicles can't switch to this mode without global position.",
+    "formula": "G(¬P → ¬M)",
+    "explanation": "P is the global position availability, and M is the mode switch. This formula ensures that if there is no global position, the mode cannot be switched to."
+  },
+  {
+    "sentence": "Flying vehicles will failsafe if they lose the position estimate.",
+    "formula": "G(¬P → F)",
+    "explanation": "P represents the position estimate being available, and F is the failsafe action. The formula indicates that losing the position estimate triggers a failsafe mechanism."
+  },
+  {
+    "sentence": "Disarmed vehicles can switch to mode without valid position estimate but can't arm.",
+    "formula": "G((¬A ∧ ¬P) → M ∧ ¬A)",
+    "explanation": "A is the armed state, P is the valid position estimate, and M is the mode switch. This formula states that disarmed vehicles can switch mode without a position estimate but cannot arm."
+  },
+  {
+    "sentence": "3.Mode requires wind and flight time are within allowed limits (specified via parameters).",
+    "formula": "G(W ∧ T)",
+    "explanation": "W and T represent wind and flight time being within limits, respectively. The formula specifies that these conditions must always hold for mode 3."
+  },
+  {
+    "sentence": "The vehicle will first ascend to NAV_MIN_LTR_ALT if the mode is engaged below this altitude.",
+    "formula": "G((E ∧ B) → F(A))",
+    "explanation": "E is the mode engagement, B is being below the NAV_MIN_LTR_ALT, and A is ascending to the required altitude. The formula captures the requirement to ascend if engaged below the specified altitude."
+  },
+  {
+    "sentence": "RC stick movement will change the vehicle to Position mode (by default).",
+    "formula": "G(R → M)",
+    "explanation": "R represents the RC stick movement, and M is the switch to Position mode. This formula ensures that any RC stick movement results in a mode change to Position."
+  }
+]

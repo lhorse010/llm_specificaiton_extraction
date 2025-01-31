@@ -1,0 +1,32 @@
+[
+  {
+    "index": 0,
+    "formula": "G(manual_throttle → (motor_speed ≥ MOT_SPIN_ARMED))",
+    "explanation": "Globally, when the pilot has manual throttle control, the motor speed should always be greater than or equal to MOT_SPIN_ARMED (minimum rate)."
+  },
+  {
+    "index": 1,
+    "formula": "G(drift_mode ∧ gps_signal_lost → (F(land) ∨ F(altitude_hold)))",
+    "explanation": "Globally, when in Drift Mode and GPS signal is lost, the copter will eventually either land or enter altitude hold mode, depending on the failsafe_gps_enabled setting."
+  },
+  {
+    "index": 2,
+    "formula": "G(drift_mode → (F[0,2](velocity = 0) ∨ stick_input))",
+    "explanation": "Globally, when in Drift Mode, if there's no stick input, the copter's velocity will become zero within 2 seconds (acting as a speed brake)."
+  },
+  {
+    "index": 3,
+    "formula": "G(drift_mode ∧ right_stick_center → F(position_hold))",
+    "explanation": "Globally, when in Drift Mode and the right stick is in the center position, the copter will eventually hold its horizontal position (with some drift allowed)."
+  },
+  {
+    "index": 4,
+    "formula": "G(drift_mode → (manual_pitch_control ∧ manual_yaw_control ∧ autopilot_roll_control))",
+    "explanation": "Globally, when in Drift Mode, the pilot has manual control over pitch and yaw, while roll is controlled by the autopilot."
+  },
+  {
+    "index": 5,
+    "formula": "G(drift_mode ∧ turn_input → F(coordinated_turn))",
+    "explanation": "Globally, when in Drift Mode and turn input is given, the copter will eventually perform a coordinated turn with appropriate yaw and roll."
+  }
+]

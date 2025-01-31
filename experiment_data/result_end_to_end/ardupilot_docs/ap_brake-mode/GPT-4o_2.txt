@@ -1,0 +1,22 @@
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(brake_mode_invoked → ¬pilot_input)",
+            "explanation": "Once Brake Mode is invoked, it does not accept any input from the pilot."
+        },
+        {
+            "formula": "G(brake_mode_invoked → requires_GPS)",
+            "explanation": "Brake Mode requires GPS to function."
+        },
+        {
+            "formula": "G(brake_mode_active → acceleration_limit ∧ angle_limit)",
+            "explanation": "Brake Mode is subject to acceleration and angle limits."
+        },
+        {
+            "formula": "G(vehicle_landed ∧ brake_mode_active → disarm)",
+            "explanation": "If the vehicle lands while in Brake Mode, it will immediately disarm."
+        }
+    ]
+}
+```

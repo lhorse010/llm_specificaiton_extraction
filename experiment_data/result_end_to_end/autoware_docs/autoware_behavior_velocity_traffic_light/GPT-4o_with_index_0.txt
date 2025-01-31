@@ -1,0 +1,42 @@
+[
+  {
+    "index": 0,
+    "formula": "G (traffic_light_in_ego_lane → X (activate_module))",
+    "explanation": "The module should activate whenever there is a traffic light in the ego lane."
+  },
+  {
+    "index": 1,
+    "formula": "G ((traffic_light_not_found ∨ timeout_signal) → X (treat_as_signal_to_stop))",
+    "explanation": "If a traffic light signal is not found or times out, treat it as a signal to stop."
+  },
+  {
+    "index": 2,
+    "formula": "G ((highest_reliability_result_color ≠ green) → X (generate_stop_point))",
+    "explanation": "If the highest reliability traffic light recognition result is not green, generate a stop point."
+  },
+  {
+    "index": 3,
+    "formula": "G ((elapsed_time_to_stop_signal < stop_time_hysteresis) → X (treat_as_signal_to_pass))",
+    "explanation": "If the elapsed time to receive a stop signal is less than the stop time hysteresis, treat it as a signal to pass."
+  },
+  {
+    "index": 4,
+    "formula": "G ((current_velocity > 2.0) → X (judge_pass))",
+    "explanation": "If the vehicle's current velocity is higher than 2.0 m/s, judge it as a pass."
+  },
+  {
+    "index": 5,
+    "formula": "G ((current_velocity ≤ 2.0) → X (stop))",
+    "explanation": "If the vehicle's current velocity is 2.0 m/s or lower, stop."
+  },
+  {
+    "index": 6,
+    "formula": "G ((!can_pass_stop_line_during_yellow) → X (emergency_stop))",
+    "explanation": "If the vehicle cannot pass the stop line during the yellow lamp, perform an emergency stop."
+  },
+  {
+    "index": 7,
+    "formula": "G ((can_pass_stop_line_during_yellow ∧ in_optional_zone) → X (stop))",
+    "explanation": "If the vehicle can pass the stop line during the yellow lamp and is in the optional zone, stop."
+  }
+]

@@ -1,0 +1,22 @@
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(no_drivable_lane → F(stopped))",
+            "explanation": "Globally, if a no drivable lane is detected, the vehicle should eventually stop."
+        },
+        {
+            "formula": "G((inside_no_drivable_lane ∧ autonomous_mode) → X(stopped))",
+            "explanation": "Globally, if the vehicle is inside a no drivable lane and in autonomous mode, it must stop immediately in the next state."
+        },
+        {
+            "formula": "G((approaching_no_drivable_lane ∧ distance > stop_margin) → X(approaching))",
+            "explanation": "Globally, if the vehicle is approaching a no drivable lane and the distance is greater than the stop margin, it should remain in the approaching state in the next state."
+        },
+        {
+            "formula": "G((distance < stop_margin) → X(inside_no_drivable_lane))",
+            "explanation": "Globally, if the distance to the no drivable lane is less than the stop margin, the vehicle should transition to the inside_no_drivable_lane state in the next state."
+        }
+    ]
+}
+```

@@ -1,0 +1,72 @@
+[
+  {
+    "sentence": "This module is activated when there is traffic light in ego lane.",
+    "formula": "T → M",
+    "explanation": "T represents the presence of a traffic light in the ego lane, and M represents the module being activated. The formula indicates that the module activates whenever there is a traffic light."
+  },
+  {
+    "sentence": "If a corresponding traffic light signal have never been found, it treats as a signal to pass.",
+    "formula": "¬F(T) → P",
+    "explanation": "¬F(T) indicates that a traffic light signal has never been found, and P represents the decision to pass. The formula implies that if no signal is ever detected, it is treated as a signal to pass."
+  },
+  {
+    "sentence": "If a corresponding traffic light signal is found but timed out, it treats as a signal to stop.",
+    "formula": "(F(T) ∧ ¬G(T)) → S",
+    "explanation": "F(T) means a traffic light signal is found, and ¬G(T) indicates it eventually times out. S represents the decision to stop. The formula expresses that if the signal is found but not persistent, the system should stop."
+  },
+  {
+    "sentence": "2.Uses the highest reliability one of the traffic light recognition result and if the color of that was not green or corresponding arrow signal, generates a stop point.",
+    "formula": "¬(G ∨ A) → S",
+    "explanation": "G represents a green light, A represents a corresponding arrow signal, and S indicates generating a stop point. The formula suggests that if the recognized signal is neither green nor an arrow, a stop is generated."
+  },
+  {
+    "sentence": "If an elapsed time to receive stop signal is less than stop_time_hysteresis, it treats as a signal to pass.",
+    "formula": "T ∧ X¬S → P",
+    "explanation": "T denotes receiving a stop signal, X¬S ensures that it does not persist beyond a certain threshold (stop_time_hysteresis), and P indicates passing. The formula implies passing if the stop signal duration is insufficient."
+  },
+  {
+    "sentence": "higher than 2.0m/s ⇒ pass judge(using next slide formula)",
+    "formula": "V > 2.0 → P",
+    "explanation": "V > 2.0 represents the vehicle speed above 2.0 m/s, and P indicates a pass judgment. The formula suggests that speeds higher than 2.0 m/s lead to a pass decision."
+  },
+  {
+    "sentence": "lower than 2.0m/s ⇒ stop",
+    "formula": "V < 2.0 → S",
+    "explanation": "V < 2.0 represents the vehicle speed below 2.0 m/s, and S indicates a stop decision. The formula implies that speeds lower than 2.0 m/s result in stopping."
+  },
+  {
+    "sentence": "\"can pass through\" stop line during yellow lamp => pass",
+    "formula": "Y ∧ C → P",
+    "explanation": "Y denotes the yellow lamp active, C indicates the ability to pass through the stop line, and P represents passing. The formula suggests that if passing through during a yellow lamp is possible, it should pass."
+  },
+  {
+    "sentence": "\"can’t pass through\" stop line during yellow lamp => emergency stop",
+    "formula": "Y ∧ ¬C → E",
+    "explanation": "Y indicates the yellow lamp, ¬C represents the inability to pass through, and E is an emergency stop. The formula indicates an emergency stop when passing isn't possible during a yellow light."
+  },
+  {
+    "sentence": "vehicle can’t pass through stop line during yellow lamp.(right side of the yellow lamp line)",
+    "formula": "Y ∧ ¬C",
+    "explanation": "Y represents the yellow lamp, and ¬C denotes being unable to pass through the stop line. This captures the condition where passing is not feasible during the yellow light period."
+  },
+  {
+    "sentence": "vehicle can’t stop under deceleration and jerk limit.(left side of the pass judge curve)⇒emergency stop(relax deceleration and jerk limitation in order to observe the traffic regulation)",
+    "formula": "¬P → F(E)",
+    "explanation": "Here, P represents the vehicle stopping under deceleration and jerk limit. If the vehicle can't stop (¬P), it leads to an eventual emergency stop (E), where deceleration and jerk limitations are relaxed."
+  },
+  {
+    "sentence": "vehicle can pass through stop line during yellow lamp.(left side of the yellow lamp line)",
+    "formula": "Y ∧ P",
+    "explanation": "Y represents the yellow lamp being active, and P represents the vehicle passing through the stop line. The conjunction Y ∧ P indicates the vehicle can pass through during the yellow lamp phase."
+  },
+  {
+    "sentence": "vehicle can stop under deceleration and jerk limit.(right side of the pass judge curve) ⇒ stop(autoware selects the safety choice)",
+    "formula": "Q → F(S)",
+    "explanation": "Q represents the vehicle stopping under deceleration and jerk limit. If this condition is met, it eventually leads to a safe stop (S), chosen by the autoware system."
+  },
+  {
+    "sentence": "4.When it to be judged that vehicle can’t stop before stop line, autoware chooses one of the following behaviors",
+    "formula": "¬R → F(B1 ∨ B2 ∨ B3)",
+    "explanation": "R represents the vehicle stopping before the stop line. If this is not possible (¬R), the system eventually chooses one of several behaviors (B1, B2, B3), indicating alternative actions by the autoware."
+  }
+]

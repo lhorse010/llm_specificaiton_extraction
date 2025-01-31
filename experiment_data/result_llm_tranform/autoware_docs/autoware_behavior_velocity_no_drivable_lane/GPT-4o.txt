@@ -1,0 +1,52 @@
+[
+  {
+    "sentence": "The target of this module is to stop the vehicle before entering the no drivable lane (with configurable stop margin) or keep the vehicle stationary if autonomous mode started inside a no drivable lane.",
+    "formula": "F(V ∧ ¬N) ∨ (I → G(¬M))",
+    "explanation": "V represents the vehicle stopping, N represents entering the no drivable lane, and I represents starting in a no drivable lane. The formula ensures the vehicle stops before entering or remains stationary if already inside."
+  },
+  {
+    "sentence": "This function is activated when the lane id of the target path has an no drivable lane label (i.e. the no_drivable_lane attribute is yes).",
+    "formula": "F(L ∧ N)",
+    "explanation": "L represents the lane id of the target path, and N indicates the no_drivable_lane attribute is yes. The function becomes active when these conditions are met."
+  },
+  {
+    "sentence": "4.Assign the state to APPROACHING toward a no drivable lane if:",
+    "formula": "F(A ∧ D > M)",
+    "explanation": "A represents the state being assigned to APPROACHING, and D > M indicates the distance is more than the stop_margin. The state is assigned under these conditions."
+  },
+  {
+    "sentence": "the distance from front of the ego vehicle till the first intersection point between the ego path and the no drivable lane polygon is more than the stop_margin",
+    "formula": "G(D > M)",
+    "explanation": "D > M ensures that the distance is continuously more than the stop_margin, meaning the vehicle is not too close to the no drivable lane."
+  },
+  {
+    "sentence": "5.Assign the state to INSIDE_NO_DRIVABLE_LANE if:",
+    "formula": "F(I ∧ (P ∨ D < M))",
+    "explanation": "I represents the state being assigned to INSIDE_NO_DRIVABLE_LANE, P indicates the path is inside, and D < M means the distance is less than the stop_margin. These conditions trigger the state assignment."
+  },
+  {
+    "sentence": "the first point of the ego path is inside the no drivable lane polygon, or",
+    "formula": "G(P)",
+    "explanation": "P indicates the first point of the ego path is inside the no drivable lane polygon. This condition is checked continuously."
+  },
+  {
+    "sentence": "the distance from front of the ego vehicle till the first intersection point between the ego path and the no drivable lane polygon is less than the stop_margin",
+    "formula": "G(D < M)",
+    "explanation": "D < M ensures the distance is continuously less than the stop_margin, indicating proximity to the no drivable lane."
+  },
+  {
+    "sentence": "6.Assign the state to STOPPED when the vehicle is completely stopped",
+    "formula": "F(S)",
+    "explanation": "S represents the vehicle being completely stopped. The state is assigned when this condition is met."
+  },
+  {
+    "sentence": "A no drivable lane is a lanelet or more that are out of operation design domain (ODD), i.e., the vehicle must not drive autonomously in this lanelet.",
+    "formula": "G(¬A → N)",
+    "explanation": "A represents the vehicle driving autonomously, and N indicates a no_drivable_lane. The formula ensures autonomy is not allowed in such lanes."
+  },
+  {
+    "sentence": "A lanelet becomes invalid by adding a new tag under the relevant lanelet in the map file <tag k=\"no_drivable_lane\" v=\"yes\"/>.",
+    "formula": "F(T ∧ N)",
+    "explanation": "T represents the addition of the tag, and N indicates the no_drivable_lane status. The lanelet becomes invalid when these conditions are fulfilled."
+  }
+]

@@ -1,0 +1,58 @@
+Based on the provided document, I will annotate the sentences as specifications if they convey the following information:
+
+1. Requirements the system must meet for state transition.
+2. Constraints the system must adhere to.
+3. Expected post-actions the system will execute when entering a particular state.
+4. Expected state changes the system will carry out in response to specific commands or settings.
+
+Here are the annotated sentences in JSON format:
+
+```json
+{
+    "specifications": [
+        {
+            "section-id": 0,
+            "sentence-id": 2
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 1
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 2
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 4
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 5
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 7
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 8
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 9
+        }
+    ]
+}
+```
+
+Explanation:
+
+* Section 0, Sentence 2: "The vehicle will not flip again until the switch is brought low and back to high." This sentence conveys a constraint that the system must adhere to.
+* Section 1, Sentence 1: "1.An RCx_OPTION parameter must be set to \"Flip\" which is \"2\"" This sentence conveys a requirement that the system must meet for state transition.
+* Section 1, Sentence 2: "2.Pilot switches to Stabilize, Acro or AltHold flight mode and puts ch7/ch8 switch to ON position" This sentence conveys a requirement that the system must meet for state transition.
+* Section 1, Sentence 4: "4.Vehicle should complete the roll within 2.5sec and will then return to the original flight mode it was in before flip was triggered" This sentence conveys an expected post-action that the system will execute when entering a particular state.
+* Section 1, Sentence 5: "5.Pilot may manually exit flip by switching off ch7/ch8 or by moving roll stick to >40deg left or right" This sentence conveys an expected state change that the system will carry out in response to specific commands or settings.
+* Section 1, Sentence 7: "1.Flip_Start (while copter is leaning <45deg) : roll right at 400deg/sec, increase throttle" This sentence conveys an expected post-action that the system will execute when entering a particular state.
+* Section 1, Sentence 8: "2.Flip_Roll (while copter is between +45deg ~ -90) : roll right at 400deg/sec, reduce throttle" This sentence conveys an expected post-action that the system will execute when entering a particular state.
+* Section 1, Sentence 9: "3.Flip_Recover (while copter is between -90deg and original target angle) : use earth frame angle controller to return vehicle to original attitude" This sentence conveys an expected post-action that the system will execute when entering a particular state.

@@ -1,0 +1,22 @@
+[
+  {
+    "index": 0,
+    "formula": "G (throttle_down → F[0,2] ¬altitude_control)",
+    "explanation": "If the throttle is completely down, the copter will lose altitude control within 2 seconds."
+  },
+  {
+    "index": 1,
+    "formula": "G (¬GPS_signal → (land ∨ enter_altitude_hold))",
+    "explanation": "If the GPS signal is lost, the copter will either land or enter altitude hold mode."
+  },
+  {
+    "index": 2,
+    "formula": "G (right_stick_centered → F[0,2] speed_brake_activated)",
+    "explanation": "If the right stick is centered, a speed brake is activated to stop the copter within 2 seconds."
+  },
+  {
+    "index": 3,
+    "formula": "G (right_stick_input → (yaw_applied ∧ roll_adjusted))",
+    "explanation": "When the right stick is used, yaw is automatically applied and roll is adjusted for coordinated turns."
+  }
+]

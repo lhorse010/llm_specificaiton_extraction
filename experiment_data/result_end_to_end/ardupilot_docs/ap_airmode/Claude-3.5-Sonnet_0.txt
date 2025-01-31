@@ -1,0 +1,34 @@
+Based on the provided document, I'll extract the relevant specifications and express them using Metric Temporal Logic (MTL) formulas. Then, I'll format the results in the requested JSON format.
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G((ACRO ∨ STABILIZE) ∧ (¬ARMED ∨ ¬RC_ARM_DISARM_WITH_AIRMODE) → ¬STABILIZATION_AT_IDLE)",
+            "explanation": "Globally, when in ACRO or STABILIZE mode and either not armed or not using RC_ARM_DISARM_WITH_AIRMODE, stabilization at idle throttle is disabled."
+        },
+        {
+            "formula": "G((ACRO ∨ STABILIZE) ∧ ARMED ∧ RC_ARM_DISARM_WITH_AIRMODE → STABILIZATION_AT_IDLE)",
+            "explanation": "Globally, when in ACRO or STABILIZE mode, armed, and using RC_ARM_DISARM_WITH_AIRMODE, stabilization at idle throttle is enabled (AIRMODE active)."
+        },
+        {
+            "formula": "G((ACRO ∨ STABILIZE) ∧ RC_OPTION_AIRMODE → STABILIZATION_AT_IDLE)",
+            "explanation": "Globally, when in ACRO or STABILIZE mode and RC_OPTION_AIRMODE is enabled, stabilization at idle throttle is enabled (AIRMODE active)."
+        },
+        {
+            "formula": "G(ACRO ∧ ACRO_OPTIONS_BIT0 ∧ ¬RC_OPTION_AIRMODE → STABILIZATION_AT_IDLE)",
+            "explanation": "Globally, when in ACRO mode with ACRO_OPTIONS bit 0 set and RC_OPTION_AIRMODE not used, stabilization at idle throttle is enabled (AIRMODE active)."
+        },
+        {
+            "formula": "G(TRADITIONAL_HELICOPTER → ¬AIRMODE)",
+            "explanation": "Globally, AIRMODE has no effect in Traditional Helicopter configuration."
+        },
+        {
+            "formula": "G(RC_ARM_DISARM ∧ ¬RUDDER_ARMING → AIRMODE)",
+            "explanation": "Globally, when using RC_ARM_DISARM switch for arming (not rudder arming), AIRMODE is active."
+        }
+    ]
+}
+```
+
+These MTL formulas capture the key specifications described in the document about AIRMODE functionality in the Copter flight control software. The formulas express the conditions under which AIRMODE (stabilization at idle throttle) is active or inactive, considering different flight modes, arming methods, and configuration options.

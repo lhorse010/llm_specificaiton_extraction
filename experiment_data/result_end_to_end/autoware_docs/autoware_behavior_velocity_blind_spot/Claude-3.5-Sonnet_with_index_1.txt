@@ -1,0 +1,32 @@
+[
+  {
+    "index": 0,
+    "formula": "G(intersection_turn → blind_spot_active)",
+    "explanation": "Globally, when the vehicle is at an intersection turn (left or right), the blind spot module should be active."
+  },
+  {
+    "index": 1,
+    "formula": "G(blind_spot_active → (detection_area_set ∧ conflict_area_set ∧ stop_line_set ∧ pass_judge_line_set))",
+    "explanation": "Globally, when the blind spot module is active, it should set up the detection area, conflict area, stop line, and pass judge line."
+  },
+  {
+    "index": 2,
+    "formula": "G((object_in_detection_area ∧ object_predicted_in_conflict_area ∧ ¬passed_judge_line) → X(stop_state))",
+    "explanation": "Globally, if an object is detected in the detection area and its predicted path is in the conflict area, and the vehicle hasn't passed the judge line, then in the next state, the vehicle should be in a stop state."
+  },
+  {
+    "index": 3,
+    "formula": "G(stop_state → (velocity = 0))",
+    "explanation": "Globally, when in a stop state, the vehicle's velocity should be zero."
+  },
+  {
+    "index": 4,
+    "formula": "G(passed_judge_line → ¬(X(stop_state)))",
+    "explanation": "Globally, if the vehicle has passed the judge line, it should not transition to a stop state in the next state."
+  },
+  {
+    "index": 5,
+    "formula": "G(stop_state → (¬go_state U (go_condition ∧ F[0,2](go_state))))",
+    "explanation": "Globally, when in a stop state, the state should not transition to go until the go condition is met and remains true for 2 seconds."
+  }
+]

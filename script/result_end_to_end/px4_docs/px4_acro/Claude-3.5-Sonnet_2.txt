@@ -1,0 +1,34 @@
+I'll extract the specifications from the document and express them using Metric Temporal Logic (MTL) formulas. Then, I'll format the converted sentences in JSON as requested.
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(sticks_centered → X(angular_rotation_rate = 0))",
+            "explanation": "Globally, when the control sticks are centered, in the next state, the angular rotation rate around all axes should be zero."
+        },
+        {
+            "formula": "G(¬sticks_centered → (angular_rotation_rate ≠ 0))",
+            "explanation": "Globally, when the control sticks are not centered, the angular rotation rate should not be zero, allowing for rotation around the respective axes."
+        },
+        {
+            "formula": "G(throttle_input = control_allocation_output)",
+            "explanation": "Globally, the throttle input should be directly passed to the control allocation output without modification."
+        },
+        {
+            "formula": "G(roll_stick_input ∨ pitch_stick_input ∨ yaw_stick_input → F(attitude_rate_stabilized))",
+            "explanation": "Globally, if there's input on the roll, pitch, or yaw sticks, eventually the attitude rate should be stabilized by the autopilot."
+        },
+        {
+            "formula": "G(stick_input = max → F(high_turn_rate))",
+            "explanation": "Globally, when stick input is at maximum, eventually a high turn rate should be achieved for performing acrobatic maneuvers."
+        },
+        {
+            "formula": "G(stick_input ≈ 0 → F(low_sensitivity))",
+            "explanation": "Globally, when stick input is close to zero, eventually low sensitivity should be applied for small corrections."
+        }
+    ]
+}
+```
+
+These MTL formulas capture the key specifications of the Acro Mode for multicopters as described in the document. They focus on the behavior of the vehicle in response to stick inputs, the direct pass-through of throttle control, and the stabilization provided by the autopilot.

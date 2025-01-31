@@ -1,0 +1,46 @@
+```json
+{
+    "specifications": [
+        {
+            "formula": "G (armed → mission_mode)",
+            "explanation": "The vehicle must be armed before mission mode can be engaged, ensuring that the mission mode is only active when the vehicle is armed."
+        },
+        {
+            "formula": "G (mission_stored ∧ flying → execute_mission)",
+            "explanation": "If a mission is stored and the vehicle is flying, it will execute the mission starting from the current step."
+        },
+        {
+            "formula": "G (¬mission_stored ∧ flying → hold_position)",
+            "explanation": "If no mission is stored and the vehicle is flying, it will hold its position."
+        },
+        {
+            "formula": "G (mission_stored ∧ landed → execute_mission)",
+            "explanation": "If a mission is stored and the vehicle is landed, it will execute the mission plan."
+        },
+        {
+            "formula": "G (mission_finished ∧ flying → hold_position)",
+            "explanation": "If the mission is finished and the vehicle is flying, it will hold its position."
+        },
+        {
+            "formula": "G (mission_paused ∧ ¬capturing_images → resume_to_waypoint)",
+            "explanation": "If a mission is paused and the vehicle was not capturing images, it will resume towards the same waypoint it was heading towards originally."
+        },
+        {
+            "formula": "G (mission_paused ∧ capturing_images → retrace_to_last_waypoint)",
+            "explanation": "If a mission is paused and the vehicle was capturing images, it will retrace its path to the last waypoint."
+        },
+        {
+            "formula": "G (upload_new_mission → reset_mission)",
+            "explanation": "The mission will reset only when a new mission is uploaded."
+        },
+        {
+            "formula": "G (¬mission_feasible → ¬start_mission)",
+            "explanation": "The mission cannot start if it is deemed not feasible by the system's checks."
+        },
+        {
+            "formula": "G (first_mission_item_too_far → ¬start_mission)",
+            "explanation": "The mission cannot start if the first mission item is too far from the vehicle."
+        }
+    ]
+}
+```

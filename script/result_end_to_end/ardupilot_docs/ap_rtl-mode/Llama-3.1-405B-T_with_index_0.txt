@@ -1,0 +1,47 @@
+[
+  {
+    "index": 0,
+    "formula": "G(RTL_mode -> F(altitude >= RTL_CLIMB_MIN))",
+    "explanation": "When RTL mode is selected, the copter will eventually climb to at least RTL_CLIMB_MIN meters."
+  },
+  {
+    "index": 1,
+    "formula": "G(RTL_mode -> F(altitude >= RTL_ALT))",
+    "explanation": "When RTL mode is selected, the copter will eventually climb to at least RTL_ALT meters."
+  },
+  {
+    "index": 2,
+    "formula": "G(RTL_mode -> altitude >= 2)",
+    "explanation": "When RTL mode is selected, the copter's altitude will always be at least 2 meters."
+  },
+  {
+    "index": 3,
+    "formula": "G(RTL_mode -> F(distance_to_home <= 0))",
+    "explanation": "When RTL mode is selected, the copter will eventually return to the home location."
+  },
+  {
+    "index": 4,
+    "formula": "G(RTL_mode -> (distance_to_home * RTL_CONE_SLOPE >= altitude))",
+    "explanation": "When RTL mode is selected, the copter's altitude will be limited by the inverted cone defined by RTL_CONE_SLOPE."
+  },
+  {
+    "index": 5,
+    "formula": "G(RTL_mode -> (RTL_LOIT_TIME > 0 -> F(hovering_above_home)))",
+    "explanation": "When RTL mode is selected and RTL_LOIT_TIME is greater than 0, the copter will eventually hover above the home location for RTL_LOIT_TIME milliseconds."
+  },
+  {
+    "index": 6,
+    "formula": "G(RTL_mode -> (RTL_ALT_FINAL = 0 -> F(landing)))",
+    "explanation": "When RTL mode is selected and RTL_ALT_FINAL is 0, the copter will eventually land."
+  },
+  {
+    "index": 7,
+    "formula": "G(RTL_mode -> (RTL_SPEED > 0 -> F(horizontal_speed = RTL_SPEED)))",
+    "explanation": "When RTL mode is selected and RTL_SPEED is greater than 0, the copter's horizontal speed will eventually be set to RTL_SPEED."
+  },
+  {
+    "index": 8,
+    "formula": "G(RTL_mode -> (LAND_SPEED > 0 -> F(descent_speed = LAND_SPEED)))",
+    "explanation": "When RTL mode is selected and LAND_SPEED is greater than 0, the copter's descent speed will eventually be set to LAND_SPEED."
+  }
+]

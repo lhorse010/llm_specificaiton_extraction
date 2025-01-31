@@ -1,0 +1,18 @@
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(brake_mode → ¬pilot_input)",
+            "explanation": "Globally, if the vehicle is in Brake Mode, then it should not accept any pilot input."
+        },
+        {
+            "formula": "G(brake_mode → requires_GPS)",
+            "explanation": "Globally, if the vehicle is in Brake Mode, then GPS is required."
+        },
+        {
+            "formula": "G(brake_mode → (F(landed) → X(disarm)))",
+            "explanation": "Globally, if the vehicle is in Brake Mode and it becomes landed, then it should immediately disarm in the next state."
+        }
+    ]
+}
+```

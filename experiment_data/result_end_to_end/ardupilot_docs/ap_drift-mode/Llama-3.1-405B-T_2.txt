@@ -1,0 +1,46 @@
+After carefully reading the document, I extracted the specifications that the vehicle needs to meet in Drift Mode. Here are the specifications expressed using Metric Temporal Logic (MTL) formulas:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G((right_stick_forward → X(pitch_up)) ∧ (right_stick_backward → X(pitch_down)))",
+            "explanation": "When the right stick is pushed forward or backward, the copter will pitch up or down accordingly."
+        },
+        {
+            "formula": "G((right_stick_left → X(turn_left)) ∧ (right_stick_right → X(turn_right)))",
+            "explanation": "When the right stick is pushed to the left or right, the copter will turn in the corresponding direction."
+        },
+        {
+            "formula": "G(turning → X(banking))",
+            "explanation": "When the copter is turning, it will also bank to make a coordinated turn."
+        },
+        {
+            "formula": "G((yaw_applied ∧ roll_applied) → X(coordinated_turn))",
+            "explanation": "When yaw and roll are applied, the copter will make a coordinated turn."
+        },
+        {
+            "formula": "G(sticks_released → X(speed_brake))",
+            "explanation": "When the sticks are released, the copter will slow down to a stop over a two-second period."
+        },
+        {
+            "formula": "G(right_stick_center → X(loosely_hold_horizontal_position))",
+            "explanation": "When the right stick is in the center, the copter will loosely hold its horizontal position."
+        },
+        {
+            "formula": "G(throttle_input → X(average_motor_speed))",
+            "explanation": "The pilot's throttle input controls the average motor speed."
+        },
+        {
+            "formula": "G(throttle_down → X(motors_minimum_rate))",
+            "explanation": "When the throttle is completely down, the motors will go to their minimum rate."
+        },
+        {
+            "formula": "G(GPS_signal_lost → X(land_or_altitude_hold))",
+            "explanation": "If the GPS signal is lost, the copter will either land or enter altitude hold based on the failsafe_gps_enabled setting."
+        }
+    ]
+}
+```
+
+Note that I excluded vague specifications and focused on clear and specific requirements. I also used the MTL operators to express the temporal relationships between the variables.

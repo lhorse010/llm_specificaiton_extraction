@@ -1,0 +1,71 @@
+{
+  "title": "Airmode",
+  "sections": [
+    {
+      "section-id": 0,
+      "title": "Airmode",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "This is not an actual flight mode, but rather, an important feature of ACRO and STABILIZE mode."
+        },
+        {
+          "sentence-id": 1,
+          "text": "Other flight control software refer to it as a flight mode, so for consistency, its included in the Copter flight modes documentation"
+        }
+      ]
+    },
+    {
+      "section-id": 1,
+      "title": "What it is",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "Normally, in Copter, if arming is setup via the rudder stick, if throttle is lowered to idle in ACRO mode, the stabilization is removed."
+        },
+        {
+          "sentence-id": 1,
+          "text": "While this prevents movement due to vibration while on the ground at idle throttle, it prevents stabilization in flight for aerobatic movements or rapid descents."
+        },
+        {
+          "sentence-id": 2,
+          "text": "If a transmitter switch is used with  RCx_OPTION ARM/DISARM with Airmode (option 154) and used to arm, then stabilization at idle throttle is still fully active, which is often referred to as AIRMODE."
+        },
+        {
+          "sentence-id": 3,
+          "text": "AIRMODE can also be set to be active without using the RCx_OPTION switch to arm."
+        },
+        {
+          "sentence-id": 4,
+          "text": "Setting an RC channel to RCx_OPTION = 84, allows enabling or disabling AIRMODE in ACRO and STABILIZE modes directly."
+        },
+        {
+          "sentence-id": 5,
+          "text": "In addition, setting bit 0 of ACRO_OPTIONS will activate AIRMODE in ACRO mode (only) all the time, except if overridden by the above switch, if used."
+        }
+      ]
+    },
+    {
+      "section-id": 2,
+      "title": "What it is : Note",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "to avoid enabling AIRMODE but still use an ARM/DISARM switch, use Auxiliary function option \"153\" for the switch."
+        },
+        {
+          "sentence-id": 1,
+          "text": "AIRMODE has no effect in Traditional Helicopter"
+        },
+        {
+          "sentence-id": 2,
+          "text": "It isn't sufficient to just enable arming on an RCx_OPTION switch, you also have to actually use it for arming."
+        },
+        {
+          "sentence-id": 3,
+          "text": "So if you have it on a switch but then use rudder-arming then you won't get \"airmode\"."
+        }
+      ]
+    }
+  ]
+}

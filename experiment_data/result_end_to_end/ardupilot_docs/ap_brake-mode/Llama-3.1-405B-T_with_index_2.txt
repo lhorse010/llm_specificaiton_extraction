@@ -1,0 +1,27 @@
+[
+  {
+    "index": 0,
+    "formula": "G(BrakeMode → F(Stopped))",
+    "explanation": "Globally, if Brake mode is invoked, then the vehicle will eventually stop."
+  },
+  {
+    "index": 1,
+    "formula": "G(BrakeMode → ¬PilotInput)",
+    "explanation": "Globally, if Brake mode is invoked, then the vehicle does not accept any input from the pilot."
+  },
+  {
+    "index": 2,
+    "formula": "G(BrakeMode → GPS)",
+    "explanation": "Globally, if Brake mode is invoked, then GPS is required."
+  },
+  {
+    "index": 3,
+    "formula": "G(BrakeMode → (AccelerationLimit ∧ AngleLimit))",
+    "explanation": "Globally, if Brake mode is invoked, then the vehicle is subject to acceleration and angle limits imposed by the position and attitude controllers."
+  },
+  {
+    "index": 4,
+    "formula": "G(Landed ∧ BrakeMode → X(Disarmed))",
+    "explanation": "Globally, if the vehicle is landed and Brake mode is invoked, then the vehicle will disarm immediately in the next state."
+  }
+]

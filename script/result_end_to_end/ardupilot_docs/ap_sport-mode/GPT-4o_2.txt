@@ -1,0 +1,26 @@
+```json
+{
+    "specifications": [
+        {
+            "formula": "G (¬(angle > 45) ∧ ¬(angle < -45))",
+            "explanation": "The vehicle must not lean more than 45 degrees in any direction. This is controlled by the ACRO_BAL_ROLL and ACRO_BAL_PITCH parameters."
+        },
+        {
+            "formula": "G (sticks_released → X (attitude = current_attitude))",
+            "explanation": "When the pilot releases the roll, pitch, and yaw sticks, the vehicle should maintain its current attitude."
+        },
+        {
+            "formula": "G ((|throttle - mid_throttle| <= 0.1) → F (altitude = current_altitude))",
+            "explanation": "When the throttle is within 10% of mid-throttle, the vehicle should eventually hold its current altitude."
+        },
+        {
+            "formula": "G ((throttle > mid_throttle + 0.1) → F (climb_rate <= 2.5))",
+            "explanation": "If the throttle is above 10% of mid-throttle, the vehicle's climb rate should not exceed 2.5 m/s."
+        },
+        {
+            "formula": "G ((throttle < mid_throttle - 0.1) → F (descent_rate <= 2.5))",
+            "explanation": "If the throttle is below 10% of mid-throttle, the vehicle's descent rate should not exceed 2.5 m/s."
+        }
+    ]
+}
+```

@@ -1,0 +1,49 @@
+After carefully reading the document, I have extracted the specifications that the vehicle needs to meet in Acro Mode (Multicopter). Here are the specifications expressed using Metric Temporal Logic (MTL) formulas:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(sticks_centered → X(¬vehicle_rotating))",
+            "explanation": "When the sticks are centered, the vehicle will stop rotating in the next time step."
+        },
+        {
+            "formula": "G(sticks_centered → X(vehicle_momentum = current_momentum))",
+            "explanation": "When the sticks are centered, the vehicle will maintain its current momentum in the next time step."
+        },
+        {
+            "formula": "G(RC_RPY_input → X(vehicle_rotation_rate = input_rate))",
+            "explanation": "The rate of angular rotation around the respective axes is controlled by the RC RPY stick inputs."
+        },
+        {
+            "formula": "G(throttle_input → X(control_allocation = throttle_input))",
+            "explanation": "Throttle input is passed directly to control allocation."
+        },
+        {
+            "formula": "G(manual_control_input → X(vehicle_attitude_rate = assisted_attitude_rate))",
+            "explanation": "Manual control input is required, and the autopilot assists in stabilizing the attitude rate."
+        },
+        {
+            "formula": "G(stick_input_mapping → X(vehicle_rotation_rate = mapped_rotation_rate))",
+            "explanation": "The stick input mapping determines the rate of rotation of the vehicle."
+        }
+    ]
+}
+```
+
+Note that I have used the following abbreviations:
+
+* `sticks_centered`: The sticks are centered.
+* `vehicle_rotating`: The vehicle is rotating.
+* `vehicle_momentum`: The vehicle's momentum.
+* `current_momentum`: The current momentum of the vehicle.
+* `RC_RPY_input`: The RC RPY stick input.
+* `input_rate`: The rate of rotation corresponding to the RC RPY stick input.
+* `throttle_input`: The throttle input.
+* `control_allocation`: The control allocation.
+* `manual_control_input`: Manual control input is required.
+* `assisted_attitude_rate`: The attitude rate assisted by the autopilot.
+* `stick_input_mapping`: The stick input mapping.
+* `mapped_rotation_rate`: The rate of rotation corresponding to the stick input mapping.
+
+These specifications capture the key requirements of the Acro Mode (Multicopter) as described in the document.

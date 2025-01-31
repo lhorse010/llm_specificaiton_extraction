@@ -1,0 +1,27 @@
+[
+  {
+    "index": 0,
+    "formula": "G((arming_setup_via_rudder_stick ∧ throttle_idle) → ¬stabilization_active)",
+    "explanation": "Globally, if arming is setup via the rudder stick and throttle is idle, then stabilization is not active."
+  },
+  {
+    "index": 1,
+    "formula": "G((transmitter_switch_used ∧ RCx_OPTION_ARM_DISARM_with_Airmode ∧ arming_via_switch) → stabilization_active)",
+    "explanation": "Globally, if a transmitter switch is used with RCx_OPTION ARM/DISARM with Airmode and used to arm, then stabilization is active."
+  },
+  {
+    "index": 2,
+    "formula": "G(RCx_OPTION = 84 → (F(AIRMODE_enabled ∨ AIRMODE_disabled)))",
+    "explanation": "Globally, if RCx_OPTION is set to 84, then AIRMODE can be enabled or disabled in the future."
+  },
+  {
+    "index": 3,
+    "formula": "G((ACRO_OPTIONS_bit_0_set ∧ ¬overridden_by_switch) → AIRMODE_enabled)",
+    "explanation": "Globally, if bit 0 of ACRO_OPTIONS is set and not overridden by the switch, then AIRMODE is enabled."
+  },
+  {
+    "index": 4,
+    "formula": "G(in_Traditional_Helicopter_mode → ¬AIRMODE_enabled)",
+    "explanation": "Globally, if in Traditional Helicopter mode, then AIRMODE is not enabled."
+  }
+]

@@ -1,0 +1,22 @@
+[
+  {
+    "index": 0,
+    "formula": "G((lane_id.intersection_label ∧ (turn_direction = left ∨ turn_direction = right)) → F(activation))",
+    "explanation": "The blind spot module is activated whenever the vehicle approaches a lane with an intersection label and is turning left or right."
+  },
+  {
+    "index": 1,
+    "formula": "G((object_in_detection_area ∧ object_predicted_path_in_conflict_area) → stop_state)",
+    "explanation": "The vehicle must enter the stop state if an object is detected in the detection area and its predicted path is in the conflict area."
+  },
+  {
+    "index": 2,
+    "formula": "G((current_position > pass_judge_line) → ¬stop_judgement)",
+    "explanation": "The stop judgement should not be executed if the vehicle has passed the pass judge line to avoid a rapid stop."
+  },
+  {
+    "index": 3,
+    "formula": "G(stop_judged → F(go_judgement_continues_for_2_seconds ∧ go_state))",
+    "explanation": "Once a stop is judged, the vehicle will not transition to the go state until the go judgement continues for at least 2 seconds to prevent state chattering."
+  }
+]

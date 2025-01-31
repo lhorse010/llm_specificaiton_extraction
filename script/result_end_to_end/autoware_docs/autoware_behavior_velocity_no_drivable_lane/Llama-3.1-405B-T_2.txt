@@ -1,0 +1,39 @@
+Based on the provided document, I've extracted the specifications and expressed them using Metric Temporal Logic (MTL) formulas. Here are the results in the required JSON format:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(no_drivable_lane → F(stop_vehicle))",
+            "explanation": "Globally, if a no drivable lane is detected, the vehicle will eventually stop."
+        },
+        {
+            "formula": "G(no_drivable_lane ∧ distance_to_intersection > stop_margin → X(approaching_state))",
+            "explanation": "Globally, if a no drivable lane is detected and the distance to the intersection point is greater than the stop margin, the state will transition to approaching in the next time step."
+        },
+        {
+            "formula": "G(no_drivable_lane ∧ (distance_to_intersection < stop_margin ∨ inside_no_drivable_lane) → X(inside_no_drivable_lane_state))",
+            "explanation": "Globally, if a no drivable lane is detected and the distance to the intersection point is less than the stop margin or the vehicle is already inside the no drivable lane, the state will transition to inside no drivable lane in the next time step."
+        },
+        {
+            "formula": "G(inside_no_drivable_lane_state → F(stopped_state))",
+            "explanation": "Globally, if the vehicle is inside a no drivable lane, it will eventually stop."
+        },
+        {
+            "formula": "G(stopped_state → G(request_to_intervene))",
+            "explanation": "Globally, if the vehicle is stopped due to a no drivable lane, a request to intervene will be sent to the driver and remain active until the vehicle is no longer stopped."
+        }
+    ]
+}
+```
+
+Note that I've used the following abbreviations in the MTL formulas:
+
+* `no_drivable_lane`: a boolean variable indicating whether a no drivable lane is detected
+* `stop_vehicle`: a boolean variable indicating whether the vehicle should stop
+* `distance_to_intersection`: a numerical variable representing the distance from the front of the ego vehicle to the first intersection point between the ego path and the no drivable lane polygon
+* `stop_margin`: a numerical constant representing the configurable stop margin
+* `approaching_state`, `inside_no_drivable_lane_state`, and `stopped_state`: boolean variables representing the current state of the no drivable lane state machine
+* `request_to_intervene`: a boolean variable indicating whether a request to intervene has been sent to the driver
+
+These specifications capture the main requirements of the no drivable lane module, including the detection of no drivable lanes, the transition between states, and the request to intervene when the vehicle is stopped.

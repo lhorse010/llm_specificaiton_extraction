@@ -1,0 +1,46 @@
+Certainly, I'll extract the specifications from the document and express them using Metric Temporal Logic (MTL) formulas. Then, I'll format them in JSON as requested.
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(armed ∧ throwMode → ¬motorSpin)",
+            "explanation": "Globally, when the vehicle is armed and in throw mode, the motors should not spin by default."
+        },
+        {
+            "formula": "G(throwMode ∧ (verticalVelocity > 0.5) ∧ (totalSpeed > 5) → F(motorStart))",
+            "explanation": "Globally, when in throw mode, if the vertical velocity exceeds 0.5 m/s and the total speed exceeds 5 m/s, then eventually the motors will start."
+        },
+        {
+            "formula": "G(motorStart → F(attitudeControl ∧ X(stopDescending ∧ X(stopHorizontalMovement))))",
+            "explanation": "Globally, after motor start, the vehicle will eventually control its attitude, then stop descending, and finally attempt to stop horizontal movement."
+        },
+        {
+            "formula": "G(throwMode → gpsAvailable)",
+            "explanation": "Globally, throw mode requires GPS to be available."
+        },
+        {
+            "formula": "G(throwMode ∧ (altitude > THROW_ALT_MIN) ∧ (altitude < THROW_ALT_MAX) → ¬throwModeError)",
+            "explanation": "Globally, in throw mode, if the altitude is above THROW_ALT_MIN and below THROW_ALT_MAX, there should be no throw mode error."
+        },
+        {
+            "formula": "G(throwModeCompleted → F(nextMode))",
+            "explanation": "Globally, when throw mode is completed, the vehicle will eventually switch to the next specified mode (Auto, Guided, RTL, Land, Brake, or remain in Throw)."
+        },
+        {
+            "formula": "G(throwMode ∧ (THROW_MOT_START = 0) → ¬motorSpin)",
+            "explanation": "Globally, in throw mode, if THROW_MOT_START is set to 0, the motors should not spin while waiting for the throw."
+        },
+        {
+            "formula": "G(throwMode ∧ (THROW_MOT_START = 1) → slowMotorSpin)",
+            "explanation": "Globally, in throw mode, if THROW_MOT_START is set to 1, the motors should spin slowly while waiting for the throw."
+        },
+        {
+            "formula": "G(throwMode ∧ (THROW_TYPE = 1) → altitude > 10)",
+            "explanation": "Globally, in throw mode, if THROW_TYPE is set to 1 (dropping), the initial altitude should be greater than 10 meters."
+        }
+    ]
+}
+```
+
+These MTL formulas capture the key specifications of the Throw Mode as described in the document. They cover the conditions for motor start, the sequence of actions after motor start, GPS requirement, altitude constraints, mode switching, and the behavior based on different parameter settings.

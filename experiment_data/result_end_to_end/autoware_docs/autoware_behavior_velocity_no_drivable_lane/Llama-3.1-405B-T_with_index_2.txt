@@ -1,0 +1,27 @@
+[
+  {
+    "index": 0,
+    "formula": "G(no_drivable_lane → F(stop_vehicle))",
+    "explanation": "Globally, if a no drivable lane is detected, the vehicle will eventually stop."
+  },
+  {
+    "index": 1,
+    "formula": "G(no_drivable_lane ∧ distance_to_intersection > stop_margin → X(approaching_state))",
+    "explanation": "Globally, if a no drivable lane is detected and the distance to the intersection point is greater than the stop margin, the state will transition to approaching in the next time step."
+  },
+  {
+    "index": 2,
+    "formula": "G(no_drivable_lane ∧ (distance_to_intersection < stop_margin ∨ inside_no_drivable_lane) → X(inside_no_drivable_lane_state))",
+    "explanation": "Globally, if a no drivable lane is detected and the distance to the intersection point is less than the stop margin or the vehicle is already inside the no drivable lane, the state will transition to inside no drivable lane in the next time step."
+  },
+  {
+    "index": 3,
+    "formula": "G(inside_no_drivable_lane_state → F(stopped_state))",
+    "explanation": "Globally, if the vehicle is inside a no drivable lane, it will eventually stop."
+  },
+  {
+    "index": 4,
+    "formula": "G(stopped_state → G(request_to_intervene))",
+    "explanation": "Globally, if the vehicle is stopped due to a no drivable lane, a request to intervene will be sent to the driver and remain active until the vehicle is no longer stopped."
+  }
+]

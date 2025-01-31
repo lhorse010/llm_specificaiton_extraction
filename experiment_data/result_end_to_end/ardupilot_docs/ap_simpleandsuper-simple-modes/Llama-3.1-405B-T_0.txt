@@ -1,0 +1,63 @@
+After carefully reading the document, I have extracted the specifications that the vehicle needs to meet and expressed them using Metric Temporal Logic (MTL) formulas. Here are the results in the required JSON format:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G((Simple_Mode ∨ Super_Simple_Mode) → ¬(Acro_Mode ∨ Drift_Mode))",
+            "explanation": "Simple and Super Simple modes cannot be used in combination with Acro and Drift modes."
+        },
+        {
+            "formula": "G(Simple_Mode → (Pilot_Controls = Copter_Heading_At_Takeoff))",
+            "explanation": "In Simple Mode, the pilot controls the copter relative to its heading at takeoff."
+        },
+        {
+            "formula": "G(Super_Simple_Mode → (Pilot_Controls = Copter_Direction_From_Home))",
+            "explanation": "In Super Simple Mode, the pilot controls the copter relative to its direction from home."
+        },
+        {
+            "formula": "G(Super_Simple_Mode → GPS_Lock)",
+            "explanation": "Super Simple Mode requires a GPS lock."
+        },
+        {
+            "formula": "G((Simple_Mode ∨ Super_Simple_Mode) → (Pilot_Stick_Inputs = Copter_Movement))",
+            "explanation": "In Simple and Super Simple modes, the pilot's stick inputs control the copter's movement."
+        },
+        {
+            "formula": "G((Simple_Mode ∨ Super_Simple_Mode) → (Yaw_Input → Copter_Spin))",
+            "explanation": "In Simple and Super Simple modes, yaw input causes the copter to spin."
+        },
+        {
+            "formula": "G(Super_Simple_Mode → (Pitch_Back → Copter_Returns_Home))",
+            "explanation": "In Super Simple Mode, pulling the pitch back causes the copter to return home."
+        },
+        {
+            "formula": "G(Simple_Mode → (Pitch_Stick_Forward → Copter_Flies_Away))",
+            "explanation": "In Simple Mode, holding the pitch stick forward causes the copter to fly away."
+        },
+        {
+            "formula": "G(Simple_Mode → (Pitch_Stick_Back → Copter_Returns_Home))",
+            "explanation": "In Simple Mode, pulling the pitch stick back causes the copter to return home."
+        }
+    ]
+}
+```
+
+Note that I have used the following abbreviations in the MTL formulas:
+
+* `Simple_Mode`: The copter is in Simple Mode.
+* `Super_Simple_Mode`: The copter is in Super Simple Mode.
+* `Acro_Mode`: The copter is in Acro Mode.
+* `Drift_Mode`: The copter is in Drift Mode.
+* `Pilot_Controls`: The pilot's controls are relative to the copter's heading or direction.
+* `Copter_Heading_At_Takeoff`: The copter's heading at takeoff.
+* `Copter_Direction_From_Home`: The copter's direction from home.
+* `GPS_Lock`: The copter has a GPS lock.
+* `Pilot_Stick_Inputs`: The pilot's stick inputs.
+* `Copter_Movement`: The copter's movement.
+* `Yaw_Input`: The pilot's yaw input.
+* `Copter_Spin`: The copter spins.
+* `Pitch_Back`: The pilot pulls the pitch back.
+* `Copter_Returns_Home`: The copter returns home.
+* `Pitch_Stick_Forward`: The pilot holds the pitch stick forward.
+* `Copter_Flies_Away`: The copter flies away.

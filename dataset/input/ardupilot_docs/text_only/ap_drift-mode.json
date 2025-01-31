@@ -1,0 +1,139 @@
+{
+  "title": "Drift Mode",
+  "sections": [
+    {
+      "section-id": 0,
+      "title": "Drift Mode",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "This page provides tips for flying in Drift Mode and methods for tuning your copter to fly optimally in Drift Mode."
+        }
+      ]
+    },
+    {
+      "section-id": 1,
+      "title": "Overview",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "1.Drift Mode allows the user to fly a multi-copter as if it were a plane with built in automatic coordinated turns."
+        },
+        {
+          "sentence-id": 1,
+          "text": "2.The user has direct control of Yaw and Pitch, but Roll is controlled by the autopilot."
+        },
+        {
+          "sentence-id": 2,
+          "text": "This allows the copter to be controlled very intuitively with a single control stick if using a Mode 2 transmitter"
+        },
+        {
+          "sentence-id": 3,
+          "text": "3.The user has completely manual control over the throttle as in Stabilize mode ."
+        },
+        {
+          "sentence-id": 4,
+          "text": "4.Drift Mode is available as of release 3.1 of the Copter firmware."
+        }
+      ]
+    },
+    {
+      "section-id": 2,
+      "title": "How Drift Mode works",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "1.You \"fly\" the MultiCopter with the right stick (on Mode 2 controllers) controls Pitch and Yaw."
+        },
+        {
+          "sentence-id": 1,
+          "text": "2.You use the left stick primarily for altitude control but not for yaw directly."
+        },
+        {
+          "sentence-id": 2,
+          "text": "3.When you push the right stick forward or back the copter will pitch (and accelerate) in the appropriate direction."
+        },
+        {
+          "sentence-id": 3,
+          "text": "4.When you push the right stick towards one side or the other the right or to the left the copter will turn in the direction specified."
+        },
+        {
+          "sentence-id": 4,
+          "text": "5.The copter will also bank at the same time so as to make a coordinated turn in that direction."
+        },
+        {
+          "sentence-id": 5,
+          "text": "6.When turning with the right stick yaw is automatically applied and sufficient roll is added to cancel the copters velocity in the roll axis."
+        },
+        {
+          "sentence-id": 6,
+          "text": "7.This allows you to maintain a coordinated (non-skidding) turn."
+        },
+        {
+          "sentence-id": 7,
+          "text": "8.Letting go of the sticks effectively turns on a speed brake in the Pitch axis that slows the copter to a stop over a two second period."
+        },
+        {
+          "sentence-id": 8,
+          "text": "9.A copter in Drift Mode with the right stick in the center will loosely hold horizontal position (It will slowly drift in the wind.)"
+        },
+        {
+          "sentence-id": 9,
+          "text": "10.Pilot’s throttle input controls the average motor speed meaning that constant adjustment of the throttle is required to maintain altitude."
+        },
+        {
+          "sentence-id": 10,
+          "text": "If the pilot puts the throttle completely down the motors will go to their minimum rate (MOT_SPIN_ARMED) and if the vehicle is flying it will lose attitude control and tumble."
+        },
+        {
+          "sentence-id": 11,
+          "text": "11.Drift Mode relies on your GPS for control."
+        },
+        {
+          "sentence-id": 12,
+          "text": "12.If you lose your GPS signal in flight while in Drift Mode, your copter will either land or enter altitude hold based on your failsafe_gps_enabled setting."
+        },
+        {
+          "sentence-id": 13,
+          "text": "13.You should also be prepared to switch back to Stabilize Mode for manual recovery if necessary."
+        }
+      ]
+    },
+    {
+      "section-id": 3,
+      "title": "Whats it Useful For",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "1.FPV flyers who are looking for a dynamic, plane like flight as well as loiter-like position hold."
+        },
+        {
+          "sentence-id": 1,
+          "text": "2.New flyers who want to try a more intuitive and easy to learn flight mode."
+        },
+        {
+          "sentence-id": 2,
+          "text": "3.Anybody who would like to try an easy to fly and easy to learn and very fun mode."
+        },
+        {
+          "sentence-id": 3,
+          "text": "4.Photographers and especially videographers who want a smoother and more coordinated filming result."
+        }
+      ]
+    },
+    {
+      "section-id": 4,
+      "title": "Setting up Drift Mode",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "1.In the Mission Planner Configuration Section under flight modes select Drift Mode to apply to an appropriate switch setting."
+        },
+        {
+          "sentence-id": 1,
+          "text": "2.More information on tuning Drift mode is expected to be forthcoming shortly as are additional enhancements to Drift Mode itself."
+        }
+      ]
+    }
+  ]
+}

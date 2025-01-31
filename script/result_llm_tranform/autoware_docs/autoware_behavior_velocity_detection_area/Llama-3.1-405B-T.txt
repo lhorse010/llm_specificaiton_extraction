@@ -1,0 +1,47 @@
+[
+  {
+    "sentence": "If pointcloud is detected in a detection area defined on a map, the stop planning will be executed at the predetermined point.",
+    "formula": "P → F(S)",
+    "explanation": "Here, P represents the detection of pointcloud in the detection area, and S represents the execution of stop planning at the predetermined point. The formula states that if P is true, then S will eventually become true."
+  },
+  {
+    "sentence": "This module is activated when there is a detection area on the target lane.",
+    "formula": "D → X(M)",
+    "explanation": "Here, D represents the presence of a detection area on the target lane, and M represents the activation of the module. The formula states that if D is true, then M will be true at the next time step."
+  },
+  {
+    "sentence": "1.Gets a detection area and stop line from map information and confirms if there is pointcloud in the detection area",
+    "formula": "G(D ∧ S ∧ (P ∨ ¬P))",
+    "explanation": "Here, D represents the detection area, S represents the stop line, and P represents the presence of pointcloud. The formula states that the system always gets the detection area and stop line from map information and confirms whether there is pointcloud in the detection area."
+  },
+  {
+    "sentence": "2.Inserts stop point l[m] in front of the stop line",
+    "formula": "S → X(L)",
+    "explanation": "Here, S represents the stop line, and L represents the insertion of stop point l[m] in front of the stop line. The formula states that if S is true, then L will be true at the next time step."
+  },
+  {
+    "sentence": "3.Inserts a pass judge point to a point where the vehicle can stop with a max deceleration",
+    "formula": "V → X(J)",
+    "explanation": "Here, V represents the vehicle's ability to stop with a max deceleration, and J represents the insertion of a pass judge point. The formula states that if V is true, then J will be true at the next time step."
+  },
+  {
+    "sentence": "4.Sets velocity as zero behind the stop line when the ego-vehicle is in front of the pass judge point",
+    "formula": "E ∧ J → X(V=0)",
+    "explanation": "Here, E represents the ego-vehicle, J represents the pass judge point, and V represents the velocity. The formula states that if the ego-vehicle is in front of the pass judge point, then the velocity will be set to zero behind the stop line at the next time step."
+  },
+  {
+    "sentence": "5.If the ego vehicle has passed the pass judge point already, it doesn’t stop and pass through.",
+    "formula": "E ∧ ¬J → G(¬S)",
+    "explanation": "Here, E represents the ego-vehicle, J represents the pass judge point, and S represents the stop. The formula states that if the ego-vehicle has passed the pass judge point already, then it will not stop and will pass through indefinitely."
+  },
+  {
+    "sentence": "If the vehicle is stopped within hold_stop_margin_distance meters from stop point of the module (_front_to_stop_line < hold_stop_margin_distance), the module judges that the vehicle has already stopped for the module's stop point and plans to keep stopping current position even if the vehicle is stopped due to other factors.",
+    "formula": "S ∧ (_front_to_stop_line < hold_stop_margin_distance) → G(S)",
+    "explanation": "Here, S represents the vehicle's stop, and _front_to_stop_line represents the distance from the stop point. The formula states that if the vehicle is stopped within the hold_stop_margin_distance, then the module will judge that the vehicle has already stopped and plan to keep stopping the current position indefinitely."
+  },
+  {
+    "sentence": "If it needs X meters (e.g. 0.5 meters) to stop once the vehicle starts moving due to the poor vehicle control performance, the vehicle goes over the stopping position that should be strictly observed when the vehicle starts to moving in order to approach the near stop point (e.g. 0.3 meters away).",
+    "formula": "V ∧ (distance_to_stop > X) → F(S ∧ (distance_to_stop < X))",
+    "explanation": "Here, V represents the vehicle's start of movement, distance_to_stop represents the distance to the stop point, and X represents the distance needed to stop. The formula states that if the vehicle starts moving and needs X meters to stop, then it will eventually approach the near stop point and stop within X meters."
+  }
+]

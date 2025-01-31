@@ -1,0 +1,18 @@
+```json
+{
+    "specifications": [
+        {
+            "section-id": 2,
+            "sentence-id": 12
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 10
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 11
+        }
+    ]
+}
+```

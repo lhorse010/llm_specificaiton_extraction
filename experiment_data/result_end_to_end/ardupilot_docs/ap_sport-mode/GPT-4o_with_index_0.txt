@@ -1,0 +1,22 @@
+[
+  {
+    "index": 0,
+    "formula": "G (¬(lean_angle > 45))",
+    "explanation": "Globally, the vehicle should not lean more than 45 degrees."
+  },
+  {
+    "index": 1,
+    "formula": "G ((|throttle - mid_throttle| < 0.1) → altitude_hold)",
+    "explanation": "If the throttle is within 10% of mid-throttle, the vehicle should maintain its current altitude."
+  },
+  {
+    "index": 2,
+    "formula": "G ((climb_rate ≤ 2.5) ∧ (descend_rate ≤ 2.5))",
+    "explanation": "The vehicle should not climb or descend at a rate greater than 2.5m/s."
+  },
+  {
+    "index": 3,
+    "formula": "G (stick_released → maintain_attitude)",
+    "explanation": "When the control sticks are released, the vehicle should maintain its current attitude."
+  }
+]

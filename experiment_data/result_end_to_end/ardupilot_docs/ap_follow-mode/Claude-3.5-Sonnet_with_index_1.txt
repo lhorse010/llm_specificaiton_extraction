@@ -1,0 +1,37 @@
+[
+  {
+    "index": 0,
+    "formula": "G(follow_mode_active → F(distance_to_lead ≤ FOLL_DIST_MAX))",
+    "explanation": "Globally, when follow mode is active, it should eventually be the case that the distance to the lead vehicle is less than or equal to FOLL_DIST_MAX. This ensures that the vehicle doesn't follow a lead that's too far away."
+  },
+  {
+    "index": 1,
+    "formula": "G(follow_mode_active → X(maintain_altitude))",
+    "explanation": "Globally, when follow mode is active, in the next state, the vehicle should maintain its altitude. This corresponds to the altitude hold controller requirement."
+  },
+  {
+    "index": 2,
+    "formula": "G(|throttle - mid_throttle| < 0.1 → (climb_rate ≤ 2.5 ∧ descent_rate ≤ 2.5))",
+    "explanation": "Globally, when the throttle is within 10% of mid-throttle, the climb or descent rate should be less than or equal to 2.5 m/s. This represents the specified climb/descent behavior."
+  },
+  {
+    "index": 3,
+    "formula": "G(follow_mode_active → F(|current_position - (lead_position + offset)| ≤ ε))",
+    "explanation": "Globally, when follow mode is active, it should eventually be the case that the current position is within some small distance ε of the lead vehicle's position plus the specified offset. This represents the core following behavior."
+  },
+  {
+    "index": 4,
+    "formula": "G(FOLL_YAW_BEHAVE = 0 → yaw = lead_vehicle_yaw)",
+    "explanation": "Globally, if FOLL_YAW_BEHAVE is set to 0, the yaw of the following vehicle should match the yaw of the lead vehicle."
+  },
+  {
+    "index": 5,
+    "formula": "G(FOLL_YAW_BEHAVE = 1 → yaw = atan2(lead_vehicle_y - y, lead_vehicle_x - x))",
+    "explanation": "Globally, if FOLL_YAW_BEHAVE is set to 1, the yaw of the following vehicle should always point towards the lead vehicle."
+  },
+  {
+    "index": 6,
+    "formula": "G(follow_mode_active ∧ FOLL_OPTIONS[0] = 1 → gimbal_follows_lead)",
+    "explanation": "Globally, when follow mode is active and bit 0 of FOLL_OPTIONS is set to 1, the gimbal should follow the target vehicle."
+  }
+]

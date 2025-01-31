@@ -1,0 +1,39 @@
+Based on the provided document, I will extract the specifications and express them using Metric Temporal Logic (MTL) formulas.
+
+Here are the extracted specifications:
+
+1. The System Identification Mode will be enabled if the SID_AXIS is non-zero.
+2. When the System Identification Mode is enabled, its associated parameters will become visible on the next parameter refresh.
+3. If the SID_AXIS is zero, an error message will be logged and sent to the ground control station, and mode entry will be prohibited.
+
+Here are the MTL formulas for the extracted specifications:
+
+1. `G (SID_AXIS ≠ 0 → X (System_Identification_Mode_Enabled))`
+   Explanation: Globally, if the SID_AXIS is non-zero, then at the next time step, the System Identification Mode will be enabled.
+
+2. `G (System_Identification_Mode_Enabled → F (Parameters_Visible))`
+   Explanation: Globally, if the System Identification Mode is enabled, then eventually (at some future time step), its associated parameters will become visible.
+
+3. `G (SID_AXIS = 0 → X (Error_Message_Logged ∧ Mode_Entry_Prohibited))`
+   Explanation: Globally, if the SID_AXIS is zero, then at the next time step, an error message will be logged and mode entry will be prohibited.
+
+Here are the MTL formulas in the required JSON format:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G (SID_AXIS ≠ 0 → X (System_Identification_Mode_Enabled))",
+            "explanation": "Globally, if the SID_AXIS is non-zero, then at the next time step, the System Identification Mode will be enabled."
+        },
+        {
+            "formula": "G (System_Identification_Mode_Enabled → F (Parameters_Visible))",
+            "explanation": "Globally, if the System Identification Mode is enabled, then eventually (at some future time step), its associated parameters will become visible."
+        },
+        {
+            "formula": "G (SID_AXIS = 0 → X (Error_Message_Logged ∧ Mode_Entry_Prohibited))",
+            "explanation": "Globally, if the SID_AXIS is zero, then at the next time step, an error message will be logged and mode entry will be prohibited."
+        }
+    ]
+}
+```

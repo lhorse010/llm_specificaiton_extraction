@@ -1,0 +1,46 @@
+{
+    "temporal_logic_formulars": [
+        {
+            "section-id": 0,
+            "sentence-id": 3,
+            "sentence": "When the user releases the sticks, the optical flow sensor is used by the autopilot to bring the vehicle to a stop.",
+            "tl": "always ( userreleases == sticksticloiclalflowsenso == sorusedbyautopused ) -> opotbilot == bringvehiclehicleastop )"
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 7,
+            "sentence": "1.FHLD_BRAKE_RATE controls the desired deceleration rate when the pilot releases the sticks",
+            "tl": "always ( F1HLD_BRAKE_RATE == Tcosdederdeddceleratieratiloter == Stepilotratelepilotreleleseatrasele )"
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 8,
+            "sentence": "2.FHLD_FILT_HZ is the filter applied to the optical flow sensor data",
+            "tl": "always ( fFHLD_FILT_HZ == filterapliedopticalflowsensordas == sordatatalKrda )"
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 9,
+            "sentence": "3.FHLD_FLOW_MAX is the optical flow sensor's maximum rate (in m/s) used when stopping",
+            "tl": "always ( not ( FHLD_FLOW_MAXopticalflowsensor == smaximumrate < msuse ) and ( susedstopinrate == msusedstoping ) )"
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 10,
+            "sentence": "4.FHLD_QUAL_MIN is the minimum flow quality used.",
+            "tl": "always ( FHLD_QUAL_MIN == minimumlowqalityused )"
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 11,
+            "sentence": "If the flow sensor quality falls below this value, FlowHold will act just like AltHold",
+            "tl": "always ( rise ( flowsensorquality < 6 ) and FlowHoldactjust == tAltAltHoldldld )"
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 12,
+            "sentence": "5.FHLD_XY_P , FHLD_XY_I , FHLD_XY_IMAX and FHLD_XY_FILT_HZ gains to tune the stopping response",
+            "tl": "always ( FHLD_XY_PFHLD_ == YL_XY_IFHLD_XY_IMAX and FHLD_XY_IL_ == _XY_ILT_HZgainstunestunestst == ststopopiping )"
+        }
+    ]
+}

@@ -1,0 +1,30 @@
+```json
+{
+    "specifications": [
+        {
+            "formula": "G (throttle = 0 → ¬turtle_mode)",
+            "explanation": "Turtle mode cannot be entered unless throttle is zero."
+        },
+        {
+            "formula": "G (turtle_mode → ¬armed)",
+            "explanation": "Upon entry to turtle mode, the motors stay disarmed."
+        },
+        {
+            "formula": "G (turtle_mode → F notify_LEDs_flash)",
+            "explanation": "Upon entry to turtle mode, the notify LEDs flash."
+        },
+        {
+            "formula": "G ((turtle_mode ∧ throttle > 0) → motors_spin)",
+            "explanation": "Raising the throttle in turtle mode causes motors to arm and spin."
+        },
+        {
+            "formula": "G ((turtle_mode ∧ throttle = 0) → ¬motors_spin)",
+            "explanation": "Lowering throttle to zero disarms the motors."
+        },
+        {
+            "formula": "G (motors_spin → throttle > 0)",
+            "explanation": "Motors spin only when throttle is raised."
+        }
+    ]
+}
+```

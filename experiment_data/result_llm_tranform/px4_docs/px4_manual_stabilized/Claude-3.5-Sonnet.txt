@@ -1,0 +1,92 @@
+[
+  {
+    "sentence": "The _Stabilized_ manual mode stabilizes and levels the multicopter when the RC control sticks are centred.",
+    "formula": "G(C → X(S ∧ L))",
+    "explanation": "This formula states that globally (G), whenever the RC control sticks are centered (C), in the next state (X), the multicopter will be stabilized (S) and leveled (L). As an expert, I note that this assumes instantaneous response, which may not be realistic in practice. A more nuanced formula might include a time bound."
+  },
+  {
+    "sentence": "When sticks are outside the centre, the roll and pitch sticks control the _angle_ of the vehicle (attitude) around the respective axes, the yaw stick controls the rate of rotation above the horizontal plane, and the throttle controls altitude/speed.",
+    "formula": "G(¬C → (R ∧ P ∧ Y ∧ T))",
+    "explanation": "This formula expresses that globally (G), when the sticks are not centered (¬C), roll (R), pitch (P), yaw (Y), and throttle (T) controls are active. As an expert, I point out that this formula doesn't capture the continuous nature of control inputs, which could be better expressed in a hybrid logic."
+  },
+  {
+    "sentence": "The multicopter will level out and stop once the roll and pitch sticks are centered.",
+    "formula": "G((Cr ∧ Cp) → F(L ∧ S))",
+    "explanation": "This formula states that globally (G), when both roll and pitch sticks are centered (Cr ∧ Cp), eventually (F) the multicopter will level out (L) and stop (S). As an expert, I note that the 'eventually' operator doesn't specify a time bound, which might be important for safety-critical systems."
+  },
+  {
+    "sentence": "The pilot's inputs are passed as roll and pitch angle commands and a yaw rate command.",
+    "formula": "G(I → (Ra ∧ Pa ∧ Yr))",
+    "explanation": "This formula expresses that globally (G), when there are pilot inputs (I), they are translated into roll angle (Ra), pitch angle (Pa), and yaw rate (Yr) commands. As an expert, I observe that this formula doesn't capture the continuous nature of these inputs and how they might vary over time."
+  },
+  {
+    "sentence": "Throttle is rescaled (see below) and passed directly to control allocation.",
+    "formula": "G(T → (R ∧ A))",
+    "explanation": "This formula states that globally (G), when there's a throttle input (T), it's rescaled (R) and allocated (A). As an expert, I note that this simplification doesn't capture the complexity of the rescaling process or how it might interact with other control systems."
+  },
+  {
+    "sentence": "The autopilot controls the attitude, meaning it regulates the roll and pitch angles to zero when the RC sticks are centered inside the controller deadzone (consequently leveling-out the attitude).",
+    "formula": "G((C ∧ D) → F(Rz ∧ Pz ∧ L))",
+    "explanation": "This formula expresses that globally (G), when the sticks are centered (C) and within the deadzone (D), eventually (F) the roll (Rz) and pitch (Pz) angles will be zero, and the attitude will be level (L). As an expert, I point out that this doesn't capture the continuous process of regulation, which might be better expressed in a hybrid system model."
+  },
+  {
+    "sentence": "Roll/Pitch sticks level vehicle.",
+    "formula": "G((Cr ∧ Cp) → F(L))",
+    "explanation": "This formula states that globally (G), when both roll and pitch sticks are centered (Cr ∧ Cp), eventually (F) the vehicle will be level (L). As an expert, I note that this is a simplified version of a more complex control process, and doesn't account for external disturbances or system dynamics."
+  },
+  {
+    "sentence": "Roll/Pitch sticks control tilt angle in those orientations, resulting in corresponding left-right and forward-back movement.",
+    "formula": "G((Rn ∨ Pn) → X(T ∧ M))",
+    "explanation": "This formula expresses that globally (G), when there's non-zero roll or pitch input (Rn ∨ Pn), in the next state (X) there will be tilt (T) and movement (M). As an expert, I observe that this simplification doesn't capture the continuous nature of the control or the relationship between tilt angle and movement velocity."
+  },
+  {
+    "sentence": "Throttle stick controls up/down speed (and movement speed in other axes).",
+    "formula": "G(Tn → X(V))",
+    "explanation": "This formula states that globally (G), when there's non-zero throttle input (Tn), in the next state (X) there will be vertical speed change (V). As an expert, I note that this doesn't capture the continuous nature of throttle control or its effects on movement in other axes, which would require a more complex model."
+  },
+  {
+    "sentence": "Yaw stick controls rate of angular rotation above the horizontal plane.",
+    "formula": "G(Yn → X(R))",
+    "explanation": "This formula expresses that globally (G), when there's non-zero yaw input (Yn), in the next state (X) there will be rotation (R). As an expert, I point out that this simplification doesn't capture the continuous control of rotation rate or how it might interact with other control inputs and system dynamics."
+  },
+  {
+    "sentence": "3.Manual control input is required (such as RC control, joystick).",
+    "formula": "G(M)",
+    "explanation": "M represents the presence of manual control input. The formula G(M) specifies that manual control input is globally (always) required, capturing the continuous necessity of human intervention in this mode."
+  },
+  {
+    "sentence": "Roll, Pitch: Assistance from autopilot to stabilize the attitude.",
+    "formula": "G(R ∧ P → A)",
+    "explanation": "R represents roll, P represents pitch, and A represents autopilot assistance. The formula G(R ∧ P → A) indicates that globally, whenever roll and pitch are present, autopilot assistance is provided to stabilize the attitude."
+  },
+  {
+    "sentence": "Position of RC stick maps to the orientation of vehicle.",
+    "formula": "G(S ↔ O)",
+    "explanation": "S represents the position of the RC stick, and O represents the orientation of the vehicle. The formula G(S ↔ O) specifies that globally, the RC stick position is equivalent to (maps directly to) the vehicle's orientation."
+  },
+  {
+    "sentence": "Throttle: Manual control via RC sticks.",
+    "formula": "G(T → M)",
+    "explanation": "T represents throttle control, and M represents manual control via RC sticks. G(T → M) indicates that globally, whenever throttle control is present, it implies manual control via RC sticks."
+  },
+  {
+    "sentence": "RC input is sent directly to control allocation.",
+    "formula": "G(I → X(C))",
+    "explanation": "I represents RC input, and C represents control allocation. G(I → X(C)) specifies that globally, whenever RC input is present, in the next immediate state, it is sent to control allocation."
+  },
+  {
+    "sentence": "Yaw: Assistance from autopilot to stabilize the attitude rate.",
+    "formula": "G(Y → A)",
+    "explanation": "Y represents yaw, and A represents autopilot assistance. G(Y → A) indicates that globally, when yaw control is present, it implies autopilot assistance to stabilize the attitude rate."
+  },
+  {
+    "sentence": "Position of RC stick maps to the rate of rotation of vehicle in that orientation.",
+    "formula": "G(S ↔ R)",
+    "explanation": "S represents the position of the RC stick, and R represents the rate of rotation. G(S ↔ R) specifies that globally, the RC stick position is equivalent to (maps directly to) the vehicle's rate of rotation in the corresponding orientation."
+  },
+  {
+    "sentence": "RC mode where centered sticks level vehicle.",
+    "formula": "G(C → L)",
+    "explanation": "C represents centered sticks, and L represents a level vehicle. G(C → L) indicates that globally, when the sticks are centered, it implies the vehicle is leveled, capturing the automatic leveling behavior in this RC mode."
+  }
+]

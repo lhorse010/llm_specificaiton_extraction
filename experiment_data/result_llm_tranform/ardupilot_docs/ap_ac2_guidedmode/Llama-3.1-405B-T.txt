@@ -1,0 +1,137 @@
+[
+  {
+    "sentence": "Once the location is reached, the copter will hover at that location, waiting for the next target.",
+    "formula": "G(L → H U N)",
+    "explanation": "Here, L represents the location being reached, H represents the copter hovering, and N represents the next target. The formula states that globally, whenever the location is reached, the copter will hover until the next target is received."
+  },
+  {
+    "sentence": "1.Set up your copter at the field and establish a MAVLink connection over wireless telemetry between your copter and your laptop.",
+    "formula": "S ∧ C",
+    "explanation": "Here, S represents setting up the copter at the field, and C represents establishing the MAVLink connection. The formula states that both conditions must be true."
+  },
+  {
+    "sentence": "3.Take off in Loiter Mode and climb to a safe altitude",
+    "formula": "T ∧ F ∧ G(A)",
+    "explanation": "Here, T represents taking off, F represents being in Loiter Mode, and A represents reaching a safe altitude. The formula states that the copter must take off in Loiter Mode and eventually reach a safe altitude."
+  },
+  {
+    "sentence": "4.In the Mission Planner Flight Data screen map, try right-clicking on a nearby spot and select \"Fly to Here\".",
+    "formula": "M ∧ R ∧ S",
+    "explanation": "Here, M represents being in the Mission Planner Flight Data screen map, R represents right-clicking on a nearby spot, and S represents selecting \"Fly to Here\". The formula states that all three conditions must be true."
+  },
+  {
+    "sentence": "7.The vehicle should fly to the target location and wait there until you enter another location or switch to another mode.",
+    "formula": "G(F → (W U (L ∨ M)))",
+    "explanation": "Here, F represents flying to the target location, W represents waiting, L represents entering another location, and M represents switching to another mode. The formula states that globally, whenever the vehicle flies to the target location, it will wait until either another location is entered or the mode is switched."
+  },
+  {
+    "sentence": "The maximum horizontal speed of the copter can be adjusted with the Speed (WPNAV_SPEED) parameter from the Mission Planner's Config/Tuning >> Copter Pids screen (see blue box above).",
+    "formula": "A → S",
+    "explanation": "Here, A represents adjusting the Speed parameter, and S represents the maximum horizontal speed being changed. The formula states that adjusting the Speed parameter implies a change in the maximum horizontal speed."
+  },
+  {
+    "sentence": "The vertical speeds up and down can similar be adjusted with the Speed Up (WPNAV_SPEED_UP) and Speed Dn (WPNAV_SPEED_DN) parameters.",
+    "formula": "A1 → S1 ∧ A2 → S2",
+    "explanation": "Here, A1 and A2 represent adjusting the Speed Up and Speed Dn parameters, respectively, and S1 and S2 represent the vertical speeds up and down being changed, respectively. The formula states that adjusting the Speed Up parameter implies a change in the vertical speed up, and adjusting the Speed Dn parameter implies a change in the vertical speed down."
+  },
+  {
+    "sentence": "WPNAV_ACCEL_Z determines how fast the speed can change.",
+    "formula": "A → C",
+    "explanation": "Here, A represents the WPNAV_ACCEL_Z parameter, and C represents the rate of change of speed. The formula states that the WPNAV_ACCEL_Z parameter determines the rate of change of speed."
+  },
+  {
+    "sentence": "Speed can also be controlled while in GUIDED mode with MAVLink commands like DO_CHANGE_SPEED.",
+    "formula": "G → (M → S)",
+    "explanation": "Here, G represents being in GUIDED mode, M represents sending a MAVLink command like DO_CHANGE_SPEED, and S represents the speed being changed. The formula states that while in GUIDED mode, sending a MAVLink command like DO_CHANGE_SPEED implies a change in speed."
+  },
+  {
+    "sentence": "The GUID_OPTIONS parameter allows several guided mode behavior changes:",
+    "formula": "P → B",
+    "explanation": "Here, P represents the GUID_OPTIONS parameter, and B represents the guided mode behavior changes. The formula states that the GUID_OPTIONS parameter implies guided mode behavior changes."
+  },
+  {
+    "sentence": "Bit 0 (e.g. \"1\") allowing arming in Guided mode from the RC transmitter",
+    "formula": "G(B0 → A)",
+    "explanation": "Here, B0 represents Bit 0 being set, and A represents the system allowing arming in Guided mode from the RC transmitter. The formula states that globally, if Bit 0 is set, then the system allows arming."
+  },
+  {
+    "sentence": "Bit 2 (e.g. \"4\") disables the pilot's ability to change the vehicle's heading using the RC transmitter",
+    "formula": "G(B2 → ¬H)",
+    "explanation": "Here, B2 represents Bit 2 being set, and H represents the pilot's ability to change the vehicle's heading using the RC transmitter. The formula states that globally, if Bit 2 is set, then the pilot cannot change the vehicle's heading."
+  },
+  {
+    "sentence": "Bit 3 (e.g. \"8\") changes the interpretation of the SET_ATTITUDE_TARGET MAVLink command's thrust field to be pure thrust expressed as a value between 0 and 1, instead of a climb rate.",
+    "formula": "G(B3 → T)",
+    "explanation": "Here, B3 represents Bit 3 being set, and T represents the thrust field being interpreted as pure thrust. The formula states that globally, if Bit 3 is set, then the thrust field is interpreted as pure thrust."
+  },
+  {
+    "sentence": "Bit 4 (e.g. \"16\") disables the position controller's XY axis position error correction.",
+    "formula": "G(B4 → ¬P)",
+    "explanation": "Here, B4 represents Bit 4 being set, and P represents the position controller's XY axis position error correction being enabled. The formula states that globally, if Bit 4 is set, then the position error correction is disabled."
+  },
+  {
+    "sentence": "This may be useful if an external controller is providing high speed targets which already include position error correction",
+    "formula": "F(E ∧ P)",
+    "explanation": "Here, E represents an external controller providing high speed targets, and P represents the position error correction being included. The formula states that it is possible (finally) for an external controller to provide high speed targets with position error correction."
+  },
+  {
+    "sentence": "Bit 5 (e.g. \"32\") is the same as above but affects the position controller's velocity error correction",
+    "formula": "G(B5 → ¬V)",
+    "explanation": "Here, B5 represents Bit 5 being set, and V represents the position controller's velocity error correction being enabled. The formula states that globally, if Bit 5 is set, then the velocity error correction is disabled."
+  },
+  {
+    "sentence": "Bit 6 (e.g. \"64\") enables S-Curve path planning (the same as is used in Auto mode) to reach the position target.",
+    "formula": "G(B6 → S)",
+    "explanation": "Here, B6 represents Bit 6 being set, and S represents S-Curve path planning being enabled. The formula states that globally, if Bit 6 is set, then S-Curve path planning is enabled."
+  },
+  {
+    "sentence": "This may result a smoother acceleration and deceleration but the position target cannot be updated quickly.",
+    "formula": "F(S ∧ ¬U)",
+    "explanation": "Here, S represents S-Curve path planning being enabled, and U represents the position target being updated quickly. The formula states that it is possible (finally) for S-Curve path planning to result in smoother acceleration and deceleration, but the position target cannot be updated quickly."
+  },
+  {
+    "sentence": "This also allows object avoidance path planning (e.g. Bendy Ruler and Dijkstras) to be used in Guided mode",
+    "formula": "G(B6 → O)",
+    "explanation": "Here, B6 represents Bit 6 being set, and O represents object avoidance path planning being enabled. The formula states that globally, if Bit 6 is set, then object avoidance path planning is enabled."
+  },
+  {
+    "sentence": "Bit 7 (e.g. \"128\") enables weathervaning",
+    "formula": "G(B7 → W)",
+    "explanation": "Here, B7 represents Bit 7 being set, and W represents weathervaning being enabled. The formula states that globally, if Bit 7 is set, then weathervaning is enabled."
+  },
+  {
+    "sentence": "The GUID_TIMEOUT parameter holds the timeout (in seconds) when the vehicle is being controlled using attitude, velocity and/or acceleration commands.",
+    "formula": "G(T → (A ∨ V ∨ C))",
+    "explanation": "Here, T represents the GUID_TIMEOUT parameter being set, and A, V, and C represent the vehicle being controlled using attitude, velocity, and acceleration commands respectively. The formula states that whenever the GUID_TIMEOUT parameter is set, the vehicle is being controlled using at least one of these commands."
+  },
+  {
+    "sentence": "If no commands are received from the companion computer for this many seconds, the vehicle will slow to a stop (if velocity and/or acceleration commands were being provided) or hold a level hover (if attitude commands were provided).",
+    "formula": "G(¬C → (F[0,t](S ∨ H)))",
+    "explanation": "Here, C represents the companion computer sending commands, S represents the vehicle slowing to a stop, H represents the vehicle holding a level hover, and t represents the timeout period. The formula states that if no commands are received from the companion computer for t seconds, the vehicle will either slow to a stop or hold a level hover."
+  },
+  {
+    "sentence": "The default setting is 3 seconds.",
+    "formula": "G(D → T[3])",
+    "explanation": "Here, D represents the default setting being used, and T[3] represents the timeout period being set to 3 seconds. The formula states that whenever the default setting is used, the timeout period is 3 seconds."
+  },
+  {
+    "sentence": "This variation of Guided mode does not require a GPS but it only accepts attitude targets.",
+    "formula": "G(M → (¬G ∧ A))",
+    "explanation": "Here, M represents the Guided mode variation being used, G represents a GPS being required, and A represents the mode only accepting attitude targets. The formula states that whenever this Guided mode variation is used, a GPS is not required and only attitude targets are accepted."
+  },
+  {
+    "sentence": "Because it does not accept position or velocity targets like regular Guided mode it is generally not useful for regular users.",
+    "formula": "G(M → (¬P ∧ ¬V))",
+    "explanation": "Here, M represents the Guided mode variation being used, P represents the mode accepting position targets, and V represents the mode accepting velocity targets. The formula states that whenever this Guided mode variation is used, position and velocity targets are not accepted."
+  },
+  {
+    "sentence": "This mode was created for use by companion computers that may want to fly the vehicle as if it was in AltHold mode.",
+    "formula": "G(M → C)",
+    "explanation": "Here, M represents the Guided mode variation being used, and C represents the companion computer flying the vehicle as if it was in AltHold mode. The formula states that whenever this Guided mode variation is used, the companion computer can fly the vehicle as if it was in AltHold mode."
+  },
+  {
+    "sentence": "Guided_NoGPS does not allow a vehicle to hold position without a GPS (i.e. non-GPS navigation).",
+    "formula": "G(GN → ¬H)",
+    "explanation": "Here, GN represents the Guided_NoGPS mode being used, and H represents the vehicle holding position without a GPS. The formula states that whenever Guided_NoGPS mode is used, the vehicle cannot hold position without a GPS."
+  }
+]

@@ -1,0 +1,37 @@
+[
+  {
+    "section-id": 2,
+    "sentence-id": 1,
+    "sentence": "2.Mode requires a global 3d position estimate (from GPS or inferred from a local position)."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 2,
+    "sentence": "Flying vehicles can't switch to this mode without global position."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 3,
+    "sentence": "Flying vehicles will failsafe if they lose the position estimate."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 4,
+    "sentence": "Disarmed vehicles can switch to mode without valid position estimate but can't arm."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 5,
+    "sentence": "3.Mode requires wind and flight time are within allowed limits (specified via parameters)."
+  },
+  {
+    "section-id": 3,
+    "sentence-id": 1,
+    "sentence": "The vehicle will first ascend to NAV_MIN_LTR_ALT if the mode is engaged below this altitude."
+  },
+  {
+    "section-id": 3,
+    "sentence-id": 2,
+    "sentence": "RC stick movement will change the vehicle to Position mode (by default)."
+  }
+]

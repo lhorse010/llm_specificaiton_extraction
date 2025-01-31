@@ -1,0 +1,27 @@
+[
+  {
+    "index": 0,
+    "formula": "G(pointcloud_detected_in_area → F[0,l] stop)",
+    "explanation": "Globally, if a pointcloud is detected in the defined area, then the vehicle must stop within l meters (where l is the distance from the current position to the predetermined stop point)."
+  },
+  {
+    "index": 1,
+    "formula": "G(in_target_lane ∧ detection_area_present → X module_activated)",
+    "explanation": "Globally, if the vehicle is in the target lane and a detection area is present, then in the next state, the module must be activated."
+  },
+  {
+    "index": 2,
+    "formula": "G(distance_to_stop_line < pass_judge_point ∧ pointcloud_detected → X(velocity = 0))",
+    "explanation": "Globally, if the distance to the stop line is less than the pass judge point and a pointcloud is detected, then in the next state, the velocity must be zero."
+  },
+  {
+    "index": 3,
+    "formula": "G(distance_to_pass_judge_point < 0 → ¬stop)",
+    "explanation": "Globally, if the distance to the pass judge point is negative (i.e., the vehicle has passed it), then the vehicle must not stop."
+  },
+  {
+    "index": 4,
+    "formula": "G(stopped ∧ (front_to_stop_line < hold_stop_margin_distance) → X keep_stopping)",
+    "explanation": "Globally, if the vehicle is stopped and the distance from the front of the vehicle to the stop line is less than the hold_stop_margin_distance, then in the next state, the vehicle must keep stopping."
+  }
+]

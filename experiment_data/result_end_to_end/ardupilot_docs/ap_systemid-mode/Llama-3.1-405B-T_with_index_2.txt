@@ -1,0 +1,17 @@
+[
+  {
+    "index": 0,
+    "formula": "G (SID_AXIS ≠ 0 → X (System_Identification_Mode_Enabled))",
+    "explanation": "Globally, if the SID_AXIS is non-zero, then at the next time step, the System Identification Mode will be enabled."
+  },
+  {
+    "index": 1,
+    "formula": "G (System_Identification_Mode_Enabled → F (Parameters_Visible))",
+    "explanation": "Globally, if the System Identification Mode is enabled, then eventually (at some future time step), its associated parameters will become visible."
+  },
+  {
+    "index": 2,
+    "formula": "G (SID_AXIS = 0 → X (Error_Message_Logged ∧ Mode_Entry_Prohibited))",
+    "explanation": "Globally, if the SID_AXIS is zero, then at the next time step, an error message will be logged and mode entry will be prohibited."
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "index": 0,
+    "formula": "G(mode = PosHold → (F[0,ε](maintain_location ∧ maintain_heading ∧ maintain_altitude)))",
+    "explanation": "Globally, when PosHold mode is activated, the vehicle will eventually (within a small time ε) maintain its current location, heading, and altitude."
+  },
+  {
+    "index": 1,
+    "formula": "G(mode = PosHold ∧ stick_input ≠ 0 → F[0,δ](lean_angle ≤ 45))",
+    "explanation": "Globally, when in PosHold mode and there's a non-zero stick input, the vehicle's lean angle will eventually (within time δ) be less than or equal to 45 degrees (default maximum)."
+  },
+  {
+    "index": 2,
+    "formula": "G(mode = PosHold ∧ stick_input = 0 → F[0,γ](lean_back ∧ vehicle_stop))",
+    "explanation": "Globally, when in PosHold mode and stick input returns to zero, the vehicle will eventually (within time γ) lean back and come to a stop."
+  },
+  {
+    "index": 3,
+    "formula": "G(mode = PosHold → (throttle_stick → altitude_control))",
+    "explanation": "Globally, when in PosHold mode, throttle stick input controls the altitude."
+  },
+  {
+    "index": 4,
+    "formula": "G(mode = PosHold → (yaw_stick → heading_control))",
+    "explanation": "Globally, when in PosHold mode, yaw stick input controls the heading."
+  },
+  {
+    "index": 5,
+    "formula": "G(arm_request ∧ mode = PosHold → (GPS_lock = 3D ∧ HDOP ≤ 2.0))",
+    "explanation": "Globally, arming in PosHold mode is only allowed when GPS has 3D lock and HDOP is less than or equal to 2.0."
+  },
+  {
+    "index": 6,
+    "formula": "G(mode = PosHold → brake_angle ≤ PHLD_BRAKE_ANGLE)",
+    "explanation": "Globally, when in PosHold mode, the maximum brake angle is limited by the PHLD_BRAKE_ANGLE parameter."
+  },
+  {
+    "index": 7,
+    "formula": "G(mode = PosHold → brake_rate = PHLD_BRAKE_RATE)",
+    "explanation": "Globally, when in PosHold mode, the rate at which the vehicle rotates back to the maximum angle is set by the PHLD_BRAKE_RATE parameter."
+  }
+]

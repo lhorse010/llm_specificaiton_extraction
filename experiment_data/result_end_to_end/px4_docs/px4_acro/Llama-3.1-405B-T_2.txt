@@ -1,0 +1,57 @@
+After carefully reading the document, I have extracted the specifications that the vehicle needs to meet in Acro Mode (Multicopter). Here are the specifications expressed using Metric Temporal Logic (MTL) formulas:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(sticks_centered → X(¬vehicle_rotating))",
+            "explanation": "When the sticks are centered, the vehicle will stop rotating in the next time step."
+        },
+        {
+            "formula": "G(sticks_centered → vehicle_maintains_orientation)",
+            "explanation": "When the sticks are centered, the vehicle will maintain its current orientation."
+        },
+        {
+            "formula": "G(sticks_centered → vehicle_moves_by_momentum)",
+            "explanation": "When the sticks are centered, the vehicle will move according to its current momentum."
+        },
+        {
+            "formula": "G(RC_RPY_input → X(vehicle_rotates_at_rate))",
+            "explanation": "When the RC RPY stick inputs are given, the vehicle will rotate at the corresponding rate in the next time step."
+        },
+        {
+            "formula": "G(throttle_input → X(throttle_passed_to_control_allocation))",
+            "explanation": "When the throttle input is given, the throttle will be passed directly to control allocation in the next time step."
+        },
+        {
+            "formula": "G(manual_control_input → X(vehicle_responds_to_input))",
+            "explanation": "When manual control input is given, the vehicle will respond to the input in the next time step."
+        },
+        {
+            "formula": "G(roll_pitch_yaw_input → X(vehicle_rotates_at_rate))",
+            "explanation": "When the roll, pitch, and yaw inputs are given, the vehicle will rotate at the corresponding rate in the next time step."
+        },
+        {
+            "formula": "G(stick_input_mapping → X(vehicle_responds_to_input))",
+            "explanation": "When the stick input mapping is applied, the vehicle will respond to the input in the next time step according to the mapping."
+        }
+    ]
+}
+```
+
+Note that I have used the following abbreviations in the MTL formulas:
+
+* `sticks_centered`: The sticks are centered.
+* `vehicle_rotating`: The vehicle is rotating.
+* `vehicle_maintains_orientation`: The vehicle maintains its current orientation.
+* `vehicle_moves_by_momentum`: The vehicle moves according to its current momentum.
+* `RC_RPY_input`: The RC RPY stick inputs are given.
+* `vehicle_rotates_at_rate`: The vehicle rotates at the corresponding rate.
+* `throttle_input`: The throttle input is given.
+* `throttle_passed_to_control_allocation`: The throttle is passed directly to control allocation.
+* `manual_control_input`: Manual control input is given.
+* `vehicle_responds_to_input`: The vehicle responds to the input.
+* `roll_pitch_yaw_input`: The roll, pitch, and yaw inputs are given.
+* `stick_input_mapping`: The stick input mapping is applied.
+
+These abbreviations are used to make the MTL formulas more readable and concise.

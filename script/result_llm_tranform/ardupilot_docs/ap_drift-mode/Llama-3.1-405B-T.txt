@@ -1,0 +1,57 @@
+[
+  {
+    "sentence": "The user has direct control of Yaw and Pitch, but Roll is controlled by the autopilot.",
+    "formula": "G(U ∧ P) ∧ ¬R",
+    "explanation": "Here, U represents user control, P represents Pitch, Y represents Yaw, and R represents Roll. The formula states that globally (G), the user has control over Yaw and Pitch, but not Roll."
+  },
+  {
+    "sentence": "The user has completely manual control over the throttle as in Stabilize mode.",
+    "formula": "G(T → U)",
+    "explanation": "Here, T represents throttle control, and U represents user control. The formula states that globally (G), if the throttle is engaged, then the user has control."
+  },
+  {
+    "sentence": "When you push the right stick towards one side or the other the right or to the left the copter will turn in the direction specified.",
+    "formula": "S → F(T ∧ D)",
+    "explanation": "Here, S represents the right stick being pushed, T represents the copter turning, and D represents the direction specified. The formula states that if the right stick is pushed, then eventually (F) the copter will turn in the specified direction."
+  },
+  {
+    "sentence": "When turning with the right stick yaw is automatically applied and sufficient roll is added to cancel the copters velocity in the roll axis.",
+    "formula": "S → F(Y ∧ R)",
+    "explanation": "Here, S represents the right stick being pushed, Y represents yaw being applied, and R represents roll being added. The formula states that if the right stick is pushed, then eventually (F) yaw will be applied and roll will be added."
+  },
+  {
+    "sentence": "This allows you to maintain a coordinated (non-skidding) turn.",
+    "formula": "G(S → F(C))",
+    "explanation": "Here, S represents the right stick being pushed, and C represents a coordinated turn. The formula states that globally (G), if the right stick is pushed, then eventually (F) a coordinated turn will be maintained."
+  },
+  {
+    "sentence": "Letting go of the sticks effectively turns on a speed brake in the Pitch axis that slows the copter to a stop over a two second period.",
+    "formula": "¬S → F[0,2](P ∧ ¬V)",
+    "explanation": "Here, S represents the sticks being held, P represents the Pitch axis, and V represents velocity. The formula states that if the sticks are let go (¬S), then eventually (F) within 2 seconds, the copter will slow to a stop (¬V) in the Pitch axis."
+  },
+  {
+    "sentence": "A copter in Drift Mode with the right stick in the center will loosely hold horizontal position (It will slowly drift in the wind.)",
+    "formula": "D ∧ S → G(H ∧ F(V))",
+    "explanation": "Here, D represents Drift Mode, S represents the right stick being centered, H represents horizontal position, and V represents velocity. The formula states that if the copter is in Drift Mode and the right stick is centered, then globally (G) the copter will hold horizontal position and eventually (F) drift in the wind."
+  },
+  {
+    "sentence": "If the pilot puts the throttle completely down the motors will go to their minimum rate (MOT_SPIN_ARMED) and if the vehicle is flying it will lose attitude control and tumble.",
+    "formula": "T → F(M ∧ (F → ¬A ∧ T))",
+    "explanation": "Here, T represents the throttle being put down, M represents the motors going to minimum rate, F represents the vehicle flying, A represents attitude control, and T represents tumbling. The formula states that if the throttle is put down, then eventually (F) the motors will go to minimum rate, and if the vehicle is flying, it will lose attitude control and tumble."
+  },
+  {
+    "sentence": "Drift Mode relies on your GPS for control.",
+    "formula": "D → G(GPS → C)",
+    "explanation": "Here, D represents Drift Mode, GPS represents the GPS signal, and C represents control. The formula states that if the copter is in Drift Mode, then globally (G) if the GPS signal is available, the copter will have control."
+  },
+  {
+    "sentence": "If you lose your GPS signal in flight while in Drift Mode, your copter will either land or enter altitude hold based on your failsafe_gps_enabled setting.",
+    "formula": "D ∧ ¬GPS → F(L ∨ A)",
+    "explanation": "Here, D represents Drift Mode, GPS represents the GPS signal, L represents landing, and A represents altitude hold. The formula states that if the copter is in Drift Mode and the GPS signal is lost, then eventually (F) the copter will either land or enter altitude hold."
+  },
+  {
+    "sentence": "In the Mission Planner Configuration Section under flight modes select Drift Mode to apply to an appropriate switch setting.",
+    "formula": "G(FM → DM)",
+    "explanation": "Here, FM represents the flight mode being selected in the Mission Planner Configuration Section, and DM represents the Drift Mode being applied to an appropriate switch setting. The formula states that globally (G), whenever the flight mode is selected (FM), Drift Mode will be applied (DM). Note that this formula assumes that the selection of flight mode and application of Drift Mode happen instantaneously, as there is no explicit temporal information in the original sentence."
+  }
+]

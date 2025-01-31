@@ -1,0 +1,52 @@
+{
+    "temporal_logic_formulars": [
+        {
+            "section-id": 0,
+            "sentence-id": 6,
+            "sentence": "The limits can only be reduced below those for normal _Position_ mode.",
+            "tl": "always ( limitscanonlyreduced < thoseo = nrmal_Position_ion_ )"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 5,
+            "sentence": "Note that the parameters are used only if limits are not provided by from RC or MAVLink.",
+            "tl": "always ( not ( Noteparameterse == usedonlylimits ) or providedby == RCMAVLink )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 4,
+            "sentence": "If an RC control input is mapped for an axis it has priority over all other inputs.",
+            "tl": "always ( anRCcontrolinput == amapedanxisitpriority > otyothotherirityot -> therinputs )"
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 2,
+            "sentence": "3.Map that auxiliary input using the appropriate MC_SLOW_MAP_ parameter for the axis you want it to control (see table above).",
+            "tl": "always ( Mapauxiliary == inputgpropiateMC_SLOW_MAP_aeter ) until ( Maxi == axiter ) -> axisyouwatit == tcontrletetlodetalse )"
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 3,
+            "sentence": "For example, if you want to map RC channel 8 to limit the horizontal velocity you could set RC_MAP_AUX1 to the value 8 and [MC_SLOW_MAP_HVEL][mc_slow_map_hvel] to the value 1.",
+            "tl": "always ( exampleyouwant == mapRchanelithonlito = l ) and ( ucold_SRC_MAP_AUX1 >= 8 and ( MC_SLO_W_H_loL_ <= mcslo_lm_wm_lwm_lowm_l = _lowm_l_vha = m_l ) )"
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 4,
+            "sentence": "The RC input from channel 8 then sets a horizontal velocity limit between [MC_SLOW_MIN_HVEL][mc_slow_min_hvel] and [MPC_VEL_MANUAL][mpc_vel_manual].",
+            "tl": "always ( RCinputchane == l8setozoriz == talocitylit and ( imit >= MC_SLOW_MIN_HVEL <= mc_slo_ ) -> ( Mlow_lm_min_hve and ( MPC_NUAL_ >= mc_vAUL_NUL_ <= l_m_ve_ml_manl_manl_ <= anaul ) )"
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 3,
+            "sentence": "This overrides limit values set in parameters, but is ignored if the axis is mapped to an RC knob.",
+            "tl": "always ( Thisoveridesli == imitvaluesr )"
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 4,
+            "sentence": "The value can be updated from a message at any time, and is latched until either the next message or a mode switch.",
+            "tl": "always ( canupdated == amesage and latchedei == eithermesaes )"
+        }
+    ]
+}

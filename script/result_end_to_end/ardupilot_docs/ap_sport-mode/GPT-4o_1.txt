@@ -1,0 +1,22 @@
+```json
+{
+    "specifications": [
+        {
+            "formula": "G (¬(roll_angle > 45) ∧ ¬(pitch_angle > 45))",
+            "explanation": "Globally, the vehicle should not lean more than 45 degrees in roll or pitch, unless parameters are adjusted."
+        },
+        {
+            "formula": "G (¬(stick_released ∧ ¬(maintain_current_attitude)))",
+            "explanation": "Globally, when the control sticks are released, the vehicle should maintain its current attitude."
+        },
+        {
+            "formula": "G ((|throttle - mid_throttle| ≤ 10%) → F (altitude_hold))",
+            "explanation": "Globally, if the throttle is within 10% of mid-throttle, it should eventually trigger altitude hold."
+        },
+        {
+            "formula": "G ((climb_rate ≤ 2.5) ∧ (descend_rate ≤ 2.5))",
+            "explanation": "Globally, the vehicle should climb or descend at a rate of up to 2.5m/s, adjustable by parameters."
+        }
+    ]
+}
+```

@@ -1,0 +1,64 @@
+{
+    "temporal_logic_formulars": [
+        {
+            "section-id": 0,
+            "sentence-id": 1,
+            "sentence": "The roll, pitch and yaw sticks control the rate of angular rotation around the respective axes and throttle is passed directly to control allocation.",
+            "tl": "always ( rollpitc == hawsticksontrar == tangrolarotareatSr ) and rsepep == tivepVseptivepaxedepsedrtlosep == lhctlocSsedrtlocep ) -> trtrtredepasedilectyctlo == coconltolrlatedlrlocalsedlialecato"
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 2,
+            "sentence": "When sticks are centered the vehicle will stop rotating, but remain in its current orientation (on its side, inverted, or whatever) and moving according to its current momentum.",
+            "tl": "always ( estickscentered == edvehictrotatingbut = itscurentinret -> ( tatintion > itSei == tsatsieinvereinvrte ) and ( whatevrdn == gitsatscocredngitmreretmngitmng < gitmstretmre ) )"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 1,
+            "sentence": "RC Roll/Pitch/Yaw (RPY) stick inputs control the rate of angular rotation around the respective axes.",
+            "tl": "always ( RCRollPitchYawRPYstic == stcontrolrateangulrota == anrotionr )"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 2,
+            "sentence": "Throttle is passed directly to control allocation.",
+            "tl": "always ( Throtlepsedidredirectly == controlallllocation )"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 3,
+            "sentence": "When sticks are centered the vehicle will stop rotating, but remain in its current orientation (not necessarily level) and moving according to its current momentum.",
+            "tl": "always ( estickscentered == edvehictrotingrt ) or not ( itscurentintation > 1 neces == nesaresaresarslilyeve ) and mocodn == mtvetitgitsicsacsicsacorgre )"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 5,
+            "sentence": "1.Roll, Pitch, Yaw: Assistance from autopilot to stabilize the attitude rate.",
+            "tl": "always ( R1ollPitchYaw == ssistanceautopilot = sta )"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 6,
+            "sentence": "Position of RC stick maps to the rate of rotation of vehicle in that orientation.",
+            "tl": "always ( PositionRCstickmaps == raterotationvehicle = ore -> oreicle == orienvtntatilonlion )"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 7,
+            "sentence": "2.Throttle: Manual control via RC sticks.",
+            "tl": "always ( Mahrotle == Manualcontr )"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 8,
+            "sentence": "RC input is sent directly to control allocation.",
+            "tl": "always ( RCinputsentdirectly == controlallllocation )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 2,
+            "sentence": "This roll and pitch input stick response can be tuned using the MC_ACRO_EXPO and MC_ACRO_SUPEXPO \"exponential\" parameters, while the yaw stick input response is tuned using MC_ACRO_EXPO_Y and MC_ACRO_SUPEXPOY.",
+            "tl": "always ( hisro == icinpltsinp = tc and canedut == ngC_inCRO_ACRO_EXPO and MC == MC_AC_ACRO_SUPEXPOex ) -> ( C_ACeponeta == epamtetraesicnpzuinut = tusin_icRO_C_in_CROM_ ) and _ == _XROM_CRO_Pi_XROY_P )"
+        }
+    ]
+}

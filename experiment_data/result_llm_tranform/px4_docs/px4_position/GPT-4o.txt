@@ -1,0 +1,52 @@
+[
+  {
+    "sentence": "When the sticks are released/centered the vehicle will actively brake, level, and be locked to a position in 3D space — compensating for wind and other forces.",
+    "formula": "G((R ∨ C) → F(B ∧ L ∧ P))",
+    "explanation": "Here, R represents the sticks being released, C represents the sticks being centered, B represents active braking, L represents leveling, and P represents being locked in 3D space. The formula ensures that if the sticks are released or centered, the vehicle will eventually perform these actions."
+  },
+  {
+    "sentence": "With full stick deflection the vehicle accelerates initially with MPC_ACC_HOR_MAX ramping down until it reaches the final velocity MPC_VEL_MANUAL.",
+    "formula": "F(D → (A U V))",
+    "explanation": "D represents full stick deflection, A represents acceleration with MPC_ACC_HOR_MAX, and V represents reaching the final velocity MPC_VEL_MANUAL. The formula expresses that with full stick deflection, the vehicle accelerates initially and continues until it reaches the final velocity."
+  },
+  {
+    "sentence": "5.The vehicle will lower propeller thrust, detect the ground and automatically disarm (by default).",
+    "formula": "F(T ∧ G ∧ D)",
+    "explanation": "T represents lowering propeller thrust, G represents ground detection, and D represents automatic disarming. The formula indicates that eventually, all these actions will occur."
+  },
+  {
+    "sentence": "Centered sticks level vehicle and hold it to fixed altitude and position against wind.",
+    "formula": "G(C → (L ∧ F(A ∧ P)))",
+    "explanation": "C represents centered sticks, L represents leveling, A represents holding altitude, and P represents holding position. The formula ensures that when sticks are centered, the vehicle will level and maintain altitude and position."
+  },
+  {
+    "sentence": "1.Centered roll, pitch, throttle sticks (within RC deadzone MPC_HOLD_DZ) hold x, y, z position steady against any disturbance like wind.",
+    "formula": "G(C → P)",
+    "explanation": "C represents centered sticks within the deadzone, and P represents holding x, y, z position steady. The formula ensures that centered sticks maintain a steady position."
+  },
+  {
+    "sentence": "When landed, the vehicle will take off if the throttle stick is raised above 62.5% percent (of the full range from bottom).",
+    "formula": "G(L → (T > 0.625 → F(TA)))",
+    "explanation": "L represents the vehicle being landed, T represents the throttle stick position, and TA represents taking off. The formula specifies that if the vehicle is landed and the throttle is raised above 62.5%, it will eventually take off."
+  },
+  {
+    "sentence": "4.Global position estimate is required.",
+    "formula": "G(R)",
+    "explanation": "R represents the requirement for a global position estimate. The formula ensures that this requirement is always globally necessary."
+  },
+  {
+    "sentence": "If the estimate falls below acceptable levels, for example due to GPS loss, this may trigger a Position (GPS) Loss Failsafe.",
+    "formula": "G(E < L → F(FS))",
+    "explanation": "E represents the global position estimate, L represents the acceptable level, and FS represents the failsafe being triggered. The formula states that if the estimate falls below acceptable levels, a failsafe will eventually be triggered."
+  },
+  {
+    "sentence": "Depending on configuration, whether you have a remote control, and whether there is an adequate altitude estimate, PX4 may switch to altitude mode, manual mode, land mode or terminate.",
+    "formula": "G((C ∧ (RC ∨ AE)) → (AM ∨ MM ∨ LM ∨ T))",
+    "explanation": "C represents configuration, RC represents having a remote control, AE represents an adequate altitude estimate, AM represents altitude mode, MM represents manual mode, LM represents land mode, and T represents termination. The formula expresses the conditional switching between modes based on the given parameters."
+  },
+  {
+    "sentence": "After the vehicle is on the ground switch to Stabilized mode keeping the throttle stick low, and manually disarm using a gesture or other command.",
+    "formula": "G(G → (F(SM ∧ T < TL ∧ D)))",
+    "explanation": "G represents the vehicle being on the ground, SM represents switching to Stabilized mode, T represents the throttle stick position, TL represents the low threshold, and D represents manual disarming. The formula ensures that after the vehicle is grounded, it will eventually switch modes, keep the throttle low, and disarm."
+  }
+]

@@ -1,0 +1,57 @@
+[
+  {
+    "section-id": 1,
+    "sentence-id": 1,
+    "sentence": "2.The user has direct control of Yaw and Pitch, but Roll is controlled by the autopilot."
+  },
+  {
+    "section-id": 1,
+    "sentence-id": 3,
+    "sentence": "3.The user has completely manual control over the throttle as in Stabilize mode ."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 3,
+    "sentence": "4.When you push the right stick towards one side or the other the right or to the left the copter will turn in the direction specified."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 5,
+    "sentence": "6.When turning with the right stick yaw is automatically applied and sufficient roll is added to cancel the copters velocity in the roll axis."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 6,
+    "sentence": "7.This allows you to maintain a coordinated (non-skidding) turn."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 7,
+    "sentence": "8.Letting go of the sticks effectively turns on a speed brake in the Pitch axis that slows the copter to a stop over a two second period."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 8,
+    "sentence": "9.A copter in Drift Mode with the right stick in the center will loosely hold horizontal position (It will slowly drift in the wind.)"
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 10,
+    "sentence": "If the pilot puts the throttle completely down the motors will go to their minimum rate (MOT_SPIN_ARMED) and if the vehicle is flying it will lose attitude control and tumble."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 11,
+    "sentence": "11.Drift Mode relies on your GPS for control."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 12,
+    "sentence": "12.If you lose your GPS signal in flight while in Drift Mode, your copter will either land or enter altitude hold based on your failsafe_gps_enabled setting."
+  },
+  {
+    "section-id": 4,
+    "sentence-id": 0,
+    "sentence": "1.In the Mission Planner Configuration Section under flight modes select Drift Mode to apply to an appropriate switch setting."
+  }
+]

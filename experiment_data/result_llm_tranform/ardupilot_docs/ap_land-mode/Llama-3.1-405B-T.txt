@@ -1,0 +1,42 @@
+[
+  {
+    "sentence": "1.descends to 10m (or until the sonar senses something below the copter) using the regular Altitude Hold controller which will descend at the speed held in the WPNAV_SPEED_DN Copter Pids screen.",
+    "formula": "G((A ∧ ¬S) → (F(D ∧ (S ∨ O)))",
+    "explanation": "Here, A represents the copter being above 10m, S represents the sonar sensing something below the copter, D represents the copter descending at the specified speed, and O represents the copter reaching 10m. The formula states that as long as the copter is above 10m and the sonar does not sense anything, it will eventually descend at the specified speed until it reaches 10m or the sonar senses something."
+  },
+  {
+    "sentence": "2.below 10m the copter should descend at the rate specified in the LAND_SPEED parameter which defaults to 50cm/s.",
+    "formula": "G(B → F(D ∧ R))",
+    "explanation": "Here, B represents the copter being below 10m, D represents the copter descending at the specified rate, and R represents the rate being the default value of 50cm/s. The formula states that whenever the copter is below 10m, it will eventually descend at the specified rate."
+  },
+  {
+    "sentence": "3.Upon reaching the ground the copter will automatically shut-down the motors and disarm the copter if the pilot's throttle is at minimum.",
+    "formula": "G(Ground → F(M ∧ D))",
+    "explanation": "Here, Ground represents the copter reaching the ground, M represents the motors shutting down, and D represents the copter disarming. The formula states that whenever the copter reaches the ground, it will eventually shut down the motors and disarm the copter."
+  },
+  {
+    "sentence": "Copter will recognise that it has landed if the motors are being commanded to be at low level by the vertical position controller, its climb rate remains between -20cm/s and +20cm/s, and is not accelerating for one second.",
+    "formula": "G((L ∧ C ∧ ¬A) → F(Ground))",
+    "explanation": "Here, L represents the motors being commanded to be at low level, C represents the climb rate being within the specified range, A represents the copter accelerating, and Ground represents the copter recognising that it has landed. The formula states that whenever the motors are at low level, the climb rate is within the specified range, and the copter is not accelerating, it will eventually recognise that it has landed."
+  },
+  {
+    "sentence": "It does not use the altitude to decide whether to shut off the motors except that the copter must also be below 10m above the home altitude, unless a rangefinder is being used, in which case it must be within 2m of the ground.",
+    "formula": "G((B ∨ (R ∧ W)) → F(M))",
+    "explanation": "Here, B represents the copter being below 10m above the home altitude, R represents a rangefinder being used, W represents the copter being within 2m of the ground, and M represents the motors shutting off. The formula states that whenever the copter is below 10m above the home altitude or a rangefinder is being used and the copter is within 2m of the ground, it will eventually shut off the motors."
+  },
+  {
+    "sentence": "For Traditional Heli, the low motor check in the above landing detection algorithm is replaced with a check that Collective output is below mid-position (controlled by the vertical position controller, ie in descent).",
+    "formula": "G((T ∧ C) → F(Ground))",
+    "explanation": "Here, T represents the copter being a Traditional Heli, C represents the Collective output being below mid-position, and Ground represents the copter recognising that it has landed. The formula states that whenever the copter is a Traditional Heli and the Collective output is below mid-position, it will eventually recognise that it has landed."
+  },
+  {
+    "sentence": "Using a Weight on Wheels (WoW) switch will increase the descent rate and accelerometer ranges that are acceptable for landing detection.",
+    "formula": "G(W → F((D ∧ A) → Ground))",
+    "explanation": "Here, W represents the WoW switch being used, D represents the descent rate being increased, A represents the accelerometer ranges being increased, and Ground represents the copter recognising that it has landed. The formula states that whenever the WoW switch is used, it will eventually increase the descent rate and accelerometer ranges that are acceptable for landing detection."
+  },
+  {
+    "sentence": "This feature is enabled anytime the LGR_WOW_PIN is not disabled.",
+    "formula": "G(¬D → F(W))",
+    "explanation": "Here, D represents the LGR_WOW_PIN being disabled, and W represents the WoW feature being enabled. The formula states that whenever the LGR_WOW_PIN is not disabled, the WoW feature will eventually be enabled."
+  }
+]

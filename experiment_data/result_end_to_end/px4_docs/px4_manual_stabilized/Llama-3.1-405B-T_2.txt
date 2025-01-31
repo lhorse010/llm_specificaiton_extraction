@@ -1,0 +1,55 @@
+After carefully reading the document, I have extracted the specifications and expressed them using Metric Temporal Logic (MTL) formulas. Here are the results in the required JSON format:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G((centered_sticks) → (vehicle_leveled ∧ roll_angle = 0 ∧ pitch_angle = 0))",
+            "explanation": "When the RC control sticks are centered, the vehicle will always level out and the roll and pitch angles will be zero."
+        },
+        {
+            "formula": "G((outside_center_sticks) → (roll_angle = roll_stick_input ∧ pitch_angle = pitch_stick_input))",
+            "explanation": "When the RC control sticks are outside the center, the roll and pitch angles will always be equal to the input from the roll and pitch sticks."
+        },
+        {
+            "formula": "G((outside_center_sticks) → (yaw_rate = yaw_stick_input))",
+            "explanation": "When the RC control sticks are outside the center, the yaw rate will always be equal to the input from the yaw stick."
+        },
+        {
+            "formula": "G((centered_sticks) → (throttle = 0))",
+            "explanation": "When the RC control sticks are centered, the throttle will always be zero."
+        },
+        {
+            "formula": "G((outside_center_sticks) → (throttle ≠ 0))",
+            "explanation": "When the RC control sticks are outside the center, the throttle will always be non-zero."
+        },
+        {
+            "formula": "G((vehicle_balanced ∧ proper_throttle ∧ no_external_forces) → (vehicle_hovers_in_place))",
+            "explanation": "When the vehicle is properly balanced, the throttle is set appropriately, and no external forces are applied, the vehicle will always hover in place."
+        },
+        {
+            "formula": "G((wind_present) → (vehicle_drifts))",
+            "explanation": "When wind is present, the vehicle will always drift in the direction of the wind."
+        },
+        {
+            "formula": "G((manual_control_input) → (autopilot_assists))",
+            "explanation": "When manual control input is provided, the autopilot will always assist in stabilizing the attitude."
+        }
+    ]
+}
+```
+
+Note that I have used the following abbreviations in the MTL formulas:
+
+* `centered_sticks`: The RC control sticks are centered.
+* `outside_center_sticks`: The RC control sticks are outside the center.
+* `vehicle_leveled`: The vehicle is leveled.
+* `roll_angle`, `pitch_angle`, `yaw_rate`: The roll, pitch, and yaw angles/rates of the vehicle.
+* `roll_stick_input`, `pitch_stick_input`, `yaw_stick_input`: The input from the roll, pitch, and yaw sticks.
+* `throttle`: The throttle value.
+* `vehicle_balanced`, `proper_throttle`, `no_external_forces`: The vehicle is properly balanced, the throttle is set appropriately, and no external forces are applied.
+* `vehicle_hovers_in_place`: The vehicle hovers in place.
+* `wind_present`: Wind is present.
+* `vehicle_drifts`: The vehicle drifts in the direction of the wind.
+* `manual_control_input`: Manual control input is provided.
+* `autopilot_assists`: The autopilot assists in stabilizing the attitude.

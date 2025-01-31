@@ -1,0 +1,47 @@
+[
+  {
+    "index": 0,
+    "formula": "G((Simple_Mode ∨ Super_Simple_Mode) → ¬(Acro_Mode ∨ Drift_Mode))",
+    "explanation": "Simple and Super Simple modes cannot be used in combination with Acro and Drift modes."
+  },
+  {
+    "index": 1,
+    "formula": "G(Simple_Mode → (Pilot_Controls = Copter_Heading_At_Takeoff))",
+    "explanation": "In Simple Mode, the pilot controls the copter relative to its heading at takeoff."
+  },
+  {
+    "index": 2,
+    "formula": "G(Super_Simple_Mode → (Pilot_Controls = Copter_Direction_From_Home))",
+    "explanation": "In Super Simple Mode, the pilot controls the copter relative to its direction from home."
+  },
+  {
+    "index": 3,
+    "formula": "G(Super_Simple_Mode → GPS_Lock)",
+    "explanation": "Super Simple Mode requires a GPS lock."
+  },
+  {
+    "index": 4,
+    "formula": "G((Simple_Mode ∨ Super_Simple_Mode) → (Pilot_Stick_Inputs = Copter_Movement))",
+    "explanation": "In Simple and Super Simple modes, the pilot's stick inputs control the copter's movement."
+  },
+  {
+    "index": 5,
+    "formula": "G((Simple_Mode ∨ Super_Simple_Mode) → (Yaw_Input → Copter_Spin))",
+    "explanation": "In Simple and Super Simple modes, yaw input causes the copter to spin."
+  },
+  {
+    "index": 6,
+    "formula": "G(Super_Simple_Mode → (Pitch_Back → Copter_Returns_Home))",
+    "explanation": "In Super Simple Mode, pulling the pitch back causes the copter to return home."
+  },
+  {
+    "index": 7,
+    "formula": "G(Simple_Mode → (Pitch_Stick_Forward → Copter_Flies_Away))",
+    "explanation": "In Simple Mode, holding the pitch stick forward causes the copter to fly away."
+  },
+  {
+    "index": 8,
+    "formula": "G(Simple_Mode → (Pitch_Stick_Back → Copter_Returns_Home))",
+    "explanation": "In Simple Mode, pulling the pitch stick back causes the copter to return home."
+  }
+]

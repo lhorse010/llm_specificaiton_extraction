@@ -1,0 +1,54 @@
+I'll extract the relevant specifications from the document and express them using Metric Temporal Logic (MTL) formulas. Then, I'll format the results in JSON as requested.
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(pitch_control ∧ yaw_control ∧ ¬roll_control)",
+            "explanation": "The user always has direct control of Pitch and Yaw, but Roll is controlled by the autopilot."
+        },
+        {
+            "formula": "G(manual_throttle_control)",
+            "explanation": "The user always has completely manual control over the throttle, similar to Stabilize mode."
+        },
+        {
+            "formula": "G(forward_stick → X(pitch_forward ∧ accelerate_forward))",
+            "explanation": "When the right stick is pushed forward, the copter will pitch and accelerate in the forward direction in the next state."
+        },
+        {
+            "formula": "G(backward_stick → X(pitch_backward ∧ accelerate_backward))",
+            "explanation": "When the right stick is pushed backward, the copter will pitch and accelerate in the backward direction in the next state."
+        },
+        {
+            "formula": "G(right_stick → X(turn_right ∧ bank_right))",
+            "explanation": "When the right stick is pushed to the right, the copter will turn and bank to the right in the next state."
+        },
+        {
+            "formula": "G(left_stick → X(turn_left ∧ bank_left))",
+            "explanation": "When the right stick is pushed to the left, the copter will turn and bank to the left in the next state."
+        },
+        {
+            "formula": "G(turning → (auto_yaw ∧ auto_roll_compensation))",
+            "explanation": "During turns, yaw is automatically applied and sufficient roll is added to cancel the copter's velocity in the roll axis."
+        },
+        {
+            "formula": "G(sticks_released → F[0,2](velocity ≈ 0))",
+            "explanation": "When the sticks are released, the copter's velocity will approach zero within 2 seconds."
+        },
+        {
+            "formula": "G(center_stick → weak_position_hold)",
+            "explanation": "When the right stick is in the center position, the copter will loosely hold its horizontal position, allowing for slow drift in wind."
+        },
+        {
+            "formula": "G(throttle_down → (motors_min_speed ∧ ¬attitude_control))",
+            "explanation": "When throttle is completely down, motors will go to their minimum rate and the vehicle will lose attitude control."
+        },
+        {
+            "formula": "G(¬gps_signal → (land ∨ altitude_hold))",
+            "explanation": "If GPS signal is lost, the copter will either land or enter altitude hold based on the failsafe_gps_enabled setting."
+        }
+    ]
+}
+```
+
+These MTL formulas capture the key specifications of the Drift Mode as described in the document. They cover the control aspects, behavior during different stick inputs, automatic features, and failsafe mechanisms. Note that some aspects of the system, such as the reliance on GPS, are implicit in these formulas and would require additional atomic propositions and more complex formulas to fully specify.

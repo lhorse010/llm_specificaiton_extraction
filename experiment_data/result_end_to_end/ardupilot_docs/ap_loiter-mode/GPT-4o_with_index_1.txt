@@ -1,0 +1,27 @@
+[
+  {
+    "index": 0,
+    "formula": "G (GPS_3D_lock ∧ HDOP < 1.4 → Armed)",
+    "explanation": "The vehicle can only be armed in Loiter mode if the GPS has a 3D lock and the HDOP is below 1.4."
+  },
+  {
+    "index": 1,
+    "formula": "G (¬Sticks ∧ ¬Braking → Speed = 0)",
+    "explanation": "When the pilot releases the sticks and braking has not started, the copter will slow to a stop and hold position."
+  },
+  {
+    "index": 2,
+    "formula": "G (¬Braking → LOIT_SPEED ≤ 5)",
+    "explanation": "The maximum horizontal speed is 5 m/s when the pilot is not braking."
+  },
+  {
+    "index": 3,
+    "formula": "G (Braking → Acceleration ≤ LOIT_BRK_ACCEL)",
+    "explanation": "The maximum acceleration while braking is defined by LOIT_BRK_ACCEL."
+  },
+  {
+    "index": 4,
+    "formula": "G (SticksCentered → F[0, LOIT_BRK_DELAY] Braking)",
+    "explanation": "Braking starts within LOIT_BRK_DELAY seconds after the pilot has centered the sticks."
+  }
+]

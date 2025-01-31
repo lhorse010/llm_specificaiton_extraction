@@ -1,0 +1,102 @@
+[
+  {
+    "sentence": "The _Stabilized_ manual mode stabilizes and levels the multicopter when the RC control sticks are centred.",
+    "formula": "G((C → (S ∧ L)))",
+    "explanation": "Here, C represents the RC control sticks being centred, S represents the multicopter being stabilized, and L represents the multicopter being levelled. The formula states that globally, whenever the sticks are centred, the multicopter will be both stabilized and levelled."
+  },
+  {
+    "sentence": "When sticks are outside the centre, the roll and pitch sticks control the _angle_ of the vehicle (attitude) around the respective axes, the yaw stick controls the rate of rotation above the horizontal plane, and the throttle controls altitude/speed.",
+    "formula": "G((¬C → ((R ∨ P) ∧ Y ∧ T)))",
+    "explanation": "Here, C represents the RC control sticks being centred, R and P represent the roll and pitch sticks controlling the angle, Y represents the yaw stick controlling the rate of rotation, and T represents the throttle controlling altitude/speed. The formula states that globally, whenever the sticks are not centred, the roll, pitch, yaw, and throttle will control their respective aspects of the vehicle's attitude and motion."
+  },
+  {
+    "sentence": "The multicopter will level out and stop once the roll and pitch sticks are centered.",
+    "formula": "G((C → (L ∧ S)))",
+    "explanation": "Here, C represents the roll and pitch sticks being centred, L represents the multicopter levelling out, and S represents the multicopter stopping. The formula states that globally, whenever the sticks are centred, the multicopter will both level out and stop."
+  },
+  {
+    "sentence": "The vehicle will then hover in place/maintain altitude - provided it is properly balanced, throttle is set appropriately (see below), and no external forces are applied (e.g. wind).",
+    "formula": "G(((B ∧ A ∧ ¬E) → H))",
+    "explanation": "Here, B represents the vehicle being properly balanced, A represents the throttle being set appropriately, E represents external forces being applied, and H represents the vehicle hovering in place/maintaining altitude. The formula states that globally, whenever the vehicle is balanced, throttle is set correctly, and no external forces are applied, the vehicle will hover in place/maintain altitude."
+  },
+  {
+    "sentence": "RC mode where centered sticks level vehicle.",
+    "formula": "G((C → L))",
+    "explanation": "Here, C represents the RC control sticks being centred, and L represents the vehicle levelling out. The formula states that globally, whenever the sticks are centred, the vehicle will level out."
+  },
+  {
+    "sentence": "The pilot's inputs are passed as roll and pitch angle commands and a yaw rate command.",
+    "formula": "G((P → (R ∧ P ∧ Y)))",
+    "explanation": "Here, P represents the pilot's inputs, R and P represent the roll and pitch angle commands, and Y represents the yaw rate command. The formula states that globally, whenever the pilot provides input, the input will be passed as roll, pitch, and yaw commands."
+  },
+  {
+    "sentence": "Throttle is rescaled (see below) and passed directly to control allocation.",
+    "formula": "G((T → C))",
+    "explanation": "Here, T represents the throttle, and C represents the control allocation. The formula states that globally, whenever the throttle is rescaled, it will be passed directly to control allocation."
+  },
+  {
+    "sentence": "The autopilot controls the attitude, meaning it regulates the roll and pitch angles to zero when the RC sticks are centered inside the controller deadzone (consequently leveling-out the attitude).",
+    "formula": "G(((C ∧ D) → (R ∧ P ∧ L)))",
+    "explanation": "Here, C represents the RC sticks being centred, D represents the sticks being inside the controller deadzone, R and P represent the roll and pitch angles being regulated to zero, and L represents the attitude levelling out. The formula states that globally, whenever the sticks are centred and inside the deadzone, the autopilot will regulate the roll and pitch angles to zero and level out the attitude."
+  },
+  {
+    "sentence": "The autopilot does not compensate for drift due to wind (or other sources).",
+    "formula": "G((W → ¬C))",
+    "explanation": "Here, W represents the wind (or other sources) causing drift, and C represents the autopilot compensating for the drift. The formula states that globally, whenever there is wind (or other sources) causing drift, the autopilot will not compensate for it."
+  },
+  {
+    "sentence": "Roll/Pitch sticks level vehicle.",
+    "formula": "G(((R ∨ P) → L))",
+    "explanation": "Here, R and P represent the roll and pitch sticks, and L represents the vehicle levelling out. The formula states that globally, whenever the roll or pitch sticks are used, the vehicle will level out."
+  },
+  {
+    "sentence": "Roll/Pitch sticks control tilt angle in those orientations, resulting in corresponding left-right and forward-back movement.",
+    "formula": "G((R ∨ P) → (T ∧ (L ∨ F ∨ B)))",
+    "explanation": "Here, R and P represent the roll and pitch sticks, T represents the tilt angle, and L, F, and B represent left, forward, and back movement, respectively. The formula states that globally, if the roll or pitch stick is used, then the tilt angle and corresponding movement are controlled."
+  },
+  {
+    "sentence": "Throttle stick controls up/down speed (and movement speed in other axes).",
+    "formula": "G(T → (U ∨ D ∨ S))",
+    "explanation": "Here, T represents the throttle stick, U and D represent up and down speed, and S represents movement speed in other axes. The formula states that globally, if the throttle stick is used, then the up/down speed or movement speed in other axes is controlled."
+  },
+  {
+    "sentence": "Yaw stick controls rate of angular rotation above the horizontal plane.",
+    "formula": "G(Y → A)",
+    "explanation": "Here, Y represents the yaw stick and A represents the rate of angular rotation above the horizontal plane. The formula states that globally, if the yaw stick is used, then the rate of angular rotation is controlled."
+  },
+  {
+    "sentence": "Manual control input is required (such as RC control, joystick).",
+    "formula": "G(M → (R ∨ J))",
+    "explanation": "Here, M represents manual control input, R represents RC control, and J represents joystick. The formula states that globally, if manual control input is required, then RC control or joystick is used."
+  },
+  {
+    "sentence": "Roll, Pitch: Assistance from autopilot to stabilize the attitude.",
+    "formula": "G((R ∨ P) → S)",
+    "explanation": "Here, R and P represent roll and pitch, and S represents the stabilized attitude. The formula states that globally, if roll or pitch is used, then the attitude is stabilized by the autopilot."
+  },
+  {
+    "sentence": "Position of RC stick maps to the orientation of vehicle.",
+    "formula": "G(R → O)",
+    "explanation": "Here, R represents the position of the RC stick and O represents the orientation of the vehicle. The formula states that globally, the position of the RC stick maps to the orientation of the vehicle."
+  },
+  {
+    "sentence": "Throttle: Manual control via RC sticks.",
+    "formula": "G(T → (R ∧ M))",
+    "explanation": "Here, T represents throttle, R represents RC sticks, and M represents manual control. The formula states that globally, if throttle is used, then manual control is achieved via RC sticks."
+  },
+  {
+    "sentence": "RC input is sent directly to control allocation.",
+    "formula": "G(R → C)",
+    "explanation": "Here, R represents RC input and C represents control allocation. The formula states that globally, RC input is sent directly to control allocation."
+  },
+  {
+    "sentence": "Yaw: Assistance from autopilot to stabilize the attitude rate.",
+    "formula": "G(Y → S)",
+    "explanation": "Here, Y represents yaw and S represents the stabilized attitude rate. The formula states that globally, if yaw is used, then the attitude rate is stabilized by the autopilot."
+  },
+  {
+    "sentence": "Position of RC stick maps to the rate of rotation of vehicle in that orientation.",
+    "formula": "G(R → (O ∧ A))",
+    "explanation": "Here, R represents the position of the RC stick, O represents the orientation, and A represents the rate of rotation. The formula states that globally, the position of the RC stick maps to the rate of rotation of the vehicle in that orientation."
+  }
+]

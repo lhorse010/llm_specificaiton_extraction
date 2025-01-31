@@ -1,0 +1,52 @@
+[
+  {
+    "index": 0,
+    "formula": "G(follow_mode_active → F(distance_to_lead ≤ FOLL_DIST_MAX))",
+    "explanation": "Globally, when follow mode is active, it should eventually be the case that the distance to the lead vehicle is less than or equal to FOLL_DIST_MAX."
+  },
+  {
+    "index": 1,
+    "formula": "G(follow_mode_active → X(maintain_altitude))",
+    "explanation": "Globally, when follow mode is active, in the next state, the vehicle should maintain its current altitude."
+  },
+  {
+    "index": 2,
+    "formula": "G(follow_mode_active ∧ (|throttle - mid_throttle| ≤ 10%) → X(maintain_altitude))",
+    "explanation": "Globally, when follow mode is active and the throttle is within 10% of mid-throttle, in the next state, the vehicle should maintain its current altitude."
+  },
+  {
+    "index": 3,
+    "formula": "G(follow_mode_active ∧ climb_command → X(climb_speed ≤ PILOT_SPEED_UP))",
+    "explanation": "Globally, when follow mode is active and a climb command is given, in the next state, the climb speed should be less than or equal to PILOT_SPEED_UP."
+  },
+  {
+    "index": 4,
+    "formula": "G(follow_mode_active ∧ descend_command → X(descend_speed ≤ PILOT_SPEED_DN))",
+    "explanation": "Globally, when follow mode is active and a descend command is given, in the next state, the descend speed should be less than or equal to PILOT_SPEED_DN."
+  },
+  {
+    "index": 5,
+    "formula": "G(follow_mode_active → F(|current_position - lead_position - offset| ≤ ε))",
+    "explanation": "Globally, when follow mode is active, it should eventually be the case that the vehicle's position relative to the lead vehicle's position and the specified offset is within a small error margin ε."
+  },
+  {
+    "index": 6,
+    "formula": "G(follow_mode_active ∧ FOLL_YAW_BEHAVE = 0 → X(vehicle_heading = lead_vehicle_heading))",
+    "explanation": "Globally, when follow mode is active and FOLL_YAW_BEHAVE is set to 0, in the next state, the vehicle's heading should match the lead vehicle's heading."
+  },
+  {
+    "index": 7,
+    "formula": "G(follow_mode_active ∧ FOLL_YAW_BEHAVE = 1 → X(vehicle_heading = angle_to_lead_vehicle))",
+    "explanation": "Globally, when follow mode is active and FOLL_YAW_BEHAVE is set to 1, in the next state, the vehicle's heading should point towards the lead vehicle."
+  },
+  {
+    "index": 8,
+    "formula": "G(follow_mode_active ∧ FOLL_ALT_TYPE = 0 → X(altitude_reference = lead_vehicle_relative_to_home))",
+    "explanation": "Globally, when follow mode is active and FOLL_ALT_TYPE is set to 0, in the next state, the altitude reference should be the lead vehicle's altitude relative to home."
+  },
+  {
+    "index": 9,
+    "formula": "G(follow_mode_active ∧ FOLL_ALT_TYPE = 1 → X(altitude_reference = lead_vehicle_relative_to_sea_level))",
+    "explanation": "Globally, when follow mode is active and FOLL_ALT_TYPE is set to 1, in the next state, the altitude reference should be the lead vehicle's altitude relative to sea level."
+  }
+]

@@ -1,0 +1,30 @@
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(valid_local_position_estimate → mode_active)",
+            "explanation": "The mode requires a valid local position estimate. If the position estimate is lost, the vehicle will fail-safe."
+        },
+        {
+            "formula": "G(¬armed → ¬orbit_mode)",
+            "explanation": "The vehicle must be armed before switching to orbit mode. Orbit mode prevents arming."
+        },
+        {
+            "formula": "G((wind_within_limits ∧ flight_time_within_limits) → mode_active)",
+            "explanation": "Mode requires that wind and flight time are within allowed limits specified via parameters."
+        },
+        {
+            "formula": "G(RC_stick_centered_left_right → orbit_speed_locked)",
+            "explanation": "When the right stick is centered left/right, the current orbit speed is locked."
+        },
+        {
+            "formula": "G(RC_stick_centered_up_down → orbit_radius_locked)",
+            "explanation": "When the right stick is centered up/down, the current orbit radius is locked."
+        },
+        {
+            "formula": "G(¬RC_control_present → default_orbit_behavior)",
+            "explanation": "If no RC control is present, the orbit will proceed as described with default behavior."
+        }
+    ]
+}
+```

@@ -1,0 +1,47 @@
+Based on the provided document, I will extract the specifications and express them using Metric Temporal Logic (MTL) formulas.
+
+Here are the extracted specifications:
+
+1. The System Identification Mode will be enabled if the SID_AXIS is non-zero.
+2. If the SID_AXIS is zero, an error message will be logged and sent to the ground control station.
+3. When the System Identification Mode is enabled, the vehicle will enter a STABILIZE like mode.
+4. In the System Identification Mode, bursts of signals ("chirps") will be injected into the control loops at various points.
+5. The results of the signal injections will be logged for math analysis and model generation later.
+
+Here are the MTL formulas for the extracted specifications:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(SID_AXIS ≠ 0 → X(System_Identification_Mode = enabled))",
+            "explanation": "Globally, if SID_AXIS is non-zero, then the System Identification Mode will be enabled at the next time step."
+        },
+        {
+            "formula": "G(SID_AXIS = 0 → X(Error_Message = logged))",
+            "explanation": "Globally, if SID_AXIS is zero, then an error message will be logged at the next time step."
+        },
+        {
+            "formula": "G(System_Identification_Mode = enabled → X(Vehicle_Mode = STABILIZE))",
+            "explanation": "Globally, when the System Identification Mode is enabled, the vehicle will enter a STABILIZE like mode at the next time step."
+        },
+        {
+            "formula": "G(System_Identification_Mode = enabled → F(Signal_Injection = started))",
+            "explanation": "Globally, when the System Identification Mode is enabled, bursts of signals will eventually be injected into the control loops."
+        },
+        {
+            "formula": "G(Signal_Injection = started → F(Logging = started))",
+            "explanation": "Globally, when the signal injection starts, the logging of results will eventually start."
+        }
+    ]
+}
+```
+
+Note that I used the following abbreviations in the MTL formulas:
+
+* `SID_AXIS`: the value of the SID_AXIS parameter
+* `System_Identification_Mode`: the status of the System Identification Mode (enabled or disabled)
+* `Error_Message`: the status of the error message (logged or not logged)
+* `Vehicle_Mode`: the mode of the vehicle (STABILIZE or not STABILIZE)
+* `Signal_Injection`: the status of the signal injection (started or not started)
+* `Logging`: the status of the logging (started or not started)

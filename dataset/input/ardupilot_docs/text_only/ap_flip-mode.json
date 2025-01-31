@@ -1,0 +1,73 @@
+{
+  "title": "Flip Mode",
+  "sections": [
+    {
+      "section-id": 0,
+      "title": "Flip Mode",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "Vehicle will flip on its roll or pitch axis depending upon the pilot's roll and pitch stick position."
+        },
+        {
+          "sentence-id": 1,
+          "text": "Vehicle will rise for 1 second and then rapidly flip."
+        },
+        {
+          "sentence-id": 2,
+          "text": "The vehicle will not flip again until the switch is brought low and back to high."
+        },
+        {
+          "sentence-id": 3,
+          "text": "Give yourself at least 10m of altitude before trying flip for the first time!"
+        }
+      ]
+    },
+    {
+      "section-id": 1,
+      "title": "Flip Mode State Machine",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "Controls:"
+        },
+        {
+          "sentence-id": 1,
+          "text": "1.An RCx_OPTION parameter must be set to \"Flip\" which is \"2\""
+        },
+        {
+          "sentence-id": 2,
+          "text": "2.Pilot switches to Stabilize, Acro or AltHold flight mode and puts ch7/ch8 switch to ON position"
+        },
+        {
+          "sentence-id": 3,
+          "text": "3.Vehicle will Roll right by default but if roll or pitch stick is held slightly left, forward or back it will flip in that direction"
+        },
+        {
+          "sentence-id": 4,
+          "text": "4.Vehicle should complete the roll within 2.5sec and will then return to the original flight mode it was in before flip was triggered"
+        },
+        {
+          "sentence-id": 5,
+          "text": "5.Pilot may manually exit flip by switching off ch7/ch8 or by moving roll stick to >40deg left or right"
+        },
+        {
+          "sentence-id": 6,
+          "text": "State machine approach:"
+        },
+        {
+          "sentence-id": 7,
+          "text": "1.Flip_Start (while copter is leaning <45deg) : roll right at 400deg/sec, increase throttle"
+        },
+        {
+          "sentence-id": 8,
+          "text": "2.Flip_Roll (while copter is between +45deg ~ -90) : roll right at 400deg/sec, reduce throttle"
+        },
+        {
+          "sentence-id": 9,
+          "text": "3.Flip_Recover (while copter is between -90deg and original target angle) : use earth frame angle controller to return vehicle to original attitude"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+After carefully reading the document, I have extracted the specifications that the vehicle needs to meet in Sport Mode. Here are the specifications expressed using Metric Temporal Logic (MTL) formulas:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(|roll| ≤ 45 ∧ |pitch| ≤ 45)",
+            "explanation": "The vehicle will not lean more than 45 degrees in roll and pitch."
+        },
+        {
+            "formula": "G(sticks_released → X(vehicle_attitude = current_attitude))",
+            "explanation": "When the sticks are released, the vehicle will remain in its current attitude."
+        },
+        {
+            "formula": "G((throttle ∈ [0.4, 0.6]) → X(altitude = current_altitude))",
+            "explanation": "When the throttle is within 10% of mid-throttle, the vehicle will attempt to hold its current altitude."
+        },
+        {
+            "formula": "G(climbing → G(altitude_change_rate ≤ 2.5))",
+            "explanation": "The vehicle will climb at a rate of up to 2.5m/s."
+        },
+        {
+            "formula": "G(descending → G(altitude_change_rate ≥ -2.5))",
+            "explanation": "The vehicle will descend at a rate of up to 2.5m/s."
+        },
+        {
+            "formula": "G(acceleration = PILOT_ACCEL_Z)",
+            "explanation": "The acceleration used to establish the climb and descent speeds is set by PILOT_ACCEL_Z."
+        }
+    ]
+}
+```
+
+Note that I have used the following assumptions:
+
+* `roll` and `pitch` are the angles of the vehicle in radians.
+* `sticks_released` is a boolean variable indicating whether the sticks are released.
+* `vehicle_attitude` is the current attitude of the vehicle.
+* `throttle` is the current throttle value, normalized to [0, 1].
+* `altitude` is the current altitude of the vehicle.
+* `altitude_change_rate` is the rate of change of altitude.
+* `PILOT_ACCEL_Z` is the acceleration parameter set by the user.
+
+These assumptions are based on the text and may need to be adjusted based on further clarification or additional information.

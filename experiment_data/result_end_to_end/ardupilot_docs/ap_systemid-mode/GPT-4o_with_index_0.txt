@@ -1,0 +1,12 @@
+[
+  {
+    "index": 0,
+    "formula": "G(SID_AXIS ≠ 0 → F(entryAllowed))",
+    "explanation": "Globally, if SID_AXIS is non-zero, then eventually entry into the System Identification Mode should be allowed."
+  },
+  {
+    "index": 1,
+    "formula": "G(SID_AXIS = 0 → F(logErrorMessage))",
+    "explanation": "Globally, if SID_AXIS is zero, then eventually an error message should be logged and sent to the ground control station."
+  }
+]

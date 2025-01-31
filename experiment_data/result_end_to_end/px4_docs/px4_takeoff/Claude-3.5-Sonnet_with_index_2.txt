@@ -1,0 +1,42 @@
+[
+  {
+    "index": 0,
+    "formula": "G(takeoff_mode → ¬user_intervention_required)",
+    "explanation": "Globally, when in takeoff mode, user intervention is not required to control the vehicle."
+  },
+  {
+    "index": 1,
+    "formula": "G(takeoff_mode → valid_local_position)",
+    "explanation": "Globally, when in takeoff mode, a valid local position estimate is required."
+  },
+  {
+    "index": 2,
+    "formula": "G((flying ∧ ¬valid_local_position) → ¬takeoff_mode)",
+    "explanation": "Globally, if the vehicle is flying and does not have a valid local position, it cannot switch to takeoff mode."
+  },
+  {
+    "index": 3,
+    "formula": "G((flying ∧ takeoff_mode ∧ X(¬valid_local_position)) → X(failsafe))",
+    "explanation": "Globally, if the vehicle is flying in takeoff mode and in the next state loses valid position estimate, it will enter failsafe in the next state."
+  },
+  {
+    "index": 4,
+    "formula": "G((¬armed ∧ ¬valid_local_position) → (takeoff_mode → ¬F(armed)))",
+    "explanation": "Globally, if the vehicle is disarmed and doesn't have a valid local position, it can enter takeoff mode but cannot become armed in the future."
+  },
+  {
+    "index": 5,
+    "formula": "G(takeoff_mode → F(altitude = MIS_TAKEOFF_ALT))",
+    "explanation": "Globally, when in takeoff mode, the vehicle will eventually reach the altitude defined in MIS_TAKEOFF_ALT."
+  },
+  {
+    "index": 6,
+    "formula": "G((takeoff_mode ∧ rc_stick_movement ∧ ¬critical_battery) → X(position_mode))",
+    "explanation": "Globally, when in takeoff mode, if there's RC stick movement and no critical battery failsafe, the vehicle will switch to Position mode in the next state."
+  },
+  {
+    "index": 7,
+    "formula": "G((takeoff_mode ∧ failure_detected) → X(engines_stopped))",
+    "explanation": "Globally, when in takeoff mode, if a failure is detected, the engines will be stopped in the next state."
+  }
+]

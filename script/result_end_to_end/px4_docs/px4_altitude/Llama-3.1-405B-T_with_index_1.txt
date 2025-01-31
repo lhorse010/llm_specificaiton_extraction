@@ -1,0 +1,42 @@
+[
+  {
+    "index": 0,
+    "formula": "G((centered_sticks ∧ ¬throttle_max) → X(altitude_steady))",
+    "explanation": "When the sticks are centered and the throttle is not at maximum, the vehicle will maintain its current altitude."
+  },
+  {
+    "index": 1,
+    "formula": "G((centered_sticks ∧ throttle_max) → X(altitude_increase))",
+    "explanation": "When the sticks are centered and the throttle is at maximum, the vehicle will increase its altitude."
+  },
+  {
+    "index": 2,
+    "formula": "G((¬centered_sticks ∧ roll_stick ≠ 0) → X(left_right_movement))",
+    "explanation": "When the sticks are not centered and the roll stick is not zero, the vehicle will move left or right."
+  },
+  {
+    "index": 3,
+    "formula": "G((¬centered_sticks ∧ pitch_stick ≠ 0) → X(forward_back_movement))",
+    "explanation": "When the sticks are not centered and the pitch stick is not zero, the vehicle will move forward or backward."
+  },
+  {
+    "index": 4,
+    "formula": "G((throttle > 62.5%) → X(takeoff))",
+    "explanation": "When the throttle is raised above 62.5%, the vehicle will take off."
+  },
+  {
+    "index": 5,
+    "formula": "G((wind_resistance > 0) → F(altitude_decrease))",
+    "explanation": "When there is wind resistance, the vehicle's altitude will eventually decrease."
+  },
+  {
+    "index": 6,
+    "formula": "G((LIDAR/range_sensor_available) → G(altitude_control_reliable))",
+    "explanation": "When a LIDAR/range sensor is available, the vehicle's altitude control will be reliable."
+  },
+  {
+    "index": 7,
+    "formula": "G((manual_control_input) → G(vehicle_attitude_stabilized))",
+    "explanation": "When manual control input is provided, the vehicle's attitude will be stabilized."
+  }
+]

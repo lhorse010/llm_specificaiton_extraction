@@ -1,0 +1,26 @@
+```json
+{
+    "specifications": [
+        {
+            "formula": "G (stick_centered → (brake ∧ level ∧ position_locked))",
+            "explanation": "When the control sticks are centered, the vehicle should brake, level itself, and lock its position in 3D space."
+        },
+        {
+            "formula": "G (stick_deflection_full → F (velocity = MPC_VEL_MANUAL))",
+            "explanation": "When the sticks are fully deflected, the vehicle should eventually reach the final velocity defined by MPC_VEL_MANUAL."
+        },
+        {
+            "formula": "G (throttle_below_62_5 → ¬takeoff)",
+            "explanation": "The vehicle should not take off if the throttle is below 62.5% of its range."
+        },
+        {
+            "formula": "G (position_estimate_acceptable → ¬position_loss_failsafe)",
+            "explanation": "If the position estimate is acceptable, a position (GPS) loss failsafe should not be triggered."
+        },
+        {
+            "formula": "G (land_detected → F (disarm))",
+            "explanation": "Once the vehicle detects it has landed, it should eventually disarm automatically."
+        }
+    ]
+}
+```

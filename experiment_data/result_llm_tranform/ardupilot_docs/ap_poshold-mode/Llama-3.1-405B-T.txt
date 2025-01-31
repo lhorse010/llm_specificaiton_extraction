@@ -1,0 +1,27 @@
+[
+  {
+    "sentence": "Good GPS position, low magnetic interference on the compass and low vibrations are all important in achieving good loiter performance.",
+    "formula": "G(GPS ∧ ¬M ∧ ¬V) → G(L)",
+    "explanation": "Here, GPS represents good GPS position, M represents magnetic interference, V represents vibrations, and L represents good loiter performance. The formula states that if good GPS position, low magnetic interference, and low vibrations are always true, then good loiter performance is always achieved."
+  },
+  {
+    "sentence": "Horizontal location can be adjusted with the Roll and Pitch control sticks with the default maximum lean angle being 45 degrees (angle can be adjusted with the ANGLE_MAX parameter).",
+    "formula": "G(R ∧ P → (A ≤ 45))",
+    "explanation": "Here, R represents the Roll control stick, P represents the Pitch control stick, and A represents the lean angle. The formula states that if the Roll and Pitch control sticks are used, then the lean angle is always less than or equal to 45 degrees."
+  },
+  {
+    "sentence": "You may arm in PosHold mode but only once the GPS has 3D lock and the HDOP has dropped to 2.0 or lower.",
+    "formula": "G(GPS ∧ (H ≤ 2.0) → X(A))",
+    "explanation": "Here, GPS represents the GPS having 3D lock, H represents the HDOP value, and A represents the arming of the system. The formula states that if the GPS has 3D lock and the HDOP value is less than or equal to 2.0, then the system can be armed in the next time step."
+  },
+  {
+    "sentence": "The maximum brake-angle can be set with the PHLD_BRAKE_ANGLE parameter (i.e. 3000 = the vehicle will lean back up to 30degrees)",
+    "formula": "G(P = 3000 → (A ≤ 30))",
+    "explanation": "Here, P represents the PHLD_BRAKE_ANGLE parameter, and A represents the brake-angle. The formula states that if the PHLD_BRAKE_ANGLE parameter is set to 3000, then the brake-angle is always less than or equal to 30 degrees."
+  },
+  {
+    "sentence": "The speed the vehicle rotates back to the maximum angle can be set with the PHLD_BRAKE_RATE parameter (i.e. 8 = rotates back at 8 degrees per second)",
+    "formula": "G(R = 8 → (S = 8))",
+    "explanation": "Here, R represents the PHLD_BRAKE_RATE parameter, and S represents the speed of rotation. The formula states that if the PHLD_BRAKE_RATE parameter is set to 8, then the speed of rotation is always equal to 8 degrees per second."
+  }
+]

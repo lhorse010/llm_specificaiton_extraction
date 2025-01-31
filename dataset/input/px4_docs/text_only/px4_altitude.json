@@ -1,0 +1,127 @@
+{
+  "title": "Altitude Mode (Multicopter)",
+  "sections": [
+    {
+      "section-id": 0,
+      "title": "Altitude Mode (Multicopter)",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "_Altitude mode_ is a _relatively_ easy-to-fly RC mode in which roll and pitch sticks control vehicle movement in the left-right and forward-back directions (relative to the \"front\" of the vehicle), yaw stick controls rate of rotation over the horizontal plane, and throttle controls speed of ascent-descent."
+        },
+        {
+          "sentence-id": 1,
+          "text": "When the sticks are released/centered the vehicle will level and maintain the current _altitude_."
+        },
+        {
+          "sentence-id": 2,
+          "text": "If moving in the horizontal plane the vehicle will continue until any momentum is dissipated by wind resistance."
+        },
+        {
+          "sentence-id": 3,
+          "text": "If the wind blows the aircraft will drift in the direction of the wind."
+        },
+        {
+          "sentence-id": 4,
+          "text": "The diagram below shows the mode behaviour visually (for a mode 2 transmitter)."
+        }
+      ]
+    },
+    {
+      "section-id": 1,
+      "title": "Altitude Mode (Multicopter) : tip",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "_Altitude mode_ is the safest non-GPS manual mode for new fliers."
+        },
+        {
+          "sentence-id": 1,
+          "text": "It is just like Stabilized mode but additionally locks the vehicle altitude when the sticks are released."
+        }
+      ]
+    },
+    {
+      "section-id": 2,
+      "title": "Technical Summary",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "RC/manual mode like Stabilized mode but with _altitude stabilization_ (centred sticks level vehicle and hold it to fixed altitude)."
+        },
+        {
+          "sentence-id": 1,
+          "text": "The horizontal position of the vehicle can move due to wind (or pre-existing momentum)."
+        },
+        {
+          "sentence-id": 2,
+          "text": "1.Centered sticks (inside deadband):"
+        },
+        {
+          "sentence-id": 3,
+          "text": "RPY sticks levels vehicle."
+        },
+        {
+          "sentence-id": 4,
+          "text": "Throttle (~50%) holds current altitude steady against wind."
+        },
+        {
+          "sentence-id": 5,
+          "text": "2.Outside center:"
+        },
+        {
+          "sentence-id": 6,
+          "text": "Roll/Pitch sticks control tilt angle in respective orientations, resulting in corresponding left-right and forward-back movement."
+        },
+        {
+          "sentence-id": 7,
+          "text": "Throttle stick controls up/down speed with a predetermined maximum rate (and movement speed in other axes)."
+        },
+        {
+          "sentence-id": 8,
+          "text": "Yaw stick controls rate of angular rotation above the horizontal plane."
+        },
+        {
+          "sentence-id": 9,
+          "text": "3.Takeoff:"
+        },
+        {
+          "sentence-id": 10,
+          "text": "When landed, the vehicle will take off if the throttle stick is raised above 62.5% percent (of the full range from bottom)."
+        },
+        {
+          "sentence-id": 11,
+          "text": "4.Altitude is normally measured using a barometer, which may become inaccurate in extreme weather conditions."
+        },
+        {
+          "sentence-id": 12,
+          "text": "Vehicles that include a LIDAR/range sensor will be able to control altitude with greater reliability and accuracy."
+        },
+        {
+          "sentence-id": 13,
+          "text": "5.Manual control input is required (such as RC control, joystick)."
+        },
+        {
+          "sentence-id": 14,
+          "text": "Roll, Pitch: Assistance from autopilot to stabilize the attitude."
+        },
+        {
+          "sentence-id": 15,
+          "text": "Position of RC stick maps to the orientation of vehicle."
+        },
+        {
+          "sentence-id": 16,
+          "text": "Throttle: Assistance from autopilot to hold position against wind."
+        },
+        {
+          "sentence-id": 17,
+          "text": "Yaw: Assistance from autopilot to stabilize the attitude rate."
+        },
+        {
+          "sentence-id": 18,
+          "text": "Position of RC stick maps to the rate of rotation of vehicle in that orientation."
+        }
+      ]
+    }
+  ]
+}

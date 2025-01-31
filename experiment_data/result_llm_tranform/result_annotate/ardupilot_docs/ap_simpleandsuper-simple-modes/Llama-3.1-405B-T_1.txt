@@ -1,0 +1,97 @@
+After carefully reading the document and following the steps outlined, I have identified the sentences that convey information about state transition pre-requirements, constraints, expected post-actions, and expected state changes. Here are the annotated sentences in JSON format:
+
+```json
+{
+    "specifications": [
+        {
+            "section-id": 1,
+            "sentence-id": 2
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 3
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 4
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 5
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 0
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 1
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 2
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 3
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 0
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 1
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 2
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 4
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 5
+        },
+        {
+            "section-id": 5,
+            "sentence-id": 0
+        },
+        {
+            "section-id": 5,
+            "sentence-id": 1
+        },
+        {
+            "section-id": 5,
+            "sentence-id": 2
+        },
+        {
+            "section-id": 5,
+            "sentence-id": 3
+        }
+    ]
+}
+```
+
+These annotated sentences correspond to the following information:
+
+* Section 1, Sentence 2: "1.\"Simple\" and \"Super Simple\" modes can be used in combination with nearly all flight modes except the Acro and Drift (in these flight modes the setting is ignored)." (Constraint)
+* Section 1, Sentence 3: "2.Simple Mode allows you to control the copter relative to the copters heading at take off and relies only on a good compass heading." (Expected state change)
+* Section 1, Sentence 4: "3.Super Simple Mode allows you to control the copter relative to it's direction from home (i.e." (Expected state change)
+* Section 1, Sentence 5: "where it was armed) but requires a good GPS position." (Constraint)
+* Section 1, Sentence 6: "4.Either mode can be assigned to a particular flight mode switch position or can be enabled/disabled from the Ch7/Ch8 switches." (Expected post-action)
+* Section 3, Sentence 0: "Similar to the \"care free\" mode on other systems, this mode allows you to fly your copter as though it were pointed in the direction it was pointed when it was armed regardless of its current heading orientation." (Expected state change)
+* Section 3, Sentence 1: "So if you hold the pitch stick forward the copter will fly away from you, pull the pitch stick back and it will come back towards home." (Expected post-action)
+* Section 3, Sentence 2: "You can even apply yaw to spin the copter in any direction but the movement of the copter's position relative to the stick inputs will behave exactly as it did at take off." (Expected post-action)
+* Section 3, Sentence 3: "Generally when arming you should stand behind the vehicle with it's nose pointing directly away from you." (Constraint)
+* Section 4, Sentence 0: "Super Simple mode is the same as simple mode except that it uses the vehicle's position relative to home instead of the vehicle's initial heading when it was armed." (Expected state change)
+* Section 4, Sentence 1: "This means that no matter where the vehicle is, pulling the pitch back will cause it to return towards home regardless of the vehicle's actual heading." (Expected post-action)
+* Section 4, Sentence 2: "The advantage over simple mode is that the controls are applied from the pilot's point of view even when the copter flies behind the pilot/home location." (Expected post-action)
+* Section 4, Sentence 4: "The disadvantage is that mode require a GPS lock because so you should ensure you have GPS lock before take-off." (Constraint)
+* Section 4, Sentence 5: "The orientation is not updated when the vehicle is within 10m of home meaning close fly-bys of the home location should be avoided." (Constraint)
+* Section 5, Sentence 0: "The transmitter’s auxiliary channels can be set-up to enable selection of Simple mode, Super Simple mode or both." (Expected post-action)
+* Section 5, Sentence 1: "Only one auxiliary channel should be set for these modes, and this channel will override the simple/super-simple options selected on the Flight Modes screen." (Constraint)
+* Section 5, Sentence 2: "To support selection of just one of the modes from the transmitter, assign the mode to a channel that is mapped to a 2-position switch (high = enables the selected mode, low disables it)." (Expected post-action)
+* Section 5, Sentence 3: "To enable both modes from the same switch, select Super Simple mode for a channel that is mapped to a 3-position switch (high position = Super Simple mode, middle position = Simple mode, low position = disabled)." (Expected post-action)

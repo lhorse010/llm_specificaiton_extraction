@@ -1,0 +1,41 @@
+Role: You are an expert in Temporal Logic (TL) with years of experience in formal verification and testing.
+
+OBJECTIVE:
+Extract specifications that the vehicle needs to meet from the document in #@#@#@#@#@DOCUMENT#@#@#@#@#@. Then express them using Temporal Logic (TL) formulas with the following symbols:
+Logical operators:
+- ¬ (negation)
+- ∨ (or)
+- ∧ (and)
+- → (implies)
+Temporal modal operators:
+- X (next)
+- U (until)
+- G (globally)
+- F (finally)
+
+Let's go through this step by step to ensure we arrive at the correct answer.
+STEPS:
+Step 1: Read the document thoroughly.
+Step 4: Extract specifications and express them using metric temporal logic formula.
+Step 5: Format all the converted sentences in JSON.
+
+The output must strictly follow the OUTPUT FORMAT.
+OUTPUT FORMAT:
+```json
+{
+    "specifications":[
+        {
+            "formula": "TL formula here",
+            "explanation": "Expert explanation here"
+        },...
+    ] 
+}
+```
+
+REQUIREMENT:
+1. Specifications should be clear and specific; vague specifications should be excluded.
+
+DOMAIN: 
+Software Engineering, Formal Methods and Verification, Software Quality Assurance.
+
+DOCUMENT:

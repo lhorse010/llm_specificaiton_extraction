@@ -1,0 +1,52 @@
+[
+  {
+    "index": 0,
+    "formula": "G( SmartRTL → (retrace_safe_path ∧ simplify_path ∧ prune_path) )",
+    "explanation": "When Smart RTL mode is activated, the vehicle will retrace a safe path home, simplify the path by turning curved paths into straight lines, and prune the path by removing loops."
+  },
+  {
+    "index": 1,
+    "formula": "G( buffer_full → ¬SmartRTL )",
+    "explanation": "If the buffer is full, Smart RTL mode will be deactivated."
+  },
+  {
+    "index": 2,
+    "formula": "G( SmartRTL → (save_points_at_most_3_per_second ∧ save_points_only_if_moved_at_least_SRTL_ACCURACY) )",
+    "explanation": "When Smart RTL mode is activated, the vehicle will save points at a maximum of 3 per second, but only if the vehicle has moved at least SRTL_ACCURACY meters from the previous point."
+  },
+  {
+    "index": 3,
+    "formula": "G( 50_points_saved → simplify_points_into_lines )",
+    "explanation": "After 50 points are saved, the vehicle will simplify them into lines again using the SRTL_ACCURACY parameter."
+  },
+  {
+    "index": 4,
+    "formula": "G( good_position_estimate → SmartRTL_enabled )",
+    "explanation": "The vehicle must have a good position estimate (LEDs should be green) when the vehicle is armed, otherwise Smart RTL will be disabled."
+  },
+  {
+    "index": 5,
+    "formula": "G( RTL_SPEED_set → return_at_specified_speed )",
+    "explanation": "The vehicle will return to home at the speed specified by the RTL_SPEED parameter."
+  },
+  {
+    "index": 6,
+    "formula": "G( RTL_ALT_FINAL_set → stop_and_hover_at_specified_altitude )",
+    "explanation": "The vehicle will stop and hover above home at the altitude specified by the RTL_ALT_FINAL parameter upon completion of the return."
+  },
+  {
+    "index": 7,
+    "formula": "G( SRTL_ACCURACY_set → simplify_and_prune_path_with_specified_accuracy )",
+    "explanation": "The vehicle will simplify and prune the path with the accuracy specified by the SRTL_ACCURACY parameter."
+  },
+  {
+    "index": 8,
+    "formula": "G( SRTL_POINTS_set → store_maximum_number_of_points )",
+    "explanation": "The vehicle will store a maximum number of points specified by the SRTL_POINTS parameter."
+  },
+  {
+    "index": 9,
+    "formula": "G( SRTL_OPTIONS_bit_2_set → ignore_pilot_yaw_commands )",
+    "explanation": "If bit 2 of the SRTL_OPTIONS parameter is set, the vehicle will ignore pilot yaw commands while in Smart RTL mode."
+  }
+]

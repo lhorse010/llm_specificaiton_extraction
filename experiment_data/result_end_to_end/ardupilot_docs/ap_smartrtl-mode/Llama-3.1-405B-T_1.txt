@@ -1,0 +1,72 @@
+After carefully reading the document, I have extracted the specifications that the vehicle needs to meet and expressed them using Metric Temporal Logic (MTL) formulas. Here are the results in the required JSON format:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G( SmartRTL → (retrace_safe_path ∧ simplify_path ∧ prune_path) )",
+            "explanation": "When Smart RTL mode is activated, the vehicle will retrace a safe path home, simplify the path by turning curved paths into straight lines, and prune the path by removing loops."
+        },
+        {
+            "formula": "G( buffer_full → ¬SmartRTL )",
+            "explanation": "If the buffer is full, Smart RTL mode will be deactivated."
+        },
+        {
+            "formula": "G( SmartRTL → (save_points_at_most_3_per_second ∧ save_points_only_if_moved_at_least_SRTL_ACCURACY) )",
+            "explanation": "When Smart RTL mode is activated, the vehicle will save points at a maximum of 3 per second, but only if the vehicle has moved at least SRTL_ACCURACY meters from the previous point."
+        },
+        {
+            "formula": "G( 50_points_saved → simplify_points_into_lines )",
+            "explanation": "After 50 points are saved, the vehicle will simplify them into lines again using the SRTL_ACCURACY parameter."
+        },
+        {
+            "formula": "G( good_position_estimate → SmartRTL_enabled )",
+            "explanation": "The vehicle must have a good position estimate (LEDs should be green) when the vehicle is armed, otherwise Smart RTL will be disabled."
+        },
+        {
+            "formula": "G( RTL_SPEED_set → return_at_specified_speed )",
+            "explanation": "The vehicle will return to home at the speed specified by the RTL_SPEED parameter."
+        },
+        {
+            "formula": "G( RTL_ALT_FINAL_set → stop_and_hover_at_specified_altitude )",
+            "explanation": "The vehicle will stop and hover above home at the altitude specified by the RTL_ALT_FINAL parameter upon completion of the return."
+        },
+        {
+            "formula": "G( SRTL_ACCURACY_set → simplify_and_prune_path_with_specified_accuracy )",
+            "explanation": "The vehicle will simplify and prune the path with the accuracy specified by the SRTL_ACCURACY parameter."
+        },
+        {
+            "formula": "G( SRTL_POINTS_set → store_maximum_number_of_points )",
+            "explanation": "The vehicle will store a maximum number of points specified by the SRTL_POINTS parameter."
+        },
+        {
+            "formula": "G( SRTL_OPTIONS_bit_2_set → ignore_pilot_yaw_commands )",
+            "explanation": "If bit 2 of the SRTL_OPTIONS parameter is set, the vehicle will ignore pilot yaw commands while in Smart RTL mode."
+        }
+    ]
+}
+```
+
+Note that I have used the following abbreviations in the MTL formulas:
+
+* `SmartRTL`: Smart RTL mode is activated
+* `retrace_safe_path`: the vehicle retraces a safe path home
+* `simplify_path`: the vehicle simplifies the path by turning curved paths into straight lines
+* `prune_path`: the vehicle prunes the path by removing loops
+* `buffer_full`: the buffer is full
+* `save_points_at_most_3_per_second`: the vehicle saves points at a maximum of 3 per second
+* `save_points_only_if_moved_at_least_SRTL_ACCURACY`: the vehicle saves points only if the vehicle has moved at least SRTL_ACCURACY meters from the previous point
+* `50_points_saved`: 50 points have been saved
+* `simplify_points_into_lines`: the vehicle simplifies the points into lines again using the SRTL_ACCURACY parameter
+* `good_position_estimate`: the vehicle has a good position estimate (LEDs should be green)
+* `SmartRTL_enabled`: Smart RTL mode is enabled
+* `RTL_SPEED_set`: the RTL_SPEED parameter has been set
+* `return_at_specified_speed`: the vehicle returns to home at the specified speed
+* `RTL_ALT_FINAL_set`: the RTL_ALT_FINAL parameter has been set
+* `stop_and_hover_at_specified_altitude`: the vehicle stops and hovers above home at the specified altitude
+* `SRTL_ACCURACY_set`: the SRTL_ACCURACY parameter has been set
+* `simplify_and_prune_path_with_specified_accuracy`: the vehicle simplifies and prunes the path with the specified accuracy
+* `SRTL_POINTS_set`: the SRTL_POINTS parameter has been set
+* `store_maximum_number_of_points`: the vehicle stores a maximum number of points
+* `SRTL_OPTIONS_bit_2_set`: bit 2 of the SRTL_OPTIONS parameter has been set
+* `ignore_pilot_yaw_commands`: the vehicle ignores pilot yaw commands while in Smart RTL mode

@@ -1,0 +1,32 @@
+[
+  {
+    "index": 0,
+    "formula": "G (¬valid_local_position_estimate → ¬switch_to_takeoff_mode)",
+    "explanation": "A flying vehicle cannot switch to takeoff mode without a valid local position estimate."
+  },
+  {
+    "index": 1,
+    "formula": "G (¬valid_local_position_estimate ∧ armed → failsafe)",
+    "explanation": "If a vehicle armed loses its local position estimate, it must enter a failsafe mode."
+  },
+  {
+    "index": 2,
+    "formula": "G (disarmed ∧ ¬valid_local_position_estimate → switch_to_takeoff_mode)",
+    "explanation": "A disarmed vehicle can switch to takeoff mode without a valid position estimate."
+  },
+  {
+    "index": 3,
+    "formula": "G (RC_stick_movement ∧ ¬critical_battery_failsafe → switch_to_position_mode)",
+    "explanation": "RC stick movement will change the vehicle to Position mode unless there is a critical battery failsafe."
+  },
+  {
+    "index": 4,
+    "formula": "G (takeoff ∧ problem_detected → stop_engines)",
+    "explanation": "The failure detector will stop the engines if there is a problem during takeoff."
+  },
+  {
+    "index": 5,
+    "formula": "G (mode_automatic → ¬user_intervention_required)",
+    "explanation": "The takeoff mode is automatic, meaning no user intervention is required."
+  }
+]

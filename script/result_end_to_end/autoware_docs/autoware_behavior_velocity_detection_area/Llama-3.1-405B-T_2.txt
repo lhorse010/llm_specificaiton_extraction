@@ -1,0 +1,34 @@
+After carefully reading the document, I extracted the specifications and expressed them using Metric Temporal Logic (MTL) formulas. Here are the results in the required output format:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(detection_area → F(stop_planning))",
+            "explanation": "If a pointcloud is detected in a detection area, stop planning will be executed at the predetermined point."
+        },
+        {
+            "formula": "G(activation_timing → F(module_activation))",
+            "explanation": "The module is activated when there is a detection area on the target lane."
+        },
+        {
+            "formula": "G((detection_area ∧ pointcloud) → F(stop_point_insertion))",
+            "explanation": "If there is a detection area and pointcloud, a stop point is inserted in front of the stop line."
+        },
+        {
+            "formula": "G((stop_point_insertion ∧ pass_judge_point) → F(velocity_zero))",
+            "explanation": "If a stop point is inserted and the ego-vehicle is in front of the pass judge point, the velocity is set to zero behind the stop line."
+        },
+        {
+            "formula": "G(pass_judge_point → F(no_stop))",
+            "explanation": "If the ego-vehicle has passed the pass judge point, it doesn’t stop and passes through."
+        },
+        {
+            "formula": "G((vehicle_stopped ∧ _front_to_stop_line < hold_stop_margin_distance) → G(keep_stopping))",
+            "explanation": "If the vehicle is stopped within hold_stop_margin_distance meters from the stop point, the module judges that the vehicle has already stopped and plans to keep stopping at the current position."
+        }
+    ]
+}
+```
+
+Note that I excluded vague specifications and focused on clear and specific requirements. I also used the MTL operators to express the temporal relationships between events, such as "G" for globally, "F" for finally, and "→" for implies.

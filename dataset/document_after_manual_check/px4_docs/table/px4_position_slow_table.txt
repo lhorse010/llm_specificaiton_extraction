@@ -1,0 +1,12 @@
+| Axis                | Position slow mode                            | Position mode                                                                                 |
+| ------------------- | --------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| Horizontal velocity | [MC_SLOW_DEF_HVEL][mc_slow_def_hvel] (3 m/s)  | [MPC_VEL_MANUAL][mpc_vel_manual] (10 m/s)                                                     |
+| Vertical velocity   | [MC_SLOW_DEF_VVEL][mc_slow_def_vvel] (1 m/s)  | [MPC_Z_VEL_MAX_UP][mpc_z_vel_max_up] (3 m/s) / [MPC_Z_VEL_MAX_DN][mpc_z_vel_max_dn] (1.5 m/s) |
+| Yaw rate            | [MC_SLOW_DEF_YAWR][mc_slow_def_yawr] (45 °/s) | [MPC_MAN_Y_MAX][mpc_man_y_max] (150 °/s)                                                      |
+
+
+| Axis                | Parameter to map auxiliary input     | Parameter for minimum value of maximum velocity |
+| ------------------- | ------------------------------------ | ----------------------------------------------- |
+| Horizontal velocity | [MC_SLOW_MAP_HVEL][mc_slow_map_hvel] | [MC_SLOW_MIN_HVEL][mc_slow_min_hvel]            |
+| Vertical velocity   | [MC_SLOW_MAP_VVEL][mc_slow_map_vvel] | [MC_SLOW_MIN_VVEL][mc_slow_min_vvel]            |
+| Yaw rate            | [MC_SLOW_MAP_YAWR][mc_slow_map_yawr] | [MC_SLOW_MIN_YAWR][mc_slow_min_yawr]            |

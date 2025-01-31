@@ -1,0 +1,30 @@
+```json
+{
+    "specifications": [
+        {
+            "formula": "G (¬armed → ¬return_mode)",
+            "explanation": "The vehicle cannot switch to return mode unless it is armed."
+        },
+        {
+            "formula": "G (¬global_position_available → failsafe)",
+            "explanation": "If a global 3D position estimate is not available, the vehicle must enter failsafe."
+        },
+        {
+            "formula": "G (return_mode → X home_position_set)",
+            "explanation": "Return mode requires that a home position is set."
+        },
+        {
+            "formula": "G (return_mode → (altitude ≥ max(RTL_RETURN_ALT, initial_altitude)))",
+            "explanation": "The vehicle must ascend to a minimum return altitude, which is the higher of RTL_RETURN_ALT or the initial altitude."
+        },
+        {
+            "formula": "G (return_mode → F(destination_reached ∧ altitude = RTL_DESCEND_ALT))",
+            "explanation": "Upon reaching the destination, the vehicle must descend to the descent altitude."
+        },
+        {
+            "formula": "G (destination_reached → F(landed ∧ wait_time = RTL_LAND_DELAY))",
+            "explanation": "Once at the destination, the vehicle waits for the configured landing delay time before landing."
+        }
+    ]
+}
+```

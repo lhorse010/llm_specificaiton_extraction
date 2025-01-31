@@ -1,0 +1,54 @@
+I'll analyze the document and extract the relevant specifications, expressing them using Metric Temporal Logic (MTL) formulas. Then, I'll format the results in JSON as requested.
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(CIRCLE_RADIUS > 0 → F(distance_to_center = CIRCLE_RADIUS))",
+            "explanation": "Globally, if the CIRCLE_RADIUS is greater than 0, then eventually the distance to the center will be equal to CIRCLE_RADIUS."
+        },
+        {
+            "formula": "G(CIRCLE_RADIUS = 0 → X(position = current_position ∧ F(yaw_rate ≠ 0)))",
+            "explanation": "Globally, if CIRCLE_RADIUS is 0, then in the next state, the position remains the same and eventually the yaw rate is non-zero (rotating in place)."
+        },
+        {
+            "formula": "G(|CIRCLE_RATE| ≤ max_achievable_rate)",
+            "explanation": "Globally, the absolute value of CIRCLE_RATE is less than or equal to the maximum achievable rate, which depends on WPNAV_ACCEL."
+        },
+        {
+            "formula": "G(CIRCLE_CONTROL = 1 → F(radius_adjustable ∧ angular_velocity_adjustable))",
+            "explanation": "Globally, if CIRCLE_CONTROL is enabled, then eventually the radius and angular velocity become adjustable by stick input."
+        },
+        {
+            "formula": "G(CIRCLE_OPTIONS[0] = 1 → F(stick_input_affects_radius ∧ stick_input_affects_speed))",
+            "explanation": "Globally, if bit 0 of CIRCLE_OPTIONS is set, then eventually stick input affects both radius and speed."
+        },
+        {
+            "formula": "G(CIRCLE_OPTIONS[1] = 1 → G(vehicle_direction = travel_direction))",
+            "explanation": "Globally, if bit 1 of CIRCLE_OPTIONS is set, then globally the vehicle direction matches the direction of travel."
+        },
+        {
+            "formula": "G(CIRCLE_OPTIONS[2] = 1 → X(circle_center = current_position))",
+            "explanation": "Globally, if bit 2 of CIRCLE_OPTIONS is set, then in the next state, the circle center is set to the current position upon mode entry."
+        },
+        {
+            "formula": "G(CIRCLE_OPTIONS[3] = 1 ∧ mount_present → G(mount_roi = circle_center))",
+            "explanation": "Globally, if bit 3 of CIRCLE_OPTIONS is set and a mount is present, then globally the mount's region of interest is set to the circle center."
+        },
+        {
+            "formula": "G(¬pilot_control_roll ∧ ¬pilot_control_pitch)",
+            "explanation": "Globally, the pilot does not have control over roll and pitch."
+        },
+        {
+            "formula": "G(pilot_control_throttle → F(altitude_changes))",
+            "explanation": "Globally, if the pilot controls the throttle, then eventually the altitude changes."
+        },
+        {
+            "formula": "G(pilot_control_yaw → X(¬autopilot_control_yaw) U mode_change)",
+            "explanation": "Globally, if the pilot controls the yaw, then in the next state, the autopilot does not control the yaw until there's a mode change."
+        }
+    ]
+}
+```
+
+These MTL formulas capture the key specifications from the provided document about Circle Mode and its associated parameters and behaviors. The formulas express temporal relationships and constraints that the vehicle should adhere to when operating in Circle Mode.

@@ -1,0 +1,58 @@
+Based on the provided document, I've extracted the specifications and expressed them using Metric Temporal Logic (MTL) formulas. Here are the results in the required JSON format:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G((centered_sticks ∧ ¬throttle_max) → X(altitude_steady))",
+            "explanation": "When the sticks are centered and the throttle is not at maximum, the vehicle will maintain its current altitude."
+        },
+        {
+            "formula": "G((centered_sticks ∧ throttle_max) → X(altitude_increase))",
+            "explanation": "When the sticks are centered and the throttle is at maximum, the vehicle will increase its altitude."
+        },
+        {
+            "formula": "G((¬centered_sticks ∧ roll_stick ≠ 0) → X(left_right_movement))",
+            "explanation": "When the sticks are not centered and the roll stick is not zero, the vehicle will move left or right."
+        },
+        {
+            "formula": "G((¬centered_sticks ∧ pitch_stick ≠ 0) → X(forward_back_movement))",
+            "explanation": "When the sticks are not centered and the pitch stick is not zero, the vehicle will move forward or backward."
+        },
+        {
+            "formula": "G((throttle > 62.5%) → X(takeoff))",
+            "explanation": "When the throttle is raised above 62.5%, the vehicle will take off."
+        },
+        {
+            "formula": "G((wind_resistance > 0) → F(altitude_decrease))",
+            "explanation": "When there is wind resistance, the vehicle's altitude will eventually decrease."
+        },
+        {
+            "formula": "G((LIDAR/range_sensor_available) → G(altitude_control_reliable))",
+            "explanation": "When a LIDAR/range sensor is available, the vehicle's altitude control will be reliable."
+        },
+        {
+            "formula": "G((manual_control_input) → G(vehicle_attitude_stabilized))",
+            "explanation": "When manual control input is provided, the vehicle's attitude will be stabilized."
+        }
+    ]
+}
+```
+
+Note that I've used the following abbreviations in the MTL formulas:
+
+* `centered_sticks`: The sticks are centered.
+* `throttle_max`: The throttle is at maximum.
+* `altitude_steady`: The vehicle's altitude is steady.
+* `altitude_increase`: The vehicle's altitude is increasing.
+* `left_right_movement`: The vehicle is moving left or right.
+* `forward_back_movement`: The vehicle is moving forward or backward.
+* `takeoff`: The vehicle is taking off.
+* `wind_resistance`: There is wind resistance.
+* `altitude_decrease`: The vehicle's altitude is decreasing.
+* `LIDAR/range_sensor_available`: A LIDAR/range sensor is available.
+* `altitude_control_reliable`: The vehicle's altitude control is reliable.
+* `manual_control_input`: Manual control input is provided.
+* `vehicle_attitude_stabilized`: The vehicle's attitude is stabilized.
+
+These abbreviations can be replaced with the actual sensor readings or control inputs in a real-world implementation.

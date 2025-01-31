@@ -1,0 +1,105 @@
+{
+  "title": "Acro Mode (Multicopter)",
+  "sections": [
+    {
+      "section-id": 0,
+      "title": "Acro Mode (Multicopter)",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "_Acro mode_ is the RC mode for performing acrobatic maneuvers e.g. flips, rolls and loops."
+        },
+        {
+          "sentence-id": 1,
+          "text": "The roll, pitch and yaw sticks control the rate of angular rotation around the respective axes and throttle is passed directly to control allocation."
+        },
+        {
+          "sentence-id": 2,
+          "text": "When sticks are centered the vehicle will stop rotating, but remain in its current orientation (on its side, inverted, or whatever) and moving according to its current momentum."
+        }
+      ]
+    },
+    {
+      "section-id": 1,
+      "title": "Technical Description",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "Manual mode for performing acrobatic maneuvers e.g. flips, rolls and loops."
+        },
+        {
+          "sentence-id": 1,
+          "text": "RC Roll/Pitch/Yaw (RPY) stick inputs control the rate of angular rotation around the respective axes."
+        },
+        {
+          "sentence-id": 2,
+          "text": "Throttle is passed directly to control allocation."
+        },
+        {
+          "sentence-id": 3,
+          "text": "When sticks are centered the vehicle will stop rotating, but remain in its current orientation (not necessarily level) and moving according to its current momentum."
+        },
+        {
+          "sentence-id": 4,
+          "text": "Manual control input is required (such as RC control, joystick):"
+        },
+        {
+          "sentence-id": 5,
+          "text": "1.Roll, Pitch, Yaw: Assistance from autopilot to stabilize the attitude rate."
+        },
+        {
+          "sentence-id": 6,
+          "text": "Position of RC stick maps to the rate of rotation of vehicle in that orientation."
+        },
+        {
+          "sentence-id": 7,
+          "text": "2.Throttle: Manual control via RC sticks."
+        },
+        {
+          "sentence-id": 8,
+          "text": "RC input is sent directly to control allocation."
+        }
+      ]
+    },
+    {
+      "section-id": 2,
+      "title": "Stick Input Mapping",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "The default roll, pitch, and yaw input stick mapping for Acro mode is shown below."
+        },
+        {
+          "sentence-id": 1,
+          "text": "The curve enables a high turn rate at maximum stick input for performing acrobatic maneuvers, and a zone of lower sensitivity close to the stick center for small corrections."
+        },
+        {
+          "sentence-id": 2,
+          "text": "This roll and pitch input stick response can be tuned using the MC_ACRO_EXPO and MC_ACRO_SUPEXPO \"exponential\" parameters, while the yaw stick input response is tuned using MC_ACRO_EXPO_Y and MC_ACRO_SUPEXPOY."
+        },
+        {
+          "sentence-id": 3,
+          "text": "MC_ACRO_EXPO and MC_ACRO_EXPO_Y tune the curve(s) between a linear and cubic curve as shown below."
+        },
+        {
+          "sentence-id": 4,
+          "text": "MC_ACRO_SUPEXPO and MC_ACRO_SUPEXPOY allow the shape to be further tuned, modifying the width of the area of reduced sensitivity."
+        }
+      ]
+    },
+    {
+      "section-id": 3,
+      "title": "Stick Input Mapping : info",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "The mathematical relationship is: $$\\mathrm{y} = r(f \\cdot x^3 + x(1-f)) (1-g)/(1-g |x|)$$, where f = MC_ACRO_EXPO or MC_ACRO_EXPO_Y, g = MC_ACRO_SUPEXPO or MC_ACRO_SUPEXPOY,and r is the maximum rate."
+        },
+        {
+          "sentence-id": 1,
+          "text": "You can experiment with the relationships here."
+        }
+      ]
+    }
+  ]
+}

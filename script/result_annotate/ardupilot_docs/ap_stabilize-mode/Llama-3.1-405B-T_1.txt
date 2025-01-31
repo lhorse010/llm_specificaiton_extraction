@@ -1,0 +1,87 @@
+Based on the provided document, I have annotated the sentences as specifications if they convey the following information:
+1. Requirements the system must meet for state transition.
+2. Constraints the system must adhere to.
+3. Expected post-actions the system will execute when entering a particular state.
+4. Expected state changes the system will carry out in response to specific commands or settings.
+
+Here is the output in the required JSON format:
+
+```json
+{
+    "specifications": [
+        {
+            "section-id": 2,
+            "sentence-id": 0
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 1
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 0
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 1
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 2
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 3
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 4
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 5
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 6
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 8
+        },
+        {
+            "section-id": 7,
+            "sentence-id": 0
+        },
+        {
+            "section-id": 7,
+            "sentence-id": 1
+        },
+        {
+            "section-id": 7,
+            "sentence-id": 2
+        },
+        {
+            "section-id": 7,
+            "sentence-id": 3
+        }
+    ]
+}
+```
+
+The annotated sentences are:
+
+* Section 2, Sentence 0: "While stabilize mode does not necessarily require GPS, switching to RTL in case of emergency does." (Constraint)
+* Section 2, Sentence 1: "Make sure you do have a reliable position estimate prior to arming, most commonly provided by 3D GPS fix with sufficient HDOP." (Constraint)
+* Section 3, Sentence 0: "1.Pilot's roll and pitch input control the lean angle of the copter." (Expected post-action)
+* Section 3, Sentence 1: "When the pilot releases the roll and pitch sticks the vehicle automatically levels itself." (Expected post-action)
+* Section 3, Sentence 2: "2.Pilot will need to regularly input roll and pitch commands to keep the vehicle in place as it is pushed around by the wind." (Expected post-action)
+* Section 3, Sentence 3: "3.Pilot's yaw input controls the rate of change of the heading." (Expected post-action)
+* Section 3, Sentence 4: "When the pilot releases the yaw stick the vehicle will maintain its current heading." (Expected post-action)
+* Section 3, Sentence 5: "4.Pilot's throttle input controls the average motor speed meaning that constant adjustment of the throttle is required to maintain altitude." (Expected post-action)
+* Section 3, Sentence 6: "If the pilot puts the throttle completely down the motors will go to their minimum rate (MOT_SPIN_ARMED) and if the vehicle is flying it will lose attitude control and tumble." (Expected state change)
+* Section 3, Sentence 8: "5.The throttle sent to the motors is automatically adjusted based on the tilt angle of the vehicle (i.e. increased as the vehicle tilts over more) to reduce the compensation the pilot must do as the vehicle's attitude changes." (Expected post-action)
+* Section 7, Sentence 0: "1.ANGLE_MAX controls the maximum lean angle which by default is 4500 (i.e. 45 degrees)" (Constraint)
+* Section 7, Sentence 1: "2.ANGLE_RATE_MAX controls the maximum requested rotation rate in the roll and pitch axis which by default is 18000 (180deg/sec)." (Constraint)
+* Section 7, Sentence 2: "3.ACRO_Y_RATE controls how quickly copter rotates based on a pilot's yaw input." (Expected post-action)
+* Section 7, Sentence 3: "The default of 4.5 commands a 200 deg/sec rate of rotation when the yaw stick is held fully left or right." (Expected post-action)

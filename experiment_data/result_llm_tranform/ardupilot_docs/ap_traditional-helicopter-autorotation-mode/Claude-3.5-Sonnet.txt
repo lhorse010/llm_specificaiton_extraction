@@ -1,0 +1,87 @@
+[
+  {
+    "sentence": "This flight mode is available for traditional helicopters only.",
+    "formula": "G(F → T)",
+    "explanation": "F represents the flight mode being available, and T represents a traditional helicopter. The formula states that globally, if the flight mode is available, it implies the aircraft is a traditional helicopter."
+  },
+  {
+    "sentence": "It is currently limited to single rotor helicopters.",
+    "formula": "G(A → S)",
+    "explanation": "A represents the availability of the feature, and S represents single rotor helicopters. The formula states that globally, if the feature is available, it implies the helicopter is a single rotor type."
+  },
+  {
+    "sentence": "This is only enabled for use with SITL.",
+    "formula": "G(E ↔ S)",
+    "explanation": "E represents the feature being enabled, and S represents SITL (Software In The Loop). The formula states that globally, the feature is enabled if and only if SITL is being used."
+  },
+  {
+    "sentence": "As this manoeuvre is flown close to the ground it requires a reliable height estimate that can account for the local terrain.",
+    "formula": "G(M → (R ∧ L))",
+    "explanation": "M represents the manoeuvre, R represents a reliable height estimate, and L represents accounting for local terrain. The formula states that globally, if the manoeuvre is performed, it implies both a reliable height estimate and accounting for local terrain."
+  },
+  {
+    "sentence": "Downward facing LiDaR is therefore highly recommended.",
+    "formula": "G(M → R)",
+    "explanation": "M represents the manoeuvre being performed, and R represents the recommendation for downward-facing LiDAR. The formula states that globally, if the manoeuvre is performed, it implies the recommendation for downward-facing LiDAR."
+  },
+  {
+    "sentence": "When exiting the autonomous autorotation flight mode the aircraft will be returned to a \"non-manual collective mode\".",
+    "formula": "G(X(¬A) → N)",
+    "explanation": "A represents the autonomous autorotation flight mode, and N represents the non-manual collective mode. The formula states that globally, in the next state after exiting autorotation mode, the aircraft will be in non-manual collective mode."
+  },
+  {
+    "sentence": "When initiated, the bail-out phase will read the requested climb or descent rate from the operators throttle stick position.",
+    "formula": "G(B → R)",
+    "explanation": "B represents the initiation of the bail-out phase, and R represents reading the climb/descent rate from the throttle stick. The formula states that globally, when the bail-out phase is initiated, it implies reading the rate from the throttle stick."
+  },
+  {
+    "sentence": "The aircraft will then be decelerated over a set period of time (see parameter AROT_BAIL_TIME).",
+    "formula": "G(B → F[0,T](D))",
+    "explanation": "B represents the bail-out phase, D represents deceleration, and T represents AROT_BAIL_TIME. The formula states that globally, when the bail-out phase occurs, it implies that deceleration will occur within the time interval [0, T]."
+  },
+  {
+    "sentence": "The motor ramp time defined by H_RSC_RAMP_TIME is ignored during bail-out, and a hard-coded ramp time of one second is used.",
+    "formula": "G(B → (¬H ∧ O))",
+    "explanation": "B represents the bail-out phase, H represents using H_RSC_RAMP_TIME, and O represents using a one-second ramp time. The formula states that globally, during bail-out, H_RSC_RAMP_TIME is not used, and a one-second ramp time is used instead."
+  },
+  {
+    "sentence": "The autonomous autorotation flight mode cannot be entered via a mode switch, as is done with other flight modes.",
+    "formula": "G(¬(S → A))",
+    "explanation": "S represents entering via a mode switch, and A represents entering autonomous autorotation flight mode. The formula states that globally, it's not the case that using a mode switch implies entering autonomous autorotation mode, distinguishing it from other flight modes."
+  },
+  {
+    "sentence": "In an attempt to mimic the autorotation procedure followed when flying a manual autorotation, the mode is entered and exited using the motor interlock switch.",
+    "formula": "G((¬I ∧ X(I)) → E) ∧ G((I ∧ X(¬I)) → X)",
+    "explanation": "Here, I represents the motor interlock switch being engaged, E represents entering the autorotation mode, and X represents exiting the mode. The formula ensures that whenever the interlock switch changes state, the appropriate action (entering or exiting) occurs."
+  },
+  {
+    "sentence": "The autonomous flight mode can only be entered if the interlock is disengaged whilst flying in a non-manual collective mode.",
+    "formula": "G((¬I ∧ N) → F(A))",
+    "explanation": "I represents the interlock being engaged, N represents flying in a non-manual collective mode, and A represents entering the autonomous flight mode. The formula states that it's always true that if the interlock is disengaged and the aircraft is in a non-manual mode, then it's possible to enter the autonomous mode in the future."
+  },
+  {
+    "sentence": "When exiting the autorotation the flight mode is returned to the mode from which it came (e.g. Altitude Hold -> Autonomous Autorotation -> Altitude Hold).",
+    "formula": "G((M1 ∧ F(A ∧ F(X))) → F(X ∧ M1))",
+    "explanation": "M1 represents the initial mode (e.g., Altitude Hold), A represents the Autonomous Autorotation mode, and X represents exiting the autorotation. The formula ensures that if we start in a mode M1, enter autorotation A, and then exit X, we will return to the original mode M1."
+  },
+  {
+    "sentence": "In which case, the mode is exited into Altitude Hold.",
+    "formula": "G((A ∧ F(X)) → F(X ∧ H))",
+    "explanation": "A represents the Autonomous Autorotation mode, X represents exiting the mode, and H represents the Altitude Hold mode. This formula states that when exiting the autorotation mode, the system always transitions to Altitude Hold mode."
+  },
+  {
+    "sentence": "Do not attempt to use this flight mode in real life.",
+    "formula": "G(¬R)",
+    "explanation": "R represents using the flight mode in real life. The formula globally enforces that this mode should never be used in real life, capturing the safety warning."
+  },
+  {
+    "sentence": "As energy in the main rotor is used it will slow, meaning more and more positive collective is applied to maintain the thrust force being generated.",
+    "formula": "G((E → F(S)) ∧ (S → F(C)))",
+    "explanation": "E represents energy being used, S represents the rotor slowing, and C represents increasing positive collective. The formula captures the causal chain: energy use leads to slowing, which leads to increased collective application."
+  },
+  {
+    "sentence": "The only exception to this is when the aircraft enters the autorotation from an auto mission.",
+    "formula": "G((M ∧ F(A)) → ¬(X ∧ H))",
+    "explanation": "M represents being in an auto mission, A represents entering autorotation, X represents exiting autorotation, and H represents Altitude Hold mode. This formula states that if we enter autorotation from an auto mission, we don't exit to Altitude Hold, capturing the exception to the general rule."
+  }
+]

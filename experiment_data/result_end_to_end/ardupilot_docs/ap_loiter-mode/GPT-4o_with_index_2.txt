@@ -1,0 +1,27 @@
+[
+  {
+    "index": 0,
+    "formula": "G((¬armed) → (GPS_3D_lock ∧ HDOP < 1.4))",
+    "explanation": "The vehicle can only be armed in Loiter mode if the GPS has a 3D lock and the HDOP is below 1.4."
+  },
+  {
+    "index": 1,
+    "formula": "G(armed → (current_location ∧ current_heading ∧ current_altitude))",
+    "explanation": "In Loiter mode, the vehicle must maintain its current location, heading, and altitude when armed."
+  },
+  {
+    "index": 2,
+    "formula": "G(release_sticks → F(position_hold))",
+    "explanation": "When the pilot releases the control sticks, the vehicle will eventually slow to a stop and hold its position."
+  },
+  {
+    "index": 3,
+    "formula": "G(release_sticks → F(¬velocity > 0))",
+    "explanation": "When the control sticks are released, the vehicle will eventually come to a complete stop."
+  },
+  {
+    "index": 4,
+    "formula": "G((horizontal_speed > 5) → tuning_required)",
+    "explanation": "If the horizontal speed exceeds 5 m/s, tuning is required to adjust the maximum horizontal speed."
+  }
+]

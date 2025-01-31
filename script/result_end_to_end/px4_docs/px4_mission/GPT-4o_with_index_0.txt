@@ -1,0 +1,52 @@
+[
+  {
+    "index": 0,
+    "formula": "G(armed → mission_mode)",
+    "explanation": "The vehicle must be armed before mission mode can be engaged."
+  },
+  {
+    "index": 1,
+    "formula": "G(mission_mode → automatic_control)",
+    "explanation": "Mission mode is automatic and does not require user intervention."
+  },
+  {
+    "index": 2,
+    "formula": "G(mission_stored ∧ flying → execute_mission)",
+    "explanation": "If a mission is stored and the vehicle is flying, it will execute the mission/flight plan from the current step."
+  },
+  {
+    "index": 3,
+    "formula": "G((¬mission_stored ∨ mission_complete) ∧ flying → hold_position)",
+    "explanation": "If no mission is stored or the mission is complete while flying, the vehicle will hold its position."
+  },
+  {
+    "index": 4,
+    "formula": "G(¬feasible_mission → ¬start_mission)",
+    "explanation": "A mission cannot start if it is deemed not feasible by the PX4 checks."
+  },
+  {
+    "index": 5,
+    "formula": "G(paused ∧ ¬capturing_images → F(resume ∧ move_to_original_waypoint))",
+    "explanation": "If the mission is paused and the vehicle was not capturing images, upon resuming, it will head towards the original waypoint."
+  },
+  {
+    "index": 6,
+    "formula": "G(paused ∧ capturing_images → F(resume ∧ retrace_path))",
+    "explanation": "If the mission is paused while capturing images, upon resuming, the vehicle retraces its path to ensure the planned path is captured."
+  },
+  {
+    "index": 7,
+    "formula": "G(landed → wait_for_disarm)",
+    "explanation": "After landing, the vehicle will wait before disarming, if configured."
+  },
+  {
+    "index": 8,
+    "formula": "G(throttle_stick_zero ∧ switch_mode → crash)",
+    "explanation": "Switching to any RC mode with a zero throttle stick will cause the vehicle to crash."
+  },
+  {
+    "index": 9,
+    "formula": "G(mission_item_too_far → notify_user ∧ ¬start_mission)",
+    "explanation": "The mission cannot start if the first mission item is too far from the vehicle; the user is notified."
+  }
+]

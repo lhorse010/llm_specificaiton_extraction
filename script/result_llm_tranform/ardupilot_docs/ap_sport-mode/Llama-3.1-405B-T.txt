@@ -1,0 +1,32 @@
+[
+  {
+    "sentence": "this mode is not included by default in the firmware built and available on the Firmware Server .",
+    "formula": "¬F",
+    "explanation": "Here, F represents the mode being included by default in the firmware. The negation operator ¬ indicates that this mode is not included."
+  },
+  {
+    "sentence": "Either the user must build his own firmware with this mode enabled or use the Custom Firmware Server",
+    "formula": "U ∨ C",
+    "explanation": "Here, U represents the user building their own firmware with this mode enabled, and C represents using the Custom Firmware Server. The or operator ∨ indicates that either of these options is acceptable."
+  },
+  {
+    "sentence": "3.The vehicle will not lean more than 45 degrees (this angle is adjustable with the ACRO_BAL_ROLL and ACRO_BAL_PITCH parameters)",
+    "formula": "G(¬L > 45)",
+    "explanation": "Here, L represents the vehicle's lean angle, and G represents the global operator, indicating that this condition holds at all times. The > symbol is not part of the standard MTL syntax, so we adjust the formula to represent the condition that the lean angle is not greater than 45 degrees."
+  },
+  {
+    "sentence": "4.The altitude is maintained with the altitude hold controller so the vehicle will attempt to hold its current altitude when the sticks are placed with 10% of mid-throttle.",
+    "formula": "G(S → H)",
+    "explanation": "Here, S represents the sticks being placed within 10% of mid-throttle, and H represents the vehicle holding its current altitude. The implies operator → indicates that whenever the sticks are in the specified position, the vehicle will attempt to hold its altitude."
+  },
+  {
+    "sentence": "It will climb or descend at up to 2.5m/s (this speed is adjustable with the PILOT_SPEED_UP and PILOT_SPEED_DN parameters).",
+    "formula": "G(|V| ≤ 2.5)",
+    "explanation": "Here, V represents the vehicle's vertical speed, and G represents the global operator, indicating that this condition holds at all times. The ≤ symbol is not part of the standard MTL syntax, so we adjust the formula to represent the condition that the absolute value of the speed is not greater than 2.5 m/s."
+  },
+  {
+    "sentence": "The acceleration used to establish these speeds is set by PILOT_ACCEL_Z.",
+    "formula": "A",
+    "explanation": "Here, A represents the acceleration being set by PILOT_ACCEL_Z. This sentence does not contain any temporal or logical operators, so the MTL formula simply represents the statement as a predicate."
+  }
+]

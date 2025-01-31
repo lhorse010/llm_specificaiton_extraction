@@ -1,0 +1,52 @@
+[
+  {
+    "index": 0,
+    "formula": "G(FOLL_ENABLE = 1 → X(Follow Mode Activated))",
+    "explanation": "If FOLL_ENABLE is set to 1, the vehicle will activate Follow Mode in the next time step."
+  },
+  {
+    "index": 1,
+    "formula": "G(Follow Mode Activated → G(Altitude Hold Controller Activated))",
+    "explanation": "When Follow Mode is activated, the altitude hold controller will be activated globally."
+  },
+  {
+    "index": 2,
+    "formula": "G(Altitude Hold Controller Activated → G(|altitude_error| < 10% of mid-throttle))",
+    "explanation": "When the altitude hold controller is activated, the vehicle will maintain its current altitude within 10% of mid-throttle globally."
+  },
+  {
+    "index": 3,
+    "formula": "G(Follow Mode Activated → G(|vertical_speed| ≤ 2.5m/s))",
+    "explanation": "When Follow Mode is activated, the vehicle's vertical speed will be limited to 2.5m/s globally."
+  },
+  {
+    "index": 4,
+    "formula": "G(Follow Mode Activated → G(lead_vehicle_distance ≤ FOLL_DIST_MAX))",
+    "explanation": "When Follow Mode is activated, the vehicle will give up on following and hold position if the lead vehicle is more than FOLL_DIST_MAX meters away globally."
+  },
+  {
+    "index": 5,
+    "formula": "G(Follow Mode Activated → G(offset_error ≤ (FOLL_OFS_X, FOLL_OFS_Y, FOLL_OFS_Z)))",
+    "explanation": "When Follow Mode is activated, the vehicle will maintain a 3D offset from the lead vehicle within (FOLL_OFS_X, FOLL_OFS_Y, FOLL_OFS_Z) meters globally."
+  },
+  {
+    "index": 6,
+    "formula": "G(Follow Mode Activated → G(yaw_behavior = FOLL_YAW_BEHAVE))",
+    "explanation": "When Follow Mode is activated, the vehicle's yaw behavior will be controlled by FOLL_YAW_BEHAVE globally."
+  },
+  {
+    "index": 7,
+    "formula": "G(Follow Mode Activated → G(position_gain = FOLL_POS_P))",
+    "explanation": "When Follow Mode is activated, the vehicle's position gain will be set to FOLL_POS_P globally."
+  },
+  {
+    "index": 8,
+    "formula": "G(Follow Mode Activated → G(altitude_type = FOLL_ALT_TYPE))",
+    "explanation": "When Follow Mode is activated, the vehicle's altitude type will be set to FOLL_ALT_TYPE globally."
+  },
+  {
+    "index": 9,
+    "formula": "G(Follow Mode Activated → G(gimbal_controls_enabled = FOLL_OPTIONS[0]))",
+    "explanation": "When Follow Mode is activated, the Gimbal/Mount Controls will be enabled if FOLL_OPTIONS[0] is set to 1 globally."
+  }
+]

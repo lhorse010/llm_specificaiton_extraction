@@ -1,0 +1,22 @@
+```json
+{
+    "specifications": [
+        {
+            "formula": "G (arming_via_switch → stabilization_active_at_idle)",
+            "explanation": "If arming is done via a transmitter switch with RCx_OPTION ARM/DISARM, then stabilization should remain active at idle throttle."
+        },
+        {
+            "formula": "G (¬helicopter_mode → (enable_airmode ↔ (use_switch ∧ RCx_OPTION = 84)))",
+            "explanation": "In modes other than Traditional Helicopter, Airmode should be enabled or disabled by setting RCx_OPTION to 84, and using the switch."
+        },
+        {
+            "formula": "G (use_arm_switch ∧ ¬rudder_arming → airmode_enabled)",
+            "explanation": "If using an ARM/DISARM switch and not rudder arming, Airmode should be enabled."
+        },
+        {
+            "formula": "G (ACRO_OPTIONS_bit0_set → airmode_active_in_acro)",
+            "explanation": "Setting bit 0 of ACRO_OPTIONS should activate Airmode in ACRO mode unless overridden by a switch."
+        }
+    ]
+}
+```

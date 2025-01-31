@@ -1,0 +1,42 @@
+[
+  {
+    "sentence": "The multicopter will level out and stop once the roll and pitch sticks are centered.",
+    "formula": "G((C) → F(L ∧ S))",
+    "explanation": "C represents the roll and pitch sticks being centered. F(L ∧ S) indicates that eventually, the multicopter will level out (L) and stop (S) once this condition is met."
+  },
+  {
+    "sentence": "The vehicle will then hover in place/maintain altitude - provided it is properly balanced, throttle is set appropriately (see below), and no external forces are applied (e.g. wind).",
+    "formula": "G((B ∧ T ∧ ¬E) → F(H))",
+    "explanation": "B represents the vehicle being balanced, T the throttle set appropriately, and ¬E the absence of external forces. F(H) signifies that under these conditions, the vehicle will eventually hover in place (H)."
+  },
+  {
+    "sentence": "The autopilot controls the attitude, meaning it regulates the roll and pitch angles to zero when the RC sticks are centered inside the controller deadzone (consequently leveling-out the attitude).",
+    "formula": "G((D) → F(R ∧ P))",
+    "explanation": "D represents the RC sticks being centered in the deadzone. F(R ∧ P) indicates that the roll (R) and pitch (P) angles will eventually be regulated to zero, leveling the attitude."
+  },
+  {
+    "sentence": "Roll/Pitch sticks level vehicle.",
+    "formula": "G(C → F(L))",
+    "explanation": "C represents the roll/pitch sticks being used. F(L) indicates that the vehicle will eventually level out (L) when the sticks are engaged."
+  },
+  {
+    "sentence": "Roll/Pitch sticks control tilt angle in those orientations, resulting in corresponding left-right and forward-back movement.",
+    "formula": "G(C → (T ∧ M))",
+    "explanation": "C represents the roll/pitch sticks being used. T indicates control over tilt angle, and M represents the resulting movement (left-right and forward-back)."
+  },
+  {
+    "sentence": "Throttle stick controls up/down speed (and movement speed in other axes).",
+    "formula": "G(T → (U ∧ M))",
+    "explanation": "T represents the throttle stick being used. U indicates control over up/down speed, and M indicates movement speed in other axes."
+  },
+  {
+    "sentence": "Yaw stick controls rate of angular rotation above the horizontal plane.",
+    "formula": "G(Y → R)",
+    "explanation": "Y represents the yaw stick being used. R indicates control over the rate of angular rotation above the horizontal plane."
+  },
+  {
+    "sentence": "The autopilot does not compensate for drift due to wind (or other sources).",
+    "formula": "G(¬C)",
+    "explanation": "¬C indicates that compensation (C) for drift due to wind or other sources does not occur."
+  }
+]

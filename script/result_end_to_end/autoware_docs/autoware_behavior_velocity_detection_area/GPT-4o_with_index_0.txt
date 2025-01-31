@@ -1,0 +1,27 @@
+[
+  {
+    "index": 0,
+    "formula": "G (detection_area → F stop_planning)",
+    "explanation": "If a pointcloud is detected in a detection area, eventually the stop planning will be executed."
+  },
+  {
+    "index": 1,
+    "formula": "G (detection_area_on_target_lane → module_activated)",
+    "explanation": "The module is activated when there is a detection area on the target lane."
+  },
+  {
+    "index": 2,
+    "formula": "G (pointcloud_in_detection_area → F (velocity = 0 ∧ ego_vehicle_in_front_of_pass_judge_point))",
+    "explanation": "If there is a pointcloud in the detection area, eventually the vehicle's velocity should be zero when in front of the pass judge point."
+  },
+  {
+    "index": 3,
+    "formula": "G ((ego_vehicle_passed_pass_judge_point) → ¬stop)",
+    "explanation": "If the ego vehicle has passed the pass judge point, it should not stop and should pass through."
+  },
+  {
+    "index": 4,
+    "formula": "G ((_front_to_stop_line < hold_stop_margin_distance) → (F keep_stopping))",
+    "explanation": "If the vehicle is within the hold_stop_margin_distance from the stop point, it should continue to stop even if influenced by other factors."
+  }
+]

@@ -1,0 +1,89 @@
+Based on the provided document, I will annotate the sentences as specifications if they convey the following information:
+1. Requirements the system must meet for state transition.
+2. Constraints the system must adhere to.
+3. Expected post-actions the system will execute when entering a particular state.
+4. Expected state changes the system will carry out in response to specific commands or settings.
+
+Here are the annotated sentences in JSON format:
+
+```json
+{
+    "specifications": [
+        {
+            "section-id": 0,
+            "sentence-id": 0
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 2
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 4
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 5
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 0
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 1
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 3
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 6
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 8
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 9
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 10
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 12
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 14
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 16
+        }
+    ]
+}
+```
+
+The annotated sentences are:
+
+- Section 0, Sentence 0: "The _Stabilized_ manual mode stabilizes and levels the multicopter when the RC control sticks are centred." (Expected state change)
+- Section 0, Sentence 2: "When sticks are outside the centre, the roll and pitch sticks control the _angle_ of the vehicle (attitude) around the respective axes, the yaw stick controls the rate of rotation above the horizontal plane, and the throttle controls altitude/speed." (Expected post-action)
+- Section 0, Sentence 4: "The multicopter will level out and stop once the roll and pitch sticks are centered." (Expected state change)
+- Section 0, Sentence 5: "The vehicle will then hover in place/maintain altitude - provided it is properly balanced, throttle is set appropriately (see below), and no external forces are applied (e.g. wind)." (Constraint)
+- Section 2, Sentence 0: "RC mode where centered sticks level vehicle." (Expected state change)
+- Section 2, Sentence 1: "The pilot's inputs are passed as roll and pitch angle commands and a yaw rate command." (Expected post-action)
+- Section 2, Sentence 3: "The autopilot controls the attitude, meaning it regulates the roll and pitch angles to zero when the RC sticks are centered inside the controller deadzone (consequently leveling-out the attitude)." (Expected post-action)
+- Section 2, Sentence 6: "Roll/Pitch sticks level vehicle." (Expected state change)
+- Section 2, Sentence 8: "Roll/Pitch sticks control tilt angle in those orientations, resulting in corresponding left-right and forward-back movement." (Expected post-action)
+- Section 2, Sentence 9: "Throttle stick controls up/down speed (and movement speed in other axes)." (Expected post-action)
+- Section 2, Sentence 10: "Yaw stick controls rate of angular rotation above the horizontal plane." (Expected post-action)
+- Section 2, Sentence 12: "Roll, Pitch: Assistance from autopilot to stabilize the attitude." (Expected post-action)
+- Section 2, Sentence 14: "Throttle: Manual control via RC sticks." (Expected post-action)
+- Section 2, Sentence 16: "Yaw: Assistance from autopilot to stabilize the attitude rate." (Expected post-action)
+
+Note that some sentences may convey multiple types of information, but I have only annotated them according to the primary type of information they convey.

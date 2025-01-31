@@ -1,0 +1,38 @@
+I'll extract the specifications from the document and express them using Metric Temporal Logic (MTL) formulas as requested. Then, I'll format the output in JSON.
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(no_drivable_lane → F(stop))",
+            "explanation": "Globally, if a no_drivable_lane is detected, the vehicle must eventually stop."
+        },
+        {
+            "formula": "G(inside_no_drivable_lane → X(¬move U takeover_request))",
+            "explanation": "Globally, if the vehicle is inside a no_drivable_lane, in the next state it must not move until a takeover request is issued."
+        },
+        {
+            "formula": "G(approaching_no_drivable_lane ∧ (distance > stop_margin) → F(stop))",
+            "explanation": "Globally, if approaching a no_drivable_lane and the distance is greater than the stop_margin, the vehicle must eventually stop."
+        },
+        {
+            "formula": "G(stopped ∧ no_drivable_lane → X(¬move U takeover_request))",
+            "explanation": "Globally, if the vehicle is stopped due to a no_drivable_lane, in the next state it must not move until a takeover request is issued."
+        },
+        {
+            "formula": "G(no_drivable_lane ∧ autonomous_mode → F(takeover_request))",
+            "explanation": "Globally, if a no_drivable_lane is detected and the vehicle is in autonomous mode, a takeover request must eventually be issued."
+        }
+    ]
+}
+```
+
+These MTL formulas capture the key specifications extracted from the document:
+
+1. The vehicle must stop when encountering a no_drivable_lane.
+2. The vehicle must not move when inside a no_drivable_lane until a takeover request is issued.
+3. When approaching a no_drivable_lane and the distance is greater than the stop_margin, the vehicle must stop.
+4. Once stopped due to a no_drivable_lane, the vehicle must not move until a takeover request is issued.
+5. In autonomous mode, when a no_drivable_lane is detected, a takeover request must be issued.
+
+These formulas cover the main safety and operational requirements described in the document for handling no_drivable_lanes.

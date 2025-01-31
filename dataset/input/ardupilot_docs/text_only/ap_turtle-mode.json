@@ -1,0 +1,77 @@
+{
+  "title": "Turtle Mode",
+  "sections": [
+    {
+      "section-id": 0,
+      "title": "Turtle Mode",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "Turtle Mode is a special mode that can be invoked either as a flight mode via the flight mode switch or as an Auxilary function assigned to an RC switch (channel)."
+        },
+        {
+          "sentence-id": 1,
+          "text": "Turtle mode allows a user to attempt to flip the Copter upright, if inverted, by reversing the direction of adjacent pairs of motors and producing thrust to un-invert the vehicle after a crash."
+        },
+        {
+          "sentence-id": 2,
+          "text": "DShot capable ESCs are required for this mode to function, allowing the DShot reverse command to be sent to the ESCs."
+        },
+        {
+          "sentence-id": 3,
+          "text": "SERVO_DSHOT_ESC must be set to a non-zero value and MOT_PWM_TYPE to a DSHOT value also, to allow DShot commands to be sent to the ESC."
+        },
+        {
+          "sentence-id": 4,
+          "text": "Once in this mode, moving the roll and/or pitch stick of the transmitter away from center will reverse and spin up the designated pair of motors, increasing thrust to maximum at full stick throw."
+        },
+        {
+          "sentence-id": 5,
+          "text": "The user can quickly jab the transmitter stick to attempt to flip the vehicle upright."
+        },
+        {
+          "sentence-id": 6,
+          "text": "Which pair of motors is temporarily reversed and spun up is determined by the direction away from center the stick is moved."
+        },
+        {
+          "sentence-id": 7,
+          "text": "Once flipped upright, exit the mode for normal operation to resume."
+        },
+        {
+          "sentence-id": 8,
+          "text": "1.Turtle mode cannot be entered unless throttle is zero"
+        },
+        {
+          "sentence-id": 9,
+          "text": "2.Upon entry to turtle mode the motors stay disarmed, but the notfiy LEDs flash"
+        },
+        {
+          "sentence-id": 10,
+          "text": "3.Raising the throttle, the motors arm, and motors spin."
+        },
+        {
+          "sentence-id": 11,
+          "text": "Lowering throttle to zero disarms the motors"
+        },
+        {
+          "sentence-id": 12,
+          "text": "4.Motors spin only when throttle is raised"
+        }
+      ]
+    },
+    {
+      "section-id": 1,
+      "title": "Turtle Mode : Note",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "This flight mode is available for multirotors only."
+        },
+        {
+          "sentence-id": 1,
+          "text": "continuous operation of motors in the reversed mode may cause either ESC or motor overheating in some cases."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+```json
+{
+    "specifications": [
+        {
+            "section-id": 1,
+            "sentence-id": 0
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 1
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 1
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 2
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 6
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 8
+        },
+        {
+            "section-id": 6,
+            "sentence-id": 10
+        },
+        {
+            "section-id": 8,
+            "sentence-id": 1
+        },
+        {
+            "section-id": 8,
+            "sentence-id": 4
+        },
+        {
+            "section-id": 9,
+            "sentence-id": 0
+        },
+        {
+            "section-id": 10,
+            "sentence-id": 0
+        },
+        {
+            "section-id": 10,
+            "sentence-id": 2
+        },
+        {
+            "section-id": 12,
+            "sentence-id": 2
+        }
+    ]
+}
+```

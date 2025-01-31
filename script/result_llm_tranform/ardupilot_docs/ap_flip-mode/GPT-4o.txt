@@ -1,0 +1,52 @@
+[
+  {
+    "sentence": "The vehicle will not flip again until the switch is brought low and back to high.",
+    "formula": "¬F(FLIP) U (LOW ∧ F(HIGH))",
+    "explanation": "The formula ensures that there will be no flip (FLIP) until the switch is brought low (LOW) and then back to high (HIGH)."
+  },
+  {
+    "sentence": "1.An RCx_OPTION parameter must be set to \"Flip\" which is \"2\"",
+    "formula": "RCx_OPTION = 2",
+    "explanation": "The condition requires the RCx_OPTION parameter to be set to the value 2, indicating the Flip mode."
+  },
+  {
+    "sentence": "2.Pilot switches to Stabilize, Acro or AltHold flight mode and puts ch7/ch8 switch to ON position",
+    "formula": "(STABILIZE ∨ ACRO ∨ ALTHOLD) ∧ ON",
+    "explanation": "The sentence specifies that one of the flight modes (Stabilize, Acro, AltHold) is selected and the channel switch (ch7/ch8) is turned ON."
+  },
+  {
+    "sentence": "3.Vehicle will Roll right by default but if roll or pitch stick is held slightly left, forward or back it will flip in that direction",
+    "formula": "ROLL_RIGHT ∨ (LEFT ∨ FORWARD ∨ BACK → FLIP)",
+    "explanation": "By default, the vehicle rolls right (ROLL_RIGHT), but if the stick is moved left, forward, or back, it will flip in that direction instead."
+  },
+  {
+    "sentence": "4.Vehicle should complete the roll within 2.5sec and will then return to the original flight mode it was in before flip was triggered",
+    "formula": "F[0, 2.5](ROLL_COMPLETE) ∧ G(RETURN_ORIGINAL)",
+    "explanation": "The vehicle must complete the roll within 2.5 seconds (ROLL_COMPLETE) and then return to its original mode (RETURN_ORIGINAL)."
+  },
+  {
+    "sentence": "5.Pilot may manually exit flip by switching off ch7/ch8 or by moving roll stick to >40deg left or right",
+    "formula": "OFF ∨ (ROLL_STICK > 40)",
+    "explanation": "The pilot can exit the flip by either switching off the channel (OFF) or moving the roll stick beyond 40 degrees left or right."
+  },
+  {
+    "sentence": "1.Flip_Start (while copter is leaning <45deg) : roll right at 400deg/sec, increase throttle",
+    "formula": "LEAN < 45 ∧ ROLL_400 ∧ INCREASE_THROTTLE",
+    "explanation": "During Flip_Start, the copter leans less than 45 degrees, rolls right at 400 degrees/sec, and increases throttle."
+  },
+  {
+    "sentence": "2.Flip_Roll (while copter is between +45deg ~ -90) : roll right at 400deg/sec, reduce throttle",
+    "formula": "(45 ≥ LEAN ≥ -90) ∧ ROLL_400 ∧ REDUCE_THROTTLE",
+    "explanation": "During Flip_Roll, the copter is between +45 and -90 degrees, rolls at 400 degrees/sec, and reduces throttle."
+  },
+  {
+    "sentence": "3.Flip_Recover (while copter is between -90deg and original target angle) : use earth frame angle controller to return vehicle to original attitude",
+    "formula": "(-90 ≤ LEAN ≤ TARGET) ∧ USE_CONTROLLER",
+    "explanation": "In Flip_Recover, the copter is between -90 degrees and its target angle, using the earth frame angle controller to return to its original attitude."
+  },
+  {
+    "sentence": "Vehicle will rise for 1 second and then rapidly flip.",
+    "formula": "F[0, 1](RISE) ∧ F(FLIP)",
+    "explanation": "The vehicle rises for 1 second (RISE) and then rapidly flips (FLIP)."
+  }
+]

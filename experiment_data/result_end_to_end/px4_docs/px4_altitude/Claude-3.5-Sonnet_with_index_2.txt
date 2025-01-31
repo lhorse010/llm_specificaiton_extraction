@@ -1,0 +1,32 @@
+[
+  {
+    "index": 0,
+    "formula": "G((throttle = 50%) → X(altitude = constant))",
+    "explanation": "Globally, if the throttle is at 50% (center position), then in the next state, the altitude remains constant. This represents the altitude hold feature when sticks are centered."
+  },
+  {
+    "index": 1,
+    "formula": "G((|roll| > deadband ∨ |pitch| > deadband) → X(position ≠ constant))",
+    "explanation": "Globally, if the absolute value of roll or pitch input is greater than the deadband, then in the next state, the position is not constant. This represents the vehicle's movement in response to roll and pitch inputs."
+  },
+  {
+    "index": 2,
+    "formula": "G((|yaw| > deadband) → X(angular_velocity ≠ 0))",
+    "explanation": "Globally, if the absolute value of yaw input is greater than the deadband, then in the next state, the angular velocity is not zero. This represents the vehicle's rotation in response to yaw inputs."
+  },
+  {
+    "index": 3,
+    "formula": "G((throttle > 62.5% ∧ landed) → X(¬landed))",
+    "explanation": "Globally, if the throttle is above 62.5% and the vehicle is landed, then in the next state, the vehicle is not landed. This represents the takeoff condition."
+  },
+  {
+    "index": 4,
+    "formula": "G((|roll| ≤ deadband ∧ |pitch| ≤ deadband) → X(attitude = level))",
+    "explanation": "Globally, if the absolute values of roll and pitch inputs are within the deadband, then in the next state, the attitude is level. This represents the auto-leveling feature when sticks are centered."
+  },
+  {
+    "index": 5,
+    "formula": "G(F(wind ≠ 0) → F(position ≠ constant))",
+    "explanation": "Globally, if there is eventually non-zero wind, then eventually the position is not constant. This represents the vehicle's drift due to wind when no corrective input is given."
+  }
+]

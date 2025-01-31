@@ -1,0 +1,38 @@
+I'll extract the specifications from the document and express them using Metric Temporal Logic (MTL) formulas. Then, I'll format the results in JSON as requested.
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(PosHoldMode → (MaintainLocation ∧ MaintainHeading ∧ MaintainAltitude))",
+            "explanation": "Globally, when in PosHold mode, the vehicle must maintain its current location, heading, and altitude."
+        },
+        {
+            "formula": "G(PosHoldMode ∧ PilotInput → F[0,t] AdjustPosition)",
+            "explanation": "Globally, when in PosHold mode and pilot input is given, the vehicle's position will be adjusted within time t."
+        },
+        {
+            "formula": "G(PosHoldMode ∧ ¬PilotInput → F[0,t] StabilizePosition)",
+            "explanation": "Globally, when in PosHold mode and no pilot input is given, the vehicle will stabilize its position within time t."
+        },
+        {
+            "formula": "G(PosHoldMode → (MaxLeanAngle ≤ 45 ∨ MaxLeanAngle = ANGLE_MAX))",
+            "explanation": "Globally, when in PosHold mode, the maximum lean angle is either 45 degrees or the value set by ANGLE_MAX parameter."
+        },
+        {
+            "formula": "G(ArmRequest ∧ PosHoldMode → (GPS3DLock ∧ (HDOP ≤ 2.0)))",
+            "explanation": "Globally, arming in PosHold mode is only allowed when GPS has 3D lock and HDOP is 2.0 or lower."
+        },
+        {
+            "formula": "G(PosHoldMode ∧ BrakeInitiated → F[0,t] (LeanAngle ≤ PHLD_BRAKE_ANGLE))",
+            "explanation": "Globally, when in PosHold mode and braking is initiated, the vehicle will lean back to an angle not exceeding PHLD_BRAKE_ANGLE within time t."
+        },
+        {
+            "formula": "G(PosHoldMode ∧ BrakeInitiated → (RotationRate = PHLD_BRAKE_RATE))",
+            "explanation": "Globally, when in PosHold mode and braking is initiated, the vehicle rotates back at the rate specified by PHLD_BRAKE_RATE."
+        }
+    ]
+}
+```
+
+These MTL formulas capture the key specifications for the PosHold mode as described in the document. They cover the mode's behavior, control mechanisms, arming conditions, and configurable parameters. The formulas use the temporal operators G (globally) and F (finally) to express the temporal aspects of the specifications.

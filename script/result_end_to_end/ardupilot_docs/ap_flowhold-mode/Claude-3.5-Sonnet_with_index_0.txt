@@ -1,0 +1,32 @@
+[
+  {
+    "index": 0,
+    "formula": "G(¬GPS ∧ ¬Lidar → FlowHold)",
+    "explanation": "This formula specifies that globally, if there's no GPS and no Lidar, FlowHold mode can be used. It captures the core functionality of FlowHold mode."
+  },
+  {
+    "index": 1,
+    "formula": "G(FlowHold → F(OpticalFlow_Used))",
+    "explanation": "This formula states that globally, if FlowHold mode is active, then eventually the optical flow sensor will be used. This represents the key feature of FlowHold mode."
+  },
+  {
+    "index": 2,
+    "formula": "G(StickRelease → F(Vehicle_Stop))",
+    "explanation": "This formula expresses that globally, if the user releases the sticks, then eventually the vehicle will come to a stop. This is a key behavior of FlowHold mode."
+  },
+  {
+    "index": 3,
+    "formula": "G(TakeOff ∨ HeightChange → F(Wobble))",
+    "explanation": "This formula captures the behavior that globally, after takeoff or large changes in height, the vehicle may eventually wobble as it learns the new height and velocity."
+  },
+  {
+    "index": 4,
+    "formula": "G(FlowQuality < FHLD_QUAL_MIN → X(AltHold))",
+    "explanation": "This formula specifies that globally, if the flow quality falls below FHLD_QUAL_MIN, then in the next state, the mode will behave like AltHold. This represents a fallback behavior of FlowHold mode."
+  },
+  {
+    "index": 5,
+    "formula": "G(FlowHold → F(HeightEstimation ∧ SpeedEstimation))",
+    "explanation": "This formula states that globally, if FlowHold is active, then eventually both height and speed will be estimated using the optical flow sensor."
+  }
+]

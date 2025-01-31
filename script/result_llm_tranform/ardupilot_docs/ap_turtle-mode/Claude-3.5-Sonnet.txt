@@ -1,0 +1,47 @@
+[
+  {
+    "sentence": "DShot capable ESCs are required for this mode to function, allowing the DShot reverse command to be sent to the ESCs.",
+    "formula": "G(M → D)",
+    "explanation": "This formula states that globally (G), if the mode is functioning (M), then DShot capable ESCs are present (D). This captures the requirement for DShot capable ESCs throughout the system's operation."
+  },
+  {
+    "sentence": "SERVO_DSHOT_ESC must be set to a non-zero value and MOT_PWM_TYPE to a DSHOT value also, to allow DShot commands to be sent to the ESC.",
+    "formula": "G((S ∧ P) → C)",
+    "explanation": "Here, S represents SERVO_DSHOT_ESC being non-zero, P represents MOT_PWM_TYPE set to a DSHOT value, and C represents the ability to send DShot commands. The formula states that globally, if both conditions are met, DShot commands can be sent."
+  },
+  {
+    "sentence": "Once in this mode, moving the roll and/or pitch stick of the transmitter away from center will reverse and spin up the designated pair of motors, increasing thrust to maximum at full stick throw.",
+    "formula": "G(M → ((R ∨ P) → F(S ∧ T)))",
+    "explanation": "M represents being in the mode, R and P represent roll and pitch stick movement, S represents motor spin-up, and T represents maximum thrust. The formula captures that once in the mode, stick movement leads to eventual motor spin-up and maximum thrust."
+  },
+  {
+    "sentence": "1.Turtle mode cannot be entered unless throttle is zero",
+    "formula": "G(¬Z → ¬T)",
+    "explanation": "Z represents zero throttle, and T represents entering Turtle mode. This formula globally ensures that if the throttle is not zero, Turtle mode cannot be entered."
+  },
+  {
+    "sentence": "2.Upon entry to turtle mode the motors stay disarmed, but the notfiy LEDs flash",
+    "formula": "G(T → (D ∧ L))",
+    "explanation": "T represents entering Turtle mode, D represents disarmed motors, and L represents flashing LEDs. This formula captures that globally, when entering Turtle mode, motors remain disarmed and LEDs flash."
+  },
+  {
+    "sentence": "3.Raising the throttle, the motors arm, and motors spin.",
+    "formula": "G((T ∧ R) → X(A ∧ S))",
+    "explanation": "T represents Turtle mode, R represents raising throttle, A represents armed motors, and S represents spinning motors. This formula states that globally, in Turtle mode, raising the throttle leads to armed and spinning motors in the next state."
+  },
+  {
+    "sentence": "Lowering throttle to zero disarms the motors",
+    "formula": "G((T ∧ Z) → X(D))",
+    "explanation": "T represents Turtle mode, Z represents zero throttle, and D represents disarmed motors. This formula captures that globally, in Turtle mode, lowering throttle to zero leads to disarmed motors in the next state."
+  },
+  {
+    "sentence": "4.Motors spin only when throttle is raised",
+    "formula": "G(S → R)",
+    "explanation": "S represents spinning motors, and R represents raised throttle. This formula globally ensures that if motors are spinning, the throttle must be raised."
+  },
+  {
+    "sentence": "This flight mode is available for multirotors only.",
+    "formula": "G(M → Q)",
+    "explanation": "M represents the flight mode being available, and Q represents being a multirotor. This formula globally states that if this flight mode is available, the aircraft must be a multirotor."
+  }
+]

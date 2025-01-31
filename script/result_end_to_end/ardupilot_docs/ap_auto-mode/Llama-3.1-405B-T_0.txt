@@ -1,0 +1,66 @@
+Based on the provided document, I've extracted the specifications and expressed them using Metric Temporal Logic (MTL) formulas. Here are the results in the required JSON format:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(armed → (throttle > 0 → mission_started))",
+            "explanation": "The mission starts when the throttle is raised above zero, given that the copter is armed."
+        },
+        {
+            "formula": "G(in_air → (switch_to_auto → mission_resumed))",
+            "explanation": "If the mission is started from the air, the mission will begin from the first command when the flight mode switch is moved to Auto."
+        },
+        {
+            "formula": "G(takeoff_command ∧ above_takeoff_altitude → takeoff_command_completed)",
+            "explanation": "If the first command in the mission is a take-off command but the vehicle is already above the take-off command's altitude, the take-off command will be considered completed."
+        },
+        {
+            "formula": "G(pilot_override → yaw_control_override)",
+            "explanation": "During the mission, the pilot's yaw input can override the autopilot's yaw control."
+        },
+        {
+            "formula": "G(next_waypoint_reached → yaw_control_autopilot)",
+            "explanation": "The autopilot will attempt to retake yaw control as the vehicle passes the next waypoint."
+        },
+        {
+            "formula": "G(mission_completed → (RTL_command ∨ LAND_command))",
+            "explanation": "Missions should normally have an RTL or LAND command as their final command to ensure the copter will return or land after the mission completes."
+        },
+        {
+            "formula": "G(final_waypoint_reached ∧ ¬(RTL_command ∨ LAND_command) → stop_at_final_waypoint)",
+            "explanation": "Without a final RTL or LAND command, the copter will simply stop at the final waypoint."
+        },
+        {
+            "formula": "G(landing_detected → disarm)",
+            "explanation": "As the copter touches down at the end of the mission, the vehicle should automatically disarm."
+        },
+        {
+            "formula": "G(¬landing_detected → (throttle_down ∧ takeoff_in_another_mode → disarm))",
+            "explanation": "If the vehicle does not sense the landing, the pilot may need to hold the throttle down and take off in another mode, then manually disarm the vehicle."
+        },
+        {
+            "formula": "G(speed > WPNAV_SPEED → speed_limited)",
+            "explanation": "The maximum horizontal speed of the copter is limited by the WPNAV_SPEED parameter."
+        },
+        {
+            "formula": "G(vertical_speed > WPNAV_SPEED_UP ∨ vertical_speed < WPNAV_SPEED_DN → vertical_speed_limited)",
+            "explanation": "The vertical speeds up and down are limited by the WPNAV_SPEED_UP and WPNAV_SPEED_DN parameters."
+        },
+        {
+            "formula": "G(acceleration > WPNAV_ACCEL_Z → acceleration_limited)",
+            "explanation": "The acceleration is limited by the WPNAV_ACCEL_Z parameter."
+        },
+        {
+            "formula": "G(jerk > WPNAV_JERK → jerk_limited)",
+            "explanation": "The jerk is limited by the WPNAV_JERK parameter."
+        },
+        {
+            "formula": "G(distance_to_waypoint < WPNAV_RADIUS → waypoint_reached)",
+            "explanation": "The copter must come within the WPNAV_RADIUS distance to the exact waypoint position before the waypoint is considered 'complete'."
+        }
+    ]
+}
+```
+
+Note that some of these specifications may not be directly related to safety or critical functionality, but rather to the normal operation of the Auto mode. However, they are still important to ensure the correct behavior of the system.

@@ -1,0 +1,123 @@
+After carefully reading the document and following the steps outlined, I have annotated the sentences that convey information about state transition pre-requirements, constraints, expected post-actions, and expected state changes. Here is the output in the required JSON format:
+
+```json
+{
+  "specifications": [
+    {
+      "section-id": 0,
+      "sentence-id": 0
+    },
+    {
+      "section-id": 0,
+      "sentence-id": 1
+    },
+    {
+      "section-id": 0,
+      "sentence-id": 2
+    },
+    {
+      "section-id": 0,
+      "sentence-id": 3
+    },
+    {
+      "section-id": 0,
+      "sentence-id": 4
+    },
+    {
+      "section-id": 0,
+      "sentence-id": 6
+    },
+    {
+      "section-id": 0,
+      "sentence-id": 7
+    },
+    {
+      "section-id": 2,
+      "sentence-id": 0
+    },
+    {
+      "section-id": 2,
+      "sentence-id": 1
+    },
+    {
+      "section-id": 2,
+      "sentence-id": 2
+    },
+    {
+      "section-id": 2,
+      "sentence-id": 3
+    },
+    {
+      "section-id": 2,
+      "sentence-id": 5
+    },
+    {
+      "section-id": 2,
+      "sentence-id": 7
+    },
+    {
+      "section-id": 2,
+      "sentence-id": 8
+    },
+    {
+      "section-id": 2,
+      "sentence-id": 11
+    },
+    {
+      "section-id": 2,
+      "sentence-id": 12
+    },
+    {
+      "section-id": 2,
+      "sentence-id": 16
+    },
+    {
+      "section-id": 2,
+      "sentence-id": 17
+    },
+    {
+      "section-id": 2,
+      "sentence-id": 18
+    },
+    {
+      "section-id": 3,
+      "sentence-id": 0
+    },
+    {
+      "section-id": 3,
+      "sentence-id": 1
+    },
+    {
+      "section-id": 3,
+      "sentence-id": 2
+    }
+  ]
+}
+```
+
+The annotated sentences are:
+
+* Section 0, Sentence 0: "Circle will orbit a point located CIRCLE_RADIUS centimeters in front of the vehicle with the nose of the vehicle pointed at the center." (Expected state change)
+* Section 0, Sentence 1: "Setting the CIRCLE_RADIUS to zero will cause the copter to simply stay in place and slowly rotate (useful for panorama shots)." (Expected state change)
+* Section 0, Sentence 2: "The speed of the vehicle (in deg/second) can be modified by changing the CIRCLE_RATE parameter." (Expected post-action)
+* Section 0, Sentence 3: "A positive value means rotate clockwise, a negative means counter clockwise." (Constraint)
+* Section 0, Sentence 4: "The vehicle may not achieve the desired rate if this requires the acceleration towards the center of the circle to surpass the maximum acceleration held in the WPNAV_ACCEL parameter (units are cm/s/s)." (Constraint)
+* Section 0, Sentence 6: "The first is the use of RC Channel 6 if the TUNE option is set to 39, allowing decreasing the rate 50% or increasing it by 100%, at the channel min and max." (Expected post-action)
+* Section 0, Sentence 7: "The other is by enabling the CIRCLE_CONTROL parameter to allow stick adjustment of radius and speed." (Expected post-action)
+* Section 2, Sentence 0: "When enabled, the CIRCLE_CONTROL parameter allows the adjustment of the circle's radius and angular velocity, in firmware versions prior to 4.1." (Expected post-action)
+* Section 2, Sentence 1: "In 4.1 and later, the CIRCLE_OPTIONS bitmask parameter controls what actions the pilot can adjust with his sticks and circle mode operation." (Expected post-action)
+* Section 2, Sentence 2: "When bit 0 is set of the CIRCLE_OPTIONS parameter the pilot can adjust circle's radius and angular velocity with the control sticks:" (Expected post-action)
+* Section 2, Sentence 3: "1.Pitch stick up (reducing RC pwm) reduces the radius until it reaches zero." (Expected post-action)
+* Section 2, Sentence 5: "2.Pitch stick down (increasing RC pwm) increases the radius." (Expected post-action)
+* Section 2, Sentence 7: "3.Roll stick right (think clockwise) will increase the speed while moving clockwise, or decrease the speed while moving counterclockwise until reaching zero, at which point it will stop." (Expected post-action)
+* Section 2, Sentence 8: "4.Roll stick left (think counterclockwise) will increase the speed while moving counterclockwise, or decrease the speed while moving clockwise until reaching zero, at which point it will stop." (Expected post-action)
+* Section 2, Sentence 11: "5.Roll stick rate changes are inhibited when CH6 tuning knob is set for circle rate." (Constraint)
+* Section 2, Sentence 12: "6.All stick changes are inhibited in radio failsafe.(ie if loiter turns was part of a mission that continues when in failsafe)" (Constraint)
+* Section 2, Sentence 16: "When bit 1 is set of the CIRCLE_OPTIONS parameter the Copter will face the direction of travel as it circles, otherwise, the Copter will point its nose at the center of the circle as it orbits." (Expected state change)
+* Section 2, Sentence 17: "When bit 2 is set of the CIRCLE_OPTIONS parameter the circle's center position will set upon mode entry at the current location, rather than on the perimeter with the center in front of the Copter at the start." (Expected state change)
+* Section 2, Sentence 18: "When bit 3 is set of the CIRCLE_OPTIONS parameter the mount's (if used) ROI aka region of interest will be set on the circle center causing mount to face the circle's center all the times." (Expected state change)
+* Section 3, Sentence 0: "The pilot does not have any control over the roll and pitch but can change the altitude with the throttle stick as in altholdmode or loiter-mode." (Constraint)
+* Section 3, Sentence 1: "The pilot can control the yaw of the copter, but the autopilot will not retake control of the yaw until circle mode is re-engaged." (Constraint)
+* Section 3, Sentence 2: "The mission command LOITER_TURNS invokes Circle mode during a mission." (Expected state change)
+
+Note that some sentences may convey multiple types of information, but I have only annotated each sentence once according to the primary type of information it conveys.

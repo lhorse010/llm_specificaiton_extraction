@@ -1,0 +1,4 @@
+| Parameter          | Type   | Description                                          |
+| ------------------ | ------ | ---------------------------------------------------- |
+| `stop_margin`      | double | [m] margin for ego vehicle to stop before speed_bump |
+| `print_debug_info` | bool   | whether debug info will be printed or not            |

@@ -1,0 +1,37 @@
+[
+  {
+    "index": 0,
+    "formula": "G (RTL_MODE → (ALT ≥ max(RTL_CLIMB_MIN, RTL_ALT) ∧ ALT ≥ 2))",
+    "explanation": "Globally, if RTL mode is activated, the copter's altitude must be at least the greater of RTL_CLIMB_MIN or RTL_ALT, and no less than 2 meters."
+  },
+  {
+    "index": 1,
+    "formula": "G (RTL_MODE ∧ DIST_TO_HOME ≤ 10 → ALT_RISE ≤ 10 * RTL_CONE_SLOPE)",
+    "explanation": "Globally, if RTL mode is activated and the copter is within 10 meters of home, the altitude rise is limited by the distance to home multiplied by RTL_CONE_SLOPE."
+  },
+  {
+    "index": 2,
+    "formula": "G (RTL_MODE → (GPS_LOCK ∧ HDOP ≤ threshold))",
+    "explanation": "Globally, if RTL mode is activated, a reliable GPS lock with acceptable HDOP is required."
+  },
+  {
+    "index": 3,
+    "formula": "G (RTL_MODE → F (POSITION = HOME_POSITION))",
+    "explanation": "Globally, if RTL mode is activated, eventually the copter must reach the home position."
+  },
+  {
+    "index": 4,
+    "formula": "G (RTL_MODE → X (ALT_FINAL = RTL_ALT_FINAL ∨ ALT_FINAL = 0))",
+    "explanation": "Globally, if RTL mode is activated, the final altitude must be RTL_ALT_FINAL or descend to land if it's set to 0."
+  },
+  {
+    "index": 5,
+    "formula": "G (RTL_MODE → F (LOITER_TIME ≥ RTL_LOIT_TIME))",
+    "explanation": "Globally, if RTL mode is activated, the copter must loiter above the home position for at least RTL_LOIT_TIME before descending."
+  },
+  {
+    "index": 6,
+    "formula": "G (RTL_MODE → (LAND_SPEED ≥ 20 ∧ LAND_SPEED ≤ 200))",
+    "explanation": "Globally, if RTL mode is activated, the landing speed must be between 20 and 200 cm/s."
+  }
+]

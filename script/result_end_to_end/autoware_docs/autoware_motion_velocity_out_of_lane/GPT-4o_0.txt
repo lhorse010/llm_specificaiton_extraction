@@ -1,0 +1,50 @@
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(launch_out_of_lane_module → F(collision_avoided))",
+            "explanation": "If the module is activated, eventually a collision must be avoided."
+        },
+        {
+            "formula": "G((¬collision_avoided) U (time_to_collision < threshold.time_threshold))",
+            "explanation": "A collision must be avoided if the time to collision is below a certain threshold."
+        },
+        {
+            "formula": "G(minimum_velocity > 0 → ¬ignored_object)",
+            "explanation": "Objects with speed above the minimum velocity should not be ignored."
+        },
+        {
+            "formula": "G(ignore_behind_ego → ¬object_behind_ego)",
+            "explanation": "Objects coming from behind the ego vehicle can be ignored if the parameter is set."
+        },
+        {
+            "formula": "G(predicted_path_confidence ≥ predicted_path_min_confidence → ¬ignored_path)",
+            "explanation": "Predicted paths with sufficient confidence should not be ignored."
+        },
+        {
+            "formula": "G(cut_predicted_paths_beyond_red_lights → ¬predicted_path_after_red_light)",
+            "explanation": "Predicted paths should be cut at red traffic lights if the parameter is set."
+        },
+        {
+            "formula": "G(mode = threshold → (time_to_collision < ttc.threshold → collision_avoided))",
+            "explanation": "In threshold mode, collisions must be avoided if time to collision is below the threshold."
+        },
+        {
+            "formula": "G(minimum_stopping_distance ≤ calculated_stop_distance)",
+            "explanation": "The calculated stop distance must be at least the minimum stopping distance."
+        },
+        {
+            "formula": "G((distance_to_avoid < actions.slowdown.threshold) → (velocity = actions.slowdown.velocity))",
+            "explanation": "If the distance to avoid is below the slowdown threshold, the vehicle should slow down."
+        },
+        {
+            "formula": "G((distance_to_avoid < actions.stop.threshold) → (velocity = 0))",
+            "explanation": "If the distance to avoid is below the stop threshold, the vehicle should stop."
+        },
+        {
+            "formula": "G(stability_duration ≥ action.min_duration)",
+            "explanation": "The stop or slowdown pose must be stable for at least the minimum duration."
+        }
+    ]
+}
+```

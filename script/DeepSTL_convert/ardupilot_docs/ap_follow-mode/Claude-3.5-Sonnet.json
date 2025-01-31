@@ -1,0 +1,82 @@
+{
+    "temporal_logic_formulars": [
+        {
+            "section-id": 0,
+            "sentence-id": 1,
+            "sentence": "The vehicle lead vehicle's position must be published to the vehicle in Follow mode using a telemetry system.",
+            "tl": "always ( not ( vehicleleadvehicl == sposioinpublished == Fvehilol ) and ehicledledlse == Folosil )"
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 2,
+            "sentence": "The altitude is maintained with the altitude hold controller so the vehicle will attempt to hold its current altitude when the sticks are placed with 10% of mid-throttle.",
+            "tl": "always ( altitudemaintain == itainedthaltrecolersoler ) until ( at == itrsoleclersole ) -> titscuretdt == ticstlicstedth1ithritlth1itlmdth == ithrtlotleitle )"
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 3,
+            "sentence": "It will climb or descend at up to 2.5m/s (this speed is adjustable with the PILOT_SPEED_UP and PILOT_SPEED_DN parameters).",
+            "tl": "always ( climb == descedndup or ( sepedadj == dalwithPILOT_SED_UP ) -> P == PILOTE_SP and ( PLOED_SPE_Na == aED_rmeters ) )"
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 4,
+            "sentence": "The acceleration used to establish these speeds is set by PILOT_ACCEL_Z.",
+            "tl": "always ( acelerationused == establhesespeds )"
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 6,
+            "sentence": "1.FOLL_ENABLE : set to 1 to enable follow mode and refresh parameters",
+            "tl": "always ( FOLL_ENABLE == 1 enablefolllow and refreshpare == rameshpametersrsersamers )"
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 7,
+            "sentence": "2.FOLL_SYSID : MAVLink system id of lead vehicle (\"0\" means follow the first vehicle \"seen\")",
+            "tl": "always ( M2FOL_SYSID == MAVLinsystemi == dleadvehicle0 and ( meansfolow == evehil ) )"
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 8,
+            "sentence": "3.FOLL_DIST_MAX : if lead vehicle is more than this many meters away, give up on following and hold position",
+            "tl": "always ( lFOLL_DIST_MAX == leadvehicle > manymeters = giveup and positeiveup == position )"
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 9,
+            "sentence": "4.FOLL_OFS_X , FOLL_OFS_Y , FOLL_OFS_Z : 3D offset (in meters) from the lead vehicle",
+            "tl": "always ( FOL_OFS_YFOL_ == OL_LOL_FS_Z3Doffset == metetersers )"
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 10,
+            "sentence": "5.FOLL_OFS_TYPE : set to 0 if offsets are North-East-Down, 1 if offsets are relative to lead vehicle's heading",
+            "tl": "always ( FOL_OFS_TYPE == 0 offsetNorth == astDown1ofsetsetsrlativele ) -> not ( leleleadvehic == sheadveicleshe ) )"
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 11,
+            "sentence": "6.FOLL_YAW_BEHAVE : controls whether follow points in the same direction as lead vehicle or always towards it",
+            "tl": "always ( F6OL_YAW_BEHAV == controlswhetherfolowpoints == didireretlonl or leclecoionle == dvecletoionledvehicle ) or to ) -> lea == dverdvehiclehicle or to == towatowardvedsicleicle )"
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 12,
+            "sentence": "7.FOLL_POS_P : gain which controls how aggressively this vehicle moves towards lead vehicle (limited by WPNAV_SPEED )",
+            "tl": "always ( gaiL_POS_P == gancontrshowagresilesievely == vehiclesowardsesestowardsedse ) until ( lelele ) -> ( lsleadsleadveadvehicled == limimPdvedyWPNV_SEDP_SE )"
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 13,
+            "sentence": "8.FOLL_ALT_TYPE : allows selecting whether to use lead vehicle's relative-to-home or relative-to-sea-level altitude",
+            "tl": "always ( l8FOL_ALT_TYPE == alowsectingwhether == uselelelealelesrele ) or srlative == hehrlomerlelerle )"
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 14,
+            "sentence": "9.FOLL_OPTIONS: set bit 0 to \"1\" to enable the Gimbal / Mount Controls to follow the target vehicle.",
+            "tl": "always ( F9OL_OPTIONS == enableGimbal == enoMountCols ) -> folontrols == folowtargetvehicle )"
+        }
+    ]
+}

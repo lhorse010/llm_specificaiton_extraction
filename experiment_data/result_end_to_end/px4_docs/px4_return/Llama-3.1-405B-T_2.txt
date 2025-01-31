@@ -1,0 +1,56 @@
+Based on the provided document, I've extracted the specifications and expressed them using Metric Temporal Logic (MTL) formulas. Here are the results in the required JSON format:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(armed → ¬return_mode)",
+            "explanation": "The vehicle must be armed when switching to return mode, and arming is prevented in return mode."
+        },
+        {
+            "formula": "G(return_mode → G(has_global_position))",
+            "explanation": "Return mode requires a global 3D position estimate, and the vehicle will failsafe if it loses the position estimate."
+        },
+        {
+            "formula": "G(return_mode → G(has_home_position))",
+            "explanation": "Return mode requires the home position to be set."
+        },
+        {
+            "formula": "G(return_mode → F(altitude ≥ RTL_RETURN_ALT))",
+            "explanation": "In return mode, the vehicle will ascend to the minimum return altitude (RTL_RETURN_ALT) or its initial altitude, whichever is higher."
+        },
+        {
+            "formula": "G(return_mode ∧ altitude ≥ RTL_RETURN_ALT → F(at_destination))",
+            "explanation": "Once the vehicle reaches the minimum return altitude, it will fly via a direct constant-altitude path to the safe landing point (nearest rally point or home position)."
+        },
+        {
+            "formula": "G(at_destination → F(altitude = RTL_DESCEND_ALT))",
+            "explanation": "Upon arrival at the destination, the vehicle will rapidly descend to the descent altitude (RTL_DESCEND_ALT)."
+        },
+        {
+            "formula": "G(altitude = RTL_DESCEND_ALT → F(wait_for(RTL_LAND_DELAY)))",
+            "explanation": "After descending to the descent altitude, the vehicle will wait for a configurable time (RTL_LAND_DELAY) before landing."
+        },
+        {
+            "formula": "G(wait_for(RTL_LAND_DELAY) → F(landed))",
+            "explanation": "After waiting for the specified time, the vehicle will land."
+        }
+    ]
+}
+```
+
+Note that I've used the following abbreviations in the MTL formulas:
+
+* `return_mode`: The vehicle is in return mode.
+* `armed`: The vehicle is armed.
+* `has_global_position`: The vehicle has a global 3D position estimate.
+* `has_home_position`: The vehicle has a set home position.
+* `altitude`: The vehicle's current altitude.
+* `RTL_RETURN_ALT`: The minimum return altitude.
+* `RTL_DESCEND_ALT`: The descent altitude.
+* `RTL_LAND_DELAY`: The time to wait before landing.
+* `at_destination`: The vehicle has reached the safe landing point.
+* `wait_for(t)`: The vehicle waits for time `t`.
+* `landed`: The vehicle has landed.
+
+These abbreviations are used to make the formulas more readable and concise.

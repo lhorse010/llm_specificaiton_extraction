@@ -1,0 +1,42 @@
+I'll analyze the document and extract the specifications that can be expressed using Metric Temporal Logic (MTL) formulas. Then, I'll present them in the required JSON format.
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(land_mode_engaged → F(vehicle_landed))",
+            "explanation": "Globally, if the land mode is engaged, then finally the vehicle will land. This captures the main purpose of the Land Mode."
+        },
+        {
+            "formula": "G(land_mode_engaged ∧ vehicle_landed → F(vehicle_disarmed))",
+            "explanation": "Globally, if the land mode is engaged and the vehicle has landed, then finally the vehicle will disarm. This represents the automatic disarming after landing."
+        },
+        {
+            "formula": "G(¬valid_local_position → ¬land_mode_engaged)",
+            "explanation": "Globally, if there is no valid local position, then the land mode cannot be engaged. This enforces the requirement for a valid local position estimate."
+        },
+        {
+            "formula": "G(land_mode_engaged ∧ X(¬valid_local_position) → X(failsafe_activated))",
+            "explanation": "Globally, if land mode is engaged and in the next state there is no valid local position, then in the next state failsafe will be activated. This represents the failsafe behavior on position loss."
+        },
+        {
+            "formula": "G(¬vehicle_armed → ¬land_mode_engaged)",
+            "explanation": "Globally, if the vehicle is not armed, then land mode cannot be engaged. This enforces the requirement that the vehicle must be armed to enter land mode."
+        },
+        {
+            "formula": "G(rc_stick_movement ∧ land_mode_engaged ∧ ¬critical_battery_failsafe → X(position_mode_engaged))",
+            "explanation": "Globally, if there's RC stick movement while in land mode and not in a critical battery failsafe, then in the next state, position mode will be engaged. This represents the mode change behavior on RC stick movement."
+        },
+        {
+            "formula": "G(mav_cmd_nav_land_received → X(land_mode_engaged))",
+            "explanation": "Globally, if the MAV_CMD_NAV_LAND command is received, then in the next state, land mode will be engaged. This represents one way to trigger the land mode."
+        },
+        {
+            "formula": "G(land_mode_engaged → F(vehicle_descending_at_mpc_land_speed))",
+            "explanation": "Globally, if land mode is engaged, then finally the vehicle will be descending at the rate specified by MPC_LAND_SPEED. This captures the descent behavior in land mode."
+        }
+    ]
+}
+```
+
+These MTL formulas capture the key specifications of the Land Mode for multicopters as described in the document. They cover the main behaviors, requirements, and constraints of the mode, including engagement conditions, disarming, position requirements, failsafe behaviors, mode changes, and descent characteristics.

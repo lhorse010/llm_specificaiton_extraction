@@ -1,0 +1,37 @@
+[
+  {
+    "index": 0,
+    "formula": "G(altitude > 0 → velocity_z <= WPNAV_SPEED_UP)",
+    "explanation": "The vehicle's vertical speed up should not exceed the WPNAV_SPEED_UP parameter when the altitude is above 0."
+  },
+  {
+    "index": 1,
+    "formula": "G(altitude > 0 → velocity_z >= -WPNAV_SPEED_DN)",
+    "explanation": "The vehicle's vertical speed down should not exceed the WPNAV_SPEED_DN parameter when the altitude is above 0."
+  },
+  {
+    "index": 2,
+    "formula": "G(velocity_x^2 + velocity_y^2 <= WPNAV_SPEED^2)",
+    "explanation": "The vehicle's horizontal speed should not exceed the WPNAV_SPEED parameter."
+  },
+  {
+    "index": 3,
+    "formula": "G(guided_mode → (velocity_x = 0 ∧ velocity_y = 0 ∧ velocity_z = 0) U (target_location_reached ∧ hover))",
+    "explanation": "In guided mode, the vehicle should fly to the target location and wait there until another location is entered or the mode is switched."
+  },
+  {
+    "index": 4,
+    "formula": "G(guided_mode → (target_location_reached → hover))",
+    "explanation": "In guided mode, the vehicle should hover at the target location once it is reached."
+  },
+  {
+    "index": 5,
+    "formula": "G(guided_mode ∧ no_GPS → (attitude_targets_accepted ∧ ¬position_targets_accepted ∧ ¬velocity_targets_accepted))",
+    "explanation": "In guided mode without GPS, the vehicle should only accept attitude targets and not position or velocity targets."
+  },
+  {
+    "index": 6,
+    "formula": "G(guided_mode ∧ timeout_expired → (velocity_x = 0 ∧ velocity_y = 0 ∧ velocity_z = 0))",
+    "explanation": "In guided mode, if no commands are received from the companion computer for the specified timeout period, the vehicle should slow to a stop or hold a level hover."
+  }
+]

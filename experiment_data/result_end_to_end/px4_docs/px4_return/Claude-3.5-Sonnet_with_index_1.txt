@@ -1,0 +1,47 @@
+[
+  {
+    "index": 0,
+    "formula": "G(return_mode → (global_position ∧ home_position_set))",
+    "explanation": "Globally, if the vehicle is in return mode, it must have a global position estimate and a home position set."
+  },
+  {
+    "index": 1,
+    "formula": "G(return_mode → ¬can_arm)",
+    "explanation": "Globally, when in return mode, the vehicle cannot be armed. It must be armed before entering this mode."
+  },
+  {
+    "index": 2,
+    "formula": "G(return_mode ∧ rc_stick_movement → X(position_mode) ∨ (critical_battery_failsafe))",
+    "explanation": "Globally, if in return mode and RC stick movement is detected, the next state will be position mode, unless there's a critical battery failsafe."
+  },
+  {
+    "index": 3,
+    "formula": "G(return_mode → F(altitude ≥ min_return_altitude))",
+    "explanation": "Globally, when in return mode, the vehicle will eventually reach an altitude greater than or equal to the minimum return altitude."
+  },
+  {
+    "index": 4,
+    "formula": "G(return_mode → F(at_destination ∧ X(altitude = descent_altitude)))",
+    "explanation": "Globally, when in return mode, the vehicle will eventually reach its destination, and in the next state, its altitude will be equal to the descent altitude."
+  },
+  {
+    "index": 5,
+    "formula": "G(at_destination → F[0,RTL_LAND_DELAY](landing))",
+    "explanation": "Globally, when the vehicle reaches its destination, it will start landing within RTL_LAND_DELAY time units."
+  },
+  {
+    "index": 6,
+    "formula": "G(return_mode ∧ ¬global_position → X(failsafe))",
+    "explanation": "Globally, if the vehicle is in return mode and loses its global position estimate, it will enter failsafe mode in the next state."
+  },
+  {
+    "index": 7,
+    "formula": "G(return_mode → F(at_safe_landing_point))",
+    "explanation": "Globally, when in return mode, the vehicle will eventually reach a safe landing point (home position or nearest rally point)."
+  },
+  {
+    "index": 8,
+    "formula": "G(return_mode ∧ (distance_to_destination < max_cone_radius) → (min_return_altitude ≥ RTL_DESCEND_ALT))",
+    "explanation": "Globally, when in return mode and the distance to destination is less than the maximum cone radius, the minimum return altitude must be greater than or equal to RTL_DESCEND_ALT."
+  }
+]

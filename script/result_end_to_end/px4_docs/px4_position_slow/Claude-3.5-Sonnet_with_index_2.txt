@@ -1,0 +1,37 @@
+[
+  {
+    "index": 0,
+    "formula": "G(velocity_horizontal ≤ MC_SLOW_HVEL)",
+    "explanation": "The horizontal velocity in Position Slow Mode should always be less than or equal to the parameter MC_SLOW_HVEL."
+  },
+  {
+    "index": 1,
+    "formula": "G(velocity_vertical ≤ MC_SLOW_VVEL)",
+    "explanation": "The vertical velocity in Position Slow Mode should always be less than or equal to the parameter MC_SLOW_VVEL."
+  },
+  {
+    "index": 2,
+    "formula": "G(yaw_rate ≤ MC_SLOW_YAWRATE)",
+    "explanation": "The yaw rate in Position Slow Mode should always be less than or equal to the parameter MC_SLOW_YAWRATE."
+  },
+  {
+    "index": 3,
+    "formula": "G((RC_input = max) → (velocity ≤ MPC_VEL_MANUAL))",
+    "explanation": "When the RC input is at its maximum value, the velocity should not exceed the MPC_VEL_MANUAL parameter value."
+  },
+  {
+    "index": 4,
+    "formula": "G((RC_input = min) → (velocity ≥ MC_SLOW_MIN))",
+    "explanation": "When the RC input is at its minimum value, the velocity should not be less than the MC_SLOW_MIN parameter value for the corresponding axis."
+  },
+  {
+    "index": 5,
+    "formula": "G((¬isNAN(MAVLink_limit) ∧ ¬RC_mapped) → (velocity ≤ MAVLink_limit))",
+    "explanation": "When a non-NAN MAVLink velocity limit is set and the axis is not mapped to an RC input, the velocity should not exceed the MAVLink limit."
+  },
+  {
+    "index": 6,
+    "formula": "G(velocity_Position_Slow ≤ velocity_Position)",
+    "explanation": "The velocity in Position Slow Mode should always be less than or equal to the velocity in regular Position Mode for all axes."
+  }
+]

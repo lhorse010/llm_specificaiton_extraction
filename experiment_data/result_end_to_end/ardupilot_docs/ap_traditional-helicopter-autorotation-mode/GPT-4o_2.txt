@@ -1,0 +1,30 @@
+```json
+{
+    "specifications": [
+        {
+            "formula": "G (¬(real_life_mode_enabled))",
+            "explanation": "The autonomous autorotation mode should never be enabled in real-life scenarios, only in simulation (SITL)."
+        },
+        {
+            "formula": "G (entry_phase → (collective_proportional ∧ cyclic_control))",
+            "explanation": "During the entry phase, collective must be adjusted proportionally to minimize head speed loss, and cyclic is used for attitude control."
+        },
+        {
+            "formula": "G (glide_phase → (maintain_airspeed ∧ manage_head_speed))",
+            "explanation": "In the glide phase, the helicopter must maintain forward airspeed and manage head speed efficiently."
+        },
+        {
+            "formula": "G (flare_phase → (reduce_descent_speed ∧ convert_airspeed_to_lift))",
+            "explanation": "In the flare phase, the objectives are to reduce vertical descent speed and convert forward airspeed into rotor lift."
+        },
+        {
+            "formula": "G (touch_down_phase → (maintain_landing_attitude ∧ avoid_blade_stall))",
+            "explanation": "During touch-down, the helicopter must maintain a landing attitude and avoid blade stall as the rotor slows."
+        },
+        {
+            "formula": "G (bail_out_phase → X (match_requested_vertical_speed))",
+            "explanation": "In the bail-out phase, after a set ramp time, the vertical speed should match the operator's stick input."
+        }
+    ]
+}
+```

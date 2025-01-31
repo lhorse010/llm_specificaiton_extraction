@@ -1,0 +1,30 @@
+I'll extract the specifications from the document and express them using Metric Temporal Logic (MTL) formulas. Then, I'll format the results in JSON as requested.
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(detection_area_on_target_lane → F(stop_planning_executed))",
+            "explanation": "Globally, if there is a detection area on the target lane, then eventually stop planning will be executed."
+        },
+        {
+            "formula": "G(pointcloud_in_detection_area → F(X[l](stop_point)))",
+            "explanation": "Globally, if pointcloud is detected in the detection area, then eventually a stop point will be inserted l meters in front of the stop line in the next state."
+        },
+        {
+            "formula": "G(ego_vehicle_before_pass_judge_point ∧ pointcloud_in_detection_area → X(velocity = 0))",
+            "explanation": "Globally, if the ego-vehicle is before the pass judge point and pointcloud is detected in the detection area, then in the next state, the velocity will be set to zero."
+        },
+        {
+            "formula": "G(ego_vehicle_passed_pass_judge_point → ¬(X(stop)))",
+            "explanation": "Globally, if the ego vehicle has passed the pass judge point, then it will not stop in the next state."
+        },
+        {
+            "formula": "G((stopped ∧ (distance_to_stop_point < hold_stop_margin_distance)) → X(keep_stopping))",
+            "explanation": "Globally, if the vehicle is stopped and the distance to the stop point is less than hold_stop_margin_distance, then in the next state, it will keep stopping at the current position."
+        }
+    ]
+}
+```
+
+These MTL formulas capture the key specifications from the provided document. They express the behavior of the detection area module, including activation conditions, stop planning execution, and the restart prevention mechanism.

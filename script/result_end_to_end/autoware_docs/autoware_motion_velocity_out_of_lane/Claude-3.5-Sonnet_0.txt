@@ -1,0 +1,58 @@
+I'll extract the specifications from the document and express them using Metric Temporal Logic (MTL) formulas as requested. Then, I'll format the results in JSON.
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(launch_parameter_set → out_of_lane_module_active)",
+            "explanation": "Globally, if the launch parameter for the out of lane module is set to true, then the module should be active."
+        },
+        {
+            "formula": "G(out_of_lane_collision_detected → F(stop_point_inserted))",
+            "explanation": "Globally, if an out of lane collision is detected, then eventually a stop point should be inserted in the trajectory."
+        },
+        {
+            "formula": "G(trajectory_point → X(footprint_projected))",
+            "explanation": "Globally, for each trajectory point, in the next step, the ego footprint should be projected."
+        },
+        {
+            "formula": "G(object_speed < minimum_velocity → ¬consider_object)",
+            "explanation": "Globally, if an object's speed is below the minimum velocity, then do not consider that object."
+        },
+        {
+            "formula": "G((ignore_behind_ego ∧ object_behind_ego) → ¬consider_object)",
+            "explanation": "Globally, if ignore_behind_ego is true and an object is behind the ego vehicle, then do not consider that object."
+        },
+        {
+            "formula": "G(predicted_path_confidence < predicted_path_min_confidence → ¬consider_predicted_path)",
+            "explanation": "Globally, if a predicted path's confidence is below the minimum confidence threshold, then do not consider that predicted path."
+        },
+        {
+            "formula": "G((cut_predicted_paths_beyond_red_lights ∧ path_beyond_red_light) → truncate_predicted_path)",
+            "explanation": "Globally, if cutting paths beyond red lights is enabled and a path goes beyond a red light, then truncate that predicted path."
+        },
+        {
+            "formula": "G((mode = threshold ∧ time < time_threshold) → avoid_out_of_lane_area)",
+            "explanation": "Globally, if the mode is set to threshold and the calculated time is less than the time threshold, then avoid the out of lane area."
+        },
+        {
+            "formula": "G((mode = ttc ∧ time_to_collision < ttc_threshold) → avoid_out_of_lane_area)",
+            "explanation": "Globally, if the mode is set to ttc and the time to collision is below the ttc threshold, then avoid the out of lane area."
+        },
+        {
+            "formula": "G(distance < actions.slowdown.threshold → F(velocity = actions.slowdown.velocity))",
+            "explanation": "Globally, if the distance to the trajectory point to avoid is below the slowdown threshold, then eventually set the velocity to the slowdown velocity."
+        },
+        {
+            "formula": "G(distance < actions.stop.threshold → F(velocity = 0))",
+            "explanation": "Globally, if the distance to the trajectory point to avoid is below the stop threshold, then eventually set the velocity to 0 m/s."
+        },
+        {
+            "formula": "G(stop_or_slowdown_pose_generated → X(G[0,action.min_duration](maintain_pose)))",
+            "explanation": "Globally, when a stop or slowdown pose is generated, in the next state, maintain that pose for at least the minimum duration specified by action.min_duration."
+        }
+    ]
+}
+```
+
+These MTL formulas capture the key specifications from the document, focusing on the activation conditions, filtering criteria, collision avoidance logic, and velocity adjustment rules for the out-of-lane module. The formulas use the provided logical and temporal operators to express the temporal relationships and conditions described in the document.

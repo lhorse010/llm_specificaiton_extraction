@@ -1,0 +1,32 @@
+[
+  {
+    "sentence": "The vehicle lead vehicle's position must be published to the vehicle in Follow mode using a telemetry system.",
+    "formula": "G(P → F(V))",
+    "explanation": "Here, P represents the lead vehicle's position being published, and V represents the vehicle being in Follow mode. The formula states that whenever the vehicle is in Follow mode, the lead vehicle's position will eventually be published."
+  },
+  {
+    "sentence": "The altitude is maintained with the altitude hold controller so the vehicle will attempt to hold its current altitude when the sticks are placed with 10% of mid-throttle.",
+    "formula": "G(A → X(H))",
+    "explanation": "Here, A represents the altitude hold controller being engaged, and H represents the vehicle holding its current altitude. The formula states that whenever the altitude hold controller is engaged, the vehicle will attempt to hold its current altitude at the next time step."
+  },
+  {
+    "sentence": "It will climb or descend at up to 2.5m/s (this speed is adjustable with the PILOT_SPEED_UP and PILOT_SPEED_DN parameters).",
+    "formula": "G(S → F(V ≤ 2.5))",
+    "explanation": "Here, S represents the vehicle climbing or descending, and V represents the vehicle's speed. The formula states that whenever the vehicle is climbing or descending, its speed will eventually be limited to 2.5m/s."
+  },
+  {
+    "sentence": "The acceleration used to establish these speeds is set by PILOT_ACCEL_Z.",
+    "formula": "G(A → F(V = PILOT_ACCEL_Z))",
+    "explanation": "Here, A represents the vehicle accelerating, and V represents the vehicle's acceleration. The formula states that whenever the vehicle is accelerating, its acceleration will eventually be set to the value of PILOT_ACCEL_Z."
+  },
+  {
+    "sentence": "3.FOLL_DIST_MAX : if lead vehicle is more than this many meters away, give up on following and hold position",
+    "formula": "G(D > FOLL_DIST_MAX → X(H))",
+    "explanation": "Here, D represents the distance between the vehicle and the lead vehicle, and H represents the vehicle holding its position. The formula states that whenever the distance between the vehicle and the lead vehicle exceeds FOLL_DIST_MAX, the vehicle will give up on following and hold its position at the next time step."
+  },
+  {
+    "sentence": "7.FOLL_POS_P : gain which controls how aggressively this vehicle moves towards lead vehicle (limited by WPNAV_SPEED )",
+    "formula": "G(FOLL_POS_P → F(V ≤ WPNAV_SPEED))",
+    "explanation": "Here, FOLL_POS_P represents the gain controlling the vehicle's movement towards the lead vehicle, and V represents the vehicle's speed. The formula states that whenever the gain is applied, the vehicle's speed will eventually be limited to WPNAV_SPEED."
+  }
+]

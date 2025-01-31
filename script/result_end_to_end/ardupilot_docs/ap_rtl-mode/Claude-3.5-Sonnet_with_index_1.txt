@@ -1,0 +1,37 @@
+[
+  {
+    "index": 0,
+    "formula": "G(RTL_mode → F[0,∞](altitude ≥ max(RTL_CLIMB_MIN, RTL_ALT, 2)))",
+    "explanation": "Globally, when RTL mode is activated, eventually the copter will reach an altitude that is at least the maximum of RTL_CLIMB_MIN, RTL_ALT, and 2 meters."
+  },
+  {
+    "index": 1,
+    "formula": "G(RTL_mode ∧ (distance_to_home * RTL_CONE_SLOPE < max(RTL_CLIMB_MIN, RTL_ALT)) → F[0,∞](altitude ≤ max(distance_to_home * RTL_CONE_SLOPE, 2)))",
+    "explanation": "Globally, when RTL mode is activated and the copter is close to home (determined by RTL_CONE_SLOPE), the maximum altitude will be limited by the cone slope calculation or 2 meters, whichever is higher."
+  },
+  {
+    "index": 2,
+    "formula": "G(RTL_mode → F[0,∞](position = home_position))",
+    "explanation": "Globally, when RTL mode is activated, eventually the copter will return to the home position."
+  },
+  {
+    "index": 3,
+    "formula": "G(RTL_mode ∧ (altitude = home_altitude) → X(hover_time ≥ RTL_LOIT_TIME))",
+    "explanation": "Globally, when RTL mode is active and the copter reaches home altitude, it will hover for at least RTL_LOIT_TIME milliseconds before descending."
+  },
+  {
+    "index": 4,
+    "formula": "G(RTL_mode → (horizontal_speed ≤ max(RTL_SPEED, WPNAV_SPEED)))",
+    "explanation": "Globally, when RTL mode is active, the horizontal speed will not exceed the maximum of RTL_SPEED and WPNAV_SPEED."
+  },
+  {
+    "index": 5,
+    "formula": "G(RTL_mode ∧ (position = home_position) ∧ (hover_time ≥ RTL_LOIT_TIME) → F[0,∞](altitude = 0))",
+    "explanation": "Globally, when RTL mode is active, the copter has reached the home position, and hovered for RTL_LOIT_TIME, it will eventually land (altitude = 0)."
+  },
+  {
+    "index": 6,
+    "formula": "G(RTL_mode ∧ (altitude ≤ 20 ∧ SONAR_enabled) → altitude = actual_altitude)",
+    "explanation": "Globally, when RTL mode is active and the copter is within 20 feet of the ground with SONAR enabled, the altitude will be based on actual altitude rather than pressure altitude."
+  }
+]

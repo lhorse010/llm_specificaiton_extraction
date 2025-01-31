@@ -1,0 +1,32 @@
+[
+  {
+    "index": 0,
+    "formula": "G (LandMode → F (Landed ∧ Disarmed))",
+    "explanation": "Globally, if the vehicle is in Land Mode, it will eventually land and disarm."
+  },
+  {
+    "index": 1,
+    "formula": "G (LandMode → ¬Arming)",
+    "explanation": "Globally, if the vehicle is in Land Mode, it cannot arm."
+  },
+  {
+    "index": 2,
+    "formula": "G (LandMode → ValidLocalPositionEstimate)",
+    "explanation": "Globally, if the vehicle is in Land Mode, it requires a valid local position estimate."
+  },
+  {
+    "index": 3,
+    "formula": "G (Flying ∧ ¬ValidLocalPositionEstimate → Failsafe)",
+    "explanation": "Globally, if the vehicle is flying and loses its local position estimate, it will failsafe."
+  },
+  {
+    "index": 4,
+    "formula": "G (LandMode ∧ RCStickMovement → X PositionMode)",
+    "explanation": "Globally, if the vehicle is in Land Mode and there is RC stick movement, it will switch to Position Mode in the next time step."
+  },
+  {
+    "index": 5,
+    "formula": "G (LandMode → DescendAtRate(MPC_LAND_SPEED))",
+    "explanation": "Globally, if the vehicle is in Land Mode, it will descend at the rate specified in MPC_LAND_SPEED."
+  }
+]

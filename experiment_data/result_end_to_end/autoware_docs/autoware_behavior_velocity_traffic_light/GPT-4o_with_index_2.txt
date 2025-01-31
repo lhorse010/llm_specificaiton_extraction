@@ -1,0 +1,47 @@
+[
+  {
+    "index": 0,
+    "formula": "G (traffic_light_in_ego_lane → X(traffic_light_mapped ∧ stop_line_mapped))",
+    "explanation": "Whenever there is a traffic light in the ego lane, the system should ensure that the traffic light and stop line are mapped in the next state."
+  },
+  {
+    "index": 1,
+    "formula": "G ((¬traffic_light_found ∨ traffic_light_timed_out) → F stop_signal)",
+    "explanation": "If no corresponding traffic light signal is found or if it's timed out, the system should treat it as a stop signal eventually."
+  },
+  {
+    "index": 2,
+    "formula": "G ((reliability_high ∧ ¬green_light) → F stop_point_generated)",
+    "explanation": "If the highest reliability traffic light recognition result is not green, a stop point should eventually be generated."
+  },
+  {
+    "index": 3,
+    "formula": "G ((elapsed_time < stop_time_hysteresis) → F pass_signal)",
+    "explanation": "If the elapsed time to receive a stop signal is less than the stop time hysteresis, the system should eventually treat it as a pass signal."
+  },
+  {
+    "index": 4,
+    "formula": "G (velocity > 2.0 → X pass_judge)",
+    "explanation": "If the vehicle's current velocity is higher than 2.0 m/s, the system should apply the pass judgment in the next state."
+  },
+  {
+    "index": 5,
+    "formula": "G ((velocity ≤ 2.0) → F stop)",
+    "explanation": "If the vehicle's velocity is 2.0 m/s or lower, the system should eventually stop."
+  },
+  {
+    "index": 6,
+    "formula": "G (¬can_pass_during_yellow → F emergency_stop)",
+    "explanation": "If the vehicle cannot pass through the stop line during yellow, the system should eventually execute an emergency stop."
+  },
+  {
+    "index": 7,
+    "formula": "G ((dilemma_zone ∧ ¬can_stop) → F emergency_stop)",
+    "explanation": "If the vehicle is in the dilemma zone and cannot stop under deceleration and jerk limit, it should eventually perform an emergency stop."
+  },
+  {
+    "index": 8,
+    "formula": "G ((optional_zone ∧ can_stop) → F stop)",
+    "explanation": "If the vehicle is in the optional zone and can stop under deceleration and jerk limit, it should eventually stop."
+  }
+]

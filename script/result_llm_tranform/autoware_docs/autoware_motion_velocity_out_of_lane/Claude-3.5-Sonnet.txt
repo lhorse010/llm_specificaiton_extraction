@@ -1,0 +1,117 @@
+[
+  {
+    "sentence": "This module is activated if the launch parameter launch_out_of_lane_module is set to true.",
+    "formula": "G(L → A)",
+    "explanation": "L represents the launch parameter being true, and A represents the module being activated. This formula states that globally (at all times), if L is true, then A must also be true, capturing the conditional activation of the module."
+  },
+  {
+    "sentence": "The length of the trajectory used for generating the footprints is limited by the max_arc_length parameter.",
+    "formula": "G(T → (L ∧ ¬F(¬L)))",
+    "explanation": "T represents trajectory generation, and L represents the length being within the max_arc_length limit. This formula ensures that whenever a trajectory is generated (T), its length is limited (L) and remains limited for all future states."
+  },
+  {
+    "sentence": "1.ignore objects with a speed bellow the minimum_velocity parameter;",
+    "formula": "G(O ∧ S → ¬C)",
+    "explanation": "O represents an object, S represents speed below minimum_velocity, and C represents consideration of the object. This formula states that globally, if an object has a speed below the threshold, it is not considered (ignored)."
+  },
+  {
+    "sentence": "2.ignore objects coming from behind the ego vehicle if parameter ignore_behind_ego is set to true;",
+    "formula": "G((I ∧ B ∧ O) → ¬C)",
+    "explanation": "I represents ignore_behind_ego being true, B represents an object being behind the ego vehicle, O represents an object, and C represents consideration. This formula ensures that when the parameter is set and an object is behind, it's ignored."
+  },
+  {
+    "sentence": "3.ignore predicted paths whose confidence value is bellow the predicted_path_min_confidence parameter;",
+    "formula": "G((P ∧ L) → ¬C)",
+    "explanation": "P represents a predicted path, L represents confidence below the threshold, and C represents consideration. This formula states that globally, predicted paths with low confidence are not considered."
+  },
+  {
+    "sentence": "4.cut the points of predicted paths going beyond the stop line of a red traffic light if parameter cut_predicted_paths_beyond_red_lights is set to true.",
+    "formula": "G((R ∧ P ∧ B) → X(C))",
+    "explanation": "R represents the parameter being true, P represents a predicted path, B represents going beyond a red light, and C represents cutting the path. This formula ensures that when the conditions are met, in the next state, the path is cut."
+  },
+  {
+    "sentence": "In the case where parameter mode is set to threshold and the calculated time is less than threshold.time_threshold parameter, then we decide to avoid the out of lane area.",
+    "formula": "G((M ∧ T) → A)",
+    "explanation": "M represents mode set to threshold, T represents time less than the threshold, and A represents avoiding out of lane area. This formula captures the decision logic based on the mode and time threshold."
+  },
+  {
+    "sentence": "If the time to collision is bellow the ttc.threshold parameter value, we decide to avoid the out of lane area.",
+    "formula": "G(T → A)",
+    "explanation": "T represents time to collision below the threshold, and A represents avoiding out of lane area. This formula directly links the time to collision condition with the avoidance decision."
+  },
+  {
+    "sentence": "If this distance is bellow the actions.slowdown.threshold, a velocity of actions.slowdown.velocity will be used.",
+    "formula": "G(D → S)",
+    "explanation": "D represents distance below the slowdown threshold, and S represents using the slowdown velocity. This formula ensures that when the distance condition is met, the specific velocity is applied."
+  },
+  {
+    "sentence": "If the distance is bellow the actions.stop.threshold, a velocity of 0m/s will be used.",
+    "formula": "G(D → Z)",
+    "explanation": "D represents distance below the stop threshold, and Z represents zero velocity. This formula captures the immediate stop condition when the distance falls below the specified threshold."
+  },
+  {
+    "sentence": "To make the decision more stable, a stop or slowdown pose is used for a minimum duration set by the action.min_duration parameter.",
+    "formula": "G(D → G[0, t](S))",
+    "explanation": "D represents the decision to use a stop or slowdown pose, S represents the state of using that pose, and t is the minimum duration set by action.min_duration. This formula ensures that whenever a decision is made (D), the system maintains the stop or slowdown pose (S) for at least the specified duration t."
+  },
+  {
+    "sentence": "In the case where parameter mode is set to ttc, we calculate the time to collision by comparing the predicted time of the object with the time_from_start field contained in the trajectory point.",
+    "formula": "G(M → (P ∧ T))",
+    "explanation": "M represents the mode being set to ttc, P represents the process of predicting object time, and T represents accessing the time_from_start field. This formula states that whenever the mode is set to ttc (M), both the prediction (P) and trajectory time access (T) occur."
+  },
+  {
+    "sentence": "First, the minimum stopping distance of the ego vehicle is calculated based on the jerk and deceleration constraints set by the velocity smoother parameters.",
+    "formula": "G(C → X(D))",
+    "explanation": "C represents the constraints being set, and D represents the calculation of the minimum stopping distance. This formula states that whenever the constraints are set (C), in the next state, the distance calculation (D) occurs."
+  },
+  {
+    "sentence": "Otherwise, the stop or slowdown pose will only be discarded after no out of lane collision is detection for the set duration.",
+    "formula": "G(¬C → (S U[t, t] D))",
+    "explanation": "C represents out of lane collision detection, S represents maintaining the stop/slowdown pose, D represents discarding the pose, and t is the set duration. This formula states that when there's no collision (¬C), the system maintains the pose (S) until exactly t time units have passed, at which point it discards the pose (D)."
+  },
+  {
+    "sentence": "The algorithm assumes the input ego trajectory contains accurate time_from_start values in order to calculate accurate time to collisions with the predicted objects.",
+    "formula": "G(A → (T → C))",
+    "explanation": "A represents the algorithm's assumption, T represents accurate time_from_start values, and C represents accurate collision time calculations. This formula states that the algorithm always assumes that if the time values are accurate (T), then the collision calculations will be accurate (C)."
+  },
+  {
+    "sentence": "We then search for the furthest pose along the trajectory where the ego footprint stays inside of the ego lane (calculate in step 2) and constraint the search to be between the minimum stopping distance and the 1st trajectory point with a collision to avoid (as determined in the previous step).",
+    "formula": "G(S ∧ L ∧ M ∧ F)",
+    "explanation": "S represents the search process, L represents staying in lane, M represents minimum stopping distance, and F represents the first collision point. This formula encapsulates the complex search process, ensuring all conditions are met simultaneously."
+  },
+  {
+    "sentence": "The search is done by moving backward along the trajectory with a distance step set by the action.precision parameter.",
+    "formula": "G(S → X(B))",
+    "explanation": "S represents the start of the search, and B represents moving backward. This formula states that whenever a search starts (S), in the next state, the backward movement (B) occurs, implicitly incorporating the precision parameter in the backward step."
+  },
+  {
+    "sentence": "We first do this search for a footprint expanded with the ego.extra_..._offset, action.longitudinal_distance_buffer and action.lateral_distance_buffer parameters.",
+    "formula": "G(S → (E ∧ L ∧ A))",
+    "explanation": "S represents the search, E represents the ego offset, L represents the longitudinal buffer, and A represents the lateral buffer. This formula ensures that when the search occurs (S), all three expansion parameters (E, L, A) are applied simultaneously."
+  },
+  {
+    "sentence": "If no valid pose is found, we search again while only considering the extra offsets but without considering the distance buffers.",
+    "formula": "G(¬V → X(S ∧ E ∧ ¬(L ∨ A)))",
+    "explanation": "V represents finding a valid pose, S represents the search, E represents extra offsets, L represents longitudinal buffer, and A represents lateral buffer. This formula states that if no valid pose is found (¬V), in the next state, a new search (S) is conducted with extra offsets (E) but without distance buffers (¬(L ∨ A))."
+  },
+  {
+    "sentence": "If still no valid pose is found, we use the base ego footprint without any offset.",
+    "formula": "G(¬V → X(B ∧ ¬(E ∨ L ∨ A)))",
+    "explanation": "V represents finding a valid pose, B represents using base footprint, E represents extra offsets, L represents longitudinal buffer, and A represents lateral buffer. This formula states that if no valid pose is found again (¬V), in the next state, the base footprint (B) is used without any offsets or buffers (¬(E ∨ L ∨ A))."
+  },
+  {
+    "sentence": "In case no pose is found, we fallback to using the pose before the detected collision without caring if it is out of lane or not.",
+    "formula": "G((¬P) → X(B))",
+    "explanation": "This formula represents a safety fallback mechanism. P denotes 'pose is found', and B represents 'using the pose before the detected collision'. The formula states that globally (G), if no pose is found (¬P), then in the next state (X), we use the previous pose (B). The lack of conditions on B captures the 'without caring' aspect."
+  },
+  {
+    "sentence": "Whether it is decided to slow down or stop is determined by the distance between the ego vehicle and the trajectory point to avoid.",
+    "formula": "G((C ∧ D) → S) ∧ G((C ∧ ¬D) → T)",
+    "explanation": "Here, C represents 'collision avoidance is needed', D denotes 'distance is below threshold', S means 'stop', and T means 'slow down'. The formula states that globally (G), if collision avoidance is needed and the distance is below a certain threshold (C ∧ D), then the vehicle stops (S). Conversely, if collision avoidance is needed but the distance is not below the threshold (C ∧ ¬D), the vehicle slows down (T)."
+  },
+  {
+    "sentence": "If during that time a new pose closer to the ego vehicle is generated, then it replaces the previous one.",
+    "formula": "G(T → (N → X(R)))",
+    "explanation": "In this formula, T represents 'during that time', N denotes 'new pose closer to ego vehicle is generated', and R means 'replace previous pose'. The formula states that globally (G), during the specified time (T), if a new, closer pose is generated (N), then in the next state (X), it replaces the previous pose (R). This captures the dynamic updating of the vehicle's positioning strategy."
+  }
+]

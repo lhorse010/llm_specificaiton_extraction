@@ -1,0 +1,147 @@
+[
+  {
+    "section-id": 1,
+    "sentence-id": 1,
+    "sentence": "It controls the path as it approaches a waypoint to be within the WPNAV_RADIUS of each waypoint."
+  },
+  {
+    "section-id": 1,
+    "sentence-id": 2,
+    "sentence": "The speed is lowered below WPNAV_SPEED, as necessary, to keep the path within the set corner lateral acceleration limit parameter (WPNAV_ACCEL_C)."
+  },
+  {
+    "section-id": 1,
+    "sentence-id": 3,
+    "sentence": "AUTO mode incorporates the altitude control from AltHold mode and position control from Loiter mode and should not be attempted before these modes are flying well."
+  },
+  {
+    "section-id": 1,
+    "sentence-id": 4,
+    "sentence": "All the same requirements apply including ensuring that vibration levels and compass interference levels are acceptable and that the GPS is functioning well including returning an HDOP of under 2.0."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 0,
+    "sentence": "this smooth curving path as it changes direction to the next waypoint will not occur if the next naviation mission item after the waypoint is anything other than a normal waypoint, ie LAND, LOITER_TURNS, etc., etc."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 1,
+    "sentence": "In these cases the copter will approach the waypoint, stop, and then proceed to the next navigation waypoint instead of smoothly curving in front of it and proceeding to that next navigation waypoint."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 2,
+    "sentence": "Also, small WPNAV_RADIUS values will require that the curve be very small, effectively appearing like the non-S-Curve behavior explained above."
+  },
+  {
+    "section-id": 3,
+    "sentence-id": 0,
+    "sentence": "AUTO should be set-up as one of the Flight Modes on the flight mode switch."
+  },
+  {
+    "section-id": 3,
+    "sentence-id": 1,
+    "sentence": "You must arm your copter before you can engage AUTO mode."
+  },
+  {
+    "section-id": 3,
+    "sentence-id": 3,
+    "sentence": "If starting the mission while the copter is on the ground the pilot should ensure the throttle is down, then switch to the Auto flight mode, then raise the throttle."
+  },
+  {
+    "section-id": 3,
+    "sentence-id": 4,
+    "sentence": "The moment that the throttle is raised above zero, the copter will begin the mission."
+  },
+  {
+    "section-id": 3,
+    "sentence-id": 6,
+    "sentence": "If the first command in the mission is a take-off command but the vehicle is already above the take-off command's altitude the take-off command will be considered completed and the vehicle will move onto the next waypoint."
+  },
+  {
+    "section-id": 3,
+    "sentence-id": 7,
+    "sentence": "At any time the pilot can retake control from the autopilot by returning the flight mode switch to another flight mode such as Stabilize or Loiter."
+  },
+  {
+    "section-id": 3,
+    "sentence-id": 8,
+    "sentence": "If the pilot then switches to AUTO again, the mission will resume from the last command."
+  },
+  {
+    "section-id": 3,
+    "sentence-id": 9,
+    "sentence": "During the mission the pilot's roll, pitch and throttle inputs are ignored but the yaw can be overridden with the yaw stick."
+  },
+  {
+    "section-id": 3,
+    "sentence-id": 11,
+    "sentence": "The autopilot will attempt to retake yaw control as the vehicle passes the next waypoint."
+  },
+  {
+    "section-id": 4,
+    "sentence-id": 0,
+    "sentence": "The AUTO_OPTIONS parameter can be used to alter this behaviour, allowing arming while in AUTO mode, and/or, allowing a mission takeoff command to start upon AUTO mode entry, even if the throttle has not been raised."
+  },
+  {
+    "section-id": 5,
+    "sentence-id": 0,
+    "sentence": "Missions should normally have an RTL as their final command to ensure the copter will return after the mission completes."
+  },
+  {
+    "section-id": 5,
+    "sentence-id": 1,
+    "sentence": "Alternatively the final command could be a LAND with a different location."
+  },
+  {
+    "section-id": 5,
+    "sentence-id": 2,
+    "sentence": "Without a final RTL or LAND command the copter will simply stop at the final waypoint and the pilot will need to retake control with the transmitter."
+  },
+  {
+    "section-id": 5,
+    "sentence-id": 3,
+    "sentence": "Remember that when using RTL, the copter will return to the \"home\" position which is the location where the copter was armed."
+  },
+  {
+    "section-id": 6,
+    "sentence-id": 1,
+    "sentence": "The maximum horizontal speed of the copter can be adjusted with the Speed (WPNAV_SPEED) parameter from the Mission Planner's Config/Tuning >> Copter Pids screen (see blue box above)."
+  },
+  {
+    "section-id": 6,
+    "sentence-id": 4,
+    "sentence": "The vertical speeds up and down can similar be adjusted with the Speed Up (WPNAV_SPEED_UP) and Speed Dn (WPNAV_SPEED_DN) parameters."
+  },
+  {
+    "section-id": 6,
+    "sentence-id": 5,
+    "sentence": "WPNAV_ACCEL_Z determines how fast the speed can change."
+  },
+  {
+    "section-id": 6,
+    "sentence-id": 6,
+    "sentence": "Other speed control related parameters that can be adjusted to manage how fast speed changes occur are: WPNAV_ACCEL, and WPNAV_JERK."
+  },
+  {
+    "section-id": 6,
+    "sentence-id": 7,
+    "sentence": "The Radius (WPNAV_RADIUS allows you to control how close the copter must come to the exact waypoint position before the waypoint is considered \"complete\" and the copter moves onto the next waypoint."
+  },
+  {
+    "section-id": 3,
+    "sentence-id": 5,
+    "sentence": "If starting the mission from the air the mission will begin from the first command the moment that the flight mode switch is moved to Auto."
+  },
+  {
+    "section-id": 3,
+    "sentence-id": 10,
+    "sentence": "This allows the pilot to for example aim the nose of the copter (which might have a hard mounted camera on it) as the copter flies the mission."
+  },
+  {
+    "section-id": 5,
+    "sentence-id": 4,
+    "sentence": "As the copter touches down at the end of the mission the vehicle should automatically disarm but occasionally the vehicle may not sense the landing and the pilot may need to hold the throttle down and takeoff in another mode like Stabilize or Loiter and then manually disarm the vehicle."
+  }
+]

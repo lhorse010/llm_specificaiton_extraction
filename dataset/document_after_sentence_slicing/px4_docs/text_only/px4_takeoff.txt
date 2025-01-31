@@ -1,0 +1,37 @@
+Takeoff Mode (Multicopter)
+
+<img src="../../assets/site/position_fixed.svg" title="Position fix required (e.g.
+GPS)" width="30px" />
+
+The _Takeoff_ flight mode causes the vehicle to take off to a specified height and wait for further input.
+
+::: info
+Mode is automatic - no user intervention is _required_ to control the vehicle.
+Mode requires at least a valid local position estimate (does not require a global position).
+Flying vehicles can't switch to this mode without valid local position.
+Flying vehicles will failsafe if they lose the position estimate.
+Disarmed vehicles can switch to mode without valid position estimate but can't arm.
+RC control switches can be used to change flight modes.
+RC stick movement will by default change the vehicle to Position mode unless handling a critical battery failsafe.
+The Failure Detector will automatically stop the engines if there is a problem on takeoff.
+
+<!-- https://github.com/PX4/PX4-Autopilot/blob/main/src/modules/commander/ModeUtil/mode_requirements.cpp -->
+
+:::
+
+Technical Summary
+
+A multi rotor ascends vertically to the altitude defined in MIS_TAKEOFF_ALT and holds position.
+
+RC stick movement will change the vehicle to Position mode (by default).
+
+Parameters
+
+Takeoff is affected by the following parameters:
+
+See Also
+Throw Launch (MC)
+Takeoff Mode (FW)
+
+<!-- this maps to AUTO_TAKEOFF in dev -->
+

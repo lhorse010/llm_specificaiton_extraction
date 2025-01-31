@@ -1,0 +1,32 @@
+[
+  {
+    "sentence": "Once invoked, this mode does not accept any input from the pilot.",
+    "formula": "G(M → ¬I)",
+    "explanation": "Here, M represents the mode being invoked, and ¬I represents not accepting input from the pilot. G ensures that once the mode is active, no input is accepted at any future time."
+  },
+  {
+    "sentence": "This mode requires GPS.",
+    "formula": "G(M → G)",
+    "explanation": "M represents the mode being active, and G represents the requirement of GPS. The formula ensures that whenever the mode is active, GPS is continuously required."
+  },
+  {
+    "sentence": "Brake mode is subject to acceleration and angle limits imposed by the position and attitude controllers.",
+    "formula": "G(B → (A ∧ L))",
+    "explanation": "B represents Brake mode being active, A represents acceleration limits, and L represents angle limits. This formula ensures that whenever Brake mode is active, both acceleration and angle limits are applied."
+  },
+  {
+    "sentence": "If the vehicle is landed in Brake mode it will immediately disarm.",
+    "formula": "G((L ∧ B) → X(D))",
+    "explanation": "L represents the vehicle being landed, B represents Brake mode, and D represents disarming. The formula ensures that if the vehicle lands while in Brake mode, it will disarm immediately at the next time step."
+  },
+  {
+    "sentence": "The pilots controls are ignored in this mode.",
+    "formula": "G(M → ¬C)",
+    "explanation": "M represents the mode being active, and ¬C represents ignoring pilot controls. This formula ensures that whenever the mode is active, pilot controls are ignored at all times."
+  },
+  {
+    "sentence": "The vehicle must be switched out of this mode before the pilot can re-take control.",
+    "formula": "G(M → ¬C U ¬M)",
+    "explanation": "M represents the mode being active, and C represents pilot taking control. The formula ensures that the pilot cannot take control (¬C) until the mode is no longer active (¬M)."
+  }
+]

@@ -1,0 +1,76 @@
+{
+    "temporal_logic_formulars": [
+        {
+            "section-id": 0,
+            "sentence-id": 0,
+            "sentence": "The _Hold_ flight mode causes the vehicle to stop and hover at its current GPS position and altitude.",
+            "tl": "always ( c_Hold_flightcauseseve == shicleop and hoveritscuretsSts == tsSpositrentSposititio )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 0,
+            "sentence": "1.Mode is automatic - no user intervention is _required_ to control the vehicle.",
+            "tl": "always ( c1Modeautomatic == userintervntion_red_red_ == contr )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 1,
+            "sentence": "2.Mode requires a global 3d position estimate (from GPS or inferred from a local position).",
+            "tl": "always ( e2derequiresa == globalitiositinestimateS ) or ( inferedalocal == lpocalpositiocal ) )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 2,
+            "sentence": "Flying vehicles can't switch to this mode without global position.",
+            "tl": "always ( not ( Flyingvehiclescan == switch ) and globalpositio == iton )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 3,
+            "sentence": "Flying vehicles will failsafe if they lose the position estimate.",
+            "tl": "always ( lFyingvehiclesfails == failetheylosepositiosepositio )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 4,
+            "sentence": "Disarmed vehicles can switch to mode without valid position estimate but can't arm.",
+            "tl": "always ( isarmedvehiclesc == canswith )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 5,
+            "sentence": "3.Mode requires wind and flight time are within allowed limits (specified via parameters).",
+            "tl": "always ( Moderequireswi == indflilghtalowedlimits < specifiedapedara = edareprs )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 7,
+            "sentence": "5.RC stick movement will by default change the vehicle to Position mode unless handling a critical battery failsafe.",
+            "tl": "always ( e5RCstickmoveme == tbydefauleitiosinu ) until ( rise ( Psinulesit == Ponulsinleshandlingac ) ) -> ( gacriterical == teryfailsalbateteryfaiclsaf == te ) )"
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 1,
+            "sentence": "The vehicle will first ascend to NAV_MIN_LTR_ALT if the mode is engaged below this altitude.",
+            "tl": "always ( vehicleascend == NAV_MIN_LTR_ALTT )"
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 0,
+            "sentence": "The vehicle hovers at the current position and altitude.",
+            "tl": "always ( vehiclehovers == currentposititoin and altit == altitude )"
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 2,
+            "sentence": "RC stick movement will change the vehicle to Position mode (by default).",
+            "tl": "always ( rise ( RCstickmovement == vePositioioin > 6 and bydefaultn < bydefault ) )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 6,
+            "sentence": "4.RC control switches can be used to change flight modes on any vehicle.",
+            "tl": "always ( rise ( RCcontrolswitchesc == escanused ) and rise ( flightmodes == esvehvehicle ) )"
+        }
+    ]
+}

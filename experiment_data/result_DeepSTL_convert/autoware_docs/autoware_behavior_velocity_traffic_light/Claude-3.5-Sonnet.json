@@ -1,0 +1,88 @@
+{
+    "temporal_logic_formulars": [
+        {
+            "section-id": 2,
+            "sentence-id": 0,
+            "sentence": "This module is activated when there is traffic light in ego lane.",
+            "tl": "always ( Thismodule == activated )"
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 1,
+            "sentence": "If a corresponding traffic light signal have never been found, it treats as a signal to pass.",
+            "tl": "always ( not ( acorespondingtrafficli == foundight ) -> founditreatsa == passs )"
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 2,
+            "sentence": "If a corresponding traffic light signal is found but timed out, it treats as a signal to stop.",
+            "tl": "always ( acorespondingtra == fficlightfounduti == timedutid )"
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 3,
+            "sentence": "2.Uses the highest reliability one of the traffic light recognition result and if the color of that was not green or corresponding arrow signal, generates a stop point.",
+            "tl": "always ( eshighestre == liabitrficlghtre ) and not ( conre == greolencorspondnrenro ) -> not ( core == gresonrepodnrone ) or aroger == geraroerareneraerseneratesasaser )"
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 4,
+            "sentence": "If an elapsed time to receive stop signal is less than stop_time_hysteresis, it treats as a signal to pass.",
+            "tl": "always ( an == receivestSst )"
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 7,
+            "sentence": "higher than 2.0m/s ⇒ pass judge(using next slide formula)",
+            "tl": "always [ 0 : 2.0 mspasjudge > 2.0 and mspasjudge < singlideformula > 2 and lsing = lidedeformula < a )"
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 8,
+            "sentence": "lower than 2.0m/s ⇒ stop",
+            "tl": "always ( msstop < 2.0 or mssstop < 2.0 )"
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 10,
+            "sentence": "\"can pass through\" stop line during yellow lamp => pass",
+            "tl": "always ( canpsthroughstopline == yellowlamp )"
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 11,
+            "sentence": "\"can’t pass through\" stop line during yellow lamp => emergency stop",
+            "tl": "always ( cantpsthrogh == stoplineylelowlampem == ememrgerncystop )"
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 4,
+            "sentence": "vehicle can’t pass through stop line during yellow lamp.(right side of the yellow lamp line)",
+            "tl": "always ( vehiclecantpst == sthroghstoplineylelowlamp )"
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 5,
+            "sentence": "vehicle can’t stop under deceleration and jerk limit.(left side of the pass judge curve)⇒emergency stop(relax deceleration and jerk limitation in order to observe the traffic regulation)",
+            "tl": "always ( fall ( ehiclecantst == tSerderdeceratinio ) and ( jedersjlimimt > 4 . and jedersjlilim < seuredecu < 1 emerelemlerleax = reaxeleaxerlea = rleaxelerleatoderle ) -> ( erea == erleaxerleratierlerlea = erlerle"
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 8,
+            "sentence": "vehicle can pass through stop line during yellow lamp.(left side of the yellow lamp line)",
+            "tl": "always ( fall ( vehiclecanpststhro == ghstolineylelowlamp ) and fall ( sidelelowlampl == lelowlampl ) -> not ( sideylelowlamlplinelampline < amle ) )"
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 9,
+            "sentence": "vehicle can stop under deceleration and jerk limit.(right side of the pass judge curve) ⇒ stop(autoware selects the safety choice)",
+            "tl": "always ( vehiclecanstopuderde == erdecleration and ( jederklimit > 6 . and jederklimi < sjudecursjedgecurst < 1 ) -> ( estpopau > autpo < tuteautwaesectsectse = tsafethcelhoicececesaetsa == tsae ) and ehaehcetece"
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 0,
+            "sentence": "1.Obtains a traffic light mapped to the route and a stop line correspond to the traffic light from a map information.",
+            "tl": "always ( Obtainsatrafic == ightmaped = rote and astoplinecorespond == traficeresporespond )"
+        }
+    ]
+}

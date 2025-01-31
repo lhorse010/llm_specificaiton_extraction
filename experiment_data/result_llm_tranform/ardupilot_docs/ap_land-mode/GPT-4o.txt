@@ -1,0 +1,47 @@
+[
+  {
+    "sentence": "1.descends to 10m (or until the sonar senses something below the copter) using the regular Altitude Hold controller which will descend at the speed held in the WPNAV_SPEED_DN Copter Pids screen.",
+    "formula": "F((A ≤ 10) ∨ S)",
+    "explanation": "A represents the altitude of the copter. This formula expresses that eventually the altitude will be 10m or less, or the sonar (S) senses something below the copter, with the use of the Altitude Hold controller."
+  },
+  {
+    "sentence": "2.below 10m the copter should descend at the rate specified in the LAND_SPEED parameter which defaults to 50cm/s.",
+    "formula": "G(A < 10 → D = 0.5)",
+    "explanation": "Below 10m altitude (A < 10), the copter should consistently descend (D) at a rate of 50cm/s, represented by 0.5 m/s."
+  },
+  {
+    "sentence": "3.Upon reaching the ground the copter will automatically shut-down the motors and disarm the copter if the pilot's throttle is at minimum.",
+    "formula": "F(G ∧ T = 0 → M = 0 ∧ D)",
+    "explanation": "G represents the copter reaching the ground. If the pilot's throttle (T) is at minimum (T = 0), the motors (M) will shut down and the copter will disarm (D)."
+  },
+  {
+    "sentence": "2.If the vehicle has GPS lock the landing controller will attempt to control its horizontal position but the pilot can adjust the target horizontal position just as in Loiter mode.",
+    "formula": "G(L → (C ∧ P))",
+    "explanation": "L represents the GPS lock. If there is a GPS lock, the landing controller (C) will control horizontal position, but the pilot (P) can adjust it like in Loiter mode."
+  },
+  {
+    "sentence": "3.If the vehicle does not have GPS lock the horizontal control will be as in stabilize mode so the pilot can control the roll and pitch lean angle of the copter.",
+    "formula": "G(¬L → S ∧ P)",
+    "explanation": "If there is no GPS lock (¬L), the horizontal control will operate in stabilize mode (S), allowing the pilot (P) to control roll and pitch."
+  },
+  {
+    "sentence": "Copter will recognise that it has landed if the motors are being commanded to be at low level by the vertical position controller, its climb rate remains between -20cm/s and +20cm/s, and is not accelerating for one second.",
+    "formula": "F((M = low ∧ −0.2 ≤ CR ≤ 0.2 ∧ ¬A) U 1)",
+    "explanation": "The copter recognizes landing when the motors (M) are at low level, climb rate (CR) is between -0.2 and 0.2 m/s, and there is no acceleration (¬A) for one second."
+  },
+  {
+    "sentence": "It does not use the altitude to decide whether to shut off the motors except that the copter must also be below 10m above the home altitude, unless a rangefinder is being used, in which case it must be within 2m of the ground.",
+    "formula": "G((¬A → (A < 10 ∨ R)) ∨ (R → A ≤ 2))",
+    "explanation": "Motor shutdown does not depend on altitude (¬A), except the copter must be below 10m unless using a rangefinder (R), in which it must be within 2m of the ground."
+  },
+  {
+    "sentence": "For Traditional Heli, the low motor check in the above landing detection algorithm is replaced with a check that Collective output is below mid-position (controlled by the vertical position controller, ie in descent).",
+    "formula": "G(H → (C < mid ∧ VPC))",
+    "explanation": "For Traditional Heli (H), instead of a low motor check, the Collective output (C) must be below mid-position, controlled by the vertical position controller (VPC) indicating descent."
+  },
+  {
+    "sentence": "Using a Weight on Wheels (WoW) switch will increase the descent rate and accelerometer ranges that are acceptable for landing detection.",
+    "formula": "G(WoW → (D ↑ ∧ A ↑))",
+    "explanation": "The use of a Weight on Wheels (WoW) switch increases the acceptable descent rate (D) and accelerometer ranges (A) for landing detection."
+  }
+]

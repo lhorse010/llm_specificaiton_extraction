@@ -1,0 +1,34 @@
+```json
+{
+    "specifications": [
+        {
+            "formula": "G (mission_mode → (vehicle_armed ∧ global_3d_position_estimate))",
+            "explanation": "Mission mode requires that the vehicle must be armed and have a global 3D position estimate."
+        },
+        {
+            "formula": "G (vehicle_flying ∧ ¬mission_stored → vehicle_hold)",
+            "explanation": "If no mission is stored and the vehicle is flying, it should hold its position."
+        },
+        {
+            "formula": "G (vehicle_landed ∧ ¬mission_stored → vehicle_wait)",
+            "explanation": "If no mission is stored and the vehicle is landed, it should wait."
+        },
+        {
+            "formula": "G (mission_paused ∧ capturing_images → F (retrace_last_path))",
+            "explanation": "If a mission is paused while capturing images, on resuming, the vehicle should retrace its last path."
+        },
+        {
+            "formula": "G (mission_uploaded → F (mission_feasibility_checks))",
+            "explanation": "Whenever a mission is uploaded, feasibility checks must eventually be completed."
+        },
+        {
+            "formula": "G (throttle_stick_zero → ¬switch_rc_mode)",
+            "explanation": "The vehicle should not switch to any RC mode if the throttle stick is zero to prevent crashes."
+        },
+        {
+            "formula": "G (mission_mode ∧ vehicle_landed → (disarm_after ∧ wait_time))",
+            "explanation": "In mission mode, if the vehicle lands, it should disarm after a specified wait time."
+        }
+    ]
+}
+```

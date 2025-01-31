@@ -1,0 +1,55 @@
+Based on the provided document, I've extracted the specifications and expressed them using Metric Temporal Logic (MTL) formulas. Here are the results in the required JSON format:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(traffic_light_signal -> (X stop_point_generation) U (traffic_light_signal = green))",
+            "explanation": "If a traffic light signal is detected, a stop point should be generated until the traffic light signal turns green."
+        },
+        {
+            "formula": "G(elapsed_time < stop_time_hysteresis -> pass_judge)",
+            "explanation": "If the elapsed time to receive a stop signal is less than the stop time hysteresis, the vehicle should pass."
+        },
+        {
+            "formula": "G(vehicle_velocity > 2.0 -> pass_judge)",
+            "explanation": "If the vehicle's current velocity is higher than 2.0 m/s, the vehicle should pass."
+        },
+        {
+            "formula": "G(vehicle_velocity <= 2.0 -> stop)",
+            "explanation": "If the vehicle's current velocity is lower than or equal to 2.0 m/s, the vehicle should stop."
+        },
+        {
+            "formula": "G(can_pass_through_yellow_lamp -> pass)",
+            "explanation": "If the vehicle can pass through the stop line during the yellow lamp, the vehicle should pass."
+        },
+        {
+            "formula": "G(!can_pass_through_yellow_lamp -> emergency_stop)",
+            "explanation": "If the vehicle cannot pass through the stop line during the yellow lamp, the vehicle should perform an emergency stop."
+        },
+        {
+            "formula": "G(in_dilemma_zone -> emergency_stop)",
+            "explanation": "If the vehicle is in the dilemma zone, the vehicle should perform an emergency stop."
+        },
+        {
+            "formula": "G(in_optional_zone -> stop)",
+            "explanation": "If the vehicle is in the optional zone, the vehicle should stop."
+        }
+    ]
+}
+```
+
+Note that I've used the following abbreviations in the MTL formulas:
+
+* `traffic_light_signal`: The traffic light signal detected by the vehicle.
+* `stop_point_generation`: The generation of a stop point by the vehicle.
+* `elapsed_time`: The elapsed time to receive a stop signal.
+* `stop_time_hysteresis`: The stop time hysteresis value.
+* `vehicle_velocity`: The current velocity of the vehicle.
+* `pass_judge`: The decision to pass or stop.
+* `can_pass_through_yellow_lamp`: The ability to pass through the stop line during the yellow lamp.
+* `emergency_stop`: The performance of an emergency stop.
+* `in_dilemma_zone`: The vehicle is in the dilemma zone.
+* `in_optional_zone`: The vehicle is in the optional zone.
+
+These abbreviations are used to simplify the MTL formulas and make them easier to read.

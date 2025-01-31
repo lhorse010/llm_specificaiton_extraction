@@ -1,0 +1,33 @@
+{
+  "title": "System Identification Mode",
+  "sections": [
+    {
+      "section-id": 0,
+      "title": "System Identification Mode",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "This mode is for advanced users and provides a means to generate mathematical models of the vehicles flight behavior for model generation."
+        },
+        {
+          "sentence-id": 1,
+          "text": "It places the vehicle into a STABILIZE like mode, and generates bursts of signals (\"chirps\") injected into the control loops at various points and logs the results for math analysis and model generation later."
+        }
+      ]
+    },
+    {
+      "section-id": 1,
+      "title": "Enabling the Mode",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "If the SID_AXIS is non-zero, then this modes associated parameters will become visible on the next parameter refresh and entry into the mode will be allowed."
+        },
+        {
+          "sentence-id": 1,
+          "text": "Otherwise, an error message will be logged and sent to the ground control station indicating that mode entry has been prohibited."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+Based on the provided document, I've extracted the specifications that the vehicle needs to meet and expressed them using Metric Temporal Logic (MTL) formulas. Here are the results in the required JSON format:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G (valid_local_position_estimate → mode_enabled)",
+            "explanation": "The mode requires at least a valid local position estimate to be enabled."
+        },
+        {
+            "formula": "G (¬valid_local_position_estimate → failsafe)",
+            "explanation": "Flying vehicles will failsafe if they lose the position estimate."
+        },
+        {
+            "formula": "G (mode_enabled → armed)",
+            "explanation": "The mode prevents arming; the vehicle must be armed when switching to this mode."
+        },
+        {
+            "formula": "G (wind_within_limits ∧ flight_time_within_limits → mode_enabled)",
+            "explanation": "The mode requires wind and flight time to be within allowed limits."
+        },
+        {
+            "formula": "G (multicopter_mode → mode_supported)",
+            "explanation": "The mode is currently only supported on multicopter (or VTOL in MC mode)."
+        },
+        {
+            "formula": "G (RC_stick_movement → (ascent_descent_control ∨ orbit_speed_control ∨ orbit_direction_control))",
+            "explanation": "RC stick movement can control ascent/descent, orbit speed, and direction."
+        },
+        {
+            "formula": "G (MAV_CMD_DO_ORBIT → mode_triggered)",
+            "explanation": "The mode can be triggered using the MAV_CMD_DO_ORBIT MAVLink command."
+        },
+        {
+            "formula": "G (mode_enabled → F (closest_point_on_circle_trajectory_reached ∧ slow_orbit_started))",
+            "explanation": "Once enabled, the vehicle will fly as fast as possible to the closest point on the commanded circle trajectory and do a slow (1m/s) clockwise orbit on the planned circle, facing the center."
+        },
+        {
+            "formula": "G (left_stick_up_down → ascent_descent_control)",
+            "explanation": "Left stick up/down controls speed of ascent/descent."
+        },
+        {
+            "formula": "G (left_stick_centered → altitude_locked)",
+            "explanation": "When the left stick is centered, altitude is locked."
+        },
+        {
+            "formula": "G (right_stick_left_right → orbit_acceleration_control)",
+            "explanation": "Right stick left/right controls acceleration of orbit in clockwise/counter-clockwise directions."
+        },
+        {
+            "formula": "G (right_stick_centered → current_speed_locked)",
+            "explanation": "When the right stick is centered, the current speed is locked."
+        },
+        {
+            "formula": "G (right_stick_up_down → orbit_radius_control)",
+            "explanation": "Right stick up/down controls orbit radius (smaller/bigger)."
+        },
+        {
+            "formula": "G (orbit_radius ≤ 1m → minimum_radius_reached)",
+            "explanation": "Minimum radius is 1m."
+        },
+        {
+            "formula": "G (orbit_radius ≥ 100m → maximum_radius_reached)",
+            "explanation": "Maximum radius is 100m."
+        },
+        {
+            "formula": "G (initial_rotation = 1m/s ∧ clockwise_direction)",
+            "explanation": "Initial/default rotation is 1 m/s in a clockwise direction."
+        },
+        {
+            "formula": "G (centripetal_acceleration ≤ 2m/s^2 → acceleration_limited)",
+            "explanation": "The maximum acceleration is limited to 2 m/s^2, with priority on keeping the commanded circle trajectory rather than commanded ground speed."
+        }
+    ]
+}
+```
+
+Note that I've used the following abbreviations in the MTL formulas:
+
+* `mode_enabled`: The Orbit mode is enabled.
+* `valid_local_position_estimate`: A valid local position estimate is available.
+* `armed`: The vehicle is armed.
+* `wind_within_limits`: Wind is within allowed limits.
+* `flight_time_within_limits`: Flight time is within allowed limits.
+* `multicopter_mode`: The vehicle is in multicopter mode.
+* `RC_stick_movement`: The RC stick is moved.
+* `ascent_descent_control`: Ascent/descent is controlled.
+* `orbit_speed_control`: Orbit speed is controlled.
+* `orbit_direction_control`: Orbit direction is controlled.
+* `MAV_CMD_DO_ORBIT`: The MAV_CMD_DO_ORBIT MAVLink command is received.
+* `closest_point_on_circle_trajectory_reached`: The vehicle reaches the closest point on the commanded circle trajectory.
+* `slow_orbit_started`: A slow (1m/s) clockwise orbit is started on the planned circle, facing the center.
+* `left_stick_up_down`: The left stick is moved up/down.
+* `left_stick_centered`: The left stick is centered.
+* `right_stick_left_right`: The right stick is moved left/right.
+* `right_stick_centered`: The right stick is centered.
+* `right_stick_up_down`: The right stick is moved up/down.
+* `orbit_radius`: The orbit radius is controlled.
+* `minimum_radius_reached`: The minimum radius (1m) is reached.
+* `maximum_radius_reached`: The maximum radius (100m) is reached.
+* `initial_rotation`: The initial/default rotation is 1 m/s in a clockwise direction.
+* `centripetal_acceleration`: The centripetal acceleration is limited to 2 m/s^2.

@@ -1,0 +1,50 @@
+Let's go through the steps to extract and formalize the specifications using Metric Temporal Logic (MTL).
+
+Step 1: I have thoroughly read the document.
+
+Step 4: Extracting specifications and expressing them using metric temporal logic formulas.
+
+Step 5: Formatting the converted sentences in JSON.
+
+Here's the output in the required format:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(altitude > 10 → F[0,t](descentRate = WPNAV_SPEED_DN))",
+            "explanation": "Globally, if the altitude is above 10m, then eventually within time t, the descent rate should be equal to WPNAV_SPEED_DN."
+        },
+        {
+            "formula": "G(altitude ≤ 10 → F[0,t](descentRate = LAND_SPEED))",
+            "explanation": "Globally, if the altitude is 10m or below, then eventually within time t, the descent rate should be equal to LAND_SPEED (default 50cm/s)."
+        },
+        {
+            "formula": "G((onGround ∧ throttle = min) → F[0,t](motorsOff ∧ disarmed))",
+            "explanation": "Globally, if the copter is on the ground and the throttle is at minimum, then eventually within time t, the motors should be off and the copter should be disarmed."
+        },
+        {
+            "formula": "G(¬GPSLock → F[0,t](controlMode = stabilize))",
+            "explanation": "Globally, if there is no GPS lock, then eventually within time t, the control mode should be set to stabilize."
+        },
+        {
+            "formula": "G((motorCommand = low ∧ -20 ≤ climbRate ≤ 20 ∧ ¬accelerating) → F[0,1](landed))",
+            "explanation": "Globally, if the motors are commanded to be at low level, the climb rate is between -20cm/s and +20cm/s, and the copter is not accelerating, then within 1 second, the copter should be recognized as landed."
+        },
+        {
+            "formula": "G(landed → (altitude < 10 ∨ (usingRangefinder ∧ altitude < 2)))",
+            "explanation": "Globally, if the copter is recognized as landed, then the altitude should be below 10m, or if using a rangefinder, the altitude should be within 2m of the ground."
+        },
+        {
+            "formula": "G(traditionalHeli → (landed → collectiveOutput < midPosition))",
+            "explanation": "Globally, for traditional helicopters, if the copter is recognized as landed, then the collective output should be below mid-position."
+        },
+        {
+            "formula": "G(WoWEnabled → F[0,t](increasedDescentRate ∧ increasedAccelRange))",
+            "explanation": "Globally, if Weight on Wheels (WoW) is enabled, then eventually within time t, there should be an increased acceptable descent rate and accelerometer range for landing detection."
+        }
+    ]
+}
+```
+
+These MTL formulas capture the key specifications from the provided document, focusing on the behavior of the Land Mode and the conditions for recognizing landing. The formulas use the temporal operators G (globally) and F (finally) to express the required behaviors over time. The specifications cover descent rates, landing recognition, motor shutdown conditions, and special cases like traditional helicopters and Weight on Wheels functionality.

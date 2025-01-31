@@ -1,0 +1,32 @@
+[
+  {
+    "index": 0,
+    "formula": "G (waypoint_reached → F (waypoint_within_radius))",
+    "explanation": "If a waypoint is reached, eventually it must be within the specified WPNAV_RADIUS."
+  },
+  {
+    "index": 1,
+    "formula": "G (¬(vibration_levels ∨ compass_interference) ∧ (HDOP < 2.0))",
+    "explanation": "Globally, vibration levels and compass interference must not occur, and GPS HDOP must be under 2.0."
+  },
+  {
+    "index": 2,
+    "formula": "G (mission_started → (¬throttle_raised → X ¬mission_continues))",
+    "explanation": "If the mission starts, and the throttle is not raised, the mission should not continue in the next state."
+  },
+  {
+    "index": 3,
+    "formula": "G (auto_mode_active → (¬manual_control ∧ (yaw_can_be_overridden)))",
+    "explanation": "While in AUTO mode, manual control of roll, pitch, and throttle is ignored, but yaw can be overridden."
+  },
+  {
+    "index": 4,
+    "formula": "G (mission_ends → (RTL ∨ LAND))",
+    "explanation": "When a mission ends, it should result in either an RTL (Return to Launch) or LAND command."
+  },
+  {
+    "index": 5,
+    "formula": "G (takeoff_command_completed → X next_waypoint)",
+    "explanation": "If a takeoff command is completed, the vehicle should move to the next waypoint in the next state."
+  }
+]

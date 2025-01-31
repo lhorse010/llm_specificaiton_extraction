@@ -1,0 +1,26 @@
+```json
+{
+    "specifications": [
+        {
+            "formula": "G (throw_mode → (gps_available ∧ ¬pilot_input))",
+            "explanation": "In Throw Mode, GPS must be available and no pilot input is accepted."
+        },
+        {
+            "formula": "G (armed ∧ throw_mode → (motors_start_at_apex ∧ control_attitude))",
+            "explanation": "When armed and in Throw Mode, motors start at the apex, and the vehicle should control its attitude."
+        },
+        {
+            "formula": "G (throw_mode ∧ THROW_TYPE = 1 → drop_height ≥ 10)",
+            "explanation": "If Throw Mode is set to drop (THROW_TYPE = 1), the drop must be from at least 10 meters."
+        },
+        {
+            "formula": "G (altitude ≥ THROW_ALT_MIN ∧ altitude ≤ THROW_ALT_MAX → valid_throw)",
+            "explanation": "Throw must occur between configured minimum and maximum altitudes."
+        },
+        {
+            "formula": "G (speed ≥ 5 ∧ vertical_speed ≥ 0.5 → motors_start)",
+            "explanation": "Motors should start when overall speed is at least 5 m/s and vertical speed is at least 0.5 m/s."
+        }
+    ]
+}
+```

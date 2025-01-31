@@ -1,0 +1,26 @@
+```json
+{
+    "specifications": [
+        {
+            "formula": "G (¬armed → ¬can_switch_to_hold ∨ ¬valid_position_estimate)",
+            "explanation": "Disarmed vehicles can switch to Hold mode without a valid position estimate but cannot arm."
+        },
+        {
+            "formula": "G (hold_mode_active → (F (altitude ≥ NAV_MIN_LTR_ALT) ∧ G (position = current_position)))",
+            "explanation": "When Hold mode is active, the vehicle must eventually reach a minimum altitude if engaged below it and maintain its current position."
+        },
+        {
+            "formula": "G (¬global_position_estimate → F failsafe)",
+            "explanation": "The vehicle will enter a failsafe state if it loses the global position estimate."
+        },
+        {
+            "formula": "G (rc_stick_movement → F position_mode)",
+            "explanation": "RC stick movement will eventually switch the vehicle to Position mode."
+        },
+        {
+            "formula": "G (hold_mode_active → (wind_within_limits ∧ flight_time_within_limits))",
+            "explanation": "Hold mode requires that wind and flight time are within allowed limits."
+        }
+    ]
+}
+```

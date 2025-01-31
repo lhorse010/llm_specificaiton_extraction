@@ -1,0 +1,43 @@
+Based on the provided document, I've extracted the specifications and expressed them using Metric Temporal Logic (MTL) formulas. Here are the results in the required JSON format:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(|roll| ≤ 45 ∧ |pitch| ≤ 45)",
+            "explanation": "The vehicle will not lean more than 45 degrees in roll and pitch."
+        },
+        {
+            "formula": "G(sticks_released → X(vehicle_attitude = current_attitude))",
+            "explanation": "When the sticks are released, the vehicle will remain in its current attitude."
+        },
+        {
+            "formula": "G((throttle ∈ [0.4, 0.6]) → X(altitude = current_altitude))",
+            "explanation": "The vehicle will attempt to hold its current altitude when the sticks are placed within 10% of mid-throttle."
+        },
+        {
+            "formula": "G(climbing → G(altitude_change_rate ≤ 2.5))",
+            "explanation": "The vehicle will climb at a speed of up to 2.5m/s."
+        },
+        {
+            "formula": "G(descending → G(altitude_change_rate ≥ -2.5))",
+            "explanation": "The vehicle will descend at a speed of up to 2.5m/s."
+        },
+        {
+            "formula": "G(acceleration = PILOT_ACCEL_Z)",
+            "explanation": "The acceleration used to establish the climb and descent speeds is set by PILOT_ACCEL_Z."
+        }
+    ]
+}
+```
+
+Note that I've used the following assumptions and simplifications:
+
+* `roll` and `pitch` represent the vehicle's roll and pitch angles, respectively.
+* `sticks_released` is a predicate indicating that the pilot's sticks are released.
+* `vehicle_attitude` represents the vehicle's current attitude.
+* `throttle` represents the current throttle value, normalized to the range [0, 1].
+* `altitude` represents the vehicle's current altitude.
+* `altitude_change_rate` represents the rate of change of the vehicle's altitude.
+* `PILOT_ACCEL_Z` is a constant representing the acceleration used to establish the climb and descent speeds.
+* `climbing` and `descending` are predicates indicating that the vehicle is climbing or descending, respectively.

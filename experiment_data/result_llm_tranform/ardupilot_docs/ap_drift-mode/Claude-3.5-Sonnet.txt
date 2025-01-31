@@ -1,0 +1,77 @@
+[
+  {
+    "sentence": "1.Drift Mode allows the user to fly a multi-copter as if it were a plane with built in automatic coordinated turns.",
+    "formula": "G(D → (P ∧ C))",
+    "explanation": "This formula states that globally (G), when Drift Mode (D) is active, it implies (→) that the multi-copter behaves like a plane (P) and has coordinated turns (C). This captures the continuous nature of the mode's behavior."
+  },
+  {
+    "sentence": "2.The user has direct control of Yaw and Pitch, but Roll is controlled by the autopilot.",
+    "formula": "G((Y ∧ T) ∧ ¬R)",
+    "explanation": "This formula expresses that globally (G), the user has control over Yaw (Y) and Pitch (T), while simultaneously not having control over Roll (¬R). The autopilot's control of Roll is implicit in the negation of user control."
+  },
+  {
+    "sentence": "3.The user has completely manual control over the throttle as in Stabilize mode .",
+    "formula": "G(M)",
+    "explanation": "Here, M represents manual throttle control. The formula states that globally (G), the user has manual control over the throttle. The comparison to Stabilize mode is implicit in the predicate M."
+  },
+  {
+    "sentence": "3.When you push the right stick forward or back the copter will pitch (and accelerate) in the appropriate direction.",
+    "formula": "G((F ∨ B) → X(P ∧ A))",
+    "explanation": "This formula states that globally (G), if the stick is pushed forward (F) or (∨) backward (B), it implies (→) that in the next state (X), the copter will pitch (P) and accelerate (A)."
+  },
+  {
+    "sentence": "4.When you push the right stick towards one side or the other the right or to the left the copter will turn in the direction specified.",
+    "formula": "G((R ∨ L) → X(T))",
+    "explanation": "This formula expresses that globally (G), if the stick is pushed right (R) or (∨) left (L), it implies (→) that in the next state (X), the copter will turn (T) in the specified direction."
+  },
+  {
+    "sentence": "5.The copter will also bank at the same time so as to make a coordinated turn in that direction.",
+    "formula": "G(T → B)",
+    "explanation": "This formula states that globally (G), when the copter turns (T), it implies (→) that it also banks (B). This captures the simultaneous nature of turning and banking for coordinated turns."
+  },
+  {
+    "sentence": "6.When turning with the right stick yaw is automatically applied and sufficient roll is added to cancel the copters velocity in the roll axis.",
+    "formula": "G(T → (Y ∧ R))",
+    "explanation": "This formula expresses that globally (G), when turning (T) occurs, it implies (→) that yaw (Y) is automatically applied and roll (R) is added. The cancellation of velocity is implicit in the application of roll."
+  },
+  {
+    "sentence": "8.Letting go of the sticks effectively turns on a speed brake in the Pitch axis that slows the copter to a stop over a two second period.",
+    "formula": "G(S → F[0,2](B))",
+    "explanation": "This formula states that globally (G), when the sticks are released (S), it implies (→) that finally (F) within 0 to 2 time units, braking (B) occurs. This captures the two-second period for slowing to a stop."
+  },
+  {
+    "sentence": "9.A copter in Drift Mode with the right stick in the center will loosely hold horizontal position (It will slowly drift in the wind.)",
+    "formula": "G((D ∧ C) → (H ∧ F(W)))",
+    "explanation": "This formula expresses that globally (G), when in Drift Mode (D) with the stick centered (C), it implies (→) that the copter holds position (H) and eventually (F) experiences wind drift (W)."
+  },
+  {
+    "sentence": "10.Pilot's throttle input controls the average motor speed meaning that constant adjustment of the throttle is required to maintain altitude.",
+    "formula": "G(T → F(A))",
+    "explanation": "This formula states that globally (G), throttle input (T) implies (→) that eventually (F) altitude adjustment (A) is needed. This captures the ongoing nature of throttle adjustments for altitude maintenance."
+  },
+  {
+    "sentence": "If the pilot puts the throttle completely down the motors will go to their minimum rate (MOT_SPIN_ARMED) and if the vehicle is flying it will lose attitude control and tumble.",
+    "formula": "G(T → (X(M ∧ (F → (L ∧ U))))",
+    "explanation": "T represents the throttle being completely down, M is motors at minimum rate, F is the vehicle flying, L is loss of attitude control, and U is tumbling. The formula captures the causal chain: whenever the throttle is down, in the next state the motors go to minimum, and if the vehicle is flying, it will eventually lose control and tumble."
+  },
+  {
+    "sentence": "Drift Mode relies on your GPS for control.",
+    "formula": "G(D → G)",
+    "explanation": "D represents Drift Mode being active, and G represents GPS control being used. This formula states that globally, whenever Drift Mode is active, GPS control is also active. The continuous reliance is captured by the nested G operator."
+  },
+  {
+    "sentence": "If you lose your GPS signal in flight while in Drift Mode, your copter will either land or enter altitude hold based on your failsafe_gps_enabled setting.",
+    "formula": "G((D ∧ F ∧ ¬G) → X(L ∨ A))",
+    "explanation": "D is Drift Mode, F is in flight, G is GPS signal, L is landing, and A is altitude hold. The formula states that globally, if Drift Mode is active, the copter is in flight, and GPS signal is lost, then in the next state, the copter will either land or enter altitude hold."
+  },
+  {
+    "sentence": "In the Mission Planner Configuration Section under flight modes select Drift Mode to apply to an appropriate switch setting.",
+    "formula": "F(C ∧ S → D)",
+    "explanation": "C represents being in the Configuration Section, S is selecting an appropriate switch setting, and D is Drift Mode being applied. This formula captures the eventual configuration action: at some point in the future, being in the right section and selecting the switch will lead to Drift Mode being applied."
+  },
+  {
+    "sentence": "This allows you to maintain a coordinated (non-skidding) turn.",
+    "formula": "G(T → ¬S)",
+    "explanation": "T represents turning, and S represents skidding. This formula expresses that globally, whenever a turn is happening, skidding does not occur. This captures the continuous nature of maintaining a coordinated turn in Drift Mode."
+  }
+]

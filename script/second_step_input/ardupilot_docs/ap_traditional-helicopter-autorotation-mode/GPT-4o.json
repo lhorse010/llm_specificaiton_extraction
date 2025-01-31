@@ -1,0 +1,107 @@
+[
+  {
+    "section-id": 1,
+    "sentence-id": 0,
+    "sentence": "This flight mode is available for traditional helicopters only."
+  },
+  {
+    "section-id": 1,
+    "sentence-id": 1,
+    "sentence": "It is currently limited to single rotor helicopters."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 1,
+    "sentence": "This is only enabled for use with SITL."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 2,
+    "sentence": "Do not attempt to use this flight mode in real life."
+  },
+  {
+    "section-id": 4,
+    "sentence-id": 6,
+    "sentence": "It is this reversal of the vertical velocity that necessitates careful collective management when entering the autorotation."
+  },
+  {
+    "section-id": 4,
+    "sentence-id": 8,
+    "sentence": "It is key that the collective is moved proportionally to the direction of the resultant velocity vector to minimize the blade drag generated, preventing excessive loss of head speed."
+  },
+  {
+    "section-id": 4,
+    "sentence-id": 10,
+    "sentence": "In addition to this, the forward airspeed must be either maintained or increased (if the failure is initiated from a low airspeed state)."
+  },
+  {
+    "section-id": 6,
+    "sentence-id": 10,
+    "sentence": "Collective is subsequently used to manage the head speed, preventing overspeed and blade stall as required."
+  },
+  {
+    "section-id": 8,
+    "sentence-id": 1,
+    "sentence": "When exiting the autonomous autorotation flight mode the aircraft will be returned to a \"non-manual collective mode\"."
+  },
+  {
+    "section-id": 8,
+    "sentence-id": 2,
+    "sentence": "It is therefore necessary to gently reintroduce the z position controller to prevent aggressive collective angles being applied, resulting in blade stall or even rotor stop."
+  },
+  {
+    "section-id": 8,
+    "sentence-id": 3,
+    "sentence": "When initiated, the bail-out phase will read the requested climb or descent rate from the operators throttle stick position."
+  },
+  {
+    "section-id": 8,
+    "sentence-id": 4,
+    "sentence": "The aircraft will then be decelerated over a set period of time (see parameter AROT_BAIL_TIME)."
+  },
+  {
+    "section-id": 8,
+    "sentence-id": 5,
+    "sentence": "At the end of which, the requested vertical speed will match the magnitude requested on the stick."
+  },
+  {
+    "section-id": 9,
+    "sentence-id": 0,
+    "sentence": "The motor ramp time defined by H_RSC_RAMP_TIME is ignored during bail-out, and a hard-coded ramp time of one second is used."
+  },
+  {
+    "section-id": 10,
+    "sentence-id": 0,
+    "sentence": "The ramp time defined by H_RSC_RAMP_TIME is now only observed when the aircraft is on ground and the \"landed flag\" is set true."
+  },
+  {
+    "section-id": 10,
+    "sentence-id": 3,
+    "sentence": "Caution is therefore required when running autorotations in quick succession to prevent rapid rotor spool up on ground."
+  },
+  {
+    "section-id": 12,
+    "sentence-id": 2,
+    "sentence": "The autonomous flight mode can only be entered if the interlock is disengaged whilst flying in a non-manual collective mode."
+  },
+  {
+    "section-id": 12,
+    "sentence-id": 3,
+    "sentence": "When exiting the autorotation the flight mode is returned to the mode from which it came (e.g. Altitude Hold -> Autonomous Autorotation -> Altitude Hold)."
+  },
+  {
+    "section-id": 4,
+    "sentence-id": 7,
+    "sentence": "The objective is to reduce the blade collective angle reducing the risk of blade stall."
+  },
+  {
+    "section-id": 5,
+    "sentence-id": 2,
+    "sentence": "It is important to maintain aircraft energy as efficiently as possible in the glide phase so that the maximum amount of energy is available for the flare and touch-down phase."
+  },
+  {
+    "section-id": 10,
+    "sentence-id": 2,
+    "sentence": "Therefore, if the interlock is re-engaged immediately after the aircraft touches down the one second ramp time of the bail-out phase can be initiated on the ground."
+  }
+]

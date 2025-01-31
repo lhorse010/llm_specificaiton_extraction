@@ -1,0 +1,22 @@
+[
+  {
+    "index": 0,
+    "formula": "G(SID_AXIS ≠ 0 → X(System Identification Mode enabled))",
+    "explanation": "Globally, if SID_AXIS is non-zero, then the System Identification Mode is enabled at the next time step."
+  },
+  {
+    "index": 1,
+    "formula": "G(System Identification Mode enabled → X(associated parameters visible))",
+    "explanation": "Globally, if the System Identification Mode is enabled, then its associated parameters become visible at the next time step."
+  },
+  {
+    "index": 2,
+    "formula": "G(System Identification Mode enabled → F(entry into mode allowed))",
+    "explanation": "Globally, if the System Identification Mode is enabled, then entry into the mode is allowed at some future time step."
+  },
+  {
+    "index": 3,
+    "formula": "G(SID_AXIS = 0 → F(error message logged and sent))",
+    "explanation": "Globally, if SID_AXIS is zero, then an error message is logged and sent to the ground control station at some future time step."
+  }
+]

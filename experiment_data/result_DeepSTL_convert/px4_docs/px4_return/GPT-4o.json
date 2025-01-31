@@ -1,0 +1,112 @@
+{
+    "temporal_logic_formulars": [
+        {
+            "section-id": 0,
+            "sentence-id": 2,
+            "sentence": "In this return type vehicles ascend to a safe altitude above obstructions if needed, fly directly to the closest safe landing point (a rally point or the home position), descend to the \"descent altitude\", wait briefly, and then land.",
+            "tl": "always ( returntypeveicesased == asaecledtructit ) until ( sbstinltdeo == ctrel ) -> ( clydestSendnlane > ( alstfedn > 1 alseanindn and claly < aralgaralesednl == araralesinledtites ) or ( a == dedtedtinledeodtinde"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 1,
+            "sentence": "2.Mode requires a global 3d position estimate (from GPS or inferred from a local position).",
+            "tl": "always ( e2derequiresa == globalitiositinestimateS ) or ( inferedalocal == lpocalpositiocal ) )"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 2,
+            "sentence": "Flying vehicles can't switch to this mode without global position.",
+            "tl": "always ( not ( Flyingvehiclescan == switch ) and globalpositio == iton )"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 3,
+            "sentence": "Flying vehicles will failsafe if they lose the position estimate.",
+            "tl": "always ( lFyingvehiclesfails == failetheylosepositiosepositio )"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 4,
+            "sentence": "3.Mode requires home position is set.",
+            "tl": "always ( Moderequiresh == meposition )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 2,
+            "sentence": "1.Ascends to the minimum return altitude (safely above any expected obstacles).",
+            "tl": "always ( m1Ascends == minimureturnaltitde and ( safely > exexpectdobstedocledos < les )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 3,
+            "sentence": "The vehicle maintains its initial altitude if that is higher than the minimum return altitude.",
+            "tl": "always ( vehiclemaintin == itsinitialaltitude -> minimur == turnaltmretu )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 4,
+            "sentence": "2.Flies via a direct constant-altitude path to the safe landing point, which will be the nearest of any rally points and the home position.",
+            "tl": "always ( p2Fliesviadirectconsta == taltitneudepath -> neafelarest == ralestralypointins and homepo == iosomepoin )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 5,
+            "sentence": "3.On arrival at its destination, it rapidly descends to the \"descent altitude\" (RTL_DESCEND_ALT).",
+            "tl": "always ( d3rivalitsde == tinatinatin ) until ( irapidlydescedscends == dedendes ) -> dedestctitude > 9 de and ( RTL_DESCE_D_ESC and RTL_E_DESND_di < 9 LT ) )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 6,
+            "sentence": "4.It waits for a configurable time (RTL_LAND_DELAY), which may be used for deploying landing gear.",
+            "tl": "always ( waitsaconfigurableRTL_LND_DELAY == mayedeployinglanglangde )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 7,
+            "sentence": "5.Then lands.",
+            "tl": "always ( Thenlands == s )"
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 0,
+            "sentence": "By default the _minimum return altitude_ is set using RTL_RETURN_ALT, and the vehicle will just return at the higher of RTL_RETURN_ALT or the initial vehicle altitude.",
+            "tl": "always ( ydefault_mini == mreturitiunl ) and vehicRT_ == eicleETURustretunR )"
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 5,
+            "sentence": "Inside the code the minimum return altitude is the intersection of the vehicle position with the cone, or RTL_DESCEND_ALT (whichever is higher).",
+            "tl": "always ( Insidecodemin == imurtinlteduein == intectitrse ) or ( iticleposition == itionwithconwithco ) -> eitonwithcone )"
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 6,
+            "sentence": "In other words, the vehicle must always ascend to at least RTL_DESCEND_ALT if below that value.",
+            "tl": "always ( otherwords == vehicle ) -> RTL_DESCEND_ALT < 9 )"
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 4,
+            "sentence": "The cone affects the minimum return altitude if return mode is triggered within the cylinder defined by the maximum cone radius and RTL_RETURN_ALT: outside this cyclinder RTL_RETURN_ALT is used.",
+            "tl": "always ( not ( coneaffectsmini == rgltiuertre ) and rigedned == edefmxaiumiuconedmdu ) -> ( RTL_RTETUR_ == RcNL_RdRTL_ ) until [ 0 : cNL_dRTeETe == cycicRliA_RTL )"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 5,
+            "sentence": "4.Mode prevents arming (vehicle must be armed when switching to this mode).",
+            "tl": "always ( Modepreventsarming > evhiclearmd == switchieching )"
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 1,
+            "sentence": "The minimum return altitude can be further configured using RTL_CONE_ANG, which together with RTL_RETURN_ALT defines a half cone centered around the destination landing point.",
+            "tl": "always ( minimumretud == tinalecnur ) and gRT_Oniu == edtogL_NthewithR )"
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 2,
+            "sentence": "The cone angle allows a lower minimum return altitude when the return mode is executed close to the destination.",
+            "tl": "always ( coneanglealowsaminmuretu == rnlatudeturetureteture ) -> eturecutedclose == destestinatinatoionlion )"
+        }
+    ]
+}

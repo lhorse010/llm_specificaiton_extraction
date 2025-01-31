@@ -1,0 +1,67 @@
+[
+  {
+    "sentence": "2.Mode requires at least a valid local position estimate (does not require a global position).",
+    "formula": "G(L ∧ ¬G)",
+    "explanation": "The mode requires a valid local position estimate (L) throughout, and it does not require a global position (¬G)."
+  },
+  {
+    "sentence": "Flying vehicles can't switch to this mode without valid local position.",
+    "formula": "G(¬L → ¬M)",
+    "explanation": "If there is no valid local position (¬L), then the mode (M) cannot be switched to."
+  },
+  {
+    "sentence": "Flying vehicles will failsafe if they lose the position estimate.",
+    "formula": "G(¬P → F(FS))",
+    "explanation": "If the position estimate is lost (¬P), the system will eventually enter a failsafe state (FS)."
+  },
+  {
+    "sentence": "3.Mode prevents arming (vehicle must be armed when switching to this mode).",
+    "formula": "G(M → A)",
+    "explanation": "The mode (M) can only be switched to if the vehicle is already armed (A)."
+  },
+  {
+    "sentence": "4.Mode requires wind and flight time are within allowed limits (specified via parameters).",
+    "formula": "G((W ∧ T) → M)",
+    "explanation": "The mode (M) requires both wind (W) and flight time (T) to be within specified limits."
+  },
+  {
+    "sentence": "7.The mode can be triggered using the MAV_CMD_DO_ORBIT MAVLink command.",
+    "formula": "G(C → M)",
+    "explanation": "The mode (M) can be triggered by the command (C)."
+  },
+  {
+    "sentence": "_QGroundControl_ (or other compatible GCS or MAVLink API) is _required_ to enable the mode, and to set the center position, initial radius and altitude of the orbit.",
+    "formula": "G((Q ∧ S) → E)",
+    "explanation": "QGroundControl (Q) and settings (S) are required to enable the mode (E)."
+  },
+  {
+    "sentence": "Once enabled the vehicle will fly as fast as possible to the closest point on the commanded circle trajectory and do a slow (1m/s) clockwise orbit on the planned circle, facing the center.",
+    "formula": "G(E → (F(T ∧ O)))",
+    "explanation": "Once enabled (E), the vehicle will eventually reach the trajectory (T) and perform the orbit (O)."
+  },
+  {
+    "sentence": "Maximum velocity is 10m/s and further limited to keep the centripetal acceleration below 2m/s^2.",
+    "formula": "G(V ≤ 10 ∧ A ≤ 2)",
+    "explanation": "The velocity (V) is limited to 10m/s, and acceleration (A) is limited to 2m/s²."
+  },
+  {
+    "sentence": "The mode can be stopped by switching to any other flight mode (using RC or QGC).",
+    "formula": "G(M → (RC ∨ QGC))",
+    "explanation": "The mode (M) can be stopped by switching via RC or QGroundControl (QGC)."
+  },
+  {
+    "sentence": "RC control cannot be used to start the mode (if you switch to the mode via RC it will sit idle).",
+    "formula": "G(¬RC → ¬M)",
+    "explanation": "RC represents the use of RC control, and M represents the mode starting. The formula ensures that globally, if RC control is used, the mode does not start, implying it will sit idle."
+  },
+  {
+    "sentence": "2.The maximum acceleration is limited to 2 m/s^2, with priority on keeping the commanded circle trajectory rather than commanded ground speed (i.e. the vehicle will slow down in order to achieve the correct circle if the acceleration exceeds 2m/s^2).",
+    "formula": "G(A > 2 → T ∧ ¬S)",
+    "explanation": "A represents acceleration, T represents maintaining the trajectory, and S represents the commanded speed. The formula states that globally, if acceleration exceeds 2 m/s^2, the priority is on maintaining trajectory, so speed is adjusted."
+  },
+  {
+    "sentence": "1.MAV_CMD_DO_ORBIT - Start an orbit with specified center point, radius, direction, altitude, speed and yaw direction (vehicle defaults to facing centre of orbit).",
+    "formula": "F(O ∧ C ∧ R ∧ D ∧ A ∧ S ∧ Y)",
+    "explanation": "O represents the start of the orbit command. C, R, D, A, S, and Y represent center point, radius, direction, altitude, speed, and yaw direction respectively. The formula captures that eventually, all these parameters are set for the orbit."
+  }
+]

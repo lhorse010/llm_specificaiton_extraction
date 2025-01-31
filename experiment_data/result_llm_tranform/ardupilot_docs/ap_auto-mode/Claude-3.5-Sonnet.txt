@@ -1,0 +1,122 @@
+[
+  {
+    "sentence": "It controls the path as it approaches a waypoint to be within the WPNAV_RADIUS of each waypoint.",
+    "formula": "G(A → F(W ∧ R))",
+    "explanation": "A represents approaching a waypoint, W represents being at a waypoint, and R represents being within WPNAV_RADIUS. This formula ensures that whenever the system approaches a waypoint (A), it will eventually (F) reach the waypoint (W) while being within the specified radius (R)."
+  },
+  {
+    "sentence": "The speed is lowered below WPNAV_SPEED, as necessary, to keep the path within the set corner lateral acceleration limit parameter (WPNAV_ACCEL_C).",
+    "formula": "G((C ∧ ¬L) → X(S ∧ L))",
+    "explanation": "C represents approaching a corner, L represents being within the lateral acceleration limit, and S represents speed below WPNAV_SPEED. This formula ensures that whenever the system approaches a corner (C) and is not within the acceleration limit (¬L), in the next state (X) the speed will be lowered (S) and the limit will be maintained (L)."
+  },
+  {
+    "sentence": "All the same requirements apply including ensuring that vibration levels and compass interference levels are acceptable and that the GPS is functioning well including returning an HDOP of under 2.0.",
+    "formula": "G(V ∧ C ∧ G ∧ H)",
+    "explanation": "V represents acceptable vibration levels, C represents acceptable compass interference, G represents GPS functioning well, and H represents HDOP under 2.0. This formula ensures that all these conditions are globally (G) maintained throughout the operation."
+  },
+  {
+    "sentence": "You must arm your copter before you can engage AUTO mode.",
+    "formula": "G(¬A → ¬U)",
+    "explanation": "A represents the copter being armed, and U represents engaging AUTO mode. This formula globally (G) ensures that if the copter is not armed (¬A), then AUTO mode cannot be engaged (¬U)."
+  },
+  {
+    "sentence": "If starting the mission while the copter is on the ground the pilot should ensure the throttle is down, then switch to the Auto flight mode, then raise the throttle.",
+    "formula": "G((G ∧ S) → (D ∧ X(A ∧ X(R))))",
+    "explanation": "G represents being on the ground, S represents starting the mission, D represents throttle down, A represents Auto flight mode, and R represents raising throttle. This formula ensures that when starting on the ground (G ∧ S), the sequence of throttle down (D), then Auto mode (A), then raising throttle (R) must occur."
+  },
+  {
+    "sentence": "The moment that the throttle is raised above zero, the copter will begin the mission.",
+    "formula": "G(R → X(M))",
+    "explanation": "R represents raising the throttle above zero, and M represents beginning the mission. This formula ensures that globally (G), whenever the throttle is raised (R), in the next state (X) the mission begins (M)."
+  },
+  {
+    "sentence": "If the first command in the mission is a take-off command but the vehicle is already above the take-off command's altitude the take-off command will be considered completed and the vehicle will move onto the next waypoint.",
+    "formula": "G((F ∧ T ∧ A) → X(C ∧ N))",
+    "explanation": "F represents first command, T represents take-off command, A represents above take-off altitude, C represents command completed, and N represents moving to next waypoint. This formula ensures that if the conditions are met (F ∧ T ∧ A), then in the next state (X) the command is completed (C) and the vehicle moves to the next waypoint (N)."
+  },
+  {
+    "sentence": "At any time the pilot can retake control from the autopilot by returning the flight mode switch to another flight mode such as Stabilize or Loiter.",
+    "formula": "G(S ∨ L → P)",
+    "explanation": "S represents Stabilize mode, L represents Loiter mode, and P represents pilot control. This formula ensures that globally (G), switching to Stabilize or Loiter mode (S ∨ L) always leads to pilot control (P)."
+  },
+  {
+    "sentence": "If the pilot then switches to AUTO again, the mission will resume from the last command.",
+    "formula": "G((P ∧ X(A)) → X(R ∧ L))",
+    "explanation": "P represents pilot control, A represents AUTO mode, R represents resuming mission, and L represents last command. This formula ensures that if the pilot is in control (P) and switches to AUTO (X(A)), then in the next state the mission resumes (R) from the last command (L)."
+  },
+  {
+    "sentence": "During the mission the pilot's roll, pitch and throttle inputs are ignored but the yaw can be overridden with the yaw stick.",
+    "formula": "G(M → (¬(R ∨ P ∨ T) ∧ Y))",
+    "explanation": "M represents being in mission, R represents roll input, P represents pitch input, T represents throttle input, and Y represents yaw override. This formula ensures that during the mission (M), roll, pitch, and throttle inputs are ignored (¬(R ∨ P ∨ T)) while yaw can be overridden (Y)."
+  },
+  {
+    "sentence": "The autopilot will attempt to retake yaw control as the vehicle passes the next waypoint.",
+    "formula": "G(P → X(Y))",
+    "explanation": "P represents passing the next waypoint, and Y represents the autopilot attempting to retake yaw control. This formula ensures that globally, whenever the vehicle passes a waypoint, in the next state, the autopilot will attempt to retake yaw control."
+  },
+  {
+    "sentence": "The Radius (WPNAV_RADIUS allows you to control how close the copter must come to the exact waypoint position before the waypoint is considered \"complete\" and the copter moves onto the next waypoint.",
+    "formula": "G(C ∧ R → F(W ∧ X(M)))",
+    "explanation": "C represents the copter being close to the waypoint, R represents the WPNAV_RADIUS condition being met, W represents the waypoint being considered complete, and M represents moving to the next waypoint. This formula captures the idea that when the copter is close enough (as defined by WPNAV_RADIUS), the waypoint will be considered complete, and the copter will move to the next waypoint in the subsequent state."
+  },
+  {
+    "sentence": "This only applies when the waypoint command includes a delay of 1 second or more.",
+    "formula": "G(D → (C ∧ R → F(W ∧ X(M))))",
+    "explanation": "D represents the waypoint command including a delay of 1 second or more. This formula extends the previous one, stating that the completion condition only applies when there's a delay in the waypoint command."
+  },
+  {
+    "sentence": "Without a delay the waypoint is considered a \"fast waypoint\" and the copter will begin towards the next waypoint once the intermediate target that it is chasing has reached the waypoint (S-Curve behavior only applies to \"fast\" waypoints).",
+    "formula": "G(¬D → (I → X(M ∧ S)))",
+    "explanation": "I represents the intermediate target reaching the waypoint, M represents moving to the next waypoint, and S represents S-Curve behavior. This formula captures the behavior for fast waypoints (without delay), where reaching the intermediate target immediately triggers movement to the next waypoint with S-Curve behavior."
+  },
+  {
+    "sentence": "AUTO mode navigates between each waypoint in a straight line and as it approaches each waypoint follows a smooth curving path towards the next waypoint (S-Curve).",
+    "formula": "G(A → ((N U W) ∧ (W → X(S))))",
+    "explanation": "A represents AUTO mode, N represents navigating in a straight line, W represents approaching a waypoint, and S represents following an S-Curve. This formula ensures that in AUTO mode, the copter navigates straight until it approaches a waypoint, at which point it switches to S-Curve behavior."
+  },
+  {
+    "sentence": "this smooth curving path as it changes direction to the next waypoint will not occur if the next naviation mission item after the waypoint is anything other than a normal waypoint, ie LAND, LOITER_TURNS, etc., etc.",
+    "formula": "G(W ∧ ¬N → X(¬S))",
+    "explanation": "W represents reaching a waypoint, N represents the next mission item being a normal waypoint, and S represents S-Curve behavior. This formula states that if a waypoint is reached and the next item is not a normal waypoint, S-Curve behavior will not occur in the next state."
+  },
+  {
+    "sentence": "In these cases the copter will approach the waypoint, stop, and then proceed to the next navigation waypoint instead of smoothly curving in front of it and proceeding to that next navigation waypoint.",
+    "formula": "G(W ∧ ¬N → X(T ∧ X(M)))",
+    "explanation": "W represents approaching a waypoint, N represents the next item being a normal waypoint, T represents stopping, and M represents moving to the next waypoint. This formula captures the behavior when the next item is not a normal waypoint: the copter stops after reaching the waypoint, then moves to the next waypoint in the subsequent state."
+  },
+  {
+    "sentence": "Also, small WPNAV_RADIUS values will require that the curve be very small, effectively appearing like the non-S-Curve behavior explained above.",
+    "formula": "G(R → (W → X(¬S)))",
+    "explanation": "R represents small WPNAV_RADIUS values, W represents approaching a waypoint, and S represents noticeable S-Curve behavior. This formula states that with small WPNAV_RADIUS values, when approaching a waypoint, the next state will not exhibit noticeable S-Curve behavior."
+  },
+  {
+    "sentence": "If starting the mission from the air the mission will begin from the first command the moment that the flight mode switch is moved to Auto.",
+    "formula": "G(A ∧ I → X(F))",
+    "explanation": "A represents switching to Auto mode, I represents being in the air, and F represents starting from the first command. This formula ensures that when Auto mode is engaged while in the air, the mission immediately starts from the first command in the next state."
+  },
+  {
+    "sentence": "The AUTO_OPTIONS parameter can be used to alter this behaviour, allowing arming while in AUTO mode, and/or, allowing a mission takeoff command to start upon AUTO mode entry, even if the throttle has not been raised.",
+    "formula": "G(O → (A → (X(R) ∨ X(T))))",
+    "explanation": "O represents the AUTO_OPTIONS parameter being set, A represents entering AUTO mode, R represents arming, and T represents starting a takeoff command. This formula captures the idea that when AUTO_OPTIONS is set, entering AUTO mode can lead to either arming or starting a takeoff command in the next state, regardless of throttle position."
+  },
+  {
+    "sentence": "Without a final RTL or LAND command the copter will simply stop at the final waypoint and the pilot will need to retake control with the transmitter.",
+    "formula": "G(¬(RTL ∨ LAND) → (FW ∧ X(PC)))",
+    "explanation": "This formula states that globally (G), if there's no RTL or LAND command (¬(RTL ∨ LAND)), then eventually the copter will reach the final waypoint (FW) and in the next state (X), the pilot will need to take control (PC). This captures the conditional nature of the pilot's intervention based on the absence of specific commands."
+  },
+  {
+    "sentence": "Remember that when using RTL, the copter will return to the \"home\" position which is the location where the copter was armed.",
+    "formula": "G(RTL → F(H))",
+    "explanation": "This formula expresses that globally (G), if RTL (Return to Launch) is activated, then eventually (F) the copter will reach the home position (H). The home position is implicitly understood to be the arming location, which is a static property not explicitly represented in the temporal logic but known to the system."
+  },
+  {
+    "sentence": "As the copter touches down at the end of the mission the vehicle should automatically disarm but occasionally the vehicle may not sense the landing and the pilot may need to hold the throttle down and takeoff in another mode like Stabilize or Loiter and then manually disarm the vehicle.",
+    "formula": "F(TD ∧ (AD ∨ (¬SL ∧ F(PT ∧ F(MD)))))",
+    "explanation": "This complex formula captures the landing scenario. Eventually (F), there's a touchdown (TD) followed by either automatic disarming (AD) or, if landing is not sensed (¬SL), a future state where the pilot takes control (PT) and eventually manually disarms (MD). This formula allows for both the ideal case and the exception, reflecting the nuanced behavior described."
+  },
+  {
+    "sentence": "This intermediate target can be 10m or more ahead of the copter (its distance ahead of the copter increases with the Speed parameter).",
+    "formula": "G(IT → D≥10)",
+    "explanation": "This formula states that globally (G), if there's an intermediate target (IT), then the distance (D) is always greater than or equal to 10m. The relationship with the Speed parameter is not explicitly captured in the MTL formula, as it describes a continuous variation which is challenging to represent in discrete temporal logic. This is a simplification of the full behavior described."
+  }
+]

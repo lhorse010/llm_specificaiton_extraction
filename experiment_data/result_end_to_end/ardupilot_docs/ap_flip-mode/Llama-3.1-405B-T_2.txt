@@ -1,0 +1,45 @@
+After carefully reading the document, I have extracted the specifications and expressed them using Metric Temporal Logic (MTL) formulas. Here are the results in the required output format:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G((ch7/ch8_switch = ON) ∧ (roll/pitch_stick_position ≠ 0) → X(roll/pitch_flip))",
+            "explanation": "Whenever the ch7/ch8 switch is ON and the roll/pitch stick position is not zero, the vehicle will flip on its roll or pitch axis in the next time step."
+        },
+        {
+            "formula": "G(flip_start → X(rise_for_1_second ∧ F(rapid_flip)))",
+            "explanation": "Whenever the flip mode is started, the vehicle will rise for 1 second and then rapidly flip in the next time step."
+        },
+        {
+            "formula": "G(flip → X(G(¬flip) U (ch7/ch8_switch = OFF ∧ ch7/ch8_switch = ON)))",
+            "explanation": "After flipping, the vehicle will not flip again until the ch7/ch8 switch is brought low and back to high."
+        },
+        {
+            "formula": "G((roll/pitch_stick_position > 40deg) → X(exit_flip))",
+            "explanation": "If the roll/pitch stick position is greater than 40 degrees, the vehicle will exit the flip mode in the next time step."
+        },
+        {
+            "formula": "G(flip_start → F(complete_roll_within_2.5sec))",
+            "explanation": "The vehicle will complete the roll within 2.5 seconds after starting the flip mode."
+        },
+        {
+            "formula": "G(flip_recover → F(return_to_original_attitude))",
+            "explanation": "The vehicle will return to its original attitude after recovering from the flip."
+        }
+    ]
+}
+```
+
+Note that I have used the following abbreviations in the MTL formulas:
+
+* `ch7/ch8_switch`: the ch7/ch8 switch position
+* `roll/pitch_stick_position`: the roll/pitch stick position
+* `roll/pitch_flip`: the roll/pitch flip action
+* `rise_for_1_second`: the action of rising for 1 second
+* `rapid_flip`: the action of rapidly flipping
+* `flip_start`: the start of the flip mode
+* `flip_recover`: the recovery phase of the flip mode
+* `exit_flip`: the action of exiting the flip mode
+* `complete_roll_within_2.5sec`: the action of completing the roll within 2.5 seconds
+* `return_to_original_attitude`: the action of returning to the original attitude

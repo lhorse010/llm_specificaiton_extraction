@@ -1,0 +1,82 @@
+[
+  {
+    "sentence": "1.This mode requires a global 3d position estimate (from GPS or inferred from a local position).",
+    "formula": "G(P → (G ∨ L))",
+    "explanation": "P represents the mode being active, and G or L represent having a global 3D position estimate from GPS or local inference, respectively. This ensures that whenever the mode is active, one of these position estimates is available."
+  },
+  {
+    "sentence": "2.The vehicle must be armed before this mode can be engaged.",
+    "formula": "G((¬A ∧ M) → X(A ∧ M))",
+    "explanation": "A represents the vehicle being armed, and M represents the mode being engaged. The formula ensures that if the vehicle is not armed and the mode is engaged, it implies that the vehicle must be armed in the next state."
+  },
+  {
+    "sentence": "1.If no mission is stored, or if PX4 has finished executing all mission commands, or if the mission is not feasible:",
+    "formula": "G((¬S ∨ F ∨ ¬F) → ¬E)",
+    "explanation": "S stands for a mission being stored, F for the execution of all commands being finished, and E for the mission being executed. This ensures that if no mission is stored or all commands are finished or the mission is not feasible, then the mission is not executed."
+  },
+  {
+    "sentence": "2.If a mission is stored and PX4 is flying it will execute the mission/flight plan from the current step.",
+    "formula": "G((S ∧ F) → E)",
+    "explanation": "S represents a mission being stored, F represents PX4 flying, and E represents executing the mission. This ensures that if a mission is stored and PX4 is flying, the mission will be executed."
+  },
+  {
+    "sentence": "PX4 will execute the mission/flight plan.",
+    "formula": "G(E)",
+    "explanation": "E represents executing the mission or flight plan. This formula simply states that PX4 will execute the mission globally."
+  },
+  {
+    "sentence": "If the mission does not have a TAKEOFF item then PX4 will fly the vehicle to the minimum altitude before executing the remainder of the flight plan from the current step.",
+    "formula": "G((¬T → (M ∧ X(E))))",
+    "explanation": "T represents the presence of a TAKEOFF item, M represents reaching the minimum altitude, and E represents executing the remainder of the flight plan. This ensures that if there is no TAKEOFF item, PX4 flies to the minimum altitude before continuing the mission."
+  },
+  {
+    "sentence": "6.The mission will only reset when the vehicle is disarmed or when a new mission is uploaded.",
+    "formula": "G(R ↔ (¬A ∨ U))",
+    "explanation": "R represents the mission resetting, A represents the vehicle being armed, and U represents a new mission being uploaded. This ensures the mission resets only under these conditions."
+  },
+  {
+    "sentence": "If the vehicle was capturing images (has camera trigger items) it will instead head from its current position towards the last waypoint it traveled through (before pausing), and then retrace its path at the same speed and with the same camera triggering behaviour.",
+    "formula": "G((C → (H ∧ R ∧ K)))",
+    "explanation": "C represents capturing images, H represents heading towards the last waypoint, R represents retracing its path, and K represents maintaining the camera triggering behavior. This ensures that if capturing images, these actions follow."
+  },
+  {
+    "sentence": "Ensure that the throttle stick is non-zero before switching to any RC mode (otherwise the vehicle will crash).",
+    "formula": "G((¬Z → M) → ¬C)",
+    "explanation": "Z represents the throttle stick being zero, M represents switching to RC mode, and C represents a crash. This ensures that switching to RC mode without a zero throttle stick prevents a crash."
+  },
+  {
+    "sentence": "If any of the checks fail, the user is notified and it is not possible to start the mission.",
+    "formula": "G((F → (N ∧ ¬S)))",
+    "explanation": "F represents a failed check, N represents the user being notified, and S represents starting the mission. This ensures that if any check fails, the user is notified and the mission cannot start."
+  },
+  {
+    "sentence": "First mission item too far away from vehicle (MIS_DIST_1WP)",
+    "formula": "G(D → ¬F(MIS_DIST_1WP))",
+    "explanation": "Here, D represents the distance condition being checked, and MIS_DIST_1WP indicates that the first mission item is too far. The formula states that globally, if the distance condition is checked, it should not eventually be true that the first mission item is too far away."
+  },
+  {
+    "sentence": "Any mission item conflicts with a plan or safety geofence",
+    "formula": "G(MI → (¬P ∧ ¬SG))",
+    "explanation": "MI represents a mission item, P denotes the plan, and SG indicates the safety geofence. The formula states that globally, if there is a mission item, it should not conflict with the plan or the safety geofence."
+  },
+  {
+    "sentence": "Vehicles switch to the next waypoint as soon as they enter the acceptance radius (NAV_ACC_RAD).",
+    "formula": "G((ENTER_ACC_RAD) → X(SWITCH_WP))",
+    "explanation": "ENTER_ACC_RAD represents entering the acceptance radius, and SWITCH_WP indicates switching to the next waypoint. The formula states that globally, if a vehicle enters the acceptance radius, it should switch to the next waypoint in the next time step."
+  },
+  {
+    "sentence": "During mission execution this will cause the vehicle to ascend vertically to the minimum takeoff altitude defined in the MIS_TAKEOFF_ALT parameter, then head towards the 3D position defined in the mission item.",
+    "formula": "G(EXECUTE_MISSION → (ASCEND ∧ F(HEAD_TO_3D_POS)))",
+    "explanation": "EXECUTE_MISSION represents the mission execution, ASCEND indicates ascending to the minimum takeoff altitude, and HEAD_TO_3D_POS denotes heading to the 3D position. The formula states that globally, during mission execution, the vehicle will ascend and eventually head to the 3D position."
+  },
+  {
+    "sentence": "If a mission with no takeoff mission item is started, the vehicle will ascend to the minimum takeoff altitude and then proceed to the first Waypoint mission item.",
+    "formula": "G((START_NO_TAKEOFF) → (ASCEND ∧ F(FIRST_WP)))",
+    "explanation": "START_NO_TAKEOFF represents starting a mission without a takeoff item, ASCEND indicates ascending to the minimum altitude, and FIRST_WP denotes proceeding to the first waypoint. The formula states that globally, if such a mission is started, the vehicle will ascend and eventually proceed to the first waypoint."
+  },
+  {
+    "sentence": "PX4 runs some basic sanity checks to determine if a mission is feasible when it is uploaded, and when the vehicle is first armed.",
+    "formula": "G((UPLOAD ∨ ARM) → F(SANITY_CHECKS))",
+    "explanation": "UPLOAD represents mission upload, ARM indicates the vehicle being armed, and SANITY_CHECKS denotes the sanity checks. The formula states that globally, when a mission is uploaded or the vehicle is armed, it will eventually run sanity checks."
+  }
+]

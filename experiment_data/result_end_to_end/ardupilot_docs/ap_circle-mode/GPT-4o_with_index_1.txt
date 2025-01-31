@@ -1,0 +1,47 @@
+[
+  {
+    "index": 0,
+    "formula": "G(CIRCLE_RADIUS = 0 → (vehicle_stays_in_place ∧ slowly_rotates))",
+    "explanation": "If the CIRCLE_RADIUS is set to zero, the vehicle should remain stationary and rotate slowly for panorama shots."
+  },
+  {
+    "index": 1,
+    "formula": "G(CIRCLE_RATE > 0 → rotates_clockwise)",
+    "explanation": "A positive CIRCLE_RATE value indicates that the vehicle should rotate clockwise."
+  },
+  {
+    "index": 2,
+    "formula": "G(CIRCLE_RATE < 0 → rotates_counter_clockwise)",
+    "explanation": "A negative CIRCLE_RATE value indicates that the vehicle should rotate counterclockwise."
+  },
+  {
+    "index": 3,
+    "formula": "G(acceleration_towards_center > WPNAV_ACCEL → ¬achieve_desired_rate)",
+    "explanation": "The vehicle may not achieve the desired rotation rate if the necessary acceleration towards the circle's center exceeds the maximum acceleration (WPNAV_ACCEL)."
+  },
+  {
+    "index": 4,
+    "formula": "G(radio_failsafe → (¬stick_changes))",
+    "explanation": "In radio failsafe, all stick-based changes to the circle's parameters are inhibited."
+  },
+  {
+    "index": 5,
+    "formula": "G(bit_0_set_in_CIRCLE_OPTIONS → (adjust_radius_and_speed_with_sticks))",
+    "explanation": "If bit 0 is set in the CIRCLE_OPTIONS parameter, the pilot can adjust the circle's radius and angular velocity using the control sticks."
+  },
+  {
+    "index": 6,
+    "formula": "G(bit_1_set_in_CIRCLE_OPTIONS → (copter_faces_direction_of_travel))",
+    "explanation": "If bit 1 is set in the CIRCLE_OPTIONS parameter, the Copter faces the direction of travel as it circles."
+  },
+  {
+    "index": 7,
+    "formula": "G(bit_2_set_in_CIRCLE_OPTIONS → (center_position_set_upon_entry))",
+    "explanation": "If bit 2 is set in the CIRCLE_OPTIONS parameter, the circle's center position is set upon mode entry at the current location."
+  },
+  {
+    "index": 8,
+    "formula": "G(bit_3_set_in_CIRCLE_OPTIONS → (mount_faces_circle_center))",
+    "explanation": "If bit 3 is set in the CIRCLE_OPTIONS parameter, the mount's region of interest is set on the circle's center, causing it to face the center at all times."
+  }
+]

@@ -1,0 +1,71 @@
+After carefully reading the document and following the steps outlined, I have identified the sentences that convey information about state transition pre-requirements, constraints, expected post-actions, and expected state changes. Here are the annotated sentences in JSON format:
+
+```json
+{
+    "specifications": [
+        {
+            "section-id": 0,
+            "sentence-id": 2
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 0
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 2
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 5
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 7
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 8
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 0
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 1
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 2
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 4
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 6
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 7
+        }
+    ]
+}
+```
+
+These sentences convey the following information:
+
+* Section 0, Sentence 2: "This mode requires GPS." (Constraint)
+* Section 1, Sentence 0: "This flight mode is available for multirotors only." (Constraint)
+* Section 3, Sentence 2: "3.Check GPS light is green" (State transition pre-requirement)
+* Section 3, Sentence 5: "5.Pick up the vehicle and throw it up and away from you (it must climb by 50cm/s and reach a total speed of 5m/s)" (Expected state change)
+* Section 3, Sentence 7: "The motors should start when the vehicle reaches the apex of it's trajectory." (Expected post-action)
+* Section 3, Sentence 8: "After the motors start this flight mode will first try to control it's attitude (return to level and stop rotating), then stop descending and finally it will attempt to stop moving horizontally." (Expected post-action)
+* Section 4, Sentence 0: "1.THROW_TYPE: set to 0 if throwing the vehicle up, 1 if dropping the vehicle." (Expected state change)
+* Section 4, Sentence 1: "If dropping, drop from a height of at least 10m." (Constraint)
+* Section 4, Sentence 2: "2.THROW_MOT_START: controls whether the motors will spin slowly or not at all while waiting for the throw (0 = stopped, 1 = spinning slowly)." (Expected state change)
+* Section 4, Sentence 4: "3.THROW_NEXTMODE: the vehicle will switch into this flight mode after stopping (Auto, Guided, RTL, Land and Brake are support)." (Expected state change)
+* Section 4, Sentence 6: "4.THROW_ALT_MIN and THROW_ALT_MAX: set the altitude limits for THROW mode launch." (Constraint)
+* Section 4, Sentence 7: "Throw must happen above the minimum and below the maximum altitude above home after arming." (Constraint)

@@ -1,0 +1,52 @@
+[
+  {
+    "index": 0,
+    "formula": "G(auto_mode → (waypoint_distance ≤ WPNAV_RADIUS))",
+    "explanation": "Globally, when in auto mode, the distance to the current waypoint should always be less than or equal to WPNAV_RADIUS."
+  },
+  {
+    "index": 1,
+    "formula": "G(auto_mode → (speed ≤ WPNAV_SPEED))",
+    "explanation": "Globally, when in auto mode, the vehicle's speed should always be less than or equal to WPNAV_SPEED."
+  },
+  {
+    "index": 2,
+    "formula": "G(auto_mode → (lateral_acceleration ≤ WPNAV_ACCEL_C))",
+    "explanation": "Globally, when in auto mode, the vehicle's lateral acceleration should always be less than or equal to WPNAV_ACCEL_C."
+  },
+  {
+    "index": 3,
+    "formula": "G(auto_mode ∧ on_ground ∧ throttle_raised → F(mission_start))",
+    "explanation": "Globally, when in auto mode, on the ground, and the throttle is raised, the mission should eventually start."
+  },
+  {
+    "index": 4,
+    "formula": "G(auto_mode ∧ in_air → X(mission_start))",
+    "explanation": "Globally, when in auto mode and already in the air, the mission should start in the next state."
+  },
+  {
+    "index": 5,
+    "formula": "G(auto_mode ∧ pilot_yaw_input → F(autopilot_yaw_control U next_waypoint))",
+    "explanation": "Globally, when in auto mode and the pilot provides yaw input, eventually the autopilot will regain yaw control until the next waypoint is reached."
+  },
+  {
+    "index": 6,
+    "formula": "G(mission_complete → F(return_to_home ∨ land))",
+    "explanation": "Globally, when the mission is complete, eventually the vehicle should either return to home or land."
+  },
+  {
+    "index": 7,
+    "formula": "G(auto_mode ∧ vertical_speed_up ≤ WPNAV_SPEED_UP)",
+    "explanation": "Globally, when in auto mode, the vertical speed upwards should always be less than or equal to WPNAV_SPEED_UP."
+  },
+  {
+    "index": 8,
+    "formula": "G(auto_mode ∧ vertical_speed_down ≤ WPNAV_SPEED_DN)",
+    "explanation": "Globally, when in auto mode, the vertical speed downwards should always be less than or equal to WPNAV_SPEED_DN."
+  },
+  {
+    "index": 9,
+    "formula": "G(waypoint_delay ≥ 1 → (waypoint_complete ↔ waypoint_distance ≤ WPNAV_RADIUS))",
+    "explanation": "Globally, for waypoints with a delay of 1 second or more, the waypoint is considered complete if and only if the distance to the waypoint is less than or equal to WPNAV_RADIUS."
+  }
+]

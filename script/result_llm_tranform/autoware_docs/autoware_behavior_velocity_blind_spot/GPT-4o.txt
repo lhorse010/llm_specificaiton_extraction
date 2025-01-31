@@ -1,0 +1,22 @@
+[
+  {
+    "sentence": "This function is activated when the lane id of the target path has an intersection label (i.e. the turn_direction attribute is left or right).",
+    "formula": "((L ∨ R) → F(A))",
+    "explanation": "L and R represent the turn_direction being left or right, respectively. The formula states that if either condition is true, eventually the function A is activated."
+  },
+  {
+    "sentence": "Stop/Go state: When both conditions are met for any of each object, this module state is transited to the \"stop\" state and insert zero velocity to stop the vehicle.",
+    "formula": "(C1 ∧ C2 → F(S ∧ Z))",
+    "explanation": "C1 and C2 are the conditions for each object. The formula indicates that when both conditions are met, eventually the system transitions to the stop state S and zero velocity Z is applied."
+  },
+  {
+    "sentence": "In order to avoid a rapid stop, the “stop” judgement is not executed after the judgment line is passed.",
+    "formula": "¬(P → F(S))",
+    "explanation": "P represents passing the judgment line. The formula asserts that after P occurs, the stop judgment S should not be executed, indicating avoidance of rapid stops."
+  },
+  {
+    "sentence": "Once a \"stop\" is judged, it will not transit to the \"go\" state until the \"go\" judgment continues for a certain period in order to prevent chattering of the state (e.g. 2 seconds).",
+    "formula": "(S → G[0,2](¬G)) U F[2, ∞](G)",
+    "explanation": "S denotes the stop judgment, and G denotes the go judgment. The formula ensures that once S is true, the system remains in the non-go state for a period (0 to 2 seconds) until the go condition holds continuously for at least 2 seconds."
+  }
+]

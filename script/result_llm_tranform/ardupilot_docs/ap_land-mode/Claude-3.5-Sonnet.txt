@@ -1,0 +1,52 @@
+[
+  {
+    "sentence": "1.descends to 10m (or until the sonar senses something below the copter) using the regular Altitude Hold controller which will descend at the speed held in the WPNAV_SPEED_DN Copter Pids screen.",
+    "formula": "F(A ∨ S) ∧ G(¬(A ∨ S) → D)",
+    "explanation": "A represents altitude of 10m, S represents sonar sensing something, and D represents descending at WPNAV_SPEED_DN. The formula ensures that eventually either 10m is reached or sonar senses something, and until then, the copter continues descending at the specified speed."
+  },
+  {
+    "sentence": "2.below 10m the copter should descend at the rate specified in the LAND_SPEED parameter which defaults to 50cm/s.",
+    "formula": "G(B → L)",
+    "explanation": "B represents being below 10m, and L represents descending at LAND_SPEED. This formula states that globally, whenever the copter is below 10m, it should descend at the LAND_SPEED rate."
+  },
+  {
+    "sentence": "3.Upon reaching the ground the copter will automatically shut-down the motors and disarm the copter if the pilot's throttle is at minimum.",
+    "formula": "G(G ∧ T → X(S ∧ D))",
+    "explanation": "G represents reaching the ground, T represents throttle at minimum, S represents motor shutdown, and D represents disarming. The formula states that globally, when the ground is reached and throttle is minimum, in the next state, the motors will shut down and the copter will disarm."
+  },
+  {
+    "sentence": "2.If the vehicle has GPS lock the landing controller will attempt to control its horizontal position but the pilot can adjust the target horizontal position just as in Loiter mode.",
+    "formula": "G(P → (C ∧ A))",
+    "explanation": "P represents GPS lock, C represents horizontal position control, and A represents pilot's ability to adjust. This formula states that globally, when there's a GPS lock, the controller attempts to control horizontal position and the pilot can adjust it."
+  },
+  {
+    "sentence": "3.If the vehicle does not have GPS lock the horizontal control will be as in stabilize mode so the pilot can control the roll and pitch lean angle of the copter.",
+    "formula": "G(¬P → S)",
+    "explanation": "P represents GPS lock, and S represents stabilize mode control. This formula states that globally, when there's no GPS lock, the copter enters stabilize mode for horizontal control."
+  },
+  {
+    "sentence": "Copter will recognise that it has landed if the motors are being commanded to be at low level by the vertical position controller, its climb rate remains between -20cm/s and +20cm/s, and is not accelerating for one second.",
+    "formula": "G((M ∧ C ∧ F[1,1](¬A)) → L)",
+    "explanation": "M represents motors at low level, C represents climb rate within range, A represents acceleration, and L represents landing recognition. The formula states that globally, if motors are at low level, climb rate is within range, and there's no acceleration for 1 second, then the copter recognizes it has landed."
+  },
+  {
+    "sentence": "It does not use the altitude to decide whether to shut off the motors except that the copter must also be below 10m above the home altitude, unless a rangefinder is being used, in which case it must be within 2m of the ground.",
+    "formula": "G((L ∧ (B ∨ (R ∧ W))) → S)",
+    "explanation": "L represents landing conditions met, B represents below 10m above home altitude, R represents rangefinder in use, W represents within 2m of ground, and S represents motor shut-off. This complex formula captures the different conditions for motor shut-off based on altitude or rangefinder readings."
+  },
+  {
+    "sentence": "For Traditional Heli, the low motor check in the above landing detection algorithm is replaced with a check that Collective output is below mid-position (controlled by the vertical position controller, ie in descent).",
+    "formula": "G(H → (C → L))",
+    "explanation": "H represents Traditional Heli, C represents Collective output below mid-position, and L represents landing detection. For Traditional Heli, the landing detection is based on Collective output rather than low motor check."
+  },
+  {
+    "sentence": "Using a Weight on Wheels (WoW) switch will increase the descent rate and accelerometer ranges that are acceptable for landing detection.",
+    "formula": "G(W → (D ∧ A))",
+    "explanation": "W represents WoW switch active, D represents increased descent rate, and A represents increased accelerometer ranges. When WoW switch is used, it allows for wider parameters in landing detection."
+  },
+  {
+    "sentence": "This feature is enabled anytime the LGR_WOW_PIN is not disabled.",
+    "formula": "G(¬D → E)",
+    "explanation": "D represents LGR_WOW_PIN being disabled, and E represents the feature being enabled. This formula states that globally, whenever the LGR_WOW_PIN is not disabled, the feature is enabled."
+  }
+]

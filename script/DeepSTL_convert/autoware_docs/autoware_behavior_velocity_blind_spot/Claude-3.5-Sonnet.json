@@ -1,0 +1,34 @@
+{
+    "temporal_logic_formulars": [
+        {
+            "section-id": 1,
+            "sentence-id": 0,
+            "sentence": "This function is activated when the lane id of the target path has an intersection label (i.e. the turn_direction attribute is left or right).",
+            "tl": "always ( Thisfunction == activatedtatrgetah ) until ( fall ( T == aniretretpatBatne ) ) -> ( tinlabelionlabelie > 1 . et and trsectionlabe < 3.4 ) or ( turn_dir == tretirtrinatreibtrtibtr ) )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 0,
+            "sentence": "Sets a stop line, a pass judge line, a detection area and conflict area based on a map information and a self position.",
+            "tl": "always ( Setsastoplinea == asedgelineadectionarea and conflaseda == edaredamapedamapedaramap = amopinfor )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 5,
+            "sentence": "Stop/Go state: When both conditions are met for any of each object, this module state is transited to the \"stop\" state and insert zero velocity to stop the vehicle.",
+            "tl": "always ( StopGo == bothecmet -> object == moduleduled and insertzeroverolcity == stopvelicleoicle )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 8,
+            "sentence": "In order to avoid a rapid stop, the “stop” judgement is not executed after the judgment line is passed.",
+            "tl": "always ( not ( order == avoidaridapidstop ) -> ( executed == judgecutentlinepassed ) since ( not ( sor == stedpod ) ) )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 9,
+            "sentence": "Once a \"stop\" is judged, it will not transit to the \"go\" state until the \"go\" judgment continues for a certain period in order to prevent chattering of the state (e.g. 2 seconds).",
+            "tl": "always ( not rise ( Onceastopdgedit == transidit ) and judgdnerdment == aperintd -> ( aperiod == orderperver ) until ( ervtchatering > 4.2 and ervetchaterindsg < eg . 2 ) )"
+        }
+    ]
+}

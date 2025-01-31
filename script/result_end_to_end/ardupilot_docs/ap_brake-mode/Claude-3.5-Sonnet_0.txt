@@ -1,0 +1,38 @@
+Let's go through the steps to extract and formalize the specifications using Metric Temporal Logic (MTL).
+
+Step 1: Read the document thoroughly.
+I have thoroughly read the provided document about the Brake Mode for a vehicle (likely a drone or copter).
+
+Step 4: Extract specifications and express them using metric temporal logic formula.
+Step 5: Format all the converted sentences in JSON.
+
+Here's the output formatted in JSON with the extracted specifications expressed in MTL:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(BrakeMode → (¬PilotInput ∧ GPSRequired))",
+            "explanation": "This formula states that globally (G), when in Brake Mode, the system does not accept pilot input and GPS is required. The '→' implies that whenever Brake Mode is active, the conditions on the right side of the arrow must be true."
+        },
+        {
+            "formula": "G(BrakeMode → F(VehicleStopped))",
+            "explanation": "This formula expresses that globally (G), when Brake Mode is activated, it will eventually (F) lead to the vehicle being stopped. This captures the primary purpose of the Brake Mode."
+        },
+        {
+            "formula": "G(BrakeMode ∧ VehicleLanded → X(Disarmed))",
+            "explanation": "This formula states that globally (G), if the vehicle is in Brake Mode and has landed, in the next state (X) it will be disarmed. This captures the immediate disarming behavior when landed in Brake Mode."
+        },
+        {
+            "formula": "G(BrakeMode → (AccelerationLimited ∧ AngleLimited))",
+            "explanation": "This formula expresses that globally (G), when in Brake Mode, the vehicle is subject to acceleration and angle limits. This captures the constraints imposed by the position and attitude controllers."
+        },
+        {
+            "formula": "G(¬BrakeMode U PilotRecontrol)",
+            "explanation": "This formula states that the vehicle must not be in Brake Mode until (U) the pilot can regain control. This captures the requirement that the vehicle must be switched out of Brake Mode before the pilot can re-take control."
+        }
+    ]
+}
+```
+
+These MTL formulas capture the key specifications of the Brake Mode as described in the document. They formalize the behavior of the system, including the ignoring of pilot input, the requirement for GPS, the goal of stopping the vehicle, the disarming when landed, the limitations on acceleration and angle, and the need to exit the mode for pilot to regain control.

@@ -1,0 +1,87 @@
+[
+  {
+    "index": 0,
+    "formula": "G (valid_local_position_estimate → mode_enabled)",
+    "explanation": "The mode requires at least a valid local position estimate to be enabled."
+  },
+  {
+    "index": 1,
+    "formula": "G (¬valid_local_position_estimate → failsafe)",
+    "explanation": "Flying vehicles will failsafe if they lose the position estimate."
+  },
+  {
+    "index": 2,
+    "formula": "G (mode_enabled → armed)",
+    "explanation": "The mode prevents arming; the vehicle must be armed when switching to this mode."
+  },
+  {
+    "index": 3,
+    "formula": "G (wind_within_limits ∧ flight_time_within_limits → mode_enabled)",
+    "explanation": "The mode requires wind and flight time to be within allowed limits."
+  },
+  {
+    "index": 4,
+    "formula": "G (multicopter_mode → mode_supported)",
+    "explanation": "The mode is currently only supported on multicopter (or VTOL in MC mode)."
+  },
+  {
+    "index": 5,
+    "formula": "G (RC_stick_movement → (ascent_descent_control ∨ orbit_speed_control ∨ orbit_direction_control))",
+    "explanation": "RC stick movement can control ascent/descent, orbit speed, and direction."
+  },
+  {
+    "index": 6,
+    "formula": "G (MAV_CMD_DO_ORBIT → mode_triggered)",
+    "explanation": "The mode can be triggered using the MAV_CMD_DO_ORBIT MAVLink command."
+  },
+  {
+    "index": 7,
+    "formula": "G (mode_enabled → F (closest_point_on_circle_trajectory_reached ∧ slow_orbit_started))",
+    "explanation": "Once enabled, the vehicle will fly as fast as possible to the closest point on the commanded circle trajectory and do a slow (1m/s) clockwise orbit on the planned circle, facing the center."
+  },
+  {
+    "index": 8,
+    "formula": "G (left_stick_up_down → ascent_descent_control)",
+    "explanation": "Left stick up/down controls speed of ascent/descent."
+  },
+  {
+    "index": 9,
+    "formula": "G (left_stick_centered → altitude_locked)",
+    "explanation": "When the left stick is centered, altitude is locked."
+  },
+  {
+    "index": 10,
+    "formula": "G (right_stick_left_right → orbit_acceleration_control)",
+    "explanation": "Right stick left/right controls acceleration of orbit in clockwise/counter-clockwise directions."
+  },
+  {
+    "index": 11,
+    "formula": "G (right_stick_centered → current_speed_locked)",
+    "explanation": "When the right stick is centered, the current speed is locked."
+  },
+  {
+    "index": 12,
+    "formula": "G (right_stick_up_down → orbit_radius_control)",
+    "explanation": "Right stick up/down controls orbit radius (smaller/bigger)."
+  },
+  {
+    "index": 13,
+    "formula": "G (orbit_radius ≤ 1m → minimum_radius_reached)",
+    "explanation": "Minimum radius is 1m."
+  },
+  {
+    "index": 14,
+    "formula": "G (orbit_radius ≥ 100m → maximum_radius_reached)",
+    "explanation": "Maximum radius is 100m."
+  },
+  {
+    "index": 15,
+    "formula": "G (initial_rotation = 1m/s ∧ clockwise_direction)",
+    "explanation": "Initial/default rotation is 1 m/s in a clockwise direction."
+  },
+  {
+    "index": 16,
+    "formula": "G (centripetal_acceleration ≤ 2m/s^2 → acceleration_limited)",
+    "explanation": "The maximum acceleration is limited to 2 m/s^2, with priority on keeping the commanded circle trajectory rather than commanded ground speed."
+  }
+]

@@ -1,0 +1,37 @@
+[
+  {
+    "index": 0,
+    "formula": "G((|roll_stick| < deadzone ∧ |pitch_stick| < deadzone) → F(roll_angle ≈ 0 ∧ pitch_angle ≈ 0))",
+    "explanation": "Globally, when roll and pitch sticks are within the deadzone, eventually the roll and pitch angles will be approximately zero, leveling the vehicle."
+  },
+  {
+    "index": 1,
+    "formula": "G(|roll_stick| > deadzone → roll_angle ≈ k * roll_stick)",
+    "explanation": "Globally, when the roll stick is outside the deadzone, the roll angle is proportional to the stick input, where k is a scaling factor."
+  },
+  {
+    "index": 2,
+    "formula": "G(|pitch_stick| > deadzone → pitch_angle ≈ k * pitch_stick)",
+    "explanation": "Globally, when the pitch stick is outside the deadzone, the pitch angle is proportional to the stick input, where k is a scaling factor."
+  },
+  {
+    "index": 3,
+    "formula": "G(yaw_rate ≈ k * yaw_stick)",
+    "explanation": "Globally, the yaw rate is proportional to the yaw stick input, where k is a scaling factor."
+  },
+  {
+    "index": 4,
+    "formula": "G(vertical_speed ≈ k * (throttle_stick - hover_throttle))",
+    "explanation": "Globally, the vertical speed is proportional to the difference between the throttle stick position and the hover throttle position, where k is a scaling factor."
+  },
+  {
+    "index": 5,
+    "formula": "G(¬manual_control → X(mode ≠ stabilized))",
+    "explanation": "Globally, if there's no manual control input, in the next state the mode will not be stabilized."
+  },
+  {
+    "index": 6,
+    "formula": "G((mode = manual) → (mode = stabilized))",
+    "explanation": "Globally, if the mode is set to manual, it implies that the mode is stabilized."
+  }
+]

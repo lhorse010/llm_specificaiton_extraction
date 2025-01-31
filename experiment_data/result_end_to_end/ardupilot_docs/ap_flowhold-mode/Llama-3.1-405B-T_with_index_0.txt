@@ -1,0 +1,37 @@
+[
+  {
+    "index": 0,
+    "formula": "G(release_sticks → F(stop_vehicle))",
+    "explanation": "When the user releases the sticks, the vehicle will eventually come to a stop."
+  },
+  {
+    "index": 1,
+    "formula": "G(learn_height → F(stable_height))",
+    "explanation": "After learning the new height, the vehicle will eventually stabilize its height."
+  },
+  {
+    "index": 2,
+    "formula": "G(learn_velocity → F(stable_velocity))",
+    "explanation": "After learning the new velocity, the vehicle will eventually stabilize its velocity."
+  },
+  {
+    "index": 3,
+    "formula": "G(flow_quality ≥ FHLD_QUAL_MIN → FlowHold_mode)",
+    "explanation": "If the flow sensor quality is above the minimum threshold, the vehicle will operate in FlowHold mode."
+  },
+  {
+    "index": 4,
+    "formula": "G(flow_quality < FHLD_QUAL_MIN → AltHold_mode)",
+    "explanation": "If the flow sensor quality falls below the minimum threshold, the vehicle will switch to AltHold mode."
+  },
+  {
+    "index": 5,
+    "formula": "G(FHLD_BRAKE_RATE > 0 → decelerate_vehicle)",
+    "explanation": "If the brake rate is positive, the vehicle will decelerate when the pilot releases the sticks."
+  },
+  {
+    "index": 6,
+    "formula": "G(FHLD_FLOW_MAX > 0 → bounded_stopping_rate)",
+    "explanation": "If the maximum flow rate is positive, the vehicle's stopping rate will be bounded."
+  }
+]

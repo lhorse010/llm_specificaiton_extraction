@@ -1,0 +1,42 @@
+[
+  {
+    "sentence": "When the user releases the sticks, the optical flow sensor is used by the autopilot to bring the vehicle to a stop.",
+    "formula": "G(R → F(O ∧ S))",
+    "explanation": "This formula states that globally (G), whenever the user releases the sticks (R), it will eventually (F) lead to the optical flow sensor being used (O) and the vehicle stopping (S). This captures the cause-effect relationship between stick release and the stopping process."
+  },
+  {
+    "sentence": "1.FHLD_BRAKE_RATE controls the desired deceleration rate when the pilot releases the sticks",
+    "formula": "G(R → X(B))",
+    "explanation": "Here, R represents the pilot releasing the sticks, and B represents the FHLD_BRAKE_RATE controlling the deceleration. The formula states that globally (G), whenever the sticks are released (R), in the next state (X), the brake rate control (B) is applied."
+  },
+  {
+    "sentence": "2.FHLD_FILT_HZ is the filter applied to the optical flow sensor data",
+    "formula": "G(O → F)",
+    "explanation": "This formula represents a constant relationship where O (optical flow sensor data) implies F (FHLD_FILT_HZ filter application). The global operator (G) ensures this holds at all times."
+  },
+  {
+    "sentence": "3.FHLD_FLOW_MAX is the optical flow sensor's maximum rate (in m/s) used when stopping",
+    "formula": "G(S → M)",
+    "explanation": "Here, S represents the stopping process, and M represents the FHLD_FLOW_MAX rate being used. The formula states that globally (G), during the stopping process (S), the maximum flow rate (M) is applied."
+  },
+  {
+    "sentence": "4.FHLD_QUAL_MIN is the minimum flow quality used.",
+    "formula": "G(O → Q)",
+    "explanation": "This formula represents that globally (G), when the optical flow sensor is in use (O), the minimum quality threshold (Q) is applied. This is a constant relationship that holds at all times."
+  },
+  {
+    "sentence": "If the flow sensor quality falls below this value, FlowHold will act just like AltHold",
+    "formula": "G((O ∧ ¬Q) → A)",
+    "explanation": "Here, O represents the optical flow sensor in use, ¬Q represents the quality falling below the minimum, and A represents AltHold behavior. The formula states that globally (G), if the sensor is in use (O) and the quality is below the threshold (¬Q), then AltHold behavior (A) is activated."
+  },
+  {
+    "sentence": "5.FHLD_XY_P , FHLD_XY_I , FHLD_XY_IMAX and FHLD_XY_FILT_HZ gains to tune the stopping response",
+    "formula": "G(S → (P ∧ I ∧ M ∧ H))",
+    "explanation": "This formula represents that globally (G), during the stopping process (S), all four gains (P, I, M, H) are applied simultaneously. This captures the combined use of these parameters in tuning the stopping response."
+  },
+  {
+    "sentence": "Because no Lidar is used in this mode, the optical flow sensor is used both to estimate the vehicle's height above the surface and the vehicle's speed.",
+    "formula": "G(¬L → (O ∧ H ∧ V))",
+    "explanation": "Here, ¬L represents the absence of Lidar, O represents the optical flow sensor in use, H represents height estimation, and V represents speed estimation. The formula states that globally (G), when Lidar is not used (¬L), the optical flow sensor (O) is used for both height (H) and speed (V) estimation."
+  }
+]

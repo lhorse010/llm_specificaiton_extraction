@@ -1,0 +1,27 @@
+[
+  {
+    "index": 0,
+    "formula": "G (¬(Acro ∨ Drift) → (Simple ∨ SuperSimple))",
+    "explanation": "Simple and Super Simple modes can be used with all flight modes except Acro and Drift."
+  },
+  {
+    "index": 1,
+    "formula": "G (Simple → (CompassGood ∧ X ControlRelativeToInitialHeading))",
+    "explanation": "Simple Mode requires a good compass heading and controls the copter relative to the heading at takeoff."
+  },
+  {
+    "index": 2,
+    "formula": "G (SuperSimple → (GPSLock ∧ X ControlRelativeToHomePosition))",
+    "explanation": "Super Simple Mode requires a GPS lock and controls the copter relative to its position from home."
+  },
+  {
+    "index": 3,
+    "formula": "G (SuperSimple → ¬(DistanceToHome < 10))",
+    "explanation": "Super Simple Mode's orientation is not updated when the vehicle is within 10m of home."
+  },
+  {
+    "index": 4,
+    "formula": "G (EnableMode → X (Ch7 ∨ Ch8))",
+    "explanation": "Modes can be enabled/disabled via Ch7/Ch8 switches."
+  }
+]

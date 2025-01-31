@@ -1,0 +1,92 @@
+[
+  {
+    "section-id": 0,
+    "sentence-id": 2,
+    "sentence": "In this return type vehicles ascend to a safe altitude above obstructions if needed, fly directly to the closest safe landing point (a rally point or the home position), descend to the \"descent altitude\", wait briefly, and then land."
+  },
+  {
+    "section-id": 1,
+    "sentence-id": 1,
+    "sentence": "2.Mode requires a global 3d position estimate (from GPS or inferred from a local position)."
+  },
+  {
+    "section-id": 1,
+    "sentence-id": 2,
+    "sentence": "Flying vehicles can't switch to this mode without global position."
+  },
+  {
+    "section-id": 1,
+    "sentence-id": 3,
+    "sentence": "Flying vehicles will failsafe if they lose the position estimate."
+  },
+  {
+    "section-id": 1,
+    "sentence-id": 4,
+    "sentence": "3.Mode requires home position is set."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 2,
+    "sentence": "1.Ascends to the minimum return altitude (safely above any expected obstacles)."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 3,
+    "sentence": "The vehicle maintains its initial altitude if that is higher than the minimum return altitude."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 4,
+    "sentence": "2.Flies via a direct constant-altitude path to the safe landing point, which will be the nearest of any rally points and the home position."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 5,
+    "sentence": "3.On arrival at its destination, it rapidly descends to the \"descent altitude\" (RTL_DESCEND_ALT)."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 6,
+    "sentence": "4.It waits for a configurable time (RTL_LAND_DELAY), which may be used for deploying landing gear."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 7,
+    "sentence": "5.Then lands."
+  },
+  {
+    "section-id": 3,
+    "sentence-id": 0,
+    "sentence": "By default the _minimum return altitude_ is set using RTL_RETURN_ALT, and the vehicle will just return at the higher of RTL_RETURN_ALT or the initial vehicle altitude."
+  },
+  {
+    "section-id": 3,
+    "sentence-id": 5,
+    "sentence": "Inside the code the minimum return altitude is the intersection of the vehicle position with the cone, or RTL_DESCEND_ALT (whichever is higher)."
+  },
+  {
+    "section-id": 3,
+    "sentence-id": 6,
+    "sentence": "In other words, the vehicle must always ascend to at least RTL_DESCEND_ALT if below that value."
+  },
+  {
+    "section-id": 3,
+    "sentence-id": 4,
+    "sentence": "The cone affects the minimum return altitude if return mode is triggered within the cylinder defined by the maximum cone radius and RTL_RETURN_ALT: outside this cyclinder RTL_RETURN_ALT is used."
+  },
+  {
+    "section-id": 1,
+    "sentence-id": 5,
+    "sentence": "4.Mode prevents arming (vehicle must be armed when switching to this mode)."
+  },
+  {
+    "section-id": 3,
+    "sentence-id": 1,
+    "sentence": "The minimum return altitude can be further configured using RTL_CONE_ANG, which together with RTL_RETURN_ALT defines a half cone centered around the destination landing point."
+  },
+  {
+    "section-id": 3,
+    "sentence-id": 2,
+    "sentence": "The cone angle allows a lower minimum return altitude when the return mode is executed close to the destination."
+  }
+]

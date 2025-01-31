@@ -1,0 +1,63 @@
+After carefully reading the document, I have extracted the specifications that the vehicle needs to meet in PosHold mode. Here are the specifications expressed using Metric Temporal Logic (MTL) formulas:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(good_GPS_position ∧ low_magnetic_interference ∧ low_vibrations → maintain_current_location ∧ maintain_current_heading ∧ maintain_current_altitude)",
+            "explanation": "The vehicle should always maintain its current location, heading, and altitude when the GPS position is good, magnetic interference is low, and vibrations are low."
+        },
+        {
+            "formula": "G(pilot_stick_input → (lean_angle ≤ 45 ∨ lean_angle = ANGLE_MAX))",
+            "explanation": "The vehicle's lean angle should never exceed 45 degrees or the value set by the ANGLE_MAX parameter when the pilot is controlling the vehicle with the sticks."
+        },
+        {
+            "formula": "G(release_sticks → F(lean_angle = 0))",
+            "explanation": "When the pilot releases the sticks, the vehicle should eventually return to a lean angle of 0 degrees."
+        },
+        {
+            "formula": "G(throttle_control_stick_input → change_altitude)",
+            "explanation": "The vehicle's altitude should change when the pilot is controlling the throttle with the stick."
+        },
+        {
+            "formula": "G(yaw_control_stick_input → change_heading)",
+            "explanation": "The vehicle's heading should change when the pilot is controlling the yaw with the stick."
+        },
+        {
+            "formula": "¬(arm ∧ ¬(GPS_3D_lock ∧ HDOP ≤ 2.0))",
+            "explanation": "The vehicle should not arm unless the GPS has a 3D lock and the HDOP value is 2.0 or lower."
+        },
+        {
+            "formula": "G(PHLD_BRAKE_ANGLE = x → lean_angle ≤ x)",
+            "explanation": "The vehicle's lean angle should never exceed the value set by the PHLD_BRAKE_ANGLE parameter."
+        },
+        {
+            "formula": "G(PHLD_BRAKE_RATE = x → rotate_back_speed = x)",
+            "explanation": "The vehicle's rotation speed back to the maximum angle should be equal to the value set by the PHLD_BRAKE_RATE parameter."
+        }
+    ]
+}
+```
+
+Note that I have used the following abbreviations in the MTL formulas:
+
+* `good_GPS_position`: The GPS position is good.
+* `low_magnetic_interference`: The magnetic interference is low.
+* `low_vibrations`: The vibrations are low.
+* `maintain_current_location`: The vehicle maintains its current location.
+* `maintain_current_heading`: The vehicle maintains its current heading.
+* `maintain_current_altitude`: The vehicle maintains its current altitude.
+* `pilot_stick_input`: The pilot is controlling the vehicle with the sticks.
+* `lean_angle`: The vehicle's lean angle.
+* `ANGLE_MAX`: The maximum lean angle set by the ANGLE_MAX parameter.
+* `release_sticks`: The pilot releases the sticks.
+* `throttle_control_stick_input`: The pilot is controlling the throttle with the stick.
+* `change_altitude`: The vehicle's altitude changes.
+* `yaw_control_stick_input`: The pilot is controlling the yaw with the stick.
+* `change_heading`: The vehicle's heading changes.
+* `arm`: The vehicle is armed.
+* `GPS_3D_lock`: The GPS has a 3D lock.
+* `HDOP`: The HDOP value.
+* `PHLD_BRAKE_ANGLE`: The maximum brake angle set by the PHLD_BRAKE_ANGLE parameter.
+* `PHLD_BRAKE_RATE`: The rotation speed back to the maximum angle set by the PHLD_BRAKE_RATE parameter.
+* `rotate_back_speed`: The vehicle's rotation speed back to the maximum angle.

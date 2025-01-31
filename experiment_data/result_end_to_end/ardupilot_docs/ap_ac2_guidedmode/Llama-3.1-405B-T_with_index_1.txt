@@ -1,0 +1,47 @@
+[
+  {
+    "index": 0,
+    "formula": "G(altitude > 0 → velocity_z <= WPNAV_SPEED_UP)",
+    "explanation": "The vehicle's vertical speed up should not exceed the WPNAV_SPEED_UP parameter when the altitude is above 0."
+  },
+  {
+    "index": 1,
+    "formula": "G(altitude > 0 → velocity_z >= -WPNAV_SPEED_DN)",
+    "explanation": "The vehicle's vertical speed down should not exceed the WPNAV_SPEED_DN parameter when the altitude is above 0."
+  },
+  {
+    "index": 2,
+    "formula": "G(velocity_x^2 + velocity_y^2 <= WPNAV_SPEED^2)",
+    "explanation": "The vehicle's horizontal speed should not exceed the WPNAV_SPEED parameter."
+  },
+  {
+    "index": 3,
+    "formula": "G(command_received → X(velocity_x^2 + velocity_y^2 <= WPNAV_SPEED^2))",
+    "explanation": "When a command is received, the vehicle's horizontal speed should not exceed the WPNAV_SPEED parameter at the next time step."
+  },
+  {
+    "index": 4,
+    "formula": "G(no_command_received U (command_received ∨ timeout))",
+    "explanation": "The vehicle should wait for a command or timeout before taking any action."
+  },
+  {
+    "index": 5,
+    "formula": "G(timeout → velocity_x = 0 ∧ velocity_y = 0 ∧ velocity_z = 0)",
+    "explanation": "When a timeout occurs, the vehicle should stop moving."
+  },
+  {
+    "index": 6,
+    "formula": "G(guided_mode → position_error_correction)",
+    "explanation": "In guided mode, the vehicle should perform position error correction unless disabled by the GUID_OPTIONS parameter."
+  },
+  {
+    "index": 7,
+    "formula": "G(guided_mode → velocity_error_correction)",
+    "explanation": "In guided mode, the vehicle should perform velocity error correction unless disabled by the GUID_OPTIONS parameter."
+  },
+  {
+    "index": 8,
+    "formula": "G(guided_mode ∧ weathervaning_enabled → heading_aligned_with_wind)",
+    "explanation": "In guided mode with weathervaning enabled, the vehicle's heading should align with the wind direction."
+  }
+]

@@ -1,0 +1,37 @@
+[
+  {
+    "index": 0,
+    "formula": "G(throttle = 0 → ¬turtle_mode)",
+    "explanation": "Turtle mode cannot be entered unless throttle is zero."
+  },
+  {
+    "index": 1,
+    "formula": "G(turtle_mode → (motors_disarmed ∧ notify_LEDs_flash)) U (throttle > 0)",
+    "explanation": "Upon entry to turtle mode, the motors stay disarmed, but the notify LEDs flash until throttle is raised."
+  },
+  {
+    "index": 2,
+    "formula": "G(turtle_mode ∧ throttle > 0 → (motors_armed ∧ motors_spin))",
+    "explanation": "Raising the throttle in turtle mode arms the motors and makes them spin."
+  },
+  {
+    "index": 3,
+    "formula": "G(turtle_mode ∧ throttle = 0 → motors_disarmed)",
+    "explanation": "Lowering throttle to zero in turtle mode disarms the motors."
+  },
+  {
+    "index": 4,
+    "formula": "G(motors_spin → throttle > 0)",
+    "explanation": "Motors spin only when throttle is raised."
+  },
+  {
+    "index": 5,
+    "formula": "G(turtle_mode → F(¬turtle_mode))",
+    "explanation": "Turtle mode is temporary and will be exited eventually."
+  },
+  {
+    "index": 6,
+    "formula": "G(SERVO_DSHOT_ESC ≠ 0 ∧ MOT_PWM_TYPE = DSHOT → turtle_mode_enabled)",
+    "explanation": "Turtle mode requires DShot capable ESCs and specific settings."
+  }
+]

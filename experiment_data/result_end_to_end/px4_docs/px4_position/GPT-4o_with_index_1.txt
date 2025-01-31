@@ -1,0 +1,27 @@
+[
+  {
+    "index": 0,
+    "formula": "G (centered_sticks → F (level ∧ hold_position))",
+    "explanation": "When the control sticks are centered, the vehicle should eventually level and hold its position against disturbances like wind."
+  },
+  {
+    "index": 1,
+    "formula": "G (¬acceptable_position_estimate → trigger_failsafe)",
+    "explanation": "If the position estimate is not acceptable, a failsafe mechanism should be triggered."
+  },
+  {
+    "index": 2,
+    "formula": "G (throttle_above_62_5_percent ∧ landed → takeoff)",
+    "explanation": "If the vehicle is on the ground and the throttle stick is raised above 62.5%, the vehicle should take off."
+  },
+  {
+    "index": 3,
+    "formula": "G (position_mode ∧ sticks_released → F (brake ∧ stop))",
+    "explanation": "In position mode, when the sticks are released, the vehicle should eventually brake and stop."
+  },
+  {
+    "index": 4,
+    "formula": "G (¬ground_detected ∧ on_ground → switch_mode ∧ manual_disarm)",
+    "explanation": "If the vehicle does not detect the ground when on the ground, it should switch mode and be manually disarmed."
+  }
+]

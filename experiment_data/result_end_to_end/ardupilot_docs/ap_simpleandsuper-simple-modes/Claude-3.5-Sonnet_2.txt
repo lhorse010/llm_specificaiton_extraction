@@ -1,0 +1,34 @@
+I'll extract the specifications from the document and express them using Metric Temporal Logic (MTL) formulas as requested. Then, I'll format the output in JSON.
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(SimpleMode → (PilotInput ↔ RelativeToTakeoffHeading))",
+            "explanation": "Globally, when Simple Mode is active, pilot inputs should always correspond to movement relative to the copter's heading at takeoff."
+        },
+        {
+            "formula": "G(SuperSimpleMode → (PilotInput ↔ RelativeToHome))",
+            "explanation": "Globally, when Super Simple Mode is active, pilot inputs should always correspond to movement relative to the home position."
+        },
+        {
+            "formula": "G(SuperSimpleMode → GPSLock)",
+            "explanation": "Globally, Super Simple Mode requires a GPS lock to function."
+        },
+        {
+            "formula": "G((SimpleMode ∨ SuperSimpleMode) → ¬(AcroMode ∨ DriftMode))",
+            "explanation": "Globally, Simple Mode and Super Simple Mode cannot be used in combination with Acro Mode or Drift Mode."
+        },
+        {
+            "formula": "G(SuperSimpleMode ∧ (Distance(Vehicle, Home) ≤ 10) → X(¬UpdateOrientation))",
+            "explanation": "Globally, when in Super Simple Mode and the vehicle is within 10m of home, the orientation should not be updated in the next state."
+        },
+        {
+            "formula": "G(Arming → (PilotBehindVehicle ∧ VehicleNoseAwayFromPilot))",
+            "explanation": "Globally, when arming the copter, the pilot should be behind the vehicle with its nose pointing directly away from the pilot."
+        }
+    ]
+}
+```
+
+These MTL formulas capture the key specifications from the document. They focus on the behavior of Simple and Super Simple modes, their requirements, and constraints. The formulas use the provided logical and temporal modal operators to express the specifications in a formal manner.

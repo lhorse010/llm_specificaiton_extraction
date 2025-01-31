@@ -1,0 +1,95 @@
+I'll go through the document step-by-step to identify and annotate sentences that meet the criteria for specifications.
+
+Step 1: Read the document thoroughly.
+I have read the entire document about Smart RTL Mode.
+
+Step 2-4: Identify sentences that meet the criteria and annotate them as specifications.
+
+Here's the result in the required JSON format:
+
+```json
+{
+    "specifications": [
+        {
+            "section-id": 0,
+            "sentence-id": 0
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 3
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 5
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 6
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 7
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 9
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 10
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 14
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 0
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 0
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 2
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 3
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 4
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 5
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 6
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 8
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 9
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 0
+        }
+    ]
+}
+```
+
+These sentences were selected because they meet one or more of the criteria for specifications:
+1. Requirements the system must meet for state transition
+2. Constraints the system must adhere to
+3. Expected post-actions the system will execute when entering a particular state
+4. Expected state changes the system will carry out in response to specific commands or settings
+
+The selected sentences provide clear and specific information about how the Smart RTL mode functions, its parameters, and the conditions under which it operates or becomes deactivated.

@@ -1,0 +1,112 @@
+[
+  {
+    "section-id": 0,
+    "sentence-id": 1,
+    "sentence": "When the sticks are released/centered the vehicle will actively brake, level, and be locked to a position in 3D space — compensating for wind and other forces."
+  },
+  {
+    "section-id": 0,
+    "sentence-id": 2,
+    "sentence": "With full stick deflection the vehicle accelerates initially with MPC_ACC_HOR_MAX ramping down until it reaches the final velocity MPC_VEL_MANUAL."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 0,
+    "sentence": "Landing in this mode is easy:"
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 1,
+    "sentence": "1.Position the drone horizontally above the landing spot using the roll and pitch stick."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 2,
+    "sentence": "2.Let go of the roll and pitch stick and give it enough time to come to a complete stop."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 3,
+    "sentence": "3.Pull the throttle stick down gently until the vehicle touches the ground."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 4,
+    "sentence": "4.Pull the throttle stick all the way down to facilitate and accelerate land detection."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 5,
+    "sentence": "5.The vehicle will lower propeller thrust, detect the ground and automatically disarm (by default)."
+  },
+  {
+    "section-id": 4,
+    "sentence-id": 1,
+    "sentence": "Centered sticks level vehicle and hold it to fixed altitude and position against wind."
+  },
+  {
+    "section-id": 4,
+    "sentence-id": 2,
+    "sentence": "1.Centered roll, pitch, throttle sticks (within RC deadzone MPC_HOLD_DZ) hold x, y, z position steady against any disturbance like wind."
+  },
+  {
+    "section-id": 4,
+    "sentence-id": 4,
+    "sentence": "Roll/Pitch sticks control horizontal acceleration over ground in the vehicle's left-right and forward-back directions (respectively)."
+  },
+  {
+    "section-id": 4,
+    "sentence-id": 5,
+    "sentence": "Throttle stick controls speed of ascent-descent."
+  },
+  {
+    "section-id": 4,
+    "sentence-id": 6,
+    "sentence": "Yaw stick controls rate of angular rotation above the horizontal plane."
+  },
+  {
+    "section-id": 4,
+    "sentence-id": 8,
+    "sentence": "When landed, the vehicle will take off if the throttle stick is raised above 62.5% percent (of the full range from bottom)."
+  },
+  {
+    "section-id": 4,
+    "sentence-id": 9,
+    "sentence": "4.Global position estimate is required."
+  },
+  {
+    "section-id": 4,
+    "sentence-id": 10,
+    "sentence": "5.Manual control input is required (such as RC control, joystick)."
+  },
+  {
+    "section-id": 4,
+    "sentence-id": 11,
+    "sentence": "Roll, Pitch, Throttle: Assistance from autopilot to hold position against wind."
+  },
+  {
+    "section-id": 4,
+    "sentence-id": 12,
+    "sentence": "Yaw: Assistance from autopilot to stabilize the attitude rate."
+  },
+  {
+    "section-id": 4,
+    "sentence-id": 13,
+    "sentence": "Position of RC stick maps to the rate of rotation of vehicle in that orientation."
+  },
+  {
+    "section-id": 5,
+    "sentence-id": 0,
+    "sentence": "Position mode is dependent on having an acceptable position estimate."
+  },
+  {
+    "section-id": 5,
+    "sentence-id": 1,
+    "sentence": "If the estimate falls below acceptable levels, for example due to GPS loss, this may trigger a Position (GPS) Loss Failsafe."
+  },
+  {
+    "section-id": 5,
+    "sentence-id": 2,
+    "sentence": "Depending on configuration, whether you have a remote control, and whether there is an adequate altitude estimate, PX4 may switch to altitude mode, manual mode, land mode or terminate."
+  }
+]

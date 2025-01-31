@@ -1,0 +1,56 @@
+After carefully reading the document, I have extracted the specifications that the vehicle needs to meet and expressed them using Metric Temporal Logic (MTL) formulas. Here are the results in the required JSON format:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(altitude > 0 → velocity_z <= WPNAV_SPEED_UP)",
+            "explanation": "The vehicle's vertical speed up should not exceed the WPNAV_SPEED_UP parameter when the altitude is above 0."
+        },
+        {
+            "formula": "G(altitude > 0 → velocity_z >= -WPNAV_SPEED_DN)",
+            "explanation": "The vehicle's vertical speed down should not exceed the WPNAV_SPEED_DN parameter when the altitude is above 0."
+        },
+        {
+            "formula": "G(velocity_x^2 + velocity_y^2 <= WPNAV_SPEED^2)",
+            "explanation": "The vehicle's horizontal speed should not exceed the WPNAV_SPEED parameter."
+        },
+        {
+            "formula": "G(command_received → X(velocity_x = 0 ∧ velocity_y = 0 ∧ velocity_z = 0))",
+            "explanation": "If no commands are received from the companion computer for GUID_TIMEOUT seconds, the vehicle should slow to a stop."
+        },
+        {
+            "formula": "G(command_received → X(altitude = current_altitude ∧ velocity_x = 0 ∧ velocity_y = 0 ∧ velocity_z = 0))",
+            "explanation": "If no commands are received from the companion computer for GUID_TIMEOUT seconds and attitude commands were provided, the vehicle should hold a level hover."
+        },
+        {
+            "formula": "G(guided_mode → F(position_error < threshold))",
+            "explanation": "In guided mode, the vehicle should eventually reach the target location within a certain threshold."
+        },
+        {
+            "formula": "G(guided_mode → G(position_error < threshold → velocity_x = 0 ∧ velocity_y = 0 ∧ velocity_z = 0))",
+            "explanation": "In guided mode, once the vehicle reaches the target location within a certain threshold, it should hover at that location."
+        }
+    ]
+}
+```
+
+Note that I have used the following abbreviations:
+
+* `G` for "globally" (i.e., always true)
+* `F` for "finally" (i.e., true at some point in the future)
+* `X` for "next" (i.e., true at the next time step)
+* `→` for "implies"
+* `∧` for "and"
+* `∨` for "or"
+* `¬` for "not"
+* `velocity_x`, `velocity_y`, `velocity_z` for the vehicle's velocity components
+* `altitude` for the vehicle's altitude
+* `position_error` for the error between the vehicle's current position and the target position
+* `threshold` for a small threshold value
+* `command_received` for a boolean indicating whether a command has been received from the companion computer
+* `current_altitude` for the vehicle's current altitude
+* `WPNAV_SPEED_UP`, `WPNAV_SPEED_DN`, `WPNAV_SPEED` for the parameters controlling the vehicle's speed
+* `GUID_TIMEOUT` for the timeout parameter in seconds
+
+Please let me know if you would like me to clarify or modify any of these specifications.

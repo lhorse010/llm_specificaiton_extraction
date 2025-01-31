@@ -1,0 +1,30 @@
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(¬(speed > 13m/s) → (maintain_altitude ∧ maintain_horizontal_speed))",
+            "explanation": "The copter should not exceed a speed of 13m/s unless it can maintain both altitude and horizontal speed."
+        },
+        {
+            "formula": "G(receive_guided_command → F(reach_target_location ∧ hover))",
+            "explanation": "Upon receiving a guided command, the copter should eventually reach the target location and hover."
+        },
+        {
+            "formula": "G(GUID_TIMEOUT = 3s → (F(no_command → (slow_to_stop ∧ hover))))",
+            "explanation": "If no commands are received for 3 seconds, the vehicle should slow to a stop and hover."
+        },
+        {
+            "formula": "G(¬(GUID_OPTIONS_bit0) → (¬arming_in_guided_mode))",
+            "explanation": "If GUID_OPTIONS bit 0 is not set, arming in guided mode should not be allowed from the RC transmitter."
+        },
+        {
+            "formula": "G(¬(GUID_OPTIONS_bit4) → (enable_XY_position_error_correction))",
+            "explanation": "If GUID_OPTIONS bit 4 is not set, the copter should enable XY axis position error correction."
+        },
+        {
+            "formula": "G(¬(GUID_OPTIONS_bit6) → (disable_S_curve_path_planning))",
+            "explanation": "If GUID_OPTIONS bit 6 is not set, S-Curve path planning should be disabled."
+        }
+    ]
+}
+```

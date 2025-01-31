@@ -1,0 +1,37 @@
+[
+  {
+    "index": 0,
+    "formula": "G(detection_area_on_target_lane → X(module_activated))",
+    "explanation": "Globally, if there is a detection area on the target lane, then in the next state, the module is activated."
+  },
+  {
+    "index": 1,
+    "formula": "G(pointcloud_in_detection_area → F(stop_planning_executed))",
+    "explanation": "Globally, if pointcloud is detected in the detection area, then eventually stop planning will be executed."
+  },
+  {
+    "index": 2,
+    "formula": "G(stop_line_detected → X(stop_point_inserted))",
+    "explanation": "Globally, if a stop line is detected, then in the next state, a stop point is inserted l meters in front of the stop line."
+  },
+  {
+    "index": 3,
+    "formula": "G(stop_point_inserted → X(pass_judge_point_inserted))",
+    "explanation": "Globally, if a stop point is inserted, then in the next state, a pass judge point is inserted at a position where the vehicle can stop with maximum deceleration."
+  },
+  {
+    "index": 4,
+    "formula": "G((ego_vehicle_before_pass_judge_point ∧ ego_vehicle_behind_stop_line) → X(velocity_set_to_zero))",
+    "explanation": "Globally, if the ego-vehicle is before the pass judge point and behind the stop line, then in the next state, the velocity is set to zero."
+  },
+  {
+    "index": 5,
+    "formula": "G(ego_vehicle_past_pass_judge_point → ¬(stop_executed))",
+    "explanation": "Globally, if the ego vehicle has passed the pass judge point, then stopping is not executed."
+  },
+  {
+    "index": 6,
+    "formula": "G((vehicle_stopped ∧ distance_to_stop_point < hold_stop_margin_distance) → X(keep_stopping))",
+    "explanation": "Globally, if the vehicle is stopped and the distance to the stop point is less than hold_stop_margin_distance, then in the next state, the vehicle keeps stopping at the current position."
+  }
+]

@@ -1,0 +1,27 @@
+[
+  {
+    "index": 0,
+    "formula": "G(¬armed → ¬LandMode)",
+    "explanation": "The vehicle cannot switch to Land mode unless it is armed."
+  },
+  {
+    "index": 1,
+    "formula": "G(valid_local_position → LandMode)",
+    "explanation": "The vehicle requires a valid local position estimate to enter Land mode."
+  },
+  {
+    "index": 2,
+    "formula": "G(LandMode → F(disarm))",
+    "explanation": "Once in Land mode, the vehicle will eventually disarm after landing."
+  },
+  {
+    "index": 3,
+    "formula": "G(LandMode ∧ ¬valid_local_position → failsafe)",
+    "explanation": "The vehicle will enter a failsafe state if it loses a valid local position estimate while in Land mode."
+  },
+  {
+    "index": 4,
+    "formula": "G(RC_stick_movement ∧ LandMode → X(PositionMode))",
+    "explanation": "RC stick movement will change the vehicle to Position mode if it is in Land mode."
+  }
+]

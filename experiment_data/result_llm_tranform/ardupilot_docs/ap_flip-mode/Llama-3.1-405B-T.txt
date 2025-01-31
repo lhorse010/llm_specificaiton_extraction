@@ -1,0 +1,42 @@
+[
+  {
+    "sentence": "The vehicle will not flip again until the switch is brought low and back to high.",
+    "formula": "¬F ∧ (L ∧ H) U F",
+    "explanation": "Here, F represents the vehicle flipping, L represents the switch being brought low, and H represents the switch being brought back to high. The formula states that the vehicle will not flip again until the switch is brought low and back to high."
+  },
+  {
+    "sentence": "1.An RCx_OPTION parameter must be set to \"Flip\" which is \"2\"",
+    "formula": "R ∧ (R → F)",
+    "explanation": "Here, R represents the RCx_OPTION parameter being set to \"Flip\" (or \"2\"), and F represents the vehicle flipping. The formula states that if the parameter is set to \"Flip\", then the vehicle will flip."
+  },
+  {
+    "sentence": "2.Pilot switches to Stabilize, Acro or AltHold flight mode and puts ch7/ch8 switch to ON position",
+    "formula": "(S ∨ A ∨ H) ∧ O",
+    "explanation": "Here, S, A, and H represent the Stabilize, Acro, and AltHold flight modes respectively, and O represents the ch7/ch8 switch being in the ON position. The formula states that the pilot switches to one of these modes and puts the switch to ON."
+  },
+  {
+    "sentence": "4.Vehicle should complete the roll within 2.5sec and will then return to the original flight mode it was in before flip was triggered",
+    "formula": "F[0, 2.5](R ∧ F[0, 0](M))",
+    "explanation": "Here, R represents the vehicle completing the roll, and M represents the original flight mode. The formula states that the vehicle should complete the roll within 2.5 seconds and then return to the original flight mode immediately."
+  },
+  {
+    "sentence": "5.Pilot may manually exit flip by switching off ch7/ch8 or by moving roll stick to >40deg left or right",
+    "formula": "(¬O ∨ (L40 ∨ R40)) → ¬F",
+    "explanation": "Here, O represents the ch7/ch8 switch being in the ON position, L40 and R40 represent the roll stick being moved to >40deg left or right respectively, and F represents the vehicle flipping. The formula states that if the pilot switches off the switch or moves the roll stick, the vehicle will exit the flip."
+  },
+  {
+    "sentence": "1.Flip_Start (while copter is leaning <45deg) : roll right at 400deg/sec, increase throttle",
+    "formula": "L[0, 45](R400 ∧ T↑)",
+    "explanation": "Here, L represents the copter leaning, R400 represents the roll right at 400deg/sec, and T↑ represents the increase in throttle. The formula states that while the copter is leaning <45deg, it should roll right at 400deg/sec and increase throttle."
+  },
+  {
+    "sentence": "2.Flip_Roll (while copter is between +45deg ~ -90) : roll right at 400deg/sec, reduce throttle",
+    "formula": "L[45, -90](R400 ∧ T↓)",
+    "explanation": "Here, L represents the copter leaning, R400 represents the roll right at 400deg/sec, and T↓ represents the reduction in throttle. The formula states that while the copter is between +45deg and -90deg, it should roll right at 400deg/sec and reduce throttle."
+  },
+  {
+    "sentence": "3.Flip_Recover (while copter is between -90deg and original target angle) : use earth frame angle controller to return vehicle to original attitude",
+    "formula": "L[-90, M](E ∧ A)",
+    "explanation": "Here, L represents the copter leaning, E represents the use of the earth frame angle controller, A represents the vehicle returning to its original attitude, and M represents the original target angle. The formula states that while the copter is between -90deg and the original target angle, it should use the earth frame angle controller to return to its original attitude."
+  }
+]

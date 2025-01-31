@@ -1,0 +1,53 @@
+After carefully reading the document and following the steps outlined, I have annotated the sentences that convey information about state transition pre-requirements, constraints, expected post-actions, and expected state changes. Here is the output in the required JSON format:
+
+```json
+{
+    "specifications": [
+        {
+            "section-id": 0,
+            "sentence-id": 1
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 2
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 3
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 0
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 1
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 2
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 4
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 5
+        }
+    ]
+}
+```
+
+The annotated sentences are:
+
+* Section 0, Sentence 1: "1.descends to 10m (or until the sonar senses something below the copter) using the regular Altitude Hold controller which will descend at the speed held in the WPNAV_SPEED_DN Copter Pids screen." (Expected state change)
+* Section 0, Sentence 2: "2.below 10m the copter should descend at the rate specified in the LAND_SPEED parameter which defaults to 50cm/s." (Expected state change)
+* Section 0, Sentence 3: "3.Upon reaching the ground the copter will automatically shut-down the motors and disarm the copter if the pilot's throttle is at minimum." (Expected post-action)
+* Section 1, Sentence 0: "Copter will recognise that it has landed if the motors are being commanded to be at low level by the vertical position controller, its climb rate remains between -20cm/s and +20cm/s, and is not accelerating for one second." (State transition pre-requirement)
+* Section 1, Sentence 1: "It does not use the altitude to decide whether to shut off the motors except that the copter must also be below 10m above the home altitude, unless a rangefinder is being used, in which case it must be within 2m of the ground." (Constraint)
+* Section 1, Sentence 2: "For Traditional Heli, the low motor check in the above landing detection algorithm is replaced with a check that Collective output is below mid-position (controlled by the vertical position controller, ie in descent)." (State transition pre-requirement)
+* Section 1, Sentence 4: "Using a Weight on Wheels (WoW) switch will increase the descent rate and accelerometer ranges that are acceptable for landing detection." (Expected state change)
+* Section 1, Sentence 5: "This feature is enabled anytime the LGR_WOW_PIN is not disabled." (Constraint)
+
+Note that I have excluded sentences that are vague or do not convey specific information about state transition pre-requirements, constraints, expected post-actions, or expected state changes.

@@ -1,0 +1,34 @@
+After carefully reading the document, I have extracted the specifications that the vehicle needs to meet in Land Mode (Multicopter). Here are the specifications expressed using Metric Temporal Logic (MTL) formulas:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G (LandMode → F (Landed ∧ Disarmed))",
+            "explanation": "Globally, if the vehicle is in Land Mode, it will eventually land and disarm."
+        },
+        {
+            "formula": "G (LandMode → ¬Arming)",
+            "explanation": "Globally, if the vehicle is in Land Mode, it cannot arm."
+        },
+        {
+            "formula": "G (LandMode → ValidLocalPositionEstimate)",
+            "explanation": "Globally, if the vehicle is in Land Mode, it requires a valid local position estimate."
+        },
+        {
+            "formula": "G (Flying ∧ ¬ValidLocalPositionEstimate → Failsafe)",
+            "explanation": "Globally, if the vehicle is flying and loses its local position estimate, it will failsafe."
+        },
+        {
+            "formula": "G (LandMode ∧ RCStickMovement → X PositionMode)",
+            "explanation": "Globally, if the vehicle is in Land Mode and there is RC stick movement, it will switch to Position Mode in the next time step."
+        },
+        {
+            "formula": "G (LandMode → DescendAtRate(MPC_LAND_SPEED))",
+            "explanation": "Globally, if the vehicle is in Land Mode, it will descend at the rate specified in MPC_LAND_SPEED."
+        }
+    ]
+}
+```
+
+Note that I have excluded vague specifications and only included clear and specific requirements. I have also used the MTL operators to express the temporal relationships between the different states and events.

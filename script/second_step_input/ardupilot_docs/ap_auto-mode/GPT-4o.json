@@ -1,0 +1,102 @@
+[
+  {
+    "section-id": 1,
+    "sentence-id": 0,
+    "sentence": "AUTO mode navigates between each waypoint in a straight line and as it approaches each waypoint follows a smooth curving path towards the next waypoint (S-Curve)."
+  },
+  {
+    "section-id": 1,
+    "sentence-id": 1,
+    "sentence": "It controls the path as it approaches a waypoint to be within the WPNAV_RADIUS of each waypoint."
+  },
+  {
+    "section-id": 1,
+    "sentence-id": 2,
+    "sentence": "The speed is lowered below WPNAV_SPEED, as necessary, to keep the path within the set corner lateral acceleration limit parameter (WPNAV_ACCEL_C)."
+  },
+  {
+    "section-id": 1,
+    "sentence-id": 4,
+    "sentence": "All the same requirements apply including ensuring that vibration levels and compass interference levels are acceptable and that the GPS is functioning well including returning an HDOP of under 2.0."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 0,
+    "sentence": "this smooth curving path as it changes direction to the next waypoint will not occur if the next naviation mission item after the waypoint is anything other than a normal waypoint, ie LAND, LOITER_TURNS, etc., etc."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 1,
+    "sentence": "In these cases the copter will approach the waypoint, stop, and then proceed to the next navigation waypoint instead of smoothly curving in front of it and proceeding to that next navigation waypoint."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 2,
+    "sentence": "Also, small WPNAV_RADIUS values will require that the curve be very small, effectively appearing like the non-S-Curve behavior explained above."
+  },
+  {
+    "section-id": 3,
+    "sentence-id": 1,
+    "sentence": "You must arm your copter before you can engage AUTO mode."
+  },
+  {
+    "section-id": 3,
+    "sentence-id": 3,
+    "sentence": "If starting the mission while the copter is on the ground the pilot should ensure the throttle is down, then switch to the Auto flight mode, then raise the throttle."
+  },
+  {
+    "section-id": 3,
+    "sentence-id": 4,
+    "sentence": "The moment that the throttle is raised above zero, the copter will begin the mission."
+  },
+  {
+    "section-id": 3,
+    "sentence-id": 5,
+    "sentence": "If starting the mission from the air the mission will begin from the first command the moment that the flight mode switch is moved to Auto."
+  },
+  {
+    "section-id": 3,
+    "sentence-id": 6,
+    "sentence": "If the first command in the mission is a take-off command but the vehicle is already above the take-off command's altitude the take-off command will be considered completed and the vehicle will move onto the next waypoint."
+  },
+  {
+    "section-id": 3,
+    "sentence-id": 8,
+    "sentence": "If the pilot then switches to AUTO again, the mission will resume from the last command."
+  },
+  {
+    "section-id": 3,
+    "sentence-id": 9,
+    "sentence": "During the mission the pilot's roll, pitch and throttle inputs are ignored but the yaw can be overridden with the yaw stick."
+  },
+  {
+    "section-id": 4,
+    "sentence-id": 0,
+    "sentence": "The AUTO_OPTIONS parameter can be used to alter this behaviour, allowing arming while in AUTO mode, and/or, allowing a mission takeoff command to start upon AUTO mode entry, even if the throttle has not been raised."
+  },
+  {
+    "section-id": 5,
+    "sentence-id": 0,
+    "sentence": "Missions should normally have an RTL as their final command to ensure the copter will return after the mission completes."
+  },
+  {
+    "section-id": 5,
+    "sentence-id": 4,
+    "sentence": "As the copter touches down at the end of the mission the vehicle should automatically disarm but occasionally the vehicle may not sense the landing and the pilot may need to hold the throttle down and takeoff in another mode like Stabilize or Loiter and then manually disarm the vehicle."
+  },
+  {
+    "section-id": 6,
+    "sentence-id": 7,
+    "sentence": "The Radius (WPNAV_RADIUS allows you to control how close the copter must come to the exact waypoint position before the waypoint is considered \"complete\" and the copter moves onto the next waypoint."
+  },
+  {
+    "section-id": 6,
+    "sentence-id": 9,
+    "sentence": "Without a delay the waypoint is considered a \"fast waypoint\" and the copter will begin towards the next waypoint once the intermediate target that it is chasing has reached the waypoint (S-Curve behavior only applies to \"fast\" waypoints)."
+  },
+  {
+    "section-id": 5,
+    "sentence-id": 2,
+    "sentence": "Without a final RTL or LAND command the copter will simply stop at the final waypoint and the pilot will need to retake control with the transmitter."
+  }
+]

@@ -1,0 +1,34 @@
+```json
+{
+    "specifications": [
+        {
+            "formula": "G (mission_start → X F (altitude_control ∧ position_control))",
+            "explanation": "Once the mission starts, the copter must eventually maintain altitude control from AltHold mode and position control from Loiter mode."
+        },
+        {
+            "formula": "G (approach_waypoint → F (within_WPNAV_RADIUS ∧ speed ≤ WPNAV_SPEED))",
+            "explanation": "As the copter approaches a waypoint, it must eventually be within the WPNAV_RADIUS and reduce speed to below WPNAV_SPEED if necessary."
+        },
+        {
+            "formula": "G (¬next_waypoint_is_normal → (stop ∧ proceed_next_waypoint))",
+            "explanation": "If the next navigation mission item is not a normal waypoint, the copter must stop at the current waypoint and then proceed to the next waypoint."
+        },
+        {
+            "formula": "G (mission_end → (RTL ∨ LAND))",
+            "explanation": "At the end of the mission, the copter must execute either a Return to Launch (RTL) or a LAND command."
+        },
+        {
+            "formula": "G (pilot_control → (¬roll_pitch_throttle_control ∧ yaw_override))",
+            "explanation": "During the mission, the pilot's roll, pitch, and throttle inputs are ignored, but yaw can be overridden."
+        },
+        {
+            "formula": "G (mission_resume → X F (resume_last_command))",
+            "explanation": "If the mission is resumed, it must eventually continue from the last command executed."
+        },
+        {
+            "formula": "G (G ((WAYPOINT.delay ≥ 1) → within_WPNAV_RADIUS))",
+            "explanation": "If a waypoint command includes a delay of 1 second or more, the copter must be within the WPNAV_RADIUS before moving to the next waypoint."
+        }
+    ]
+}
+```

@@ -1,0 +1,42 @@
+I'll extract the specifications from the document and express them using Metric Temporal Logic (MTL) formulas. Then, I'll format the results in JSON as requested.
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(armed → (GPS_3D_lock ∧ (HDOP < 1.4)))",
+            "explanation": "Globally, if the vehicle is armed in Loiter mode, then the GPS must have 3D lock and the HDOP must be below 1.4."
+        },
+        {
+            "formula": "G(loiter_mode → F(maintain_position ∧ maintain_heading ∧ maintain_altitude))",
+            "explanation": "Globally, when in Loiter mode, the vehicle will eventually maintain its current position, heading, and altitude."
+        },
+        {
+            "formula": "G(loiter_mode ∧ sticks_released → F(vehicle_stop))",
+            "explanation": "Globally, when in Loiter mode and control sticks are released, the vehicle will eventually come to a stop."
+        },
+        {
+            "formula": "G(loiter_mode → (max_horizontal_speed ≤ LOIT_SPEED))",
+            "explanation": "Globally, when in Loiter mode, the maximum horizontal speed must not exceed the LOIT_SPEED parameter value."
+        },
+        {
+            "formula": "G(loiter_mode → (max_acceleration ≤ LOIT_ACC_MAX))",
+            "explanation": "Globally, when in Loiter mode, the maximum acceleration must not exceed the LOIT_ACC_MAX parameter value."
+        },
+        {
+            "formula": "G(loiter_mode → (max_lean_angle ≤ (LOIT_ANG_MAX ∨ PSC_ANGLE_MAX ∨ ANGLE_MAX)))",
+            "explanation": "Globally, when in Loiter mode, the maximum lean angle must not exceed LOIT_ANG_MAX if set, otherwise PSC_ANGLE_MAX or ANGLE_MAX."
+        },
+        {
+            "formula": "G(loiter_mode ∧ braking → (max_braking_acceleration ≤ LOIT_BRK_ACCEL))",
+            "explanation": "Globally, when in Loiter mode and braking, the maximum braking acceleration must not exceed the LOIT_BRK_ACCEL parameter value."
+        },
+        {
+            "formula": "G(loiter_mode ∧ sticks_centered → X^(LOIT_BRK_DELAY) braking_starts)",
+            "explanation": "Globally, when in Loiter mode and sticks are centered, braking starts after LOIT_BRK_DELAY seconds."
+        }
+    ]
+}
+```
+
+These MTL formulas capture the key specifications for the Loiter mode of the vehicle as described in the document. They focus on the conditions for arming, maintaining position and altitude, speed and acceleration limits, and braking behavior. The formulas use the temporal operators G (globally) and F (finally) to express the continuous nature of these requirements throughout the vehicle's operation in Loiter mode.

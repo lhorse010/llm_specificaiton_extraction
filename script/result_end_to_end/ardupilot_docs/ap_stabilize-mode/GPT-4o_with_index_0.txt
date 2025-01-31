@@ -1,0 +1,37 @@
+[
+  {
+    "index": 0,
+    "formula": "G (roll_input ∧ pitch_input → F (self_leveling))",
+    "explanation": "Whenever the pilot inputs roll and pitch, the system should eventually self-level the vehicle."
+  },
+  {
+    "index": 1,
+    "formula": "G (¬GPS_fix ∨ ¬sufficient_HDOP → ¬arming)",
+    "explanation": "The vehicle should not arm unless there is a reliable GPS fix with sufficient HDOP."
+  },
+  {
+    "index": 2,
+    "formula": "G (yaw_input = 0 → X (maintain_current_heading))",
+    "explanation": "If the pilot releases the yaw stick, the vehicle should maintain its current heading in the next state."
+  },
+  {
+    "index": 3,
+    "formula": "G (throttle_input = 0 → X (motor_speed = MOT_SPIN_ARMED))",
+    "explanation": "If the throttle is completely down, the motors should spin at minimum rate in the next state."
+  },
+  {
+    "index": 4,
+    "formula": "G (tilt_angle ↑ → F (throttle ↑))",
+    "explanation": "As the tilt angle increases, the throttle to the motors should eventually increase to compensate."
+  },
+  {
+    "index": 5,
+    "formula": "G (¬autopilot_control → F (manual_mode))",
+    "explanation": "If autopilot fails, the system should eventually switch to a manual mode such as stabilize."
+  },
+  {
+    "index": 6,
+    "formula": "G (angle > ANGLE_MAX → ¬increase_angle)",
+    "explanation": "The vehicle should not increase its lean angle beyond the maximum specified by ANGLE_MAX."
+  }
+]

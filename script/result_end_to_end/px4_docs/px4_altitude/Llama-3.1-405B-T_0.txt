@@ -1,0 +1,56 @@
+Based on the provided document, I've extracted the specifications and expressed them using Metric Temporal Logic (MTL) formulas. Here are the results in the required JSON format:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G((centered_sticks ∧ ¬throttle_max) → X(altitude_steady))",
+            "explanation": "When the sticks are centered and the throttle is not at maximum, the vehicle will maintain its current altitude."
+        },
+        {
+            "formula": "G((centered_sticks ∧ throttle_max) → X(altitude_increase))",
+            "explanation": "When the sticks are centered and the throttle is at maximum, the vehicle will increase its altitude."
+        },
+        {
+            "formula": "G((¬centered_sticks ∧ roll_stick ≠ 0) → X(left_right_movement))",
+            "explanation": "When the sticks are not centered and the roll stick is not zero, the vehicle will move left or right."
+        },
+        {
+            "formula": "G((¬centered_sticks ∧ pitch_stick ≠ 0) → X(forward_back_movement))",
+            "explanation": "When the sticks are not centered and the pitch stick is not zero, the vehicle will move forward or backward."
+        },
+        {
+            "formula": "G((throttle > 62.5%) → X(takeoff))",
+            "explanation": "When the throttle is raised above 62.5%, the vehicle will take off."
+        },
+        {
+            "formula": "G((wind_present ∧ ¬centered_sticks) → F(drift))",
+            "explanation": "When wind is present and the sticks are not centered, the vehicle will eventually drift in the direction of the wind."
+        },
+        {
+            "formula": "G((centered_sticks ∧ wind_present) → X(altitude_steady))",
+            "explanation": "When the sticks are centered and wind is present, the vehicle will maintain its current altitude."
+        },
+        {
+            "formula": "G((manual_control_input) → X(autopilot_assistance))",
+            "explanation": "When manual control input is provided, the autopilot will assist in stabilizing the attitude and holding position against wind."
+        }
+    ]
+}
+```
+
+Note that I've used the following abbreviations in the MTL formulas:
+
+* `centered_sticks`: The sticks are centered.
+* `throttle_max`: The throttle is at maximum.
+* `altitude_steady`: The vehicle maintains its current altitude.
+* `altitude_increase`: The vehicle increases its altitude.
+* `left_right_movement`: The vehicle moves left or right.
+* `forward_back_movement`: The vehicle moves forward or backward.
+* `takeoff`: The vehicle takes off.
+* `wind_present`: Wind is present.
+* `drift`: The vehicle drifts in the direction of the wind.
+* `manual_control_input`: Manual control input is provided.
+* `autopilot_assistance`: The autopilot assists in stabilizing the attitude and holding position against wind.
+
+These abbreviations are used to make the MTL formulas more readable and concise.

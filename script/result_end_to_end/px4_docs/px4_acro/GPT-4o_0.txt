@@ -1,0 +1,26 @@
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(sticks_centered → (¬rotating U momentum_unchanged))",
+            "explanation": "Globally, if the control sticks are centered, the vehicle will eventually stop rotating and maintain its current momentum without changing orientation."
+        },
+        {
+            "formula": "G(RPY_input → X(angular_rate_controlled))",
+            "explanation": "Globally, if there is an input on the roll, pitch, or yaw sticks, the next state will have the angular rate controlled according to the input."
+        },
+        {
+            "formula": "G(throttle_input → X(throttle_direct_control))",
+            "explanation": "Globally, if there is an input on the throttle stick, the next state will have the throttle directly controlled by the input."
+        },
+        {
+            "formula": "G(max_stick_input → F(high_turn_rate))",
+            "explanation": "Globally, if the stick input reaches its maximum, the vehicle will eventually achieve a high turn rate for acrobatic maneuvers."
+        },
+        {
+            "formula": "G(small_stick_input → F(small_correction))",
+            "explanation": "Globally, if there is a small stick input, it will eventually result in a small correction in orientation."
+        }
+    ]
+}
+```

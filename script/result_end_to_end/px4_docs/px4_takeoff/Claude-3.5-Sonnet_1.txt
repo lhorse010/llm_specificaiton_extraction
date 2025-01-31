@@ -1,0 +1,42 @@
+I'll extract the specifications from the document and express them using Metric Temporal Logic (MTL) formulas as requested. Then, I'll format the output in JSON.
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(TakeoffMode → ¬UserIntervention)",
+            "explanation": "Globally, when in Takeoff Mode, user intervention is not required to control the vehicle."
+        },
+        {
+            "formula": "G(TakeoffMode → ValidLocalPosition)",
+            "explanation": "Globally, Takeoff Mode requires at least a valid local position estimate."
+        },
+        {
+            "formula": "G((Flying ∧ ¬ValidLocalPosition) → ¬TakeoffMode)",
+            "explanation": "Globally, if the vehicle is flying and does not have a valid local position, it cannot switch to Takeoff Mode."
+        },
+        {
+            "formula": "G((Flying ∧ TakeoffMode ∧ X(¬ValidLocalPosition)) → X(Failsafe))",
+            "explanation": "Globally, if the vehicle is flying in Takeoff Mode and loses the position estimate in the next state, it will enter failsafe in the next state."
+        },
+        {
+            "formula": "G((Disarmed ∧ ¬ValidLocalPosition ∧ TakeoffMode) → ¬Armed)",
+            "explanation": "Globally, if the vehicle is disarmed, does not have a valid position estimate, and is in Takeoff Mode, it cannot arm."
+        },
+        {
+            "formula": "G(TakeoffMode → F(Altitude = MIS_TAKEOFF_ALT))",
+            "explanation": "Globally, in Takeoff Mode, the vehicle will eventually reach the altitude defined in MIS_TAKEOFF_ALT."
+        },
+        {
+            "formula": "G((TakeoffMode ∧ RCStickMovement ∧ ¬CriticalBatteryFailsafe) → X(PositionMode))",
+            "explanation": "Globally, in Takeoff Mode, if there is RC stick movement and no critical battery failsafe, the vehicle will switch to Position Mode in the next state."
+        },
+        {
+            "formula": "G((TakeoffMode ∧ TakeoffProblem) → X(EnginesStopped))",
+            "explanation": "Globally, if there is a problem during takeoff in Takeoff Mode, the Failure Detector will stop the engines in the next state."
+        }
+    ]
+}
+```
+
+These MTL formulas capture the key specifications from the provided document about the Takeoff Mode for multicopters. They express the requirements for entering and maintaining Takeoff Mode, the behavior during takeoff, and the conditions for transitioning to other modes or failsafe states.

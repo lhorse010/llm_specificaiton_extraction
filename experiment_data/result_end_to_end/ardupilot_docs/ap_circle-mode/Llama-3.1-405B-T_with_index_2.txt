@@ -1,0 +1,67 @@
+[
+  {
+    "index": 0,
+    "formula": "G(CIRCLE_RADIUS = 0 → F(rotate_slowly))",
+    "explanation": "If the CIRCLE_RADIUS is set to zero, the copter will simply stay in place and slowly rotate."
+  },
+  {
+    "index": 1,
+    "formula": "G(CIRCLE_RATE > 0 → F(rotate_clockwise))",
+    "explanation": "A positive CIRCLE_RATE value means rotate clockwise."
+  },
+  {
+    "index": 2,
+    "formula": "G(CIRCLE_RATE < 0 → F(rotate_counter_clockwise))",
+    "explanation": "A negative CIRCLE_RATE value means rotate counter-clockwise."
+  },
+  {
+    "index": 3,
+    "formula": "G(acceleration ≤ WPNAV_ACCEL)",
+    "explanation": "The vehicle may not achieve the desired rate if this requires the acceleration towards the center of the circle to surpass the maximum acceleration held in the WPNAV_ACCEL parameter."
+  },
+  {
+    "index": 4,
+    "formula": "G(TUNE = 39 → (min(RC_Channel_6) → decrease_rate_by_50%) ∧ (max(RC_Channel_6) → increase_rate_by_100%))",
+    "explanation": "If the TUNE option is set to 39, the circle rate can be dynamically adjusted in flight by using RC Channel 6."
+  },
+  {
+    "index": 5,
+    "formula": "G(CIRCLE_CONTROL → (stick_adjustment_of_radius ∧ stick_adjustment_of_speed))",
+    "explanation": "When the CIRCLE_CONTROL parameter is enabled, the pilot can adjust the circle's radius and angular velocity with the control sticks."
+  },
+  {
+    "index": 6,
+    "formula": "G(bit_0_of_CIRCLE_OPTIONS → (pitch_stick_up → decrease_radius) ∧ (pitch_stick_down → increase_radius))",
+    "explanation": "When bit 0 of the CIRCLE_OPTIONS parameter is set, the pilot can adjust the circle's radius with the pitch stick."
+  },
+  {
+    "index": 7,
+    "formula": "G(bit_0_of_CIRCLE_OPTIONS → (roll_stick_right → increase_speed_clockwise ∨ decrease_speed_counter_clockwise) ∧ (roll_stick_left → increase_speed_counter_clockwise ∨ decrease_speed_clockwise))",
+    "explanation": "When bit 0 of the CIRCLE_OPTIONS parameter is set, the pilot can adjust the circle's speed with the roll stick."
+  },
+  {
+    "index": 8,
+    "formula": "G(bit_1_of_CIRCLE_OPTIONS → face_direction_of_travel)",
+    "explanation": "When bit 1 of the CIRCLE_OPTIONS parameter is set, the Copter will face the direction of travel as it circles."
+  },
+  {
+    "index": 9,
+    "formula": "G(bit_2_of_CIRCLE_OPTIONS → set_circle_center_position_upon_mode_entry)",
+    "explanation": "When bit 2 of the CIRCLE_OPTIONS parameter is set, the circle's center position will be set upon mode entry at the current location."
+  },
+  {
+    "index": 10,
+    "formula": "G(bit_3_of_CIRCLE_OPTIONS → set_mount_ROI_on_circle_center)",
+    "explanation": "When bit 3 of the CIRCLE_OPTIONS parameter is set, the mount's ROI will be set on the circle center causing the mount to face the circle's center all the time."
+  },
+  {
+    "index": 11,
+    "formula": "G(¬pilot_control_over_roll ∧ ¬pilot_control_over_pitch)",
+    "explanation": "The pilot does not have any control over the roll and pitch."
+  },
+  {
+    "index": 12,
+    "formula": "G(pilot_control_over_yaw ∨ autopilot_control_over_yaw)",
+    "explanation": "The pilot can control the yaw of the copter, but the autopilot will not retake control of the yaw until circle mode is re-engaged."
+  }
+]

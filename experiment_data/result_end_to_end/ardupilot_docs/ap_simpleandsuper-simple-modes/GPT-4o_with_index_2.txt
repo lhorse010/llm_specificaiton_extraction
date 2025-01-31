@@ -1,0 +1,32 @@
+[
+  {
+    "index": 0,
+    "formula": "G(¬(Acro ∨ Drift) → (SimpleMode ∨ SuperSimpleMode))",
+    "explanation": "Simple and Super Simple modes can be used in combination with nearly all flight modes except the Acro and Drift modes."
+  },
+  {
+    "index": 1,
+    "formula": "G(SimpleMode → (GoodCompassHeading ∧ ControlRelativeToTakeoffHeading))",
+    "explanation": "Simple Mode relies on a good compass heading and controls the copter relative to the heading at takeoff."
+  },
+  {
+    "index": 2,
+    "formula": "G(SuperSimpleMode → (GoodGPSPosition ∧ ControlRelativeToHome))",
+    "explanation": "Super Simple Mode requires a good GPS position and controls the copter relative to its direction from home."
+  },
+  {
+    "index": 3,
+    "formula": "G(SuperSimpleMode → (¬UpdateOrientationWithin10mOfHome))",
+    "explanation": "In Super Simple Mode, the orientation is not updated when the vehicle is within 10m of home."
+  },
+  {
+    "index": 4,
+    "formula": "G(SingleAuxChannel → (High → ModeEnabled))",
+    "explanation": "One auxiliary channel should be used, with high position enabling the selected mode."
+  },
+  {
+    "index": 5,
+    "formula": "G(ThreePositionSwitch → (High → SuperSimpleMode ∧ Middle → SimpleMode ∧ Low → Disabled))",
+    "explanation": "A 3-position switch can be used to select Super Simple mode (high), Simple mode (middle), or disable (low)."
+  }
+]

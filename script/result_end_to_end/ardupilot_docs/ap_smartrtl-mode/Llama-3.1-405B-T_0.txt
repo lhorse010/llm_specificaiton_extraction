@@ -1,0 +1,63 @@
+After carefully reading the document, I have extracted the specifications that the vehicle needs to meet and expressed them using Metric Temporal Logic (MTL) formulas. Here are the results in the required JSON format:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G( SmartRTL → (retrace_safe_path ∧ simplify_path ∧ prune_path) )",
+            "explanation": "When SmartRTL mode is activated, the vehicle will retrace a safe path home, simplify the path by turning curved paths into straight lines, and prune the path by removing loops."
+        },
+        {
+            "formula": "G( buffer_full → ¬SmartRTL )",
+            "explanation": "If the buffer is full, SmartRTL mode will be deactivated."
+        },
+        {
+            "formula": "G( SmartRTL → (save_points_at_most_3_per_second ∧ save_points_only_if_moved_at_least_SRTL_ACCURACY) )",
+            "explanation": "When SmartRTL mode is activated, the vehicle will save points at a maximum of 3 per second, but only if the vehicle has moved at least SRTL_ACCURACY meters from the previous point."
+        },
+        {
+            "formula": "G( 50_points_saved → simplify_points_into_lines )",
+            "explanation": "After 50 points are saved, the vehicle will simplify them into lines again using the SRTL_ACCURACY parameter."
+        },
+        {
+            "formula": "G( good_position_estimate → SmartRTL )",
+            "explanation": "The vehicle must have a good position estimate (LEDs should be green) when the vehicle is armed, otherwise SmartRTL will be disabled."
+        },
+        {
+            "formula": "G( RTL_SPEED = 0 → use_WPNAV_SPEED )",
+            "explanation": "If the RTL_SPEED parameter is set to 0, the vehicle will use the WPNAV_SPEED parameter value instead."
+        },
+        {
+            "formula": "G( RTL_ALT_FINAL = 0 → land_at_home )",
+            "explanation": "If the RTL_ALT_FINAL parameter is set to 0, the vehicle will land at home, otherwise it will stop and hover above home at the specified altitude."
+        },
+        {
+            "formula": "G( SRTL_POINTS = 0 → ¬SmartRTL )",
+            "explanation": "If the SRTL_POINTS parameter is set to 0, SmartRTL mode will be deactivated."
+        },
+        {
+            "formula": "G( SRTL_OPTIONS = 4 → ignore_pilot_yaw_commands )",
+            "explanation": "If the SRTL_OPTIONS parameter is set to 4, the vehicle will ignore pilot yaw commands while in SmartRTL mode."
+        }
+    ]
+}
+```
+
+Note that I have used the following abbreviations in the MTL formulas:
+
+* `SmartRTL`: SmartRTL mode is activated
+* `retrace_safe_path`: the vehicle will retrace a safe path home
+* `simplify_path`: the vehicle will simplify the path by turning curved paths into straight lines
+* `prune_path`: the vehicle will prune the path by removing loops
+* `buffer_full`: the buffer is full
+* `save_points_at_most_3_per_second`: the vehicle will save points at a maximum of 3 per second
+* `save_points_only_if_moved_at_least_SRTL_ACCURACY`: the vehicle will save points only if the vehicle has moved at least SRTL_ACCURACY meters from the previous point
+* `50_points_saved`: 50 points have been saved
+* `simplify_points_into_lines`: the vehicle will simplify the points into lines again using the SRTL_ACCURACY parameter
+* `good_position_estimate`: the vehicle has a good position estimate (LEDs should be green)
+* `RTL_SPEED`: the RTL_SPEED parameter value
+* `WPNAV_SPEED`: the WPNAV_SPEED parameter value
+* `RTL_ALT_FINAL`: the RTL_ALT_FINAL parameter value
+* `SRTL_POINTS`: the SRTL_POINTS parameter value
+* `SRTL_OPTIONS`: the SRTL_OPTIONS parameter value
+* `ignore_pilot_yaw_commands`: the vehicle will ignore pilot yaw commands while in SmartRTL mode

@@ -1,0 +1,42 @@
+[
+  {
+    "index": 0,
+    "formula": "G(HoldMode → (StopAndHover ∧ MaintainGPSPosition ∧ MaintainAltitude))",
+    "explanation": "Globally, when in Hold Mode, the vehicle must stop and hover while maintaining its current GPS position and altitude."
+  },
+  {
+    "index": 1,
+    "formula": "G(HoldMode → GlobalPositionEstimate)",
+    "explanation": "Globally, Hold Mode requires a global 3D position estimate (from GPS or inferred from local position)."
+  },
+  {
+    "index": 2,
+    "formula": "G(¬GlobalPositionEstimate → ¬SwitchToHoldMode)",
+    "explanation": "Globally, if there's no global position estimate, flying vehicles cannot switch to Hold Mode."
+  },
+  {
+    "index": 3,
+    "formula": "G(HoldMode ∧ LossOfPositionEstimate → Failsafe)",
+    "explanation": "Globally, if in Hold Mode and the position estimate is lost, the vehicle will enter failsafe mode."
+  },
+  {
+    "index": 4,
+    "formula": "G(Disarmed ∧ ¬GlobalPositionEstimate → (CanSwitchToHoldMode ∧ ¬CanArm))",
+    "explanation": "Globally, disarmed vehicles can switch to Hold Mode without a valid position estimate but cannot arm."
+  },
+  {
+    "index": 5,
+    "formula": "G(HoldMode → (WindWithinLimits ∧ FlightTimeWithinLimits))",
+    "explanation": "Globally, Hold Mode requires that wind and flight time are within allowed limits specified by parameters."
+  },
+  {
+    "index": 6,
+    "formula": "G(RCStickMovement ∧ ¬CriticalBatteryFailsafe → X(PositionMode))",
+    "explanation": "Globally, RC stick movement will change the vehicle to Position mode in the next state, unless handling a critical battery failsafe."
+  },
+  {
+    "index": 7,
+    "formula": "G(HoldMode ∧ (Altitude < NAV_MIN_LTR_ALT) → F(Altitude ≥ NAV_MIN_LTR_ALT))",
+    "explanation": "Globally, if Hold Mode is engaged below NAV_MIN_LTR_ALT, the vehicle will eventually ascend to at least NAV_MIN_LTR_ALT."
+  }
+]

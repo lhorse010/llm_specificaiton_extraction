@@ -1,0 +1,17 @@
+[
+  {
+    "sentence": "It places the vehicle into a STABILIZE like mode, and generates bursts of signals (\"chirps\") injected into the control loops at various points and logs the results for math analysis and model generation later.",
+    "formula": "F(S ∧ G(C ∧ L))",
+    "explanation": "This formula captures the sequence of events: S represents entering STABILIZE-like mode, C represents generating chirp signals, and L represents logging results. The formula states that eventually (F), the system enters STABILIZE-like mode (S) and from that point onwards (G), it continuously generates chirps and logs results (C ∧ L)."
+  },
+  {
+    "sentence": "If the SID_AXIS is non-zero, then this modes associated parameters will become visible on the next parameter refresh and entry into the mode will be allowed.",
+    "formula": "G(N → X(V ∧ A))",
+    "explanation": "Here, N represents SID_AXIS being non-zero, V represents parameters becoming visible, and A represents mode entry being allowed. The formula states that globally (G), if SID_AXIS is non-zero (N), then in the next state (X), the parameters will be visible and mode entry will be allowed (V ∧ A)."
+  },
+  {
+    "sentence": "Otherwise, an error message will be logged and sent to the ground control station indicating that mode entry has been prohibited.",
+    "formula": "G(¬N → X(E ∧ P))",
+    "explanation": "In this formula, N represents SID_AXIS being non-zero (as in the previous sentence), E represents logging and sending an error message, and P represents mode entry being prohibited. The formula states that globally (G), if SID_AXIS is not non-zero (¬N), then in the next state (X), an error message will be logged and sent, and mode entry will be prohibited (E ∧ P)."
+  }
+]

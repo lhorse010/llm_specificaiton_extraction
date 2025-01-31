@@ -1,0 +1,17 @@
+[
+  {
+    "index": 0,
+    "formula": "G (no_drivable_lane → (distance_to_intersection > stop_margin → X state = APPROACHING))",
+    "explanation": "Globally, if a no drivable lane is detected, and the distance to the intersection is greater than the stop margin, the next state should be APPROACHING."
+  },
+  {
+    "index": 1,
+    "formula": "G (no_drivable_lane → ((ego_path_first_point_inside ∨ distance_to_intersection <= stop_margin) → X state = INSIDE_NO_DRIVABLE_LANE))",
+    "explanation": "Globally, if a no drivable lane is detected, and either the first point of the ego path is inside the no drivable lane or the distance to the intersection is less than or equal to the stop margin, the next state should be INSIDE_NO_DRIVABLE_LANE."
+  },
+  {
+    "index": 2,
+    "formula": "G ((state = INSIDE_NO_DRIVABLE_LANE ∧ speed = 0) → X state = STOPPED)",
+    "explanation": "Globally, if the state is INSIDE_NO_DRIVABLE_LANE and the vehicle speed is 0, then the next state should be STOPPED."
+  }
+]

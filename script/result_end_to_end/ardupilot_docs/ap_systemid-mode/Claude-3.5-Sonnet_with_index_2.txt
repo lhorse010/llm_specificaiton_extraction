@@ -1,0 +1,17 @@
+[
+  {
+    "index": 0,
+    "formula": "G(SID_AXIS ≠ 0 → F(ParametersVisible ∧ ModeEntryAllowed))",
+    "explanation": "This formula expresses that globally (G), if SID_AXIS is non-zero, then eventually (F) the parameters will become visible and mode entry will be allowed. The implication (→) captures the conditional nature of the specification."
+  },
+  {
+    "index": 1,
+    "formula": "G(SID_AXIS = 0 → X(ErrorMessageLogged ∧ ErrorMessageSent))",
+    "explanation": "This formula states that globally (G), if SID_AXIS is zero, then in the next state (X), an error message will be logged and sent to the ground control station. The 'next' operator (X) is used because the error logging and sending are immediate consequences of the condition."
+  },
+  {
+    "index": 2,
+    "formula": "G(ModeActive → (StabilizeLikeMode ∧ F(SignalChirpsGenerated)))",
+    "explanation": "This formula expresses that globally (G), when the System Identification Mode is active, the vehicle is in a STABILIZE-like mode and eventually (F) signal chirps are generated. This captures the behavior of the mode once it's activated."
+  }
+]

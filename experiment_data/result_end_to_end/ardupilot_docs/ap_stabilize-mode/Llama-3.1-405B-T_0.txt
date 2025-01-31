@@ -1,0 +1,58 @@
+After carefully reading the document, I extracted the specifications that the vehicle needs to meet in Stabilize Mode. Here are the specifications expressed using Metric Temporal Logic (MTL) formulas:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(pilot_roll_input → X vehicle_lean_angle_change)",
+            "explanation": "The vehicle's lean angle changes in response to the pilot's roll input."
+        },
+        {
+            "formula": "G(pilot_pitch_input → X vehicle_lean_angle_change)",
+            "explanation": "The vehicle's lean angle changes in response to the pilot's pitch input."
+        },
+        {
+            "formula": "G(pilot_yaw_input → X vehicle_heading_change)",
+            "explanation": "The vehicle's heading changes in response to the pilot's yaw input."
+        },
+        {
+            "formula": "G(pilot_throttle_input → X vehicle_motor_speed_change)",
+            "explanation": "The vehicle's motor speed changes in response to the pilot's throttle input."
+        },
+        {
+            "formula": "G(vehicle_tilt_angle > 0 → X vehicle_throttle_adjustment)",
+            "explanation": "The vehicle's throttle is automatically adjusted based on the tilt angle of the vehicle."
+        },
+        {
+            "formula": "G(pilot_roll_input = 0 ∧ pilot_pitch_input = 0 → F vehicle_level)",
+            "explanation": "The vehicle automatically levels itself when the pilot releases the roll and pitch sticks."
+        },
+        {
+            "formula": "G(pilot_yaw_input = 0 → F vehicle_heading_stable)",
+            "explanation": "The vehicle maintains its current heading when the pilot releases the yaw stick."
+        },
+        {
+            "formula": "G(throttle = 0 → F vehicle_motors_minimum_rate)",
+            "explanation": "The motors go to their minimum rate when the throttle is completely down."
+        },
+        {
+            "formula": "G(airmode_enabled → G vehicle_stabilization_at_idle_throttle)",
+            "explanation": "The vehicle provides full stabilization at idle throttle when AirMode is enabled."
+        },
+        {
+            "formula": "G(ANGLE_MAX = 4500 → G vehicle_lean_angle ≤ 45)",
+            "explanation": "The vehicle's lean angle does not exceed 45 degrees when ANGLE_MAX is set to 4500."
+        },
+        {
+            "formula": "G(ANGLE_RATE_MAX = 18000 → G vehicle_rotation_rate ≤ 180)",
+            "explanation": "The vehicle's rotation rate does not exceed 180 degrees per second when ANGLE_RATE_MAX is set to 18000."
+        },
+        {
+            "formula": "G(ACRO_Y_RATE = 4.5 → G vehicle_yaw_rate ≤ 200)",
+            "explanation": "The vehicle's yaw rate does not exceed 200 degrees per second when ACRO_Y_RATE is set to 4.5."
+        }
+    ]
+}
+```
+
+Note that these specifications are based on the assumptions that the vehicle is in Stabilize Mode and that the pilot is providing input to the vehicle. Additionally, some specifications may be implicit in the document, but I have only included those that can be explicitly derived from the text.

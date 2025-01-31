@@ -1,0 +1,57 @@
+[
+  {
+    "section-id": 1,
+    "sentence-id": 5,
+    "sentence": "The vehicle can be armed in Loiter mode but only once the GPS has 3D lock and the HDOP has dropped below 1.4."
+  },
+  {
+    "section-id": 3,
+    "sentence-id": 0,
+    "sentence": "1.LOIT_SPEED: max horizontal speed in cm/s (i.e. 1250 = 12.5m/s)"
+  },
+  {
+    "section-id": 3,
+    "sentence-id": 1,
+    "sentence": "2.LOIT_ACC_MAX: max acceleration in cm/s/s."
+  },
+  {
+    "section-id": 3,
+    "sentence-id": 3,
+    "sentence": "3.LOIT_ANG_MAX: max lean angle in degrees (i.e. 30deg)."
+  },
+  {
+    "section-id": 3,
+    "sentence-id": 5,
+    "sentence": "4.LOIT_BRK_ACCEL: max acceleration in cm/s/s while braking (i.e. pilot has moved sticks to center)."
+  },
+  {
+    "section-id": 3,
+    "sentence-id": 7,
+    "sentence": "5.LOIT_BRK_DELAY: the delay in seconds before braking starts once the pilot has centered the sticks"
+  },
+  {
+    "section-id": 3,
+    "sentence-id": 8,
+    "sentence": "6.LOIT_BRK_JERK: max change in acceleration in cm/s/s/s while braking."
+  },
+  {
+    "section-id": 0,
+    "sentence-id": 2,
+    "sentence": "A good GPS lock, low magnetic interference on the compass and low vibrations are all important in achieving good loiter performance."
+  },
+  {
+    "section-id": 1,
+    "sentence-id": 2,
+    "sentence": "When the pilot releases the sticks the copter will slow to a stop."
+  },
+  {
+    "section-id": 3,
+    "sentence-id": 10,
+    "sentence": "7.PSC_POSXY_P: (shown as \"Position XY (Dist to Speed)\" at the top right of the screen shot above) converts the horizontal position error (i.e difference between the desired position and the actual position) to a desired speed towards the target position."
+  },
+  {
+    "section-id": 3,
+    "sentence-id": 12,
+    "sentence": "8.PSC_VELXY_P (shown as \"Velocity XY (Vel to Accel)\") converts the desired speed towards the target to a desired acceleration."
+  }
+]

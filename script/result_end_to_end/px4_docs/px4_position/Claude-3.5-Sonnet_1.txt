@@ -1,0 +1,34 @@
+I'll extract the specifications from the document and express them using Metric Temporal Logic (MTL) formulas. Then, I'll format the results in JSON as requested.
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(stick_released → F[0,t] (vehicle_locked ∧ vehicle_leveled))",
+            "explanation": "Globally, when the sticks are released, the vehicle will eventually (within time t) be locked to a position and leveled."
+        },
+        {
+            "formula": "G(full_stick_deflection → F[0,t] (acceleration = MPC_ACC_HOR_MAX) ∧ F[t,∞] (velocity = MPC_VEL_MANUAL))",
+            "explanation": "Globally, when there's full stick deflection, the vehicle will initially accelerate at MPC_ACC_HOR_MAX and eventually reach the final velocity MPC_VEL_MANUAL."
+        },
+        {
+            "formula": "G(on_ground ∧ throttle_low → F[0,t] vehicle_disarmed)",
+            "explanation": "Globally, when the vehicle is on the ground and throttle is low, it will disarm within time t."
+        },
+        {
+            "formula": "G(centered_sticks ∧ ¬(|stick_position| < MPC_HOLD_DZ) → X(hold_position ∧ hold_altitude))",
+            "explanation": "Globally, when sticks are centered (but outside the deadzone MPC_HOLD_DZ), in the next state, the vehicle will hold its position and altitude."
+        },
+        {
+            "formula": "G(landed ∧ (throttle > 62.5%) → F[0,t] takeoff)",
+            "explanation": "Globally, when the vehicle is landed and throttle is raised above 62.5%, it will take off within time t."
+        },
+        {
+            "formula": "G(position_estimate < acceptable_level → F[0,t] (altitude_mode ∨ manual_mode ∨ land_mode ∨ terminate))",
+            "explanation": "Globally, when the position estimate falls below an acceptable level, the vehicle will switch to altitude mode, manual mode, land mode, or terminate within time t."
+        }
+    ]
+}
+```
+
+These MTL formulas capture the key specifications from the document. They focus on the behavior of the vehicle in Position Mode, including how it responds to stick inputs, landing procedures, and safety features. The formulas use the temporal operators to express the timing and sequencing of events and actions.

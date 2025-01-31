@@ -1,0 +1,22 @@
+[
+  {
+    "index": 0,
+    "formula": "G((turn_direction = left ∨ turn_direction = right) → F(object_in_detection_area ∧ object_path_in_conflict_area))",
+    "explanation": "If the vehicle is at a junction with a turn direction (left or right), it must eventually detect any object in the detection area whose path is in the conflict area."
+  },
+  {
+    "index": 1,
+    "formula": "G((object_in_detection_area ∧ object_path_in_conflict_area) → stop_state)",
+    "explanation": "If an object is detected in the detection area and its path is in the conflict area, the vehicle must transition to the stop state."
+  },
+  {
+    "index": 2,
+    "formula": "G(pass_judge_line → ¬stop_state)",
+    "explanation": "Once the pass judge line is crossed, the vehicle should not enter the stop state to avoid a rapid stop."
+  },
+  {
+    "index": 3,
+    "formula": "G(stop_state → F[0,2](go_state))",
+    "explanation": "Once the vehicle enters the stop state, it must remain in this state until the go condition is continuously met for at least 2 seconds to prevent chattering."
+  }
+]

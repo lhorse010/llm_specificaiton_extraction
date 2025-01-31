@@ -1,0 +1,22 @@
+[
+  {
+    "index": 0,
+    "formula": "G (¬(velocity > max_slow_mode_velocity) → F (velocity <= max_slow_mode_velocity))",
+    "explanation": "Globally, if the vehicle's velocity exceeds the maximum slow mode velocity, it will eventually be reduced to within the limit."
+  },
+  {
+    "index": 1,
+    "formula": "G (RC_control_input_mapped → (RC_control_input_priority > MAVLink_priority ∧ MAVLink_priority > parameter_priority))",
+    "explanation": "Globally, if the RC control input is mapped, it has the highest priority over MAVLink and parameter settings."
+  },
+  {
+    "index": 2,
+    "formula": "G (MAVLink_message_received → X (velocity_limit = MAVLink_limit))",
+    "explanation": "Globally, upon receiving a MAVLink message with a velocity limit, the next state will have this limit applied, unless overridden by an RC input."
+  },
+  {
+    "index": 3,
+    "formula": "G (mode_switch ∨ new_MAVLink_message → X (velocity_limit = previous_setting))",
+    "explanation": "Globally, when a mode switch or new MAVLink message occurs, the next state will apply the previous setting unless changed by the new message."
+  }
+]

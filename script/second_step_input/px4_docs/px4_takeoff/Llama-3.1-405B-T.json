@@ -1,0 +1,42 @@
+[
+  {
+    "section-id": 1,
+    "sentence-id": 1,
+    "sentence": "2.Mode requires at least a valid local position estimate (does not require a global position)."
+  },
+  {
+    "section-id": 1,
+    "sentence-id": 2,
+    "sentence": "Flying vehicles can't switch to this mode without valid local position."
+  },
+  {
+    "section-id": 1,
+    "sentence-id": 3,
+    "sentence": "Flying vehicles will failsafe if they lose the position estimate."
+  },
+  {
+    "section-id": 1,
+    "sentence-id": 4,
+    "sentence": "Disarmed vehicles can switch to mode without valid position estimate but can't arm."
+  },
+  {
+    "section-id": 1,
+    "sentence-id": 6,
+    "sentence": "4.RC stick movement will by default change the vehicle to Position mode unless handling a critical battery failsafe."
+  },
+  {
+    "section-id": 1,
+    "sentence-id": 7,
+    "sentence": "5.The Failure Detector will automatically stop the engines if there is a problem on takeoff."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 0,
+    "sentence": "A multi rotor ascends vertically to the altitude defined in MIS_TAKEOFF_ALT and holds position."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 1,
+    "sentence": "RC stick movement will change the vehicle to Position mode (by default)."
+  }
+]

@@ -1,0 +1,27 @@
+[
+  {
+    "index": 0,
+    "formula": "G (FOLL_ENABLE = 1 → FOLL_SYSID ≠ null)",
+    "explanation": "If Follow Mode is enabled, the MAVLink system ID of the lead vehicle must be specified."
+  },
+  {
+    "index": 1,
+    "formula": "G (FOLL_ENABLE = 1 → (lead_vehicle_position ∧ telemetry_system))",
+    "explanation": "If Follow Mode is enabled, the lead vehicle's position must be published via a telemetry system."
+  },
+  {
+    "index": 2,
+    "formula": "G (¬(altitude_error > 10%) → altitude_hold_controller)",
+    "explanation": "The altitude hold controller must maintain the vehicle's altitude within 10% of mid-throttle."
+  },
+  {
+    "index": 3,
+    "formula": "G (altitude_change → (climb_rate ≤ 2.5 ∧ descend_rate ≤ 2.5))",
+    "explanation": "The vehicle can climb or descend at a max rate of 2.5 m/s, adjustable by parameters."
+  },
+  {
+    "index": 4,
+    "formula": "G (distance_to_lead_vehicle > FOLL_DIST_MAX → hold_position)",
+    "explanation": "If the lead vehicle is beyond the maximum follow distance, the vehicle should hold its position."
+  }
+]

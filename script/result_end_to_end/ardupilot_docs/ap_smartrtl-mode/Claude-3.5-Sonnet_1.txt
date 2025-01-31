@@ -1,0 +1,54 @@
+I'll extract the specifications from the document and express them using Metric Temporal Logic (MTL) formulas. Then, I'll format the results in JSON as requested.
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(SmartRTL_active → F(vehicle_at_home))",
+            "explanation": "Globally, if SmartRTL is active, then eventually the vehicle will be at home."
+        },
+        {
+            "formula": "G(buffer_full → ¬SmartRTL_available)",
+            "explanation": "Globally, if the buffer is full, then SmartRTL is not available."
+        },
+        {
+            "formula": "G(point_saved → distance_from_previous ≥ SRTL_ACCURACY)",
+            "explanation": "Globally, a point is saved only if the distance from the previous point is greater than or equal to SRTL_ACCURACY."
+        },
+        {
+            "formula": "G(points_saved = 50 → X(simplify_path))",
+            "explanation": "Globally, when 50 points are saved, in the next state the path will be simplified."
+        },
+        {
+            "formula": "G(¬good_position_estimate → ¬SmartRTL_available)",
+            "explanation": "Globally, if there is not a good position estimate, then SmartRTL is not available."
+        },
+        {
+            "formula": "G(SmartRTL_active ∧ RTL_SPEED = 0 → vehicle_speed = WPNAV_SPEED)",
+            "explanation": "Globally, if SmartRTL is active and RTL_SPEED is 0, then the vehicle speed will be WPNAV_SPEED."
+        },
+        {
+            "formula": "G(SmartRTL_complete ∧ RTL_ALT_FINAL = 0 → F(vehicle_landed))",
+            "explanation": "Globally, if SmartRTL is complete and RTL_ALT_FINAL is 0, then eventually the vehicle will land."
+        },
+        {
+            "formula": "G(SmartRTL_complete ∧ RTL_ALT_FINAL > 0 → F(vehicle_altitude = RTL_ALT_FINAL))",
+            "explanation": "Globally, if SmartRTL is complete and RTL_ALT_FINAL is greater than 0, then eventually the vehicle altitude will be RTL_ALT_FINAL."
+        },
+        {
+            "formula": "G(points_stored < SRTL_POINTS)",
+            "explanation": "Globally, the number of points stored is less than SRTL_POINTS."
+        },
+        {
+            "formula": "G(SRTL_OPTIONS = 4 → G(SmartRTL_active → ¬pilot_yaw_control))",
+            "explanation": "Globally, if SRTL_OPTIONS is 4, then globally when SmartRTL is active, pilot yaw commands are ignored."
+        },
+        {
+            "formula": "G(SRTL_POINTS = 0 → ¬SmartRTL_available)",
+            "explanation": "Globally, if SRTL_POINTS is 0, then SmartRTL is not available as a mode."
+        }
+    ]
+}
+```
+
+These MTL formulas capture the key specifications extracted from the document. They cover the behavior of SmartRTL mode, its activation conditions, parameter effects, and constraints. The formulas use the provided logical and temporal modal operators to express the relationships between various states and conditions of the system.

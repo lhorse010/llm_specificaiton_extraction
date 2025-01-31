@@ -1,0 +1,49 @@
+Position Mode (Multicopter)
+
+Position Mode (Multicopter)
+_Position_ is an easy-to-fly RC mode in which roll and pitch sticks control acceleration over ground in the vehicle's left-right and forward-back directions (similar to a car's accelerator pedal), and throttle controls speed of ascent-descent.
+When the sticks are released/centered the vehicle will actively brake, level, and be locked to a position in 3D space — compensating for wind and other forces.
+With full stick deflection the vehicle accelerates initially with MPC_ACC_HOR_MAX ramping down until it reaches the final velocity MPC_VEL_MANUAL.
+
+Position Mode (Multicopter) : tip
+Position mode is the safest manual mode for new fliers.
+Unlike Altitude and Stabilized modes the vehicle will stop when the sticks are centered rather than continuing until slowed by wind resistance.
+
+Landing
+Landing in this mode is easy:
+1.Position the drone horizontally above the landing spot using the roll and pitch stick.
+2.Let go of the roll and pitch stick and give it enough time to come to a complete stop.
+3.Pull the throttle stick down gently until the vehicle touches the ground.
+4.Pull the throttle stick all the way down to facilitate and accelerate land detection.
+5.The vehicle will lower propeller thrust, detect the ground and automatically disarm (by default).
+
+Landing : warning
+While very rare on a well calibrated vehicle, sometimes there may be problems with landing.
+1.If the vehicle does not stop moving horizontally:
+You can still land under control in Altitude mode.
+The approach is the same as above, except that you must manually ensure that the vehicle stays above the landing spot using the roll and pitch stick.
+After landing check GPS and magnetometer orientation, calibration.
+2.If the vehicle does not detect the ground/landing and disarm:
+After the vehicle is on the ground switch to Stabilized mode keeping the throttle stick low, and manually disarm using a gesture or other command.
+Alternatively you can also use the kill switch when the vehicle is already on the ground.
+
+Technical Summary
+RC mode where roll, pitch, throttle (RPT) sticks control movement in corresponding axes/directions.
+Centered sticks level vehicle and hold it to fixed altitude and position against wind.
+1.Centered roll, pitch, throttle sticks (within RC deadzone MPC_HOLD_DZ) hold x, y, z position steady against any disturbance like wind.
+2.Outside center:
+Roll/Pitch sticks control horizontal acceleration over ground in the vehicle's left-right and forward-back directions (respectively).
+Throttle stick controls speed of ascent-descent.
+Yaw stick controls rate of angular rotation above the horizontal plane.
+3.Takeoff:
+When landed, the vehicle will take off if the throttle stick is raised above 62.5% percent (of the full range from bottom).
+4.Global position estimate is required.
+5.Manual control input is required (such as RC control, joystick).
+Roll, Pitch, Throttle: Assistance from autopilot to hold position against wind.
+Yaw: Assistance from autopilot to stabilize the attitude rate.
+Position of RC stick maps to the rate of rotation of vehicle in that orientation.
+
+Additional Information : Position Loss/Safety
+Position mode is dependent on having an acceptable position estimate.
+If the estimate falls below acceptable levels, for example due to GPS loss, this may trigger a Position (GPS) Loss Failsafe.
+Depending on configuration, whether you have a remote control, and whether there is an adequate altitude estimate, PX4 may switch to altitude mode, manual mode, land mode or terminate.

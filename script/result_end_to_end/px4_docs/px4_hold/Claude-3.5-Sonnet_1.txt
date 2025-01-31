@@ -1,0 +1,51 @@
+Let's go through the steps to extract and formalize the specifications using Metric Temporal Logic (MTL).
+
+Step 1: Read the document thoroughly.
+I have read and analyzed the document about Hold Mode for Multicopters.
+
+Step 4: Extract specifications and express them using metric temporal logic formula.
+
+Step 5: Format all the converted sentences in JSON.
+
+Here's the output in the required format:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(HoldMode → (StopAndHover ∧ MaintainGPSPosition ∧ MaintainAltitude))",
+            "explanation": "Globally, when in Hold Mode, the vehicle must stop and hover while maintaining its current GPS position and altitude."
+        },
+        {
+            "formula": "G(HoldMode → GlobalPositionEstimate)",
+            "explanation": "Globally, Hold Mode requires a global 3D position estimate (from GPS or inferred from local position)."
+        },
+        {
+            "formula": "G(¬GlobalPositionEstimate → ¬SwitchToHoldMode)",
+            "explanation": "Globally, if there's no global position estimate, flying vehicles cannot switch to Hold Mode."
+        },
+        {
+            "formula": "G(HoldMode ∧ LossOfPositionEstimate → Failsafe)",
+            "explanation": "Globally, if in Hold Mode and the position estimate is lost, the vehicle will enter failsafe mode."
+        },
+        {
+            "formula": "G(Disarmed ∧ ¬GlobalPositionEstimate → (CanSwitchToHoldMode ∧ ¬CanArm))",
+            "explanation": "Globally, disarmed vehicles can switch to Hold Mode without a valid position estimate but cannot arm."
+        },
+        {
+            "formula": "G(HoldMode → (WindWithinLimits ∧ FlightTimeWithinLimits))",
+            "explanation": "Globally, Hold Mode requires that wind and flight time are within allowed limits specified by parameters."
+        },
+        {
+            "formula": "G(RCStickMovement ∧ ¬CriticalBatteryFailsafe → X(PositionMode))",
+            "explanation": "Globally, RC stick movement will change the vehicle to Position mode in the next state, unless handling a critical battery failsafe."
+        },
+        {
+            "formula": "G(HoldMode ∧ (Altitude < NAV_MIN_LTR_ALT) → F(Altitude ≥ NAV_MIN_LTR_ALT))",
+            "explanation": "Globally, if Hold Mode is engaged below NAV_MIN_LTR_ALT, the vehicle will eventually ascend to at least NAV_MIN_LTR_ALT."
+        }
+    ]
+}
+```
+
+These MTL formulas capture the key specifications for the Hold Mode in Multicopters as described in the document. They cover the mode's behavior, requirements, and transitions based on various conditions.

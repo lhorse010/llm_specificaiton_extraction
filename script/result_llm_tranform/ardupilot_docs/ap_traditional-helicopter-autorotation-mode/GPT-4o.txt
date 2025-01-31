@@ -1,0 +1,107 @@
+[
+  {
+    "sentence": "This flight mode is available for traditional helicopters only.",
+    "formula": "G(T → ¬M)",
+    "explanation": "Here, T represents the system being a traditional helicopter, and M represents the flight mode being available. The formula ensures that the mode is not available unless the helicopter is traditional."
+  },
+  {
+    "sentence": "It is currently limited to single rotor helicopters.",
+    "formula": "G(S → ¬M)",
+    "explanation": "S represents the system being a single rotor helicopter, and M represents the availability of the mode. This formula restricts the mode to single rotor helicopters only."
+  },
+  {
+    "sentence": "This is only enabled for use with SITL.",
+    "formula": "G(E → ¬N)",
+    "explanation": "E represents the system being enabled, and N represents non-SITL usage. The formula ensures that the system is only enabled when used with SITL."
+  },
+  {
+    "sentence": "Do not attempt to use this flight mode in real life.",
+    "formula": "G(¬R)",
+    "explanation": "R represents using the flight mode in real life. The formula globally forbids the real-life usage of this mode."
+  },
+  {
+    "sentence": "It is this reversal of the vertical velocity that necessitates careful collective management when entering the autorotation.",
+    "formula": "G(V → C)",
+    "explanation": "V represents the reversal of vertical velocity, and C represents the need for careful collective management. The formula states that whenever vertical velocity reverses, careful management is necessary."
+  },
+  {
+    "sentence": "It is key that the collective is moved proportionally to the direction of the resultant velocity vector to minimize the blade drag generated, preventing excessive loss of head speed.",
+    "formula": "G(R → (M ∧ ¬L))",
+    "explanation": "R represents the resultant velocity vector, M represents moving the collective proportionally, and L represents the loss of head speed. The formula emphasizes proportional movement to minimize drag and prevent speed loss."
+  },
+  {
+    "sentence": "In addition to this, the forward airspeed must be either maintained or increased (if the failure is initiated from a low airspeed state).",
+    "formula": "G((F ∧ L) → (M ∨ I))",
+    "explanation": "F represents a failure, L represents low airspeed, M represents maintaining airspeed, and I represents increasing airspeed. The formula ensures that airspeed is maintained or increased upon failure initiation at low speeds."
+  },
+  {
+    "sentence": "Collective is subsequently used to manage the head speed, preventing overspeed and blade stall as required.",
+    "formula": "G(C → (M ∧ ¬O ∧ ¬B))",
+    "explanation": "C represents using the collective, M represents managing head speed, O represents overspeed, and B represents blade stall. The formula ensures collective use prevents both overspeed and stall."
+  },
+  {
+    "sentence": "When exiting the autonomous autorotation flight mode the aircraft will be returned to a \"non-manual collective mode\".",
+    "formula": "G((E ∧ A) → N)",
+    "explanation": "E represents exiting the autorotation mode, A represents autonomous mode, and N represents non-manual collective mode. The formula ensures that upon exiting, the aircraft switches to non-manual mode."
+  },
+  {
+    "sentence": "It is therefore necessary to gently reintroduce the z position controller to prevent aggressive collective angles being applied, resulting in blade stall or even rotor stop.",
+    "formula": "G(R → (P ∧ ¬A))",
+    "explanation": "R represents reintroducing the z position controller, P represents preventing aggressive angles, and A represents avoiding blade stall or rotor stop. The formula ensures gentle reintroduction to prevent negative outcomes."
+  },
+  {
+    "sentence": "When initiated, the bail-out phase will read the requested climb or descent rate from the operators throttle stick position.",
+    "formula": "G(Initiated → F(Read))",
+    "explanation": "Once initiated, the system must eventually read the throttle stick position to determine the requested rate of climb or descent."
+  },
+  {
+    "sentence": "The aircraft will then be decelerated over a set period of time (see parameter AROT_BAIL_TIME).",
+    "formula": "F(Initiated → F[0, AROT_BAIL_TIME](Decelerated))",
+    "explanation": "After initiation, the aircraft must be decelerated within the specified bail-out time period."
+  },
+  {
+    "sentence": "At the end of which, the requested vertical speed will match the magnitude requested on the stick.",
+    "formula": "F[AROT_BAIL_TIME, AROT_BAIL_TIME](Match)",
+    "explanation": "At the exact end of the bail-out time, the vertical speed must match the throttle stick request."
+  },
+  {
+    "sentence": "The motor ramp time defined by H_RSC_RAMP_TIME is ignored during bail-out, and a hard-coded ramp time of one second is used.",
+    "formula": "G(BailOut → (¬Use(H_RSC_RAMP_TIME) ∧ Use(HardCodedRampTime)))",
+    "explanation": "During bail-out, the defined ramp time is ignored, and a fixed one-second ramp time is applied instead."
+  },
+  {
+    "sentence": "The ramp time defined by H_RSC_RAMP_TIME is now only observed when the aircraft is on ground and the \"landed flag\" is set true.",
+    "formula": "G(OnGround ∧ LandedFlag → Use(H_RSC_RAMP_TIME))",
+    "explanation": "The specified ramp time is used only when the aircraft is on the ground and the landed flag is true."
+  },
+  {
+    "sentence": "Caution is therefore required when running autorotations in quick succession to prevent rapid rotor spool up on ground.",
+    "formula": "G(QuickSuccession → CautionRequired)",
+    "explanation": "Whenever autorotations happen in quick succession, caution must be exercised to avoid rapid rotor spool-up."
+  },
+  {
+    "sentence": "The autonomous flight mode can only be entered if the interlock is disengaged whilst flying in a non-manual collective mode.",
+    "formula": "G((¬Interlock ∧ NonManualMode) → F(AutonomousMode))",
+    "explanation": "Autonomous flight mode is accessible only if the interlock is off and the aircraft is in a non-manual mode."
+  },
+  {
+    "sentence": "When exiting the autorotation the flight mode is returned to the mode from which it came (e.g. Altitude Hold -> Autonomous Autorotation -> Altitude Hold).",
+    "formula": "G(ExitAutorotation → ReturnToPreviousMode)",
+    "explanation": "Upon exiting autorotation, the flight mode should revert to its prior state."
+  },
+  {
+    "sentence": "The objective is to reduce the blade collective angle reducing the risk of blade stall.",
+    "formula": "G(Objective → F(ReduceCollectiveAngle ∧ ReduceBladeStallRisk))",
+    "explanation": "The goal is to lower the collective angle of the blades to mitigate the risk of stalling."
+  },
+  {
+    "sentence": "It is important to maintain aircraft energy as efficiently as possible in the glide phase so that the maximum amount of energy is available for the flare and touch-down phase.",
+    "formula": "G(GlidePhase → F(EfficientEnergyUse ∧ MaxEnergyForFlare))",
+    "explanation": "During the glide phase, energy must be preserved efficiently to ensure maximum availability for the flare and touch-down."
+  },
+  {
+    "sentence": "Therefore, if the interlock is re-engaged immediately after the aircraft touches down the one second ramp time of the bail-out phase can be initiated on the ground.",
+    "formula": "T → X(I ∧ F[0,1](B))",
+    "explanation": "T represents the aircraft touching down, I represents the interlock being re-engaged, and B represents the initiation of the bail-out phase. The formula captures that if the aircraft touches down (T), then immediately (X) the interlock is re-engaged (I), which allows for the bail-out phase (B) to be initiated within one second."
+  }
+]

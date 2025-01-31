@@ -1,0 +1,85 @@
+I'll go through the document step by step, identifying sentences that meet the criteria for specifications, and then provide the output in the required JSON format.
+
+Step 1: Read the document thoroughly.
+I have read the entire document.
+
+Step 2 & 3: Determine whether sentences convey relevant information and annotate them as specifications if they do.
+
+After careful analysis, I've identified the following sentences as specifications:
+
+Section 1, Sentence 0: "This flight mode is available for traditional helicopters only."
+Section 1, Sentence 1: "It is currently limited to single rotor helicopters."
+Section 2, Sentence 1: "This is only enabled for use with SITL."
+Section 2, Sentence 2: "Do not attempt to use this flight mode in real life."
+Section 6, Sentence 12: "As this manoeuvre is flown close to the ground it requires a reliable height estimate that can account for the local terrain."
+Section 6, Sentence 13: "Downward facing LiDaR is therefore highly recommended."
+Section 9, Sentence 0: "The motor ramp time defined by H_RSC_RAMP_TIME is ignored during bail-out, and a hard-coded ramp time of one second is used."
+Section 12, Sentence 0: "The autonomous autorotation flight mode cannot be entered via a mode switch, as is done with other flight modes."
+Section 12, Sentence 1: "In an attempt to mimic the autorotation procedure followed when flying a manual autorotation, the mode is entered and exited using the motor interlock switch."
+Section 12, Sentence 2: "The autonomous flight mode can only be entered if the interlock is disengaged whilst flying in a non-manual collective mode."
+Section 12, Sentence 3: "When exiting the autorotation the flight mode is returned to the mode from which it came (e.g. Altitude Hold -> Autonomous Autorotation -> Altitude Hold)."
+Section 12, Sentence 4: "The only exception to this is when the aircraft enters the autorotation from an auto mission."
+Section 12, Sentence 5: "In which case, the mode is exited into Altitude Hold."
+
+Step 4: Format the annotated sentences in JSON.
+
+```json
+{
+    "specifications": [
+        {
+            "section-id": 1,
+            "sentence-id": 0
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 1
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 1
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 2
+        },
+        {
+            "section-id": 6,
+            "sentence-id": 12
+        },
+        {
+            "section-id": 6,
+            "sentence-id": 13
+        },
+        {
+            "section-id": 9,
+            "sentence-id": 0
+        },
+        {
+            "section-id": 12,
+            "sentence-id": 0
+        },
+        {
+            "section-id": 12,
+            "sentence-id": 1
+        },
+        {
+            "section-id": 12,
+            "sentence-id": 2
+        },
+        {
+            "section-id": 12,
+            "sentence-id": 3
+        },
+        {
+            "section-id": 12,
+            "sentence-id": 4
+        },
+        {
+            "section-id": 12,
+            "sentence-id": 5
+        }
+    ]
+}
+```
+
+This output includes all the sentences that meet the criteria for specifications, formatted according to the required JSON structure.

@@ -1,0 +1,189 @@
+{
+  "title": "Orbit (Multicopter)",
+  "sections": [
+    {
+      "section-id": 0,
+      "title": "Orbit (Multicopter)",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "The _Orbit_ guided flight mode allows you to command a multicopter (or VTOL in multicopter mode) to fly in a circle at a particular location, by default yawing so that it always faces towards the center."
+        }
+      ]
+    },
+    {
+      "section-id": 1,
+      "title": "Orbit (Multicopter) : info",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "1.Mode is automatic - no user intervention is _required_ to control the vehicle."
+        },
+        {
+          "sentence-id": 1,
+          "text": "2.Mode requires at least a valid local position estimate (does not require a global position)."
+        },
+        {
+          "sentence-id": 2,
+          "text": "Flying vehicles can't switch to this mode without valid local position."
+        },
+        {
+          "sentence-id": 3,
+          "text": "Flying vehicles will failsafe if they lose the position estimate."
+        },
+        {
+          "sentence-id": 4,
+          "text": "3.Mode prevents arming (vehicle must be armed when switching to this mode)."
+        },
+        {
+          "sentence-id": 5,
+          "text": "4.Mode requires wind and flight time are within allowed limits (specified via parameters)."
+        },
+        {
+          "sentence-id": 6,
+          "text": "5.This mode is currently only supported on multicopter (or VTOL in MC mode)."
+        },
+        {
+          "sentence-id": 7,
+          "text": "6.RC stick movement can control ascent/descent and orbit speed and direction."
+        },
+        {
+          "sentence-id": 8,
+          "text": "7.The mode can be triggered using the MAV_CMD_DO_ORBIT MAVLink command."
+        }
+      ]
+    },
+    {
+      "section-id": 2,
+      "title": "Overview",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "_QGroundControl_ (or other compatible GCS or MAVLink API) is _required_ to enable the mode, and to set the center position, initial radius and altitude of the orbit."
+        },
+        {
+          "sentence-id": 1,
+          "text": "Once enabled the vehicle will fly as fast as possible to the closest point on the commanded circle trajectory and do a slow (1m/s) clockwise orbit on the planned circle, facing the center."
+        },
+        {
+          "sentence-id": 2,
+          "text": "Instructions for how to start an orbit can be found here: FlyView > Orbit Location (_QGroundControl_ guide)."
+        },
+        {
+          "sentence-id": 3,
+          "text": "RC control can be used to change the orbit altitude, radius, speed, and orbit direction:"
+        },
+        {
+          "sentence-id": 4,
+          "text": "1.Left stick:"
+        },
+        {
+          "sentence-id": 5,
+          "text": "_up/down:_ controls speed of ascent/descent, as in Position mode."
+        },
+        {
+          "sentence-id": 6,
+          "text": "When in center deadzone, altitude is locked."
+        },
+        {
+          "sentence-id": 7,
+          "text": "_left/right:_ no effect."
+        },
+        {
+          "sentence-id": 8,
+          "text": "2.Right stick:"
+        },
+        {
+          "sentence-id": 9,
+          "text": "_left/right:_ controls acceleration of orbit in clockwise/counter-clockwise directions."
+        },
+        {
+          "sentence-id": 10,
+          "text": "When centered the current speed is locked."
+        },
+        {
+          "sentence-id": 11,
+          "text": "Maximum velocity is 10m/s and further limited to keep the centripetal acceleration below 2m/s^2."
+        },
+        {
+          "sentence-id": 12,
+          "text": "_up/down:_ controls orbit radius (smaller/bigger)."
+        },
+        {
+          "sentence-id": 13,
+          "text": "When centered the current radius is locked."
+        },
+        {
+          "sentence-id": 14,
+          "text": "Minimum radius is 1m."
+        },
+        {
+          "sentence-id": 15,
+          "text": "Maximum radius is 100m."
+        },
+        {
+          "sentence-id": 16,
+          "text": "The diagram below shows the mode behaviour visually (for a mode 2 transmitter)."
+        },
+        {
+          "sentence-id": 17,
+          "text": "The mode can be stopped by switching to any other flight mode (using RC or QGC)."
+        }
+      ]
+    },
+    {
+      "section-id": 3,
+      "title": "Overview : info",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "The use of an RC control is _optional_."
+        },
+        {
+          "sentence-id": 1,
+          "text": "If no RC control is present the orbit will proceed as described above."
+        },
+        {
+          "sentence-id": 2,
+          "text": "RC control cannot be used to start the mode (if you switch to the mode via RC it will sit idle)."
+        }
+      ]
+    },
+    {
+      "section-id": 4,
+      "title": "Parameters/Limits",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "The following limits are hard coded:"
+        },
+        {
+          "sentence-id": 1,
+          "text": "1.Initial/default rotation is 1 m/s in a clockwise direction."
+        },
+        {
+          "sentence-id": 2,
+          "text": "2.The maximum acceleration is limited to 2 m/s^2, with priority on keeping the commanded circle trajectory rather than commanded ground speed (i.e. the vehicle will slow down in order to achieve the correct circle if the acceleration exceeds 2m/s^2)."
+        }
+      ]
+    },
+    {
+      "section-id": 5,
+      "title": "MAVLink Messages (Developers)",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "Orbit mode uses the following MAVLink commands:"
+        },
+        {
+          "sentence-id": 1,
+          "text": "1.MAV_CMD_DO_ORBIT - Start an orbit with specified center point, radius, direction, altitude, speed and yaw direction (vehicle defaults to faceing centre of orbit)."
+        },
+        {
+          "sentence-id": 2,
+          "text": "2.ORBIT_EXECUTION_STATUS - Orbit status emitted during orbit to update GCS of current orbit parameters (these may be changed by the RC controller)."
+        }
+      ]
+    }
+  ]
+}

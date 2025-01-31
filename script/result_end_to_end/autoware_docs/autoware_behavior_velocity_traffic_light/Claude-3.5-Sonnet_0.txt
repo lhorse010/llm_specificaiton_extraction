@@ -1,0 +1,46 @@
+I've read the document and extracted the relevant specifications. I'll now express them using Metric Temporal Logic (MTL) formulas and provide explanations for each.
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(traffic_light_in_ego_lane → (X(stop_line_detected ∧ traffic_light_signal_found) ∨ X(¬traffic_light_signal_found → pass)))",
+            "explanation": "Globally, if there's a traffic light in the ego lane, in the next state either a stop line is detected and a traffic light signal is found, or if no traffic light signal is found, the vehicle should pass."
+        },
+        {
+            "formula": "G(traffic_light_signal_timeout → stop)",
+            "explanation": "Globally, if the traffic light signal has timed out, the vehicle must stop."
+        },
+        {
+            "formula": "G((highest_reliability_signal ∧ ¬(green ∨ corresponding_arrow)) → generate_stop_point)",
+            "explanation": "Globally, if the highest reliability signal is neither green nor a corresponding arrow, generate a stop point."
+        },
+        {
+            "formula": "G((stop_signal_elapsed_time < stop_time_hysteresis) → pass)",
+            "explanation": "Globally, if the elapsed time since receiving a stop signal is less than the stop time hysteresis, the vehicle should pass (to prevent chattering)."
+        },
+        {
+            "formula": "G((velocity > 2.0) → pass_judge) ∧ G((velocity ≤ 2.0) → stop)",
+            "explanation": "Globally, if the vehicle's velocity is greater than 2.0 m/s, use the pass judge formula; if it's less than or equal to 2.0 m/s, stop."
+        },
+        {
+            "formula": "G((yellow_lamp ∧ can_pass_through_stop_line) → pass)",
+            "explanation": "Globally, if it's a yellow lamp and the vehicle can pass through the stop line during the yellow lamp, it should pass."
+        },
+        {
+            "formula": "G((yellow_lamp ∧ ¬can_pass_through_stop_line) → emergency_stop)",
+            "explanation": "Globally, if it's a yellow lamp and the vehicle can't pass through the stop line during the yellow lamp, perform an emergency stop."
+        },
+        {
+            "formula": "G((in_dilemma_zone ∧ ¬can_pass_through_yellow_lamp ∧ ¬can_stop_normally) → emergency_stop)",
+            "explanation": "Globally, if the vehicle is in the dilemma zone, can't pass through during the yellow lamp, and can't stop normally, perform an emergency stop (relaxing deceleration and jerk limitations)."
+        },
+        {
+            "formula": "G((in_optional_zone ∧ can_pass_through_yellow_lamp ∧ can_stop_normally) → stop)",
+            "explanation": "Globally, if the vehicle is in the optional zone, can pass through during the yellow lamp, and can stop normally, it should stop (selecting the safer option)."
+        }
+    ]
+}
+```
+
+These MTL formulas capture the key specifications from the provided document, focusing on the behavior of the vehicle in response to traffic light signals, vehicle speed, and specific zones (dilemma zone and optional zone). The formulas use the temporal operators to express the conditions under which certain actions should be taken, ensuring that the vehicle behaves correctly in various traffic light scenarios.

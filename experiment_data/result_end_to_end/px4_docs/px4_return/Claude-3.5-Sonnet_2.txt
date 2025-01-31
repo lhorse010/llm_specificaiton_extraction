@@ -1,0 +1,42 @@
+I've read through the document and extracted the relevant specifications. I'll now express them using Metric Temporal Logic (MTL) formulas and provide explanations.
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(return_mode → (global_position ∧ home_position_set))",
+            "explanation": "Globally, if the vehicle is in return mode, it must have a global position estimate and a home position set."
+        },
+        {
+            "formula": "G(return_mode → ¬can_arm)",
+            "explanation": "Globally, when in return mode, the vehicle cannot be armed. It must be armed before entering this mode."
+        },
+        {
+            "formula": "G(return_mode ∧ position_lost → F(failsafe))",
+            "explanation": "Globally, if the vehicle is in return mode and loses its position estimate, it will eventually enter failsafe mode."
+        },
+        {
+            "formula": "G(return_mode → F(altitude ≥ min(RTL_RETURN_ALT, initial_altitude)))",
+            "explanation": "Globally, when in return mode, the vehicle will eventually reach an altitude that is at least the minimum of RTL_RETURN_ALT and its initial altitude."
+        },
+        {
+            "formula": "G(return_mode → F(at_safe_landing_point ∧ X(altitude = RTL_DESCEND_ALT)))",
+            "explanation": "Globally, when in return mode, the vehicle will eventually reach a safe landing point, and in the next state, it will be at the RTL_DESCEND_ALT altitude."
+        },
+        {
+            "formula": "G(at_safe_landing_point → F[0,RTL_LAND_DELAY](landing))",
+            "explanation": "Globally, when the vehicle is at a safe landing point, it will eventually land within RTL_LAND_DELAY time units."
+        },
+        {
+            "formula": "G(return_mode ∧ rc_stick_movement → X(position_mode) ∨ critical_battery)",
+            "explanation": "Globally, when in return mode, if there's RC stick movement, the vehicle will switch to position mode in the next state, unless there's a critical battery situation."
+        },
+        {
+            "formula": "G(return_mode ∧ (distance_to_destination ≤ max_cone_radius) → altitude ≥ max(RTL_DESCEND_ALT, cone_intersection))",
+            "explanation": "Globally, when in return mode and within the maximum cone radius of the destination, the altitude must be at least the maximum of RTL_DESCEND_ALT and the cone intersection altitude."
+        }
+    ]
+}
+```
+
+These MTL formulas capture the key specifications from the document, focusing on the behavior of the vehicle in Return Mode for Multicopters. They cover requirements for entering the mode, altitude management, landing procedures, and interactions with RC controls.

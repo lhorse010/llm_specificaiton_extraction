@@ -1,0 +1,82 @@
+[
+  {
+    "section-id": 1,
+    "sentence-id": 0,
+    "sentence": "1.This mode requires a global 3d position estimate (from GPS or inferred from a local position)."
+  },
+  {
+    "section-id": 1,
+    "sentence-id": 1,
+    "sentence": "2.The vehicle must be armed before this mode can be engaged."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 4,
+    "sentence": "1.If no mission is stored, or if PX4 has finished executing all mission commands, or if the mission is not feasible:"
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 7,
+    "sentence": "2.If a mission is stored and PX4 is flying it will execute the mission/flight plan from the current step."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 10,
+    "sentence": "PX4 will execute the mission/flight plan."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 11,
+    "sentence": "If the mission does not have a TAKEOFF item then PX4 will fly the vehicle to the minimum altitude before executing the remainder of the flight plan from the current step."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 16,
+    "sentence": "6.The mission will only reset when the vehicle is disarmed or when a new mission is uploaded."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 19,
+    "sentence": "If the vehicle was capturing images (has camera trigger items) it will instead head from its current position towards the last waypoint it traveled through (before pausing), and then retrace its path at the same speed and with the same camera triggering behaviour."
+  },
+  {
+    "section-id": 5,
+    "sentence-id": 0,
+    "sentence": "Ensure that the throttle stick is non-zero before switching to any RC mode (otherwise the vehicle will crash)."
+  },
+  {
+    "section-id": 6,
+    "sentence-id": 1,
+    "sentence": "If any of the checks fail, the user is notified and it is not possible to start the mission."
+  },
+  {
+    "section-id": 6,
+    "sentence-id": 3,
+    "sentence": "1.First mission item too far away from vehicle (MIS_DIST_1WP)"
+  },
+  {
+    "section-id": 6,
+    "sentence-id": 4,
+    "sentence": "2.Any mission item conflicts with a plan or safety geofence"
+  },
+  {
+    "section-id": 10,
+    "sentence-id": 4,
+    "sentence": "Vehicles switch to the next waypoint as soon as they enter the acceptance radius (NAV_ACC_RAD)."
+  },
+  {
+    "section-id": 11,
+    "sentence-id": 1,
+    "sentence": "During mission execution this will cause the vehicle to ascend vertically to the minimum takeoff altitude defined in the MIS_TAKEOFF_ALT parameter, then head towards the 3D position defined in the mission item."
+  },
+  {
+    "section-id": 11,
+    "sentence-id": 2,
+    "sentence": "If a mission with no takeoff mission item is started, the vehicle will ascend to the minimum takeoff altitude and then proceed to the first Waypoint mission item."
+  },
+  {
+    "section-id": 6,
+    "sentence-id": 0,
+    "sentence": "PX4 runs some basic sanity checks to determine if a mission is feasible when it is uploaded, and when the vehicle is first armed."
+  }
+]

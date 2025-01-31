@@ -1,0 +1,52 @@
+[
+  {
+    "index": 0,
+    "formula": "G(armed ∧ throw_mode → ¬pilot_input)",
+    "explanation": "Globally, when the vehicle is armed and in throw mode, it does not accept any input from the pilot."
+  },
+  {
+    "index": 1,
+    "formula": "G(throw_mode → gps_available)",
+    "explanation": "Globally, throw mode requires GPS to be available."
+  },
+  {
+    "index": 2,
+    "formula": "G(throw_mode ∧ ¬armed → F(armed ∧ X(vertical_velocity > 0.5 ∧ total_velocity > 5 → F(motors_start))))",
+    "explanation": "Globally, in throw mode, if the vehicle is not armed, then eventually it will be armed, and in the next state, if vertical velocity exceeds 0.5 m/s and total velocity exceeds 5 m/s, the motors will eventually start."
+  },
+  {
+    "index": 3,
+    "formula": "G(motors_start → F(attitude_control ∧ F(stop_descending ∧ F(stop_horizontal))))",
+    "explanation": "Globally, after motors start, the vehicle will eventually control its attitude, then eventually stop descending, and finally attempt to stop moving horizontally."
+  },
+  {
+    "index": 4,
+    "formula": "G(throw_mode ∧ armed → altitude > THROW_ALT_MIN ∧ altitude < THROW_ALT_MAX)",
+    "explanation": "Globally, when in throw mode and armed, the altitude must be above THROW_ALT_MIN and below THROW_ALT_MAX."
+  },
+  {
+    "index": 5,
+    "formula": "G(throw_mode ∧ THROW_TYPE = 0 → F(vertical_velocity > 0))",
+    "explanation": "Globally, when in throw mode with THROW_TYPE set to 0, the vehicle must eventually have a positive vertical velocity (thrown upwards)."
+  },
+  {
+    "index": 6,
+    "formula": "G(throw_mode ∧ THROW_TYPE = 1 → altitude > 10)",
+    "explanation": "Globally, when in throw mode with THROW_TYPE set to 1 (dropping), the initial altitude must be greater than 10 meters."
+  },
+  {
+    "index": 7,
+    "formula": "G(throw_mode ∧ THROW_MOT_START = 0 → motors_stopped)",
+    "explanation": "Globally, when in throw mode with THROW_MOT_START set to 0, the motors should be stopped while waiting for the throw."
+  },
+  {
+    "index": 8,
+    "formula": "G(throw_mode ∧ THROW_MOT_START = 1 → motors_spinning_slowly)",
+    "explanation": "Globally, when in throw mode with THROW_MOT_START set to 1, the motors should be spinning slowly while waiting for the throw."
+  },
+  {
+    "index": 9,
+    "formula": "G(throw_mode ∧ vehicle_stopped → F(flight_mode = THROW_NEXTMODE))",
+    "explanation": "Globally, when in throw mode and the vehicle has stopped, it will eventually switch to the flight mode specified by THROW_NEXTMODE."
+  }
+]

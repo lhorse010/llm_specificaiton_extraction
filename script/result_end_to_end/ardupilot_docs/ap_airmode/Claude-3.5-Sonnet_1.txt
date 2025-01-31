@@ -1,0 +1,47 @@
+Let's go through the steps to extract and formalize the specifications using Metric Temporal Logic (MTL).
+
+Step 1: Read the document thoroughly.
+I have read the document about Airmode in Copter flight modes.
+
+Step 4: Extract specifications and express them using metric temporal logic formula.
+
+Step 5: Format all the converted sentences in JSON.
+
+Here's the output following the required format:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G((ACRO ∨ STABILIZE) ∧ (idle_throttle) ∧ ¬airmode → ¬stabilization)",
+            "explanation": "Globally, when in ACRO or STABILIZE mode with idle throttle and Airmode is not active, stabilization is not applied."
+        },
+        {
+            "formula": "G((ACRO ∨ STABILIZE) ∧ airmode → stabilization)",
+            "explanation": "Globally, when in ACRO or STABILIZE mode and Airmode is active, stabilization is always applied, even at idle throttle."
+        },
+        {
+            "formula": "G(RC_OPTION_154 → airmode)",
+            "explanation": "Globally, if the RC option 154 (ARM/DISARM with Airmode) is used for arming, Airmode is active."
+        },
+        {
+            "formula": "G(RC_OPTION_84 → F(airmode_toggle))",
+            "explanation": "Globally, if RC option 84 is set, it allows for enabling or disabling Airmode in ACRO and STABILIZE modes."
+        },
+        {
+            "formula": "G(ACRO ∧ ACRO_OPTIONS_BIT0 ∧ ¬RC_OPTION_84_OFF → airmode)",
+            "explanation": "Globally, in ACRO mode, if bit 0 of ACRO_OPTIONS is set and RC option 84 is not used to disable it, Airmode is active."
+        },
+        {
+            "formula": "G(TRADITIONAL_HELICOPTER → ¬airmode)",
+            "explanation": "Globally, Airmode has no effect in Traditional Helicopter mode."
+        },
+        {
+            "formula": "G(rudder_arming → ¬airmode)",
+            "explanation": "Globally, if arming is done using the rudder stick method, Airmode is not active."
+        }
+    ]
+}
+```
+
+These MTL formulas capture the key specifications of the Airmode feature as described in the document. They formalize the conditions under which Airmode is active or inactive, its effects on stabilization, and its behavior in different flight modes.

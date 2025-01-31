@@ -1,0 +1,52 @@
+[
+  {
+    "index": 0,
+    "formula": "G(traffic_light_in_ego_lane → (F(stop_decision) ∨ F(go_decision)))",
+    "explanation": "Globally, when there is a traffic light in the ego lane, the system will eventually make either a stop or go decision."
+  },
+  {
+    "index": 1,
+    "formula": "G((¬traffic_light_found ∨ traffic_light_timed_out) → F(treat_as_stop))",
+    "explanation": "Globally, if a corresponding traffic light signal is not found or has timed out, the system will eventually treat it as a signal to stop."
+  },
+  {
+    "index": 2,
+    "formula": "G((highest_reliability_signal ∧ ¬(green_light ∨ corresponding_arrow)) → F(generate_stop_point))",
+    "explanation": "Globally, if the highest reliability signal is not green or a corresponding arrow, the system will eventually generate a stop point."
+  },
+  {
+    "index": 3,
+    "formula": "G((stop_signal_received ∧ elapsed_time < stop_time_hysteresis) → F(treat_as_pass))",
+    "explanation": "Globally, if a stop signal is received but the elapsed time is less than the stop_time_hysteresis, the system will eventually treat it as a signal to pass."
+  },
+  {
+    "index": 4,
+    "formula": "G((current_velocity > 2.0) → X(pass_judge_formula))",
+    "explanation": "Globally, if the current velocity is greater than 2.0 m/s, in the next state, the pass judge formula will be applied."
+  },
+  {
+    "index": 5,
+    "formula": "G((current_velocity ≤ 2.0) → X(stop_decision))",
+    "explanation": "Globally, if the current velocity is less than or equal to 2.0 m/s, in the next state, a stop decision will be made."
+  },
+  {
+    "index": 6,
+    "formula": "G((yellow_lamp ∧ can_pass_through) → F(pass_decision))",
+    "explanation": "Globally, if it's a yellow lamp and the vehicle can pass through the stop line, the system will eventually make a pass decision."
+  },
+  {
+    "index": 7,
+    "formula": "G((yellow_lamp ∧ ¬can_pass_through) → F(emergency_stop))",
+    "explanation": "Globally, if it's a yellow lamp and the vehicle cannot pass through the stop line, the system will eventually initiate an emergency stop."
+  },
+  {
+    "index": 8,
+    "formula": "G((in_dilemma_zone ∧ ¬can_pass_yellow ∧ ¬can_stop_normally) → F(emergency_stop))",
+    "explanation": "Globally, if the vehicle is in the dilemma zone, cannot pass during yellow, and cannot stop normally, the system will eventually initiate an emergency stop."
+  },
+  {
+    "index": 9,
+    "formula": "G((in_optional_zone ∧ can_pass_yellow ∧ can_stop_normally) → F(stop_decision))",
+    "explanation": "Globally, if the vehicle is in the optional zone, can pass during yellow, and can stop normally, the system will eventually make a stop decision for safety."
+  }
+]

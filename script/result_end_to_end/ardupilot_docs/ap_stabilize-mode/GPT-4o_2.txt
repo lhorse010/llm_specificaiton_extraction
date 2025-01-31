@@ -1,0 +1,50 @@
+```json
+{
+    "specifications": [
+        {
+            "formula": "G (pilot_roll_pitch_input → (lean_angle = pilot_input))",
+            "explanation": "The pilot's roll and pitch input should control the lean angle of the vehicle."
+        },
+        {
+            "formula": "G (¬pilot_roll_pitch_input → F (vehicle_self_levels))",
+            "explanation": "When the pilot releases the roll and pitch sticks, the vehicle should eventually level itself."
+        },
+        {
+            "formula": "G (pilot_yaw_input → (heading_change_rate = pilot_input))",
+            "explanation": "The pilot's yaw input should control the rate of change of the vehicle's heading."
+        },
+        {
+            "formula": "G (¬pilot_yaw_input → (maintain_current_heading))",
+            "explanation": "When the pilot releases the yaw stick, the vehicle should maintain its current heading."
+        },
+        {
+            "formula": "G (pilot_throttle_input → (motor_speed = average_speed))",
+            "explanation": "The pilot's throttle input should control the average motor speed."
+        },
+        {
+            "formula": "G (¬pilot_throttle_input ∧ throttle_down → (motor_speed = MOT_SPIN_ARMED))",
+            "explanation": "If the throttle is completely down, the motors should go to their minimum rate."
+        },
+        {
+            "formula": "G (airmode_enabled → (full_stabilization_at_idle_throttle))",
+            "explanation": "Enabling airmode should provide full stabilization at idle throttle."
+        },
+        {
+            "formula": "G (tilt_angle_change → (adjust_motor_throttle))",
+            "explanation": "The throttle sent to the motors should be adjusted automatically based on the tilt angle of the vehicle."
+        },
+        {
+            "formula": "G (angle_max = 4500)",
+            "explanation": "The maximum lean angle should be controlled by ANGLE_MAX, defaulting to 45 degrees."
+        },
+        {
+            "formula": "G (angle_rate_max = 18000)",
+            "explanation": "The maximum requested rotation rate on roll and pitch should be controlled by ANGLE_RATE_MAX, defaulting to 180 deg/sec."
+        },
+        {
+            "formula": "G (acro_y_rate = 4.5 → yaw_rate = 200 deg/sec)",
+            "explanation": "ACRO_Y_RATE should control the yaw rotation rate, with a default of 4.5 resulting in a 200 deg/sec rate."
+        }
+    ]
+}
+```

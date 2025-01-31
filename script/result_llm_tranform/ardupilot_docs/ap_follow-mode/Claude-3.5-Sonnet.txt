@@ -1,0 +1,67 @@
+[
+  {
+    "sentence": "The vehicle lead vehicle's position must be published to the vehicle in Follow mode using a telemetry system.",
+    "formula": "G(F → P)",
+    "explanation": "F represents the vehicle being in Follow mode, and P represents the lead vehicle's position being published. This formula states that globally (at all times), if the vehicle is in Follow mode, then the lead vehicle's position must be published."
+  },
+  {
+    "sentence": "The altitude is maintained with the altitude hold controller so the vehicle will attempt to hold its current altitude when the sticks are placed with 10% of mid-throttle.",
+    "formula": "G(S ∧ M → X(H))",
+    "explanation": "S represents the sticks being placed within 10% of mid-throttle, M represents the altitude hold controller being active, and H represents holding the current altitude. This formula states that globally, when the sticks are at mid-throttle and the altitude hold controller is active, in the next state, the vehicle will attempt to hold its altitude."
+  },
+  {
+    "sentence": "It will climb or descend at up to 2.5m/s (this speed is adjustable with the PILOT_SPEED_UP and PILOT_SPEED_DN parameters).",
+    "formula": "G((C ∨ D) → S)",
+    "explanation": "C represents climbing, D represents descending, and S represents the speed being within the 2.5m/s limit. This formula states that globally, if the vehicle is climbing or descending, then its speed will be within the specified limit."
+  },
+  {
+    "sentence": "The acceleration used to establish these speeds is set by PILOT_ACCEL_Z.",
+    "formula": "G(A → P)",
+    "explanation": "A represents the acceleration being used, and P represents the PILOT_ACCEL_Z parameter setting. This formula states that globally, the acceleration used is always set by the PILOT_ACCEL_Z parameter."
+  },
+  {
+    "sentence": "1.FOLL_ENABLE : set to 1 to enable follow mode and refresh parameters",
+    "formula": "G(E → (F ∧ R))",
+    "explanation": "E represents FOLL_ENABLE being set to 1, F represents follow mode being enabled, and R represents refreshing parameters. This formula states that globally, when FOLL_ENABLE is set to 1, it enables follow mode and refreshes parameters."
+  },
+  {
+    "sentence": "2.FOLL_SYSID : MAVLink system id of lead vehicle (\"0\" means follow the first vehicle \"seen\")",
+    "formula": "G((S ∧ Z) ∨ (S ∧ ¬Z → F))",
+    "explanation": "S represents FOLL_SYSID being set, Z represents it being set to 0, and F represents following the first vehicle seen. This formula states that globally, FOLL_SYSID is either set to 0 (implying following the first vehicle seen) or set to a non-zero value (implying following a specific vehicle)."
+  },
+  {
+    "sentence": "3.FOLL_DIST_MAX : if lead vehicle is more than this many meters away, give up on following and hold position",
+    "formula": "G(D → (¬F ∧ H))",
+    "explanation": "D represents the distance to the lead vehicle exceeding FOLL_DIST_MAX, F represents following the lead vehicle, and H represents holding position. This formula states that globally, if the distance exceeds the maximum, the vehicle stops following and holds its position."
+  },
+  {
+    "sentence": "4.FOLL_OFS_X , FOLL_OFS_Y , FOLL_OFS_Z : 3D offset (in meters) from the lead vehicle",
+    "formula": "G(F → (X ∧ Y ∧ Z))",
+    "explanation": "F represents being in follow mode, X, Y, and Z represent the offsets in each dimension. This formula states that globally, when in follow mode, the vehicle maintains the specified 3D offset from the lead vehicle."
+  },
+  {
+    "sentence": "5.FOLL_OFS_TYPE : set to 0 if offsets are North-East-Down, 1 if offsets are relative to lead vehicle's heading",
+    "formula": "G((T ∧ Z → N) ∧ (T ∧ ¬Z → R))",
+    "explanation": "T represents FOLL_OFS_TYPE being set, Z represents it being set to 0, N represents North-East-Down offsets, and R represents offsets relative to lead vehicle's heading. This formula states that globally, the offset type determines whether the offsets are absolute or relative to the lead vehicle's heading."
+  },
+  {
+    "sentence": "6.FOLL_YAW_BEHAVE : controls whether follow points in the same direction as lead vehicle or always towards it",
+    "formula": "G(Y → (S ∨ T))",
+    "explanation": "Y represents FOLL_YAW_BEHAVE being set, S represents pointing in the same direction as the lead vehicle, and T represents pointing towards the lead vehicle. This formula states that globally, the yaw behavior setting determines whether the following vehicle points in the same direction as or towards the lead vehicle."
+  },
+  {
+    "sentence": "7.FOLL_POS_P : gain which controls how aggressively this vehicle moves towards lead vehicle (limited by WPNAV_SPEED )",
+    "formula": "G(P → F[0,t](L ∧ (¬E U L)))",
+    "explanation": "P represents the FOLL_POS_P gain being applied, L represents the vehicle moving towards the lead vehicle, and E represents exceeding WPNAV_SPEED. The formula states that globally, when P is applied, there will eventually (within time t) be movement towards the lead vehicle (L), and this movement will continue without exceeding the speed limit (E) until the lead vehicle is reached."
+  },
+  {
+    "sentence": "8.FOLL_ALT_TYPE : allows selecting whether to use lead vehicle's relative-to-home or relative-to-sea-level altitude",
+    "formula": "G(S → (H ∨ R))",
+    "explanation": "S represents the selection of FOLL_ALT_TYPE, H represents using relative-to-home altitude, and R represents using relative-to-sea-level altitude. The formula states that globally, when FOLL_ALT_TYPE is selected (S), either relative-to-home (H) or relative-to-sea-level (R) altitude will be used. This captures the mutually exclusive choice between the two altitude reference types."
+  },
+  {
+    "sentence": "9.FOLL_OPTIONS: set bit 0 to \"1\" to enable the Gimbal / Mount Controls to follow the target vehicle.",
+    "formula": "G(B → X(G))",
+    "explanation": "B represents setting bit 0 to '1' in FOLL_OPTIONS, and G represents the Gimbal/Mount Controls following the target vehicle. The formula states that globally, when bit 0 is set to '1' (B), in the next state, the Gimbal/Mount Controls will follow the target vehicle (G). This captures the immediate effect of enabling this option on the system's behavior."
+  }
+]

@@ -1,0 +1,47 @@
+[
+  {
+    "index": 0,
+    "formula": "G((roll_stick_position = right) ∧ (pitch_stick_position = neutral) → (vehicle_flip_axis = roll))",
+    "explanation": "If the roll stick is held to the right and pitch stick is neutral, the vehicle should flip on its roll axis."
+  },
+  {
+    "index": 1,
+    "formula": "G((roll_stick_position ≠ right) ∧ (pitch_stick_position ≠ neutral) → (vehicle_flip_axis ≠ roll))",
+    "explanation": "If the roll stick is not held to the right or pitch stick is not neutral, the vehicle should not flip on its roll axis."
+  },
+  {
+    "index": 2,
+    "formula": "G((switch_position = high) → F[1s](vehicle_altitude_increase))",
+    "explanation": "When the switch is high, the vehicle should rise for 1 second."
+  },
+  {
+    "index": 3,
+    "formula": "G((switch_position = high) → F[1s](vehicle_flip))",
+    "explanation": "When the switch is high, the vehicle should flip after rising for 1 second."
+  },
+  {
+    "index": 4,
+    "formula": "G((switch_position = low) ∧ (switch_position = high) → ¬vehicle_flip)",
+    "explanation": "The vehicle should not flip again until the switch is toggled low and back to high."
+  },
+  {
+    "index": 5,
+    "formula": "G((flight_mode = Stabilize ∨ flight_mode = Acro ∨ flight_mode = AltHold) ∧ (ch7_ch8_switch = ON) → X(vehicle_flip))",
+    "explanation": "Flip mode is triggered when in Stabilize, Acro, or AltHold flight mode and ch7/ch8 switch is ON."
+  },
+  {
+    "index": 6,
+    "formula": "G((roll_stick_position > 40deg) → X(¬vehicle_flip))",
+    "explanation": "If the roll stick is moved more than 40 degrees left or right, the vehicle should not flip."
+  },
+  {
+    "index": 7,
+    "formula": "G(vehicle_flip → F[2.5s](flip_complete))",
+    "explanation": "The vehicle should complete the flip within 2.5 seconds."
+  },
+  {
+    "index": 8,
+    "formula": "G(vehicle_flip → X(original_flight_mode))",
+    "explanation": "After completing a flip, the vehicle should return to its original flight mode."
+  }
+]

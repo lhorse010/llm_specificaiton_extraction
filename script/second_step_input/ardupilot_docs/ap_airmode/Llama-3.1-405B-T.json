@@ -1,0 +1,37 @@
+[
+  {
+    "section-id": 1,
+    "sentence-id": 2,
+    "sentence": "If a transmitter switch is used with  RCx_OPTION ARM/DISARM with Airmode (option 154) and used to arm, then stabilization at idle throttle is still fully active, which is often referred to as AIRMODE."
+  },
+  {
+    "section-id": 1,
+    "sentence-id": 4,
+    "sentence": "Setting an RC channel to RCx_OPTION = 84, allows enabling or disabling AIRMODE in ACRO and STABILIZE modes directly."
+  },
+  {
+    "section-id": 1,
+    "sentence-id": 5,
+    "sentence": "In addition, setting bit 0 of ACRO_OPTIONS will activate AIRMODE in ACRO mode (only) all the time, except if overridden by the above switch, if used."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 0,
+    "sentence": "to avoid enabling AIRMODE but still use an ARM/DISARM switch, use Auxiliary function option \"153\" for the switch."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 1,
+    "sentence": "AIRMODE has no effect in Traditional Helicopter"
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 2,
+    "sentence": "It isn't sufficient to just enable arming on an RCx_OPTION switch, you also have to actually use it for arming."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 3,
+    "sentence": "So if you have it on a switch but then use rudder-arming then you won't get \"airmode\"."
+  }
+]

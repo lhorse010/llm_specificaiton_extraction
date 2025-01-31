@@ -1,0 +1,42 @@
+[
+  {
+    "index": 0,
+    "formula": "G(throttle = 0 → ¬turtle_mode)",
+    "explanation": "Globally, if the throttle is zero, then Turtle mode cannot be entered. This corresponds to the specification 'Turtle mode cannot be entered unless throttle is zero'."
+  },
+  {
+    "index": 1,
+    "formula": "G(turtle_mode_entry → (¬motors_armed ∧ leds_flashing))",
+    "explanation": "Globally, when entering Turtle mode, the motors stay disarmed and the notify LEDs flash. This captures the specification 'Upon entry to turtle mode the motors stay disarmed, but the notfiy LEDs flash'."
+  },
+  {
+    "index": 2,
+    "formula": "G(turtle_mode ∧ (throttle > 0) → motors_armed)",
+    "explanation": "Globally, in Turtle mode, if the throttle is raised above zero, the motors arm. This corresponds to 'Raising the throttle, the motors arm'."
+  },
+  {
+    "index": 3,
+    "formula": "G(turtle_mode ∧ (throttle > 0) → motors_spinning)",
+    "explanation": "Globally, in Turtle mode, if the throttle is raised above zero, the motors spin. This captures 'Motors spin only when throttle is raised'."
+  },
+  {
+    "index": 4,
+    "formula": "G(turtle_mode ∧ (throttle = 0) → ¬motors_armed)",
+    "explanation": "Globally, in Turtle mode, if the throttle is lowered to zero, the motors disarm. This corresponds to 'Lowering throttle to zero disarms the motors'."
+  },
+  {
+    "index": 5,
+    "formula": "G(turtle_mode ∧ (|roll| > 0 ∨ |pitch| > 0) → F(motors_reversed))",
+    "explanation": "Globally, in Turtle mode, if the roll or pitch stick is moved away from center, eventually some motors will be reversed. This captures the behavior described for flipping the vehicle."
+  },
+  {
+    "index": 6,
+    "formula": "G(turtle_mode → dshot_capable_esc)",
+    "explanation": "Globally, Turtle mode requires DShot capable ESCs. This corresponds to the requirement 'DShot capable ESCs are required for this mode to function'."
+  },
+  {
+    "index": 7,
+    "formula": "G(turtle_mode → (SERVO_DSHOT_ESC ≠ 0 ∧ MOT_PWM_TYPE = DSHOT))",
+    "explanation": "Globally, Turtle mode requires SERVO_DSHOT_ESC to be non-zero and MOT_PWM_TYPE to be set to a DSHOT value. This captures the specification 'SERVO_DSHOT_ESC must be set to a non-zero value and MOT_PWM_TYPE to a DSHOT value also'."
+  }
+]

@@ -1,0 +1,27 @@
+[
+  {
+    "sentence": "This function is activated when the lane id of the target path has an intersection label (i.e. the turn_direction attribute is left or right).",
+    "formula": "G(I → A)",
+    "explanation": "Let I represent the condition 'lane id has an intersection label', and A represent 'function is activated'. The formula states that globally, whenever I is true, A must also be true, capturing the causal relationship between the intersection label and function activation."
+  },
+  {
+    "sentence": "Sets a stop line, a pass judge line, a detection area and conflict area based on a map information and a self position.",
+    "formula": "G(M ∧ P → X(S ∧ J ∧ D ∧ C))",
+    "explanation": "Let M be 'map information available', P be 'self position known', S be 'stop line set', J be 'pass judge line set', D be 'detection area set', and C be 'conflict area set'. The formula states that globally, when M and P are true, in the next state, S, J, D, and C must all be true, representing the immediate setting of all areas based on the available information."
+  },
+  {
+    "sentence": "Stop/Go state: When both conditions are met for any of each object, this module state is transited to the \"stop\" state and insert zero velocity to stop the vehicle.",
+    "formula": "G((C1 ∧ C2) → X(S ∧ Z))",
+    "explanation": "Let C1 and C2 represent the two conditions, S represent the 'stop' state, and Z represent 'zero velocity inserted'. The formula states that globally, when both C1 and C2 are true, in the next state, the system transitions to the stop state (S) and inserts zero velocity (Z)."
+  },
+  {
+    "sentence": "In order to avoid a rapid stop, the \"stop\" judgement is not executed after the judgment line is passed.",
+    "formula": "G(P → G(¬S))",
+    "explanation": "Let P represent 'judgment line is passed' and S represent 'stop judgment is executed'. The formula states that globally, once P becomes true, S must remain false indefinitely. This captures the permanent effect of passing the judgment line on the stop judgment execution."
+  },
+  {
+    "sentence": "Once a \"stop\" is judged, it will not transit to the \"go\" state until the \"go\" judgment continues for a certain period in order to prevent chattering of the state (e.g. 2 seconds).",
+    "formula": "G(S → (¬G U[2,2] G))",
+    "explanation": "Let S represent the 'stop' state and G represent the 'go' judgment. The formula states that globally, when S becomes true, it must remain true until G has been continuously true for exactly 2 seconds. This captures the delay in transitioning from 'stop' to 'go' to prevent state chattering."
+  }
+]

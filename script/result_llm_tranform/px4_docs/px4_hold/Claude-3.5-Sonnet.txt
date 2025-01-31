@@ -1,0 +1,62 @@
+[
+  {
+    "sentence": "The _Hold_ flight mode causes the vehicle to stop and hover at its current GPS position and altitude.",
+    "formula": "G(H → (S ∧ P ∧ A))",
+    "explanation": "H represents the Hold flight mode, S represents stopping, P represents maintaining current GPS position, and A represents maintaining current altitude. The formula states that globally, whenever Hold mode is active, the vehicle stops and maintains its current position and altitude."
+  },
+  {
+    "sentence": "1.Mode is automatic - no user intervention is _required_ to control the vehicle.",
+    "formula": "G(M → ¬R)",
+    "explanation": "M represents the mode being active, and R represents user intervention being required. The formula states that globally, when this mode is active, user intervention is not required."
+  },
+  {
+    "sentence": "2.Mode requires a global 3d position estimate (from GPS or inferred from a local position).",
+    "formula": "G(M → G)",
+    "explanation": "M represents the mode being active, and G represents having a global 3D position estimate. The formula states that globally, the mode requires a global position estimate to be active."
+  },
+  {
+    "sentence": "Flying vehicles can't switch to this mode without global position.",
+    "formula": "G((F ∧ ¬G) → ¬X(M))",
+    "explanation": "F represents a flying vehicle, G represents having a global position, and M represents the mode. The formula states that globally, if a vehicle is flying and doesn't have a global position, it cannot switch to this mode in the next state."
+  },
+  {
+    "sentence": "Flying vehicles will failsafe if they lose the position estimate.",
+    "formula": "G((F ∧ X(¬G)) → X(S))",
+    "explanation": "F represents a flying vehicle, G represents having a position estimate, and S represents entering failsafe. The formula states that globally, if a flying vehicle loses its position estimate in the next state, it will enter failsafe in that state."
+  },
+  {
+    "sentence": "Disarmed vehicles can switch to mode without valid position estimate but can't arm.",
+    "formula": "G((D ∧ ¬G) → (X(M) ∧ ¬X(A)))",
+    "explanation": "D represents a disarmed vehicle, G represents a valid position estimate, M represents the mode, and A represents arming. The formula states that globally, a disarmed vehicle without a valid position estimate can switch to the mode but cannot arm in the next state."
+  },
+  {
+    "sentence": "3.Mode requires wind and flight time are within allowed limits (specified via parameters).",
+    "formula": "G(M → (W ∧ T))",
+    "explanation": "M represents the mode being active, W represents wind within limits, and T represents flight time within limits. The formula states that globally, when the mode is active, both wind and flight time must be within allowed limits."
+  },
+  {
+    "sentence": "5.RC stick movement will by default change the vehicle to Position mode unless handling a critical battery failsafe.",
+    "formula": "G((R ∧ ¬C) → X(P))",
+    "explanation": "R represents RC stick movement, C represents handling a critical battery failsafe, and P represents Position mode. The formula states that globally, if there's RC stick movement and no critical battery failsafe, the vehicle will switch to Position mode in the next state."
+  },
+  {
+    "sentence": "The vehicle will first ascend to NAV_MIN_LTR_ALT if the mode is engaged below this altitude.",
+    "formula": "G((M ∧ B) → F(N))",
+    "explanation": "M represents mode engagement, B represents being below NAV_MIN_LTR_ALT, and N represents reaching NAV_MIN_LTR_ALT. The formula states that globally, if the mode is engaged below the specified altitude, the vehicle will eventually reach that altitude."
+  },
+  {
+    "sentence": "The vehicle hovers at the current position and altitude.",
+    "formula": "G(M → (P ∧ A))",
+    "explanation": "M represents the mode being active, P represents maintaining current position, and A represents maintaining current altitude. The formula states that globally, when the mode is active, the vehicle maintains its current position and altitude."
+  },
+  {
+    "sentence": "RC stick movement will change the vehicle to Position mode (by default).",
+    "formula": "G(M → X(P))",
+    "explanation": "This formula captures the causal relationship between RC stick movement (M) and the vehicle entering Position mode (P). The 'G' operator ensures this rule holds globally at all times. Whenever M occurs, in the next immediate state (X), P becomes true. This formulation assumes an instantaneous mode change, which is typically the case in real-time control systems."
+  },
+  {
+    "sentence": "RC control switches can be used to change flight modes on any vehicle.",
+    "formula": "G(S → F(C))",
+    "explanation": "Here, S represents the action of using RC control switches, and C represents a change in flight mode. The formula states that globally (G), whenever S occurs, it's possible for C to occur in the future (F). This captures the potential for mode changes without specifying an exact time frame, reflecting the 'can be used' aspect of the sentence. The formula allows for the possibility that not every switch action results in a mode change, which is more realistic in practical systems."
+  }
+]

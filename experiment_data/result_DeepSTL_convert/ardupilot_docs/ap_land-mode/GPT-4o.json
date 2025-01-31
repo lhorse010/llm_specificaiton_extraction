@@ -1,0 +1,58 @@
+{
+    "temporal_logic_formulars": [
+        {
+            "section-id": 0,
+            "sentence-id": 1,
+            "sentence": "1.descends to 10m (or until the sonar senses something below the copter) using the regular Altitude Hold controller which will descend at the speed held in the WPNAV_SPEED_DN Copter Pids screen.",
+            "tl": "always ( descends == 10 m or ( sonesoesoething < colsr ) -> ( ulinlar == lteHdeoldcontrdesede ) until ( d == WPNAV_SED_Nisoped_D_ = dsce ) )"
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 2,
+            "sentence": "2.below 10m the copter should descend at the rate specified in the LAND_SPEED parameter which defaults to 50cm/s.",
+            "tl": "always ( ecopterdescende == ratescepecified -> LAND_SEDpaetrde == efaulterdefaults50cms )"
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 3,
+            "sentence": "3.Upon reaching the ground the copter will automatically shut-down the motors and disarm the copter if the pilot's throttle is at minimum.",
+            "tl": "always ( Uponreaching == groundcoteratmaloticalhut ) and not ( disarmotrs == dsarmcoptoptermlpter ) -> not ( disarmcopteropterilot == s ) )"
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 5,
+            "sentence": "2.If the vehicle has GPS lock the landing controller will attempt to control its horizontal position but the pilot can adjust the target horizontal position just as in Loiter mode.",
+            "tl": "always ( SvehicleGPSloc == Slaningcolerater ) or tcontritlo == tntritontlitopalpostatSt )"
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 6,
+            "sentence": "3.If the vehicle does not have GPS lock the horizontal control will be as in stabilize mode so the pilot can control the roll and pitch lean angle of the copter.",
+            "tl": "always ( not ( vehicle == GPSloclorizoclntrol ) and stabilopiloc == sotcancntrolol ) and pS == lrolrolrolBclrolecntlrolrol )"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 0,
+            "sentence": "Copter will recognise that it has landed if the motors are being commanded to be at low level by the vertical position controller, its climb rate remains between -20cm/s and +20cm/s, and is not accelerating for one second.",
+            "tl": "always ( Copterecognisei == itlandeorscoma ) -> ( lowlecint == tincoleratecs and C == aceleceratin0csoe )"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 1,
+            "sentence": "It does not use the altitude to decide whether to shut off the motors except that the copter must also be below 10m above the home altitude, unless a rangefinder is being used, in which case it must be within 2m of the ground.",
+            "tl": "always ( not rise ( usealtitude == deciehether = shutforse ) and copter == topteralso < 10 mhole ) -> ( mhoealtitudeses == saranesragefindeu ) until ( rise ( serudesera == Smlgeunlodesrge ) )"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 2,
+            "sentence": "For Traditional Heli, the low motor check in the above landing detection algorithm is replaced with a check that Collective output is below mid-position (controlled by the vertical position controller, ie in descent).",
+            "tl": "always ( lTraditionaleleico == lowmtrinechecktinla ) until ( landinlolec == landetetiocinl ) -> ( replahecicte == eHtvotecivotutputloicinlinlocScolic == trede ) until ( ecltlpColted == ltutputputlolahmicicol"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 4,
+            "sentence": "Using a Weight on Wheels (WoW) switch will increase the descent rate and accelerometer ranges that are acceptable for landing detection.",
+            "tl": "always ( ( sUingaWeightWhelsWoWeWhesWosW == decescetraterater ) and cer == raceracerseracetes ) -> rise ( aceracep == aceptaceptabledndetecti = teciondecionl ) )"
+        }
+    ]
+}

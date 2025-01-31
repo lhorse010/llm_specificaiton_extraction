@@ -1,0 +1,112 @@
+[
+  {
+    "sentence": "When the sticks are released/centered the vehicle will actively brake, level, and be locked to a position in 3D space — compensating for wind and other forces.",
+    "formula": "G(C → F[0,ε](B ∧ L ∧ P ∧ G(W)))",
+    "explanation": "C represents centered sticks, B is braking, L is leveling, P is position lock, and W is wind compensation. The formula states that whenever sticks are centered, within a small time ε, the vehicle will brake, level, lock position, and continuously compensate for wind thereafter."
+  },
+  {
+    "sentence": "With full stick deflection the vehicle accelerates initially with MPC_ACC_HOR_MAX ramping down until it reaches the final velocity MPC_VEL_MANUAL.",
+    "formula": "G(F → (A ∧ (A U V)))",
+    "explanation": "F represents full stick deflection, A is acceleration (initially at max), and V is reaching final velocity. This formula captures the initial acceleration and its continuation until the final velocity is reached."
+  },
+  {
+    "sentence": "Landing in this mode is easy:",
+    "formula": "G(M → F(E))",
+    "explanation": "M represents the specific mode, and E represents ease of landing. This simple formula states that whenever in this mode, landing will eventually be easy."
+  },
+  {
+    "sentence": "1.Position the drone horizontally above the landing spot using the roll and pitch stick.",
+    "formula": "G(L → F[0,t](P))",
+    "explanation": "L represents the intention to land, and P is correct positioning. The formula states that when landing is initiated, the drone will be positioned correctly within time t."
+  },
+  {
+    "sentence": "2.Let go of the roll and pitch stick and give it enough time to come to a complete stop.",
+    "formula": "G(R → F[0,s](S))",
+    "explanation": "R represents releasing sticks, and S is coming to a complete stop. This formula captures the eventual stopping after stick release within time s."
+  },
+  {
+    "sentence": "3.Pull the throttle stick down gently until the vehicle touches the ground.",
+    "formula": "G(T → (¬G U D))",
+    "explanation": "T is throttle reduction, G is ground contact. This formula expresses the continuous throttle reduction until ground contact occurs."
+  },
+  {
+    "sentence": "4.Pull the throttle stick all the way down to facilitate and accelerate land detection.",
+    "formula": "G(F → X(L))",
+    "explanation": "F represents full throttle reduction, L is land detection. The formula indicates that full throttle reduction leads to immediate land detection in the next state."
+  },
+  {
+    "sentence": "5.The vehicle will lower propeller thrust, detect the ground and automatically disarm (by default).",
+    "formula": "G(L → F[0,d](T ∧ F[0,g](G ∧ F[0,a](D))))",
+    "explanation": "L is landing initiation, T is thrust lowering, G is ground detection, D is disarming. This complex formula captures the sequence of events in landing, each happening within specific time bounds d, g, and a."
+  },
+  {
+    "sentence": "Centered sticks level vehicle and hold it to fixed altitude and position against wind.",
+    "formula": "G(C → (L ∧ G(H ∧ P ∧ W)))",
+    "explanation": "C is centered sticks, L is leveling, H is holding altitude, P is maintaining position, W is wind resistance. This formula expresses the immediate leveling and continuous holding of position and altitude against wind when sticks are centered."
+  },
+  {
+    "sentence": "1.Centered roll, pitch, throttle sticks (within RC deadzone MPC_HOLD_DZ) hold x, y, z position steady against any disturbance like wind.",
+    "formula": "G((Cx ∧ Cy ∧ Cz) → G(Px ∧ Py ∧ Pz ∧ W))",
+    "explanation": "Cx, Cy, Cz represent centered sticks in each axis, Px, Py, Pz are maintained positions, and W is wind resistance. This formula captures the continuous position holding in all dimensions when sticks are centered, despite disturbances."
+  },
+  {
+    "sentence": "Roll/Pitch sticks control horizontal acceleration over ground in the vehicle's left-right and forward-back directions (respectively).",
+    "formula": "G((R ∨ P) → A)",
+    "explanation": "R represents roll stick input, P represents pitch stick input, and A represents horizontal acceleration. This formula states that at all times, if there's roll or pitch input, it implies horizontal acceleration."
+  },
+  {
+    "sentence": "Throttle stick controls speed of ascent-descent.",
+    "formula": "G(T → V)",
+    "explanation": "T represents throttle stick input, and V represents vertical speed. This formula captures the continuous relationship between throttle input and vertical speed throughout the flight."
+  },
+  {
+    "sentence": "Yaw stick controls rate of angular rotation above the horizontal plane.",
+    "formula": "G(Y → Ω)",
+    "explanation": "Y represents yaw stick input, and Ω represents angular rotation rate. This formula expresses the constant relationship between yaw input and rotation rate."
+  },
+  {
+    "sentence": "When landed, the vehicle will take off if the throttle stick is raised above 62.5% percent (of the full range from bottom).",
+    "formula": "G(L ∧ T → X(¬L))",
+    "explanation": "L represents the landed state, and T represents throttle above 62.5%. This formula states that whenever the vehicle is landed and high throttle is applied, in the next state, it will no longer be landed (i.e., it will take off)."
+  },
+  {
+    "sentence": "4.Global position estimate is required.",
+    "formula": "G(O → P)",
+    "explanation": "O represents operation of the vehicle, and P represents availability of global position estimate. This formula indicates that at all times, operation requires a global position estimate."
+  },
+  {
+    "sentence": "5.Manual control input is required (such as RC control, joystick).",
+    "formula": "G(O → M)",
+    "explanation": "O represents operation of the vehicle, and M represents manual control input. This formula expresses that operation always requires manual control input."
+  },
+  {
+    "sentence": "Roll, Pitch, Throttle: Assistance from autopilot to hold position against wind.",
+    "formula": "G((R ∨ P ∨ T) → (A ∧ H))",
+    "explanation": "R, P, T represent roll, pitch, and throttle inputs respectively. A represents autopilot assistance, and H represents holding position. This formula captures the constant relationship between these inputs and the autopilot's position-holding behavior."
+  },
+  {
+    "sentence": "Yaw: Assistance from autopilot to stabilize the attitude rate.",
+    "formula": "G(Y → (A ∧ S))",
+    "explanation": "Y represents yaw input, A represents autopilot assistance, and S represents attitude rate stabilization. This formula expresses that yaw input always triggers autopilot assistance for stabilization."
+  },
+  {
+    "sentence": "Position of RC stick maps to the rate of rotation of vehicle in that orientation.",
+    "formula": "G(C → R)",
+    "explanation": "C represents RC stick position, and R represents rotation rate. This formula captures the continuous mapping between stick position and rotation rate throughout the flight."
+  },
+  {
+    "sentence": "Position mode is dependent on having an acceptable position estimate.",
+    "formula": "G(M → P)",
+    "explanation": "M represents position mode, and P represents an acceptable position estimate. This formula states that at all times, being in position mode implies having an acceptable position estimate."
+  },
+  {
+    "sentence": "If the estimate falls below acceptable levels, for example due to GPS loss, this may trigger a Position (GPS) Loss Failsafe.",
+    "formula": "G(E → F[0,∞](F))",
+    "explanation": "This formula uses E to represent the estimate falling below acceptable levels, and F to represent the triggering of the Position Loss Failsafe. The G operator ensures that this condition is checked globally (at all times). The implication (→) captures the causal relationship, while the F[0,∞] allows for the failsafe to be triggered at any time after the estimate falls below acceptable levels, representing the 'may trigger' aspect."
+  },
+  {
+    "sentence": "Depending on configuration, whether you have a remote control, and whether there is an adequate altitude estimate, PX4 may switch to altitude mode, manual mode, land mode or terminate.",
+    "formula": "G((C ∧ R ∧ A) → F[0,∞](M1 ∨ M2 ∨ M3 ∨ T))",
+    "explanation": "Here, C represents the configuration, R represents having a remote control, and A represents an adequate altitude estimate. M1, M2, and M3 represent altitude mode, manual mode, and land mode respectively, while T represents termination. The G operator ensures this condition is checked globally. The implication (→) captures the dependency relationship, while F[0,∞] allows for the switch to occur at any future time, representing the 'may switch' aspect. The disjunction (∨) between the modes and termination captures the multiple possible outcomes."
+  }
+]

@@ -1,0 +1,38 @@
+Based on the provided document, I will annotate the sentences as specifications if they convey the following information:
+
+1. Requirements the system must meet for state transition.
+2. Constraints the system must adhere to.
+3. Expected post-actions the system will execute when entering a particular state.
+4. Expected state changes the system will carry out in response to specific commands or settings.
+
+Here are the annotated sentences in JSON format:
+
+```json
+{
+    "specifications": [
+        {
+            "section-id": 1,
+            "sentence-id": 1
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 5
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 8
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 9
+        }
+    ]
+}
+```
+
+Explanation:
+
+* Section 1, Sentence 1: "Good GPS position, low magnetic interference on the compass and low vibrations are all important in achieving good loiter performance." This sentence conveys a constraint that the system must adhere to for good performance.
+* Section 2, Sentence 5: "4.You may arm in PosHold mode but only once the GPS has 3D lock and the HDOP has dropped to 2.0 or lower." This sentence conveys a requirement that the system must meet for state transition (arming in PosHold mode).
+* Section 2, Sentence 8: "1.The maximum brake-angle can be set with the PHLD_BRAKE_ANGLE parameter (i.e. 3000 = the vehicle will lean back up to 30degrees)" This sentence conveys an expected post-action that the system will execute when entering a particular state (setting the maximum brake-angle).
+* Section 2, Sentence 9: "2.The speed the vehicle rotates back to the maximum angle can be set with the PHLD_BRAKE_RATE parameter (i.e. 8 = rotates back at 8 degrees per second))" This sentence conveys an expected post-action that the system will execute when entering a particular state (setting the speed of rotation).

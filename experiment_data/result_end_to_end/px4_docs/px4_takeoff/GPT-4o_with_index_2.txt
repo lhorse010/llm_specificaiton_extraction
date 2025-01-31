@@ -1,0 +1,37 @@
+[
+  {
+    "index": 0,
+    "formula": "G (mode = Takeoff → automatic ∧ ¬user_intervention)",
+    "explanation": "When in Takeoff mode, the vehicle operates automatically and does not require user intervention."
+  },
+  {
+    "index": 1,
+    "formula": "G (mode = Takeoff → valid_local_position_estimate)",
+    "explanation": "The vehicle can only switch to Takeoff mode if there is a valid local position estimate."
+  },
+  {
+    "index": 2,
+    "formula": "G (mode = Takeoff ∧ ¬valid_local_position_estimate → ¬armed)",
+    "explanation": "The vehicle cannot be armed in Takeoff mode without a valid local position estimate."
+  },
+  {
+    "index": 3,
+    "formula": "G (loss_of_position_estimate → F failsafe)",
+    "explanation": "If the vehicle loses its position estimate, it must enter failsafe mode eventually."
+  },
+  {
+    "index": 4,
+    "formula": "G (RC_stick_movement ∧ mode = Takeoff → X mode = Position ∨ battery_critical_failsafe)",
+    "explanation": "RC stick movement switches the vehicle to Position mode unless there is a critical battery failsafe."
+  },
+  {
+    "index": 5,
+    "formula": "G (problem_on_takeoff → F engines_stopped)",
+    "explanation": "If there is a problem during takeoff, the failure detector will eventually stop the engines."
+  },
+  {
+    "index": 6,
+    "formula": "G (mode = Takeoff → ascend_to_altitude(MIS_TAKEOFF_ALT) ∧ hold_position)",
+    "explanation": "In Takeoff mode, the vehicle ascends to the altitude defined in MIS_TAKEOFF_ALT and holds position."
+  }
+]

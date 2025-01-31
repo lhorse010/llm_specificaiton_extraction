@@ -1,0 +1,37 @@
+[
+  {
+    "index": 0,
+    "formula": "G(velocity ≤ velocity_limit)",
+    "explanation": "This formula specifies that globally (at all times), the vehicle's velocity must be less than or equal to the velocity limit. This applies to horizontal velocity, vertical velocity, and yaw rate."
+  },
+  {
+    "index": 1,
+    "formula": "G(velocity_limit ≤ position_mode_limit)",
+    "explanation": "This formula specifies that globally, the velocity limit in Position Slow mode must always be less than or equal to the velocity limit in regular Position mode."
+  },
+  {
+    "index": 2,
+    "formula": "G((rc_input = max) → (velocity_limit = position_mode_limit))",
+    "explanation": "This formula states that globally, if the RC input is at its maximum value, then the velocity limit should be equal to the regular Position mode limit."
+  },
+  {
+    "index": 3,
+    "formula": "G((rc_input = min) → (velocity_limit = MC_SLOW_MIN))",
+    "explanation": "This formula specifies that globally, if the RC input is at its minimum value, then the velocity limit should be equal to the corresponding MC_SLOW_MIN parameter value."
+  },
+  {
+    "index": 4,
+    "formula": "G(rc_priority → (velocity_limit = rc_set_limit))",
+    "explanation": "This formula states that globally, if RC control input is mapped for an axis (has priority), then the velocity limit for that axis should be set by the RC input."
+  },
+  {
+    "index": 5,
+    "formula": "G(¬rc_priority ∧ mavlink_set → (velocity_limit = mavlink_limit))",
+    "explanation": "This formula specifies that globally, if RC control doesn't have priority and a MAVLink limit is set, then the velocity limit should be equal to the limit set by MAVLink."
+  },
+  {
+    "index": 6,
+    "formula": "G(¬rc_priority ∧ ¬mavlink_set → (velocity_limit = parameter_limit))",
+    "explanation": "This formula states that globally, if neither RC control has priority nor MAVLink limit is set, then the velocity limit should be equal to the limit set by parameters."
+  }
+]

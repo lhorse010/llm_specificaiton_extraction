@@ -1,0 +1,217 @@
+[
+  {
+    "sentence": "This mode requires a global 3d position estimate (from GPS or inferred from a local position).",
+    "formula": "G(E ∧ (P ∨ L))",
+    "explanation": "Here, E represents the mode, P represents the global 3d position estimate from GPS, and L represents the local position estimate. The formula states that the mode globally requires either a GPS-based or local position-based estimate."
+  },
+  {
+    "sentence": "The vehicle must be armed before this mode can be engaged.",
+    "formula": "¬M U A",
+    "explanation": "Here, M represents the mode and A represents the vehicle being armed. The formula states that the mode cannot be engaged until the vehicle is armed."
+  },
+  {
+    "sentence": "This mode is automatic - no user intervention is _required_ to control the vehicle.",
+    "formula": "G(M → ¬U)",
+    "explanation": "Here, M represents the mode and U represents user intervention. The formula states that globally, if the mode is engaged, no user intervention is required."
+  },
+  {
+    "sentence": "If no mission is stored, or if PX4 has finished executing all mission commands, or if the mission is not feasible:",
+    "formula": "(¬S ∨ F ∨ ¬F) → H",
+    "explanation": "Here, S represents a mission being stored, F represents PX4 finishing executing all mission commands, and H represents the vehicle holding. However, please note that the original sentence is incomplete and doesn't specify the outcome of the condition. I've assumed the outcome as H (vehicle holding) based on the next sentence."
+  },
+  {
+    "sentence": "If flying the vehicle will hold.",
+    "formula": "F → H",
+    "explanation": "Here, F represents the vehicle flying and H represents the vehicle holding. The formula states that if the vehicle is flying, it will hold."
+  },
+  {
+    "sentence": "If landed the vehicle will \"wait\".",
+    "formula": "L → W",
+    "explanation": "Here, L represents the vehicle being landed and W represents the vehicle waiting. The formula states that if the vehicle is landed, it will wait."
+  },
+  {
+    "sentence": "If a mission is stored and PX4 is flying it will execute the mission/flight plan from the current step.",
+    "formula": "(S ∧ F) → E",
+    "explanation": "Here, S represents a mission being stored, F represents PX4 flying, and E represents the execution of the mission/flight plan. The formula states that if a mission is stored and PX4 is flying, it will execute the mission/flight plan."
+  },
+  {
+    "sentence": "A TAKEOFF item is treated as a normal waypoint.",
+    "formula": "T → W",
+    "explanation": "Here, T represents a TAKEOFF item and W represents a normal waypoint. The formula states that a TAKEOFF item is treated as a normal waypoint."
+  },
+  {
+    "sentence": "If a mission is stored and PX4 is landed: PX4 will execute the mission/flight plan.",
+    "formula": "(S ∧ L) → E",
+    "explanation": "Here, S represents a mission being stored, L represents PX4 being landed, and E represents the execution of the mission/flight plan. The formula states that if a mission is stored and PX4 is landed, it will execute the mission/flight plan."
+  },
+  {
+    "sentence": "If the mission does not have a TAKEOFF item then PX4 will fly the vehicle to the minimum altitude before executing the remainder of the flight plan from the current step.",
+    "formula": "¬T → X(F ∧ G(M))",
+    "explanation": "Here, T represents the presence of a TAKEOFF item in the mission, F represents flying to the minimum altitude, and M represents executing the remainder of the flight plan. The formula states that if there is no TAKEOFF item, then PX4 will fly to the minimum altitude and then execute the remainder of the flight plan indefinitely."
+  },
+  {
+    "sentence": "If no mission is stored, or if PX4 has finished executing all mission commands:",
+    "formula": "¬M ∨ F → X(H ∨ W)",
+    "explanation": "Here, M represents the presence of a stored mission, F represents finishing executing all mission commands, H represents holding, and W represents waiting. The formula states that if there is no stored mission or if all mission commands have been executed, then the vehicle will either hold or wait."
+  },
+  {
+    "sentence": "If flying the vehicle will hold.",
+    "formula": "F → G(H)",
+    "explanation": "Here, F represents flying and H represents holding. The formula states that if the vehicle is flying, it will hold indefinitely."
+  },
+  {
+    "sentence": "If landed the vehicle will \"wait\".",
+    "formula": "L → G(W)",
+    "explanation": "Here, L represents being landed and W represents waiting. The formula states that if the vehicle is landed, it will wait indefinitely."
+  },
+  {
+    "sentence": "You can manually change the current mission command by selecting it in _QGroundControl_.",
+    "formula": "None",
+    "explanation": "This sentence does not describe a temporal property, but rather a manual action that can be taken. Therefore, it cannot be translated into an MTL formula."
+  },
+  {
+    "sentence": "The mission will only reset when the vehicle is disarmed or when a new mission is uploaded.",
+    "formula": "D ∨ U → X(¬M)",
+    "explanation": "Here, D represents disarming, U represents uploading a new mission, and M represents the current mission. The formula states that if the vehicle is disarmed or a new mission is uploaded, then the current mission will be reset."
+  },
+  {
+    "sentence": "Missions can be paused by switching out of mission mode to any other mode (such as Hold mode or Position mode), and resumed by switching back to mission mode.",
+    "formula": "None",
+    "explanation": "This sentence does not describe a temporal property, but rather a manual action that can be taken. Therefore, it cannot be translated into an MTL formula."
+  },
+  {
+    "sentence": "If the vehicle was not capturing images when it was paused, on resuming it will head from its _current position_ towards the same waypoint as it as was heading towards originally.",
+    "formula": "¬C ∧ P → X(H ∧ G(W))",
+    "explanation": "Here, C represents capturing images, P represents pausing, H represents heading towards the same waypoint, and W represents the original waypoint. The formula states that if the vehicle was not capturing images when it was paused, then on resuming it will head towards the same waypoint as it was originally heading towards."
+  },
+  {
+    "sentence": "If the vehicle was capturing images (has camera trigger items) it will instead head from its current position towards the last waypoint it traveled through (before pausing), and then retrace its path at the same speed and with the same camera triggering behaviour.",
+    "formula": "C ∧ P → X(H ∧ G(R))",
+    "explanation": "Here, C represents capturing images, P represents pausing, H represents heading towards the last waypoint, and R represents retracing its path. The formula states that if the vehicle was capturing images when it was paused, then on resuming it will head towards the last waypoint it traveled through and retrace its path."
+  },
+  {
+    "sentence": "This ensures that in survey/camera missions the planned path is captured.",
+    "formula": "None",
+    "explanation": "This sentence does not describe a temporal property, but rather a desired outcome. Therefore, it cannot be translated into an MTL formula."
+  },
+  {
+    "sentence": "A mission can be uploaded while the vehicle is paused, in which case the current active mission item is set to 1.",
+    "formula": "P ∧ X(M ∧ I=1)",
+    "explanation": "Here, P represents the vehicle being paused, M represents the mission being uploaded, and I=1 represents the current active mission item being set to 1. The formula states that if the vehicle is paused, then in the next state, the mission is uploaded and the current active mission item is set to 1."
+  },
+  {
+    "sentence": "Missions are uploaded onto a SD card that needs to be inserted before booting up the autopilot.",
+    "formula": "G(S → F(M))",
+    "explanation": "Here, S represents the SD card being inserted, and M represents the mission being uploaded. The formula states that globally, if the SD card is inserted, then eventually the mission will be uploaded."
+  },
+  {
+    "sentence": "If you have a _Jump to item_ command in the mission, moving to another item will not reset the loop counter.",
+    "formula": "J ∧ X(I ≠ 1 → L)",
+    "explanation": "Here, J represents the _Jump to item_ command, I represents the current mission item, and L represents the loop counter not being reset. The formula states that if there is a _Jump to item_ command, then moving to another item (I ≠ 1) will not reset the loop counter (L)."
+  },
+  {
+    "sentence": "One implication is that if you change the current mission command to 1 this will not \"fully restart\" the mission.",
+    "formula": "X(I=1 → ¬R)",
+    "explanation": "Here, I represents the current mission item, and R represents the mission being fully restarted. The formula states that if the current mission item is set to 1, then the mission will not be fully restarted."
+  },
+  {
+    "sentence": "When a mission is paused while the camera on the vehicle was triggering, PX4 sets the current active mission item to the previous waypoint, so that when the mission is restarted the vehicle will retrace its last mission leg.",
+    "formula": "P ∧ C ∧ X(I=P)",
+    "explanation": "Here, P represents the mission being paused, C represents the camera triggering, and I=P represents the current active mission item being set to the previous waypoint. The formula states that if the mission is paused while the camera is triggering, then the current active mission item will be set to the previous waypoint."
+  },
+  {
+    "sentence": "In addition, PX4 stores the last applied mission items for speed setting and camera triggering (from the already covered mission plan), and re-applies those settings on resuming the mission.",
+    "formula": "G(S ∧ C → F(R))",
+    "explanation": "Here, S represents the speed setting, C represents the camera triggering, and R represents the mission being resumed. The formula states that globally, if the speed setting and camera triggering are applied, then eventually the mission will be resumed with those settings."
+  },
+  {
+    "sentence": "Ensure that the throttle stick is non-zero before switching to any RC mode (otherwise the vehicle will crash).",
+    "formula": "G(T=0 → ¬R)",
+    "explanation": "Here, T represents the throttle stick, and R represents the vehicle switching to RC mode. The formula states that globally, if the throttle stick is zero, then the vehicle will not switch to RC mode (to avoid crashing)."
+  },
+  {
+    "sentence": "We recommend you centre the control sticks before switching to any other mode.",
+    "formula": "G(C → F(M))",
+    "explanation": "Here, C represents the control sticks being centred, and M represents the vehicle switching to another mode. The formula states that globally, if the control sticks are centred, then eventually the vehicle will switch to another mode."
+  },
+  {
+    "sentence": "PX4 runs some basic sanity checks to determine if a mission is feasible when it is uploaded, and when the vehicle is first armed.",
+    "formula": "U → G(F ∧ A → S)",
+    "explanation": "Here, U represents the mission being uploaded, F represents the mission being feasible, A represents the vehicle being armed, and S represents the sanity checks passing. The formula states that when the mission is uploaded, globally, if the mission is feasible and the vehicle is armed, then the sanity checks will pass."
+  },
+  {
+    "sentence": "If any of the checks fail, the user is notified and it is not possible to start the mission.",
+    "formula": "¬S → N ∧ ¬M",
+    "explanation": "Here, S represents the sanity checks passing, N represents the user being notified, and M represents the mission starting. The formula states that if the sanity checks fail, then the user will be notified and the mission will not start."
+  },
+  {
+    "sentence": "First mission item too far away from vehicle (MIS_DIST_1WP)",
+    "formula": "D ∧ ¬(V ∧ F[0, t](¬D))",
+    "explanation": "Here, D represents the mission item being too far away from the vehicle, and V represents the vehicle's current position. The formula states that the mission item is too far away from the vehicle and will not be reached within a certain time t."
+  },
+  {
+    "sentence": "Any mission item conflicts with a plan or safety geofence",
+    "formula": "M ∧ (P ∨ G)",
+    "explanation": "Here, M represents the mission item, P represents the plan, and G represents the safety geofence. The formula states that the mission item conflicts with either the plan or the safety geofence."
+  },
+  {
+    "sentence": "For example, some messages are vehicle-type specific.",
+    "formula": "∃m (M(m) ∧ V(m))",
+    "explanation": "Here, M represents the message, and V represents the vehicle type. The formula states that there exists a message that is specific to a certain vehicle type. However, please note that MTL typically deals with temporal properties, and this sentence does not have an explicit temporal aspect. The given formula is more of a predicate logic formula."
+  },
+  {
+    "sentence": "PX4 does not support local frames for mission commands (e.g. MAV_FRAME_LOCAL_NED).",
+    "formula": "¬(P ∧ L)",
+    "explanation": "Here, P represents PX4, and L represents the local frames for mission commands. The formula states that PX4 does not support local frames for mission commands."
+  },
+  {
+    "sentence": "Not all messages/commands are exposed via _QGroundControl_.",
+    "formula": "¬∀m (M(m) → Q(m))",
+    "explanation": "Here, M represents the messages/commands, and Q represents QGroundControl. The formula states that not all messages/commands are exposed via QGroundControl."
+  },
+  {
+    "sentence": "PX4 expects to follow a straight line from the previous waypoint to the current target (it does not plan any other kind of path between waypoints - if you need one you can simulate this by adding additional waypoints).",
+    "formula": "G(S ∧ X(S))",
+    "explanation": "Here, S represents the straight line path. The formula states that PX4 always follows a straight line path from the previous waypoint to the current target."
+  },
+  {
+    "sentence": "MC vehicles will change the _speed_ when approaching or leaving a waypoint based on the jerk-limited tuning.",
+    "formula": "V ∧ (A ∨ L) → ∃s (S(s) ∧ X(S(s)))",
+    "explanation": "Here, V represents the vehicle, A represents approaching a waypoint, L represents leaving a waypoint, S represents the speed, and X represents the change in speed. The formula states that when the vehicle approaches or leaves a waypoint, it will change its speed based on the jerk-limited tuning."
+  },
+  {
+    "sentence": "The vehicle will follow a smooth rounded curve towards the next waypoint (if one is defined) defined by the acceptance radius (NAV_ACC_RAD).",
+    "formula": "V ∧ ∃w (W(w) ∧ F[0, t](C(w)))",
+    "explanation": "Here, V represents the vehicle, W represents the next waypoint, C represents the smooth rounded curve, and t represents the time it takes to reach the waypoint. The formula states that the vehicle will follow a smooth rounded curve towards the next waypoint within a certain time t."
+  },
+  {
+    "sentence": "The diagram below shows the sorts of paths that you might expect.",
+    "formula": "N/A",
+    "explanation": "This sentence does not describe a temporal property, so it cannot be translated into an MTL formula."
+  },
+  {
+    "sentence": "Vehicles switch to the next waypoint as soon as they enter the acceptance radius (NAV_ACC_RAD).",
+    "formula": "V ∧ ∃w (W(w) ∧ F[0, t](E(w)))",
+    "explanation": "Here, V represents the vehicle, W represents the next waypoint, E represents entering the acceptance radius, and t represents the time it takes to enter the acceptance radius. The formula states that the vehicle will switch to the next waypoint as soon as it enters the acceptance radius within a certain time t."
+  },
+  {
+    "sentence": "Plan a multicopter mission takeoff by adding a TAKEOFF mission item to the map (this corresponds to the MAV_CMD_NAV_TAKEOFF MAVLink command).",
+    "formula": "P → F(T)",
+    "explanation": "Here, P represents the planning of a multicopter mission takeoff, and T represents the addition of a TAKEOFF mission item to the map. The formula states that planning a multicopter mission takeoff implies that a TAKEOFF mission item will eventually be added to the map."
+  },
+  {
+    "sentence": "During mission execution this will cause the vehicle to ascend vertically to the minimum takeoff altitude defined in the MIS_TAKEOFF_ALT parameter, then head towards the 3D position defined in the mission item.",
+    "formula": "E → (F(A ∧ F(H)))",
+    "explanation": "Here, E represents the execution of the mission, A represents the vehicle ascending to the minimum takeoff altitude, and H represents the vehicle heading towards the 3D position defined in the mission item. The formula states that during mission execution, the vehicle will eventually ascend to the minimum takeoff altitude and then head towards the 3D position."
+  },
+  {
+    "sentence": "If a mission with no takeoff mission item is started, the vehicle will ascend to the minimum takeoff altitude and then proceed to the first Waypoint mission item.",
+    "formula": "¬T ∧ S → F(A ∧ F(W))",
+    "explanation": "Here, T represents the presence of a takeoff mission item, S represents the start of the mission, A represents the vehicle ascending to the minimum takeoff altitude, and W represents the vehicle proceeding to the first Waypoint mission item. The formula states that if a mission with no takeoff mission item is started, the vehicle will eventually ascend to the minimum takeoff altitude and then proceed to the first Waypoint mission item."
+  },
+  {
+    "sentence": "If the vehicle is already flying when the mission is started, a takeoff mission item is treated as a normal waypoint.",
+    "formula": "F ∧ S → (T → W)",
+    "explanation": "Here, F represents the vehicle already flying, S represents the start of the mission, T represents the presence of a takeoff mission item, and W represents the takeoff mission item being treated as a normal waypoint. The formula states that if the vehicle is already flying when the mission is started, a takeoff mission item implies that it will be treated as a normal waypoint."
+  }
+]

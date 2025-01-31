@@ -1,0 +1,130 @@
+{
+    "temporal_logic_formulars": [
+        {
+            "section-id": 1,
+            "sentence-id": 0,
+            "sentence": "This flight mode is available for traditional helicopters only.",
+            "tl": "always ( Thisflight == availabletrait )"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 1,
+            "sentence": "It is currently limited to single rotor helicopters.",
+            "tl": "always ( curentlylimited == singlerotrohlelicopters )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 0,
+            "sentence": "This is an ongoing development project.",
+            "tl": "always ( Thisanongoingdeve == lopmentproject )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 1,
+            "sentence": "This is only enabled for use with SITL.",
+            "tl": "always ( Thisonlyenabled == usewithSITL )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 2,
+            "sentence": "Do not attempt to use this flight mode in real life.",
+            "tl": "always ( always ( not ( Doattempt == useflightrealifl ) ) -> always [ 0 : Do == realllife )"
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 6,
+            "sentence": "It is this reversal of the vertical velocity that necessitates careful collective management when entering the autorotation.",
+            "tl": "always ( reversalvertical == icetyecesitasecare ) until ( eslcalec == ecalerlefulectivec ) -> emananagetecte == eterinterinteroterinotortauotio == tiortator )"
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 8,
+            "sentence": "It is key that the collective is moved proportionally to the direction of the resultant velocity vector to minimize the blade drag generated, preventing excessive loss of head speed.",
+            "tl": "always ( keycolecive == emolroioSrtinl ) and deretatvct == Selocitredtrecityvectr )"
+        },
+        {
+            "section-id": 5,
+            "sentence-id": 2,
+            "sentence": "It is important to maintain aircraft energy as efficiently as possible in the glide phase so that the maximum amount of energy is available for the flare and touch-down phase.",
+            "tl": "always ( important == maintainairfer ) and efiefScienle == glieposiephaseso = glmaseso )"
+        },
+        {
+            "section-id": 6,
+            "sentence-id": 12,
+            "sentence": "As this manoeuvre is flown close to the ground it requires a reliable height estimate that can account for the local terrain.",
+            "tl": "always ( manoeuvreflownclose == grouiredtesareialeiarehei == leiatehestmate ) until ( malKl == locareicaleicareileheicas ) -> always ( l == catecanalolcalcatltecanolr ) )"
+        },
+        {
+            "section-id": 8,
+            "sentence-id": 2,
+            "sentence": "It is therefore necessary to gently reintroduce the z position controller to prevent aggressive collective angles being applied, resulting in blade stall or even rotor stop.",
+            "tl": "always ( etreforenesa == gentlenritrodnpezposi == Snconceret ) or rvestenlenleta == rsevesesivcolectivectivesectlectivanlese )"
+        },
+        {
+            "section-id": 8,
+            "sentence-id": 3,
+            "sentence": "When initiated, the bail-out phase will read the requested climb or descent rate from the operators throttle stick position.",
+            "tl": "always ( not ( initiatedail == phaseredequedclimb ) or descentrater == operateraterteratoporstotrstortertototrstotrtotrtotrstot == tltltotltrstot )"
+        },
+        {
+            "section-id": 10,
+            "sentence-id": 0,
+            "sentence": "The ramp time defined by H_RSC_RAMP_TIME is now only observed when the aircraft is on ground and the \"landed flag\" is set true.",
+            "tl": "always ( rampdefinedbyH_RSC == MP_TMEnowonly and aircraftr == groundalandedflag )"
+        },
+        {
+            "section-id": 10,
+            "sentence-id": 1,
+            "sentence": "It often takes ArduCopter a second to register that the aircraft has landed once on the ground.",
+            "tl": "always ( oftenArduCopterasecond == registerair )"
+        },
+        {
+            "section-id": 10,
+            "sentence-id": 2,
+            "sentence": "Therefore, if the interlock is re-engaged immediately after the aircraft touches down the one second ramp time of the bail-out phase can be initiated on the ground.",
+            "tl": "always ( Therefore == interlockre or airengacr == ftouchesesondratonec ) -> ( not ( apbailphasecanit == itaednitedatergrounini ) )"
+        },
+        {
+            "section-id": 10,
+            "sentence-id": 3,
+            "sentence": "Caution is therefore required when running autorotations in quick succession to prevent rapid rotor spool up on ground.",
+            "tl": "always ( eCautionthererefore == redruniningautotonsio ) -> sonsion == prevrepartdrolpolupoupgrolupou == rundroundr )"
+        },
+        {
+            "section-id": 12,
+            "sentence-id": 2,
+            "sentence": "The autonomous flight mode can only be entered if the interlock is disengaged whilst flying in a non-manual collective mode.",
+            "tl": "always ( rise ( autonomousfligh == tcanonlrlock ) and isengagedwhilstflying == gangangedwhilstlstflyingngangangangan == anol )"
+        },
+        {
+            "section-id": 12,
+            "sentence-id": 3,
+            "sentence": "When exiting the autorotation the flight mode is returned to the mode from which it came (e.g. Altitude Hold -> Autonomous Autorotation -> Altitude Hold).",
+            "tl": "always ( exitingautoro == tationflightreturned -> itudeH == eHoltodeHouAuto or ( tonlo == tinAltoiudeHolotolinAutolio ) )"
+        },
+        {
+            "section-id": 12,
+            "sentence-id": 4,
+            "sentence": "The only exception to this is when the aircraft enters the autorotation from an auto mission.",
+            "tl": "always ( rise ( onlyexception == aiutorotationa ) until [ 0 : 9 t == autortonationanauto == anautoto )"
+        },
+        {
+            "section-id": 12,
+            "sentence-id": 5,
+            "sentence": "In which case, the mode is exited into Altitude Hold.",
+            "tl": "always ( rise ( exitedAlt == itudeHold ) )"
+        },
+        {
+            "section-id": 8,
+            "sentence-id": 4,
+            "sentence": "The aircraft will then be decelerated over a set period of time (see parameter AROT_BAIL_TIME).",
+            "tl": "always ( aircraft == decerated -> daperameparae == epameterARO_BATIL_TIME )"
+        },
+        {
+            "section-id": 12,
+            "sentence-id": 6,
+            "sentence": "This is done to prevent the aircraft from potentially resuming its auto mission and flying further away from home, whereby in the scenario it has autonomously recovered from a power failure and is therefore high risk for another power failure.",
+            "tl": "always ( eisdonere == iretairaicrteS ) and gits == nlomerherheheolefredoredain == er )"
+        }
+    ]
+}

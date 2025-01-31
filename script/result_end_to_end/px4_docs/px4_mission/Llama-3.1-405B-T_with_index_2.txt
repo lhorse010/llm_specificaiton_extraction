@@ -1,0 +1,57 @@
+[
+  {
+    "index": 0,
+    "formula": "G(armed → F(mission_started))",
+    "explanation": "The vehicle must be armed before the mission can be started."
+  },
+  {
+    "index": 1,
+    "formula": "G(mission_started → F(in_mission_mode))",
+    "explanation": "Once the mission is started, the vehicle will enter mission mode."
+  },
+  {
+    "index": 2,
+    "formula": "G(in_mission_mode → (mission_loaded ∧ ¬manual_intervention))",
+    "explanation": "In mission mode, the vehicle will execute the loaded mission without manual intervention."
+  },
+  {
+    "index": 3,
+    "formula": "G(no_mission_loaded → (flying → G(hold)))",
+    "explanation": "If no mission is loaded and the vehicle is flying, it will hold its current position."
+  },
+  {
+    "index": 4,
+    "formula": "G(no_mission_loaded → (landed → G(wait)))",
+    "explanation": "If no mission is loaded and the vehicle is landed, it will wait."
+  },
+  {
+    "index": 5,
+    "formula": "G(mission_loaded ∧ flying → F(execute_mission))",
+    "explanation": "If a mission is loaded and the vehicle is flying, it will execute the mission."
+  },
+  {
+    "index": 6,
+    "formula": "G(mission_loaded ∧ landed → F(execute_mission))",
+    "explanation": "If a mission is loaded and the vehicle is landed, it will execute the mission."
+  },
+  {
+    "index": 7,
+    "formula": "G(mission_paused → (¬in_mission_mode → G(resume_mission)))",
+    "explanation": "If the mission is paused and the vehicle is not in mission mode, it will resume the mission when switched back to mission mode."
+  },
+  {
+    "index": 8,
+    "formula": "G(mission_paused ∧ camera_triggering → (resume_mission → G(retrace_path)))",
+    "explanation": "If the mission is paused while the camera is triggering, the vehicle will retrace its path when the mission is resumed."
+  },
+  {
+    "index": 9,
+    "formula": "G(mission_feasibility_checks → (feasible → F(start_mission)))",
+    "explanation": "If the mission feasibility checks pass, the vehicle will start the mission."
+  },
+  {
+    "index": 10,
+    "formula": "G(mission_feasibility_checks → (¬feasible → G(abort_mission)))",
+    "explanation": "If the mission feasibility checks fail, the vehicle will abort the mission."
+  }
+]

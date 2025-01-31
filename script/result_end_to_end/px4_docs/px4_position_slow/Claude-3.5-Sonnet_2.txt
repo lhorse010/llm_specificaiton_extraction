@@ -1,0 +1,48 @@
+I'll extract the specifications from the document and express them using Metric Temporal Logic (MTL) formulas as requested. Then, I'll format the output in JSON.
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(velocity_horizontal ≤ MC_SLOW_HVEL)",
+            "explanation": "The horizontal velocity in Position Slow Mode should always be less than or equal to the parameter MC_SLOW_HVEL."
+        },
+        {
+            "formula": "G(velocity_vertical ≤ MC_SLOW_VVEL)",
+            "explanation": "The vertical velocity in Position Slow Mode should always be less than or equal to the parameter MC_SLOW_VVEL."
+        },
+        {
+            "formula": "G(yaw_rate ≤ MC_SLOW_YAWRATE)",
+            "explanation": "The yaw rate in Position Slow Mode should always be less than or equal to the parameter MC_SLOW_YAWRATE."
+        },
+        {
+            "formula": "G((RC_input = max) → (velocity ≤ MPC_VEL_MANUAL))",
+            "explanation": "When the RC input is at its maximum value, the velocity should not exceed the MPC_VEL_MANUAL parameter value."
+        },
+        {
+            "formula": "G((RC_input = min) → (velocity ≥ MC_SLOW_MIN))",
+            "explanation": "When the RC input is at its minimum value, the velocity should not be less than the MC_SLOW_MIN parameter value for the corresponding axis."
+        },
+        {
+            "formula": "G((¬isNAN(MAVLink_limit) ∧ ¬RC_mapped) → (velocity ≤ MAVLink_limit))",
+            "explanation": "When a non-NAN MAVLink velocity limit is set and the axis is not mapped to an RC input, the velocity should not exceed the MAVLink limit."
+        },
+        {
+            "formula": "G(velocity_Position_Slow ≤ velocity_Position)",
+            "explanation": "The velocity in Position Slow Mode should always be less than or equal to the velocity in regular Position Mode for all axes."
+        }
+    ]
+}
+```
+
+These MTL formulas capture the key specifications from the document:
+
+1. The first three formulas specify the maximum velocities and yaw rate for Position Slow Mode using the corresponding parameters.
+
+2. The fourth and fifth formulas describe how RC input affects the velocity limits, with the maximum input corresponding to regular Position Mode limits and the minimum input corresponding to the MC_SLOW_MIN values.
+
+3. The sixth formula represents the MAVLink velocity limit setting, which is applied when a non-NAN value is provided and the axis is not mapped to an RC input.
+
+4. The last formula encapsulates the general principle that Position Slow Mode velocities should always be less than or equal to regular Position Mode velocities.
+
+These formulas use the Globally (G) operator to indicate that the conditions should hold at all times during the operation of the vehicle in Position Slow Mode.

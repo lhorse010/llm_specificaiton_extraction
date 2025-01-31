@@ -1,0 +1,122 @@
+[
+  {
+    "sentence": "Circle will orbit a point located CIRCLE_RADIUS centimeters in front of the vehicle with the nose of the vehicle pointed at the center.",
+    "formula": "G(O ∧ P)",
+    "explanation": "O represents the vehicle orbiting at CIRCLE_RADIUS, and P represents the vehicle's nose pointing at the center. The G operator ensures this condition holds globally throughout the execution."
+  },
+  {
+    "sentence": "Setting the CIRCLE_RADIUS to zero will cause the copter to simply stay in place and slowly rotate (useful for panorama shots).",
+    "formula": "G(Z → (S ∧ R))",
+    "explanation": "Z represents CIRCLE_RADIUS being zero, S represents staying in place, and R represents slow rotation. The formula states that globally, if Z is true, it implies both S and R are true."
+  },
+  {
+    "sentence": "The speed of the vehicle (in deg/second) can be modified by changing the CIRCLE_RATE parameter.",
+    "formula": "G(C → X(M))",
+    "explanation": "C represents a change in CIRCLE_RATE, and M represents a modification in speed. The formula states that globally, if C occurs, in the next state M will be true."
+  },
+  {
+    "sentence": "A positive value means rotate clockwise, a negative means counter clockwise.",
+    "formula": "G((P → C) ∧ (N → W))",
+    "explanation": "P represents a positive value, C represents clockwise rotation, N represents a negative value, and W represents counter-clockwise rotation. The formula states that globally, P implies C and N implies W."
+  },
+  {
+    "sentence": "The vehicle may not achieve the desired rate if this requires the acceleration towards the center of the circle to surpass the maximum acceleration held in the WPNAV_ACCEL parameter (units are cm/s/s).",
+    "formula": "G(A → ¬D)",
+    "explanation": "A represents the condition where required acceleration exceeds WPNAV_ACCEL, and D represents achieving the desired rate. The formula states that globally, if A is true, then D is not achieved."
+  },
+  {
+    "sentence": "The other is by enabling the CIRCLE_CONTROL parameter to allow stick adjustment of radius and speed.",
+    "formula": "G(E → F(S))",
+    "explanation": "E represents enabling CIRCLE_CONTROL, and S represents the ability to adjust radius and speed. The formula states that globally, if E occurs, eventually S will be true."
+  },
+  {
+    "sentence": "When enabled, the CIRCLE_CONTROL parameter allows the adjustment of the circle's radius and angular velocity, in firmware versions prior to 4.1.",
+    "formula": "G((E ∧ V) → A)",
+    "explanation": "E represents CIRCLE_CONTROL being enabled, V represents firmware version prior to 4.1, and A represents the ability to adjust radius and angular velocity. The formula states that globally, if both E and V are true, then A is true."
+  },
+  {
+    "sentence": "In 4.1 and later, the CIRCLE_OPTIONS bitmask parameter controls what actions the pilot can adjust with his sticks and circle mode operation.",
+    "formula": "G((F ∧ C) → X(A))",
+    "explanation": "F represents firmware version 4.1 or later, C represents CIRCLE_OPTIONS bitmask being set, and A represents the ability to adjust actions. The formula states that globally, if both F and C are true, then in the next state A will be true."
+  },
+  {
+    "sentence": "When bit 0 is set of the CIRCLE_OPTIONS parameter the pilot can adjust circle's radius and angular velocity with the control sticks:",
+    "formula": "G(B → A)",
+    "explanation": "B represents bit 0 of CIRCLE_OPTIONS being set, and A represents the ability to adjust radius and angular velocity. The formula states that globally, if B is true, then A is true."
+  },
+  {
+    "sentence": "1.Pitch stick up (reducing RC pwm) reduces the radius until it reaches zero.",
+    "formula": "G(P → (R U Z))",
+    "explanation": "P represents pitch stick up, R represents radius reduction, and Z represents radius reaching zero. The formula states that globally, if P occurs, R will be true until Z becomes true."
+  },
+  {
+    "sentence": "Pitch stick down (increasing RC pwm) increases the radius.",
+    "formula": "G(P → F(R))",
+    "explanation": "P represents 'pitch stick down', and R represents 'radius increase'. This formula states that globally, whenever the pitch stick is down, it will eventually lead to an increase in radius. The temporal aspect is implicit, as the increase doesn't happen instantaneously but over time."
+  },
+  {
+    "sentence": "Roll stick right (think clockwise) will increase the speed while moving clockwise, or decrease the speed while moving counterclockwise until reaching zero, at which point it will stop.",
+    "formula": "G(R ∧ C → F(S) U Z) ∧ G(R ∧ ¬C → F(¬S) U Z)",
+    "explanation": "R represents 'roll stick right', C 'moving clockwise', S 'speed increase', and Z 'zero speed'. This complex formula captures two scenarios: when moving clockwise, speed increases until zero; when moving counterclockwise, speed decreases until zero. The 'until' operator ensures the process continues until zero speed is reached."
+  },
+  {
+    "sentence": "Roll stick left (think counterclockwise) will increase the speed while moving counterclockwise, or decrease the speed while moving clockwise until reaching zero, at which point it will stop.",
+    "formula": "G(L ∧ ¬C → F(S) U Z) ∧ G(L ∧ C → F(¬S) U Z)",
+    "explanation": "Similar to the previous formula, but L represents 'roll stick left'. This formula captures the inverse scenarios: speed increases when moving counterclockwise and decreases when moving clockwise, until zero speed is reached."
+  },
+  {
+    "sentence": "Once stopped (rate 0), releasing the roll stick and pushing it again in either direction will begin moving again in the desired direction.",
+    "formula": "G(Z ∧ X(¬R ∧ ¬L) ∧ X(X(R ∨ L)) → F(M))",
+    "explanation": "Z represents 'zero speed', R 'roll right', L 'roll left', and M 'moving'. This formula states that globally, if the speed is zero, followed by releasing the stick (neither right nor left), and then pushing it again in either direction, movement will eventually occur."
+  },
+  {
+    "sentence": "Roll stick rate changes are inhibited when CH6 tuning knob is set for circle rate.",
+    "formula": "G(T → ¬F(C))",
+    "explanation": "T represents 'CH6 tuning knob set for circle rate', and C 'roll stick rate changes'. This formula states that globally, when the tuning knob is set, roll stick rate changes are not allowed to occur in the future."
+  },
+  {
+    "sentence": "All stick changes are inhibited in radio failsafe.(ie if loiter turns was part of a mission that continues when in failsafe)",
+    "formula": "G(F → G(¬S))",
+    "explanation": "F represents 'radio failsafe', and S 'stick changes'. This formula states that globally, when in failsafe mode, stick changes are globally prohibited, capturing the continuous nature of this restriction during failsafe."
+  },
+  {
+    "sentence": "When bit 1 is set of the CIRCLE_OPTIONS parameter the Copter will face the direction of travel as it circles, otherwise, the Copter will point its nose at the center of the circle as it orbits.",
+    "formula": "G(B → D) ∧ G(¬B → C)",
+    "explanation": "B represents 'bit 1 set', D 'facing direction of travel', and C 'pointing at circle center'. This formula captures the two mutually exclusive behaviors based on the parameter setting, applying globally during the circling operation."
+  },
+  {
+    "sentence": "When bit 2 is set of the CIRCLE_OPTIONS parameter the circle's center position will set upon mode entry at the current location, rather than on the perimeter with the center in front of the Copter at the start.",
+    "formula": "G(E ∧ B → X(C) ∧ ¬P)",
+    "explanation": "E represents 'mode entry', B 'bit 2 set', C 'center at current location', and P 'center on perimeter'. This formula states that globally, when entering the mode with bit 2 set, the center will be at the current location in the next state, and not on the perimeter."
+  },
+  {
+    "sentence": "When bit 3 is set of the CIRCLE_OPTIONS parameter the mount's (if used) ROI aka region of interest will be set on the circle center causing mount to face the circle's center all the times.",
+    "formula": "G(B → G(R))",
+    "explanation": "B represents 'bit 3 set', and R 'ROI set to circle center'. This formula captures that globally, when bit 3 is set, the ROI will be set to the circle center for all future states, emphasizing the continuous nature of this setting."
+  },
+  {
+    "sentence": "The pilot does not have any control over the roll and pitch but can change the altitude with the throttle stick as in altholdmode or loiter-mode.",
+    "formula": "G(¬R ∧ ¬P ∧ (T → F(A)))",
+    "explanation": "R represents 'roll control', P 'pitch control', T 'throttle stick movement', and A 'altitude change'. This formula states that globally, there's no roll or pitch control, but throttle stick movement can lead to future altitude changes, capturing the restricted control scheme in this mode."
+  },
+  {
+    "sentence": "The pilot can control the yaw of the copter, but the autopilot will not retake control of the yaw until circle mode is re-engaged.",
+    "formula": "G((P ∧ ¬C) → (¬A U C))",
+    "explanation": "Let P represent 'pilot controls yaw', A represent 'autopilot controls yaw', and C represent 'circle mode is engaged'. The formula states that globally, if the pilot is controlling yaw and circle mode is not engaged, then the autopilot will not control yaw until circle mode is re-engaged. This captures the temporal dependency between pilot control, circle mode, and autopilot control."
+  },
+  {
+    "sentence": "The mission command LOITER_TURNS invokes Circle mode during a mission.",
+    "formula": "G(L → X(C))",
+    "explanation": "Let L represent 'LOITER_TURNS command is issued' and C represent 'Circle mode is active'. The formula states that globally, if the LOITER_TURNS command is issued, then in the next state, Circle mode will be active. This captures the immediate cause-effect relationship between the command and the mode change."
+  },
+  {
+    "sentence": "The first is the use of RC Channel 6 if the TUNE option is set to 39, allowing decreasing the rate 50% or increasing it by 100%, at the channel min and max.",
+    "formula": "G((T ∧ R) → (M ∨ X))",
+    "explanation": "Let T represent 'TUNE option is set to 39', R represent 'RC Channel 6 is used', M represent 'rate is decreased by 50%', and X represent 'rate is increased by 100%'. The formula states that globally, if the TUNE option is set to 39 and RC Channel 6 is used, then either the rate is decreased by 50% or increased by 100%. This captures the conditional behavior based on the channel settings."
+  },
+  {
+    "sentence": "So yes, this allows you to completely change the direction on the fly.",
+    "formula": "G(C → F(D))",
+    "explanation": "Let C represent 'control input is given' and D represent 'direction is changed'. The formula states that globally, if a control input is given, then at some point in the future, the direction will be changed. This captures the ability to change direction dynamically in response to user input."
+  }
+]

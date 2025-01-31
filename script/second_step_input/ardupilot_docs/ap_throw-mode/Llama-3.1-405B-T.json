@@ -1,0 +1,62 @@
+[
+  {
+    "section-id": 0,
+    "sentence-id": 2,
+    "sentence": "This mode requires GPS."
+  },
+  {
+    "section-id": 1,
+    "sentence-id": 0,
+    "sentence": "This flight mode is available for multirotors only."
+  },
+  {
+    "section-id": 3,
+    "sentence-id": 2,
+    "sentence": "3.Check GPS light is green"
+  },
+  {
+    "section-id": 3,
+    "sentence-id": 5,
+    "sentence": "5.Pick up the vehicle and throw it up and away from you (it must climb by 50cm/s and reach a total speed of 5m/s)"
+  },
+  {
+    "section-id": 3,
+    "sentence-id": 7,
+    "sentence": "The motors should start when the vehicle reaches the apex of it's trajectory."
+  },
+  {
+    "section-id": 3,
+    "sentence-id": 8,
+    "sentence": "After the motors start this flight mode will first try to control it's attitude (return to level and stop rotating), then stop descending and finally it will attempt to stop moving horizontally."
+  },
+  {
+    "section-id": 4,
+    "sentence-id": 0,
+    "sentence": "1.THROW_TYPE: set to 0 if throwing the vehicle up, 1 if dropping the vehicle."
+  },
+  {
+    "section-id": 4,
+    "sentence-id": 1,
+    "sentence": "If dropping, drop from a height of at least 10m."
+  },
+  {
+    "section-id": 4,
+    "sentence-id": 2,
+    "sentence": "2.THROW_MOT_START: controls whether the motors will spin slowly or not at all while waiting for the throw (0 = stopped, 1 = spinning slowly)."
+  },
+  {
+    "section-id": 4,
+    "sentence-id": 4,
+    "sentence": "3.THROW_NEXTMODE: the vehicle will switch into this flight mode after stopping (Auto, Guided, RTL, Land and Brake are support)."
+  },
+  {
+    "section-id": 4,
+    "sentence-id": 6,
+    "sentence": "4.THROW_ALT_MIN and THROW_ALT_MAX: set the altitude limits for THROW mode launch."
+  },
+  {
+    "section-id": 4,
+    "sentence-id": 7,
+    "sentence": "Throw must happen above the minimum and below the maximum altitude above home after arming."
+  }
+]

@@ -1,0 +1,47 @@
+[
+  {
+    "index": 0,
+    "formula": "G(traffic_light_in_ego_lane → X(module_activated))",
+    "explanation": "The module should be activated whenever there is a traffic light in the ego lane."
+  },
+  {
+    "index": 1,
+    "formula": "G((traffic_light_signal_found ∧ ¬signal_timed_out) → X(stop))",
+    "explanation": "If a traffic light signal is found and not timed out, the vehicle should prepare to stop."
+  },
+  {
+    "index": 2,
+    "formula": "G((traffic_light_signal_not_found ∨ signal_timed_out) → X(pass))",
+    "explanation": "If no traffic light signal is found or it is timed out, the vehicle should proceed."
+  },
+  {
+    "index": 3,
+    "formula": "G((color_recognition ≠ green ∧ color_recognition ≠ arrow) → F(generate_stop_point))",
+    "explanation": "If the recognized traffic light color is neither green nor the correct arrow, a stop point should eventually be generated."
+  },
+  {
+    "index": 4,
+    "formula": "G(elapsed_time < stop_time_hysteresis → X(pass))",
+    "explanation": "If the elapsed time to receive a stop signal is less than the hysteresis threshold, treat it as a signal to pass."
+  },
+  {
+    "index": 5,
+    "formula": "G(vehicle_velocity > 2.0 → X(pass))",
+    "explanation": "If the vehicle's velocity is greater than 2.0 m/s, it should pass."
+  },
+  {
+    "index": 6,
+    "formula": "G(vehicle_velocity ≤ 2.0 → X(stop))",
+    "explanation": "If the vehicle's velocity is 2.0 m/s or less, it should stop."
+  },
+  {
+    "index": 7,
+    "formula": "G((¬can_pass_during_yellow ∧ dilemma_zone) → F(emergency_stop))",
+    "explanation": "If the vehicle cannot pass during the yellow light and is in the dilemma zone, it should eventually perform an emergency stop."
+  },
+  {
+    "index": 8,
+    "formula": "G((can_pass_during_yellow ∧ optional_zone) → F(safe_choice))",
+    "explanation": "If the vehicle can pass during the yellow light and is in the optional zone, it should eventually make a safe choice."
+  }
+]

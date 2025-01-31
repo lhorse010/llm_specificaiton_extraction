@@ -1,0 +1,47 @@
+[
+  {
+    "index": 0,
+    "formula": "G(AUTO_mode → (¬armed → X(throttle_raised → mission_start)))",
+    "explanation": "Globally, when in AUTO mode, if the copter is not armed, then in the next state, raising the throttle will start the mission."
+  },
+  {
+    "index": 1,
+    "formula": "G(AUTO_mode ∧ in_air → mission_start)",
+    "explanation": "Globally, when in AUTO mode and the copter is already in the air, the mission starts immediately."
+  },
+  {
+    "index": 2,
+    "formula": "G(AUTO_mode ∧ (waypoint_distance ≤ WPNAV_RADIUS) → waypoint_complete)",
+    "explanation": "Globally, when in AUTO mode, if the distance to the waypoint is less than or equal to WPNAV_RADIUS, the waypoint is considered complete."
+  },
+  {
+    "index": 3,
+    "formula": "G(AUTO_mode → (pilot_yaw_input → override_autopilot_yaw))",
+    "explanation": "Globally, when in AUTO mode, if the pilot provides yaw input, it overrides the autopilot's yaw control."
+  },
+  {
+    "index": 4,
+    "formula": "G(AUTO_mode ∧ mission_complete → F(RTL ∨ LAND))",
+    "explanation": "Globally, when in AUTO mode and the mission is complete, eventually the copter will either Return to Launch (RTL) or LAND."
+  },
+  {
+    "index": 5,
+    "formula": "G(AUTO_mode → (speed ≤ WPNAV_SPEED))",
+    "explanation": "Globally, when in AUTO mode, the copter's speed is always less than or equal to WPNAV_SPEED."
+  },
+  {
+    "index": 6,
+    "formula": "G(AUTO_mode ∧ ascending → (vertical_speed ≤ WPNAV_SPEED_UP))",
+    "explanation": "Globally, when in AUTO mode and ascending, the vertical speed is less than or equal to WPNAV_SPEED_UP."
+  },
+  {
+    "index": 7,
+    "formula": "G(AUTO_mode ∧ descending → (vertical_speed ≤ WPNAV_SPEED_DN))",
+    "explanation": "Globally, when in AUTO mode and descending, the vertical speed is less than or equal to WPNAV_SPEED_DN."
+  },
+  {
+    "index": 8,
+    "formula": "G(AUTO_mode ∧ waypoint_with_delay → ((waypoint_distance ≤ WPNAV_RADIUS) U waypoint_complete))",
+    "explanation": "Globally, when in AUTO mode and approaching a waypoint with a delay, the copter will stay within WPNAV_RADIUS of the waypoint until it's considered complete."
+  }
+]

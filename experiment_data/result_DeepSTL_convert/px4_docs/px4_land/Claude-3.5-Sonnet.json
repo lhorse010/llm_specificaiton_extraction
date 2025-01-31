@@ -1,0 +1,76 @@
+{
+    "temporal_logic_formulars": [
+        {
+            "section-id": 0,
+            "sentence-id": 0,
+            "sentence": "The _Land_ flight mode causes the vehicle to land at the position where the mode was engaged.",
+            "tl": "always ( _Land_flightc == sesvehiclelandl )"
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 1,
+            "sentence": "The vehicle will disarm shortly after landing (by default).",
+            "tl": "always ( vehicledisarmshor == rtlylanding )"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 0,
+            "sentence": "1.Mode is automatic - no user intervention is _required_ to control the vehicle.",
+            "tl": "always ( c1Modeautomatic == userintervntion_red_red_ == contr )"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 1,
+            "sentence": "2.Mode requires at least a valid local position estimate (does not require a global position).",
+            "tl": "always ( eModerquires >= avalilositiostinetmate < requirer ) -> not ( equirealoblosi == lpositiosioioion ) )"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 2,
+            "sentence": "Flying vehicles can't switch to this mode without valid local position.",
+            "tl": "always ( not ( lFyingvehiclescan == swilocal ) and valilpocalp == sitiositono )"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 3,
+            "sentence": "Flying vehicles will failsafe if they lose the position estimate.",
+            "tl": "always ( lFyingvehiclesfails == failetheylosepositiosepositio )"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 4,
+            "sentence": "3.Mode prevents arming (vehicle must be armed when switching to this mode).",
+            "tl": "always ( Modeprevntsarming > evhiclearmde == switchitching )"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 6,
+            "sentence": "5.RC stick movement in a multicopter (or VTOL in multicopter mode) will by default change the vehicle to Position mode unless handling a critical battery failsafe.",
+            "tl": "always ( RCstickmovemetn == amulticoper or rise ( VTOLmultefaulticle == Psoitinule ) -> rise ( ulonuleshadtnlica == gricatlicalerite ) )"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 7,
+            "sentence": "6.The mode can be triggered using the MAV_CMD_NAV_LAND MAVLink command, or by explicitly switching to Land mode.",
+            "tl": "always ( cantrigerdgedusing == MAV_CMD_NAV_L == NLxcomnd ) or byexplicitlyswitlin == ichingLatcithingLa )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 0,
+            "sentence": "The vehicle will land at the location at which the mode was engaged.",
+            "tl": "eventually ( vehicleland == locationd )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 1,
+            "sentence": "The vehicle descends at the rate specified in MPC_LAND_SPEED and will disarm after landing (by default).",
+            "tl": "always ( vehicledscends == ratespecified and ( MPC_LAND_SED == disarmlandingbydefaul ) )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 2,
+            "sentence": "RC stick movement will change the vehicle to Position mode (by default).",
+            "tl": "always ( rise ( RCstickmovement == vePositioioin > 6 and bydefaultn < bydefault ) )"
+        }
+    ]
+}

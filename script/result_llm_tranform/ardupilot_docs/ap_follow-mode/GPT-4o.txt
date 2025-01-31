@@ -1,0 +1,47 @@
+[
+  {
+    "sentence": "The vehicle lead vehicle's position must be published to the vehicle in Follow mode using a telemetry system.",
+    "formula": "G(F ∧ T → P)",
+    "explanation": "Here, F represents the vehicle being in Follow mode, T indicates the telemetry system is active, and P denotes the position being published. The formula ensures that whenever the vehicle is in Follow mode and telemetry is active, the position must be published."
+  },
+  {
+    "sentence": "The altitude is maintained with the altitude hold controller so the vehicle will attempt to hold its current altitude when the sticks are placed with 10% of mid-throttle.",
+    "formula": "G(S → A)",
+    "explanation": "S represents the sticks being within 10% of mid-throttle, and A indicates the altitude hold controller maintaining altitude. The formula states that when the sticks are correctly positioned, the vehicle should maintain altitude."
+  },
+  {
+    "sentence": "It will climb or descend at up to 2.5m/s (this speed is adjustable with the PILOT_SPEED_UP and PILOT_SPEED_DN parameters).",
+    "formula": "G((C ∨ D) → V ≤ 2.5)",
+    "explanation": "C and D represent climbing and descending actions, respectively, and V is the vertical speed. The formula ensures that during climbing or descending, the speed doesn't exceed 2.5 m/s."
+  },
+  {
+    "sentence": "1.FOLL_ENABLE : set to 1 to enable follow mode and refresh parameters",
+    "formula": "G(E → (F ∧ R))",
+    "explanation": "E is the condition where FOLL_ENABLE is set to 1, F indicates that Follow mode is enabled, and R represents the parameters being refreshed. The formula ensures that enabling Follow mode results in the activation of Follow mode and parameter refresh."
+  },
+  {
+    "sentence": "2.FOLL_SYSID : MAVLink system id of lead vehicle (\"0\" means follow the first vehicle \"seen\")",
+    "formula": "G(S → (L ∨ F))",
+    "explanation": "S indicates the setting of FOLL_SYSID, L represents following a specific lead vehicle, and F denotes following the first vehicle seen. The formula captures the condition of setting the system ID for following."
+  },
+  {
+    "sentence": "3.FOLL_DIST_MAX : if lead vehicle is more than this many meters away, give up on following and hold position",
+    "formula": "G(D > M → H)",
+    "explanation": "D is the distance to the lead vehicle, M is the maximum allowed distance, and H indicates holding position. The formula specifies that if the lead vehicle exceeds a certain distance, the vehicle should stop following and hold position."
+  },
+  {
+    "sentence": "5.FOLL_OFS_TYPE : set to 0 if offsets are North-East-Down, 1 if offsets are relative to lead vehicle's heading",
+    "formula": "G(O = 0 ↔ NED) ∧ G(O = 1 ↔ RH)",
+    "explanation": "O is the offset type, NED represents North-East-Down offsets, and RH indicates offsets relative to the lead vehicle's heading. The formula defines the correspondence between offset type settings and their meanings."
+  },
+  {
+    "sentence": "9.FOLL_OPTIONS: set bit 0 to \"1\" to enable the Gimbal / Mount Controls to follow the target vehicle.",
+    "formula": "G(B0 = 1 → G)",
+    "explanation": "B0 is bit 0 of FOLL_OPTIONS, and G represents enabling the Gimbal/Mount Controls. The formula states that setting bit 0 to 1 enables these controls."
+  },
+  {
+    "sentence": "When switched into Follow, the vehicle will attempt to follow another vehicle (or anything publishing its position) at a specified offset.",
+    "formula": "G(F → (A ∧ P))",
+    "explanation": "F indicates being switched into Follow mode, A represents the attempt to follow, and P denotes maintaining a specified offset. The formula ensures that entering Follow mode leads to following with the appropriate offset."
+  }
+]

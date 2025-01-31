@@ -1,0 +1,52 @@
+To extract specifications from the provided document and express them using Metric Temporal Logic (MTL), let's identify the key requirements and translate them into MTL formulas.
+
+### Extracted Specifications in MTL
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G (right_stick_centered → F[0,2] speed_brake_active)",
+            "explanation": "If the right stick is centered, a speed brake is activated, slowing the copter to a stop within two seconds."
+        },
+        {
+            "formula": "G (right_stick_forward ∨ right_stick_back → pitch_and_accelerate)",
+            "explanation": "Pushing the right stick forward or back causes the copter to pitch and accelerate in the appropriate direction."
+        },
+        {
+            "formula": "G (right_stick_side → (yaw_auto_applied ∧ roll_cancel_velocity))",
+            "explanation": "When the right stick is pushed to the side, yaw is automatically applied and roll is adjusted to cancel velocity in the roll axis, ensuring a coordinated turn."
+        },
+        {
+            "formula": "G (¬GPS_signal → (F[0,∞] (land ∨ altitude_hold)))",
+            "explanation": "If the GPS signal is lost, the copter will eventually land or enter altitude hold, depending on the failsafe settings."
+        },
+        {
+            "formula": "G (throttle_down → (motors_min_rate ∧ lose_attitude_control))",
+            "explanation": "If the throttle is completely down, the motors go to their minimum rate, causing the copter to lose attitude control and tumble."
+        }
+    ]
+}
+```
+
+### Explanation
+
+1. **Speed Brake Activation**:
+   - **MTL**: `G (right_stick_centered → F[0,2] speed_brake_active)`
+   - **Explanation**: When the right stick is centered, a speed brake is activated to stop the copter within two seconds.
+
+2. **Pitch and Acceleration**:
+   - **MTL**: `G (right_stick_forward ∨ right_stick_back → pitch_and_accelerate)`
+   - **Explanation**: Moving the right stick forward or backward causes the copter to pitch and accelerate accordingly.
+
+3. **Coordinated Turns**:
+   - **MTL**: `G (right_stick_side → (yaw_auto_applied ∧ roll_cancel_velocity))`
+   - **Explanation**: Pushing the right stick to the side results in automatic yaw application and roll adjustment for coordinated turns.
+
+4. **GPS Signal Loss**:
+   - **MTL**: `G (¬GPS_signal → (F[0,∞] (land ∨ altitude_hold)))`
+   - **Explanation**: Loss of GPS signal triggers either a landing or altitude hold, based on configuration.
+
+5. **Throttle Down Effect**:
+   - **MTL**: `G (throttle_down → (motors_min_rate ∧ lose_attitude_control))`
+   - **Explanation**: Setting the throttle to the minimum rate results in loss of attitude control, causing the copter to tumble.

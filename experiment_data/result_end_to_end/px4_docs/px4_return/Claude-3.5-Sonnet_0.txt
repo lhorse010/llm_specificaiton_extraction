@@ -1,0 +1,46 @@
+I'll extract the specifications from the document and express them using Metric Temporal Logic (MTL) formulas. Then, I'll format the converted sentences in JSON as requested.
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(ReturnMode → (GlobalPositionEstimate ∧ HomePositionSet))",
+            "explanation": "Globally, when in Return Mode, there must always be a global position estimate and a home position set."
+        },
+        {
+            "formula": "G(ReturnMode → ¬Arming)",
+            "explanation": "Globally, when in Return Mode, arming is not allowed. The vehicle must be armed before switching to this mode."
+        },
+        {
+            "formula": "G(ReturnMode ∧ LossOfPositionEstimate → Failsafe)",
+            "explanation": "Globally, when in Return Mode, if there's a loss of position estimate, the vehicle will enter a failsafe state."
+        },
+        {
+            "formula": "G(ReturnMode → F(Ascend U (Altitude ≥ min(InitialAltitude, RTL_RETURN_ALT))))",
+            "explanation": "Globally, when in Return Mode, the vehicle will eventually ascend until its altitude is greater than or equal to the minimum of its initial altitude and RTL_RETURN_ALT."
+        },
+        {
+            "formula": "G(ReturnMode ∧ (Altitude ≥ min(InitialAltitude, RTL_RETURN_ALT)) → F(FlyToSafeLandingPoint))",
+            "explanation": "Globally, when in Return Mode and at the correct altitude, the vehicle will eventually fly to the safe landing point."
+        },
+        {
+            "formula": "G(AtSafeLandingPoint → F(Descend U (Altitude = RTL_DESCEND_ALT)))",
+            "explanation": "Globally, when at the safe landing point, the vehicle will eventually descend until it reaches the RTL_DESCEND_ALT altitude."
+        },
+        {
+            "formula": "G(Altitude = RTL_DESCEND_ALT → F(Wait U (ElapsedTime = RTL_LAND_DELAY)))",
+            "explanation": "Globally, when at the RTL_DESCEND_ALT altitude, the vehicle will eventually wait until the RTL_LAND_DELAY time has elapsed."
+        },
+        {
+            "formula": "G((Altitude = RTL_DESCEND_ALT ∧ ElapsedTime = RTL_LAND_DELAY) → F(Land))",
+            "explanation": "Globally, when at the RTL_DESCEND_ALT altitude and after the RTL_LAND_DELAY time has elapsed, the vehicle will eventually land."
+        },
+        {
+            "formula": "G(ReturnMode ∧ RCStickMovement → X(PositionMode)) ∨ (ReturnMode ∧ CriticalBatteryFailsafe)",
+            "explanation": "Globally, when in Return Mode, RC stick movement will cause a transition to Position Mode in the next state, unless there's a critical battery failsafe."
+        }
+    ]
+}
+```
+
+These MTL formulas capture the key specifications for the Return Mode of the multicopter as described in the document. They cover the prerequisites for entering Return Mode, the sequence of actions during the return process, and the conditions for mode changes. The formulas use the temporal operators to express the timing and sequencing of events, and logical operators to combine conditions.

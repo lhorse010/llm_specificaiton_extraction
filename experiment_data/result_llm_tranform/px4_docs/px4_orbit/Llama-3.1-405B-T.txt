@@ -1,0 +1,72 @@
+[
+  {
+    "sentence": "2.Mode requires at least a valid local position estimate (does not require a global position).",
+    "formula": "G(V → L)",
+    "explanation": "Here, V represents the mode being enabled, and L represents a valid local position estimate. The formula states that globally, if the mode is enabled, then a valid local position estimate must exist."
+  },
+  {
+    "sentence": "Flying vehicles can't switch to this mode without valid local position.",
+    "formula": "G(¬L → ¬V)",
+    "explanation": "This formula states that globally, if a valid local position estimate does not exist, then the mode cannot be enabled."
+  },
+  {
+    "sentence": "Flying vehicles will failsafe if they lose the position estimate.",
+    "formula": "G(L ∧ X(¬L) → F)",
+    "explanation": "Here, F represents the failsafe mode. The formula states that globally, if a valid local position estimate exists and is lost in the next time step, then the failsafe mode will be enabled."
+  },
+  {
+    "sentence": "3.Mode prevents arming (vehicle must be armed when switching to this mode).",
+    "formula": "G(V → A)",
+    "explanation": "Here, A represents the vehicle being armed. The formula states that globally, if the mode is enabled, then the vehicle must be armed."
+  },
+  {
+    "sentence": "4.Mode requires wind and flight time are within allowed limits (specified via parameters).",
+    "formula": "G(V → (W ∧ T))",
+    "explanation": "Here, W represents the wind being within allowed limits, and T represents the flight time being within allowed limits. The formula states that globally, if the mode is enabled, then both wind and flight time must be within allowed limits."
+  },
+  {
+    "sentence": "5.This mode is currently only supported on multicopter (or VTOL in MC mode).",
+    "formula": "G(V → (M ∨ (V ∧ M)))",
+    "explanation": "Here, M represents the multicopter mode, and V represents the VTOL mode. The formula states that globally, if the mode is enabled, then either the multicopter mode or both VTOL and multicopter modes must be enabled."
+  },
+  {
+    "sentence": "_QGroundControl_ (or other compatible GCS or MAVLink API) is _required_ to enable the mode, and to set the center position, initial radius and altitude of the orbit.",
+    "formula": "G(Q → (V ∧ C ∧ R ∧ A))",
+    "explanation": "Here, Q represents QGroundControl being enabled, V represents the mode being enabled, C represents the center position being set, R represents the initial radius being set, and A represents the altitude being set. The formula states that globally, if QGroundControl is enabled, then the mode, center position, initial radius, and altitude must all be set."
+  },
+  {
+    "sentence": "Once enabled the vehicle will fly as fast as possible to the closest point on the commanded circle trajectory and do a slow (1m/s) clockwise orbit on the planned circle, facing the center.",
+    "formula": "G(V → (F ∧ O ∧ C))",
+    "explanation": "Here, F represents the vehicle flying as fast as possible to the closest point on the commanded circle trajectory, O represents the vehicle doing a slow clockwise orbit on the planned circle, and C represents the vehicle facing the center. The formula states that globally, if the mode is enabled, then the vehicle will fly to the closest point, do a slow orbit, and face the center."
+  },
+  {
+    "sentence": "Maximum velocity is 10m/s and further limited to keep the centripetal acceleration below 2m/s^2.",
+    "formula": "G(V → (L ∧ A))",
+    "explanation": "Here, L represents the velocity being limited to 10m/s, and A represents the centripetal acceleration being below 2m/s^2. The formula states that globally, if the mode is enabled, then both velocity and centripetal acceleration must be within allowed limits."
+  },
+  {
+    "sentence": "Minimum radius is 1m.",
+    "formula": "G(R → M)",
+    "explanation": "Here, R represents the radius being set, and M represents the minimum radius being 1m. The formula states that globally, if the radius is set, then it must be at least 1m."
+  },
+  {
+    "sentence": "Maximum radius is 100m.",
+    "formula": "G(R ≤ 100)",
+    "explanation": "Here, R represents the radius, and G ensures that the radius never exceeds 100m at any point in time."
+  },
+  {
+    "sentence": "1.Initial/default rotation is 1 m/s in a clockwise direction.",
+    "formula": "R = 1 ∧ D = clockwise",
+    "explanation": "Here, R represents the rotation speed, and D represents the direction. Since this is an initial condition, no temporal operator is needed. The formula simply states that the rotation speed is 1 m/s and the direction is clockwise."
+  },
+  {
+    "sentence": "2.The maximum acceleration is limited to 2 m/s^2, with priority on keeping the commanded circle trajectory rather than commanded ground speed (i.e. the vehicle will slow down in order to achieve the correct circle if the acceleration exceeds 2m/s^2).",
+    "formula": "G(A ≤ 2 → T)",
+    "explanation": "Here, A represents the acceleration, and T represents the condition of maintaining the commanded circle trajectory. The formula states that at all times, if the acceleration exceeds 2 m/s^2, then the vehicle will prioritize maintaining the trajectory over the ground speed."
+  },
+  {
+    "sentence": "1.MAV_CMD_DO_ORBIT - Start an orbit with specified center point, radius, direction, altitude, speed and yaw direction (vehicle defaults to facing centre of orbit).",
+    "formula": "X(O ∧ C ∧ R ∧ D ∧ A ∧ S ∧ Y)",
+    "explanation": "Here, O represents the orbit command, C represents the center point, R represents the radius, D represents the direction, A represents the altitude, S represents the speed, and Y represents the yaw direction. The formula states that at the next time step, the vehicle will start an orbit with the specified parameters."
+  }
+]

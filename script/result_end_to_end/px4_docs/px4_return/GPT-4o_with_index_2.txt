@@ -1,0 +1,42 @@
+[
+  {
+    "index": 0,
+    "formula": "G (armed → ¬switchToReturnMode)",
+    "explanation": "The vehicle must be armed before switching to Return Mode."
+  },
+  {
+    "index": 1,
+    "formula": "G (¬positionEstimate → failsafe)",
+    "explanation": "The vehicle will enter failsafe if it loses the global 3D position estimate."
+  },
+  {
+    "index": 2,
+    "formula": "G (armed ∧ globalPositionEstimate ∧ homePositionSet → F returnPathSafe)",
+    "explanation": "If the vehicle is armed, has a global position estimate, and the home position is set, it will eventually find a safe return path."
+  },
+  {
+    "index": 3,
+    "formula": "G (¬userIntervention → X automaticReturn)",
+    "explanation": "Return Mode is automatic, requiring no user intervention for control."
+  },
+  {
+    "index": 4,
+    "formula": "G (mode = return → F (altitude ≥ RTL_RETURN_ALT ∧ altitude ≥ initialAltitude))",
+    "explanation": "In Return Mode, the vehicle must eventually ascend to at least the RTL_RETURN_ALT or the initial altitude, whichever is higher."
+  },
+  {
+    "index": 5,
+    "formula": "G (returnModeActive → F (altitude = RTL_DESCEND_ALT ∧ wait = RTL_LAND_DELAY ∧ land))",
+    "explanation": "In Return Mode, the vehicle eventually descends to RTL_DESCEND_ALT, waits for RTL_LAND_DELAY, and lands."
+  },
+  {
+    "index": 6,
+    "formula": "G (returnModeTriggered ∧ closeToDestination → F (altitude ≥ coneIntersection ∨ altitude ≥ RTL_DESCEND_ALT))",
+    "explanation": "If Return Mode is triggered close to the destination, the vehicle's altitude must eventually be at least the intersection with the cone or RTL_DESCEND_ALT, whichever is higher."
+  },
+  {
+    "index": 7,
+    "formula": "G (modeChangeByRCSwitch → F newMode)",
+    "explanation": "RC control switches can be used to change flight modes, leading to a new mode eventually."
+  }
+]

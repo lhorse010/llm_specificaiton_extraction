@@ -1,0 +1,42 @@
+[
+  {
+    "index": 0,
+    "formula": "G (SmartRTL_Activated → F (SmartRTL_Deactivated: buffer full))",
+    "explanation": "If SmartRTL mode is activated, it will eventually be deactivated when the buffer is full."
+  },
+  {
+    "index": 1,
+    "formula": "G (¬Good_Position_Estimate ∧ Vehicle_Armed → X ¬SmartRTL_Activated)",
+    "explanation": "If the vehicle is armed without a good position estimate, SmartRTL will be disabled immediately."
+  },
+  {
+    "index": 2,
+    "formula": "G (SmartRTL_Activated → (Path_Simplified ∧ Path_Pruned))",
+    "explanation": "When SmartRTL is activated, the path must be simplified and pruned."
+  },
+  {
+    "index": 3,
+    "formula": "G (FS_GCS_ENABLE = 4 ∨ FS_THR_ENABLE = 4 → SmartRTL → RTL)",
+    "explanation": "If FS_GCS_ENABLE or FS_THR_ENABLE is set to 4, the vehicle will switch from SmartRTL to RTL under appropriate conditions."
+  },
+  {
+    "index": 4,
+    "formula": "G (FS_GCS_ENABLE = 5 ∨ FS_THR_ENABLE = 5 → SmartRTL → Land)",
+    "explanation": "If FS_GCS_ENABLE or FS_THR_ENABLE is set to 5, the vehicle will switch from SmartRTL to Land under appropriate conditions."
+  },
+  {
+    "index": 5,
+    "formula": "G (BATT_FS_CRT_ACT ∨ BATT_FS_LOW_ACT ∨ BATT2_FS_LOW_ACT ∨ BATT2_FS_CRT_ACT → F SmartRTL_Activated)",
+    "explanation": "Certain battery failsafes will eventually trigger SmartRTL activation."
+  },
+  {
+    "index": 6,
+    "formula": "G (SRTL_POINTS = 0 → ¬SmartRTL_Activated)",
+    "explanation": "If SRTL_POINTS is set to 0, SmartRTL cannot be activated."
+  },
+  {
+    "index": 7,
+    "formula": "G (SmartRTL_Activated ∧ SRTL_OPTIONS_bit2 = 1 → Ignore_Pilot_Yaw_Commands)",
+    "explanation": "If SmartRTL is activated and SRTL_OPTIONS bit 2 is set, pilot yaw commands are ignored."
+  }
+]

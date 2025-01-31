@@ -1,0 +1,42 @@
+[
+  {
+    "index": 0,
+    "formula": "G(¬armed → ¬orbit_mode)",
+    "explanation": "The vehicle must always be armed when switching to orbit mode. This is represented by globally, if the vehicle is not armed, then it's not in orbit mode."
+  },
+  {
+    "index": 1,
+    "formula": "G(orbit_mode → valid_local_position)",
+    "explanation": "Orbit mode always requires a valid local position estimate. This is represented by globally, if in orbit mode, then there must be a valid local position."
+  },
+  {
+    "index": 2,
+    "formula": "G(orbit_mode ∧ ¬valid_local_position → X(failsafe))",
+    "explanation": "If the vehicle loses position estimate while in orbit mode, it will enter failsafe in the next state. This is represented by globally, if in orbit mode and there's no valid local position, then in the next state, failsafe will be activated."
+  },
+  {
+    "index": 3,
+    "formula": "G(orbit_mode → wind_within_limits ∧ flight_time_within_limits)",
+    "explanation": "Orbit mode requires wind and flight time to be within allowed limits. This is represented by globally, if in orbit mode, then wind and flight time must be within their respective limits."
+  },
+  {
+    "index": 4,
+    "formula": "G(orbit_mode → (vehicle_type = multicopter ∨ (vehicle_type = VTOL ∧ VTOL_mode = MC)))",
+    "explanation": "Orbit mode is only supported on multicopter or VTOL in MC mode. This is represented by globally, if in orbit mode, then the vehicle type must be multicopter or VTOL in MC mode."
+  },
+  {
+    "index": 5,
+    "formula": "G(orbit_mode → F(on_circle_trajectory))",
+    "explanation": "Once in orbit mode, the vehicle will eventually reach the circle trajectory. This is represented by globally, if in orbit mode, then finally the vehicle will be on the circle trajectory."
+  },
+  {
+    "index": 6,
+    "formula": "G(orbit_mode → (orbit_speed ≤ 10 ∧ centripetal_acceleration ≤ 2))",
+    "explanation": "In orbit mode, the maximum velocity is 10m/s and centripetal acceleration is limited to 2m/s^2. This is represented by globally, if in orbit mode, then the orbit speed must be less than or equal to 10 and the centripetal acceleration must be less than or equal to 2."
+  },
+  {
+    "index": 7,
+    "formula": "G(orbit_mode → (orbit_radius ≥ 1 ∧ orbit_radius ≤ 100))",
+    "explanation": "In orbit mode, the orbit radius is constrained between 1m and 100m. This is represented by globally, if in orbit mode, then the orbit radius must be greater than or equal to 1 and less than or equal to 100."
+  }
+]

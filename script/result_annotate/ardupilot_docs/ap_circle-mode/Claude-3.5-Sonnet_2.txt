@@ -1,0 +1,108 @@
+Let's go through the steps to annotate the sentences as specifications based on the given criteria.
+
+Step 1: I have read the document thoroughly.
+
+Step 2 & 3: Let's analyze each sentence and determine if it should be annotated as a specification:
+
+Section 0:
+- Sentence 0: Expected state change - Annotate
+- Sentence 1: Expected state change - Annotate
+- Sentence 2: Expected state change - Annotate
+- Sentence 3: Constraint - Annotate
+- Sentence 4: Constraint - Annotate
+- Sentences 5-7: These describe methods to adjust settings, but don't directly fit the criteria - Do not annotate
+
+Section 1:
+- Sentences 0-1: These are informational and don't fit the criteria - Do not annotate
+
+Section 2:
+- Sentence 0: This is historical information - Do not annotate
+- Sentence 1: This introduces a parameter but doesn't specify behavior - Do not annotate
+- Sentence 2: This introduces a condition for the following specifications - Do not annotate
+- Sentences 3, 5, 7, 8: Expected state changes - Annotate
+- Sentences 4, 6: These are explanatory and don't fit the criteria - Do not annotate
+- Sentences 9-10: Expected state changes - Annotate
+- Sentences 11-15: These are informational and don't fit the criteria - Do not annotate
+- Sentence 16: Expected state change - Annotate
+- Sentence 17: Expected state change - Annotate
+- Sentence 18: Expected post-action - Annotate
+
+Section 3:
+- Sentence 0: Constraint - Annotate
+- Sentence 1: Expected state change and constraint - Annotate
+- Sentence 2: This is informational and doesn't fit the criteria - Do not annotate
+
+Step 4: Format the annotated sentences in JSON.
+
+```json
+{
+    "specifications": [
+        {
+            "section-id": 0,
+            "sentence-id": 0
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 1
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 2
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 3
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 4
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 3
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 5
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 7
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 8
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 9
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 10
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 16
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 17
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 18
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 0
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 1
+        }
+    ]
+}
+```
+
+This output follows the required format and includes all sentences that were determined to be specifications based on the given criteria.

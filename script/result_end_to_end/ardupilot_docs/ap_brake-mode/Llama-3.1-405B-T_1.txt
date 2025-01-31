@@ -1,0 +1,46 @@
+Based on the provided document, I've extracted the specifications that the vehicle needs to meet in Brake Mode and expressed them using Metric Temporal Logic (MTL) formulas.
+
+Here are the extracted specifications in JSON format:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(BrakeMode → ¬PilotInput)",
+            "explanation": "Once Brake Mode is invoked, the vehicle does not accept any input from the pilot."
+        },
+        {
+            "formula": "G(BrakeMode → GPSRequired)",
+            "explanation": "Brake Mode requires GPS to function."
+        },
+        {
+            "formula": "G(BrakeMode → (AccelerationLimit ∧ AngleLimit))",
+            "explanation": "Brake Mode is subject to acceleration and angle limits imposed by the position and attitude controllers."
+        },
+        {
+            "formula": "G(Landed ∧ BrakeMode → F(Disarmed))",
+            "explanation": "If the vehicle is landed in Brake Mode, it will immediately disarm."
+        },
+        {
+            "formula": "G(BrakeMode → ¬PilotControl)",
+            "explanation": "The pilot's controls are ignored in Brake Mode."
+        },
+        {
+            "formula": "G(BrakeMode → F(VehicleStopped))",
+            "explanation": "When switched on, Brake Mode will attempt to stop the vehicle as quickly as possible."
+        }
+    ]
+}
+```
+
+Note that I've used the following abbreviations in the MTL formulas:
+
+* `BrakeMode`: The vehicle is in Brake Mode.
+* `PilotInput`: The pilot is providing input to the vehicle.
+* `GPSRequired`: GPS is required for the vehicle to function.
+* `AccelerationLimit`: The vehicle's acceleration is within the allowed limits.
+* `AngleLimit`: The vehicle's angle is within the allowed limits.
+* `Landed`: The vehicle has landed.
+* `Disarmed`: The vehicle is disarmed.
+* `PilotControl`: The pilot has control of the vehicle.
+* `VehicleStopped`: The vehicle has stopped moving.

@@ -1,0 +1,46 @@
+Based on the provided document, I've extracted the specifications and expressed them using Metric Temporal Logic (MTL) formulas. Here are the results in the required JSON format:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(no_drivable_lane → F(stop_vehicle))",
+            "explanation": "Globally, if a no drivable lane is detected, the vehicle will eventually stop."
+        },
+        {
+            "formula": "G(no_drivable_lane ∧ distance_to_intersection > stop_margin → X(approaching_state))",
+            "explanation": "Globally, if a no drivable lane is detected and the distance to the intersection point is greater than the stop margin, the state will transition to approaching in the next time step."
+        },
+        {
+            "formula": "G(no_drivable_lane ∧ (distance_to_intersection ≤ stop_margin ∨ inside_no_drivable_lane) → X(inside_no_drivable_lane_state))",
+            "explanation": "Globally, if a no drivable lane is detected and the distance to the intersection point is less than or equal to the stop margin or the vehicle is already inside the no drivable lane, the state will transition to inside no drivable lane in the next time step."
+        },
+        {
+            "formula": "G(inside_no_drivable_lane_state → F(stopped_state))",
+            "explanation": "Globally, if the vehicle is inside a no drivable lane, it will eventually stop."
+        },
+        {
+            "formula": "G(stopped_state → G(¬autonomous_mode))",
+            "explanation": "Globally, if the vehicle is stopped due to a no drivable lane, autonomous mode will remain disabled."
+        },
+        {
+            "formula": "G(no_drivable_lane → F(takeover_request))",
+            "explanation": "Globally, if a no drivable lane is detected, a takeover request will eventually be sent to the human driver."
+        }
+    ]
+}
+```
+
+Note that I've used the following abbreviations in the MTL formulas:
+
+* `no_drivable_lane`: a no drivable lane is detected
+* `stop_vehicle`: the vehicle stops
+* `approaching_state`: the state transitions to approaching
+* `inside_no_drivable_lane_state`: the state transitions to inside no drivable lane
+* `stopped_state`: the vehicle is stopped
+* `autonomous_mode`: autonomous mode is enabled
+* `takeover_request`: a takeover request is sent to the human driver
+* `distance_to_intersection`: the distance from the front of the ego vehicle to the first intersection point between the ego path and the no drivable lane polygon
+* `stop_margin`: the configurable stop margin
+
+These specifications capture the key requirements of the No Drivable Lane module, including stopping the vehicle before entering a no drivable lane, transitioning to different states based on the distance to the intersection point, and sending a takeover request to the human driver.

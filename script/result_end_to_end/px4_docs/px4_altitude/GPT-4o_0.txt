@@ -1,0 +1,22 @@
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(centered_sticks → (level_vehicle ∧ hold_altitude))",
+            "explanation": "When the control sticks are centered, the vehicle should level and maintain its current altitude."
+        },
+        {
+            "formula": "G(throttle_above_62.5% → F(takeoff))",
+            "explanation": "If the throttle stick is raised above 62.5%, the vehicle should eventually take off."
+        },
+        {
+            "formula": "G(outside_center → control_movement)",
+            "explanation": "When the sticks are outside the center, they should control the vehicle's movement and tilt."
+        },
+        {
+            "formula": "G(barometer_inaccurate → F(use_LIDAR_for_altitude))",
+            "explanation": "If the barometer becomes inaccurate, the system should eventually use LIDAR to control altitude."
+        }
+    ]
+}
+```

@@ -1,0 +1,46 @@
+I'll extract the specifications from the document and express them using Metric Temporal Logic (MTL) formulas as requested. Then, I'll format the results in JSON.
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(LandMode → ¬RequireUserIntervention)",
+            "explanation": "Globally, when in Land Mode, user intervention is not required to control the vehicle."
+        },
+        {
+            "formula": "G(LandMode → ValidLocalPosition)",
+            "explanation": "Globally, Land Mode requires at least a valid local position estimate."
+        },
+        {
+            "formula": "G((Flying ∧ ¬ValidLocalPosition) → ¬LandMode)",
+            "explanation": "Globally, if the vehicle is flying and does not have a valid local position, it cannot switch to Land Mode."
+        },
+        {
+            "formula": "G((Flying ∧ LandMode ∧ X(¬ValidLocalPosition)) → X(Failsafe))",
+            "explanation": "Globally, if the vehicle is flying in Land Mode and loses the position estimate in the next state, it will enter failsafe in the next state."
+        },
+        {
+            "formula": "G(LandMode → Armed)",
+            "explanation": "Globally, Land Mode requires the vehicle to be armed when switching to this mode."
+        },
+        {
+            "formula": "G(RCStickMovement ∧ LandMode ∧ ¬CriticalBatteryFailsafe → X(PositionMode))",
+            "explanation": "Globally, RC stick movement in Land Mode, without a critical battery failsafe, will change the vehicle to Position Mode in the next state."
+        },
+        {
+            "formula": "G(LandMode → F(Disarm))",
+            "explanation": "Globally, when in Land Mode, the vehicle will eventually disarm after landing."
+        },
+        {
+            "formula": "G(LandMode → DescentRate = MPC_LAND_SPEED)",
+            "explanation": "Globally, in Land Mode, the vehicle descends at the rate specified by MPC_LAND_SPEED."
+        },
+        {
+            "formula": "G((MAV_CMD_NAV_LAND ∨ ExplicitLandModeSwitch) → X(LandMode))",
+            "explanation": "Globally, receiving a MAV_CMD_NAV_LAND command or explicitly switching to Land Mode will cause the vehicle to enter Land Mode in the next state."
+        }
+    ]
+}
+```
+
+These MTL formulas capture the key specifications of the Land Mode for multicopters as described in the document. They cover aspects such as mode requirements, behavior during flight, transitions between modes, and actions taken during landing. The formulas use the provided logical and temporal operators to express the specifications in a formal manner suitable for verification and analysis.

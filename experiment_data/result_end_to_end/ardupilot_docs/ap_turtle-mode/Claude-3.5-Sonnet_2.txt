@@ -1,0 +1,38 @@
+I'll extract the specifications from the document and express them using Metric Temporal Logic (MTL) formulas as requested. Then, I'll format the output in JSON.
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(¬throttle_zero → ¬turtle_mode_entry)",
+            "explanation": "Globally, if the throttle is not zero, then turtle mode cannot be entered. This corresponds to the specification 'Turtle mode cannot be entered unless throttle is zero'."
+        },
+        {
+            "formula": "G(turtle_mode_entry → (motors_disarmed ∧ notify_leds_flashing))",
+            "explanation": "Globally, when turtle mode is entered, the motors stay disarmed and the notify LEDs flash. This captures the specification 'Upon entry to turtle mode the motors stay disarmed, but the notify LEDs flash'."
+        },
+        {
+            "formula": "G(turtle_mode ∧ throttle_raised → motors_armed)",
+            "explanation": "Globally, in turtle mode, if the throttle is raised, then the motors arm. This corresponds to 'Raising the throttle, the motors arm'."
+        },
+        {
+            "formula": "G(turtle_mode ∧ throttle_zero → motors_disarmed)",
+            "explanation": "Globally, in turtle mode, if the throttle is lowered to zero, then the motors disarm. This captures 'Lowering throttle to zero disarms the motors'."
+        },
+        {
+            "formula": "G(turtle_mode → (motors_spin ↔ throttle_raised))",
+            "explanation": "Globally, in turtle mode, motors spin if and only if the throttle is raised. This corresponds to 'Motors spin only when throttle is raised'."
+        },
+        {
+            "formula": "G(turtle_mode ∧ stick_moved → F(motors_reversed ∧ motors_spinup))",
+            "explanation": "Globally, in turtle mode, if the stick is moved, then eventually the designated motors are reversed and spun up. This captures the behavior described for flipping the vehicle upright."
+        },
+        {
+            "formula": "G(dshot_capable_escs ∧ servo_dshot_esc_nonzero ∧ mot_pwm_type_dshot)",
+            "explanation": "Globally, DShot capable ESCs are required, SERVO_DSHOT_ESC must be set to a non-zero value, and MOT_PWM_TYPE must be set to a DSHOT value. This captures the hardware and configuration requirements for turtle mode."
+        }
+    ]
+}
+```
+
+These MTL formulas capture the key specifications of the Turtle Mode as described in the document. They formalize the conditions for entering the mode, the behavior of motors and LEDs, and the requirements for the mode to function properly.

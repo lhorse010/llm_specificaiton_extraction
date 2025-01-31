@@ -1,0 +1,37 @@
+[
+  {
+    "index": 0,
+    "formula": "G((ACRO ∨ STABILIZE) ∧ (idle_throttle) ∧ ¬airmode → ¬stabilization)",
+    "explanation": "Globally, when in ACRO or STABILIZE mode with idle throttle and Airmode is not active, stabilization is not applied."
+  },
+  {
+    "index": 1,
+    "formula": "G((ACRO ∨ STABILIZE) ∧ airmode → stabilization)",
+    "explanation": "Globally, when in ACRO or STABILIZE mode and Airmode is active, stabilization is always applied, even at idle throttle."
+  },
+  {
+    "index": 2,
+    "formula": "G(RC_OPTION_154 → airmode)",
+    "explanation": "Globally, if the RC option 154 (ARM/DISARM with Airmode) is used for arming, Airmode is active."
+  },
+  {
+    "index": 3,
+    "formula": "G(RC_OPTION_84 → F(airmode_toggle))",
+    "explanation": "Globally, if RC option 84 is set, it allows for enabling or disabling Airmode in ACRO and STABILIZE modes."
+  },
+  {
+    "index": 4,
+    "formula": "G(ACRO ∧ ACRO_OPTIONS_BIT0 ∧ ¬RC_OPTION_84_OFF → airmode)",
+    "explanation": "Globally, in ACRO mode, if bit 0 of ACRO_OPTIONS is set and RC option 84 is not used to disable it, Airmode is active."
+  },
+  {
+    "index": 5,
+    "formula": "G(TRADITIONAL_HELICOPTER → ¬airmode)",
+    "explanation": "Globally, Airmode has no effect in Traditional Helicopter mode."
+  },
+  {
+    "index": 6,
+    "formula": "G(rudder_arming → ¬airmode)",
+    "explanation": "Globally, if arming is done using the rudder stick method, Airmode is not active."
+  }
+]

@@ -1,0 +1,38 @@
+Based on the provided document, I've extracted the specifications and expressed them using Metric Temporal Logic (MTL) formulas. Here are the results in the required output format:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G((lane_id = intersection) → X activation)",
+            "explanation": "The blind spot module is activated when the lane ID of the target path has an intersection label."
+        },
+        {
+            "formula": "G((object ∈ detection_area ∧ object_path ∈ conflict_area) → X stop)",
+            "explanation": "The module transitions to the 'stop' state when an object is in the detection area and its predicted path is in the conflict area."
+        },
+        {
+            "formula": "G(pass_judge_line → ¬stop)",
+            "explanation": "The 'stop' judgment is not executed after the judgment line is passed to avoid rapid stops."
+        },
+        {
+            "formula": "G(stop → G¬go U (go ∧ G(go ≥ 2s)))",
+            "explanation": "Once a 'stop' is judged, the module will not transition to the 'go' state until the 'go' judgment continues for at least 2 seconds to prevent chattering."
+        },
+        {
+            "formula": "G((object ∈ detection_area ∧ object_path ∈ conflict_area) → G¬go U stop)",
+            "explanation": "When an object is in the detection area and its predicted path is in the conflict area, the module will not transition to the 'go' state until it has stopped."
+        }
+    ]
+}
+```
+
+Note that I've used the following abbreviations in the MTL formulas:
+
+* `lane_id = intersection` represents the condition that the lane ID of the target path has an intersection label.
+* `activation` represents the activation of the blind spot module.
+* `object ∈ detection_area` represents the condition that an object is in the detection area.
+* `object_path ∈ conflict_area` represents the condition that an object's predicted path is in the conflict area.
+* `pass_judge_line` represents the condition that the judgment line has been passed.
+* `stop` and `go` represent the 'stop' and 'go' states of the module, respectively.
+* `G` represents the globally operator, `X` represents the next operator, `U` represents the until operator, and `¬` represents negation.

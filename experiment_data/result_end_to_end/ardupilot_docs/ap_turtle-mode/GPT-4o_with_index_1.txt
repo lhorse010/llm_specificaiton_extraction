@@ -1,0 +1,27 @@
+[
+  {
+    "index": 0,
+    "formula": "G(throttle = 0 → ¬turtle_mode)",
+    "explanation": "Turtle mode cannot be entered unless the throttle is zero."
+  },
+  {
+    "index": 1,
+    "formula": "G(turtle_mode → F(notify_LEDs_flashed))",
+    "explanation": "Upon entry to turtle mode, the notify LEDs must flash."
+  },
+  {
+    "index": 2,
+    "formula": "G(throttle > 0 ∧ turtle_mode → motors_armed ∧ motors_spinning)",
+    "explanation": "Raising the throttle while in turtle mode arms the motors and causes them to spin."
+  },
+  {
+    "index": 3,
+    "formula": "G(throttle = 0 ∧ motors_spinning → ¬motors_armed)",
+    "explanation": "Lowering the throttle to zero disarms the motors."
+  },
+  {
+    "index": 4,
+    "formula": "G(turtle_mode → X(throttle > 0 → motors_spinning))",
+    "explanation": "Motors spin only when the throttle is raised in turtle mode."
+  }
+]

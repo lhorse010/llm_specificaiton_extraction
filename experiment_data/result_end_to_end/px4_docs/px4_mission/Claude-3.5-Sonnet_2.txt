@@ -1,0 +1,38 @@
+After analyzing the document, I've extracted the relevant specifications and expressed them using Metric Temporal Logic (MTL) formulas. Here's the output in the required JSON format:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(¬armed → ¬mission_mode)",
+            "explanation": "The vehicle must be armed before mission mode can be engaged. This is represented as: globally, if the vehicle is not armed, then it cannot be in mission mode."
+        },
+        {
+            "formula": "G(mission_mode → global_position_estimate)",
+            "explanation": "Mission mode requires a global 3D position estimate. This is expressed as: globally, if the vehicle is in mission mode, then it must have a global position estimate."
+        },
+        {
+            "formula": "G(mission_mode ∧ rc_stick_movement → X(position_mode))",
+            "explanation": "RC stick movement will change the vehicle to Position mode. This is represented as: globally, if the vehicle is in mission mode and there's RC stick movement, then in the next state, it will be in position mode."
+        },
+        {
+            "formula": "G(mission_complete ∧ flying → hold)",
+            "explanation": "If the mission is complete and the vehicle is flying, it will hold. This is expressed as: globally, if the mission is complete and the vehicle is flying, then it will hold its position."
+        },
+        {
+            "formula": "G(mission_mode ∧ landed ∧ ¬takeoff_item → F(altitude ≥ MIS_TAKEOFF_ALT))",
+            "explanation": "If a mission without a takeoff item is started while landed, the vehicle will ascend to the minimum takeoff altitude. This is represented as: globally, if in mission mode, landed, and there's no takeoff item, then eventually the altitude will be at least MIS_TAKEOFF_ALT."
+        },
+        {
+            "formula": "G(mission_paused ∧ camera_triggering → X(current_waypoint = previous_waypoint))",
+            "explanation": "When a mission with camera triggering is paused, the current waypoint is set to the previous one. This is expressed as: globally, if the mission is paused and camera triggering was active, then in the next state, the current waypoint will be set to the previous waypoint."
+        },
+        {
+            "formula": "G(mission_upload → mission_feasibility_check)",
+            "explanation": "A mission feasibility check is performed when a mission is uploaded. This is represented as: globally, if a mission is uploaded, then a mission feasibility check must be performed."
+        }
+    ]
+}
+```
+
+These MTL formulas capture the key specifications extracted from the document, focusing on clear and specific requirements for the vehicle's behavior in Mission Mode.

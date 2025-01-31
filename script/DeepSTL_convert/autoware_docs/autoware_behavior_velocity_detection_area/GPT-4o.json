@@ -1,0 +1,46 @@
+{
+    "temporal_logic_formulars": [
+        {
+            "section-id": 0,
+            "sentence-id": 0,
+            "sentence": "If pointcloud is detected in a detection area defined on a map, the stop planning will be executed at the predetermined point.",
+            "tl": "always ( pointcloud == adetectinedanedamap == amapstoplninexe )"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 0,
+            "sentence": "This module is activated when there is a detection area on the target lane.",
+            "tl": "always ( Thismodule == activated )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 0,
+            "sentence": "1.Gets a detection area and stop line from map information and confirms if there is pointcloud in the detection area",
+            "tl": "always ( etsadetectionar == area and stoplinma == oinformationcS ) and concoin == detrmintointr )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 1,
+            "sentence": "2.Inserts stop point l[m] in front of the stop line",
+            "tl": "always ( . 2 Insertstoplm >= 0 and Insertstopl <= frontstpline )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 3,
+            "sentence": "4.Sets velocity as zero behind the stop line when the ego-vehicle is in front of the pass judge point",
+            "tl": "always ( etsvelocity == zerobeindstopline )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 4,
+            "sentence": "5.If the ego vehicle has passed the pass judge point already, it doesn’t stop and pass through.",
+            "tl": "always ( egovehiclep == sasedpasjudgealreadlr ) and pastst == tsthrough )"
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 2,
+            "sentence": "If the vehicle is stopped within hold_stop_margin_distance meters from stop point of the module (\\_front_to_stop_line < hold_stop_margin_distance), the module judges that the vehicle has already stopped for the module's stop point and plans to keep stopping current position even if the vehicle is stopped due to other factors.",
+            "tl": "always ( evhiclestoped == stoped_stoped_stop_d_stargin_dstae == etancerste ) until ( not ( erstacersta == stmoderste_eta ) -> ( _frot_to_t_lineh == hlop_d_tstpo_dsed_ecinesa == ecedsahecedsledtase ) until ( esol"
+        }
+    ]
+}

@@ -1,0 +1,37 @@
+[
+  {
+    "index": 0,
+    "formula": "G(launch_out_of_lane_module → (out_of_lane_collision → F(stop_point_inserted)))",
+    "explanation": "If the out_of_lane module is activated and an out of lane collision is detected, then a stop point will be inserted in the future."
+  },
+  {
+    "index": 1,
+    "formula": "G(ego_trajectory_footprint → F(accurate_time_to_collision_calculated))",
+    "explanation": "If the ego trajectory footprint is projected, then the accurate time to collision will be calculated in the future."
+  },
+  {
+    "index": 2,
+    "formula": "G(predicted_object → (filtered_object → F(out_of_lane_area_calculated)))",
+    "explanation": "If a predicted object is filtered, then the out of lane area will be calculated in the future."
+  },
+  {
+    "index": 3,
+    "formula": "G(out_of_lane_area → (time_to_collision_calculated → F(collision_avoided)))",
+    "explanation": "If the out of lane area is calculated and the time to collision is calculated, then the collision will be avoided in the future."
+  },
+  {
+    "index": 4,
+    "formula": "G(collision_avoided → (stop_or_slowdown_point_calculated → F(ego_vehicle_stopped_or_slowed_down)))",
+    "explanation": "If a collision is avoided and a stop or slowdown point is calculated, then the ego vehicle will stop or slow down in the future."
+  },
+  {
+    "index": 5,
+    "formula": "G(ego_vehicle_stopped_or_slowed_down → F(min_duration_elapsed))",
+    "explanation": "If the ego vehicle stops or slows down, then the minimum duration will elapse in the future."
+  },
+  {
+    "index": 6,
+    "formula": "G(min_duration_elapsed → (no_out_of_lane_collision → F(stop_or_slowdown_pose_discarded)))",
+    "explanation": "If the minimum duration elapses and no out of lane collision is detected, then the stop or slowdown pose will be discarded in the future."
+  }
+]

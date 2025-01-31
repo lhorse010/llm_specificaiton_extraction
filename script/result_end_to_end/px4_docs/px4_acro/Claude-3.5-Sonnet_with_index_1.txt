@@ -1,0 +1,32 @@
+[
+  {
+    "index": 0,
+    "formula": "G(stick_centered → X(angular_rotation_rate = 0))",
+    "explanation": "Globally, if the control sticks are centered, then in the next state, the angular rotation rate around all axes should be zero."
+  },
+  {
+    "index": 1,
+    "formula": "G(¬stick_centered → angular_rotation_rate ≠ 0)",
+    "explanation": "Globally, if the control sticks are not centered, then the angular rotation rate should not be zero, indicating that the vehicle is rotating."
+  },
+  {
+    "index": 2,
+    "formula": "G(throttle_input = control_allocation_output)",
+    "explanation": "Globally, the throttle input should be directly passed to the control allocation output without modification."
+  },
+  {
+    "index": 3,
+    "formula": "G((roll_input ∨ pitch_input ∨ yaw_input) → F(orientation_change))",
+    "explanation": "Globally, if there's an input on roll, pitch, or yaw, then eventually there will be a change in orientation."
+  },
+  {
+    "index": 4,
+    "formula": "G(manual_control_input → (attitude_rate_stabilization ∧ direct_throttle_control))",
+    "explanation": "Globally, when manual control input is provided, the system should provide attitude rate stabilization and allow direct throttle control."
+  },
+  {
+    "index": 5,
+    "formula": "G(stick_input → F(rotation_rate_change))",
+    "explanation": "Globally, stick input should eventually lead to a change in rotation rate, with the magnitude of change corresponding to the stick position."
+  }
+]

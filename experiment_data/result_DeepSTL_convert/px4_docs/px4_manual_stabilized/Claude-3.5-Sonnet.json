@@ -1,0 +1,112 @@
+{
+    "temporal_logic_formulars": [
+        {
+            "section-id": 0,
+            "sentence-id": 0,
+            "sentence": "The _Stabilized_ manual mode stabilizes and levels the multicopter when the RC control sticks are centred.",
+            "tl": "always ( _Stabilized_manual == stalevlsmulticopter )"
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 2,
+            "sentence": "When sticks are outside the centre, the roll and pitch sticks control the _angle_ of the vehicle (attitude) around the respective axes, the yaw stick controls the rate of rotation above the horizontal plane, and the throttle controls altitude/speed.",
+            "tl": "always ( not ( stickstre == tretrlolit ) and not ( pichstcsiconl_anle_ == tre_ate_atloicle ) -> ( atronecdec == tesepaxesecosectrtatrolinoltater ) until [ 0 : 4 ltKs == toinlterterinltetolatepater )"
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 4,
+            "sentence": "The multicopter will level out and stop once the roll and pitch sticks are centered.",
+            "tl": "always ( not ( multicopterle == evel ) and stoprol == pitchsticksticksentered )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 1,
+            "sentence": "The pilot's inputs are passed as roll and pitch angle commands and a yaw rate command.",
+            "tl": "always ( not ( pilotsinputs == sedrolp ) and pitchanglecommands == ayawrtecomands )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 2,
+            "sentence": "Throttle is rescaled (see below) and passed directly to control allocation.",
+            "tl": "always ( ( Throtlerescaledese < e ) and paseddirectly == controlaloclatlon )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 3,
+            "sentence": "The autopilot controls the attitude, meaning it regulates the roll and pitch angles to zero when the RC sticks are centered inside the controller deadzone (consequently leveling-out the attitude).",
+            "tl": "always ( rise ( autopilotcontSl == titeatiueatingitre ) and laes == erolchangleser )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 6,
+            "sentence": "Roll/Pitch sticks level vehicle.",
+            "tl": "always ( RollPitchsticksle == levlehicle )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 8,
+            "sentence": "Roll/Pitch sticks control tilt angle in those orientations, resulting in corresponding left-right and forward-back movement.",
+            "tl": "always ( fall ( RolPitchstickstc == solitrolitanglet ) and tSing == coresresulting )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 9,
+            "sentence": "Throttle stick controls up/down speed (and movement speed in other axes).",
+            "tl": "always ( hrotlestickcontr == lsupspeped and ( movementsped == otheraxesed ) )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 10,
+            "sentence": "Yaw stick controls rate of angular rotation above the horizontal plane.",
+            "tl": "always ( aYwstickcontrolr == srateangulrotationo )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 11,
+            "sentence": "3.Manual control input is required (such as RC control, joystick).",
+            "tl": "always ( Manualcontrolinputr == trequiedsuchRCcontroljoystick )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 12,
+            "sentence": "Roll, Pitch: Assistance from autopilot to stabilize the attitude.",
+            "tl": "always ( RollPitch == sistanceautopilo == sta or tabilizeatlizetizet == atitittitude )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 13,
+            "sentence": "Position of RC stick maps to the orientation of vehicle.",
+            "tl": "always ( PositionRCstickmaps == orientatintoinvehicle )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 14,
+            "sentence": "Throttle: Manual control via RC sticks.",
+            "tl": "always ( ThrotleM == Manualonuacolntr == lviaRCsticks )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 15,
+            "sentence": "RC input is sent directly to control allocation.",
+            "tl": "always ( RCinputsentdirectly == controlallllocation )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 16,
+            "sentence": "Yaw: Assistance from autopilot to stabilize the attitude rate.",
+            "tl": "always ( awsistance == autopilot )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 17,
+            "sentence": "Position of RC stick maps to the rate of rotation of vehicle in that orientation.",
+            "tl": "always ( PositionRCstickmaps == raterotationvehicle = ore -> oreicle == orienvtntatilonlion )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 0,
+            "sentence": "RC mode where centered sticks level vehicle.",
+            "tl": "always ( eCwherecntereds == dstickslevlevlevhicle )"
+        }
+    ]
+}

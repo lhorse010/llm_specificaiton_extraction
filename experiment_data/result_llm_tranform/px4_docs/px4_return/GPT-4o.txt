@@ -1,0 +1,92 @@
+[
+  {
+    "sentence": "In this return type vehicles ascend to a safe altitude above obstructions if needed, fly directly to the closest safe landing point (a rally point or the home position), descend to the \"descent altitude\", wait briefly, and then land.",
+    "formula": "F(A ∧ F(B ∧ F(C ∧ F(D ∧ E))))",
+    "explanation": "A represents ascending to a safe altitude, B is flying to the closest landing point, C is descending to the descent altitude, D is waiting briefly, and E is landing. The formula captures the sequential nature of the actions."
+  },
+  {
+    "sentence": "Mode requires a global 3d position estimate (from GPS or inferred from a local position).",
+    "formula": "G(P)",
+    "explanation": "P represents the availability of a global 3D position estimate. The formula ensures this requirement is always met."
+  },
+  {
+    "sentence": "Flying vehicles can't switch to this mode without global position.",
+    "formula": "¬P → ¬Q",
+    "explanation": "P represents having a global position, and Q represents switching to the mode. The implication describes that without P, Q cannot happen."
+  },
+  {
+    "sentence": "Flying vehicles will failsafe if they lose the position estimate.",
+    "formula": "¬P → F",
+    "explanation": "P represents maintaining the position estimate, and F represents triggering failsafe. Losing the estimate (¬P) leads to a failsafe action."
+  },
+  {
+    "sentence": "Mode requires home position is set.",
+    "formula": "G(H)",
+    "explanation": "H represents the home position being set. The formula ensures this condition is always satisfied for the mode."
+  },
+  {
+    "sentence": "Ascends to the minimum return altitude (safely above any expected obstacles).",
+    "formula": "F(M)",
+    "explanation": "M represents reaching the minimum return altitude. The formula indicates that this condition will eventually be met."
+  },
+  {
+    "sentence": "The vehicle maintains its initial altitude if that is higher than the minimum return altitude.",
+    "formula": "(I ∧ I > M) → G(I)",
+    "explanation": "I represents the initial altitude, and M is the minimum return altitude. If I is greater, then the vehicle maintains I globally."
+  },
+  {
+    "sentence": "Flies via a direct constant-altitude path to the safe landing point, which will be the nearest of any rally points and the home position.",
+    "formula": "F(D ∧ C)",
+    "explanation": "D represents flying directly, and C indicates reaching the safe landing point. The formula captures the eventual completion of this path."
+  },
+  {
+    "sentence": "On arrival at its destination, it rapidly descends to the \"descent altitude\" (RTL_DESCEND_ALT).",
+    "formula": "F(A ∧ D)",
+    "explanation": "A represents arrival at the destination, and D is descending to the descent altitude. The formula indicates this sequence will eventually occur."
+  },
+  {
+    "sentence": "It waits for a configurable time (RTL_LAND_DELAY), which may be used for deploying landing gear.",
+    "formula": "F(W ∧ L)",
+    "explanation": "W represents the waiting period, and L is landing gear deployment. The formula describes the eventual occurrence of this phase."
+  },
+  {
+    "sentence": "5.Then lands.",
+    "formula": "F(L)",
+    "explanation": "The formula indicates that eventually, the system will reach a state where it lands, represented by L."
+  },
+  {
+    "sentence": "By default the _minimum return altitude_ is set using RTL_RETURN_ALT, and the vehicle will just return at the higher of RTL_RETURN_ALT or the initial vehicle altitude.",
+    "formula": "G((R ∧ (A = max(RTL_RETURN_ALT, I))) → P)",
+    "explanation": "This represents that globally, if the return condition R is true and the altitude A is set to the maximum of RTL_RETURN_ALT or the initial altitude I, then the vehicle returns, denoted by P."
+  },
+  {
+    "sentence": "Inside the code the minimum return altitude is the intersection of the vehicle position with the cone, or RTL_DESCEND_ALT (whichever is higher).",
+    "formula": "G((M = max(C ∩ V, RTL_DESCEND_ALT)) → Q)",
+    "explanation": "Globally, if the minimum altitude M is set to the maximum of the intersection of the cone C and vehicle position V or RTL_DESCEND_ALT, then a certain condition Q holds."
+  },
+  {
+    "sentence": "In other words, the vehicle must always ascend to at least RTL_DESCEND_ALT if below that value.",
+    "formula": "G((A < RTL_DESCEND_ALT) → F(A ≥ RTL_DESCEND_ALT))",
+    "explanation": "This states that globally, if the altitude A is below RTL_DESCEND_ALT, then eventually the vehicle will ascend to at least RTL_DESCEND_ALT."
+  },
+  {
+    "sentence": "The cone affects the minimum return altitude if return mode is triggered within the cylinder defined by the maximum cone radius and RTL_RETURN_ALT: outside this cylinder RTL_RETURN_ALT is used.",
+    "formula": "G((R ∧ (P ∈ C)) → (A = C) ∧ (¬(P ∈ C) → (A = RTL_RETURN_ALT)))",
+    "explanation": "Globally, if the return mode R is triggered and position P is within the cylinder C, the altitude A is set by the cone. Otherwise, A defaults to RTL_RETURN_ALT."
+  },
+  {
+    "sentence": "4.Mode prevents arming (vehicle must be armed when switching to this mode).",
+    "formula": "G((¬A ∧ M) → ¬S)",
+    "explanation": "Globally, if the vehicle is not armed (¬A) and a certain mode M is active, then switching S cannot occur."
+  },
+  {
+    "sentence": "The minimum return altitude can be further configured using RTL_CONE_ANG, which together with RTL_RETURN_ALT defines a half cone centered around the destination landing point.",
+    "formula": "G((C = f(RTL_CONE_ANG, RTL_RETURN_ALT)) → D)",
+    "explanation": "Globally, the configuration of the cone C is defined by RTL_CONE_ANG and RTL_RETURN_ALT, affecting the destination D."
+  },
+  {
+    "sentence": "The cone angle allows a lower minimum return altitude when the return mode is executed close to the destination.",
+    "formula": "G((R ∧ (D ∈ C)) → (A < RTL_RETURN_ALT))",
+    "explanation": "Globally, if return mode R is active and the destination D is within the cone C, then the altitude A can be lower than RTL_RETURN_ALT."
+  }
+]

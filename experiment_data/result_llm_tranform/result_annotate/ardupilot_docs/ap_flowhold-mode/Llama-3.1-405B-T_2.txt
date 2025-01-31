@@ -1,0 +1,50 @@
+Based on the provided document, I will annotate the sentences as specifications if they convey the following information:
+
+1. Requirements the system must meet for state transition.
+2. Constraints the system must adhere to.
+3. Expected post-actions the system will execute when entering a particular state.
+4. Expected state changes the system will carry out in response to specific commands or settings.
+
+Here are the annotated sentences in JSON format:
+
+```json
+{
+    "specifications": [
+        {
+            "section-id": 0,
+            "sentence-id": 3
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 7
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 8
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 9
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 10
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 11
+        },
+        {
+            "section-id": 0,
+            "sentence-id": 12
+        }
+    ]
+}
+```
+
+Explanation:
+
+* Sentence 3 in Section 0 describes an expected post-action when the user releases the sticks.
+* Sentences 7-12 in Section 0 describe parameters that can be used to tune FlowHold's performance, which are constraints the system must adhere to.
+
+The other sentences do not convey information about state transition requirements, constraints, expected post-actions, or expected state changes, so they are not annotated as specifications.

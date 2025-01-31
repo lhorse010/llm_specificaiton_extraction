@@ -1,0 +1,47 @@
+[
+  {
+    "index": 0,
+    "formula": "G(¬power → F(autorotation_mode))",
+    "explanation": "Globally, if there's a loss of power, the helicopter should eventually enter autorotation mode."
+  },
+  {
+    "index": 1,
+    "formula": "G(autorotation_mode → F(entry_phase ∧ X(glide_phase ∧ X(flare_phase ∧ X(touch_down_phase)))))",
+    "explanation": "Globally, when in autorotation mode, the helicopter should follow the sequence of entry phase, then glide phase, then flare phase, and finally touch-down phase."
+  },
+  {
+    "index": 2,
+    "formula": "G(entry_phase → (minimize_head_speed_loss ∧ manage_attitude))",
+    "explanation": "Globally, during the entry phase, the helicopter should minimize head speed loss and manage attitude."
+  },
+  {
+    "index": 3,
+    "formula": "G(glide_phase → (manage_head_speed ∧ manage_airspeed))",
+    "explanation": "Globally, during the glide phase, the helicopter should manage head speed and airspeed."
+  },
+  {
+    "index": 4,
+    "formula": "G(flare_phase → (reduce_descent_speed ∧ convert_airspeed_to_lift))",
+    "explanation": "Globally, during the flare phase, the helicopter should reduce descent speed and convert airspeed into lift."
+  },
+  {
+    "index": 5,
+    "formula": "G(touch_down_phase → (use_remaining_energy ∧ maintain_landing_attitude))",
+    "explanation": "Globally, during the touch-down phase, the helicopter should use remaining energy and maintain a landing attitude."
+  },
+  {
+    "index": 6,
+    "formula": "G(autorotation_mode ∧ power_restored → F(bail_out_phase))",
+    "explanation": "Globally, if in autorotation mode and power is restored, the helicopter should eventually enter the bail-out phase."
+  },
+  {
+    "index": 7,
+    "formula": "G(¬manual_collective_mode ∧ interlock_disengaged → autorotation_mode)",
+    "explanation": "Globally, if not in manual collective mode and the interlock is disengaged, the helicopter should enter autorotation mode."
+  },
+  {
+    "index": 8,
+    "formula": "G(bail_out_phase → F(¬autorotation_mode))",
+    "explanation": "Globally, after the bail-out phase, the helicopter should eventually exit autorotation mode."
+  }
+]

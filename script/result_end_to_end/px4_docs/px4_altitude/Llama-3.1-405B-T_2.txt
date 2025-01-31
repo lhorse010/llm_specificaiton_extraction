@@ -1,0 +1,61 @@
+Based on the provided document, I've extracted the specifications and expressed them using Metric Temporal Logic (MTL) formulas. Here are the results in the required JSON format:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G((centered_sticks) → (vehicle_level ∧ altitude_steady))",
+            "explanation": "When the sticks are centered, the vehicle will level and maintain the current altitude."
+        },
+        {
+            "formula": "G((outside_center ∧ roll_pitch_sticks) → (tilt_angle_control ∧ movement))",
+            "explanation": "When the sticks are outside the center, the roll/pitch sticks control the tilt angle, resulting in corresponding left-right and forward-back movement."
+        },
+        {
+            "formula": "G((outside_center ∧ throttle_stick) → (up_down_speed_control ∧ movement_speed_control))",
+            "explanation": "When the sticks are outside the center, the throttle stick controls the up/down speed with a predetermined maximum rate and movement speed in other axes."
+        },
+        {
+            "formula": "G((outside_center ∧ yaw_stick) → (angular_rotation_rate_control))",
+            "explanation": "When the sticks are outside the center, the yaw stick controls the rate of angular rotation above the horizontal plane."
+        },
+        {
+            "formula": "G((throttle_stick > 62.5%) → F(takeoff))",
+            "explanation": "When the throttle stick is raised above 62.5%, the vehicle will take off."
+        },
+        {
+            "formula": "G((wind) → F(vehicle_drift))",
+            "explanation": "If the wind blows, the aircraft will drift in the direction of the wind."
+        },
+        {
+            "formula": "G((centered_sticks ∧ wind) → (vehicle_altitude_steady))",
+            "explanation": "When the sticks are centered and there is wind, the vehicle will maintain its altitude steady against the wind."
+        },
+        {
+            "formula": "G((manual_control_input) → (autopilot_assistance))",
+            "explanation": "Manual control input is required, and the autopilot provides assistance to stabilize the attitude, hold position against wind, and stabilize the attitude rate."
+        }
+    ]
+}
+```
+
+Note that I've used the following abbreviations in the MTL formulas:
+
+* `centered_sticks`: The sticks are centered (inside the deadband).
+* `outside_center`: The sticks are outside the center (outside the deadband).
+* `roll_pitch_sticks`: The roll/pitch sticks are being used.
+* `throttle_stick`: The throttle stick is being used.
+* `yaw_stick`: The yaw stick is being used.
+* `vehicle_level`: The vehicle is level.
+* `altitude_steady`: The vehicle's altitude is steady.
+* `tilt_angle_control`: The tilt angle is being controlled.
+* `movement`: The vehicle is moving.
+* `up_down_speed_control`: The up/down speed is being controlled.
+* `movement_speed_control`: The movement speed is being controlled.
+* `angular_rotation_rate_control`: The angular rotation rate is being controlled.
+* `takeoff`: The vehicle is taking off.
+* `wind`: There is wind.
+* `vehicle_drift`: The vehicle is drifting.
+* `vehicle_altitude_steady`: The vehicle's altitude is steady against the wind.
+* `manual_control_input`: Manual control input is being provided.
+* `autopilot_assistance`: The autopilot is providing assistance.

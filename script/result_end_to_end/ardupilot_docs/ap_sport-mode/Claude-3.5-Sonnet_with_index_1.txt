@@ -1,0 +1,27 @@
+[
+  {
+    "index": 0,
+    "formula": "G(roll_angle ≤ 45 ∧ roll_angle ≥ -45)",
+    "explanation": "The vehicle will not lean more than 45 degrees in roll. This is expressed as 'Globally, the roll angle is less than or equal to 45 degrees and greater than or equal to -45 degrees.'"
+  },
+  {
+    "index": 1,
+    "formula": "G(pitch_angle ≤ 45 ∧ pitch_angle ≥ -45)",
+    "explanation": "The vehicle will not lean more than 45 degrees in pitch. This is expressed as 'Globally, the pitch angle is less than or equal to 45 degrees and greater than or equal to -45 degrees.'"
+  },
+  {
+    "index": 2,
+    "formula": "G((|throttle - mid_throttle| < 10%) → X(altitude = current_altitude))",
+    "explanation": "When the throttle is within 10% of mid-throttle, the vehicle will attempt to hold its current altitude. This is expressed as 'Globally, if the absolute difference between throttle and mid-throttle is less than 10%, then in the next state, the altitude will be equal to the current altitude.'"
+  },
+  {
+    "index": 3,
+    "formula": "G(vertical_speed ≤ 2.5 ∧ vertical_speed ≥ -2.5)",
+    "explanation": "The vehicle will climb or descend at up to 2.5m/s. This is expressed as 'Globally, the vertical speed is less than or equal to 2.5 m/s and greater than or equal to -2.5 m/s.'"
+  },
+  {
+    "index": 4,
+    "formula": "G((stick_released) → X(attitude = current_attitude))",
+    "explanation": "When the sticks are released, the vehicle will remain in its current attitude. This is expressed as 'Globally, if the stick is released, then in the next state, the attitude will be equal to the current attitude.'"
+  }
+]

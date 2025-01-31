@@ -1,0 +1,38 @@
+I'll go through the steps to extract specifications from the document and express them using Metric Temporal Logic (MTL) formulas.
+
+Step 1: Read the document thoroughly.
+I have read and understood the document about Sport Mode in the given context.
+
+Step 4: Extract specifications and express them using metric temporal logic formula.
+Step 5: Format all the converted sentences in JSON.
+
+Here's the output in the required JSON format:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(roll_angle ≤ 45° ∧ pitch_angle ≤ 45°)",
+            "explanation": "The vehicle will not lean more than 45 degrees in roll or pitch at any time. This is expressed using the 'globally' operator to ensure it holds for all time."
+        },
+        {
+            "formula": "G((|throttle - mid_throttle| < 10%) → F[0,ε](|altitude - current_altitude| < δ))",
+            "explanation": "When the throttle is within 10% of mid-throttle, the vehicle will attempt to hold its current altitude within a small tolerance δ within a short time ε. This uses the 'globally' operator to apply at all times, and the 'finally' operator with a time bound to represent the quick response."
+        },
+        {
+            "formula": "G(climb_rate ≤ 2.5 m/s ∧ descent_rate ≤ 2.5 m/s)",
+            "explanation": "The vehicle will climb or descend at a rate of up to 2.5 m/s at all times. This is expressed using the 'globally' operator to ensure it holds continuously."
+        },
+        {
+            "formula": "G((stick_released) → X(attitude = current_attitude))",
+            "explanation": "When the sticks are released, the vehicle will maintain its current attitude in the next state. This uses the 'globally' and 'next' operators to represent the immediate response to stick release."
+        },
+        {
+            "formula": "G((stick_input ≠ 0) → (dθ/dt = f(stick_input)))",
+            "explanation": "When there is stick input, the rate of rotation (dθ/dt) of the vehicle is a function of the stick input. This holds globally for roll, pitch, and yaw."
+        }
+    ]
+}
+```
+
+These MTL formulas capture the key specifications from the document, focusing on the clear and specific requirements for the Sport Mode. The formulas describe the behavior of the vehicle in terms of its attitude limits, altitude hold capabilities, climb and descent rates, and response to pilot inputs.

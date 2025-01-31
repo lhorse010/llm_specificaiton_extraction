@@ -1,0 +1,52 @@
+[
+  {
+    "sentence": "The roll, pitch and yaw sticks control the rate of angular rotation around the respective axes and throttle is passed directly to control allocation.",
+    "formula": "G((R ∧ P ∧ Y) → C) ∧ G(T → A)",
+    "explanation": "R, P, Y represent roll, pitch, and yaw stick inputs respectively, C represents the control of angular rotation rates, T represents throttle input, and A represents direct control allocation. The formula states that at all times, stick inputs control rotation rates, and throttle directly affects control allocation."
+  },
+  {
+    "sentence": "When sticks are centered the vehicle will stop rotating, but remain in its current orientation (on its side, inverted, or whatever) and moving according to its current momentum.",
+    "formula": "G((S → X(¬R ∧ O ∧ M))",
+    "explanation": "S represents centered sticks, R represents rotation, O represents maintaining current orientation, and M represents moving with current momentum. The formula specifies that whenever sticks are centered, in the next state, rotation stops while orientation and momentum are maintained."
+  },
+  {
+    "sentence": "RC Roll/Pitch/Yaw (RPY) stick inputs control the rate of angular rotation around the respective axes.",
+    "formula": "G((I → C)",
+    "explanation": "I represents RPY stick inputs, and C represents control of angular rotation rates. This formula simplifies the previous one, focusing on the general relationship between inputs and rotation control."
+  },
+  {
+    "sentence": "Throttle is passed directly to control allocation.",
+    "formula": "G(T → A)",
+    "explanation": "T represents throttle input, and A represents control allocation. This formula is identical to the throttle part of the first sentence, emphasizing the direct relationship between throttle and control allocation."
+  },
+  {
+    "sentence": "When sticks are centered the vehicle will stop rotating, but remain in its current orientation (not necessarily level) and moving according to its current momentum.",
+    "formula": "G((S → X(¬R ∧ O ∧ M))",
+    "explanation": "This formula is identical to the second sentence, as the core behavior described is the same. S, R, O, and M retain their previous meanings."
+  },
+  {
+    "sentence": "1.Roll, Pitch, Yaw: Assistance from autopilot to stabilize the attitude rate.",
+    "formula": "G((R ∨ P ∨ Y) → F(S))",
+    "explanation": "R, P, Y represent roll, pitch, and yaw inputs, while S represents stabilized attitude rate. The formula indicates that for any RPY input, the system will eventually stabilize the attitude rate with autopilot assistance."
+  },
+  {
+    "sentence": "Position of RC stick maps to the rate of rotation of vehicle in that orientation.",
+    "formula": "G(P ↔ R)",
+    "explanation": "P represents stick position, and R represents rotation rate. The bi-implication (↔) shows the direct mapping between stick position and rotation rate at all times."
+  },
+  {
+    "sentence": "2.Throttle: Manual control via RC sticks.",
+    "formula": "G(T → M)",
+    "explanation": "T represents throttle input, and M represents manual control. This formula emphasizes that throttle is always under manual control via RC sticks."
+  },
+  {
+    "sentence": "RC input is sent directly to control allocation.",
+    "formula": "G(I → A)",
+    "explanation": "I represents RC input, and A represents control allocation. This formula generalizes the direct relationship between all RC inputs and control allocation."
+  },
+  {
+    "sentence": "This roll and pitch input stick response can be tuned using the MC_ACRO_EXPO and MC_ACRO_SUPEXPO \"exponential\" parameters, while the yaw stick input response is tuned using MC_ACRO_EXPO_Y and MC_ACRO_SUPEXPOY.",
+    "formula": "G((R ∨ P) → F(T1)) ∧ G(Y → F(T2))",
+    "explanation": "R, P, Y represent roll, pitch, and yaw inputs respectively. T1 represents tuning with MC_ACRO_EXPO and MC_ACRO_SUPEXPO, while T2 represents tuning with MC_ACRO_EXPO_Y and MC_ACRO_SUPEXPOY. The formula indicates that roll and pitch inputs can lead to one type of tuning, while yaw inputs lead to another type of tuning."
+  }
+]

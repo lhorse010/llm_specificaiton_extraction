@@ -1,0 +1,40 @@
+Here's a JSON representation of the specifications extracted from the document, expressed in Metric Temporal Logic (MTL):
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G (Follow_Mode_Enabled → FOLL_ENABLE = 1)",
+            "explanation": "Globally, if the Follow mode is enabled, then the FOLL_ENABLE parameter must be set to 1."
+        },
+        {
+            "formula": "G (¬(Distance_Lead_Vehicle > FOLL_DIST_MAX) U Hold_Position)",
+            "explanation": "Globally, the vehicle should hold its position until the lead vehicle is more than FOLL_DIST_MAX meters away."
+        },
+        {
+            "formula": "G (Sticks_Within_10%_Mid_Throttle → Altitude_Hold_Controller_Active)",
+            "explanation": "Globally, if the sticks are within 10% of mid-throttle, the altitude hold controller should be active."
+        },
+        {
+            "formula": "G (Speed_Up ≤ 2.5 ∧ Speed_Down ≤ 2.5)",
+            "explanation": "Globally, the vehicle's climb or descent speed should not exceed 2.5 m/s."
+        },
+        {
+            "formula": "G (Follow_Mode_Enabled → F (FOLL_SYSID = 0 → Follow_First_Seen_Vehicle))",
+            "explanation": "Globally, if Follow mode is enabled, eventually, if FOLL_SYSID is 0, the vehicle should follow the first seen vehicle."
+        },
+        {
+            "formula": "G (FOLL_OFS_TYPE = 0 → Offsets_NE_D) ∧ G (FOLL_OFS_TYPE = 1 → Offsets_Relative_Heading)",
+            "explanation": "Globally, if FOLL_OFS_TYPE is 0, offsets should be North-East-Down; if 1, offsets should be relative to the lead vehicle's heading."
+        },
+        {
+            "formula": "G (FOLL_YAW_BEHAVE = 1 → Follow_Direction_Lead) ∧ G (FOLL_YAW_BEHAVE = 0 → Always_Towards_Lead)",
+            "explanation": "Globally, if FOLL_YAW_BEHAVE is 1, follow the direction of the lead vehicle; if 0, always point towards it."
+        },
+        {
+            "formula": "G (Follow_Mode_Enabled → Gimbal_Follows_Target ↔ FOLL_OPTIONS & 1 = 1)",
+            "explanation": "Globally, if Follow mode is enabled, the gimbal should follow the target if the first bit of FOLL_OPTIONS is set."
+        }
+    ]
+}
+```

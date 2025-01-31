@@ -1,0 +1,46 @@
+Based on the provided document, I've extracted the specifications and expressed them using Metric Temporal Logic (MTL) formulas. Here are the results in the required JSON format:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(no_drivable_lane → F(stop_vehicle))",
+            "explanation": "Globally, if a no drivable lane is detected, the vehicle will eventually stop."
+        },
+        {
+            "formula": "G(no_drivable_lane ∧ distance_to_intersection > stop_margin → X(approaching_state))",
+            "explanation": "Globally, if a no drivable lane is detected and the distance to the intersection is greater than the stop margin, the state will transition to approaching in the next time step."
+        },
+        {
+            "formula": "G(no_drivable_lane ∧ (distance_to_intersection ≤ stop_margin ∨ inside_no_drivable_lane) → X(inside_no_drivable_lane_state))",
+            "explanation": "Globally, if a no drivable lane is detected and the distance to the intersection is less than or equal to the stop margin or the vehicle is already inside the no drivable lane, the state will transition to inside no drivable lane in the next time step."
+        },
+        {
+            "formula": "G(inside_no_drivable_lane_state → F(stopped_state))",
+            "explanation": "Globally, if the vehicle is inside a no drivable lane, it will eventually stop."
+        },
+        {
+            "formula": "G(stopped_state → G(request_to_intervene))",
+            "explanation": "Globally, if the vehicle is stopped, a request to intervene will be issued and remain active until the vehicle is no longer stopped."
+        },
+        {
+            "formula": "G(no_drivable_lane → ¬autonomous_mode)",
+            "explanation": "Globally, if a no drivable lane is detected, autonomous mode will not be active."
+        }
+    ]
+}
+```
+
+Note that I've used the following abbreviations in the MTL formulas:
+
+* `no_drivable_lane`: a no drivable lane is detected
+* `stop_vehicle`: the vehicle stops
+* `distance_to_intersection`: the distance from the front of the ego vehicle to the first intersection point between the ego path and the no drivable lane polygon
+* `stop_margin`: the configurable stop margin
+* `approaching_state`: the state is approaching a no drivable lane
+* `inside_no_drivable_lane_state`: the state is inside a no drivable lane
+* `stopped_state`: the vehicle is completely stopped
+* `request_to_intervene`: a request to intervene is issued
+* `autonomous_mode`: autonomous mode is active
+
+These abbreviations are used to make the formulas more readable and concise.

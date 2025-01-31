@@ -1,0 +1,42 @@
+[
+  {
+    "sentence": "If pointcloud is detected in a detection area defined on a map, the stop planning will be executed at the predetermined point.",
+    "formula": "G(P → F(S))",
+    "explanation": "P represents pointcloud detection in the defined area, and S represents stop planning execution. The formula states that globally, whenever P occurs, it will eventually lead to S. This captures the causal relationship between detection and stop planning."
+  },
+  {
+    "sentence": "This module is activated when there is a detection area on the target lane.",
+    "formula": "G(D → X(A))",
+    "explanation": "D represents the presence of a detection area, and A represents module activation. The formula states that globally, whenever D is true, in the next state A will be true. This immediate activation is captured by the 'next' operator X."
+  },
+  {
+    "sentence": "1.Gets a detection area and stop line from map information and confirms if there is pointcloud in the detection area",
+    "formula": "G(M → X(C))",
+    "explanation": "M represents getting map information, and C represents confirmation of pointcloud. The formula states that globally, whenever M occurs, in the next state C will occur. This sequence of actions is captured by the 'next' operator X."
+  },
+  {
+    "sentence": "2.Inserts stop point l[m] in front of the stop line",
+    "formula": "G(S → X(I))",
+    "explanation": "S represents the presence of a stop line, and I represents the insertion of a stop point. The formula states that globally, whenever S is true, in the next state I will be true. This captures the immediate action following the identification of a stop line."
+  },
+  {
+    "sentence": "3.Inserts a pass judge point to a point where the vehicle can stop with a max deceleration",
+    "formula": "G(D → X(P))",
+    "explanation": "D represents the determination of max deceleration point, and P represents the insertion of a pass judge point. The formula states that globally, whenever D occurs, in the next state P will occur. This captures the immediate action of inserting the pass judge point after determining the max deceleration point."
+  },
+  {
+    "sentence": "4.Sets velocity as zero behind the stop line when the ego-vehicle is in front of the pass judge point",
+    "formula": "G((E ∧ F) → X(V))",
+    "explanation": "E represents the ego-vehicle being in front of the pass judge point, F represents being behind the stop line, and V represents setting velocity to zero. The formula states that globally, when both E and F are true, in the next state V will be true. This captures the condition for setting the velocity to zero."
+  },
+  {
+    "sentence": "5.If the ego vehicle has passed the pass judge point already, it doesn't stop and pass through.",
+    "formula": "G(P → X(¬S ∧ T))",
+    "explanation": "P represents the ego vehicle having passed the pass judge point, S represents stopping, and T represents passing through. The formula states that globally, when P is true, in the next state the vehicle will not stop (¬S) and will pass through (T). This captures the behavior when the vehicle has already passed the critical point."
+  },
+  {
+    "sentence": "If the vehicle is stopped within hold_stop_margin_distance meters from stop point of the module (_front_to_stop_line < hold_stop_margin_distance), the module judges that the vehicle has already stopped for the module's stop point and plans to keep stopping current position even if the vehicle is stopped due to other factors.",
+    "formula": "G((S ∧ W) → G(K))",
+    "explanation": "S represents the vehicle being stopped, W represents being within the hold_stop_margin_distance, and K represents keeping the current stopped position. The formula states that globally, when S and W are true, it globally leads to K. This captures the persistent behavior of maintaining the stopped position once the conditions are met, regardless of other factors."
+  }
+]

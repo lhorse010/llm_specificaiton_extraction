@@ -1,0 +1,67 @@
+{
+  "title": "Brake Mode",
+  "sections": [
+    {
+      "section-id": 0,
+      "title": "Brake Mode",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "This very simple flight mode simply stops the vehicle as soon as possible."
+        },
+        {
+          "sentence-id": 1,
+          "text": "Once invoked, this mode does not accept any input from the pilot."
+        },
+        {
+          "sentence-id": 2,
+          "text": "This mode requires GPS."
+        },
+        {
+          "sentence-id": 3,
+          "text": "Brake mode is subject to acceleration and angle limits imposed by the position and attitude controllers."
+        },
+        {
+          "sentence-id": 4,
+          "text": "For more aggressive braking, you can also try increasing PSC_JERK_XY."
+        },
+        {
+          "sentence-id": 5,
+          "text": "As an example use case, a value of 15 to 30 works well for a small copter."
+        }
+      ]
+    },
+    {
+      "section-id": 1,
+      "title": "Overview",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "When switched on, Brake mode will attempt to stop the vehicle as quickly as possible."
+        },
+        {
+          "sentence-id": 1,
+          "text": "Good GPS position, low magnetic interference on the compass and low vibrations are all important in achieving good performance."
+        },
+        {
+          "sentence-id": 2,
+          "text": "If the vehicle is landed in Brake mode it will immediately disarm."
+        }
+      ]
+    },
+    {
+      "section-id": 2,
+      "title": "Controls",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "The pilots controls are ignored in this mode."
+        },
+        {
+          "sentence-id": 1,
+          "text": "The vehicle must be switched out of this mode before the pilot can re-take control."
+        }
+      ]
+    }
+  ]
+}

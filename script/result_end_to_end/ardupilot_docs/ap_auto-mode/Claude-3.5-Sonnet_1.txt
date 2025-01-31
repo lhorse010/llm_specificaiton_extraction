@@ -1,0 +1,50 @@
+I'll extract the specifications from the document and express them using Metric Temporal Logic (MTL) formulas. Then, I'll format the results in JSON as requested.
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(auto_mode → (waypoint_distance ≤ WPNAV_RADIUS))",
+            "explanation": "Globally, when in auto mode, the distance to the current waypoint should always be less than or equal to WPNAV_RADIUS."
+        },
+        {
+            "formula": "G(auto_mode → (speed ≤ WPNAV_SPEED))",
+            "explanation": "Globally, when in auto mode, the vehicle's speed should always be less than or equal to WPNAV_SPEED."
+        },
+        {
+            "formula": "G(auto_mode → (lateral_acceleration ≤ WPNAV_ACCEL_C))",
+            "explanation": "Globally, when in auto mode, the vehicle's lateral acceleration should always be less than or equal to WPNAV_ACCEL_C."
+        },
+        {
+            "formula": "G(auto_mode ∧ on_ground ∧ throttle_raised → F(mission_start))",
+            "explanation": "Globally, when in auto mode, on the ground, and the throttle is raised, the mission should eventually start."
+        },
+        {
+            "formula": "G(auto_mode ∧ in_air → X(mission_start))",
+            "explanation": "Globally, when in auto mode and already in the air, the mission should start in the next state."
+        },
+        {
+            "formula": "G(auto_mode ∧ pilot_yaw_input → F(autopilot_yaw_control U next_waypoint))",
+            "explanation": "Globally, when in auto mode and the pilot provides yaw input, eventually the autopilot will regain yaw control until the next waypoint is reached."
+        },
+        {
+            "formula": "G(mission_complete → F(return_to_home ∨ land))",
+            "explanation": "Globally, when the mission is complete, eventually the vehicle should either return to home or land."
+        },
+        {
+            "formula": "G(auto_mode ∧ vertical_speed_up ≤ WPNAV_SPEED_UP)",
+            "explanation": "Globally, when in auto mode, the vertical speed upwards should always be less than or equal to WPNAV_SPEED_UP."
+        },
+        {
+            "formula": "G(auto_mode ∧ vertical_speed_down ≤ WPNAV_SPEED_DN)",
+            "explanation": "Globally, when in auto mode, the vertical speed downwards should always be less than or equal to WPNAV_SPEED_DN."
+        },
+        {
+            "formula": "G(waypoint_delay ≥ 1 → (waypoint_complete ↔ waypoint_distance ≤ WPNAV_RADIUS))",
+            "explanation": "Globally, for waypoints with a delay of 1 second or more, the waypoint is considered complete if and only if the distance to the waypoint is less than or equal to WPNAV_RADIUS."
+        }
+    ]
+}
+```
+
+These MTL formulas capture the key specifications extracted from the document. They cover aspects such as waypoint navigation, speed control, mission execution, and completion criteria. The formulas use the provided logical and temporal operators to express the requirements in a formal manner.

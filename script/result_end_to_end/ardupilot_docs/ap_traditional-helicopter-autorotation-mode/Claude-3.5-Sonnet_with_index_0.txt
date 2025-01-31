@@ -1,0 +1,52 @@
+[
+  {
+    "index": 0,
+    "formula": "G(¬power → F(autorotation_mode))",
+    "explanation": "Globally, if there's a loss of power, then eventually the autorotation mode should be activated."
+  },
+  {
+    "index": 1,
+    "formula": "G(autorotation_mode → F(entry_phase ∧ X(glide_phase ∧ X(flare_phase ∧ X(touch_down_phase)))))",
+    "explanation": "Globally, when in autorotation mode, the system should eventually enter the entry phase, followed by the glide phase, then the flare phase, and finally the touch-down phase."
+  },
+  {
+    "index": 2,
+    "formula": "G(entry_phase → (minimize_head_speed_loss ∧ control_attitude))",
+    "explanation": "Globally, during the entry phase, the system should minimize head speed loss and control attitude."
+  },
+  {
+    "index": 3,
+    "formula": "G(glide_phase → (manage_head_speed ∧ manage_airspeed))",
+    "explanation": "Globally, during the glide phase, the system should manage head speed and airspeed."
+  },
+  {
+    "index": 4,
+    "formula": "G(flare_phase → (reduce_descent_speed ∧ convert_airspeed_to_lift))",
+    "explanation": "Globally, during the flare phase, the system should reduce descent speed and convert airspeed into lift."
+  },
+  {
+    "index": 5,
+    "formula": "G(touch_down_phase → (manage_collective ∧ maintain_landing_attitude))",
+    "explanation": "Globally, during the touch-down phase, the system should manage collective and maintain landing attitude."
+  },
+  {
+    "index": 6,
+    "formula": "G(autorotation_mode ∧ power_restored → F(bail_out_phase))",
+    "explanation": "Globally, if in autorotation mode and power is restored, then eventually enter the bail-out phase."
+  },
+  {
+    "index": 7,
+    "formula": "G(bail_out_phase → F(¬autorotation_mode))",
+    "explanation": "Globally, when in the bail-out phase, eventually exit the autorotation mode."
+  },
+  {
+    "index": 8,
+    "formula": "G(interlock_disengaged ∧ ¬manual_collective_mode → X(autorotation_mode))",
+    "explanation": "Globally, if the interlock is disengaged while not in manual collective mode, then in the next state, enter autorotation mode."
+  },
+  {
+    "index": 9,
+    "formula": "G(autorotation_mode ∧ interlock_engaged → X(previous_mode ∨ altitude_hold_mode))",
+    "explanation": "Globally, if in autorotation mode and the interlock is engaged, then in the next state, return to the previous mode or altitude hold mode."
+  }
+]

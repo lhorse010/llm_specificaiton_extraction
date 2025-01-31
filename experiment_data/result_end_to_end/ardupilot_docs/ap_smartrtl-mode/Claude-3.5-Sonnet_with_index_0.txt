@@ -1,0 +1,42 @@
+[
+  {
+    "index": 0,
+    "formula": "G(mode = SmartRTL → F(position = home))",
+    "explanation": "Globally, when the mode is switched to SmartRTL, the vehicle will eventually reach the home position."
+  },
+  {
+    "index": 1,
+    "formula": "G(mode = SmartRTL → X(path = safe_path))",
+    "explanation": "Globally, when the mode is switched to SmartRTL, in the next state, the vehicle will follow a safe path home."
+  },
+  {
+    "index": 2,
+    "formula": "G(buffer_full → ¬(mode = SmartRTL))",
+    "explanation": "Globally, if the buffer is full, the vehicle cannot switch to SmartRTL mode."
+  },
+  {
+    "index": 3,
+    "formula": "G(armed ∧ ¬good_position_estimate → ¬(mode = SmartRTL))",
+    "explanation": "Globally, if the vehicle is armed and does not have a good position estimate, SmartRTL mode is disabled."
+  },
+  {
+    "index": 4,
+    "formula": "G(mode = SmartRTL ∧ RTL_ALT_FINAL = 0 → F(state = landed))",
+    "explanation": "Globally, in SmartRTL mode, if RTL_ALT_FINAL is set to 0, the vehicle will eventually land at home."
+  },
+  {
+    "index": 5,
+    "formula": "G(mode = SmartRTL ∧ RTL_ALT_FINAL > 0 → F(altitude = RTL_ALT_FINAL ∧ position = home))",
+    "explanation": "Globally, in SmartRTL mode, if RTL_ALT_FINAL is greater than 0, the vehicle will eventually hover at that altitude above home."
+  },
+  {
+    "index": 6,
+    "formula": "G(SRTL_POINTS = 0 → ¬(mode = SmartRTL))",
+    "explanation": "Globally, if SRTL_POINTS is set to 0, SmartRTL mode is deactivated."
+  },
+  {
+    "index": 7,
+    "formula": "G(mode = SmartRTL ∧ SRTL_OPTIONS = 4 → G(¬respond_to_yaw_commands))",
+    "explanation": "Globally, in SmartRTL mode, if SRTL_OPTIONS is set to 4, the vehicle will always ignore pilot yaw commands."
+  }
+]

@@ -1,0 +1,27 @@
+[
+  {
+    "index": 0,
+    "formula": "G(BrakeMode → (¬PilotInput ∧ GPSRequired))",
+    "explanation": "This formula states that globally (G), when in Brake Mode, the system does not accept pilot input and GPS is required. The '→' implies that whenever Brake Mode is active, the conditions on the right side of the arrow must be true."
+  },
+  {
+    "index": 1,
+    "formula": "G(BrakeMode → F(VehicleStopped))",
+    "explanation": "This formula expresses that globally (G), when Brake Mode is activated, it will eventually (F) lead to the vehicle being stopped. This captures the primary purpose of the Brake Mode."
+  },
+  {
+    "index": 2,
+    "formula": "G(BrakeMode ∧ VehicleLanded → X(Disarmed))",
+    "explanation": "This formula states that globally (G), if the vehicle is in Brake Mode and has landed, in the next state (X) it will be disarmed. This captures the immediate disarming behavior when landed in Brake Mode."
+  },
+  {
+    "index": 3,
+    "formula": "G(BrakeMode → (AccelerationLimited ∧ AngleLimited))",
+    "explanation": "This formula expresses that globally (G), when in Brake Mode, the vehicle is subject to acceleration and angle limits. This captures the constraints imposed by the position and attitude controllers."
+  },
+  {
+    "index": 4,
+    "formula": "G(¬BrakeMode U PilotRecontrol)",
+    "explanation": "This formula states that the vehicle must not be in Brake Mode until (U) the pilot can regain control. This captures the requirement that the vehicle must be switched out of Brake Mode before the pilot can re-take control."
+  }
+]

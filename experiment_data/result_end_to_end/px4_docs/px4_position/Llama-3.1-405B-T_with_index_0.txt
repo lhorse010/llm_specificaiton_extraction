@@ -1,0 +1,32 @@
+[
+  {
+    "index": 0,
+    "formula": "G((roll_stick = 0 ∧ pitch_stick = 0 ∧ throttle_stick = 0) → X( vehicle_braking ∧ vehicle_leveling ∧ vehicle_locked_to_position))",
+    "explanation": "When the sticks are released/centered, the vehicle will actively brake, level, and be locked to a position in 3D space."
+  },
+  {
+    "index": 1,
+    "formula": "G((roll_stick ≠ 0 ∨ pitch_stick ≠ 0) → X( vehicle_accelerating ∧ vehicle_velocity ≤ MPC_VEL_MANUAL))",
+    "explanation": "With full stick deflection, the vehicle accelerates initially with MPC_ACC_HOR_MAX ramping down until it reaches the final velocity MPC_VEL_MANUAL."
+  },
+  {
+    "index": 2,
+    "formula": "G((throttle_stick > 0.625) → X( vehicle_taking_off))",
+    "explanation": "When landed, the vehicle will take off if the throttle stick is raised above 62.5% percent of the full range from bottom."
+  },
+  {
+    "index": 3,
+    "formula": "G((vehicle_landed ∧ roll_stick = 0 ∧ pitch_stick = 0 ∧ throttle_stick < 0) → F( vehicle_touching_ground ∧ vehicle_disarmed))",
+    "explanation": "When the vehicle is landed and the throttle stick is pulled down gently, the vehicle will lower propeller thrust, detect the ground, and automatically disarm."
+  },
+  {
+    "index": 4,
+    "formula": "G((vehicle_position_estimate < acceptable_levels) → X( position_loss_failsafe_triggered))",
+    "explanation": "If the position estimate falls below acceptable levels, for example due to GPS loss, this may trigger a Position (GPS) Loss Failsafe."
+  },
+  {
+    "index": 5,
+    "formula": "G((vehicle_position_estimate < acceptable_levels ∧ remote_control_available ∧ altitude_estimate_adequate) → X( vehicle_switching_to_altitude_mode ∨ vehicle_switching_to_manual_mode ∨ vehicle_switching_to_land_mode ∨ vehicle_terminating))",
+    "explanation": "Depending on configuration, whether you have a remote control, and whether there is an adequate altitude estimate, PX4 may switch to altitude mode, manual mode, land mode, or terminate."
+  }
+]

@@ -1,0 +1,92 @@
+[
+  {
+    "sentence": "When the sticks are released/centered the vehicle will level and maintain the current altitude.",
+    "formula": "G((R ∧ C) → (L ∧ G(A)))",
+    "explanation": "Here, R represents the sticks being released, C represents the sticks being centered, L represents the vehicle leveling, and A represents the vehicle maintaining the current altitude. The formula states that globally, whenever the sticks are released and centered, the vehicle will level and maintain the current altitude."
+  },
+  {
+    "sentence": "If moving in the horizontal plane the vehicle will continue until any momentum is dissipated by wind resistance.",
+    "formula": "G((H ∧ M) → (C U ¬M))",
+    "explanation": "Here, H represents the vehicle moving in the horizontal plane, M represents the vehicle having momentum, and C represents the vehicle continuing to move. The formula states that globally, whenever the vehicle is moving in the horizontal plane and has momentum, it will continue to move until the momentum is dissipated (i.e., ¬M)."
+  },
+  {
+    "sentence": "If the wind blows the aircraft will drift in the direction of the wind.",
+    "formula": "G(W → D)",
+    "explanation": "Here, W represents the wind blowing, and D represents the aircraft drifting in the direction of the wind. The formula states that globally, whenever the wind blows, the aircraft will drift in the direction of the wind."
+  },
+  {
+    "sentence": "RC/manual mode like Stabilized mode but with altitude stabilization (centred sticks level vehicle and hold it to fixed altitude).",
+    "formula": "G((R ∧ C) → (L ∧ G(A)))",
+    "explanation": "This formula is similar to the first one, but in the context of RC/manual mode. The formula states that globally, whenever the sticks are centered, the vehicle will level and maintain a fixed altitude."
+  },
+  {
+    "sentence": "The horizontal position of the vehicle can move due to wind (or pre-existing momentum).",
+    "formula": "G((W ∨ M) → H)",
+    "explanation": "Here, W represents the wind blowing, M represents the vehicle having pre-existing momentum, and H represents the horizontal position of the vehicle moving. The formula states that globally, whenever the wind blows or the vehicle has pre-existing momentum, the horizontal position of the vehicle can move."
+  },
+  {
+    "sentence": "RPY sticks levels vehicle.",
+    "formula": "G(RPY → L)",
+    "explanation": "Here, RPY represents the RPY sticks being used, and L represents the vehicle leveling. The formula states that globally, whenever the RPY sticks are used, the vehicle will level."
+  },
+  {
+    "sentence": "Throttle (~50%) holds current altitude steady against wind.",
+    "formula": "G((T ∧ W) → G(A))",
+    "explanation": "Here, T represents the throttle being set to around 50%, W represents the wind blowing, and A represents the vehicle maintaining the current altitude. The formula states that globally, whenever the throttle is set to around 50% and the wind is blowing, the vehicle will maintain the current altitude."
+  },
+  {
+    "sentence": "Roll/Pitch sticks control tilt angle in respective orientations, resulting in corresponding left-right and forward-back movement.",
+    "formula": "G((R ∨ P) → (T ∧ (L ∨ F ∨ B)))",
+    "explanation": "Here, R represents the roll sticks being used, P represents the pitch sticks being used, T represents the tilt angle being controlled, L represents left movement, F represents forward movement, and B represents back movement. The formula states that globally, whenever the roll or pitch sticks are used, the tilt angle will be controlled, resulting in corresponding left-right and forward-back movement."
+  },
+  {
+    "sentence": "Throttle stick controls up/down speed with a predetermined maximum rate (and movement speed in other axes).",
+    "formula": "G(T → (U ∨ D))",
+    "explanation": "Here, T represents the throttle stick being used, U represents up movement, and D represents down movement. The formula states that globally, whenever the throttle stick is used, the vehicle will move up or down with a predetermined maximum rate."
+  },
+  {
+    "sentence": "Yaw stick controls rate of angular rotation above the horizontal plane.",
+    "formula": "G(Y → A)",
+    "explanation": "Here, Y represents the yaw stick being used, and A represents the rate of angular rotation above the horizontal plane. The formula states that globally, whenever the yaw stick is used, the rate of angular rotation above the horizontal plane will be controlled."
+  },
+  {
+    "sentence": "When landed, the vehicle will take off if the throttle stick is raised above 62.5% percent (of the full range from bottom).",
+    "formula": "G(L → (T > 0.625 → F(TO)))",
+    "explanation": "Here, L represents the vehicle being landed, T represents the throttle stick position (normalized to [0, 1]), and TO represents the vehicle taking off. The formula states that whenever the vehicle is landed, if the throttle stick is raised above 62.5%, the vehicle will eventually take off."
+  },
+  {
+    "sentence": "Altitude is normally measured using a barometer, which may become inaccurate in extreme weather conditions.",
+    "formula": "G(B → (¬E → A))",
+    "explanation": "Here, B represents the barometer being used to measure altitude, E represents extreme weather conditions, and A represents the altitude measurement being accurate. The formula states that whenever the barometer is used, if there are no extreme weather conditions, the altitude measurement will be accurate."
+  },
+  {
+    "sentence": "Manual control input is required (such as RC control, joystick).",
+    "formula": "G(¬M → ¬C)",
+    "explanation": "Here, M represents manual control input being provided, and C represents the vehicle being controlled. The formula states that whenever manual control input is not provided, the vehicle will not be controlled."
+  },
+  {
+    "sentence": "Roll, Pitch: Assistance from autopilot to stabilize the attitude.",
+    "formula": "G(R ∨ P → F(S))",
+    "explanation": "Here, R represents the roll axis, P represents the pitch axis, and S represents the attitude being stabilized. The formula states that whenever the roll or pitch axis is active, the autopilot will eventually stabilize the attitude."
+  },
+  {
+    "sentence": "Position of RC stick maps to the orientation of vehicle.",
+    "formula": "G(RC → O)",
+    "explanation": "Here, RC represents the position of the RC stick, and O represents the orientation of the vehicle. The formula states that whenever the RC stick is in a certain position, the vehicle will be in the corresponding orientation."
+  },
+  {
+    "sentence": "Throttle: Assistance from autopilot to hold position against wind.",
+    "formula": "G(T → F(H))",
+    "explanation": "Here, T represents the throttle being active, and H represents the vehicle holding its position against wind. The formula states that whenever the throttle is active, the autopilot will eventually hold the vehicle's position against wind."
+  },
+  {
+    "sentence": "Yaw: Assistance from autopilot to stabilize the attitude rate.",
+    "formula": "G(Y → F(SR))",
+    "explanation": "Here, Y represents the yaw axis, and SR represents the attitude rate being stabilized. The formula states that whenever the yaw axis is active, the autopilot will eventually stabilize the attitude rate."
+  },
+  {
+    "sentence": "Position of RC stick maps to the rate of rotation of vehicle in that orientation.",
+    "formula": "G(RC → RR)",
+    "explanation": "Here, RC represents the position of the RC stick, and RR represents the rate of rotation of the vehicle in the corresponding orientation. The formula states that whenever the RC stick is in a certain position, the vehicle will rotate at the corresponding rate in that orientation."
+  }
+]

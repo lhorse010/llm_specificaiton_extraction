@@ -1,0 +1,32 @@
+[
+  {
+    "index": 0,
+    "formula": "G(drift_mode_active → (manual_throttle ∧ autopilot_roll ∧ manual_yaw ∧ manual_pitch))",
+    "explanation": "Globally, when Drift Mode is active, the throttle and yaw/pitch controls are manual, while roll is controlled by the autopilot."
+  },
+  {
+    "index": 1,
+    "formula": "G(drift_mode_active ∧ right_stick_centered → F[0,2](velocity ≈ 0))",
+    "explanation": "Globally, when Drift Mode is active and the right stick is centered, the copter's velocity will approach zero within 2 seconds (acting as a speed brake)."
+  },
+  {
+    "index": 2,
+    "formula": "G(drift_mode_active ∧ throttle_min → attitude_control_lost)",
+    "explanation": "Globally, when Drift Mode is active and throttle is at minimum, the vehicle will lose attitude control."
+  },
+  {
+    "index": 3,
+    "formula": "G(drift_mode_active ∧ gps_signal_lost → (land ∨ altitude_hold))",
+    "explanation": "Globally, when Drift Mode is active and GPS signal is lost, the copter will either land or enter altitude hold mode."
+  },
+  {
+    "index": 4,
+    "formula": "G(drift_mode_active ∧ turn_input → (yaw_applied ∧ roll_adjusted))",
+    "explanation": "Globally, when Drift Mode is active and turn input is given, yaw will be automatically applied and roll will be adjusted to maintain a coordinated turn."
+  },
+  {
+    "index": 5,
+    "formula": "G(drift_mode_active → X(position_hold_loose))",
+    "explanation": "Globally, when Drift Mode is active, in the next state, the copter will loosely hold its horizontal position (allowing for slow drift in wind)."
+  }
+]

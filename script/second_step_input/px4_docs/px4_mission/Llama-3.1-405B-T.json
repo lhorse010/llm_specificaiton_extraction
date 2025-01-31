@@ -1,0 +1,222 @@
+[
+  {
+    "section-id": 1,
+    "sentence-id": 0,
+    "sentence": "1.This mode requires a global 3d position estimate (from GPS or inferred from a local position)."
+  },
+  {
+    "section-id": 1,
+    "sentence-id": 1,
+    "sentence": "2.The vehicle must be armed before this mode can be engaged."
+  },
+  {
+    "section-id": 1,
+    "sentence-id": 2,
+    "sentence": "3.This mode is automatic - no user intervention is _required_ to control the vehicle."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 4,
+    "sentence": "1.If no mission is stored, or if PX4 has finished executing all mission commands, or if the mission is not feasible:"
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 5,
+    "sentence": "If flying the vehicle will hold."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 6,
+    "sentence": "If landed the vehicle will \"wait\"."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 7,
+    "sentence": "2.If a mission is stored and PX4 is flying it will execute the mission/flight plan from the current step."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 8,
+    "sentence": "A TAKEOFF item is treated as a normal waypoint."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 9,
+    "sentence": "3.If a mission is stored and PX4 is landed:"
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 10,
+    "sentence": "PX4 will execute the mission/flight plan."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 11,
+    "sentence": "If the mission does not have a TAKEOFF item then PX4 will fly the vehicle to the minimum altitude before executing the remainder of the flight plan from the current step."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 12,
+    "sentence": "4.If no mission is stored, or if PX4 has finished executing all mission commands:"
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 13,
+    "sentence": "If flying the vehicle will hold."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 14,
+    "sentence": "If landed the vehicle will \"wait\"."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 15,
+    "sentence": "5.You can manually change the current mission command by selecting it in _QGroundControl_."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 16,
+    "sentence": "6.The mission will only reset when the vehicle is disarmed or when a new mission is uploaded."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 17,
+    "sentence": "Missions can be paused by switching out of mission mode to any other mode (such as Hold mode or Position mode), and resumed by switching back to mission mode."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 18,
+    "sentence": "If the vehicle was not capturing images when it was paused, on resuming it will head from its _current position_ towards the same waypoint as it as was heading towards originally."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 19,
+    "sentence": "If the vehicle was capturing images (has camera trigger items) it will instead head from its current position towards the last waypoint it traveled through (before pausing), and then retrace its path at the same speed and with the same camera triggering behaviour."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 20,
+    "sentence": "This ensures that in survey/camera missions the planned path is captured."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 21,
+    "sentence": "A mission can be uploaded while the vehicle is paused, in which which case the current active mission item is set to 1."
+  },
+  {
+    "section-id": 3,
+    "sentence-id": 0,
+    "sentence": "Missions are uploaded onto a SD card that needs to be inserted before booting up the autopilot."
+  },
+  {
+    "section-id": 3,
+    "sentence-id": 1,
+    "sentence": "If you have a _Jump to item_ command in the mission, moving to another item will not reset the loop counter."
+  },
+  {
+    "section-id": 3,
+    "sentence-id": 2,
+    "sentence": "One implication is that if you change the current mission command to 1 this will not \"fully restart\" the mission."
+  },
+  {
+    "section-id": 3,
+    "sentence-id": 3,
+    "sentence": "When a mission is paused while the camera on the vehicle was triggering, PX4 sets the current active mission item to the previous waypoint, so that when the mission is restarted the vehicle will retrace its last mission leg."
+  },
+  {
+    "section-id": 3,
+    "sentence-id": 4,
+    "sentence": "In addition, PX4 stores the last applied mission items for speed setting and camera triggering (from the already covered mission plan), and re-applies those settings on resuming the mission."
+  },
+  {
+    "section-id": 5,
+    "sentence-id": 0,
+    "sentence": "Ensure that the throttle stick is non-zero before switching to any RC mode (otherwise the vehicle will crash)."
+  },
+  {
+    "section-id": 5,
+    "sentence-id": 1,
+    "sentence": "We recommend you centre the control sticks before switching to any other mode."
+  },
+  {
+    "section-id": 6,
+    "sentence-id": 0,
+    "sentence": "PX4 runs some basic sanity checks to determine if a mission is feasible when it is uploaded, and when the vehicle is first armed."
+  },
+  {
+    "section-id": 6,
+    "sentence-id": 1,
+    "sentence": "If any of the checks fail, the user is notified and it is not possible to start the mission."
+  },
+  {
+    "section-id": 6,
+    "sentence-id": 3,
+    "sentence": "1.First mission item too far away from vehicle (MIS_DIST_1WP)"
+  },
+  {
+    "section-id": 6,
+    "sentence-id": 4,
+    "sentence": "2.Any mission item conflicts with a plan or safety geofence"
+  },
+  {
+    "section-id": 9,
+    "sentence-id": 2,
+    "sentence": "For example, some messages are vehicle-type specific."
+  },
+  {
+    "section-id": 9,
+    "sentence-id": 3,
+    "sentence": "2.PX4 does not support local frames for mission commands (e.g. MAV_FRAME_LOCAL_NED)."
+  },
+  {
+    "section-id": 9,
+    "sentence-id": 4,
+    "sentence": "3.Not all messages/commands are exposed via _QGroundControl_."
+  },
+  {
+    "section-id": 10,
+    "sentence-id": 0,
+    "sentence": "PX4 expects to follow a straight line from the previous waypoint to the current target (it does not plan any other kind of path between waypoints - if you need one you can simulate this by adding additional waypoints)."
+  },
+  {
+    "section-id": 10,
+    "sentence-id": 1,
+    "sentence": "MC vehicles will change the _speed_ when approaching or leaving a waypoint based on the jerk-limited tuning."
+  },
+  {
+    "section-id": 10,
+    "sentence-id": 2,
+    "sentence": "The vehicle will follow a smooth rounded curve towards the next waypoint (if one is defined) defined by the acceptance radius (NAV_ACC_RAD)."
+  },
+  {
+    "section-id": 10,
+    "sentence-id": 3,
+    "sentence": "The diagram below shows the sorts of paths that you might expect."
+  },
+  {
+    "section-id": 10,
+    "sentence-id": 4,
+    "sentence": "Vehicles switch to the next waypoint as soon as they enter the acceptance radius (NAV_ACC_RAD)."
+  },
+  {
+    "section-id": 11,
+    "sentence-id": 0,
+    "sentence": "Plan a multicopter mission takeoff by adding a TAKEOFF mission item to the map (this corresponds to the MAV_CMD_NAV_TAKEOFF MAVLink command)."
+  },
+  {
+    "section-id": 11,
+    "sentence-id": 1,
+    "sentence": "During mission execution this will cause the vehicle to ascend vertically to the minimum takeoff altitude defined in the MIS_TAKEOFF_ALT parameter, then head towards the 3D position defined in the mission item."
+  },
+  {
+    "section-id": 11,
+    "sentence-id": 2,
+    "sentence": "If a mission with no takeoff mission item is started, the vehicle will ascend to the minimum takeoff altitude and then proceed to the first Waypoint mission item."
+  },
+  {
+    "section-id": 11,
+    "sentence-id": 3,
+    "sentence": "If the vehicle is already flying when the mission is started, a takeoff mission item is treated as a normal waypoint."
+  }
+]

@@ -1,0 +1,34 @@
+I'll extract the specifications from the document and express them using Metric Temporal Logic (MTL) formulas. Then, I'll format the results in JSON as requested.
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(¬GPS ∧ ¬Lidar → FlowHold)",
+            "explanation": "Globally, if there's no GPS and no Lidar, then FlowHold mode can be used. This captures the essence of FlowHold mode being usable without GPS or downward-facing Lidar."
+        },
+        {
+            "formula": "G(FlowHold → (OpticalFlowSensor ∧ X(PositionHold)))",
+            "explanation": "Globally, if FlowHold mode is active, then the optical flow sensor is used and in the next state, the position is held. This represents the use of the optical flow sensor to bring the vehicle to a stop when the user releases the sticks."
+        },
+        {
+            "formula": "G(FlowHold → F(HeightEstimation ∧ VelocityEstimation))",
+            "explanation": "Globally, if FlowHold mode is active, then eventually both height and velocity are estimated using the optical flow sensor. This captures the dual use of the optical flow sensor for height and speed estimation."
+        },
+        {
+            "formula": "G((Takeoff ∨ LargeHeightChange) → F(Wobble U StableHeight))",
+            "explanation": "Globally, if there's a takeoff or large height change, then eventually there will be wobbling until a stable height is achieved. This represents the learning period after takeoff or significant height changes."
+        },
+        {
+            "formula": "G(FlowQuality < FHLD_QUAL_MIN → AltHold)",
+            "explanation": "Globally, if the flow quality falls below FHLD_QUAL_MIN, then AltHold mode is activated. This captures the fallback behavior when flow quality is insufficient."
+        },
+        {
+            "formula": "G(ReleaseSticks → F(Decelerate U Stop))",
+            "explanation": "Globally, if the sticks are released, then eventually the vehicle will decelerate until it stops. This represents the behavior controlled by FHLD_BRAKE_RATE."
+        }
+    ]
+}
+```
+
+These MTL formulas capture the key specifications of the FlowHold mode as described in the document. They represent the mode's behavior, dependencies, and some of its limitations. The formulas use the provided logical and temporal operators to express the temporal relationships between different states and conditions of the system.

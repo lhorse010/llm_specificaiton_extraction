@@ -1,0 +1,37 @@
+[
+  {
+    "index": 0,
+    "formula": "G((mode = ACRO ∨ mode = STABILIZE) ∧ throttle = idle ∧ ¬airmode → ¬stabilization)",
+    "explanation": "Globally, when in ACRO or STABILIZE mode with throttle at idle and airmode not active, stabilization is disabled."
+  },
+  {
+    "index": 1,
+    "formula": "G((mode = ACRO ∨ mode = STABILIZE) ∧ airmode → stabilization)",
+    "explanation": "Globally, when in ACRO or STABILIZE mode with airmode active, stabilization remains active regardless of throttle position."
+  },
+  {
+    "index": 2,
+    "formula": "G(RC_OPTION = 154 → (arm_method = switch → airmode))",
+    "explanation": "Globally, if RC_OPTION is set to 154 and arming is done via switch, airmode is activated."
+  },
+  {
+    "index": 3,
+    "formula": "G(RC_OPTION = 84 → F(airmode_toggle))",
+    "explanation": "Globally, if RC_OPTION is set to 84, it allows for future toggling of airmode in ACRO and STABILIZE modes."
+  },
+  {
+    "index": 4,
+    "formula": "G(mode = ACRO ∧ ACRO_OPTIONS[0] = 1 ∧ ¬(RC_OPTION = 84 ∧ ¬airmode_toggle) → airmode)",
+    "explanation": "Globally, in ACRO mode, if bit 0 of ACRO_OPTIONS is set and not overridden by RC_OPTION 84, airmode is active."
+  },
+  {
+    "index": 5,
+    "formula": "G(heli_type = traditional → ¬airmode)",
+    "explanation": "Globally, airmode has no effect in Traditional Helicopter configurations."
+  },
+  {
+    "index": 6,
+    "formula": "G(RC_OPTION = 154 ∧ ¬(arm_method = switch) → ¬airmode)",
+    "explanation": "Globally, even if RC_OPTION is set to 154, airmode is not activated unless the switch is actually used for arming."
+  }
+]

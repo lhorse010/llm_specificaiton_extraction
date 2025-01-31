@@ -1,0 +1,42 @@
+I'll extract the specifications from the document and express them using Metric Temporal Logic (MTL) formulas as requested. Then, I'll format the output in JSON.
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(HoldMode → (StopAndHover ∧ MaintainGPSPosition ∧ MaintainAltitude))",
+            "explanation": "Globally, when in Hold Mode, the vehicle must stop and hover, maintaining its current GPS position and altitude."
+        },
+        {
+            "formula": "G(HoldMode → GlobalPositionEstimate)",
+            "explanation": "Globally, Hold Mode requires a global 3D position estimate (from GPS or inferred from a local position)."
+        },
+        {
+            "formula": "G((HoldMode ∧ ¬GlobalPositionEstimate) → ¬Flying)",
+            "explanation": "Globally, if in Hold Mode without a global position estimate, the vehicle cannot be flying."
+        },
+        {
+            "formula": "G((HoldMode ∧ Flying ∧ X(¬GlobalPositionEstimate)) → Failsafe)",
+            "explanation": "Globally, if in Hold Mode and flying, and in the next state there's no global position estimate, the vehicle will enter failsafe mode."
+        },
+        {
+            "formula": "G((HoldMode ∧ ¬Armed ∧ ¬GlobalPositionEstimate) → ¬Arm)",
+            "explanation": "Globally, if in Hold Mode, disarmed, and without a global position estimate, the vehicle cannot arm."
+        },
+        {
+            "formula": "G(HoldMode → (WindWithinLimits ∧ FlightTimeWithinLimits))",
+            "explanation": "Globally, Hold Mode requires that wind and flight time are within allowed limits specified by parameters."
+        },
+        {
+            "formula": "G(HoldMode ∧ (Altitude < NAV_MIN_LTR_ALT) → F(Altitude ≥ NAV_MIN_LTR_ALT))",
+            "explanation": "Globally, if Hold Mode is engaged below NAV_MIN_LTR_ALT, the vehicle will eventually ascend to at least NAV_MIN_LTR_ALT."
+        },
+        {
+            "formula": "G((HoldMode ∧ RCStickMovement ∧ ¬CriticalBatteryFailsafe) → X(PositionMode))",
+            "explanation": "Globally, if in Hold Mode and there's RC stick movement without a critical battery failsafe, in the next state the vehicle will change to Position Mode."
+        }
+    ]
+}
+```
+
+This JSON output captures the key specifications from the document, expressed as Metric Temporal Logic (MTL) formulas. Each formula is accompanied by an explanation to clarify its meaning in the context of the Hold Mode for multicopters.

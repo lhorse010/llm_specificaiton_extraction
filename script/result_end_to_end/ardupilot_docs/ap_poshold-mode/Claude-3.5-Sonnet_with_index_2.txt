@@ -1,0 +1,47 @@
+[
+  {
+    "index": 0,
+    "formula": "G(mode = PosHold → (F[0,ε](maintain_location ∧ maintain_heading ∧ maintain_altitude)))",
+    "explanation": "Globally, when PosHold mode is activated, it should eventually (within a small time ε) maintain the current location, heading, and altitude."
+  },
+  {
+    "index": 1,
+    "formula": "G(mode = PosHold → (good_GPS ∧ low_magnetic_interference ∧ low_vibrations))",
+    "explanation": "Globally, when in PosHold mode, the system should have good GPS, low magnetic interference, and low vibrations for optimal performance."
+  },
+  {
+    "index": 2,
+    "formula": "G(mode = PosHold ∧ stick_input ≠ 0 → F[0,δ](lean_angle ≤ 45°))",
+    "explanation": "Globally, in PosHold mode, when there's stick input, the lean angle should eventually (within time δ) be less than or equal to 45 degrees (default maximum)."
+  },
+  {
+    "index": 3,
+    "formula": "G(mode = PosHold ∧ stick_input = 0 → F[0,γ](velocity = 0))",
+    "explanation": "Globally, in PosHold mode, when stick input is released, the vehicle should eventually (within time γ) come to a stop."
+  },
+  {
+    "index": 4,
+    "formula": "G(mode = PosHold → (throttle_control → altitude_change))",
+    "explanation": "Globally, in PosHold mode, throttle control should affect altitude change."
+  },
+  {
+    "index": 5,
+    "formula": "G(mode = PosHold → (yaw_control → heading_change))",
+    "explanation": "Globally, in PosHold mode, yaw control should affect heading change."
+  },
+  {
+    "index": 6,
+    "formula": "G(arm_request ∧ mode = PosHold → (GPS_3D_lock ∧ HDOP ≤ 2.0))",
+    "explanation": "Globally, arming in PosHold mode requires GPS 3D lock and HDOP less than or equal to 2.0."
+  },
+  {
+    "index": 7,
+    "formula": "G(mode = PosHold → (brake_angle ≤ PHLD_BRAKE_ANGLE))",
+    "explanation": "Globally, in PosHold mode, the brake angle should not exceed the value set by PHLD_BRAKE_ANGLE parameter."
+  },
+  {
+    "index": 8,
+    "formula": "G(mode = PosHold → (rotation_rate ≤ PHLD_BRAKE_RATE))",
+    "explanation": "Globally, in PosHold mode, the rotation rate back to maximum angle should not exceed the value set by PHLD_BRAKE_RATE parameter."
+  }
+]

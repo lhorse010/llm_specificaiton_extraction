@@ -1,0 +1,121 @@
+{
+  "title": "No Drivable Lane",
+  "sections": [
+    {
+      "section-id": 0,
+      "title": "Role",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "This module plans the velocity of the related part of the path in case there is a no drivable lane referring to it."
+        },
+        {
+          "sentence-id": 1,
+          "text": "A no drivable lane is a lanelet or more that are out of operation design domain (ODD), i.e., the vehicle must not drive autonomously in this lanelet."
+        },
+        {
+          "sentence-id": 2,
+          "text": "A lanelet can be no drivable (out of ODD) due to many reasons, either technical limitations of the SW and/or HW, business requirements, safety considerations, .... etc, or even a combination of those."
+        },
+        {
+          "sentence-id": 3,
+          "text": "Some examples of No Drivable Lanes:"
+        },
+        {
+          "sentence-id": 4,
+          "text": "1.Closed road intentionally, due to construction work for example"
+        },
+        {
+          "sentence-id": 5,
+          "text": "2.Underpass road that goes under a railway, for safety reasons"
+        },
+        {
+          "sentence-id": 6,
+          "text": "3.Road with slope/inclination that the vehicle is not be able to drive autonomously due to technical limitations."
+        },
+        {
+          "sentence-id": 7,
+          "text": "4.And lots of other examples."
+        },
+        {
+          "sentence-id": 8,
+          "text": "A lanelet becomes invalid by adding a new tag under the relevant lanelet in the map file <tag k=\"no_drivable_lane\" v=\"yes\"/>."
+        },
+        {
+          "sentence-id": 9,
+          "text": "The target of this module is to stop the vehicle before entering the no drivable lane (with configurable stop margin) or keep the vehicle stationary if autonomous mode started inside a no drivable lane."
+        },
+        {
+          "sentence-id": 10,
+          "text": "Then ask the human driver to take the responsibility of the driving task (Takeover Request / Request to Intervene)"
+        }
+      ]
+    },
+    {
+      "section-id": 1,
+      "title": "Activation Timing",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "This function is activated when the lane id of the target path has an no drivable lane label (i.e. the no_drivable_lane attribute is yes)."
+        }
+      ]
+    },
+    {
+      "section-id": 2,
+      "title": "Inner-workings / Algorithms",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "1.Get no_drivable_lane attribute on the path from lanelet2 map"
+        },
+        {
+          "sentence-id": 1,
+          "text": "2.The no drivable lane state machine starts in INIT state"
+        },
+        {
+          "sentence-id": 2,
+          "text": "3.Get the intersection points between path and no drivable lane polygon"
+        },
+        {
+          "sentence-id": 3,
+          "text": "4.Assign the state to APPROACHING toward a no drivable lane if:"
+        },
+        {
+          "sentence-id": 4,
+          "text": "the distance from front of the ego vehicle till the first intersection point between the ego path and the no drivable lane polygon is more than the stop_margin"
+        },
+        {
+          "sentence-id": 5,
+          "text": "5.Assign the state to INSIDE_NO_DRIVABLE_LANE if:"
+        },
+        {
+          "sentence-id": 6,
+          "text": "the first point of the ego path is inside the no drivable lane polygon, or"
+        },
+        {
+          "sentence-id": 7,
+          "text": "the distance from front of the ego vehicle till the first intersection point between the ego path and the no drivable lane polygon is less than the stop_margin"
+        },
+        {
+          "sentence-id": 8,
+          "text": "6.Assign the state to STOPPED when the vehicle is completely stopped"
+        }
+      ]
+    },
+    {
+      "section-id": 3,
+      "title": "Future Work",
+      "sentences": [
+        {
+          "sentence-id": 0,
+          "text": "As Request to Intervene API is not implemented yet, this will be handled to notify the driver to takeover the driving task responsibility after the vehicle stops due to no_drivable_lane"
+        },
+        {
+          "sentence-id": 1,
+          "text": "Handle the case when the vehicle stops before a no drivable lane but part of its footprint intersects with the no drivable lane polygon."
+        }
+      ]
+    }
+  ]
+}

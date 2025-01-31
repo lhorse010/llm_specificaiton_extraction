@@ -1,0 +1,52 @@
+[
+  {
+    "index": 0,
+    "formula": "G(¬armed → ¬loiter)",
+    "explanation": "The vehicle cannot be in Loiter mode unless it is armed."
+  },
+  {
+    "index": 1,
+    "formula": "G(loiter → gps_lock ∧ hdop < 1.4)",
+    "explanation": "The vehicle can only be in Loiter mode if it has a good GPS lock and the HDOP is below 1.4."
+  },
+  {
+    "index": 2,
+    "formula": "G(loiter → (horizontal_speed ≤ LOIT_SPEED))",
+    "explanation": "The vehicle's horizontal speed in Loiter mode is limited by the LOIT_SPEED parameter."
+  },
+  {
+    "index": 3,
+    "formula": "G(loiter → (acceleration ≤ LOIT_ACC_MAX))",
+    "explanation": "The vehicle's acceleration in Loiter mode is limited by the LOIT_ACC_MAX parameter."
+  },
+  {
+    "index": 4,
+    "formula": "G(loiter → (lean_angle ≤ LOIT_ANG_MAX))",
+    "explanation": "The vehicle's lean angle in Loiter mode is limited by the LOIT_ANG_MAX parameter."
+  },
+  {
+    "index": 5,
+    "formula": "G(loiter ∧ sticks_centered → F(braking))",
+    "explanation": "When the pilot centers the sticks in Loiter mode, the vehicle will eventually start braking."
+  },
+  {
+    "index": 6,
+    "formula": "G(loiter ∧ sticks_centered → (braking_acceleration ≤ LOIT_BRK_ACCEL))",
+    "explanation": "The vehicle's braking acceleration in Loiter mode is limited by the LOIT_BRK_ACCEL parameter."
+  },
+  {
+    "index": 7,
+    "formula": "G(loiter ∧ sticks_centered → (braking_jerk ≤ LOIT_BRK_JERK))",
+    "explanation": "The vehicle's braking jerk in Loiter mode is limited by the LOIT_BRK_JERK parameter."
+  },
+  {
+    "index": 8,
+    "formula": "G(loiter → (horizontal_position_error → desired_speed))",
+    "explanation": "The vehicle's horizontal position error in Loiter mode is converted to a desired speed towards the target position."
+  },
+  {
+    "index": 9,
+    "formula": "G(loiter → (desired_speed → desired_acceleration))",
+    "explanation": "The vehicle's desired speed in Loiter mode is converted to a desired acceleration."
+  }
+]

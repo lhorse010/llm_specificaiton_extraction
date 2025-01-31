@@ -1,0 +1,32 @@
+[
+  {
+    "index": 0,
+    "formula": "G((ch7/ch8_switch = ON) ∧ (roll/pitch_stick_position ≠ 0) → F[0,1](vehicle_flips))",
+    "explanation": "Whenever the ch7/ch8 switch is ON and the roll/pitch stick position is not zero, the vehicle will flip within 1 second."
+  },
+  {
+    "index": 1,
+    "formula": "G((vehicle_flips) → F[0,2.5](vehicle_recovers))",
+    "explanation": "Whenever the vehicle flips, it will recover within 2.5 seconds."
+  },
+  {
+    "index": 2,
+    "formula": "G((vehicle_flips) → ¬(vehicle_flips) U(ch7/ch8_switch = OFF ∨ roll_stick_position > 40deg ∨ roll_stick_position < -40deg))",
+    "explanation": "The vehicle will not flip again until the ch7/ch8 switch is brought low and back to high, or the roll stick position is moved to >40deg left or right."
+  },
+  {
+    "index": 3,
+    "formula": "G((vehicle_altitude < 10m) → ¬(vehicle_flips))",
+    "explanation": "The vehicle will not flip if the altitude is less than 10m."
+  },
+  {
+    "index": 4,
+    "formula": "G((RCx_OPTION = 2) ∧ (flight_mode = Stabilize ∨ flight_mode = Acro ∨ flight_mode = AltHold) → (vehicle_flips))",
+    "explanation": "Whenever the RCx_OPTION is set to 'Flip' (2) and the flight mode is Stabilize, Acro, or AltHold, the vehicle will flip."
+  },
+  {
+    "index": 5,
+    "formula": "G((vehicle_flips) → (vehicle_rolls_right ∨ vehicle_rolls_left ∨ vehicle_pitches_forward ∨ vehicle_pitches_backward))",
+    "explanation": "Whenever the vehicle flips, it will roll right, left, pitch forward, or pitch backward depending on the roll/pitch stick position."
+  }
+]

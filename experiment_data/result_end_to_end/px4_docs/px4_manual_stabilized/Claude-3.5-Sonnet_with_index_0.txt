@@ -1,0 +1,42 @@
+[
+  {
+    "index": 0,
+    "formula": "G((centered_sticks) → X(level_attitude))",
+    "explanation": "Globally, if the control sticks are centered, then in the next state, the vehicle's attitude should be level."
+  },
+  {
+    "index": 1,
+    "formula": "G((¬centered_sticks) → (roll_pitch_control_angle ∧ yaw_control_rate ∧ throttle_control_altitude))",
+    "explanation": "Globally, when the sticks are not centered, roll and pitch sticks control the angle, yaw stick controls the rate of rotation, and throttle controls altitude/speed."
+  },
+  {
+    "index": 2,
+    "formula": "G((release_sticks) → F(centered_sticks))",
+    "explanation": "Globally, if the sticks are released, they will eventually return to the center deadzone."
+  },
+  {
+    "index": 3,
+    "formula": "G((centered_roll_pitch) → F(level_attitude ∧ stop_movement))",
+    "explanation": "Globally, if the roll and pitch sticks are centered, the vehicle will eventually level out and stop moving."
+  },
+  {
+    "index": 4,
+    "formula": "G(manual_control_input)",
+    "explanation": "Globally, manual control input (such as RC control or joystick) is required."
+  },
+  {
+    "index": 5,
+    "formula": "G((roll_pitch_input) → X(autopilot_stabilize_attitude))",
+    "explanation": "Globally, when roll or pitch input is given, in the next state, the autopilot will assist in stabilizing the attitude."
+  },
+  {
+    "index": 6,
+    "formula": "G((yaw_input) → X(autopilot_stabilize_rate))",
+    "explanation": "Globally, when yaw input is given, in the next state, the autopilot will assist in stabilizing the attitude rate."
+  },
+  {
+    "index": 7,
+    "formula": "G(throttle_input → X(direct_control_allocation))",
+    "explanation": "Globally, throttle input is directly sent to control allocation in the next state."
+  }
+]

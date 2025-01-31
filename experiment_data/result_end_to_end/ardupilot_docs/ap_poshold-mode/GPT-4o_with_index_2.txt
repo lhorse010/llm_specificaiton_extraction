@@ -1,0 +1,22 @@
+[
+  {
+    "index": 0,
+    "formula": "G (GPS_3D_lock ∧ HDOP ≤ 2.0 → Arm)",
+    "explanation": "The vehicle can only be armed if the GPS has a 3D lock and the HDOP is 2.0 or lower."
+  },
+  {
+    "index": 1,
+    "formula": "G (Pilot_releases_sticks → F (Lean_back_to_stop))",
+    "explanation": "When the pilot releases the control sticks, the vehicle should eventually lean back to bring itself to a stop."
+  },
+  {
+    "index": 2,
+    "formula": "G (Max_lean_angle ≤ ANGLE_MAX)",
+    "explanation": "The vehicle's lean angle should not exceed the maximum angle set by the ANGLE_MAX parameter."
+  },
+  {
+    "index": 3,
+    "formula": "G (¬Vibration ∧ ¬Magnetic_interference → Good_loiter_performance)",
+    "explanation": "Good loiter performance requires low vibrations and low magnetic interference."
+  }
+]

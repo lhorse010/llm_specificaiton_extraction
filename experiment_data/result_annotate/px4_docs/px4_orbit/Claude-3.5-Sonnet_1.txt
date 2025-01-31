@@ -1,0 +1,100 @@
+Let's go through the document step by step and identify the sentences that meet our criteria for specifications.
+
+Step 1: Read the document thoroughly.
+I have read the entire document about the Orbit (Multicopter) flight mode.
+
+Step 2 & 3: Determine whether sentences convey relevant information and annotate if they do.
+
+Section 1 (section-id: 1):
+- Sentence 1: Constraint
+- Sentence 2: Requirement for state transition
+- Sentence 3: Constraint
+- Sentence 4: Expected state change
+- Sentence 5: Constraint
+- Sentence 6: Requirement for state transition
+
+Section 2 (section-id: 2):
+- Sentence 0: Requirement for state transition
+- Sentence 1: Expected state change
+- Sentence 11: Constraint
+- Sentence 14: Constraint
+- Sentence 15: Constraint
+- Sentence 17: Expected state change
+
+Section 3 (section-id: 3):
+- Sentence 2: Constraint
+
+Section 4 (section-id: 4):
+- Sentence 1: Expected state change
+- Sentence 2: Constraint and expected state change
+
+Step 4: Format the annotated sentences in JSON.
+
+```json
+{
+    "specifications": [
+        {
+            "section-id": 1,
+            "sentence-id": 0
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 1
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 2
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 3
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 4
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 5
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 0
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 1
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 11
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 14
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 15
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 17
+        },
+        {
+            "section-id": 3,
+            "sentence-id": 2
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 1
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 2
+        }
+    ]
+}
+```
+
+This JSON output includes all the sentences that were identified as specifications based on the criteria provided. These sentences cover requirements for state transition, constraints, expected post-actions, and expected state changes related to the Orbit (Multicopter) flight mode.

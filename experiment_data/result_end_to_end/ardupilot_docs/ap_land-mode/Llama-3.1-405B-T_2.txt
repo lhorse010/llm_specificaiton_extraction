@@ -1,0 +1,42 @@
+Based on the provided document, I've extracted the specifications and expressed them using Metric Temporal Logic (MTL) formulas. Here are the results in the required JSON format:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(altitude > 10m → descent_rate = WPNAV_SPEED_DN)",
+            "explanation": "The copter descends at the speed held in the WPNAV_SPEED_DN parameter when above 10m altitude."
+        },
+        {
+            "formula": "G(altitude ≤ 10m → descent_rate = LAND_SPEED)",
+            "explanation": "The copter descends at the rate specified in the LAND_SPEED parameter when below 10m altitude."
+        },
+        {
+            "formula": "G(altitude = 0 ∧ throttle = 0 → X(motors_off ∧ disarmed))",
+            "explanation": "Upon reaching the ground, the copter will automatically shut-down the motors and disarm if the pilot's throttle is at minimum."
+        },
+        {
+            "formula": "G(GPS_lock → controlled_horizontal_position)",
+            "explanation": "If the vehicle has GPS lock, the landing controller will attempt to control its horizontal position."
+        },
+        {
+            "formula": "G(¬GPS_lock → stabilize_mode)",
+            "explanation": "If the vehicle does not have GPS lock, the horizontal control will be as in stabilize mode."
+        },
+        {
+            "formula": "G(landed → (motors_low ∧ climb_rate ∈ [-20cm/s, 20cm/s] ∧ ¬accelerating))",
+            "explanation": "The copter recognizes that it has landed if the motors are being commanded to be at low level, its climb rate remains between -20cm/s and +20cm/s, and is not accelerating for one second."
+        },
+        {
+            "formula": "G(altitude < 10m ∨ rangefinder_distance < 2m → motors_off)",
+            "explanation": "The copter must be below 10m above the home altitude or within 2m of the ground (if using a rangefinder) to shut off the motors."
+        },
+        {
+            "formula": "G(Weight_on_Wheels → increased_descent_rate ∧ increased_accelerometer_ranges)",
+            "explanation": "Using a Weight on Wheels (WoW) switch will increase the descent rate and accelerometer ranges that are acceptable for landing detection."
+        }
+    ]
+}
+```
+
+Note that I've excluded vague specifications and focused on clear and specific requirements. I've also used the MTL operators to express the temporal relationships between the variables.

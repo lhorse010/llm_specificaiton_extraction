@@ -1,0 +1,38 @@
+I'll extract the specifications from the document and express them using Metric Temporal Logic (MTL) formulas as requested. Then, I'll format the output in JSON.
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G((centered_sticks ∧ level_attitude) → X(level_attitude))",
+            "explanation": "Globally, if the sticks are centered and the attitude is level, then in the next state, the attitude will remain level. This captures the stabilization behavior when control sticks are centered."
+        },
+        {
+            "formula": "G((¬centered_sticks ∧ roll_pitch_input) → X(attitude_change))",
+            "explanation": "Globally, if the sticks are not centered and there's roll or pitch input, then in the next state, the attitude will change. This represents the vehicle's response to roll and pitch controls outside the center position."
+        },
+        {
+            "formula": "G((¬centered_sticks ∧ yaw_input) → X(yaw_rate_change))",
+            "explanation": "Globally, if the sticks are not centered and there's yaw input, then in the next state, the yaw rate will change. This captures the yaw control behavior."
+        },
+        {
+            "formula": "G(throttle_input → X(altitude_change))",
+            "explanation": "Globally, if there's throttle input, then in the next state, the altitude will change. This represents the direct throttle control of altitude."
+        },
+        {
+            "formula": "G((centered_sticks ∧ ¬external_force) → X(maintain_position))",
+            "explanation": "Globally, if the sticks are centered and there are no external forces, then in the next state, the vehicle will maintain its position. This captures the hovering behavior in the absence of wind or other external forces."
+        },
+        {
+            "formula": "G(external_force → F(position_drift))",
+            "explanation": "Globally, if there's an external force (like wind), then eventually there will be a drift in position. This represents the lack of position hold in the presence of external forces."
+        },
+        {
+            "formula": "G((manual_mode ∨ stabilized_mode) → F(stabilized_behavior))",
+            "explanation": "Globally, if the mode is set to manual or stabilized, then eventually the stabilized behavior will be active. This captures the equivalence of manual and stabilized modes."
+        }
+    ]
+}
+```
+
+These MTL formulas capture the key specifications of the Stabilized Mode for multicopters as described in the document. They cover the stabilization behavior, response to control inputs, and the effects of external forces. The formulas use the temporal operators to express the immediate (next state) and eventual behaviors of the system.

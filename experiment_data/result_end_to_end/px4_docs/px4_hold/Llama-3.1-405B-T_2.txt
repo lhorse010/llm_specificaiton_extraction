@@ -1,0 +1,46 @@
+Based on the provided document, I've extracted the specifications and expressed them using Metric Temporal Logic (MTL) formulas. Here are the results in the required output format:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G((mode = Hold) → (position = current_position ∧ altitude = current_altitude))",
+            "explanation": "When the vehicle is in Hold mode, it will always maintain its current GPS position and altitude."
+        },
+        {
+            "formula": "G((mode = Hold ∧ altitude < NAV_MIN_LTR_ALT) → X(altitude = NAV_MIN_LTR_ALT))",
+            "explanation": "When the vehicle is in Hold mode and its altitude is below NAV_MIN_LTR_ALT, it will ascend to NAV_MIN_LTR_ALT."
+        },
+        {
+            "formula": "G((mode = Hold ∧ RC_stick_movement) → X(mode = Position))",
+            "explanation": "When the vehicle is in Hold mode and there is RC stick movement, it will change to Position mode."
+        },
+        {
+            "formula": "G((mode = Hold) → (wind ≤ allowed_wind ∧ flight_time ≤ allowed_flight_time))",
+            "explanation": "When the vehicle is in Hold mode, the wind and flight time will always be within allowed limits."
+        },
+        {
+            "formula": "G((mode = Hold ∧ ¬global_position_estimate) → failsafe)",
+            "explanation": "When the vehicle is in Hold mode and it loses its global position estimate, it will failsafe."
+        },
+        {
+            "formula": "G((mode = Hold ∧ disarmed) → ¬armed)",
+            "explanation": "When the vehicle is in Hold mode and disarmed, it cannot arm without a valid position estimate."
+        }
+    ]
+}
+```
+
+Note that I've used the following abbreviations in the MTL formulas:
+
+* `mode`: the current flight mode of the vehicle
+* `position`: the current GPS position of the vehicle
+* `altitude`: the current altitude of the vehicle
+* `NAV_MIN_LTR_ALT`: the minimum altitude required for the vehicle to hover
+* `RC_stick_movement`: a boolean indicating whether there is RC stick movement
+* `allowed_wind`: the maximum allowed wind speed
+* `allowed_flight_time`: the maximum allowed flight time
+* `global_position_estimate`: a boolean indicating whether the vehicle has a global position estimate
+* `failsafe`: a boolean indicating whether the vehicle has failsafed
+* `disarmed`: a boolean indicating whether the vehicle is disarmed
+* `armed`: a boolean indicating whether the vehicle is armed

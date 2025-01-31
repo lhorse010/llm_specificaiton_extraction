@@ -1,0 +1,32 @@
+[
+  {
+    "index": 0,
+    "formula": "G(land_mode → F(landed ∧ disarm))",
+    "explanation": "Globally, if the vehicle is in land mode, it will eventually land and disarm."
+  },
+  {
+    "index": 1,
+    "formula": "G(land_mode → ¬arming)",
+    "explanation": "Globally, if the vehicle is in land mode, it cannot arm."
+  },
+  {
+    "index": 2,
+    "formula": "G(local_position_estimate → (X land_mode ∨ X failsafe))",
+    "explanation": "Globally, if the vehicle has a valid local position estimate, it will either switch to land mode or failsafe in the next step."
+  },
+  {
+    "index": 3,
+    "formula": "G(land_mode → G(descend_speed = MPC_LAND_SPEED))",
+    "explanation": "Globally, if the vehicle is in land mode, it will descend at the rate specified in MPC_LAND_SPEED."
+  },
+  {
+    "index": 4,
+    "formula": "G(land_mode ∧ RC_stick_movement → X position_mode)",
+    "explanation": "Globally, if the vehicle is in land mode and there is RC stick movement, it will switch to position mode in the next step."
+  },
+  {
+    "index": 5,
+    "formula": "G(¬local_position_estimate → failsafe)",
+    "explanation": "Globally, if the vehicle loses its local position estimate, it will failsafe."
+  }
+]

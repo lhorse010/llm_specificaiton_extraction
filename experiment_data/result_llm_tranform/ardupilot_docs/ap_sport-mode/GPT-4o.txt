@@ -1,0 +1,27 @@
+[
+  {
+    "sentence": "The vehicle will not lean more than 45 degrees (this angle is adjustable with the ACRO_BAL_ROLL and ACRO_BAL_PITCH parameters)",
+    "formula": "G(¬L)",
+    "explanation": "Here, L represents the vehicle leaning more than 45 degrees. The formula G(¬L) ensures that globally (at all times), this condition is never met."
+  },
+  {
+    "sentence": "The altitude is maintained with the altitude hold controller so the vehicle will attempt to hold its current altitude when the sticks are placed with 10% of mid-throttle.",
+    "formula": "G(T → H)",
+    "explanation": "In this formula, T represents the sticks being within 10% of mid-throttle, and H represents the vehicle holding its current altitude. G(T → H) means that whenever T is true, H will also be true globally."
+  },
+  {
+    "sentence": "It will climb or descend at up to 2.5m/s (this speed is adjustable with the PILOT_SPEED_UP and PILOT_SPEED_DN parameters).",
+    "formula": "G((C ∨ D) → S)",
+    "explanation": "Here, C represents climbing, D represents descending, and S represents the speed being at most 2.5m/s. The formula G((C ∨ D) → S) ensures that whenever the vehicle climbs or descends, the speed constraint is always respected globally."
+  },
+  {
+    "sentence": "The pilot's roll, pitch and yaw sticks control the rate of rotation of the vehicle so when the sticks are released the vehicle will remain in its current attitude.",
+    "formula": "G(R → A)",
+    "explanation": "R represents the sticks being released, and A represents the vehicle maintaining its current attitude. The formula G(R → A) ensures that globally, whenever R occurs, A follows."
+  },
+  {
+    "sentence": "Either the user must build his own firmware with this mode enabled or use the Custom Firmware Server",
+    "formula": "G(U ∨ C)",
+    "explanation": "U represents the user building their own firmware, and C represents using the Custom Firmware Server. G(U ∨ C) ensures that globally, at least one of these conditions is always met."
+  }
+]

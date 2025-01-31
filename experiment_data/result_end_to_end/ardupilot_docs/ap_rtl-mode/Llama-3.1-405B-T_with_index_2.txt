@@ -1,0 +1,72 @@
+[
+  {
+    "index": 0,
+    "formula": "G(RTL_mode -> F(altitude >= RTL_CLIMB_MIN))",
+    "explanation": "When RTL mode is selected, the copter will eventually climb to at least RTL_CLIMB_MIN meters."
+  },
+  {
+    "index": 1,
+    "formula": "G(RTL_mode -> F(altitude >= RTL_ALT))",
+    "explanation": "When RTL mode is selected, the copter will eventually climb to at least RTL_ALT meters."
+  },
+  {
+    "index": 2,
+    "formula": "G(RTL_mode -> altitude >= 2)",
+    "explanation": "When RTL mode is selected, the copter's altitude will always be at least 2 meters."
+  },
+  {
+    "index": 3,
+    "formula": "G(RTL_mode -> F(distance_to_home <= 0))",
+    "explanation": "When RTL mode is selected, the copter will eventually return to the home location."
+  },
+  {
+    "index": 4,
+    "formula": "G(RTL_mode -> (distance_to_home * RTL_CONE_SLOPE >= altitude))",
+    "explanation": "When RTL mode is selected, the copter's altitude is limited by the inverted cone centered on the return point."
+  },
+  {
+    "index": 5,
+    "formula": "G(RTL_mode -> (RTL_CONE_SLOPE >= 0.5))",
+    "explanation": "The RTL_CONE_SLOPE parameter must be at least 0.5."
+  },
+  {
+    "index": 6,
+    "formula": "G(RTL_mode -> (RTL_LOIT_TIME >= 0))",
+    "explanation": "The RTL_LOIT_TIME parameter must be at least 0 milliseconds."
+  },
+  {
+    "index": 7,
+    "formula": "G(RTL_mode -> (RTL_SPEED >= 0))",
+    "explanation": "The RTL_SPEED parameter must be at least 0 cm/s."
+  },
+  {
+    "index": 8,
+    "formula": "G(RTL_mode -> (LAND_SPEED >= 20))",
+    "explanation": "The LAND_SPEED parameter must be at least 20 cm/s."
+  },
+  {
+    "index": 9,
+    "formula": "G(RTL_mode -> (RTL_ALT_FINAL >= 0))",
+    "explanation": "The RTL_ALT_FINAL parameter must be at least 0 cm."
+  },
+  {
+    "index": 10,
+    "formula": "G(RTL_mode -> (WP_YAW_BEHAVIOR >= 0))",
+    "explanation": "The WP_YAW_BEHAVIOR parameter must be at least 0."
+  },
+  {
+    "index": 11,
+    "formula": "G(RTL_mode -> (RTL_CLIMB_MIN >= 0))",
+    "explanation": "The RTL_CLIMB_MIN parameter must be at least 0 meters."
+  },
+  {
+    "index": 12,
+    "formula": "G(RTL_mode -> (RTL_ALT >= 1))",
+    "explanation": "The RTL_ALT parameter must be at least 1 cm."
+  },
+  {
+    "index": 13,
+    "formula": "G(RTL_mode -> (RTL_ALT <= 8000))",
+    "explanation": "The RTL_ALT parameter must be at most 8000 cm."
+  }
+]

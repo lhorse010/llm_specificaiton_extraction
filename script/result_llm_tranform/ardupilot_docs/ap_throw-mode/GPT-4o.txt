@@ -1,0 +1,77 @@
+[
+  {
+    "sentence": "This mode requires GPS.",
+    "formula": "G(¬M → GPS)",
+    "explanation": "Here, M represents the mode being active. The formula states that globally, if the mode is not active, then GPS must be available."
+  },
+  {
+    "sentence": "This flight mode is available for multirotors only.",
+    "formula": "G(M → Multirotor)",
+    "explanation": "M represents the flight mode being active. The formula ensures that whenever this mode is active, it must be for multirotors only."
+  },
+  {
+    "sentence": "3.Check GPS light is green",
+    "formula": "F(Green)",
+    "explanation": "The formula indicates that eventually, the GPS light must be green, represented by Green."
+  },
+  {
+    "sentence": "5.Pick up the vehicle and throw it up and away from you (it must climb by 50cm/s and reach a total speed of 5m/s)",
+    "formula": "F(Climb ∧ Speed)",
+    "explanation": "The formula specifies that eventually, the vehicle must achieve a climb rate of 50cm/s and reach a speed of 5m/s."
+  },
+  {
+    "sentence": "The motors should start when the vehicle reaches the apex of its trajectory.",
+    "formula": "F(Apex → StartMotors)",
+    "explanation": "Apex represents the vehicle reaching the highest point in its trajectory, and StartMotors indicates the motors starting at that point."
+  },
+  {
+    "sentence": "After the motors start this flight mode will first try to control its attitude (return to level and stop rotating), then stop descending and finally it will attempt to stop moving horizontally.",
+    "formula": "F(StartMotors → (G(ControlAttitude) ∧ F(StopDescend) ∧ F(StopHorizontal)))",
+    "explanation": "Once the motors start, the system will control its attitude, then stop descending, and finally stop horizontal movement, in that order."
+  },
+  {
+    "sentence": "1.THROW_TYPE: set to 0 if throwing the vehicle up, 1 if dropping the vehicle.",
+    "formula": "G(ThrowType = 0 → ThrowUp) ∧ G(ThrowType = 1 → Drop)",
+    "explanation": "The THROW_TYPE determines if the action is a throw up or a drop, represented by ThrowUp and Drop respectively."
+  },
+  {
+    "sentence": "If dropping, drop from a height of at least 10m.",
+    "formula": "G(Drop → Height ≥ 10)",
+    "explanation": "The formula ensures that if the vehicle is dropped, it must be from a height of at least 10 meters."
+  },
+  {
+    "sentence": "2.THROW_MOT_START: controls whether the motors will spin slowly or not at all while waiting for the throw (0 = stopped, 1 = spinning slowly).",
+    "formula": "G(ThrowWait → (Motors = 0 ∨ Motors = 1))",
+    "explanation": "During the wait for the throw, the motors can either be stopped or spinning slowly, represented by values 0 and 1."
+  },
+  {
+    "sentence": "3.THROW_NEXTMODE: the vehicle will switch into this flight mode after stopping (Auto, Guided, RTL, Land and Brake are supported).",
+    "formula": "F(Stop → (Mode = Auto ∨ Mode = Guided ∨ Mode = RTL ∨ Mode = Land ∨ Mode = Brake))",
+    "explanation": "Once the vehicle stops, it will switch to one of the supported modes: Auto, Guided, RTL, Land, or Brake."
+  },
+  {
+    "sentence": "4.THROW_ALT_MIN and THROW_ALT_MAX: set the altitude limits for THROW mode launch.",
+    "formula": "G((THROW → (ALT ≥ THROW_ALT_MIN ∧ ALT ≤ THROW_ALT_MAX)))",
+    "explanation": "This formula specifies that globally, whenever THROW mode is active, the altitude must be within the defined minimum and maximum limits."
+  },
+  {
+    "sentence": "Throw must happen above the minimum and below the maximum altitude above home after arming.",
+    "formula": "G((ARMED → F((ALT > THROW_ALT_MIN ∧ ALT < THROW_ALT_MAX) ∧ THROW)))",
+    "explanation": "After arming, it is eventually required that the throw occurs at an altitude above the minimum and below the maximum."
+  },
+  {
+    "sentence": "6.Once the vehicle has stopped, switch the flight mode to Loiter (or other mode) to retake manual control.",
+    "formula": "G((STOPPED → F(LOITER ∨ OTHER_MODE)))",
+    "explanation": "Once the vehicle stops, it is eventually necessary to switch to either Loiter mode or another mode to regain manual control."
+  },
+  {
+    "sentence": "The motors will not spin by default.",
+    "formula": "¬(SPIN)",
+    "explanation": "This indicates that globally, by default, the motors are not spinning."
+  },
+  {
+    "sentence": "Set to \"Throw\" (the default) to simply remain in Throw mode and wait for the pilot to switch modes manually.",
+    "formula": "G((DEFAULT_THROW → (THROW ∧ ¬AUTO_SWITCH)))",
+    "explanation": "If 'Throw' is set as the default, the system remains in Throw mode until the pilot manually switches modes, ensuring no automatic switching occurs."
+  }
+]

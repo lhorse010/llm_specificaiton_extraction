@@ -1,0 +1,37 @@
+[
+  {
+    "sentence": "Mode is automatic - no user intervention is _required_ to control the vehicle.",
+    "formula": "G(A → ¬U)",
+    "explanation": "A represents the mode being automatic, and ¬U indicates no user intervention is required. This formula asserts that globally, if the mode is automatic, user intervention is not needed."
+  },
+  {
+    "sentence": "Mode requires at least a valid local position estimate (does not require a global position).",
+    "formula": "G(M → L ∧ ¬G)",
+    "explanation": "M represents the mode being active, L indicates a valid local position, and G indicates a global position. The formula asserts that globally, if the mode is active, a valid local position is required, and a global position is not."
+  },
+  {
+    "sentence": "Flying vehicles can't switch to this mode without valid local position.",
+    "formula": "G(¬L → ¬S)",
+    "explanation": "L represents a valid local position and S represents switching to the mode. The formula states that globally, without a valid local position, switching to this mode is impossible."
+  },
+  {
+    "sentence": "Flying vehicles will failsafe if they lose the position estimate.",
+    "formula": "G(¬P → F)",
+    "explanation": "P represents having a position estimate, and F represents entering failsafe mode. The formula ensures that globally, if the position estimate is lost, the vehicle will enter failsafe mode."
+  },
+  {
+    "sentence": "Disarmed vehicles can switch to mode without valid position estimate but can't arm.",
+    "formula": "G(D ∧ ¬L → S ∧ ¬A)",
+    "explanation": "D represents the vehicle being disarmed, L a valid position estimate, S switching to the mode, and A being armed. The formula indicates that globally, disarmed vehicles can switch modes without a position estimate, but they cannot arm."
+  },
+  {
+    "sentence": "The Failure Detector will automatically stop the engines if there is a problem on takeoff.",
+    "formula": "G(P → F)",
+    "explanation": "P represents a problem on takeoff, and F represents stopping the engines. The formula states that globally, if there is a problem on takeoff, the failure detector will stop the engines."
+  },
+  {
+    "sentence": "A multi rotor ascends vertically to the altitude defined in MIS_TAKEOFF_ALT and holds position.",
+    "formula": "F(A ∧ H)",
+    "explanation": "A represents ascending to the MIS_TAKEOFF_ALT, and H represents holding position. The formula indicates that eventually, the multi rotor will ascend to the specified altitude and maintain that position."
+  }
+]

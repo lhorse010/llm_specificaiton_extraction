@@ -1,0 +1,47 @@
+[
+  {
+    "index": 0,
+    "formula": "G(follow_mode_active → F(maintain_altitude))",
+    "explanation": "Globally, when follow mode is active, the vehicle will eventually maintain its altitude using the altitude hold controller."
+  },
+  {
+    "index": 1,
+    "formula": "G(follow_mode_active ∧ throttle_near_mid → X(altitude_change_rate ≤ 2.5))",
+    "explanation": "Globally, when follow mode is active and the throttle is near mid position, in the next state the altitude change rate will be less than or equal to 2.5 m/s."
+  },
+  {
+    "index": 2,
+    "formula": "G(lead_vehicle_distance > FOLL_DIST_MAX → X(hold_position))",
+    "explanation": "Globally, if the lead vehicle's distance becomes greater than FOLL_DIST_MAX, in the next state the vehicle will hold its position."
+  },
+  {
+    "index": 3,
+    "formula": "G(follow_mode_active → F(maintain_offset(FOLL_OFS_X, FOLL_OFS_Y, FOLL_OFS_Z)))",
+    "explanation": "Globally, when follow mode is active, the vehicle will eventually maintain the specified 3D offset from the lead vehicle."
+  },
+  {
+    "index": 4,
+    "formula": "G(follow_mode_active ∧ FOLL_YAW_BEHAVE = 0 → F(yaw_matches_lead_vehicle))",
+    "explanation": "Globally, when follow mode is active and FOLL_YAW_BEHAVE is set to 0, the vehicle will eventually point in the same direction as the lead vehicle."
+  },
+  {
+    "index": 5,
+    "formula": "G(follow_mode_active ∧ FOLL_YAW_BEHAVE = 1 → F(yaw_towards_lead_vehicle))",
+    "explanation": "Globally, when follow mode is active and FOLL_YAW_BEHAVE is set to 1, the vehicle will eventually point towards the lead vehicle."
+  },
+  {
+    "index": 6,
+    "formula": "G(follow_mode_active → move_speed ≤ WPNAV_SPEED)",
+    "explanation": "Globally, when follow mode is active, the vehicle's movement speed towards the lead vehicle is always less than or equal to WPNAV_SPEED."
+  },
+  {
+    "index": 7,
+    "formula": "G(FOLL_ENABLE = 1 → X(follow_mode_enabled ∧ parameters_refreshed))",
+    "explanation": "Globally, when FOLL_ENABLE is set to 1, in the next state follow mode will be enabled and parameters will be refreshed."
+  },
+  {
+    "index": 8,
+    "formula": "G(follow_mode_active ∧ FOLL_OPTIONS[0] = 1 → F(gimbal_follows_target))",
+    "explanation": "Globally, when follow mode is active and bit 0 of FOLL_OPTIONS is set to 1, eventually the gimbal/mount will follow the target vehicle."
+  }
+]

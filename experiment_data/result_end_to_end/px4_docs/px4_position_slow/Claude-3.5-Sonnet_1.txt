@@ -1,0 +1,38 @@
+I'll extract the specifications from the document and express them using Metric Temporal Logic (MTL) formulas as requested. Then, I'll format the output in JSON.
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(velocity ≤ velocity_limit)",
+            "explanation": "This formula specifies that globally (at all times), the vehicle's velocity must be less than or equal to the velocity limit. This applies to horizontal velocity, vertical velocity, and yaw rate."
+        },
+        {
+            "formula": "G(velocity_limit ≤ position_mode_limit)",
+            "explanation": "This formula specifies that globally, the velocity limit in Position Slow mode must always be less than or equal to the velocity limit in regular Position mode."
+        },
+        {
+            "formula": "G((rc_input = max) → (velocity_limit = position_mode_limit))",
+            "explanation": "This formula states that globally, if the RC input is at its maximum value, then the velocity limit should be equal to the regular Position mode limit."
+        },
+        {
+            "formula": "G((rc_input = min) → (velocity_limit = MC_SLOW_MIN))",
+            "explanation": "This formula specifies that globally, if the RC input is at its minimum value, then the velocity limit should be equal to the corresponding MC_SLOW_MIN parameter value."
+        },
+        {
+            "formula": "G(rc_priority → (velocity_limit = rc_set_limit))",
+            "explanation": "This formula states that globally, if RC control input is mapped for an axis (has priority), then the velocity limit for that axis should be set by the RC input."
+        },
+        {
+            "formula": "G(¬rc_priority ∧ mavlink_set → (velocity_limit = mavlink_limit))",
+            "explanation": "This formula specifies that globally, if RC control doesn't have priority and a MAVLink limit is set, then the velocity limit should be equal to the limit set by MAVLink."
+        },
+        {
+            "formula": "G(¬rc_priority ∧ ¬mavlink_set → (velocity_limit = parameter_limit))",
+            "explanation": "This formula states that globally, if neither RC control has priority nor MAVLink limit is set, then the velocity limit should be equal to the limit set by parameters."
+        }
+    ]
+}
+```
+
+These MTL formulas capture the key specifications for the Position Slow Mode as described in the document. They cover the velocity limits, the priority of different limit-setting methods, and the behavior under different conditions. The formulas use the globally (G) operator to indicate that these conditions should hold at all times during the operation of the vehicle in Position Slow Mode.

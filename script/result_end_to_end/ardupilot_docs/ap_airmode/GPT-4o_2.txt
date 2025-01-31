@@ -1,0 +1,26 @@
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(arming_via_rudder ∧ throttle_at_idle → ¬stabilization_active)",
+            "explanation": "If arming is done via the rudder and the throttle is lowered to idle in ACRO mode, stabilization should not be active."
+        },
+        {
+            "formula": "G(arming_via_RC_switch ∧ throttle_at_idle → stabilization_active)",
+            "explanation": "If arming is done using the RCx_OPTION ARM/DISARM switch with Airmode, stabilization should remain active even when the throttle is at idle."
+        },
+        {
+            "formula": "G(RCx_OPTION = 84 → F(AIRMODE_active))",
+            "explanation": "Setting an RC channel to RCx_OPTION = 84 should eventually enable or disable Airmode in ACRO and STABILIZE modes."
+        },
+        {
+            "formula": "G(bit_0_of_ACRO_OPTIONS_set → G(AIRMODE_active_in_ACRO))",
+            "explanation": "If bit 0 of ACRO_OPTIONS is set, Airmode should remain active in ACRO mode at all times, unless overridden by the switch."
+        },
+        {
+            "formula": "G(use_auxiliary_function_153 → ¬AIRMODE_active)",
+            "explanation": "If auxiliary function option 153 is used for the switch, Airmode should not be enabled even if an ARM/DISARM switch is used."
+        }
+    ]
+}
+```

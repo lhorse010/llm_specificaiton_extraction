@@ -1,0 +1,34 @@
+```json
+{
+    "specifications": [
+        {
+            "formula": "G (pilot_input_roll ∧ pilot_input_pitch → F self_leveling)",
+            "explanation": "Whenever the pilot provides roll and pitch input, the vehicle should eventually self-level."
+        },
+        {
+            "formula": "G (¬GPS → ¬emergency_mode_RTL)",
+            "explanation": "If there is no reliable GPS, the vehicle should not switch to Return-To-Launch (RTL) emergency mode."
+        },
+        {
+            "formula": "G (pilot_input_yaw → X maintain_heading)",
+            "explanation": "After the pilot provides yaw input, the vehicle should maintain its current heading in the next state."
+        },
+        {
+            "formula": "G (throttle_down → F lose_attitude_control)",
+            "explanation": "If the throttle is completely down, the vehicle will eventually lose attitude control and tumble."
+        },
+        {
+            "formula": "G (tilt_angle_increase → X throttle_adjustment)",
+            "explanation": "Whenever the vehicle's tilt angle increases, the throttle should be adjusted in the next state to compensate."
+        },
+        {
+            "formula": "G (autopilot_failure → F switch_to_manual_mode)",
+            "explanation": "If the autopilot fails, the vehicle should eventually switch to manual mode to maintain control."
+        },
+        {
+            "formula": "G (angle > ANGLE_MAX → ¬self_leveling)",
+            "explanation": "If the vehicle's angle exceeds the maximum lean angle, it should not self-level."
+        }
+    ]
+}
+```

@@ -1,0 +1,52 @@
+[
+  {
+    "sentence": "The _Land_ flight mode causes the vehicle to land at the position where the mode was engaged.",
+    "formula": "G(L → F(Land))",
+    "explanation": "Here, L represents the _Land_ flight mode being engaged, and Land represents the vehicle landing at the position where the mode was engaged. The formula states that whenever the _Land_ mode is engaged, the vehicle will eventually land."
+  },
+  {
+    "sentence": "The vehicle will disarm shortly after landing (by default).",
+    "formula": "G(Land → F[0, δ](D))",
+    "explanation": "Here, Land represents the vehicle landing, D represents the vehicle disarming, and δ is a small time interval representing 'shortly after'. The formula states that whenever the vehicle lands, it will disarm within a short time interval."
+  },
+  {
+    "sentence": "2.Mode requires at least a valid local position estimate (does not require a global position).",
+    "formula": "G(M → P)",
+    "explanation": "Here, M represents the 2.Mode being engaged, and P represents a valid local position estimate. The formula states that whenever the 2.Mode is engaged, a valid local position estimate is required."
+  },
+  {
+    "sentence": "Flying vehicles can't switch to this mode without valid local position.",
+    "formula": "G(¬P → ¬M)",
+    "explanation": "Here, P represents a valid local position estimate, and M represents the mode being switched to. The formula states that whenever a valid local position estimate is not available, the mode cannot be switched to."
+  },
+  {
+    "sentence": "Flying vehicles will failsafe if they lose the position estimate.",
+    "formula": "G(P ∧ ¬X(P) → F(FS))",
+    "explanation": "Here, P represents a valid position estimate, FS represents the failsafe mode, and X represents the next time step. The formula states that whenever a valid position estimate is lost, the vehicle will eventually enter failsafe mode."
+  },
+  {
+    "sentence": "3.Mode prevents arming (vehicle must be armed when switching to this mode).",
+    "formula": "G(M → A)",
+    "explanation": "Here, M represents the 3.Mode being engaged, and A represents the vehicle being armed. The formula states that whenever the 3.Mode is engaged, the vehicle must be armed."
+  },
+  {
+    "sentence": "5.RC stick movement in a multicopter (or VTOL in multicopter mode) will by default change the vehicle to Position mode unless handling a critical battery failsafe.",
+    "formula": "G(RC ∧ ¬FS → F(PM))",
+    "explanation": "Here, RC represents RC stick movement, FS represents a critical battery failsafe, and PM represents the Position mode. The formula states that whenever there is RC stick movement and no critical battery failsafe, the vehicle will eventually enter Position mode."
+  },
+  {
+    "sentence": "The vehicle will land at the location at which the mode was engaged.",
+    "formula": "G(M → F(Land))",
+    "explanation": "Here, M represents the mode being engaged, and Land represents the vehicle landing at the location where the mode was engaged. The formula states that whenever the mode is engaged, the vehicle will eventually land."
+  },
+  {
+    "sentence": "The vehicle descends at the rate specified in MPC_LAND_SPEED and will disarm after landing (by default).",
+    "formula": "G(Land → F[0, δ](D))",
+    "explanation": "Here, Land represents the vehicle landing, D represents the vehicle disarming, and δ is a small time interval representing 'after'. The formula states that whenever the vehicle lands, it will disarm within a short time interval."
+  },
+  {
+    "sentence": "RC stick movement will change the vehicle to Position mode (by default).",
+    "formula": "G(RC → F(PM))",
+    "explanation": "Here, RC represents RC stick movement, and PM represents the Position mode. The formula states that whenever there is RC stick movement, the vehicle will eventually enter Position mode."
+  }
+]

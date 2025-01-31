@@ -1,0 +1,72 @@
+Based on the provided document, I have annotated the sentences as specifications if they convey the following information:
+1. Requirements the system must meet for state transition.
+2. Constraints the system must adhere to.
+3. Expected post-actions the system will execute when entering a particular state.
+4. Expected state changes the system will carry out in response to specific commands or settings.
+
+Here is the output in the required JSON format:
+
+```json
+{
+    "specifications": [
+        {
+            "section-id": 1,
+            "sentence-id": 1
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 3
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 3
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 5
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 6
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 7
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 8
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 10
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 11
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 12
+        },
+        {
+            "section-id": 4,
+            "sentence-id": 0
+        }
+    ]
+}
+```
+
+The annotated sentences are:
+
+* Section 1, Sentence 1: "2.The user has direct control of Yaw and Pitch, but Roll is controlled by the autopilot." (Constraint)
+* Section 1, Sentence 3: "3.The user has completely manual control over the throttle as in Stabilize mode ." (Constraint)
+* Section 2, Sentence 3: "3.When you push the right stick forward or back the copter will pitch (and accelerate) in the appropriate direction." (Expected state change)
+* Section 2, Sentence 5: "5.The copter will also bank at the same time so as to make a coordinated turn in that direction." (Expected state change)
+* Section 2, Sentence 6: "6.When turning with the right stick yaw is automatically applied and sufficient roll is added to cancel the copters velocity in the roll axis." (Expected state change)
+* Section 2, Sentence 7: "7.This allows you to maintain a coordinated (non-skidding) turn." (Expected state change)
+* Section 2, Sentence 8: "8.Letting go of the sticks effectively turns on a speed brake in the Pitch axis that slows the copter to a stop over a two second period." (Expected post-action)
+* Section 2, Sentence 10: "If the pilot puts the throttle completely down the motors will go to their minimum rate (MOT_SPIN_ARMED) and if the vehicle is flying it will lose attitude control and tumble." (Constraint)
+* Section 2, Sentence 11: "11.Drift Mode relies on your GPS for control." (Constraint)
+* Section 2, Sentence 12: "12.If you lose your GPS signal in flight while in Drift Mode, your copter will either land or enter altitude hold based on your failsafe_gps_enabled setting." (Expected state change)
+* Section 4, Sentence 0: "1.In the Mission Planner Configuration Section under flight modes select Drift Mode to apply to an appropriate switch setting." (Requirement for state transition)

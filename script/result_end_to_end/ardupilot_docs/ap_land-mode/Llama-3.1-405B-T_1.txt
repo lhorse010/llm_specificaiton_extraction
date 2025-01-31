@@ -1,0 +1,38 @@
+After carefully reading the document, I extracted the specifications that the vehicle needs to meet in Land Mode. Here are the specifications expressed using Metric Temporal Logic (MTL) formulas:
+
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(altitude > 10m → X(descend_speed = WPNAV_SPEED_DN))",
+            "explanation": "The copter descends at the speed held in the WPNAV_SPEED_DN parameter when above 10m."
+        },
+        {
+            "formula": "G(altitude ≤ 10m → X(descend_speed = LAND_SPEED))",
+            "explanation": "The copter descends at the rate specified in the LAND_SPEED parameter when below 10m."
+        },
+        {
+            "formula": "G(on_ground ∧ throttle_min → X(motors_off ∧ disarm))",
+            "explanation": "Upon reaching the ground, the copter will automatically shut-down the motors and disarm if the pilot's throttle is at minimum."
+        },
+        {
+            "formula": "G(GPS_lock → X(horizontal_control = Loiter_mode))",
+            "explanation": "If the vehicle has GPS lock, the landing controller will attempt to control its horizontal position as in Loiter mode."
+        },
+        {
+            "formula": "G(¬GPS_lock → X(horizontal_control = Stabilize_mode))",
+            "explanation": "If the vehicle does not have GPS lock, the horizontal control will be as in Stabilize mode."
+        },
+        {
+            "formula": "G(on_ground → X(¬motors_on ∨ (vertical_position_controller = low ∧ climb_rate ∈ [-20cm/s, 20cm/s] ∧ ¬accelerating)))",
+            "explanation": "The copter will recognize that it has landed if the motors are being commanded to be at low level, its climb rate remains between -20cm/s and +20cm/s, and is not accelerating for one second."
+        },
+        {
+            "formula": "G(on_ground ∧ WoW_switch → X(descent_rate ∈ [increased_range] ∧ accelerometer_ranges ∈ [increased_range]))",
+            "explanation": "Using a Weight on Wheels (WoW) switch will increase the descent rate and accelerometer ranges that are acceptable for landing detection."
+        }
+    ]
+}
+```
+
+Note that I excluded some specifications that were not clear or specific enough to be expressed using MTL formulas. Additionally, I assumed that some variables (e.g., `WPNAV_SPEED_DN`, `LAND_SPEED`, `throttle_min`, `GPS_lock`, `on_ground`, `motors_off`, `disarm`, `Loiter_mode`, `Stabilize_mode`, `vertical_position_controller`, `climb_rate`, `accelerating`, `WoW_switch`, `descent_rate`, and `accelerometer_ranges`) are defined elsewhere in the system.

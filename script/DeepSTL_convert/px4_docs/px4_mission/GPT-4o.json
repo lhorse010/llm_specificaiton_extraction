@@ -1,0 +1,100 @@
+{
+    "temporal_logic_formulars": [
+        {
+            "section-id": 1,
+            "sentence-id": 0,
+            "sentence": "1.This mode requires a global 3d position estimate (from GPS or inferred from a local position).",
+            "tl": "always ( e1Thisrequire == salobalglodalitionestimateS ) or ( GPSinferedalocal == lplosiositiocal ) )"
+        },
+        {
+            "section-id": 1,
+            "sentence-id": 1,
+            "sentence": "2.The vehicle must be armed before this mode can be engaged.",
+            "tl": "always ( jvehicle == armed -> canengaged == d )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 4,
+            "sentence": "1.If no mission is stored, or if PX4 has finished executing all mission commands, or if the mission is not feasible:",
+            "tl": "always ( misionsto == red or PX4finisedexecuting == misionsiocmomands or not ( mis == misisonsocmnoms ) -> not ( misisomnon == feasisisisionlefasible ) )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 7,
+            "sentence": "2.If a mission is stored and PX4 is flying it will execute the mission/flight plan from the current step.",
+            "tl": "always ( amisionst == ored and PX4flyingitexecute == misisionflightplghtplancunc ) -> curcuren == ersrentntntststetplaep )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 10,
+            "sentence": "PX4 will execute the mission/flight plan.",
+            "tl": "always ( PX4executemisison == flightplan )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 11,
+            "sentence": "If the mission does not have a TAKEOFF item then PX4 will fly the vehicle to the minimum altitude before executing the remainder of the flight plan from the current step.",
+            "tl": "always ( not ( mission == aTAKEOFitem ) -> PX4flyveicle == minexecutingrermla )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 16,
+            "sentence": "6.The mission will only reset when the vehicle is disarmed or when a new mission is uploaded.",
+            "tl": "always ( misiononlyrese == vehicledisarmed or anewmis == ionuploadeded )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 19,
+            "sentence": "If the vehicle was capturing images (has camera trigger items) it will instead head from its current position towards the last waypoint it traveled through (before pausing), and then retrace its path at the same speed and with the same camera triggering behaviour.",
+            "tl": "always ( ( reiclecapgiatgiages > 4 cariatrigiages < ameitrieritemsi = iteite ) and ( itinseadteted == dtscuretitsetretdtr ) -> ( rtatetei == pashpaseicshruitrgiashrgiashpgiaseicKiase ) until ( e == = pergicoicu"
+        },
+        {
+            "section-id": 5,
+            "sentence-id": 0,
+            "sentence": "Ensure that the throttle stick is non-zero before switching to any RC mode (otherwise the vehicle will crash).",
+            "tl": "always ( Ensurethrotlt == ticknoneroswitching = RCotherewise -> RCotherwise == iclehiclecrash )"
+        },
+        {
+            "section-id": 6,
+            "sentence-id": 1,
+            "sentence": "If any of the checks fail, the user is notified and it is not possible to start the mission.",
+            "tl": "always ( checksfail == usernotified and not ( it == possible ) )"
+        },
+        {
+            "section-id": 6,
+            "sentence-id": 3,
+            "sentence": "1.First mission item too far away from vehicle (MIS_DIST_1WP)",
+            "tl": "always ( i1rstmisionite == mtofarvehicleMIS_DIST_1WP )"
+        },
+        {
+            "section-id": 6,
+            "sentence-id": 4,
+            "sentence": "2.Any mission item conflicts with a plan or safety geofence",
+            "tl": "always ( eAnymisionite == conflictswithaplan or safetyetygeofe == eofence )"
+        },
+        {
+            "section-id": 10,
+            "sentence-id": 4,
+            "sentence": "Vehicles switch to the next waypoint as soon as they enter the acceptance radius (NAV_ACC_RAD).",
+            "tl": "always ( rise ( Vehicleswitch == waypeyaceptanceptancera == NAV_AC_C_RAD ) )"
+        },
+        {
+            "section-id": 11,
+            "sentence-id": 1,
+            "sentence": "During mission execution this will cause the vehicle to ascend vertically to the minimum takeoff altitude defined in the MIS_TAKEOFF_ALT parameter, then head towards the 3D position defined in the mission item.",
+            "tl": "always ( ( misionevehice == ascedvertical ) until ( iminedvertil == miminl ) -> ( MIS_TKEOFLTpe == amSaredtwasiosiDpineditinei ) until ( micied == sisisinedmicosedoined ) )"
+        },
+        {
+            "section-id": 11,
+            "sentence-id": 2,
+            "sentence": "If a mission with no takeoff mission item is started, the vehicle will ascend to the minimum takeoff altitude and then proceed to the first Waypoint mission item.",
+            "tl": "always ( amisionwith == aekeofinitemsi ) and vehicleascend == minimtakeofalmtakefalede )"
+        },
+        {
+            "section-id": 6,
+            "sentence-id": 0,
+            "sentence": "PX4 runs some basic sanity checks to determine if a mission is feasible when it is uploaded, and when the vehicle is first armed.",
+            "tl": "always ( PX4runsomebasics == icsetermine ) until ( PX4reck == deteteminermine ) -> isinei == asifeasiblituploadei = de and ve )"
+        }
+    ]
+}

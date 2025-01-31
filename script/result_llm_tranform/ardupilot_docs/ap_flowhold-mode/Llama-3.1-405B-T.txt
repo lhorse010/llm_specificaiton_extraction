@@ -1,0 +1,37 @@
+[
+  {
+    "sentence": "When the user releases the sticks, the optical flow sensor is used by the autopilot to bring the vehicle to a stop.",
+    "formula": "R → F(S ∧ X(G(V)))",
+    "explanation": "Here, R represents the user releasing the sticks, S represents the optical flow sensor being used, and V represents the vehicle coming to a stop. The formula states that when the user releases the sticks, it will eventually lead to the optical flow sensor being used, which in turn will bring the vehicle to a stop and keep it stopped indefinitely."
+  },
+  {
+    "sentence": "FHLD_BRAKE_RATE controls the desired deceleration rate when the pilot releases the sticks",
+    "formula": "R → F(B ∧ G(D))",
+    "explanation": "Here, R represents the pilot releasing the sticks, B represents the FHLD_BRAKE_RATE being applied, and D represents the desired deceleration rate being achieved. The formula states that when the pilot releases the sticks, it will eventually lead to the FHLD_BRAKE_RATE controlling the desired deceleration rate, which will be maintained indefinitely."
+  },
+  {
+    "sentence": "FHLD_FILT_HZ is the filter applied to the optical flow sensor data",
+    "formula": "F ∧ G(H)",
+    "explanation": "Here, F represents the FHLD_FILT_HZ filter being applied, and H represents the optical flow sensor data being filtered. The formula states that the FHLD_FILT_HZ filter is always applied to the optical flow sensor data."
+  },
+  {
+    "sentence": "FHLD_FLOW_MAX is the optical flow sensor's maximum rate (in m/s) used when stopping",
+    "formula": "S → F(M ∧ G(R))",
+    "explanation": "Here, S represents the vehicle stopping, M represents the FHLD_FLOW_MAX rate being used, and R represents the rate being within the maximum limit. The formula states that when the vehicle is stopping, it will eventually lead to the FHLD_FLOW_MAX rate being used, which will be maintained within the maximum limit indefinitely."
+  },
+  {
+    "sentence": "FHLD_QUAL_MIN is the minimum flow quality used.",
+    "formula": "Q ∧ G(M)",
+    "explanation": "Here, Q represents the FHLD_QUAL_MIN quality being used, and M represents the minimum quality being maintained. The formula states that the FHLD_QUAL_MIN quality is always used and maintained as the minimum quality."
+  },
+  {
+    "sentence": "If the flow sensor quality falls below this value, FlowHold will act just like AltHold",
+    "formula": "¬Q → F(A ∧ G(H))",
+    "explanation": "Here, Q represents the flow sensor quality being above the minimum value, A represents FlowHold acting like AltHold, and H represents the vehicle being held at a steady altitude. The formula states that if the flow sensor quality falls below the minimum value, it will eventually lead to FlowHold acting like AltHold, which will hold the vehicle at a steady altitude indefinitely."
+  },
+  {
+    "sentence": "FHLD_XY_P , FHLD_XY_I , FHLD_XY_IMAX and FHLD_XY_FILT_HZ gains to tune the stopping response",
+    "formula": "S → F(G ∧ T ∧ I ∧ M ∧ H)",
+    "explanation": "Here, S represents the vehicle stopping, G represents the gains being applied, T represents the FHLD_XY_P gain, I represents the FHLD_XY_I gain, M represents the FHLD_XY_IMAX gain, and H represents the FHLD_XY_FILT_HZ gain. The formula states that when the vehicle is stopping, it will eventually lead to the gains being applied, which will tune the stopping response."
+  }
+]

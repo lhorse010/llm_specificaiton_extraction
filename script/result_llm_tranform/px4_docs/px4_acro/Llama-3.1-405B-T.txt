@@ -1,0 +1,72 @@
+[
+  {
+    "sentence": "The roll, pitch and yaw sticks control the rate of angular rotation around the respective axes and throttle is passed directly to control allocation.",
+    "formula": "G((R ∧ P ∧ Y) → (X(AR) ∧ X(AP) ∧ X(AY)) ∧ (T → X(CA)))",
+    "explanation": "Here, R, P, and Y represent the roll, pitch, and yaw sticks, respectively. AR, AP, and AY represent the angular rotation around the respective axes. T represents the throttle, and CA represents the control allocation. The formula states that globally, if the roll, pitch, and yaw sticks are controlled, then the rate of angular rotation around the respective axes will change next, and if the throttle is passed, then the control allocation will change next."
+  },
+  {
+    "sentence": "When sticks are centered the vehicle will stop rotating, but remain in its current orientation (on its side, inverted, or whatever) and moving according to its current momentum.",
+    "formula": "G((C → (¬R ∧ ¬P ∧ ¬Y)) → (X(¬AR) ∧ X(¬AP) ∧ X(¬AY)) ∧ (X(O) ∧ X(M)))",
+    "explanation": "Here, C represents the centered sticks, R, P, and Y represent the roll, pitch, and yaw sticks, respectively. AR, AP, and AY represent the angular rotation around the respective axes. O represents the current orientation, and M represents the current momentum. The formula states that globally, if the sticks are centered, then the vehicle will stop rotating next, but remain in its current orientation and moving according to its current momentum."
+  },
+  {
+    "sentence": "RC Roll/Pitch/Yaw (RPY) stick inputs control the rate of angular rotation around the respective axes.",
+    "formula": "G((R ∨ P ∨ Y) → (X(AR) ∨ X(AP) ∨ X(AY)))",
+    "explanation": "Here, R, P, and Y represent the roll, pitch, and yaw sticks, respectively. AR, AP, and AY represent the angular rotation around the respective axes. The formula states that globally, if the roll, pitch, or yaw stick is controlled, then the rate of angular rotation around the respective axis will change next."
+  },
+  {
+    "sentence": "Throttle is passed directly to control allocation.",
+    "formula": "G(T → X(CA))",
+    "explanation": "Here, T represents the throttle, and CA represents the control allocation. The formula states that globally, if the throttle is passed, then the control allocation will change next."
+  },
+  {
+    "sentence": "When sticks are centered the vehicle will stop rotating, but remain in its current orientation (not necessarily level) and moving according to its current momentum.",
+    "formula": "G((C → (¬R ∧ ¬P ∧ ¬Y)) → (X(¬AR) ∧ X(¬AP) ∧ X(¬AY)) ∧ (X(O) ∧ X(M)))",
+    "explanation": "Here, C represents the centered sticks, R, P, and Y represent the roll, pitch, and yaw sticks, respectively. AR, AP, and AY represent the angular rotation around the respective axes. O represents the current orientation, and M represents the current momentum. The formula states that globally, if the sticks are centered, then the vehicle will stop rotating next, but remain in its current orientation and moving according to its current momentum."
+  },
+  {
+    "sentence": "1.Roll, Pitch, Yaw: Assistance from autopilot to stabilize the attitude rate.",
+    "formula": "G((R ∨ P ∨ Y) → X(S))",
+    "explanation": "Here, R, P, and Y represent the roll, pitch, and yaw sticks, respectively. S represents the stabilized attitude rate. The formula states that globally, if the roll, pitch, or yaw stick is controlled, then the attitude rate will be stabilized next."
+  },
+  {
+    "sentence": "Position of RC stick maps to the rate of rotation of vehicle in that orientation.",
+    "formula": "G((R ∨ P ∨ Y) → (X(AR) ∨ X(AP) ∨ X(AY)))",
+    "explanation": "Here, R, P, and Y represent the roll, pitch, and yaw sticks, respectively. AR, AP, and AY represent the angular rotation around the respective axes. The formula states that globally, if the roll, pitch, or yaw stick is controlled, then the rate of angular rotation around the respective axis will change next."
+  },
+  {
+    "sentence": "2.Throttle: Manual control via RC sticks.",
+    "formula": "G(T → X(CA))",
+    "explanation": "Here, T represents the throttle, and CA represents the control allocation. The formula states that globally, if the throttle is passed, then the control allocation will change next."
+  },
+  {
+    "sentence": "RC input is sent directly to control allocation.",
+    "formula": "G(RC → X(CA))",
+    "explanation": "Here, RC represents the RC input, and CA represents the control allocation. The formula states that globally, if the RC input is sent, then the control allocation will change next."
+  },
+  {
+    "sentence": "The curve enables a high turn rate at maximum stick input for performing acrobatic maneuvers, and a zone of lower sensitivity close to the stick center for small corrections.",
+    "formula": "G((M → X(H)) ∧ (C → X(L)))",
+    "explanation": "Here, M represents the maximum stick input, H represents the high turn rate, C represents the stick center, and L represents the lower sensitivity. The formula states that globally, if the maximum stick input is reached, then the high turn rate will be enabled next, and if the stick center is reached, then the lower sensitivity will be enabled next."
+  },
+  {
+    "sentence": "This roll and pitch input stick response can be tuned using the MC_ACRO_EXPO and MC_ACRO_SUPEXPO \"exponential\" parameters, while the yaw stick input response is tuned using MC_ACRO_EXPO_Y and MC_ACRO_SUPEXPOY.",
+    "formula": "G((P ∧ Q) ∨ (R ∧ S))",
+    "explanation": "Here, P represents the roll and pitch input stick response being tunable, Q represents the use of MC_ACRO_EXPO and MC_ACRO_SUPEXPO parameters, R represents the yaw stick input response being tunable, and S represents the use of MC_ACRO_EXPO_Y and MC_ACRO_SUPEXPOY parameters. The formula states that globally, either the roll and pitch input stick response is tunable using the specified parameters or the yaw stick input response is tunable using the specified parameters."
+  },
+  {
+    "sentence": "MC_ACRO_EXPO and MC_ACRO_EXPO_Y tune the curve(s) between a linear and cubic curve as shown below.",
+    "formula": "G((E ∧ F) → (L ∨ C))",
+    "explanation": "Here, E represents the use of MC_ACRO_EXPO, F represents the use of MC_ACRO_EXPO_Y, L represents a linear curve, and C represents a cubic curve. The formula states that globally, if MC_ACRO_EXPO and MC_ACRO_EXPO_Y are used, then the curve is either linear or cubic."
+  },
+  {
+    "sentence": "MC_ACRO_SUPEXPO and MC_ACRO_SUPEXPOY allow the shape to be further tuned, modifying the width of the area of reduced sensitivity.",
+    "formula": "G((S ∧ Y) → (T ∧ M))",
+    "explanation": "Here, S represents the use of MC_ACRO_SUPEXPO, Y represents the use of MC_ACRO_SUPEXPOY, T represents the ability to further tune the shape, and M represents the modification of the width of the area of reduced sensitivity. The formula states that globally, if MC_ACRO_SUPEXPO and MC_ACRO_SUPEXPOY are used, then the shape can be further tuned and the width of the area of reduced sensitivity is modified."
+  },
+  {
+    "sentence": "The mathematical relationship is: $$\\mathrm{y} = r(f \\cdot x^3 + x(1-f)) (1-g)/(1-g |x|)$$, where f = MC_ACRO_EXPO or MC_ACRO_EXPO_Y, g = MC_ACRO_SUPEXPO or MC_ACRO_SUPEXPOY,and r is the maximum rate.",
+    "formula": "G(Y = R((F ∧ X^3) + X(1-F))(1-G)/(1-G|X|))",
+    "explanation": "Here, Y represents the output, R represents the maximum rate, F represents the use of MC_ACRO_EXPO or MC_ACRO_EXPO_Y, G represents the use of MC_ACRO_SUPEXPO or MC_ACRO_SUPEXPOY, and X represents the input. The formula states that globally, the output Y is equal to the specified mathematical relationship involving the input X, the maximum rate R, and the parameters F and G."
+  }
+]

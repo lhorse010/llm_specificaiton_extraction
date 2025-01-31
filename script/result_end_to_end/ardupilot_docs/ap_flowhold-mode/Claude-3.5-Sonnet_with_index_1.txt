@@ -1,0 +1,32 @@
+[
+  {
+    "index": 0,
+    "formula": "G(¬GPS ∧ ¬Lidar → FlowHold)",
+    "explanation": "Globally, if there's no GPS and no Lidar, then FlowHold mode should be used. This captures the primary purpose of FlowHold mode."
+  },
+  {
+    "index": 1,
+    "formula": "G(FlowHold → (OpticalFlowSensor ∧ HeightEstimation ∧ SpeedEstimation))",
+    "explanation": "Globally, when in FlowHold mode, the system must use an optical flow sensor for height estimation and speed estimation. This reflects the core functionality of FlowHold mode."
+  },
+  {
+    "index": 2,
+    "formula": "G(StickRelease → F(VehicleStop))",
+    "explanation": "Globally, when the user releases the control sticks, the vehicle should eventually come to a stop. This captures the behavior of the autopilot using the optical flow sensor to stop the vehicle."
+  },
+  {
+    "index": 3,
+    "formula": "G(HeightChange → X(Wobble U StableHeight))",
+    "explanation": "Globally, after a significant height change, the vehicle may wobble in the next state until a stable height is achieved. This represents the learning process after takeoff or large height changes."
+  },
+  {
+    "index": 4,
+    "formula": "G(FlowQuality < FHLD_QUAL_MIN → AltHold)",
+    "explanation": "Globally, if the flow sensor quality falls below FHLD_QUAL_MIN, the system should switch to AltHold mode. This captures the fallback behavior when flow quality is insufficient."
+  },
+  {
+    "index": 5,
+    "formula": "G(FlowHold → (OpticalFlowRate ≤ FHLD_FLOW_MAX))",
+    "explanation": "Globally, in FlowHold mode, the optical flow sensor's rate should not exceed FHLD_FLOW_MAX. This ensures the sensor operates within its specified limits."
+  }
+]

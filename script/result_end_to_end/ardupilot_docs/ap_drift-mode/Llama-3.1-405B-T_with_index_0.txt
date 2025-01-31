@@ -1,0 +1,42 @@
+[
+  {
+    "index": 0,
+    "formula": "G(right_stick_forward → X(pitch_and_accelerate))",
+    "explanation": "When the right stick is pushed forward, the copter will pitch and accelerate in the appropriate direction."
+  },
+  {
+    "index": 1,
+    "formula": "G(right_stick_back → X(pitch_and_decelerate))",
+    "explanation": "When the right stick is pushed back, the copter will pitch and decelerate in the appropriate direction."
+  },
+  {
+    "index": 2,
+    "formula": "G(right_stick_side → X(turn_and_bank))",
+    "explanation": "When the right stick is pushed to one side, the copter will turn and bank in the specified direction."
+  },
+  {
+    "index": 3,
+    "formula": "G(turning → X(automatic_yaw_and_roll))",
+    "explanation": "When turning with the right stick, yaw is automatically applied and sufficient roll is added to cancel the copter's velocity in the roll axis."
+  },
+  {
+    "index": 4,
+    "formula": "G(sticks_released → X(speed_brake_in_pitch_axis))",
+    "explanation": "Letting go of the sticks effectively turns on a speed brake in the Pitch axis that slows the copter to a stop over a two-second period."
+  },
+  {
+    "index": 5,
+    "formula": "G(right_stick_center → X(loosely_hold_horizontal_position))",
+    "explanation": "A copter in Drift Mode with the right stick in the center will loosely hold horizontal position (it will slowly drift in the wind)."
+  },
+  {
+    "index": 6,
+    "formula": "G(throttle_input → X(control_average_motor_speed))",
+    "explanation": "Pilot's throttle input controls the average motor speed, meaning that constant adjustment of the throttle is required to maintain altitude."
+  },
+  {
+    "index": 7,
+    "formula": "G(GPS_signal_lost → X(land_or_altitude_hold))",
+    "explanation": "If the GPS signal is lost in flight while in Drift Mode, the copter will either land or enter altitude hold based on the failsafe_gps_enabled setting."
+  }
+]

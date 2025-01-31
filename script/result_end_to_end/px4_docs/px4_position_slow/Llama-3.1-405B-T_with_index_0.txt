@@ -1,0 +1,47 @@
+[
+  {
+    "index": 0,
+    "formula": "G(max_horizontal_velocity <= 10)",
+    "explanation": "The maximum horizontal velocity in Position mode should not exceed 10 m/s."
+  },
+  {
+    "index": 1,
+    "formula": "G(max_vertical_velocity <= MPC_VEL_MANUAL)",
+    "explanation": "The maximum vertical velocity in Position mode should not exceed the value set by the MPC_VEL_MANUAL parameter."
+  },
+  {
+    "index": 2,
+    "formula": "G(max_yaw_rate <= MC_SLOW_MAX_YRATE)",
+    "explanation": "The maximum yaw rate in Position mode should not exceed the value set by the MC_SLOW_MAX_YRATE parameter."
+  },
+  {
+    "index": 3,
+    "formula": "G(slow_mode -> (max_horizontal_velocity <= MC_SLOW_MAX_HVEL))",
+    "explanation": "In Position Slow mode, the maximum horizontal velocity should not exceed the value set by the MC_SLOW_MAX_HVEL parameter."
+  },
+  {
+    "index": 4,
+    "formula": "G(slow_mode -> (max_vertical_velocity <= MC_SLOW_MAX_VVEL))",
+    "explanation": "In Position Slow mode, the maximum vertical velocity should not exceed the value set by the MC_SLOW_MAX_VVEL parameter."
+  },
+  {
+    "index": 5,
+    "formula": "G(slow_mode -> (max_yaw_rate <= MC_SLOW_MAX_YRATE))",
+    "explanation": "In Position Slow mode, the maximum yaw rate should not exceed the value set by the MC_SLOW_MAX_YRATE parameter."
+  },
+  {
+    "index": 6,
+    "formula": "G(RC_control_input -> (max_velocity_axis <= MC_SLOW_MIN_ + (RC_control_input * (MPC_VEL_MANUAL - MC_SLOW_MIN_))))",
+    "explanation": "When using RC control input to set the maximum velocity, the maximum velocity of the axis should be scaled between the minimum value set by the MC_SLOW_MIN_ parameter and the maximum value set by the MPC_VEL_MANUAL parameter."
+  },
+  {
+    "index": 7,
+    "formula": "G(MAVLink_message -> (max_velocity_axis <= SET_VELOCITY_LIMITS))",
+    "explanation": "When using MAVLink message to set the maximum velocity, the maximum velocity of the axis should not exceed the value set by the SET_VELOCITY_LIMITS message."
+  },
+  {
+    "index": 8,
+    "formula": "G(slow_mode -> F(max_velocity_axis <= MC_SLOW_MAX_))",
+    "explanation": "In Position Slow mode, the vehicle should eventually slow down to a velocity not exceeding the maximum value set by the MC_SLOW_MAX_ parameter."
+  }
+]

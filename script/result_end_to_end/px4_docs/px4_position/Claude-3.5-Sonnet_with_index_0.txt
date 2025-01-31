@@ -1,0 +1,42 @@
+[
+  {
+    "index": 0,
+    "formula": "G(centered_sticks → (hold_position ∧ hold_altitude))",
+    "explanation": "Globally, when the sticks are centered, the vehicle should hold its position and altitude."
+  },
+  {
+    "index": 1,
+    "formula": "G(roll_pitch_input → X(horizontal_acceleration))",
+    "explanation": "Globally, when roll or pitch input is given, in the next state, the vehicle should accelerate horizontally."
+  },
+  {
+    "index": 2,
+    "formula": "G(throttle_input → X(vertical_velocity_change))",
+    "explanation": "Globally, when throttle input is given, in the next state, the vehicle should change its vertical velocity."
+  },
+  {
+    "index": 3,
+    "formula": "G(yaw_input → X(angular_rotation))",
+    "explanation": "Globally, when yaw input is given, in the next state, the vehicle should rotate angularly."
+  },
+  {
+    "index": 4,
+    "formula": "G(landed ∧ (throttle > 62.5%) → X(takeoff))",
+    "explanation": "Globally, when the vehicle is landed and throttle is above 62.5%, in the next state, the vehicle should take off."
+  },
+  {
+    "index": 5,
+    "formula": "G(¬global_position_estimate → X(failsafe_action))",
+    "explanation": "Globally, when there is no global position estimate, in the next state, a failsafe action should be triggered."
+  },
+  {
+    "index": 6,
+    "formula": "G(landing_sequence → F(on_ground ∧ disarmed))",
+    "explanation": "Globally, when the landing sequence is initiated, eventually the vehicle should be on the ground and disarmed."
+  },
+  {
+    "index": 7,
+    "formula": "G((on_ground ∧ stabilized_mode ∧ low_throttle) → F(disarmed))",
+    "explanation": "Globally, when the vehicle is on the ground in stabilized mode with low throttle, it should eventually be disarmed."
+  }
+]

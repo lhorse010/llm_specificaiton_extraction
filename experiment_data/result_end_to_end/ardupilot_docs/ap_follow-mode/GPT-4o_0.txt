@@ -1,0 +1,42 @@
+```json
+{
+    "specifications": [
+        {
+            "formula": "G (FOLL_ENABLE = 1 → F (FollowModeEnabled))",
+            "explanation": "If the FOLL_ENABLE parameter is set to 1, the vehicle should eventually enable Follow Mode."
+        },
+        {
+            "formula": "G (lead_vehicle_position_published → F (vehicle_follows_lead))",
+            "explanation": "If the lead vehicle's position is published, the vehicle should eventually follow the lead vehicle."
+        },
+        {
+            "formula": "G (|altitude_throttle - mid_throttle| ≤ 0.1 → G (altitude_held))",
+            "explanation": "If the throttle is within 10% of mid-throttle, the vehicle should maintain its current altitude."
+        },
+        {
+            "formula": "G (climb_or_descend → (speed ≤ 2.5 m/s))",
+            "explanation": "The vehicle should climb or descend at a speed not exceeding 2.5 m/s unless adjusted by parameters."
+        },
+        {
+            "formula": "G (distance_to_lead_vehicle > FOLL_DIST_MAX → F (hold_position))",
+            "explanation": "If the lead vehicle is further than the maximum distance, the vehicle should eventually hold its position."
+        },
+        {
+            "formula": "G (FOLL_OFS_TYPE = 0 → offsets_are_NED)",
+            "explanation": "If FOLL_OFS_TYPE is set to 0, the offsets should be in North-East-Down coordinates."
+        },
+        {
+            "formula": "G (FOLL_OFS_TYPE = 1 → offsets_are_relative_to_heading)",
+            "explanation": "If FOLL_OFS_TYPE is set to 1, the offsets should be relative to the lead vehicle's heading."
+        },
+        {
+            "formula": "G (FOLL_YAW_BEHAVE = 0 → follow_direction = lead_direction)",
+            "explanation": "If FOLL_YAW_BEHAVE is set to 0, the vehicle should point in the same direction as the lead vehicle."
+        },
+        {
+            "formula": "G (FOLL_YAW_BEHAVE ≠ 0 → follow_direction = towards_lead)",
+            "explanation": "If FOLL_YAW_BEHAVE is not 0, the vehicle should always point towards the lead vehicle."
+        }
+    ]
+}
+```

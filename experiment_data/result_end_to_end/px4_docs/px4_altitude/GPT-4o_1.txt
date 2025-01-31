@@ -1,0 +1,34 @@
+```json
+{
+    "specifications": [
+        {
+            "formula": "G (centered_sticks → X (altitude_stable ∧ roll_pitch_level))",
+            "explanation": "When the control sticks are centered, the vehicle should level and maintain its current altitude in the next state."
+        },
+        {
+            "formula": "G (throttle_above_62_5_percent → F takeoff)",
+            "explanation": "If the throttle is raised above 62.5%, the vehicle will eventually take off."
+        },
+        {
+            "formula": "G (throttle_at_50_percent → X altitude_stable)",
+            "explanation": "When the throttle is at approximately 50%, the vehicle should maintain its current altitude in the next state."
+        },
+        {
+            "formula": "G (roll_pitch_input → X (adjust_orientation ∧ move_in_direction))",
+            "explanation": "If roll or pitch input is given, the vehicle should adjust its orientation and move in the corresponding direction in the next state."
+        },
+        {
+            "formula": "G (yaw_input → X adjust_rotation_rate)",
+            "explanation": "If yaw input is given, the vehicle should adjust its rate of rotation in the corresponding direction in the next state."
+        },
+        {
+            "formula": "G (altitude_mode_on → (F (altitude_stable ∧ ¬gps_needed)))",
+            "explanation": "In altitude mode, the vehicle should eventually stabilize altitude without requiring GPS."
+        },
+        {
+            "formula": "G (barometer_inaccurate → F lidar_accurate)",
+            "explanation": "If the barometer becomes inaccurate, the vehicle should eventually use LIDAR for more reliable altitude control."
+        }
+    ]
+}
+```

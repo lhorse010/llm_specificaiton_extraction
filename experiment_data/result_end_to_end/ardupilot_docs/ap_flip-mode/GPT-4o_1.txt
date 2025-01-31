@@ -1,0 +1,34 @@
+```json
+{
+    "specifications": [
+        {
+            "formula": "G((pilot_roll ∧ pilot_pitch) → F[0,1](vehicle_rise ∧ F[0,0.1]vehicle_flip))",
+            "explanation": "If the pilot uses the roll or pitch stick, the vehicle will rise for 1 second and then flip rapidly."
+        },
+        {
+            "formula": "G((switch_low ∧ X switch_high) → ¬vehicle_flip U switch_high)",
+            "explanation": "The vehicle will not flip again until the switch is brought low and then back to high."
+        },
+        {
+            "formula": "G((flip_triggered → F[0,2.5](vehicle_roll_complete) ∧ X original_mode))",
+            "explanation": "Once a flip is triggered, the vehicle should complete the roll within 2.5 seconds and return to the original flight mode."
+        },
+        {
+            "formula": "G((manual_exit → (switch_off ∨ roll_stick > 40deg)))",
+            "explanation": "The pilot may manually exit the flip by switching off the channel or moving the roll stick more than 40 degrees left or right."
+        },
+        {
+            "formula": "G((copter_angle < 45deg → (roll_rate = 400deg/sec ∧ throttle_increase)))",
+            "explanation": "In the Flip_Start state, if the copter is leaning less than 45 degrees, it rolls right at 400 degrees per second and increases throttle."
+        },
+        {
+            "formula": "G((45deg ≤ copter_angle ≤ 90deg → (roll_rate = 400deg/sec ∧ throttle_reduce)))",
+            "explanation": "In the Flip_Roll state, if the copter is between +45 and -90 degrees, it rolls right at 400 degrees per second and reduces throttle."
+        },
+        {
+            "formula": "G((90deg < copter_angle ≤ target_angle → earth_frame_controller))",
+            "explanation": "In the Flip_Recover state, if the copter is between -90 degrees and the original target angle, it uses the earth frame angle controller to return to original attitude."
+        }
+    ]
+}
+```

@@ -1,0 +1,42 @@
+[
+  {
+    "index": 0,
+    "formula": "G (throttle > 0 → mission_active)",
+    "explanation": "The mission begins the moment the throttle is raised above zero."
+  },
+  {
+    "index": 1,
+    "formula": "G (auto_mode ∧ ¬armed → ¬mission_active)",
+    "explanation": "The copter must be armed before engaging AUTO mode for the mission to be active."
+  },
+  {
+    "index": 2,
+    "formula": "G (yaw_override → F waypoint_crossed)",
+    "explanation": "The pilot can override yaw, but the autopilot attempts to retake control as the vehicle passes the next waypoint."
+  },
+  {
+    "index": 3,
+    "formula": "G (at_final_waypoint → (RTL ∨ LAND ∨ pilot_control))",
+    "explanation": "The mission must end with an RTL or LAND command, or the pilot must retake control."
+  },
+  {
+    "index": 4,
+    "formula": "G (hdop < 2.0)",
+    "explanation": "GPS must return an HDOP of under 2.0 for proper operation."
+  },
+  {
+    "index": 5,
+    "formula": "G (waypoint_with_delay ∧ ¬within_WPNAV_RADIUS → stop)",
+    "explanation": "If a waypoint includes a delay and the copter is not within the WPNAV_RADIUS, it should stop."
+  },
+  {
+    "index": 6,
+    "formula": "G (speed > WPNAV_SPEED → reduce_speed)",
+    "explanation": "Speed must be reduced below WPNAV_SPEED to maintain path accuracy."
+  },
+  {
+    "index": 7,
+    "formula": "G (mission_complete → (auto_disarm ∨ manual_disarm))",
+    "explanation": "The vehicle should automatically disarm at the end of the mission, or be manually disarmed if needed."
+  }
+]

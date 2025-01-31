@@ -1,0 +1,42 @@
+[
+  {
+    "section-id": 0,
+    "sentence-id": 6,
+    "sentence": "The limits can only be reduced below those for normal _Position_ mode."
+  },
+  {
+    "section-id": 1,
+    "sentence-id": 5,
+    "sentence": "Note that the parameters are used only if limits are not provided by from RC or MAVLink."
+  },
+  {
+    "section-id": 2,
+    "sentence-id": 4,
+    "sentence": "If an RC control input is mapped for an axis it has priority over all other inputs."
+  },
+  {
+    "section-id": 3,
+    "sentence-id": 2,
+    "sentence": "3.Map that auxiliary input using the appropriate MC_SLOW_MAP_ parameter for the axis you want it to control (see table above)."
+  },
+  {
+    "section-id": 3,
+    "sentence-id": 3,
+    "sentence": "For example, if you want to map RC channel 8 to limit the horizontal velocity you could set RC_MAP_AUX1 to the value 8 and [MC_SLOW_MAP_HVEL][mc_slow_map_hvel] to the value 1."
+  },
+  {
+    "section-id": 3,
+    "sentence-id": 4,
+    "sentence": "The RC input from channel 8 then sets a horizontal velocity limit between [MC_SLOW_MIN_HVEL][mc_slow_min_hvel] and [MPC_VEL_MANUAL][mpc_vel_manual]."
+  },
+  {
+    "section-id": 4,
+    "sentence-id": 3,
+    "sentence": "This overrides limit values set in parameters, but is ignored if the axis is mapped to an RC knob."
+  },
+  {
+    "section-id": 4,
+    "sentence-id": 4,
+    "sentence": "The value can be updated from a message at any time, and is latched until either the next message or a mode switch."
+  }
+]

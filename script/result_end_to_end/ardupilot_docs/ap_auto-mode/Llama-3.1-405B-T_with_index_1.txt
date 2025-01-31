@@ -1,0 +1,52 @@
+[
+  {
+    "index": 0,
+    "formula": "G (AutoMode -> (WPNAV_SPEED > 0))",
+    "explanation": "In Auto mode, the copter's speed should always be greater than 0."
+  },
+  {
+    "index": 1,
+    "formula": "G (AutoMode -> (WPNAV_ACCEL_C > 0))",
+    "explanation": "In Auto mode, the copter's corner lateral acceleration limit should always be greater than 0."
+  },
+  {
+    "index": 2,
+    "formula": "G (AutoMode -> (HDOP < 2.0))",
+    "explanation": "In Auto mode, the copter's HDOP should always be less than 2.0."
+  },
+  {
+    "index": 3,
+    "formula": "G (AutoMode -> (vibration levels < acceptable levels))",
+    "explanation": "In Auto mode, the copter's vibration levels should always be less than acceptable levels."
+  },
+  {
+    "index": 4,
+    "formula": "G (AutoMode -> (compass interference levels < acceptable levels))",
+    "explanation": "In Auto mode, the copter's compass interference levels should always be less than acceptable levels."
+  },
+  {
+    "index": 5,
+    "formula": "G (AutoMode -> F (RTL or LAND))",
+    "explanation": "In Auto mode, the copter should eventually execute an RTL or LAND command."
+  },
+  {
+    "index": 6,
+    "formula": "G (AutoMode -> (WPNAV_RADIUS > 0))",
+    "explanation": "In Auto mode, the copter's WPNAV_RADIUS should always be greater than 0."
+  },
+  {
+    "index": 7,
+    "formula": "G (AutoMode -> (Speed < WPNAV_SPEED))",
+    "explanation": "In Auto mode, the copter's speed should always be less than or equal to WPNAV_SPEED."
+  },
+  {
+    "index": 8,
+    "formula": "G (AutoMode -> (vertical speed < WPNAV_SPEED_UP or WPNAV_SPEED_DN))",
+    "explanation": "In Auto mode, the copter's vertical speed should always be less than or equal to WPNAV_SPEED_UP or WPNAV_SPEED_DN."
+  },
+  {
+    "index": 9,
+    "formula": "G (AutoMode -> (yaw control = autopilot or pilot))",
+    "explanation": "In Auto mode, the copter's yaw control should always be controlled by either the autopilot or the pilot."
+  }
+]

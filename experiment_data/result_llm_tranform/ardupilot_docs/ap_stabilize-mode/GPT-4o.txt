@@ -1,0 +1,62 @@
+[
+  {
+    "sentence": "While stabilize mode does not necessarily require GPS, switching to RTL in case of emergency does.",
+    "formula": "¬G(S) ∨ (E → R)",
+    "explanation": "S represents the stabilize mode not requiring GPS. E represents an emergency, and R represents requiring GPS for RTL. The formula captures that stabilize mode can operate without GPS, but in an emergency (E), switching to RTL (R) requires it."
+  },
+  {
+    "sentence": "Make sure you do have a reliable position estimate prior to arming, most commonly provided by 3D GPS fix with sufficient HDOP.",
+    "formula": "¬A ∨ P",
+    "explanation": "A stands for arming, and P for having a reliable position estimate. The formula implies that before arming (A), a reliable position estimate (P) is necessary."
+  },
+  {
+    "sentence": "When the pilot releases the roll and pitch sticks the vehicle automatically levels itself.",
+    "formula": "R → L",
+    "explanation": "R represents the release of the roll and pitch sticks, and L represents the vehicle automatically leveling. The formula specifies that upon release (R), the vehicle levels itself (L)."
+  },
+  {
+    "sentence": "When the pilot releases the yaw stick the vehicle will maintain its current heading.",
+    "formula": "Y → H",
+    "explanation": "Y represents the release of the yaw stick, and H represents maintaining the current heading. The formula indicates that releasing the yaw stick (Y) will cause the vehicle to maintain its heading (H)."
+  },
+  {
+    "sentence": "If the pilot puts the throttle completely down the motors will go to their minimum rate (MOT_SPIN_ARMED) and if the vehicle is flying it will lose attitude control and tumble.",
+    "formula": "(T → M) ∧ (F → (C ∧ T))",
+    "explanation": "T represents throttle down, M represents motors at minimum rate, F represents flying, and C represents losing control and tumbling. The formula captures that throttle down (T) sets motors to minimum (M), and if flying (F), it results in loss of control (C)."
+  },
+  {
+    "sentence": "The throttle sent to the motors is automatically adjusted based on the tilt angle of the vehicle (i.e. increased as the vehicle tilts over more) to reduce the compensation the pilot must do as the vehicle's attitude changes.",
+    "formula": "G(T → A)",
+    "explanation": "T represents tilt angle, and A represents automatic adjustment of throttle. The formula indicates that throttle is globally adjusted (G) based on tilt (T) to assist pilot compensation."
+  },
+  {
+    "sentence": "Always switch into a manual mode such as stabilize if the autopilot fails to control the vehicle.",
+    "formula": "F → M",
+    "explanation": "F represents autopilot failure, and M represents switching to manual mode. The formula states that if the autopilot fails (F), switching to manual mode (M) is necessary."
+  },
+  {
+    "sentence": "ANGLE_MAX controls the maximum lean angle which by default is 4500 (i.e. 45 degrees)",
+    "formula": "G(A → L)",
+    "explanation": "A represents ANGLE_MAX setting, and L represents lean angle. The formula implies that ANGLE_MAX (A) globally controls (G) the maximum lean angle (L)."
+  },
+  {
+    "sentence": "ANGLE_RATE_MAX controls the maximum requested rotation rate in the roll and pitch axis which by default is 18000 (180deg/sec).",
+    "formula": "G(R → M)",
+    "explanation": "R represents ANGLE_RATE_MAX setting, and M represents maximum rotation rate. The formula indicates that ANGLE_RATE_MAX (R) globally controls (G) the maximum rotation rate (M)."
+  },
+  {
+    "sentence": "The default of 4.5 commands a 200 deg/sec rate of rotation when the yaw stick is held fully left or right.",
+    "formula": "Y → C",
+    "explanation": "Y represents yaw stick fully engaged, and C represents the commanded rotation rate. The formula specifies that engaging the yaw stick (Y) commands a set rotation rate (C)."
+  },
+  {
+    "sentence": "Stabilize mode can be setup to provide full stabilization at idle throttle.",
+    "formula": "F(P ∧ Q)",
+    "explanation": "Here, P represents the condition where the stabilize mode is setup, and Q represents full stabilization at idle throttle. The formula expresses that eventually, both conditions can be true."
+  },
+  {
+    "sentence": "3.ACRO_Y_RATE controls how quickly copter rotates based on a pilot's yaw input.",
+    "formula": "G(R → S)",
+    "explanation": "R represents the pilot's yaw input, and S represents the copter's rotation speed. The formula indicates that globally, whenever there is a yaw input, the rotation speed is controlled accordingly."
+  }
+]

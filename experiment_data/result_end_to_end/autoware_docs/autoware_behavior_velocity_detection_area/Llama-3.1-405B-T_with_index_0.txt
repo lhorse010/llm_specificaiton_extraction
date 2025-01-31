@@ -1,0 +1,32 @@
+[
+  {
+    "index": 0,
+    "formula": "G(detection_area → F(stop_planning))",
+    "explanation": "If a pointcloud is detected in a detection area, stop planning will be executed at the predetermined point."
+  },
+  {
+    "index": 1,
+    "formula": "G(activation_timing → F(module_activation))",
+    "explanation": "The module is activated when there is a detection area on the target lane."
+  },
+  {
+    "index": 2,
+    "formula": "G((detection_area ∧ pointcloud_in_area) → F(stop_point_insertion))",
+    "explanation": "If there is a detection area and pointcloud in the area, a stop point is inserted in front of the stop line."
+  },
+  {
+    "index": 3,
+    "formula": "G((stop_point_insertion ∧ ego_vehicle_in_front_of_pass_judge_point) → F(velocity_set_to_zero))",
+    "explanation": "If the ego-vehicle is in front of the pass judge point, the velocity is set to zero behind the stop line."
+  },
+  {
+    "index": 4,
+    "formula": "G((ego_vehicle_passed_pass_judge_point) → F(no_stopping))",
+    "explanation": "If the ego-vehicle has passed the pass judge point, it doesn’t stop and passes through."
+  },
+  {
+    "index": 5,
+    "formula": "G((vehicle_stopped ∧ _front_to_stop_line < hold_stop_margin_distance) → F(no_restart))",
+    "explanation": "If the vehicle is stopped within hold_stop_margin_distance meters from the stop point, the module judges that the vehicle has already stopped and plans to keep stopping at the current position."
+  }
+]

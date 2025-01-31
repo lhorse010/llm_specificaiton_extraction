@@ -1,0 +1,97 @@
+[
+  {
+    "sentence": "Mode requires a global 3d position estimate (from GPS or inferred from a local position).",
+    "formula": "G(M → P)",
+    "explanation": "This formula states that globally (at all times), if the mode (M) is active, then a global 3D position estimate (P) must be available. This captures the continuous requirement for position data when the mode is engaged."
+  },
+  {
+    "sentence": "Flying vehicles can't switch to this mode without global position.",
+    "formula": "G(¬P → ¬X(M))",
+    "explanation": "This formula expresses that globally, if there's no global position (P), then in the next state, the mode (M) cannot be activated. The 'X' operator ensures the temporal sequence of position availability before mode activation."
+  },
+  {
+    "sentence": "Flying vehicles will failsafe if they lose the position estimate.",
+    "formula": "G((M ∧ X(¬P)) → X(F))",
+    "explanation": "This formula states that globally, if the mode (M) is active and in the next state the position estimate is lost (¬P), then in the next state a failsafe (F) will be triggered. This captures the immediate response to losing position data."
+  },
+  {
+    "sentence": "Mode requires home position is set.",
+    "formula": "G(M → H)",
+    "explanation": "This formula expresses that globally, if the mode (M) is active, then the home position (H) must be set. It ensures the continuous requirement of a set home position for the mode to be operational."
+  },
+  {
+    "sentence": "Mode prevents arming (vehicle must be armed when switching to this mode).",
+    "formula": "G((¬A ∧ X(M)) → X(¬M))",
+    "explanation": "This formula states that globally, if the vehicle is not armed (¬A) and in the next state the mode (M) is attempted to be activated, then in the next state the mode will not be active. This prevents mode activation without prior arming."
+  },
+  {
+    "sentence": "RC control switches can be used to change flight modes on any vehicle.",
+    "formula": "G(R → F(M₁ ∨ M₂ ∨ ... ∨ Mₙ))",
+    "explanation": "This formula expresses that globally, if an RC control switch is activated (R), then eventually one of the flight modes (M₁, M₂, ..., Mₙ) will be active. This allows for the possibility of mode changes at any time through RC control."
+  },
+  {
+    "sentence": "RC stick movement will by default change the vehicle to Position mode unless handling a critical battery failsafe.",
+    "formula": "G((S ∧ ¬B) → X(P))",
+    "explanation": "This formula states that globally, if there's RC stick movement (S) and no critical battery failsafe (¬B), then in the next state, the Position mode (P) will be active. This captures the default behavior with the exception for critical situations."
+  },
+  {
+    "sentence": "Ascends to the minimum return altitude (safely above any expected obstacles).",
+    "formula": "F(A)",
+    "explanation": "This formula expresses that eventually, the vehicle will ascend to the minimum return altitude (A). The 'F' operator captures the eventual achievement of the desired altitude, allowing for the time needed to ascend."
+  },
+  {
+    "sentence": "The vehicle maintains its initial altitude if that is higher than the minimum return altitude.",
+    "formula": "G((I ∧ (I > M)) → G(I))",
+    "explanation": "This formula states that globally, if the initial altitude (I) is higher than the minimum return altitude (M), then globally the initial altitude (I) will be maintained. This captures the condition for maintaining a higher initial altitude."
+  },
+  {
+    "sentence": "Flies via a direct constant-altitude path to the safe landing point, which will be the nearest of any rally points and the home position.",
+    "formula": "F(D ∧ C ∧ (R ∨ H))",
+    "explanation": "This formula expresses that eventually, the vehicle will fly a direct path (D) at constant altitude (C) to either a rally point (R) or the home position (H), whichever is nearest. The 'F' operator allows for the time needed to complete the flight path."
+  },
+  {
+    "sentence": "3.On arrival at its destination, it rapidly descends to the \"descent altitude\" (RTL_DESCEND_ALT).",
+    "formula": "F(A → X[0,ε](D))",
+    "explanation": "A represents arrival at the destination, and D represents reaching the descent altitude. The formula states that eventually, when the vehicle arrives (A), in the next immediate time step within a very small interval ε, it will reach the descent altitude (D). This captures the 'rapid' descent mentioned in the sentence."
+  },
+  {
+    "sentence": "4.It waits for a configurable time (RTL_LAND_DELAY), which may be used for deploying landing gear.",
+    "formula": "G(D → (W U[t,t] L))",
+    "explanation": "D represents reaching the descent altitude, W represents waiting, and L represents landing gear deployment. The formula states that globally, when the descent altitude is reached (D), the vehicle waits (W) until exactly t time units have passed, where t is the configurable RTL_LAND_DELAY. This allows for the possibility of landing gear deployment during this time."
+  },
+  {
+    "sentence": "5.Then lands.",
+    "formula": "G(L → X(T))",
+    "explanation": "L represents the completion of the landing delay (and possibly gear deployment), and T represents touching down or landing. The formula states that globally, when the landing preparation (L) is complete, in the next immediate state, the vehicle lands (T)."
+  },
+  {
+    "sentence": "By default the _minimum return altitude_ is set using RTL_RETURN_ALT, and the vehicle will just return at the higher of RTL_RETURN_ALT or the initial vehicle altitude.",
+    "formula": "G(R → (H ∨ I))",
+    "explanation": "R represents the return mode activation, H represents reaching RTL_RETURN_ALT, and I represents maintaining the initial altitude. The formula states that globally, when return mode is activated (R), the vehicle will either reach RTL_RETURN_ALT (H) or maintain its initial altitude (I), whichever is higher."
+  },
+  {
+    "sentence": "The minimum return altitude can be further configured using RTL_CONE_ANG, which together with RTL_RETURN_ALT defines a half cone centered around the destination landing point.",
+    "formula": "G(C → (M ∧ F(L)))",
+    "explanation": "C represents the cone configuration being active, M represents maintaining the minimum return altitude as per the cone, and L represents reaching the landing point. The formula states that globally, when the cone configuration is active (C), the vehicle maintains the minimum return altitude (M) and eventually reaches the landing point (L)."
+  },
+  {
+    "sentence": "The cone affects the minimum return altitude if return mode is triggered within the cylinder defined by the maximum cone radius and RTL_RETURN_ALT: outside this cyclinder RTL_RETURN_ALT is used.",
+    "formula": "G((R ∧ I) → C) ∧ G((R ∧ ¬I) → H)",
+    "explanation": "R represents return mode activation, I represents being inside the cylinder, C represents using the cone-based altitude, and H represents using RTL_RETURN_ALT. The formula states that globally, when return mode is activated (R) and the vehicle is inside the cylinder (I), the cone-based altitude is used (C). Conversely, when return mode is activated (R) but the vehicle is not inside the cylinder (¬I), RTL_RETURN_ALT is used (H)."
+  },
+  {
+    "sentence": "Inside the code the minimum return altitude is the intersection of the vehicle position with the cone, or RTL_DESCEND_ALT (whichever is higher).",
+    "formula": "G(P → (N ∨ D))",
+    "explanation": "P represents the vehicle's position being evaluated, N represents the altitude at the intersection with the cone, and D represents RTL_DESCEND_ALT. The formula states that globally, when the position is evaluated (P), the minimum return altitude is either the cone intersection (N) or RTL_DESCEND_ALT (D), whichever is higher."
+  },
+  {
+    "sentence": "In other words, the vehicle must always ascend to at least RTL_DESCEND_ALT if below that value.",
+    "formula": "G((B ∧ R) → F(D))",
+    "explanation": "B represents being below RTL_DESCEND_ALT, R represents return mode activation, and D represents reaching RTL_DESCEND_ALT. The formula states that globally, when the vehicle is below RTL_DESCEND_ALT (B) and return mode is activated (R), it will eventually reach at least RTL_DESCEND_ALT (D)."
+  },
+  {
+    "sentence": "1.Mode is automatic - no user intervention is _required_ to control the vehicle.",
+    "formula": "G(A → ¬U)",
+    "explanation": "A represents the automatic mode being active, and U represents user intervention. The formula states that globally, when the automatic mode is active (A), user intervention is not required (¬U). This captures the essence of the automatic mode where the vehicle operates without mandatory user control."
+  }
+]

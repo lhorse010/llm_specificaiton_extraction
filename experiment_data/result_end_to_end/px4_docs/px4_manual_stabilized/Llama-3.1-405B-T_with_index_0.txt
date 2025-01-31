@@ -1,0 +1,37 @@
+[
+  {
+    "index": 0,
+    "formula": "G((centered_sticks) → (vehicle_leveled ∧ roll_angle = 0 ∧ pitch_angle = 0))",
+    "explanation": "When the RC control sticks are centered, the vehicle should be leveled and the roll and pitch angles should be zero."
+  },
+  {
+    "index": 1,
+    "formula": "G((outside_center) → (roll_stick_controls_tilt_angle ∧ pitch_stick_controls_tilt_angle ∧ yaw_stick_controls_rotation_rate))",
+    "explanation": "When the sticks are outside the center, the roll and pitch sticks should control the tilt angle, and the yaw stick should control the rate of rotation above the horizontal plane."
+  },
+  {
+    "index": 2,
+    "formula": "G((centered_sticks) → (throttle_controls_altitude ∧ vehicle_maintains_altitude))",
+    "explanation": "When the sticks are centered, the throttle should control altitude, and the vehicle should maintain its altitude."
+  },
+  {
+    "index": 3,
+    "formula": "G((outside_center) → (throttle_controls_speed ∧ vehicle_moves))",
+    "explanation": "When the sticks are outside the center, the throttle should control speed, and the vehicle should move."
+  },
+  {
+    "index": 4,
+    "formula": "G((wind_present) → (vehicle_drifts ∧ pilot_controls_throttle))",
+    "explanation": "When wind is present, the vehicle should drift, and the pilot should control the throttle to hold altitude."
+  },
+  {
+    "index": 5,
+    "formula": "G((autopilot_enabled) → (attitude_regulated ∧ roll_angle = 0 ∧ pitch_angle = 0))",
+    "explanation": "When the autopilot is enabled, the attitude should be regulated, and the roll and pitch angles should be zero."
+  },
+  {
+    "index": 6,
+    "formula": "G((manual_control_input) → (autopilot_assists_stabilization ∧ vehicle_orientation_mapped_to_rc_stick))",
+    "explanation": "When manual control input is required, the autopilot should assist in stabilizing the attitude, and the vehicle orientation should be mapped to the RC stick position."
+  }
+]

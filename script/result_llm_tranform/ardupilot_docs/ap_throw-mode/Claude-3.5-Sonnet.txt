@@ -1,0 +1,72 @@
+[
+  {
+    "sentence": "This mode requires GPS.",
+    "formula": "G(M → G)",
+    "explanation": "This formula states that globally (G), if the mode (M) is active, then GPS (G) must be available. The nested G operator ensures that GPS remains available throughout the mode's operation."
+  },
+  {
+    "sentence": "This flight mode is available for multirotors only.",
+    "formula": "G(F → M)",
+    "explanation": "Here, F represents the flight mode, and M represents multirotors. The formula states that globally, if the flight mode is available (F), then it implies the vehicle is a multirotor (M)."
+  },
+  {
+    "sentence": "3.Check GPS light is green",
+    "formula": "F(G)",
+    "explanation": "G represents the GPS light being green. The formula states that eventually (F), the GPS light will be green. This captures the idea of checking for the green GPS light at some point in the future."
+  },
+  {
+    "sentence": "The motors will not spin by default.",
+    "formula": "G(¬S)",
+    "explanation": "S represents the motors spinning. The formula states that globally (G), the motors are not spinning (¬S). This captures the default state of the motors."
+  },
+  {
+    "sentence": "5.Pick up the vehicle and throw it up and away from you (it must climb by 50cm/s and reach a total speed of 5m/s)",
+    "formula": "F(P ∧ X(C ∧ F(S)))",
+    "explanation": "P represents picking up the vehicle, C represents climbing at 50cm/s, and S represents reaching 5m/s. The formula states that eventually (F), the vehicle is picked up (P), and in the next state (X), it starts climbing (C) and eventually reaches the required speed (S)."
+  },
+  {
+    "sentence": "The motors should start when the vehicle reaches the apex of it's trajectory.",
+    "formula": "G(A → X(M))",
+    "explanation": "A represents reaching the apex, and M represents motors starting. The formula states that globally (G), when the apex is reached (A), in the next state (X), the motors should start (M)."
+  },
+  {
+    "sentence": "After the motors start this flight mode will first try to control it's attitude (return to level and stop rotating), then stop descending and finally it will attempt to stop moving horizontally.",
+    "formula": "G(M → (F(A ∧ F(D ∧ F(H)))))",
+    "explanation": "M represents motors starting, A represents attitude control, D represents stopping descent, and H represents stopping horizontal movement. The formula captures the sequence of events: globally (G), when motors start (M), it leads to eventually (F) controlling attitude (A), which leads to eventually stopping descent (D), which finally leads to stopping horizontal movement (H)."
+  },
+  {
+    "sentence": "1.THROW_TYPE: set to 0 if throwing the vehicle up, 1 if dropping the vehicle.",
+    "formula": "G((T ∧ U) ∨ (¬T ∧ D))",
+    "explanation": "T represents THROW_TYPE being 0, U represents throwing up, and D represents dropping. The formula states that globally (G), either THROW_TYPE is 0 and the vehicle is thrown up, or THROW_TYPE is not 0 (implying 1) and the vehicle is dropped."
+  },
+  {
+    "sentence": "If dropping, drop from a height of at least 10m.",
+    "formula": "G(D → H)",
+    "explanation": "D represents dropping, and H represents a height of at least 10m. The formula states that globally (G), if dropping occurs (D), it implies (→) that the height condition (H) is met."
+  },
+  {
+    "sentence": "2.THROW_MOT_START: controls whether the motors will spin slowly or not at all while waiting for the throw (0 = stopped, 1 = spinning slowly).",
+    "formula": "G(W → (M ∨ ¬M))",
+    "explanation": "W represents the waiting state for throw, and M represents motors spinning. This formula states that globally, when waiting for throw, either the motors are spinning slowly (M) or they are stopped (¬M)."
+  },
+  {
+    "sentence": "3.THROW_NEXTMODE: the vehicle will switch into this flight mode after stopping (Auto, Guided, RTL, Land and Brake are support).",
+    "formula": "G(S → X(A ∨ G ∨ R ∨ L ∨ B))",
+    "explanation": "S represents stopping, and A, G, R, L, B represent Auto, Guided, RTL, Land, and Brake modes respectively. This formula specifies that globally, after stopping (S), in the next state, the vehicle will be in one of the supported flight modes."
+  },
+  {
+    "sentence": "4.THROW_ALT_MIN and THROW_ALT_MAX: set the altitude limits for THROW mode launch.",
+    "formula": "G(T → (H ∧ L))",
+    "explanation": "T represents THROW mode, H represents altitude above THROW_ALT_MIN, and L represents altitude below THROW_ALT_MAX. This formula ensures that globally, when in THROW mode, the altitude is always within the specified limits."
+  },
+  {
+    "sentence": "Throw must happen above the minimum and below the maximum altitude above home after arming.",
+    "formula": "G(A → F(T ∧ H ∧ L))",
+    "explanation": "A represents arming, T represents throw happening, H represents above minimum altitude, and L represents below maximum altitude. This formula states that globally, after arming, eventually a throw will occur within the specified altitude range."
+  },
+  {
+    "sentence": "Once in the air, this mode does not accept any input from the pilot.",
+    "formula": "G(I → G(¬P))",
+    "explanation": "I represents being in the air in this mode, and P represents pilot input. This formula specifies that globally, once in the air in this mode, it's always the case that there is no pilot input accepted."
+  }
+]

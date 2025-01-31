@@ -1,0 +1,58 @@
+{
+    "temporal_logic_formulars": [
+        {
+            "section-id": 0,
+            "sentence-id": 1,
+            "sentence": "When the sticks are released/centered the vehicle will level and maintain the current _altitude_.",
+            "tl": "always ( sticksreleasede == ecerdedevhiclelevel and maintainta == curent_alret_altint_altit_alt = tit_altituretitultudet_alt_ )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 4,
+            "sentence": "Throttle (~50%) holds current altitude steady against wind.",
+            "tl": "always ( Throttle > 50 and Throttlental < 8 )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 10,
+            "sentence": "When landed, the vehicle will take off if the throttle stick is raised above 62.5% percent (of the full range from bottom).",
+            "tl": "always ( landedvehicle == ofthrotlestick > 62.5 and ( percentl > 62.5 and percent < fulrlbotttomom ) )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 0,
+            "sentence": "RC/manual mode like Stabilized mode but with _altitude stabilization_ (centred sticks level vehicle and hold it to fixed altitude).",
+            "tl": "always ( Stamanuilized == tatw_litadet ) until ( d == tabililtabitit ) -> ( edstredtic == stickslelvelvehile and ( itfil == ixedaltiultdedulde ) )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 3,
+            "sentence": "RPY sticks levels vehicle.",
+            "tl": "always ( RPYstickslevelels == vehicle )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 7,
+            "sentence": "Throttle stick controls up/down speed with a predetermined maximum rate (and movement speed in other axes).",
+            "tl": "always ( cThrotlestickcontr == trspedwitedwtedered == mimedmaxetrm and ( movemedmStrated == moveotemedotepedosedo ) )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 11,
+            "sentence": "4.Altitude is normally measured using a barometer, which may become inaccurate in extreme weather conditions.",
+            "tl": "always ( r4ltitudeno == rmlymedusinabaroeterma == ermamayetermay ) -> rise ( ermayinacucurate == extextremeweae ) )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 12,
+            "sentence": "Vehicles that include a LIDAR/range sensor will be able to control altitude with greater reliability and accuracy.",
+            "tl": "always ( Vehiclesinclude == aLsensororablecol ) until ( coltrlit == ltrlitudeithreithrlia ) -> leli == liabithreliability and V == accuracuracuracrlicy )"
+        },
+        {
+            "section-id": 2,
+            "sentence-id": 6,
+            "sentence": "Roll/Pitch sticks control tilt angle in respective orientations, resulting in corresponding left-right and forward-back movement.",
+            "tl": "always ( fall ( RolPitchstickstc == srtiltiltanglere ) and etinetrsulting == coresreporspongcoresprespong )"
+        }
+    ]
+}

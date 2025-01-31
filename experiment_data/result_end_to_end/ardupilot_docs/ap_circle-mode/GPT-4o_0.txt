@@ -1,0 +1,58 @@
+```json
+{
+    "specifications": [
+        {
+            "formula": "G(CIRCLE_RADIUS = 0 → F(nose_pointed_at_center))",
+            "explanation": "If the circle radius is set to zero, the copter will eventually rotate in place with its nose pointed at the circle's center."
+        },
+        {
+            "formula": "G(CIRCLE_RATE > 0 → F(clockwise_rotation))",
+            "explanation": "A positive circle rate indicates the vehicle will eventually rotate clockwise."
+        },
+        {
+            "formula": "G(CIRCLE_RATE < 0 → F(counterclockwise_rotation))",
+            "explanation": "A negative circle rate indicates the vehicle will eventually rotate counterclockwise."
+        },
+        {
+            "formula": "G(acceleration_towards_center > WPNAV_ACCEL → ¬achieve_desired_rate)",
+            "explanation": "If the required acceleration towards the center exceeds the maximum, the vehicle cannot achieve the desired rate."
+        },
+        {
+            "formula": "G((bit_0_set ∧ pitch_stick_up) → F(radius_reduces_to_zero))",
+            "explanation": "If bit 0 is set and the pitch stick is moved up, the circle's radius will eventually reduce to zero."
+        },
+        {
+            "formula": "G((bit_0_set ∧ pitch_stick_down) → F(radius_increases))",
+            "explanation": "If bit 0 is set and the pitch stick is moved down, the circle's radius will eventually increase."
+        },
+        {
+            "formula": "G((bit_0_set ∧ roll_stick_right) → F(clockwise_speed_changes))",
+            "explanation": "If bit 0 is set and the roll stick is moved right, the speed will change clockwise."
+        },
+        {
+            "formula": "G((bit_0_set ∧ roll_stick_left) → F(counterclockwise_speed_changes))",
+            "explanation": "If bit 0 is set and the roll stick is moved left, the speed will change counterclockwise."
+        },
+        {
+            "formula": "G(CH6_tuning_knob_set → ¬roll_stick_rate_changes)",
+            "explanation": "Roll stick rate changes are inhibited when the CH6 tuning knob is set for circle rate."
+        },
+        {
+            "formula": "G(radio_failsafe → ¬stick_changes)",
+            "explanation": "All stick changes are inhibited during radio failsafe."
+        },
+        {
+            "formula": "G(bit_1_set → F(copter_faces_direction_of_travel))",
+            "explanation": "If bit 1 is set, the copter will eventually face the direction of travel while circling."
+        },
+        {
+            "formula": "G(bit_2_set → F(circle_center_set_on_entry))",
+            "explanation": "If bit 2 is set, the circle's center position will be set upon mode entry at the current location."
+        },
+        {
+            "formula": "G(bit_3_set → F(mount_faces_circle_center))",
+            "explanation": "If bit 3 is set, the mount will face the circle's center at all times."
+        }
+    ]
+}
+```

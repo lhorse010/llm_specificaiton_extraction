@@ -1,0 +1,27 @@
+[
+  {
+    "sentence": "The pilot's roll, pitch and yaw sticks control the rate of rotation of the vehicle so when the sticks are released the vehicle will remain in its current attitude.",
+    "formula": "G((R ∨ P ∨ Y) → X(¬(R ∨ P ∨ Y) → G(A)))",
+    "explanation": "R, P, and Y represent roll, pitch, and yaw stick inputs respectively. A represents the vehicle maintaining its current attitude. This formula states that globally, if there's any stick input, in the next state when there's no input, the vehicle will maintain its attitude indefinitely."
+  },
+  {
+    "sentence": "The vehicle will not lean more than 45 degrees (this angle is adjustable with the ACRO_BAL_ROLL and ACRO_BAL_PITCH parameters)",
+    "formula": "G(¬L)",
+    "explanation": "L represents the vehicle leaning more than 45 degrees. This formula ensures that at all times (globally), the vehicle does not lean beyond the specified angle. The adjustability of parameters is not captured in the MTL formula but is implied in the definition of L."
+  },
+  {
+    "sentence": "The altitude is maintained with the altitude hold controller so the vehicle will attempt to hold its current altitude when the sticks are placed with 10% of mid-throttle.",
+    "formula": "G(M → G(H))",
+    "explanation": "M represents the throttle stick being within 10% of mid-position, and H represents the vehicle holding its current altitude. This formula states that globally, when the throttle is near mid-position, the vehicle will attempt to hold its altitude indefinitely."
+  },
+  {
+    "sentence": "It will climb or descend at up to 2.5m/s (this speed is adjustable with the PILOT_SPEED_UP and PILOT_SPEED_DN parameters).",
+    "formula": "G((C ∨ D) → (S ∧ F[0,1](¬S)))",
+    "explanation": "C and D represent climb and descend commands respectively, while S represents the vehicle moving at 2.5m/s or less. This formula ensures that when climbing or descending, the speed is limited, but allows for changes within 1 time unit to accommodate deceleration."
+  },
+  {
+    "sentence": "The acceleration used to establish these speeds is set by PILOT_ACCEL_Z.",
+    "formula": "G(X(S) → A)",
+    "explanation": "S represents the target speed state, and A represents the acceleration being within the set PILOT_ACCEL_Z limit. This formula states that globally, when transitioning to a target speed in the next state, the acceleration is always within the set limit."
+  }
+]
