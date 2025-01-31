@@ -118,6 +118,14 @@ cd script
 # cd ./DeepSTL_convert
 ```
 
+## Validation rules
+
+1. Correctness judgment rule: We evaluate whether a specification is semantically equivalent to the ground truth, disregarding minor issues like variable differences or typos.
+2. Merging results: We conduct three experiments to mitigate the uncertainty of a single LLM. Our goal is to combine the results, not average them. We merge specifications with the same general structure but different variable names into one, which is then judged as correct or incorrect.
+3. Two-person judgment agreement: We follow these rules to reach a consensus:
+- If the results match, we have a consensus.
+- If the results differ, but one person convinces the other, we reach an agreement.
+- If no agreement is reached, we err on the side of caution and judge the result as incorrect.
 
 
 ## Result
